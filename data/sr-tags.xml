@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- One unit tag per resource a unit can draw on. -->
+<Database>
+    <Tags>
+        <Row Tag="SR_SUPPLY_HORSES" Category="UNIT_CLASS"/>
+        <Row Tag="SR_SUPPLY_IRON" Category="UNIT_CLASS"/>
+        <Row Tag="SR_SUPPLY_NITER" Category="UNIT_CLASS"/>
+        <Row Tag="SR_SUPPLY_OIL" Category="UNIT_CLASS"/>
+        <Row Tag="SR_SUPPLY_COAL" Category="UNIT_CLASS"/>
+        <Row Tag="SR_SUPPLY_RUBBER" Category="UNIT_CLASS"/>
+    </Tags>
+</Database>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- AGE_EXPLORATION: the units that draw on a resource (DESIGN.md section 4). -->
+<Database>
+    <TypeTags>
+        <Row Type="UNIT_BOMBARD" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_BOYAR" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_BOYAR_2" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_BOYAR_3" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_CARRACK" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_CATAPULT" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_CETBANG_2" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_CETBANG_3" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_CHEVALER" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_CHEVALER_2" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_CHEVALER_3" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_CORSAIR_2" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_CORSAIR_3" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_COURSER" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_GALLEON" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_GOLD_BANGLES_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_GOLD_BANGLES_3" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_HWACHA" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_HWACHA_2" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_HWACHA_3" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_KALAM_2" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_KALAM_3" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_KISPOKO_NENA_TO_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_KISPOKO_NENA_TO_3" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_KNIGHT" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_LANCER" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_LEIOMANO_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_LEIOMANO_3" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_MAMLUK" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_MAMLUK_2" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_MAMLUK_3" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_MAN_AT_ARMS" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_PIKEMAN" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_SAMURAI_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_SAMURAI_3" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_TERCIO_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_TERCIO_3" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_TOBANG" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_TOBANG_2" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_TOBANG_3" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_TREBUCHET" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_VIKINGR_2" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_VIKINGR_3" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_XUNLEICHONG_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG_3" Tag="SR_SUPPLY_IRON"/>
+    </TypeTags>
+</Database>

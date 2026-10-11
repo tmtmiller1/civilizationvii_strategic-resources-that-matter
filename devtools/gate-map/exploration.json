@@ -1,0 +1,3631 @@
+{
+ "age": "AGE_EXPLORATION",
+ "source": "gameplay-copy.sqlite",
+ "dumpedAt": "2026-10-11",
+ "units": [
+  {
+   "UnitType": "UNIT_ARQUEBUSIER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 40,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_AUDIO_SANDBOX_MELEE",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 0,
+   "TraitType": null,
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_AUDIO_SANDBOX_RANGED",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 0,
+   "TraitType": null,
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 25,
+   "RangedCombat": 55,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_BOMBARD",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 30,
+   "Bombard": 50
+  },
+  {
+   "UnitType": "UNIT_BOYAR",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_BULGARIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_BOYAR_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_BULGARIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_BOYAR_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_BULGARIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_CARRACK",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 40,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_CATAPULT",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 25,
+   "RangedCombat": 20,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_CETBANG",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": "TRAIT_MAJAPAHIT",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 35,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_CETBANG_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": "TRAIT_MAJAPAHIT",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 40,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_CETBANG_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": "TRAIT_MAJAPAHIT",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 45,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_CHEVALER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_NORMAN",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_CHEVALER_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_NORMAN",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_CHEVALER_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_NORMAN",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_COG",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 35,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_CORSAIR",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": "TRAIT_LEADER_MINOR_CIV",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 35,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_CORSAIR_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": "TRAIT_LEADER_MINOR_CIV",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 40,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_CORSAIR_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": "TRAIT_LEADER_MINOR_CIV",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 45,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_COURSER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_CROSSBOWMAN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 25,
+   "RangedCombat": 35,
+   "Bombard": 25
+  },
+  {
+   "UnitType": "UNIT_GALLEON",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 45,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_GOLD_BANGLES",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_SONGHAI",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GOLD_BANGLES_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_SONGHAI",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GOLD_BANGLES_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_SONGHAI",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GREAT_MERCHANT",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 0,
+   "TraitType": null,
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 65,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_HEAVY_ARCHER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 20,
+   "RangedCombat": 30,
+   "Bombard": 20
+  },
+  {
+   "UnitType": "UNIT_HWACHA",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_GORYEO",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 25,
+   "RangedCombat": 20,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_HWACHA_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_GORYEO",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 25,
+   "Bombard": 45
+  },
+  {
+   "UnitType": "UNIT_HWACHA_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_GORYEO",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 30,
+   "Bombard": 50
+  },
+  {
+   "UnitType": "UNIT_KALAM",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": "TRAIT_CHOLA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 35,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_KALAM_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": "TRAIT_CHOLA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 40,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_KALAM_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": "TRAIT_CHOLA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 45,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_KESHIG",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_MONGOLIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 20,
+   "RangedCombat": 30,
+   "Bombard": 20
+  },
+  {
+   "UnitType": "UNIT_KESHIG_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_MONGOLIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 25,
+   "RangedCombat": 35,
+   "Bombard": 25
+  },
+  {
+   "UnitType": "UNIT_KESHIG_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_MONGOLIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 40,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_KISPOKO_NENA_TO",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_SHAWNEE",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_KISPOKO_NENA_TO_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_SHAWNEE",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_KISPOKO_NENA_TO_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_SHAWNEE",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_KNIGHT",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_LANCER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_LEIOMANO",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_HAWAII",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_LEIOMANO_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_HAWAII",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_LEIOMANO_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_HAWAII",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_LONGBOW",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_ENGLAND",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 20,
+   "RangedCombat": 30,
+   "Bombard": 20
+  },
+  {
+   "UnitType": "UNIT_LONGBOW_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_ENGLAND",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 25,
+   "RangedCombat": 35,
+   "Bombard": 25
+  },
+  {
+   "UnitType": "UNIT_LONGBOW_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_ENGLAND",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 40,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_MAMLUK",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_ABBASID",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_MAMLUK_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_ABBASID",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_MAMLUK_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_ABBASID",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_MAN_AT_ARMS",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_PIKEMAN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_PRIVATEER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 10,
+   "Bombard": 10
+  },
+  {
+   "UnitType": "UNIT_PRIVATEER_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 15,
+   "Bombard": 15
+  },
+  {
+   "UnitType": "UNIT_SAMURAI",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_SENGOKU",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 38,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_SAMURAI_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_SENGOKU",
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 43,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_SAMURAI_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_SENGOKU",
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 48,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_SANDBOX",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 0,
+   "TraitType": null,
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 65,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_SLOOP",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": "TRAIT_PIRATE_REPUBLIC",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 5,
+   "Bombard": 5
+  },
+  {
+   "UnitType": "UNIT_SLOOP_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": "TRAIT_PIRATE_REPUBLIC",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 10,
+   "Bombard": 10
+  },
+  {
+   "UnitType": "UNIT_SLOOP_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": "TRAIT_PIRATE_REPUBLIC",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 15,
+   "Bombard": 15
+  },
+  {
+   "UnitType": "UNIT_SWORDSMAN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_TERCIO",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_SPAIN",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 37,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_TERCIO_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_SPAIN",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 42,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_TERCIO_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_SPAIN",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 47,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_TOBANG",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_GORYEO",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_TOBANG_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_GORYEO",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_TOBANG_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_GORYEO",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_TREBUCHET",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 25,
+   "Bombard": 45
+  },
+  {
+   "UnitType": "UNIT_VIKINGR",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": "TRAIT_ICELAND",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 35,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_VIKINGR_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": "TRAIT_ICELAND",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 40,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_VIKINGR_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": "TRAIT_ICELAND",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 45,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_VOI_CHIEN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_DAI_VIET",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 25,
+   "RangedCombat": 30,
+   "Bombard": 20
+  },
+  {
+   "UnitType": "UNIT_VOI_CHIEN_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_DAI_VIET",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 35,
+   "Bombard": 25
+  },
+  {
+   "UnitType": "UNIT_VOI_CHIEN_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_DAI_VIET",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 40,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_WARAKAQ",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_INCA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 20,
+   "RangedCombat": 30,
+   "Bombard": 20
+  },
+  {
+   "UnitType": "UNIT_WARAKAQ_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_INCA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 25,
+   "RangedCombat": 35,
+   "Bombard": 25
+  },
+  {
+   "UnitType": "UNIT_WARAKAQ_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_INCA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 30,
+   "RangedCombat": 40,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_XUNLEICHONG",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_MING",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 20,
+   "Bombard": 5
+  },
+  {
+   "UnitType": "UNIT_XUNLEICHONG_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_MING",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 25,
+   "Bombard": 10
+  },
+  {
+   "UnitType": "UNIT_XUNLEICHONG_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_MING",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 30,
+   "Bombard": 15
+  }
+ ],
+ "tags": [
+  {
+   "Type": "UNIT_ARQUEBUSIER",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_ARQUEBUSIER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_ARQUEBUSIER",
+   "Tag": "UNIT_CLASS_ELITE_RANGED"
+  },
+  {
+   "Type": "UNIT_ARQUEBUSIER",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_BOMBARD",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_BOMBARD",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BOMBARD",
+   "Tag": "UNIT_CLASS_ELITE_SIEGE"
+  },
+  {
+   "Type": "UNIT_BOMBARD",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_BOYAR",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_BOYAR",
+   "Tag": "UNIT_CLASS_BOYAR"
+  },
+  {
+   "Type": "UNIT_BOYAR",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_BOYAR",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BOYAR",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_BOYAR",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_BOYAR_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_BOYAR_2",
+   "Tag": "UNIT_CLASS_BOYAR"
+  },
+  {
+   "Type": "UNIT_BOYAR_2",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_BOYAR_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BOYAR_2",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_BOYAR_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_BOYAR_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_BOYAR_3",
+   "Tag": "UNIT_CLASS_BOYAR"
+  },
+  {
+   "Type": "UNIT_BOYAR_3",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_BOYAR_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BOYAR_3",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_BOYAR_3",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_BOYAR_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CARRACK",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CARRACK",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CARRACK",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_CARRACK",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_CARRACK",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CATAPULT",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CATAPULT",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CATAPULT",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_CETBANG",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CETBANG",
+   "Tag": "UNIT_CLASS_CETBANG"
+  },
+  {
+   "Type": "UNIT_CETBANG",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CETBANG",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_CETBANG",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_CETBANG",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CETBANG",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CETBANG_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CETBANG_2",
+   "Tag": "UNIT_CLASS_CETBANG"
+  },
+  {
+   "Type": "UNIT_CETBANG_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CETBANG_2",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_CETBANG_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_CETBANG_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CETBANG_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CETBANG_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CETBANG_3",
+   "Tag": "UNIT_CLASS_CETBANG"
+  },
+  {
+   "Type": "UNIT_CETBANG_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CETBANG_3",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL"
+  },
+  {
+   "Type": "UNIT_CETBANG_3",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_CETBANG_3",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_CETBANG_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CETBANG_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CHEVALER",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CHEVALER",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_CHEVALER",
+   "Tag": "UNIT_CLASS_CHEVALER"
+  },
+  {
+   "Type": "UNIT_CHEVALER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CHEVALER",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_CHEVALER",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CHEVALER_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CHEVALER_2",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_CHEVALER_2",
+   "Tag": "UNIT_CLASS_CHEVALER"
+  },
+  {
+   "Type": "UNIT_CHEVALER_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CHEVALER_2",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_CHEVALER_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CHEVALER_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CHEVALER_3",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_CHEVALER_3",
+   "Tag": "UNIT_CLASS_CHEVALER"
+  },
+  {
+   "Type": "UNIT_CHEVALER_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CHEVALER_3",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_CHEVALER_3",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_CHEVALER_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_COG",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_COG",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_COG",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_COG",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_COG",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CORSAIR",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CORSAIR",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CORSAIR",
+   "Tag": "UNIT_CLASS_CORSAIR"
+  },
+  {
+   "Type": "UNIT_CORSAIR",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_CORSAIR",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_CORSAIR",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CORSAIR",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CORSAIR_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CORSAIR_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CORSAIR_2",
+   "Tag": "UNIT_CLASS_CORSAIR"
+  },
+  {
+   "Type": "UNIT_CORSAIR_2",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_CORSAIR_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_CORSAIR_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CORSAIR_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CORSAIR_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CORSAIR_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CORSAIR_3",
+   "Tag": "UNIT_CLASS_CORSAIR"
+  },
+  {
+   "Type": "UNIT_CORSAIR_3",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL"
+  },
+  {
+   "Type": "UNIT_CORSAIR_3",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_CORSAIR_3",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_CORSAIR_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CORSAIR_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_COURSER",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_COURSER",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_COURSER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_COURSER",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_CROSSBOWMAN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CROSSBOWMAN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CROSSBOWMAN",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_GALLEON",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GALLEON",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GALLEON",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL"
+  },
+  {
+   "Type": "UNIT_GALLEON",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_GALLEON",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_GALLEON",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES",
+   "Tag": "UNIT_CLASS_GOLD_BANGLES"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_2",
+   "Tag": "UNIT_CLASS_GOLD_BANGLES"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_3",
+   "Tag": "UNIT_CLASS_GOLD_BANGLES"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GOLD_BANGLES_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GREAT_MERCHANT",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_HEAVY_ARCHER",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_HEAVY_ARCHER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_HEAVY_ARCHER",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_HWACHA",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_HWACHA",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_HWACHA",
+   "Tag": "UNIT_CLASS_HWACHA"
+  },
+  {
+   "Type": "UNIT_HWACHA",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_HWACHA",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_HWACHA_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_HWACHA_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_HWACHA_2",
+   "Tag": "UNIT_CLASS_HWACHA"
+  },
+  {
+   "Type": "UNIT_HWACHA_2",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_HWACHA_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_HWACHA_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_HWACHA_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_HWACHA_3",
+   "Tag": "UNIT_CLASS_ELITE_SIEGE"
+  },
+  {
+   "Type": "UNIT_HWACHA_3",
+   "Tag": "UNIT_CLASS_HWACHA"
+  },
+  {
+   "Type": "UNIT_HWACHA_3",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_HWACHA_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KALAM",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KALAM",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KALAM",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_KALAM",
+   "Tag": "UNIT_CLASS_KALAM"
+  },
+  {
+   "Type": "UNIT_KALAM",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_KALAM",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_KALAM",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KALAM_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KALAM_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KALAM_2",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_KALAM_2",
+   "Tag": "UNIT_CLASS_KALAM"
+  },
+  {
+   "Type": "UNIT_KALAM_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_KALAM_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_KALAM_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KALAM_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KALAM_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KALAM_3",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL"
+  },
+  {
+   "Type": "UNIT_KALAM_3",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_KALAM_3",
+   "Tag": "UNIT_CLASS_KALAM"
+  },
+  {
+   "Type": "UNIT_KALAM_3",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_KALAM_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_KALAM_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KESHIG",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KESHIG",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_KESHIG",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KESHIG",
+   "Tag": "UNIT_CLASS_KESHIG"
+  },
+  {
+   "Type": "UNIT_KESHIG",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_KESHIG",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_KESHIG",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KESHIG_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KESHIG_2",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_KESHIG_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KESHIG_2",
+   "Tag": "UNIT_CLASS_KESHIG"
+  },
+  {
+   "Type": "UNIT_KESHIG_2",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_KESHIG_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_KESHIG_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KESHIG_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KESHIG_3",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_KESHIG_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KESHIG_3",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_KESHIG_3",
+   "Tag": "UNIT_CLASS_ELITE_RANGED"
+  },
+  {
+   "Type": "UNIT_KESHIG_3",
+   "Tag": "UNIT_CLASS_KESHIG"
+  },
+  {
+   "Type": "UNIT_KESHIG_3",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_KESHIG_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_KESHIG_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO",
+   "Tag": "UNIT_CLASS_KISPOKO_NENA_TO"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_2",
+   "Tag": "UNIT_CLASS_KISPOKO_NENA_TO"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_3",
+   "Tag": "UNIT_CLASS_KISPOKO_NENA_TO"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_KISPOKO_NENA_TO_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KNIGHT",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KNIGHT",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_KNIGHT",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KNIGHT",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_LANCER",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_LANCER",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_LANCER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_LANCER",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_LANCER",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_LEIOMANO",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_LEIOMANO",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_LEIOMANO",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_LEIOMANO",
+   "Tag": "UNIT_CLASS_LEIOMANO"
+  },
+  {
+   "Type": "UNIT_LEIOMANO",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_LEIOMANO",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_2",
+   "Tag": "UNIT_CLASS_LEIOMANO"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_3",
+   "Tag": "UNIT_CLASS_LEIOMANO"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_LEIOMANO_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_LONGBOW",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_LONGBOW",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_LONGBOW",
+   "Tag": "UNIT_CLASS_LONGBOW"
+  },
+  {
+   "Type": "UNIT_LONGBOW",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_LONGBOW",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_LONGBOW_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_LONGBOW_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_LONGBOW_2",
+   "Tag": "UNIT_CLASS_LONGBOW"
+  },
+  {
+   "Type": "UNIT_LONGBOW_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_LONGBOW_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_LONGBOW_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_LONGBOW_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_LONGBOW_3",
+   "Tag": "UNIT_CLASS_ELITE_RANGED"
+  },
+  {
+   "Type": "UNIT_LONGBOW_3",
+   "Tag": "UNIT_CLASS_LONGBOW"
+  },
+  {
+   "Type": "UNIT_LONGBOW_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_MAMLUK",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_MAMLUK",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_MAMLUK",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_MAMLUK",
+   "Tag": "UNIT_CLASS_MAMLUK"
+  },
+  {
+   "Type": "UNIT_MAMLUK",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_MAMLUK",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_MAMLUK",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_MAMLUK_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_MAMLUK_2",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_MAMLUK_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_MAMLUK_2",
+   "Tag": "UNIT_CLASS_MAMLUK"
+  },
+  {
+   "Type": "UNIT_MAMLUK_2",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_MAMLUK_2",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_MAMLUK_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_MAMLUK_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_MAMLUK_3",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_MAMLUK_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_MAMLUK_3",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_MAMLUK_3",
+   "Tag": "UNIT_CLASS_MAMLUK"
+  },
+  {
+   "Type": "UNIT_MAMLUK_3",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_MAMLUK_3",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_MAMLUK_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_MAN_AT_ARMS",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_MAN_AT_ARMS",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_MAN_AT_ARMS",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_MAN_AT_ARMS",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_PIKEMAN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_PIKEMAN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_PIKEMAN",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_PIKEMAN",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_PIKEMAN",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_PRIVATEER",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_PRIVATEER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_PRIVATEER",
+   "Tag": "UNIT_CLASS_IGNORES_BORDERS"
+  },
+  {
+   "Type": "UNIT_PRIVATEER",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_PRIVATEER",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_PRIVATEER",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_PRIVATEER",
+   "Tag": "UNIT_CLASS_PLUNDER_TRADE_ROUTES_BETWEEN_OTHER_CIVS"
+  },
+  {
+   "Type": "UNIT_PRIVATEER",
+   "Tag": "UNIT_CLASS_PRIVATEER"
+  },
+  {
+   "Type": "UNIT_PRIVATEER",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_PRIVATEER_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_PRIVATEER_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_PRIVATEER_2",
+   "Tag": "UNIT_CLASS_IGNORES_BORDERS"
+  },
+  {
+   "Type": "UNIT_PRIVATEER_2",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_PRIVATEER_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_PRIVATEER_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_PRIVATEER_2",
+   "Tag": "UNIT_CLASS_PLUNDER_TRADE_ROUTES_BETWEEN_OTHER_CIVS"
+  },
+  {
+   "Type": "UNIT_PRIVATEER_2",
+   "Tag": "UNIT_CLASS_PRIVATEER"
+  },
+  {
+   "Type": "UNIT_PRIVATEER_2",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_SAMURAI",
+   "Tag": "UNIT_CLASS_ALT_UPGRADE"
+  },
+  {
+   "Type": "UNIT_SAMURAI",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SAMURAI",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SAMURAI",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SAMURAI",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SAMURAI",
+   "Tag": "UNIT_CLASS_SAMURAI"
+  },
+  {
+   "Type": "UNIT_SAMURAI",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SAMURAI_2",
+   "Tag": "UNIT_CLASS_ALT_UPGRADE"
+  },
+  {
+   "Type": "UNIT_SAMURAI_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SAMURAI_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SAMURAI_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SAMURAI_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SAMURAI_2",
+   "Tag": "UNIT_CLASS_SAMURAI"
+  },
+  {
+   "Type": "UNIT_SAMURAI_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SAMURAI_3",
+   "Tag": "UNIT_CLASS_ALT_UPGRADE"
+  },
+  {
+   "Type": "UNIT_SAMURAI_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SAMURAI_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SAMURAI_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SAMURAI_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SAMURAI_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SAMURAI_3",
+   "Tag": "UNIT_CLASS_SAMURAI"
+  },
+  {
+   "Type": "UNIT_SAMURAI_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_IGNORES_BORDERS"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_PLUNDER_TRADE_ROUTES_BETWEEN_OTHER_CIVS"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_PRIVATEER"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_SLOOP"
+  },
+  {
+   "Type": "UNIT_SLOOP",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_IGNORES_BORDERS"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_PLUNDER_TRADE_ROUTES_BETWEEN_OTHER_CIVS"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_PRIVATEER"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_SLOOP"
+  },
+  {
+   "Type": "UNIT_SLOOP_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_IGNORES_BORDERS"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_PLUNDER_TRADE_ROUTES_BETWEEN_OTHER_CIVS"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_PRIVATEER"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_SLOOP"
+  },
+  {
+   "Type": "UNIT_SLOOP_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SWORDSMAN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SWORDSMAN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SWORDSMAN",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SWORDSMAN",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_TERCIO",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TERCIO",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TERCIO",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_TERCIO",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_TERCIO",
+   "Tag": "UNIT_CLASS_TERCIO"
+  },
+  {
+   "Type": "UNIT_TERCIO",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_TERCIO_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TERCIO_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TERCIO_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_TERCIO_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_TERCIO_2",
+   "Tag": "UNIT_CLASS_TERCIO"
+  },
+  {
+   "Type": "UNIT_TERCIO_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_TERCIO_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TERCIO_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TERCIO_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_TERCIO_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_TERCIO_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_TERCIO_3",
+   "Tag": "UNIT_CLASS_TERCIO"
+  },
+  {
+   "Type": "UNIT_TERCIO_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_TOBANG",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TOBANG",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_TOBANG",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TOBANG",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_TOBANG",
+   "Tag": "UNIT_CLASS_TOBANG"
+  },
+  {
+   "Type": "UNIT_TOBANG",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_TOBANG_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TOBANG_2",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_TOBANG_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TOBANG_2",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_TOBANG_2",
+   "Tag": "UNIT_CLASS_TOBANG"
+  },
+  {
+   "Type": "UNIT_TOBANG_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_TOBANG_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TOBANG_3",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_TOBANG_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TOBANG_3",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_TOBANG_3",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_TOBANG_3",
+   "Tag": "UNIT_CLASS_TOBANG"
+  },
+  {
+   "Type": "UNIT_TOBANG_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_TREBUCHET",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TREBUCHET",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TREBUCHET",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_VIKINGR",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_VIKINGR",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_VIKINGR",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_VIKINGR",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_VIKINGR",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_VIKINGR",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_VIKINGR",
+   "Tag": "UNIT_CLASS_VIKINGR"
+  },
+  {
+   "Type": "UNIT_VIKINGR_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_VIKINGR_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_VIKINGR_2",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_VIKINGR_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_VIKINGR_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_VIKINGR_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_VIKINGR_2",
+   "Tag": "UNIT_CLASS_VIKINGR"
+  },
+  {
+   "Type": "UNIT_VIKINGR_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_VIKINGR_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_VIKINGR_3",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL"
+  },
+  {
+   "Type": "UNIT_VIKINGR_3",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_VIKINGR_3",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_VIKINGR_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_VIKINGR_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_VIKINGR_3",
+   "Tag": "UNIT_CLASS_VIKINGR"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN",
+   "Tag": "UNIT_CLASS_VOI_CHIEN"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_2",
+   "Tag": "UNIT_CLASS_VOI_CHIEN"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_3",
+   "Tag": "UNIT_CLASS_ELITE_RANGED"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_VOI_CHIEN_3",
+   "Tag": "UNIT_CLASS_VOI_CHIEN"
+  },
+  {
+   "Type": "UNIT_WARAKAQ",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_WARAKAQ",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_WARAKAQ",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_WARAKAQ",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_WARAKAQ",
+   "Tag": "UNIT_CLASS_WARAKAQ"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_2",
+   "Tag": "UNIT_CLASS_WARAKAQ"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_3",
+   "Tag": "UNIT_CLASS_ELITE_RANGED"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_WARAKAQ_3",
+   "Tag": "UNIT_CLASS_WARAKAQ"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG",
+   "Tag": "UNIT_CLASS_XUNLEICHONG"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_2",
+   "Tag": "UNIT_CLASS_XUNLEICHONG"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_XUNLEICHONG_3",
+   "Tag": "UNIT_CLASS_XUNLEICHONG"
+  }
+ ],
+ "replaces": [
+  {
+   "CivUniqueUnitType": "UNIT_BALIK",
+   "ReplacesUnitType": "UNIT_ARMY_COMMANDER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_BOYAR",
+   "ReplacesUnitType": "UNIT_COURSER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_BOYAR_2",
+   "ReplacesUnitType": "UNIT_KNIGHT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_BOYAR_3",
+   "ReplacesUnitType": "UNIT_LANCER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_BUCCANEER",
+   "ReplacesUnitType": "UNIT_FLEET_COMMANDER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CETBANG",
+   "ReplacesUnitType": "UNIT_COG"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CETBANG_2",
+   "ReplacesUnitType": "UNIT_CARRACK"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CETBANG_3",
+   "ReplacesUnitType": "UNIT_GALLEON"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CHASQUI",
+   "ReplacesUnitType": "UNIT_SCOUT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CHEVALER",
+   "ReplacesUnitType": "UNIT_COURSER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CHEVALER_2",
+   "ReplacesUnitType": "UNIT_KNIGHT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CHEVALER_3",
+   "ReplacesUnitType": "UNIT_LANCER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GOLD_BANGLES",
+   "ReplacesUnitType": "UNIT_SWORDSMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GOLD_BANGLES_2",
+   "ReplacesUnitType": "UNIT_MAN_AT_ARMS"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GOLD_BANGLES_3",
+   "ReplacesUnitType": "UNIT_PIKEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_HOCEEPKILENI",
+   "ReplacesUnitType": "UNIT_MISSIONARY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_HWACHA",
+   "ReplacesUnitType": "UNIT_CATAPULT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_HWACHA_2",
+   "ReplacesUnitType": "UNIT_TREBUCHET"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_HWACHA_3",
+   "ReplacesUnitType": "UNIT_BOMBARD"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KAHUNA",
+   "ReplacesUnitType": "UNIT_MISSIONARY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KALAM",
+   "ReplacesUnitType": "UNIT_COG"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KALAM_2",
+   "ReplacesUnitType": "UNIT_CARRACK"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KALAM_3",
+   "ReplacesUnitType": "UNIT_GALLEON"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KESHIG",
+   "ReplacesUnitType": "UNIT_HEAVY_ARCHER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KESHIG_2",
+   "ReplacesUnitType": "UNIT_CROSSBOWMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KESHIG_3",
+   "ReplacesUnitType": "UNIT_ARQUEBUSIER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KISPOKO_NENA_TO",
+   "ReplacesUnitType": "UNIT_SWORDSMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KISPOKO_NENA_TO_2",
+   "ReplacesUnitType": "UNIT_MAN_AT_ARMS"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KISPOKO_NENA_TO_3",
+   "ReplacesUnitType": "UNIT_PIKEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_LEIOMANO",
+   "ReplacesUnitType": "UNIT_SWORDSMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_LEIOMANO_2",
+   "ReplacesUnitType": "UNIT_MAN_AT_ARMS"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_LEIOMANO_3",
+   "ReplacesUnitType": "UNIT_PIKEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_LONGBOW",
+   "ReplacesUnitType": "UNIT_HEAVY_ARCHER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_LONGBOW_2",
+   "ReplacesUnitType": "UNIT_CROSSBOWMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_LONGBOW_3",
+   "ReplacesUnitType": "UNIT_ARQUEBUSIER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MAMLUK",
+   "ReplacesUnitType": "UNIT_COURSER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MAMLUK_2",
+   "ReplacesUnitType": "UNIT_KNIGHT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MAMLUK_3",
+   "ReplacesUnitType": "UNIT_LANCER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MANDARIN",
+   "ReplacesUnitType": "UNIT_MERCHANT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MERCHANT_ADVENTURER",
+   "ReplacesUnitType": "UNIT_MERCHANT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_NOYAN",
+   "ReplacesUnitType": "UNIT_ARMY_COMMANDER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_OTTRU",
+   "ReplacesUnitType": "UNIT_FLEET_COMMANDER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_PEDANDA",
+   "ReplacesUnitType": "UNIT_MISSIONARY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SAMURAI",
+   "ReplacesUnitType": "UNIT_SWORDSMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SAMURAI_2",
+   "ReplacesUnitType": "UNIT_MAN_AT_ARMS"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SAMURAI_3",
+   "ReplacesUnitType": "UNIT_PIKEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SLOOP_2",
+   "ReplacesUnitType": "UNIT_PRIVATEER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SLOOP_3",
+   "ReplacesUnitType": "UNIT_PRIVATEER_2"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SOKEMAN",
+   "ReplacesUnitType": "UNIT_SETTLER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TAJIRO",
+   "ReplacesUnitType": "UNIT_MERCHANT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TERCIO",
+   "ReplacesUnitType": "UNIT_SWORDSMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TERCIO_2",
+   "ReplacesUnitType": "UNIT_MAN_AT_ARMS"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TERCIO_3",
+   "ReplacesUnitType": "UNIT_PIKEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TOBANG",
+   "ReplacesUnitType": "UNIT_COURSER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TOBANG_2",
+   "ReplacesUnitType": "UNIT_KNIGHT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TOBANG_3",
+   "ReplacesUnitType": "UNIT_LANCER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_VIET_KIEU",
+   "ReplacesUnitType": "UNIT_SETTLER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_VIKINGR",
+   "ReplacesUnitType": "UNIT_COG"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_VIKINGR_2",
+   "ReplacesUnitType": "UNIT_CARRACK"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_VIKINGR_3",
+   "ReplacesUnitType": "UNIT_GALLEON"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_VOI_CHIEN",
+   "ReplacesUnitType": "UNIT_HEAVY_ARCHER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_VOI_CHIEN_2",
+   "ReplacesUnitType": "UNIT_CROSSBOWMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_VOI_CHIEN_3",
+   "ReplacesUnitType": "UNIT_ARQUEBUSIER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_WARAKAQ",
+   "ReplacesUnitType": "UNIT_HEAVY_ARCHER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_WARAKAQ_2",
+   "ReplacesUnitType": "UNIT_CROSSBOWMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_WARAKAQ_3",
+   "ReplacesUnitType": "UNIT_ARQUEBUSIER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_XUNLEICHONG",
+   "ReplacesUnitType": "UNIT_SWORDSMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_XUNLEICHONG_2",
+   "ReplacesUnitType": "UNIT_MAN_AT_ARMS"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_XUNLEICHONG_3",
+   "ReplacesUnitType": "UNIT_PIKEMAN"
+  }
+ ],
+ "upgrades": [
+  {
+   "Unit": "UNIT_BOYAR",
+   "UpgradeUnit": "UNIT_BOYAR_2"
+  },
+  {
+   "Unit": "UNIT_BOYAR_2",
+   "UpgradeUnit": "UNIT_BOYAR_3"
+  },
+  {
+   "Unit": "UNIT_CARRACK",
+   "UpgradeUnit": "UNIT_GALLEON"
+  },
+  {
+   "Unit": "UNIT_CATAPULT",
+   "UpgradeUnit": "UNIT_TREBUCHET"
+  },
+  {
+   "Unit": "UNIT_CETBANG",
+   "UpgradeUnit": "UNIT_CETBANG_2"
+  },
+  {
+   "Unit": "UNIT_CETBANG_2",
+   "UpgradeUnit": "UNIT_CETBANG_3"
+  },
+  {
+   "Unit": "UNIT_CHEVALER",
+   "UpgradeUnit": "UNIT_CHEVALER_2"
+  },
+  {
+   "Unit": "UNIT_CHEVALER_2",
+   "UpgradeUnit": "UNIT_CHEVALER_3"
+  },
+  {
+   "Unit": "UNIT_COG",
+   "UpgradeUnit": "UNIT_CARRACK"
+  },
+  {
+   "Unit": "UNIT_CORSAIR",
+   "UpgradeUnit": "UNIT_CORSAIR_2"
+  },
+  {
+   "Unit": "UNIT_CORSAIR_2",
+   "UpgradeUnit": "UNIT_CORSAIR_3"
+  },
+  {
+   "Unit": "UNIT_COURSER",
+   "UpgradeUnit": "UNIT_KNIGHT"
+  },
+  {
+   "Unit": "UNIT_CROSSBOWMAN",
+   "UpgradeUnit": "UNIT_ARQUEBUSIER"
+  },
+  {
+   "Unit": "UNIT_GOLD_BANGLES",
+   "UpgradeUnit": "UNIT_GOLD_BANGLES_2"
+  },
+  {
+   "Unit": "UNIT_GOLD_BANGLES_2",
+   "UpgradeUnit": "UNIT_GOLD_BANGLES_3"
+  },
+  {
+   "Unit": "UNIT_HEAVY_ARCHER",
+   "UpgradeUnit": "UNIT_CROSSBOWMAN"
+  },
+  {
+   "Unit": "UNIT_HWACHA",
+   "UpgradeUnit": "UNIT_HWACHA_2"
+  },
+  {
+   "Unit": "UNIT_HWACHA_2",
+   "UpgradeUnit": "UNIT_HWACHA_3"
+  },
+  {
+   "Unit": "UNIT_KALAM",
+   "UpgradeUnit": "UNIT_KALAM_2"
+  },
+  {
+   "Unit": "UNIT_KALAM_2",
+   "UpgradeUnit": "UNIT_KALAM_3"
+  },
+  {
+   "Unit": "UNIT_KESHIG",
+   "UpgradeUnit": "UNIT_KESHIG_2"
+  },
+  {
+   "Unit": "UNIT_KESHIG_2",
+   "UpgradeUnit": "UNIT_KESHIG_3"
+  },
+  {
+   "Unit": "UNIT_KISPOKO_NENA_TO",
+   "UpgradeUnit": "UNIT_KISPOKO_NENA_TO_2"
+  },
+  {
+   "Unit": "UNIT_KISPOKO_NENA_TO_2",
+   "UpgradeUnit": "UNIT_KISPOKO_NENA_TO_3"
+  },
+  {
+   "Unit": "UNIT_KNIGHT",
+   "UpgradeUnit": "UNIT_LANCER"
+  },
+  {
+   "Unit": "UNIT_LEIOMANO",
+   "UpgradeUnit": "UNIT_LEIOMANO_2"
+  },
+  {
+   "Unit": "UNIT_LEIOMANO_2",
+   "UpgradeUnit": "UNIT_LEIOMANO_3"
+  },
+  {
+   "Unit": "UNIT_LONGBOW",
+   "UpgradeUnit": "UNIT_LONGBOW_2"
+  },
+  {
+   "Unit": "UNIT_LONGBOW_2",
+   "UpgradeUnit": "UNIT_LONGBOW_3"
+  },
+  {
+   "Unit": "UNIT_MAMLUK",
+   "UpgradeUnit": "UNIT_MAMLUK_2"
+  },
+  {
+   "Unit": "UNIT_MAMLUK_2",
+   "UpgradeUnit": "UNIT_MAMLUK_3"
+  },
+  {
+   "Unit": "UNIT_MAN_AT_ARMS",
+   "UpgradeUnit": "UNIT_PIKEMAN"
+  },
+  {
+   "Unit": "UNIT_PRIVATEER",
+   "UpgradeUnit": "UNIT_PRIVATEER_2"
+  },
+  {
+   "Unit": "UNIT_SAMURAI",
+   "UpgradeUnit": "UNIT_SAMURAI_2"
+  },
+  {
+   "Unit": "UNIT_SAMURAI_2",
+   "UpgradeUnit": "UNIT_SAMURAI_3"
+  },
+  {
+   "Unit": "UNIT_SLOOP",
+   "UpgradeUnit": "UNIT_SLOOP_2"
+  },
+  {
+   "Unit": "UNIT_SLOOP_2",
+   "UpgradeUnit": "UNIT_SLOOP_3"
+  },
+  {
+   "Unit": "UNIT_SWORDSMAN",
+   "UpgradeUnit": "UNIT_MAN_AT_ARMS"
+  },
+  {
+   "Unit": "UNIT_TERCIO",
+   "UpgradeUnit": "UNIT_TERCIO_2"
+  },
+  {
+   "Unit": "UNIT_TERCIO_2",
+   "UpgradeUnit": "UNIT_TERCIO_3"
+  },
+  {
+   "Unit": "UNIT_TOBANG",
+   "UpgradeUnit": "UNIT_TOBANG_2"
+  },
+  {
+   "Unit": "UNIT_TOBANG_2",
+   "UpgradeUnit": "UNIT_TOBANG_3"
+  },
+  {
+   "Unit": "UNIT_TREBUCHET",
+   "UpgradeUnit": "UNIT_BOMBARD"
+  },
+  {
+   "Unit": "UNIT_VIKINGR",
+   "UpgradeUnit": "UNIT_VIKINGR_2"
+  },
+  {
+   "Unit": "UNIT_VIKINGR_2",
+   "UpgradeUnit": "UNIT_VIKINGR_3"
+  },
+  {
+   "Unit": "UNIT_VOI_CHIEN",
+   "UpgradeUnit": "UNIT_VOI_CHIEN_2"
+  },
+  {
+   "Unit": "UNIT_VOI_CHIEN_2",
+   "UpgradeUnit": "UNIT_VOI_CHIEN_3"
+  },
+  {
+   "Unit": "UNIT_WARAKAQ",
+   "UpgradeUnit": "UNIT_WARAKAQ_2"
+  },
+  {
+   "Unit": "UNIT_WARAKAQ_2",
+   "UpgradeUnit": "UNIT_WARAKAQ_3"
+  },
+  {
+   "Unit": "UNIT_XUNLEICHONG",
+   "UpgradeUnit": "UNIT_XUNLEICHONG_2"
+  },
+  {
+   "Unit": "UNIT_XUNLEICHONG_2",
+   "UpgradeUnit": "UNIT_XUNLEICHONG_3"
+  }
+ ],
+ "resources": [
+  {
+   "ResourceType": "RESOURCE_CAMELS",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_CITRUS",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_CLAY",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_CLOVES",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_COAL",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_COCOA",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_COFFEE",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_COTTON",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_COWRIE",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_CRABS",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_DATES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_DYES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_FISH",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_FLAX",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_FURS",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_GOLD",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_GOLD_DISTANT_LANDS",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_GYPSUM",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_HARDWOOD",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_HIDES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_HORSES",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_INCENSE",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_IRON",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_IVORY",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_JADE",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_KAOLIN",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_LAPIS_LAZULI",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_LIMESTONE",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_LLAMAS",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_MANGOS",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_MARBLE",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_NICKEL",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_NITER",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_OIL",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_PEARLS",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_PITCH",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_QUININE",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_RICE",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_RUBBER",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_RUBIES",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_SALT",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_SILK",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_SILVER",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_SILVER_DISTANT_LANDS",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_SPICES",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_SUGAR",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_TEA",
+   "ResourceClassType": "RESOURCECLASS_TREASURE"
+  },
+  {
+   "ResourceType": "RESOURCE_TIN",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_TOBACCO",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_TRUFFLES",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_TURTLES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_WHALES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_WILD_GAME",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_WINE",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_WOOL",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- AGE_MODERN: the units that draw on a resource (DESIGN.md section 4). -->
+<Database>
+    <TypeTags>
+        <Row Type="UNIT_ASSAULT_GUN" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_AT_GUN" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_BARBARY_CORSAIR" Tag="SR_SUPPLY_COAL"/>
+        <Row Type="UNIT_BARBARY_CORSAIR_2" Tag="SR_SUPPLY_COAL"/>
+        <Row Type="UNIT_BARBARY_CORSAIR_3" Tag="SR_SUPPLY_COAL"/>
+        <Row Type="UNIT_BATTLESHIP" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_BIPLANE" Tag="SR_SUPPLY_RUBBER"/>
+        <Row Type="UNIT_BOMBER" Tag="SR_SUPPLY_RUBBER"/>
+        <Row Type="UNIT_CHANG_BEUN" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_CHANG_BEUN_2" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_CHANG_BEUN_3" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_COSSACK_2" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_COSSACK_3" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_CRUISER" Tag="SR_SUPPLY_COAL"/>
+        <Row Type="UNIT_DESTROYER" Tag="SR_SUPPLY_COAL"/>
+        <Row Type="UNIT_DIVEBOMBER" Tag="SR_SUPPLY_RUBBER"/>
+        <Row Type="UNIT_DREADNOUGHT" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_FIELD_CANNON" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_FIELD_GUN" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_FIGHTER" Tag="SR_SUPPLY_RUBBER"/>
+        <Row Type="UNIT_GHILMAN_2" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_GHILMAN_3" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_HEAVY_ARTILLERY" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_HEAVY_BOMBER" Tag="SR_SUPPLY_RUBBER"/>
+        <Row Type="UNIT_HUSSAR_2" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_HUSSAR_3" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_IRONCLAD" Tag="SR_SUPPLY_COAL"/>
+        <Row Type="UNIT_KATYUSHA" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_KATYUSHA_2" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_LANDSHIP" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_MIKASA" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_MIKASA_2" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_MORTAR" Tag="SR_SUPPLY_NITER"/>
+        <Row Type="UNIT_REVENGE" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_REVENGE_2" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_STUKA" Tag="SR_SUPPLY_RUBBER"/>
+        <Row Type="UNIT_STUKA_2" Tag="SR_SUPPLY_RUBBER"/>
+        <Row Type="UNIT_TANK" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_TRENCH_FIGHTER" Tag="SR_SUPPLY_RUBBER"/>
+        <Row Type="UNIT_TURTLE_SHIP_2" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_TURTLE_SHIP_3" Tag="SR_SUPPLY_OIL"/>
+        <Row Type="UNIT_ZERO" Tag="SR_SUPPLY_RUBBER"/>
+        <Row Type="UNIT_ZERO_2" Tag="SR_SUPPLY_RUBBER"/>
+    </TypeTags>
+</Database>

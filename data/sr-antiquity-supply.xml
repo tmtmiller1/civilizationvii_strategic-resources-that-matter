@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- AGE_ANTIQUITY: the units that draw on a resource (DESIGN.md section 4). -->
+<Database>
+    <TypeTags>
+        <Row Type="UNIT_CHARIOT" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_DANTINAS_TATHA" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_DANTINAS_TATHA_2" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_GAISATAI_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_GAISATAI_3" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_HOPLITE_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_HOPLITE_3" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_HORSEMAN" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_IMMORTAL" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_IMMORTAL_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_LEGION" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_LEGION_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_MAGARRU" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_MAGARRU_2" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_MEDJAY_2" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_MEDJAY_3" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_NUMIDIAN_CAVALRY" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_NUMIDIAN_CAVALRY_2" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_PHALANX" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_PURABHETTARAH" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_PURABHETTARAH_2" Tag="SR_SUPPLY_HORSES"/>
+        <Row Type="UNIT_SPEARMAN" Tag="SR_SUPPLY_IRON"/>
+    </TypeTags>
+</Database>

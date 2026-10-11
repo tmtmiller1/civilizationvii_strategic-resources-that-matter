@@ -1,0 +1,3543 @@
+{
+ "age": "AGE_MODERN",
+ "source": "gameplay-copy.sqlite",
+ "dumpedAt": "2026-10-11",
+ "units": [
+  {
+   "UnitType": "UNIT_ABAMBOWA",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_BUGANDA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_ABAMBOWA_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_BUGANDA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_ABAMBOWA_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_BUGANDA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_ASSAULT_GUN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 45,
+   "Bombard": 65
+  },
+  {
+   "UnitType": "UNIT_AT_GUN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 55,
+   "Bombard": 45
+  },
+  {
+   "UnitType": "UNIT_AUDIO_SANDBOX_MELEE",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 0,
+   "TraitType": null,
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_AUDIO_SANDBOX_RANGED",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 0,
+   "TraitType": null,
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 25,
+   "RangedCombat": 55,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_BARBARY_CORSAIR",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": "TRAIT_OTTOMANS",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 25,
+   "Bombard": 25
+  },
+  {
+   "UnitType": "UNIT_BARBARY_CORSAIR_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": "TRAIT_OTTOMANS",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 30,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_BARBARY_CORSAIR_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": "TRAIT_OTTOMANS",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 35,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_BATTLESHIP",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 60,
+   "Bombard": 55
+  },
+  {
+   "UnitType": "UNIT_BIPLANE",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 35,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_BOMBER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 45,
+   "Bombard": 65
+  },
+  {
+   "UnitType": "UNIT_CHANG_BEUN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_SIAM",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 50,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_CHANG_BEUN_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_SIAM",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 55,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_CHANG_BEUN_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_SIAM",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 60,
+   "Bombard": 45
+  },
+  {
+   "UnitType": "UNIT_COSSACK",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_RUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_COSSACK_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_RUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_COSSACK_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_RUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_CRUISER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 25,
+   "Bombard": 25
+  },
+  {
+   "UnitType": "UNIT_CUIRASSIER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_DESTROYER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 30,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_DIVEBOMBER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 60,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_DREADNOUGHT",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 55,
+   "Bombard": 50
+  },
+  {
+   "UnitType": "UNIT_FIELD_CANNON",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 45,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_FIELD_GUN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 50,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_FIGHTER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 40,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_FRIGATE",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 50,
+   "Bombard": 45
+  },
+  {
+   "UnitType": "UNIT_GARDE_IMPERIALE",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_FRENCH_EMPIRE",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 35,
+   "Bombard": 5
+  },
+  {
+   "UnitType": "UNIT_GARDE_IMPERIALE_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_FRENCH_EMPIRE",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 40,
+   "Bombard": 10
+  },
+  {
+   "UnitType": "UNIT_GARDE_IMPERIALE_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_FRENCH_EMPIRE",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 45,
+   "Bombard": 15
+  },
+  {
+   "UnitType": "UNIT_GHILMAN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_QAJAR",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GHILMAN_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_QAJAR",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GHILMAN_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_QAJAR",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 65,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GREAT_MERCHANT",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 0,
+   "TraitType": null,
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 65,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GURKHA",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_NEPAL",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GURKHA_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_NEPAL",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GURKHA_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_NEPAL",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 65,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GUSA",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_QING",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GUSA_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_QING",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_GUSA_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_QING",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_HEAVY_ARTILLERY",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 40,
+   "Bombard": 60
+  },
+  {
+   "UnitType": "UNIT_HEAVY_BOMBER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 50,
+   "Bombard": 70
+  },
+  {
+   "UnitType": "UNIT_HUSSAR",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_PRUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_HUSSAR_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_PRUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_HUSSAR_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_PRUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_INFANTRY_COMPANY",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_IRONCLAD",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 20,
+   "Bombard": 20
+  },
+  {
+   "UnitType": "UNIT_JANISSARY",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_OTTOMANS",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_JANISSARY_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_OTTOMANS",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_JANISSARY_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_OTTOMANS",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_KATYUSHA",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_RUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 40,
+   "Bombard": 50
+  },
+  {
+   "UnitType": "UNIT_KATYUSHA_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_RUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 45,
+   "Bombard": 55
+  },
+  {
+   "UnitType": "UNIT_LANDSHIP",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_LINE_INFANTRY",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_MARINE",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_AMERICA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_MARINE_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_AMERICA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_MIKASA",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": "TRAIT_MEIJI",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 55,
+   "Bombard": 50
+  },
+  {
+   "UnitType": "UNIT_MIKASA_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": "TRAIT_MEIJI",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 60,
+   "Bombard": 55
+  },
+  {
+   "UnitType": "UNIT_MORTAR",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 35,
+   "Bombard": 55
+  },
+  {
+   "UnitType": "UNIT_PARTISAN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_LEADER_MINOR_CIV",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_PARTISAN_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_LEADER_MINOR_CIV",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_PARTISAN_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_LEADER_MINOR_CIV",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 65,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_REVENGE",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": "TRAIT_GREAT_BRITAIN",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 60,
+   "Bombard": 55
+  },
+  {
+   "UnitType": "UNIT_REVENGE_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": "TRAIT_GREAT_BRITAIN",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 65,
+   "Bombard": 60
+  },
+  {
+   "UnitType": "UNIT_RIFLEMAN",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_SANDBOX",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 0,
+   "TraitType": null,
+   "CanTrain": 0,
+   "StrategicResource": null,
+   "Combat": 65,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_SEPOY",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_MUGHAL",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 5,
+   "Bombard": 45
+  },
+  {
+   "UnitType": "UNIT_SEPOY_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_MUGHAL",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 10,
+   "Bombard": 50
+  },
+  {
+   "UnitType": "UNIT_SEPOY_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_MUGHAL",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 15,
+   "Bombard": 55
+  },
+  {
+   "UnitType": "UNIT_SOLDADERAS",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 1,
+   "TraitType": "TRAIT_MEXICO",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_SOLDADERAS_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 2,
+   "TraitType": "TRAIT_MEXICO",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_SOLDADERAS_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": "TRAIT_MEXICO",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_STUKA",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 2,
+   "TraitType": "TRAIT_PRUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 55,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_STUKA_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 3,
+   "TraitType": "TRAIT_PRUSSIA",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 40,
+   "RangedCombat": 60,
+   "Bombard": 40
+  },
+  {
+   "UnitType": "UNIT_SUBMARINE",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 70,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_TANK",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_LAND",
+   "Tier": 3,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 65,
+   "RangedCombat": 0,
+   "Bombard": 0
+  },
+  {
+   "UnitType": "UNIT_TRENCH_FIGHTER",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 2,
+   "TraitType": null,
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 35,
+   "RangedCombat": 55,
+   "Bombard": 35
+  },
+  {
+   "UnitType": "UNIT_TURTLE_SHIP",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 1,
+   "TraitType": "TRAIT_JOSEON",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 45,
+   "RangedCombat": 47,
+   "Bombard": 42
+  },
+  {
+   "UnitType": "UNIT_TURTLE_SHIP_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 2,
+   "TraitType": "TRAIT_JOSEON",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 50,
+   "RangedCombat": 52,
+   "Bombard": 47
+  },
+  {
+   "UnitType": "UNIT_TURTLE_SHIP_3",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_SEA",
+   "Tier": 3,
+   "TraitType": "TRAIT_JOSEON",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 57,
+   "Bombard": 52
+  },
+  {
+   "UnitType": "UNIT_ZERO",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 2,
+   "TraitType": "TRAIT_MEIJI",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 55,
+   "RangedCombat": 35,
+   "Bombard": 30
+  },
+  {
+   "UnitType": "UNIT_ZERO_2",
+   "CoreClass": "CORE_CLASS_MILITARY",
+   "Domain": "DOMAIN_AIR",
+   "Tier": 3,
+   "TraitType": "TRAIT_MEIJI",
+   "CanTrain": 1,
+   "StrategicResource": null,
+   "Combat": 60,
+   "RangedCombat": 40,
+   "Bombard": 35
+  }
+ ],
+ "tags": [
+  {
+   "Type": "UNIT_ABAMBOWA",
+   "Tag": "UNIT_CLASS_ABAMBOWA"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_2",
+   "Tag": "UNIT_CLASS_ABAMBOWA"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_3",
+   "Tag": "UNIT_CLASS_ABAMBOWA"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_ABAMBOWA_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_ASSAULT_GUN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_ASSAULT_GUN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_ASSAULT_GUN",
+   "Tag": "UNIT_CLASS_ELITE_SIEGE"
+  },
+  {
+   "Type": "UNIT_ASSAULT_GUN",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_AT_GUN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_AT_GUN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_AT_GUN",
+   "Tag": "UNIT_CLASS_ELITE_RANGED"
+  },
+  {
+   "Type": "UNIT_AT_GUN",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR",
+   "Tag": "UNIT_CLASS_BARBARY_CORSAIR"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_2",
+   "Tag": "UNIT_CLASS_BARBARY_CORSAIR"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_2",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_2",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_3",
+   "Tag": "UNIT_CLASS_BARBARY_CORSAIR"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_3",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL_LIGHT"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_3",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_3",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_3",
+   "Tag": "UNIT_CLASS_SEE_HIDDEN"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_3",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_BARBARY_CORSAIR_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_BATTLESHIP",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_BATTLESHIP",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BATTLESHIP",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL_HEAVY"
+  },
+  {
+   "Type": "UNIT_BATTLESHIP",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_BATTLESHIP",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_BATTLESHIP",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_BATTLESHIP",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_BIPLANE",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_BIPLANE",
+   "Tag": "UNIT_CLASS_AIR_FIGHTER"
+  },
+  {
+   "Type": "UNIT_BIPLANE",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BIPLANE",
+   "Tag": "UNIT_CLASS_INTERCEPTOR"
+  },
+  {
+   "Type": "UNIT_BOMBER",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_BOMBER",
+   "Tag": "UNIT_CLASS_AIR_LAND_ATTACK_SPECIALIST"
+  },
+  {
+   "Type": "UNIT_BOMBER",
+   "Tag": "UNIT_CLASS_BOMBER"
+  },
+  {
+   "Type": "UNIT_BOMBER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_BOMBER",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN",
+   "Tag": "UNIT_CLASS_CHANG_BEUN"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_2",
+   "Tag": "UNIT_CLASS_CHANG_BEUN"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_2",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_3",
+   "Tag": "UNIT_CLASS_CHANG_BEUN"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_3",
+   "Tag": "UNIT_CLASS_ELITE_RANGED"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_3",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_CHANG_BEUN_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_COSSACK",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_COSSACK",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_COSSACK",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_COSSACK",
+   "Tag": "UNIT_CLASS_COSSACK"
+  },
+  {
+   "Type": "UNIT_COSSACK",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_COSSACK",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_COSSACK_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_COSSACK_2",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_COSSACK_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_COSSACK_2",
+   "Tag": "UNIT_CLASS_COSSACK"
+  },
+  {
+   "Type": "UNIT_COSSACK_2",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_COSSACK_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_COSSACK_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_COSSACK_3",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_COSSACK_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_COSSACK_3",
+   "Tag": "UNIT_CLASS_COSSACK"
+  },
+  {
+   "Type": "UNIT_COSSACK_3",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_COSSACK_3",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_COSSACK_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_CRUISER",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CRUISER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CRUISER",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_CRUISER",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_CRUISER",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_CUIRASSIER",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_CUIRASSIER",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_CUIRASSIER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_CUIRASSIER",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_DESTROYER",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_DESTROYER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_DESTROYER",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL_LIGHT"
+  },
+  {
+   "Type": "UNIT_DESTROYER",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_DESTROYER",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_DESTROYER",
+   "Tag": "UNIT_CLASS_SEE_HIDDEN"
+  },
+  {
+   "Type": "UNIT_DESTROYER",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_DIVEBOMBER",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_DIVEBOMBER",
+   "Tag": "UNIT_CLASS_AIR_LAND_ATTACK_SPECIALIST"
+  },
+  {
+   "Type": "UNIT_DIVEBOMBER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_DIVEBOMBER",
+   "Tag": "UNIT_CLASS_ELITE_AIR_ATTACK"
+  },
+  {
+   "Type": "UNIT_DIVEBOMBER",
+   "Tag": "UNIT_CLASS_GROUND_ATTACKER"
+  },
+  {
+   "Type": "UNIT_DREADNOUGHT",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_DREADNOUGHT",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_DREADNOUGHT",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_DREADNOUGHT",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_DREADNOUGHT",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_DREADNOUGHT",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_FIELD_CANNON",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_FIELD_CANNON",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_FIELD_CANNON",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_FIELD_GUN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_FIELD_GUN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_FIELD_GUN",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_FIGHTER",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_FIGHTER",
+   "Tag": "UNIT_CLASS_AIR_FIGHTER"
+  },
+  {
+   "Type": "UNIT_FIGHTER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_FIGHTER",
+   "Tag": "UNIT_CLASS_INTERCEPTOR"
+  },
+  {
+   "Type": "UNIT_FRIGATE",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_FRIGATE",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_FRIGATE",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_FRIGATE",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_FRIGATE",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_FRIGATE",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE",
+   "Tag": "UNIT_CLASS_GARDE_IMPERIALE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_2",
+   "Tag": "UNIT_CLASS_GARDE_IMPERIALE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_3",
+   "Tag": "UNIT_CLASS_GARDE_IMPERIALE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GARDE_IMPERIALE_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GHILMAN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GHILMAN",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_GHILMAN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GHILMAN",
+   "Tag": "UNIT_CLASS_GHILMAN"
+  },
+  {
+   "Type": "UNIT_GHILMAN",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_GHILMAN",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GHILMAN_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GHILMAN_2",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_GHILMAN_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GHILMAN_2",
+   "Tag": "UNIT_CLASS_GHILMAN"
+  },
+  {
+   "Type": "UNIT_GHILMAN_2",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_GHILMAN_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GHILMAN_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GHILMAN_3",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_GHILMAN_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GHILMAN_3",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_GHILMAN_3",
+   "Tag": "UNIT_CLASS_GHILMAN"
+  },
+  {
+   "Type": "UNIT_GHILMAN_3",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_GHILMAN_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GREAT_MERCHANT",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GURKHA",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GURKHA",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GURKHA",
+   "Tag": "UNIT_CLASS_GURKHA"
+  },
+  {
+   "Type": "UNIT_GURKHA",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GURKHA",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GURKHA",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GURKHA_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GURKHA_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GURKHA_2",
+   "Tag": "UNIT_CLASS_GURKHA"
+  },
+  {
+   "Type": "UNIT_GURKHA_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GURKHA_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GURKHA_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GURKHA_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GURKHA_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GURKHA_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GURKHA_3",
+   "Tag": "UNIT_CLASS_GURKHA"
+  },
+  {
+   "Type": "UNIT_GURKHA_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GURKHA_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GURKHA_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GUSA",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GUSA",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GUSA",
+   "Tag": "UNIT_CLASS_GUSA"
+  },
+  {
+   "Type": "UNIT_GUSA",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GUSA",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GUSA",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GUSA_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GUSA_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GUSA_2",
+   "Tag": "UNIT_CLASS_GUSA"
+  },
+  {
+   "Type": "UNIT_GUSA_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GUSA_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GUSA_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_GUSA_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_GUSA_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_GUSA_3",
+   "Tag": "UNIT_CLASS_GUSA"
+  },
+  {
+   "Type": "UNIT_GUSA_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_GUSA_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_GUSA_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_HEAVY_ARTILLERY",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_HEAVY_ARTILLERY",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_HEAVY_ARTILLERY",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_HEAVY_BOMBER",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_HEAVY_BOMBER",
+   "Tag": "UNIT_CLASS_AIR_LAND_ATTACK_SPECIALIST"
+  },
+  {
+   "Type": "UNIT_HEAVY_BOMBER",
+   "Tag": "UNIT_CLASS_BOMBER"
+  },
+  {
+   "Type": "UNIT_HEAVY_BOMBER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_HEAVY_BOMBER",
+   "Tag": "UNIT_CLASS_ELITE_AIR_SIEGE"
+  },
+  {
+   "Type": "UNIT_HEAVY_BOMBER",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_HUSSAR",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_HUSSAR",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_HUSSAR",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_HUSSAR",
+   "Tag": "UNIT_CLASS_HUSSAR"
+  },
+  {
+   "Type": "UNIT_HUSSAR",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_HUSSAR",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_HUSSAR_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_HUSSAR_2",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_HUSSAR_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_HUSSAR_2",
+   "Tag": "UNIT_CLASS_HUSSAR"
+  },
+  {
+   "Type": "UNIT_HUSSAR_2",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_HUSSAR_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_HUSSAR_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_HUSSAR_3",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_HUSSAR_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_HUSSAR_3",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_HUSSAR_3",
+   "Tag": "UNIT_CLASS_HUSSAR"
+  },
+  {
+   "Type": "UNIT_HUSSAR_3",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_HUSSAR_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_INFANTRY_COMPANY",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_INFANTRY_COMPANY",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_INFANTRY_COMPANY",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_INFANTRY_COMPANY",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_INFANTRY_COMPANY",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_IRONCLAD",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_IRONCLAD",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_IRONCLAD",
+   "Tag": "UNIT_CLASS_LIGHT"
+  },
+  {
+   "Type": "UNIT_IRONCLAD",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_IRONCLAD",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_JANISSARY",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_JANISSARY",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_JANISSARY",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_JANISSARY",
+   "Tag": "UNIT_CLASS_JANISSARY"
+  },
+  {
+   "Type": "UNIT_JANISSARY",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_JANISSARY",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_JANISSARY_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_JANISSARY_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_JANISSARY_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_JANISSARY_2",
+   "Tag": "UNIT_CLASS_JANISSARY"
+  },
+  {
+   "Type": "UNIT_JANISSARY_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_JANISSARY_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_JANISSARY_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_JANISSARY_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_JANISSARY_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_JANISSARY_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_JANISSARY_3",
+   "Tag": "UNIT_CLASS_JANISSARY"
+  },
+  {
+   "Type": "UNIT_JANISSARY_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_JANISSARY_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KATYUSHA",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KATYUSHA",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KATYUSHA",
+   "Tag": "UNIT_CLASS_KATYUSHA"
+  },
+  {
+   "Type": "UNIT_KATYUSHA",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_KATYUSHA",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_KATYUSHA_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_KATYUSHA_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_KATYUSHA_2",
+   "Tag": "UNIT_CLASS_ELITE_SIEGE"
+  },
+  {
+   "Type": "UNIT_KATYUSHA_2",
+   "Tag": "UNIT_CLASS_KATYUSHA"
+  },
+  {
+   "Type": "UNIT_KATYUSHA_2",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_KATYUSHA_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_LANDSHIP",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_LANDSHIP",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_LANDSHIP",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_LANDSHIP",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_LINE_INFANTRY",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_LINE_INFANTRY",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_LINE_INFANTRY",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_LINE_INFANTRY",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_MARINE",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_MARINE",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_MARINE",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_MARINE",
+   "Tag": "UNIT_CLASS_MARINE"
+  },
+  {
+   "Type": "UNIT_MARINE",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_MARINE",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_MARINE_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_MARINE_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_MARINE_2",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_MARINE_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_MARINE_2",
+   "Tag": "UNIT_CLASS_MARINE"
+  },
+  {
+   "Type": "UNIT_MARINE_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_MARINE_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_MIKASA",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_MIKASA",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_MIKASA",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_MIKASA",
+   "Tag": "UNIT_CLASS_MIKASA"
+  },
+  {
+   "Type": "UNIT_MIKASA",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_MIKASA",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_MIKASA",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_MIKASA_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_MIKASA_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_MIKASA_2",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL_HEAVY"
+  },
+  {
+   "Type": "UNIT_MIKASA_2",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_MIKASA_2",
+   "Tag": "UNIT_CLASS_MIKASA"
+  },
+  {
+   "Type": "UNIT_MIKASA_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_MIKASA_2",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_MIKASA_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_MORTAR",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_MORTAR",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_MORTAR",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_PARTISAN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_PARTISAN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_PARTISAN",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_PARTISAN",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_PARTISAN",
+   "Tag": "UNIT_CLASS_PARTISAN"
+  },
+  {
+   "Type": "UNIT_PARTISAN",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_PARTISAN",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_PARTISAN_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_PARTISAN_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_PARTISAN_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_PARTISAN_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_PARTISAN_2",
+   "Tag": "UNIT_CLASS_PARTISAN"
+  },
+  {
+   "Type": "UNIT_PARTISAN_2",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_PARTISAN_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_PARTISAN_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_PARTISAN_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_PARTISAN_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_PARTISAN_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_PARTISAN_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_PARTISAN_3",
+   "Tag": "UNIT_CLASS_PARTISAN"
+  },
+  {
+   "Type": "UNIT_PARTISAN_3",
+   "Tag": "UNIT_CLASS_SKIRMISH"
+  },
+  {
+   "Type": "UNIT_PARTISAN_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_REVENGE",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_REVENGE",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_REVENGE",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_REVENGE",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_REVENGE",
+   "Tag": "UNIT_CLASS_REVENGE"
+  },
+  {
+   "Type": "UNIT_REVENGE",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_REVENGE",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_REVENGE_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_REVENGE_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_REVENGE_2",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL_HEAVY"
+  },
+  {
+   "Type": "UNIT_REVENGE_2",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_REVENGE_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_REVENGE_2",
+   "Tag": "UNIT_CLASS_REVENGE"
+  },
+  {
+   "Type": "UNIT_REVENGE_2",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_REVENGE_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_RIFLEMAN",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_RIFLEMAN",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_RIFLEMAN",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_RIFLEMAN",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SEPOY",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SEPOY",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SEPOY",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SEPOY",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SEPOY",
+   "Tag": "UNIT_CLASS_SEPOY"
+  },
+  {
+   "Type": "UNIT_SEPOY",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_SEPOY",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SEPOY_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SEPOY_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SEPOY_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SEPOY_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SEPOY_2",
+   "Tag": "UNIT_CLASS_SEPOY"
+  },
+  {
+   "Type": "UNIT_SEPOY_2",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_SEPOY_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SEPOY_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SEPOY_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SEPOY_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SEPOY_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SEPOY_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SEPOY_3",
+   "Tag": "UNIT_CLASS_SEPOY"
+  },
+  {
+   "Type": "UNIT_SEPOY_3",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_SEPOY_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS",
+   "Tag": "UNIT_CLASS_SOLDADERAS"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_2",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_2",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_2",
+   "Tag": "UNIT_CLASS_SOLDADERAS"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_3",
+   "Tag": "UNIT_CLASS_ELITE_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_3",
+   "Tag": "UNIT_CLASS_INFANTRY"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_3",
+   "Tag": "UNIT_CLASS_MELEE"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_3",
+   "Tag": "UNIT_CLASS_SOLDADERAS"
+  },
+  {
+   "Type": "UNIT_SOLDADERAS_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_STUKA",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_STUKA",
+   "Tag": "UNIT_CLASS_AIR_LAND_ATTACK_SPECIALIST"
+  },
+  {
+   "Type": "UNIT_STUKA",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_STUKA",
+   "Tag": "UNIT_CLASS_GROUND_ATTACKER"
+  },
+  {
+   "Type": "UNIT_STUKA",
+   "Tag": "UNIT_CLASS_STUKA"
+  },
+  {
+   "Type": "UNIT_STUKA",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_STUKA_2",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_STUKA_2",
+   "Tag": "UNIT_CLASS_AIR_LAND_ATTACK_SPECIALIST"
+  },
+  {
+   "Type": "UNIT_STUKA_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_STUKA_2",
+   "Tag": "UNIT_CLASS_ELITE_AIR_ATTACK"
+  },
+  {
+   "Type": "UNIT_STUKA_2",
+   "Tag": "UNIT_CLASS_GROUND_ATTACKER"
+  },
+  {
+   "Type": "UNIT_STUKA_2",
+   "Tag": "UNIT_CLASS_STUKA"
+  },
+  {
+   "Type": "UNIT_STUKA_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_SUBMARINE",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_SUBMARINE",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_SUBMARINE",
+   "Tag": "UNIT_CLASS_IGNORE_DISTRICT_COMBAT"
+  },
+  {
+   "Type": "UNIT_SUBMARINE",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_SUBMARINE",
+   "Tag": "UNIT_CLASS_NAVAL_STEALTH"
+  },
+  {
+   "Type": "UNIT_SUBMARINE",
+   "Tag": "UNIT_CLASS_STEALTH"
+  },
+  {
+   "Type": "UNIT_TANK",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TANK",
+   "Tag": "UNIT_CLASS_CAVALRY"
+  },
+  {
+   "Type": "UNIT_TANK",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TANK",
+   "Tag": "UNIT_CLASS_ELITE_CAVALRY"
+  },
+  {
+   "Type": "UNIT_TANK",
+   "Tag": "UNIT_CLASS_MOUNTED"
+  },
+  {
+   "Type": "UNIT_TRENCH_FIGHTER",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_TRENCH_FIGHTER",
+   "Tag": "UNIT_CLASS_AIR_LAND_ATTACK_SPECIALIST"
+  },
+  {
+   "Type": "UNIT_TRENCH_FIGHTER",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TRENCH_FIGHTER",
+   "Tag": "UNIT_CLASS_GROUND_ATTACKER"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP",
+   "Tag": "UNIT_CLASS_TURTLE_SHIP"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_2",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_2",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_2",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_2",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_2",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_2",
+   "Tag": "UNIT_CLASS_TURTLE_SHIP"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_3",
+   "Tag": "UNIT_CLASS_AUTOEXPLORE"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_3",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_3",
+   "Tag": "UNIT_CLASS_ELITE_NAVAL_HEAVY"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_3",
+   "Tag": "UNIT_CLASS_HEAVY"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_3",
+   "Tag": "UNIT_CLASS_NAVAL"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_3",
+   "Tag": "UNIT_CLASS_RANGED"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_3",
+   "Tag": "UNIT_CLASS_SIEGE"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_3",
+   "Tag": "UNIT_CLASS_TURTLE_SHIP"
+  },
+  {
+   "Type": "UNIT_TURTLE_SHIP_3",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_ZERO",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_ZERO",
+   "Tag": "UNIT_CLASS_AIR_FIGHTER"
+  },
+  {
+   "Type": "UNIT_ZERO",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_ZERO",
+   "Tag": "UNIT_CLASS_INTERCEPTOR"
+  },
+  {
+   "Type": "UNIT_ZERO",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_ZERO",
+   "Tag": "UNIT_CLASS_ZERO"
+  },
+  {
+   "Type": "UNIT_ZERO_2",
+   "Tag": "UNIT_CLASS_AIRCRAFT"
+  },
+  {
+   "Type": "UNIT_ZERO_2",
+   "Tag": "UNIT_CLASS_AIR_FIGHTER"
+  },
+  {
+   "Type": "UNIT_ZERO_2",
+   "Tag": "UNIT_CLASS_COMBAT"
+  },
+  {
+   "Type": "UNIT_ZERO_2",
+   "Tag": "UNIT_CLASS_INTERCEPTOR"
+  },
+  {
+   "Type": "UNIT_ZERO_2",
+   "Tag": "UNIT_CLASS_UNIQUE"
+  },
+  {
+   "Type": "UNIT_ZERO_2",
+   "Tag": "UNIT_CLASS_ZERO"
+  }
+ ],
+ "replaces": [
+  {
+   "CivUniqueUnitType": "UNIT_ABAMBOWA",
+   "ReplacesUnitType": "UNIT_LINE_INFANTRY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_ABAMBOWA_2",
+   "ReplacesUnitType": "UNIT_RIFLEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_ABAMBOWA_3",
+   "ReplacesUnitType": "UNIT_INFANTRY_COMPANY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_ANTIQUARIAN",
+   "ReplacesUnitType": "UNIT_EXPLORER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_BARBARY_CORSAIR",
+   "ReplacesUnitType": "UNIT_IRONCLAD"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_BARBARY_CORSAIR_2",
+   "ReplacesUnitType": "UNIT_CRUISER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_BARBARY_CORSAIR_3",
+   "ReplacesUnitType": "UNIT_DESTROYER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_BYEONGSA",
+   "ReplacesUnitType": "UNIT_ARMY_COMMANDER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CHANG_BEUN",
+   "ReplacesUnitType": "UNIT_FIELD_CANNON"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CHANG_BEUN_2",
+   "ReplacesUnitType": "UNIT_FIELD_GUN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_CHANG_BEUN_3",
+   "ReplacesUnitType": "UNIT_AT_GUN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GARDE_IMPERIALE",
+   "ReplacesUnitType": "UNIT_LINE_INFANTRY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GARDE_IMPERIALE_2",
+   "ReplacesUnitType": "UNIT_RIFLEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GARDE_IMPERIALE_3",
+   "ReplacesUnitType": "UNIT_INFANTRY_COMPANY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GHILMAN",
+   "ReplacesUnitType": "UNIT_CUIRASSIER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GHILMAN_2",
+   "ReplacesUnitType": "UNIT_LANDSHIP"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GHILMAN_3",
+   "ReplacesUnitType": "UNIT_TANK"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GURKHA",
+   "ReplacesUnitType": "UNIT_LINE_INFANTRY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GURKHA_2",
+   "ReplacesUnitType": "UNIT_RIFLEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GURKHA_3",
+   "ReplacesUnitType": "UNIT_INFANTRY_COMPANY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GUSA",
+   "ReplacesUnitType": "UNIT_LINE_INFANTRY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GUSA_2",
+   "ReplacesUnitType": "UNIT_RIFLEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_GUSA_3",
+   "ReplacesUnitType": "UNIT_INFANTRY_COMPANY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_HANGSHANG",
+   "ReplacesUnitType": "UNIT_MERCHANT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_JANISSARY",
+   "ReplacesUnitType": "UNIT_LINE_INFANTRY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_JANISSARY_2",
+   "ReplacesUnitType": "UNIT_RIFLEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_JANISSARY_3",
+   "ReplacesUnitType": "UNIT_INFANTRY_COMPANY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KATYUSHA",
+   "ReplacesUnitType": "UNIT_HEAVY_ARTILLERY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_KATYUSHA_2",
+   "ReplacesUnitType": "UNIT_ASSAULT_GUN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MARINE",
+   "ReplacesUnitType": "UNIT_RIFLEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MARINE_2",
+   "ReplacesUnitType": "UNIT_INFANTRY_COMPANY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MIKASA",
+   "ReplacesUnitType": "UNIT_DREADNOUGHT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MIKASA_2",
+   "ReplacesUnitType": "UNIT_BATTLESHIP"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_MWAMI",
+   "ReplacesUnitType": "UNIT_ARMY_COMMANDER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_REVENGE",
+   "ReplacesUnitType": "UNIT_DREADNOUGHT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_REVENGE_2",
+   "ReplacesUnitType": "UNIT_BATTLESHIP"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SEPOY",
+   "ReplacesUnitType": "UNIT_LINE_INFANTRY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SEPOY_2",
+   "ReplacesUnitType": "UNIT_RIFLEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SEPOY_3",
+   "ReplacesUnitType": "UNIT_INFANTRY_COMPANY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SHERPA",
+   "ReplacesUnitType": "UNIT_SCOUT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SOLDADERAS",
+   "ReplacesUnitType": "UNIT_LINE_INFANTRY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SOLDADERAS_2",
+   "ReplacesUnitType": "UNIT_RIFLEMAN"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SOLDADERAS_3",
+   "ReplacesUnitType": "UNIT_INFANTRY_COMPANY"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_SOLTAN",
+   "ReplacesUnitType": "UNIT_ARMY_COMMANDER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_STUKA",
+   "ReplacesUnitType": "UNIT_TRENCH_FIGHTER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_STUKA_2",
+   "ReplacesUnitType": "UNIT_DIVEBOMBER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TURTLE_SHIP",
+   "ReplacesUnitType": "UNIT_FRIGATE"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TURTLE_SHIP_2",
+   "ReplacesUnitType": "UNIT_DREADNOUGHT"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_TURTLE_SHIP_3",
+   "ReplacesUnitType": "UNIT_BATTLESHIP"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_ZAMINDAR",
+   "ReplacesUnitType": "UNIT_SETTLER"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_ZERO",
+   "ReplacesUnitType": "UNIT_BIPLANE"
+  },
+  {
+   "CivUniqueUnitType": "UNIT_ZERO_2",
+   "ReplacesUnitType": "UNIT_FIGHTER"
+  }
+ ],
+ "upgrades": [
+  {
+   "Unit": "UNIT_ABAMBOWA",
+   "UpgradeUnit": "UNIT_ABAMBOWA_2"
+  },
+  {
+   "Unit": "UNIT_ABAMBOWA_2",
+   "UpgradeUnit": "UNIT_ABAMBOWA_3"
+  },
+  {
+   "Unit": "UNIT_BARBARY_CORSAIR",
+   "UpgradeUnit": "UNIT_BARBARY_CORSAIR_2"
+  },
+  {
+   "Unit": "UNIT_BARBARY_CORSAIR_2",
+   "UpgradeUnit": "UNIT_BARBARY_CORSAIR_3"
+  },
+  {
+   "Unit": "UNIT_BIPLANE",
+   "UpgradeUnit": "UNIT_FIGHTER"
+  },
+  {
+   "Unit": "UNIT_BOMBER",
+   "UpgradeUnit": "UNIT_HEAVY_BOMBER"
+  },
+  {
+   "Unit": "UNIT_CHANG_BEUN",
+   "UpgradeUnit": "UNIT_CHANG_BEUN_2"
+  },
+  {
+   "Unit": "UNIT_CHANG_BEUN_2",
+   "UpgradeUnit": "UNIT_CHANG_BEUN_3"
+  },
+  {
+   "Unit": "UNIT_COSSACK",
+   "UpgradeUnit": "UNIT_COSSACK_2"
+  },
+  {
+   "Unit": "UNIT_COSSACK_2",
+   "UpgradeUnit": "UNIT_COSSACK_3"
+  },
+  {
+   "Unit": "UNIT_CRUISER",
+   "UpgradeUnit": "UNIT_DESTROYER"
+  },
+  {
+   "Unit": "UNIT_CUIRASSIER",
+   "UpgradeUnit": "UNIT_LANDSHIP"
+  },
+  {
+   "Unit": "UNIT_DREADNOUGHT",
+   "UpgradeUnit": "UNIT_BATTLESHIP"
+  },
+  {
+   "Unit": "UNIT_FIELD_CANNON",
+   "UpgradeUnit": "UNIT_FIELD_GUN"
+  },
+  {
+   "Unit": "UNIT_FIELD_GUN",
+   "UpgradeUnit": "UNIT_AT_GUN"
+  },
+  {
+   "Unit": "UNIT_FRIGATE",
+   "UpgradeUnit": "UNIT_DREADNOUGHT"
+  },
+  {
+   "Unit": "UNIT_GARDE_IMPERIALE",
+   "UpgradeUnit": "UNIT_GARDE_IMPERIALE_2"
+  },
+  {
+   "Unit": "UNIT_GARDE_IMPERIALE_2",
+   "UpgradeUnit": "UNIT_GARDE_IMPERIALE_3"
+  },
+  {
+   "Unit": "UNIT_GHILMAN",
+   "UpgradeUnit": "UNIT_GHILMAN_2"
+  },
+  {
+   "Unit": "UNIT_GHILMAN_2",
+   "UpgradeUnit": "UNIT_GHILMAN_3"
+  },
+  {
+   "Unit": "UNIT_GURKHA",
+   "UpgradeUnit": "UNIT_GURKHA_2"
+  },
+  {
+   "Unit": "UNIT_GURKHA_2",
+   "UpgradeUnit": "UNIT_GURKHA_3"
+  },
+  {
+   "Unit": "UNIT_GUSA",
+   "UpgradeUnit": "UNIT_GUSA_2"
+  },
+  {
+   "Unit": "UNIT_GUSA_2",
+   "UpgradeUnit": "UNIT_GUSA_3"
+  },
+  {
+   "Unit": "UNIT_HEAVY_ARTILLERY",
+   "UpgradeUnit": "UNIT_ASSAULT_GUN"
+  },
+  {
+   "Unit": "UNIT_HUSSAR",
+   "UpgradeUnit": "UNIT_HUSSAR_2"
+  },
+  {
+   "Unit": "UNIT_HUSSAR_2",
+   "UpgradeUnit": "UNIT_HUSSAR_3"
+  },
+  {
+   "Unit": "UNIT_IRONCLAD",
+   "UpgradeUnit": "UNIT_CRUISER"
+  },
+  {
+   "Unit": "UNIT_JANISSARY",
+   "UpgradeUnit": "UNIT_JANISSARY_2"
+  },
+  {
+   "Unit": "UNIT_JANISSARY_2",
+   "UpgradeUnit": "UNIT_JANISSARY_3"
+  },
+  {
+   "Unit": "UNIT_KATYUSHA",
+   "UpgradeUnit": "UNIT_KATYUSHA_2"
+  },
+  {
+   "Unit": "UNIT_LANDSHIP",
+   "UpgradeUnit": "UNIT_TANK"
+  },
+  {
+   "Unit": "UNIT_LINE_INFANTRY",
+   "UpgradeUnit": "UNIT_RIFLEMAN"
+  },
+  {
+   "Unit": "UNIT_MARINE",
+   "UpgradeUnit": "UNIT_MARINE_2"
+  },
+  {
+   "Unit": "UNIT_MIKASA",
+   "UpgradeUnit": "UNIT_MIKASA_2"
+  },
+  {
+   "Unit": "UNIT_MORTAR",
+   "UpgradeUnit": "UNIT_HEAVY_ARTILLERY"
+  },
+  {
+   "Unit": "UNIT_PARTISAN",
+   "UpgradeUnit": "UNIT_PARTISAN_2"
+  },
+  {
+   "Unit": "UNIT_PARTISAN_2",
+   "UpgradeUnit": "UNIT_PARTISAN_3"
+  },
+  {
+   "Unit": "UNIT_REVENGE",
+   "UpgradeUnit": "UNIT_REVENGE_2"
+  },
+  {
+   "Unit": "UNIT_RIFLEMAN",
+   "UpgradeUnit": "UNIT_INFANTRY_COMPANY"
+  },
+  {
+   "Unit": "UNIT_SEPOY",
+   "UpgradeUnit": "UNIT_SEPOY_2"
+  },
+  {
+   "Unit": "UNIT_SEPOY_2",
+   "UpgradeUnit": "UNIT_SEPOY_3"
+  },
+  {
+   "Unit": "UNIT_SOLDADERAS",
+   "UpgradeUnit": "UNIT_SOLDADERAS_2"
+  },
+  {
+   "Unit": "UNIT_SOLDADERAS_2",
+   "UpgradeUnit": "UNIT_SOLDADERAS_3"
+  },
+  {
+   "Unit": "UNIT_STUKA",
+   "UpgradeUnit": "UNIT_STUKA_2"
+  },
+  {
+   "Unit": "UNIT_TRENCH_FIGHTER",
+   "UpgradeUnit": "UNIT_DIVEBOMBER"
+  },
+  {
+   "Unit": "UNIT_TURTLE_SHIP",
+   "UpgradeUnit": "UNIT_TURTLE_SHIP_2"
+  },
+  {
+   "Unit": "UNIT_TURTLE_SHIP_2",
+   "UpgradeUnit": "UNIT_TURTLE_SHIP_3"
+  },
+  {
+   "Unit": "UNIT_ZERO",
+   "UpgradeUnit": "UNIT_ZERO_2"
+  }
+ ],
+ "resources": [
+  {
+   "ResourceType": "RESOURCE_CAMELS",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_CITRUS",
+   "ResourceClassType": "RESOURCECLASS_FACTORY"
+  },
+  {
+   "ResourceType": "RESOURCE_CLAY",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_CLOVES",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_COAL",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_COCOA",
+   "ResourceClassType": "RESOURCECLASS_FACTORY"
+  },
+  {
+   "ResourceType": "RESOURCE_COFFEE",
+   "ResourceClassType": "RESOURCECLASS_FACTORY"
+  },
+  {
+   "ResourceType": "RESOURCE_COTTON",
+   "ResourceClassType": "RESOURCECLASS_FACTORY"
+  },
+  {
+   "ResourceType": "RESOURCE_COWRIE",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_CRABS",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_DATES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_DYES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_FISH",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_FLAX",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_FURS",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_GOLD",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_GOLD_DISTANT_LANDS",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_GYPSUM",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_HARDWOOD",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_HIDES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_HORSES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_INCENSE",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_IRON",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_IVORY",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_JADE",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_KAOLIN",
+   "ResourceClassType": "RESOURCECLASS_FACTORY"
+  },
+  {
+   "ResourceType": "RESOURCE_LAPIS_LAZULI",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_LIMESTONE",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_LLAMAS",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_MANGOS",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_MARBLE",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_NICKEL",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_NITER",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_OIL",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_PEARLS",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_PITCH",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_QUININE",
+   "ResourceClassType": "RESOURCECLASS_FACTORY"
+  },
+  {
+   "ResourceType": "RESOURCE_RICE",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_RUBBER",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_RUBIES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_SALT",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_SILK",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_SILVER",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_SILVER_DISTANT_LANDS",
+   "ResourceClassType": "RESOURCECLASS_EMPIRE"
+  },
+  {
+   "ResourceType": "RESOURCE_SPICES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_SUGAR",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_TEA",
+   "ResourceClassType": "RESOURCECLASS_FACTORY"
+  },
+  {
+   "ResourceType": "RESOURCE_TIN",
+   "ResourceClassType": "RESOURCECLASS_FACTORY"
+  },
+  {
+   "ResourceType": "RESOURCE_TOBACCO",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_TRUFFLES",
+   "ResourceClassType": "RESOURCECLASS_CITY"
+  },
+  {
+   "ResourceType": "RESOURCE_TURTLES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_WHALES",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_WILD_GAME",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_WINE",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  },
+  {
+   "ResourceType": "RESOURCE_WOOL",
+   "ResourceClassType": "RESOURCECLASS_BONUS"
+  }
+ ]
+}
