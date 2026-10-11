@@ -46,20 +46,32 @@ function place(type) {
 function setResource(type, l) {
   return safe(() => { const r = type ? GameInfo.Resources.lookup(type).$index : -1; WorldBuilder.startBlock(); WorldBuilder.MapPlots.setResource(r, l, 1); WorldBuilder.endBlock(); return true; });
 }
-function expandPlot() {
+// The population added by addRuralPopulation takes a moment to show in the expansion list (sr-age1 read an empty
+// list right after the call), so the list is read again after a short wait, a few times.
+async function expandPlot() {
   const c = capital(); if (!c) return null;
-  if (!safe(() => c.Growth.isReadyToPlacePopulation, false)) safe(() => c.addRuralPopulation(1));
-  const r = safe(() => Game.CityCommands.canStart(c.id, CityCommandTypes.EXPAND, {}, true), null);
-  for (const i of (r && r.Plots) || []) {
-    const l = locOf(i);
-    if (!safe(() => GameplayMap.isWater(l.x, l.y), true) && safe(() => GameplayMap.getResourceType(l.x, l.y), 0) === -1) return l;
+  for (let k = 0; k < 6; k++) {
+    if (!safe(() => c.Growth.isReadyToPlacePopulation, false)) safe(() => c.addRuralPopulation(1));
+    await sleep(1000);
+    const r = safe(() => Game.CityCommands.canStart(c.id, CityCommandTypes.EXPAND, {}, true), null);
+    for (const i of (r && r.Plots) || []) {
+      const l = locOf(i);
+      if (!safe(() => GameplayMap.isWater(l.x, l.y), true) && !safe(() => GameplayMap.isMountain(l.x, l.y), true)
+        && safe(() => GameplayMap.getResourceType(l.x, l.y), 0) === -1) return l;
+    }
   }
   return null;
 }
+function countOf(pid, type) {
+  return (safe(() => Players.get(pid).Resources.getResources(), []) || [])
+    .filter((r) => !r.isOffMap && safe(() => String(GameInfo.Resources.lookup(r.uniqueResource.resource).ResourceType), "") === type).length;
+}
 async function gain(type) {
-  const l = expandPlot(); if (!l) return null;
+  const l = await expandPlot(); if (!l) return null;
+  const before = countOf(0, type);
   setResource(type, l); await sleep(800);
-  safe(() => Game.CityCommands.sendRequest(capital().id, CityCommandTypes.EXPAND, { X: l.x, Y: l.y })); await sleep(2500);
+  safe(() => Game.CityCommands.sendRequest(capital().id, CityCommandTypes.EXPAND, { X: l.x, Y: l.y }));
+  for (let k = 0; k < 12 && countOf(0, type) === before; k++) await sleep(500);
   return l;
 }
 let CTX = null;
