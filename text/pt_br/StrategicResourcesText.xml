@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="pt_BR"><Text>Strategic Resources</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="pt_BR"><Text>Strategic resources matter again.</Text></Replace>
+    </LocalizedText>
+</Database>

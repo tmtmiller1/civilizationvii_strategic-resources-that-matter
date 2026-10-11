@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Strategic Resources, a Civilization VII mod.
+  AffectsSavedGames is 1: the mod changes how units fight and train for the whole game, and a game started with it
+  must keep it when loaded.
+-->
+<Mod id="tower-strategic-resources" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>LOC_SR_MOD_NAME</Name>
+        <Description>LOC_SR_MOD_DESCRIPTION</Description>
+        <Authors>Tower</Authors>
+        <Package>StrategicResources</Package>
+        <PackageSortIndex>100</PackageSortIndex>
+        <Version>0.1.0</Version>
+        <AffectsSavedGames>1</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="strategic-resources-shell" scope="shell" criteria="always">
+            <Actions>
+                <UpdateText>
+                    <Item>text/en_us/StrategicResourcesText.xml</Item>
+                    <Item locale="de_DE">text/de_de/StrategicResourcesText.xml</Item>
+                    <Item locale="es_ES">text/es_es/StrategicResourcesText.xml</Item>
+                    <Item locale="fr_FR">text/fr_fr/StrategicResourcesText.xml</Item>
+                    <Item locale="it_IT">text/it_it/StrategicResourcesText.xml</Item>
+                    <Item locale="ja_JP">text/ja_jp/StrategicResourcesText.xml</Item>
+                    <Item locale="ko_KR">text/ko_kr/StrategicResourcesText.xml</Item>
+                    <Item locale="pl_PL">text/pl_pl/StrategicResourcesText.xml</Item>
+                    <Item locale="pt_BR">text/pt_br/StrategicResourcesText.xml</Item>
+                    <Item locale="ru_RU">text/ru_ru/StrategicResourcesText.xml</Item>
+                    <Item locale="zh_Hans_CN">text/zh_cn/StrategicResourcesText.xml</Item>
+                    <Item locale="zh_Hant_HK">text/zh_hk/StrategicResourcesText.xml</Item>
+                </UpdateText>
+                <UIScripts>
+                    <!-- Tower Settings Keeper: listed first, imports nothing, so it runs before anything reads storage. -->
+                    <Item>ui/settings-keeper.js</Item>
+                </UIScripts>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-game" scope="game" criteria="always">
+            <Properties><LoadOrder>200</LoadOrder></Properties>
+            <Actions>
+                <UpdateText>
+                    <Item>text/en_us/StrategicResourcesText.xml</Item>
+                    <Item locale="de_DE">text/de_de/StrategicResourcesText.xml</Item>
+                    <Item locale="es_ES">text/es_es/StrategicResourcesText.xml</Item>
+                    <Item locale="fr_FR">text/fr_fr/StrategicResourcesText.xml</Item>
+                    <Item locale="it_IT">text/it_it/StrategicResourcesText.xml</Item>
+                    <Item locale="ja_JP">text/ja_jp/StrategicResourcesText.xml</Item>
+                    <Item locale="ko_KR">text/ko_kr/StrategicResourcesText.xml</Item>
+                    <Item locale="pl_PL">text/pl_pl/StrategicResourcesText.xml</Item>
+                    <Item locale="pt_BR">text/pt_br/StrategicResourcesText.xml</Item>
+                    <Item locale="ru_RU">text/ru_ru/StrategicResourcesText.xml</Item>
+                    <Item locale="zh_Hans_CN">text/zh_cn/StrategicResourcesText.xml</Item>
+                    <Item locale="zh_Hant_HK">text/zh_hk/StrategicResourcesText.xml</Item>
+                </UpdateText>
+                <UIScripts>
+                    <!-- Tower Settings Keeper: listed first, imports nothing, so it runs before anything reads storage. -->
+                    <Item>ui/settings-keeper.js</Item>
+                </UIScripts>
+                <ImportFiles>
+                    <Item>ui/sr-log.js</Item>
+                </ImportFiles>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

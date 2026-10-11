@@ -1,0 +1,25 @@
+{
+  "name": "strategic-resources-mod-dev",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Type check, lint and tests for the Strategic Resources Civ VII mod. Not shipped.",
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "lint": "eslint ui tests scripts devtools",
+    "test": "node tests/run-all.mjs",
+    "verify": "tsc --noEmit && eslint ui && npm test",
+    "coverage": "c8 node tests/run-all.mjs",
+    "release:gate": "npm run verify && npm run coverage",
+    "data": "node scripts/build-data.mjs",
+    "data:check": "node scripts/build-data.mjs --check",
+    "readme:pdf": "bash scripts/build_readme_pdf.sh",
+    "mutation": "stryker run"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^9.6.1",
+    "c8": "^11.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.4.0"
+  }
+}

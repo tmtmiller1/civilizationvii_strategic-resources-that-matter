@@ -1,0 +1,59 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+
+// Locale gate. Every tag in en_us exists in all eleven other languages, under the Language code the game loads
+// that folder as, with the same {placeholders} and markup, and no tag is defined twice anywhere. A duplicate tag is
+// fatal in game: the second insert hits the unique key and the loader rolls back the whole file, so every string in
+// that language shows as a raw tag. A tag missing from a language shows raw in that language.
+
+const FILE = "StrategicResourcesText.xml";
+
+/** Folder to the Language attribute its rows must carry (the modinfo's locale="..."). */
+export const LANGUAGE_OF = {
+  de_de: "de_DE", es_es: "es_ES", fr_fr: "fr_FR", it_it: "it_IT", ja_jp: "ja_JP", ko_kr: "ko_KR",
+  pl_pl: "pl_PL", pt_br: "pt_BR", ru_ru: "ru_RU", zh_cn: "zh_Hans_CN", zh_hk: "zh_Hant_HK"
+};
+
+// Text that is the same in English and a translation on purpose: proper names and bare numbers.
+const SAME_AS_ENGLISH_OK = new Set([]);
+
+/** @param {string} folder @returns {Map<string, string>} tag -> text, and asserts no duplicates */
+function readTexts(folder) {
+  const xml = fs.readFileSync(`text/${folder}/${FILE}`, "utf8");
+  const texts = new Map();
+  for (const m of xml.matchAll(/<(?:Row|Replace)\s+Tag="(LOC_[A-Z0-9_]+)"[^>]*>\s*<Text>([\s\S]*?)<\/Text>/g)) {
+    assert.ok(!texts.has(m[1]), `${folder} defines ${m[1]} twice`);
+    texts.set(m[1], m[2]);
+  }
+  return texts;
+}
+
+const marks = (/** @type {string} */ s) =>
+  [...s.matchAll(/\{[0-9]+_[A-Za-z]+[^}]*\}|\[icon:[A-Z0-9_]+\]|\[N\]|\[B\]|\[\/B\]|\[BLIST\]|\[LI\]|\[\/LIST\]/g)]
+    .map((m) => m[0].replace(/\s*:.*\}$/, "}"))
+    .sort();
+
+const english = readTexts("en_us");
+assert.ok(english.size > 0, "en_us defines no tags (parse failure?)");
+
+let checked = 0;
+for (const [folder, language] of Object.entries(LANGUAGE_OF)) {
+  const xml = fs.readFileSync(`text/${folder}/${FILE}`, "utf8");
+  const texts = readTexts(folder);
+  const missing = [...english.keys()].filter((tag) => !texts.has(tag));
+  assert.equal(missing.length, 0, `${folder} is missing ${missing.length} tag(s): ${missing.slice(0, 4).join(", ")}`);
+  const extra = [...texts.keys()].filter((tag) => !english.has(tag));
+  assert.equal(extra.length, 0, `${folder} has tag(s) English does not: ${extra.slice(0, 4).join(", ")}`);
+  const languages = new Set([...xml.matchAll(/Language="([^"]+)"/g)].map((m) => m[1]));
+  assert.deepEqual([...languages], [language], `${folder}: rows tagged ${[...languages].join(", ")}`);
+  assert.ok(!/<EnglishText>/.test(xml), `${folder} uses EnglishText; translations use LocalizedText with Replace`);
+  for (const [tag, text] of texts) {
+    assert.deepEqual(marks(text), marks(english.get(tag) ?? ""), `${folder} ${tag}: placeholders or markup differ`);
+    if (!SAME_AS_ENGLISH_OK.has(tag) && process.env.SR_ALLOW_ENGLISH !== "1") {
+      assert.notEqual(text, english.get(tag), `${folder} ${tag} is still the English text`);
+    }
+    checked += 1;
+  }
+}
+
+console.log(`i18n harness passed (${english.size} tags x ${Object.keys(LANGUAGE_OF).length} languages, ${checked} rows)`);
