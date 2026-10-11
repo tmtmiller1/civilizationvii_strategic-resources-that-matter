@@ -223,11 +223,10 @@ if (!fs.existsSync(live)) {
   const liveUnits = new Set(query("SELECT UnitType FROM Units"));
   const liveResources = new Set(query("SELECT ResourceType FROM Resources"));
   const liveAge = AGES.find((age) => [...buildGateMap(dumps[age]).keys()].every((u) => liveUnits.has(u)));
-  for (const age of AGES) {
-    for (const resource of gatedResources(age)) assert.ok(liveResources.has(resource), `${resource} not in live DB`);
-  }
   assert.ok(liveResources.has("RESOURCE_CRABS"), "the re-check resource is not in the live DB");
   if (liveAge) {
+    // The compiled database holds one age, so only that age's resources can be expected in it.
+    for (const resource of gatedResources(liveAge)) assert.ok(liveResources.has(resource), `${resource} not in live DB`);
     console.log(`data: live database holds ${liveAge}; all ${buildGateMap(dumps[liveAge]).size} gated units present`);
   } else {
     console.warn("data: the live database holds none of the dumped ages in full (another mod set?); dumps checked");

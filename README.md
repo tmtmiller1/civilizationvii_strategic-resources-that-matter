@@ -1,4 +1,4 @@
-# Strategic Resources
+# More Important Strategic Resources
 
 A Civilization VII mod. Horses, Iron, Niter, Oil, Coal and Rubber matter again. A unit that draws on one of them
 fights weaker and trains slower while its owner holds no copy of it, and every copy you do hold still adds the game's

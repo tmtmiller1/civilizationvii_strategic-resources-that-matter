@@ -2,7 +2,7 @@
   "name": "strategic-resources-mod-dev",
   "version": "0.0.0",
   "private": true,
-  "description": "Type check, lint and tests for the Strategic Resources Civ VII mod. Not shipped.",
+  "description": "Type check, lint and tests for the More Important Strategic Resources Civ VII mod. Not shipped.",
   "type": "module",
   "scripts": {
     "check": "tsc --noEmit",

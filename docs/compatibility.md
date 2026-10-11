@@ -1,6 +1,6 @@
 # Compatibility with other mods
 
-Last reviewed 2026-10-11 against Strategic Resources 1.0.0 on Civilization VII 1.5.0.
+Last reviewed 2026-10-11 against More Important Strategic Resources 1.0.0 on Civilization VII 1.5.0.
 
 This file records what the mod touches, which kinds of mod touch the same things, and what a player would see when
 both are enabled. Most of it comes from reading code: the 1,251 community mods in the reference corpus, the mods
