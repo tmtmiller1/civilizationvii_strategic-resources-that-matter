@@ -39,6 +39,7 @@ Everything a conflict could come through. If another mod touches none of these, 
 | Replaces the plot tooltip or the unit flag tooltip (Readable Tooltips and others) | No interaction: this mod registers no tooltip | Tested with Readable Tooltips |
 | Calls `gainOffMapResource` or reads off-map resources | Sees one Crabs entry during the turn-start call, gone at once | Read from code |
 | Rebalances strategic resources' placement or yields | Works; the penalty reads only whether a copy is held | Read from code |
+| Changes trade routes (range, capacity, duration, what a route carries) | An imported copy is an ordinary entry in the player's resource list and supplies units like a mined one; such a mod changes which routes exist, not how the penalty reads them | Watched (`p11-import-*`: imports count) |
 | AI mods that check `Units.StrategicResource` | Unaffected: the mod sets no `StrategicResource` | Read from code |
 | Tower's Demographics, Canals, Emigration, Readable Tooltips and the others | No interaction found; Readable Tooltips and the usual development set were on in every test game | Tested (the 22-mod set) |
 
@@ -74,7 +75,19 @@ panel class's prototype after its first instance exists: this mod's wrapper call
 so the patched method runs. A mod that replaces `unit-actions.js` wholesale would keep `setupUnitInfo` (the panel needs
 it) and the line would still show; if it renames the stats container, the line has nowhere to go and is not drawn.
 
-### 4. Multiplayer
+### 4. Mods that change trade routes
+
+Status: watched 2026-10-11 (`p11-import-1`, `p11-import-2`, `p11-import-ai` in `verification-runs.md`), without such
+a mod enabled.
+
+A resource imported over a trade route is an ordinary entry in the importer's resource list (`isOffMap` false, the
+exporter's plot as its value) and the engine counts it for the mod's requirement the turn the route lands, for the
+human and for the AI; the panel line follows. So a mod that widens or narrows trade (range, route capacity, what a
+settlement exports) changes which copies a player can reach, and the penalty reads whatever the list holds. A route
+ended by war takes its copies with it at once; an import whose source tile loses the resource is gone from the list at
+once and the penalty follows one turn later. A mod that ends routes some other way has not been watched.
+
+### 5. Multiplayer
 
 Not a mod conflict, but the same surface: in any multiplayer game (internet, LAN, hotseat) the turn-start re-check is
 off and says so once in `UI.log` (tested in hotseat). The penalty and the curve still load, so a lost resource keeps its

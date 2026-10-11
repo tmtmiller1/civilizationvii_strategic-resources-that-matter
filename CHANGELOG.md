@@ -14,7 +14,8 @@ Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs 
   game's own +1 per copy applies as before. Melee strength always; ranged and bombard strength only on units that have
   them. Cavalry need Horses; infantry from the second tier need Iron; Exploration siege and ships of the line need
   Niter; Modern artillery Niter, armour and battleships Oil, light warships Coal, aircraft Rubber. Unique units need
-  what the unit they replace needs. Modern infantry need nothing.
+  what the unit they replace needs. Modern infantry need nothing. A copy that reaches a player over a trade route
+  counts the same as a mined one, from the turn the route lands.
 - Losing a resource hurts. The game notices a resource arriving but not one going away; the mod has it check every
   player again at the start of each turn, so a resource lost to a raid or a lost settlement brings the penalty back a
   turn later, for the AI players too.

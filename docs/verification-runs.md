@@ -195,3 +195,36 @@ below) loaded the same save again and are evidence on the same question.
 The `sr-idle-game.js` soak script and the prepared saves are in place for that. No new games died in phases 3 to 9
 (90 AI turns in `p9-soak`; lab games idled for minutes).
 
+## Phase 11: imported copies
+
+One Modern lab game (`sr-lab.mjs lab start --seed 4242 --age AGE_MODERN`, Standard, curve on, the mod deployed; the
+local player's capital at 63,24), driven from the shell with `tower-bench-private eval`, `place`, `remove`, `set` and
+`lab turns`. The Field Cannon placed at the capital read 32/42/32 with no Niter. Routes were made the way the
+merchant's own chooser does it: `Game.UnitCommands.canStart(merchant.id, UnitCommandTypes.MAKE_TRADE_ROUTE, {X, Y},
+false)` then `sendRequest` with the same arguments, the target city's own tile as `X, Y`; the panel line was read 5 s
+after `UI.Player.selectUnit` with the element's `hidden` class and height; the combat preview with
+`Game.Combat.simulateAttackAsync` (ranged) against a unit of a player at war with the local player (player 1, not the
+trade partner). Read from the game's code before the game was started: the only script that reads `getResources()` is
+`ui-next/screens/commerce/commerce-screen-model.js`, which books every entry as on a plot (`value` is the plot index,
+`Game.Resources.getOriginCity(value)` its city) or off the map (`isOffMap`, `getOffMapUniqueResourceFromId`), marks
+an entry whose origin city has another owner as an import (`getResourcePropsFromDefinition`, `importFlag`), and lists
+a route's imports from `route.importPayloads` (`getTradeRouteDataFromTradeRoute`); the other ways the data gives a
+resource all write onto the map (`EFFECT_PLOT_PLACE_RESOURCE` in the discovery stories, Niter and Horses among them;
+`EFFECT_CITY_ADD_RESOURCE_TO_PLOT` for the independent-power bonuses, Cloves, Lapis Lazuli and Nickel only) or raise a
+count of Gold, Silver, Tea, Spices, Furs or Cocoa (`EFFECT_PLAYER_ADJUST_RESOURCE_COUNT_PER_INSTANCE`), none of the six.
+
+| Run | What | Observation | Status |
+| --- | --- | --- | --- |
+| `p11-import-1` (lab) | The entry an import makes | Turn 2, a Merchant placed at the capital, `canStart` `Success` from there for an Ottoman city at 43,39 whose projected route listed Niter and Cowrie among its imports (`projectPossibleTradeRoutes` with `INCLUDE_FAILED + EXTENDED_STATUS`; `importPayloads` entries carry `uniqueResource` and `value` 1). After `sendRequest`, within 4 s and in the same turn: the merchant gone, one route in `getCurrentTradeRoutes()` (`targetCityId` the capital, `nearestCityId` the Ottoman city), `getCountImportedResources()` 2, a `UNIT_TRADE_SHIP` of the player's on the map, and `getResources()` two entries longer: Niter with `value` 2926 (a plot in Ottoman territory; `getOriginCity` owner 2) and `isOffMap` false, Cowrie the same; `getOffMapResources()` empty. The entry has the same three fields as an owned one (`uniqueResource`, `value`, `isOffMap`) | watched |
+| `p11-import-1` | The engine with the import held | Field Cannon 32/42/32 before the route, 35/45/35 within 4 s of it (no roll); still 35/45/35 at turn 3 after a roll. Combat preview against the enemy unit: ranged 45, `PreviewTextModifier` "+1 Niter Resource", at turn 2 and again at turn 3. The game's own per-copy bonus counts the import too | watched |
+| `p11-import-1` | The panel with the import held | Field Cannon selected: the panel drew no `.sr-unsupplied-line` element at all (none had been needed yet); in `p11-import-2`, after a line had once been drawn, the same state read `hidden 0px`. The panel agrees with the engine | watched |
+| `p11-import-1` | Loss by a war with the partner | Turn 3, `DECLARE_WAR` on player 2 (`canStart` true). Within 3 s: no route, `getCountImportedResources()` 0, Niter and Cowrie gone from `getResources()`, the trade ship gone, and the Field Cannon 32/42/32 at once, no roll; preview ranged 42 with no modifier text. The declaration opened the diplomacy screen, which hid the unit panel until the roll. Turn 4: 32/42/32, panel `shown 18px "Unsupplied: no Niter (-3 Combat Strength, slower to train)"` | watched |
+| `p11-import-2` (same game) | A second import, from Goryeo at 64,36 | Turn 4, a new Merchant at the capital, the same calls: route landed in the turn, `getCountImportedResources()` 7, Niter with `value` 2731 (plot 67,36, owned by player 4, `getOriginCity` owner 4), `isOffMap` false; Field Cannon 35/45/35 at once; panel line `hidden 0px` | watched |
+| `p11-import-2` | The route's trade ship destroyed | `DESTROY_ELEMENT` on the `UNIT_TRADE_SHIP` (`remove unit`): the route stayed, at once and after a roll (turn 5: one route, 7 imported, the Niter entry kept, 35/45/35). The ship is not the route | watched |
+| `p11-import-2` | Loss by the exporter's tile losing the resource | Turn 5, 67,36 cleared with `set resource none`: the Niter entry gone from `getResources()` at once (11 entries to 10), the route still listed and `getCountImportedResources()` still 7; Field Cannon 35/45/35 until the roll, panel `shown 18px "Unsupplied: no Niter ..."` at once; turn 6: 32/42/32. The same one-roll re-check as an owned tile, so the at-once drop in the war row is the war's doing | watched |
+| `p11-import-ai` (same game) | An AI supplied by an import only | By turn 5 every AI had made one route of its own (imports 2, 2, 4, 5, 1 for players 1 to 5). Player 4 held Niter from its own tile 67,36 and one imported from player 2 (plot 53,41, under the partner's `IMPROVEMENT_MINE_RESOURCE`). With 67,36 cleared (the row above) its only Niter was the import; its own Field Cannon at 65,34 read 35/45/35 at turn 6 | watched |
+| `p11-import-ai` | The AI's import lost | Turn 6, 53,41 cleared: the entry gone from player 4's list at once, its route still listed, Field Cannon 35/45/35; turn 7: 32/42/32 | watched |
+| not run | A route with a city-state | No `isMinor` player was alive by turn 7 (12 `isIndependent` players, none holding a resource, none a route target), so no such route could be made in this game | not watched |
+| not run | A narrative event's resource; an independent-power bonus | Both write the resource onto a tile of the player's own (`EFFECT_PLOT_PLACE_RESOURCE`, `EFFECT_CITY_ADD_RESOURCE_TO_PLOT`), the mechanism of phase 4 and `sr-lab-curve`; the bonus resources are not among the six | read from code, not watched |
+
+The lab was stopped cleanly, the run backup deleted and the mod removed from `Mods/`.

@@ -42,11 +42,14 @@ const holdings = [
   { resourceType: "RESOURCE_IRON", isOffMap: false },
   { resourceType: "RESOURCE_IRON", isOffMap: true },
   { resourceType: "RESOURCE_HORSES" },
+  // an import over a trade route: the same shape as an owned copy, on the map (`p11-import-1`)
+  { resourceType: "RESOURCE_NITER", isOffMap: false },
   { resourceType: null },
   /** @type {*} */ (null)
 ];
 assert.equal(countCopies(holdings, "RESOURCE_IRON"), 1, "off-map copies count for nothing");
 assert.equal(countCopies(holdings, "RESOURCE_HORSES"), 1);
+assert.equal(countCopies(holdings, "RESOURCE_NITER"), 1, "an imported copy counts like an owned one");
 assert.equal(countCopies(holdings, "RESOURCE_OIL"), 0);
 
 const status = (unitType, copies) =>

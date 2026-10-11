@@ -25,7 +25,7 @@ Nothing is forbidden: every unit can still be trained and upgraded. Going withou
 [tr][td]Modern[/td][td]Light warships[/td][td]Coal[/td][/tr]
 [tr][td]Modern[/td][td]Aircraft[/td][td]Rubber[/td][/tr]
 [/table]
-Unique units need what the unit they replace needs. The Warrior line, ranged infantry, the first ships and Modern infantry need nothing, so everyone can always defend.
+A copy that reaches you over a trade route counts the same as one you mine yourself. Unique units need what the unit they replace needs. The Warrior line, ranged infantry, the first ships and Modern infantry need nothing, so everyone can always defend.
 
 [h2]Losing a resource[/h2]
 The game notices a resource arriving at once, but not one going away. The mod has it check every player again at the start of each turn, so a lost resource brings the penalty back a turn later, for you and for the AI.
