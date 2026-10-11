@@ -161,22 +161,26 @@ its mod-off twin `SR-LAB-RELOAD-VANILLA.Civ7Save` (the same game built without t
 | `sr-rl-prep3` (soak, `sr-idle-game.js`) | `SR-LAB-RELOAD-VANILLA` loaded from the main menu with nothing of the mod in `Mods/`, idle 60 s | Loaded into the game at turn 2; the save re-enabled the same six other mods the `SR-LAB-RELOAD` save does (Aging Warehouses, Demographics, Emigration, All Display Options, Cultural Diffusion, Universal Auto Explore); 0 `SR_` rows; clean quit after the minute | watched |
 | `sr-rl-a1` (soak, arm A: full mod, `SR-LAB-RELOAD`) | The same load as `sr-reload`, then idle 480 s with no input | Back as saved (Tank 62/0/0, Field Cannon 35/45/35, Ironclad 42/17/17, production unchanged, Standard and curve On, 232 `SR_` modifiers, panel line, one "loss re-check on" and one "re-check (game loaded)" line). Clean after 8 min: load 14:36:45, read again 14:44:54, quit by the harness. No crash report | watched (clean) |
 | `sr-rl-a2` (soak, arm A, second run) | The same | Back as saved, the same readings. Clean after 8 min: load 14:46:36, read again 14:54:45, quit by the harness. No crash report | watched (clean) |
-| not run | Arm B (data-only copy, `SR-LAB-RELOAD`) and arm C (`SR-LAB-RELOAD-VANILLA`, mod absent), two runs each | Not run: the plan stops after two clean A runs, since B and C can only be read against a death in A | not watched |
+| `sr-rl-a3` (soak, arm A, third run) | The same, in the next session | Back as saved, the same readings (Tank 62/0/0, Field Cannon 35/45/35, Ironclad 42/17/17, 232 `SR_` modifiers, one "loss re-check on" and one "re-check (game loaded)" line). Clean after 8 min: load 15:11:38, read again 15:19:48, quit by the harness. No crash report | watched (clean) |
+| `sr-rl-a4` (soak, arm A, fourth run) | The same | The same readings. Clean after 8 min: load 15:21:34, read again 15:29:47, quit by the harness. No crash report | watched (clean) |
+| not run | Arm B (data-only copy, `SR-LAB-RELOAD`) and arm C (`SR-LAB-RELOAD-VANILLA`, mod absent), two runs each | Not run: the plan stops after clean A runs (four so far), since B and C can only be read against a death in A | not watched |
 | not run | Antiquity to Exploration and Exploration to Modern: rows per age, carried units, one "on" line per age, a loss re-checked in the new age | Not started: stopped after the two deaths above (repo `CLAUDE.md`: report after the first falsification) | not watched |
 
 Two deaths after loading a save of a game with the mod, both while idle a few minutes after the load (`p3c-modern`,
 `sr-reload`). The first hypothesis, that the load call from the game page caused it (`engine-closed.md`: save-load
 calls from the game context crash the UI host thread), is falsified: the load from the main menu died too. The
-positive control was then run twice more on 2026-10-11 (`sr-rl-a1`, `sr-rl-a2`): the same save, the same mod files,
-the same main-menu load through `run-soak.sh`, idle 8 minutes each (the deaths came at about 3.5 and 4 minutes). Both
-runs were clean. The death does not reproduce under this harness today, so nothing is settled: the mod is neither
+positive control was then run four times more on 2026-10-11 (`sr-rl-a1` to `sr-rl-a4`): the same save, the same mod
+files, the same main-menu load through `run-soak.sh`, idle 8 minutes each (the deaths came at about 3.5 and 4
+minutes). All four runs were clean: not reproduced in 4 runs on 2026-10-11. So nothing is settled: the mod is neither
 cleared nor implicated, and the planned arms B (data-only copy) and C (a save made without the mod) were not run,
 since a clean or dying B or C can only be read against a death in A. What is known about the one crash with a report:
 its signature `1311346:CivilizationVII+0x21091fc,+0x2107ef0,+0x838b3c` on the `AppHost application thread` was also
 written on 2026-09-30 (473 s after launch) and 2026-10-03 (830 s after launch) in lab games run before this mod
-existed, so the game has this crash without the mod; whether the mod makes it more likely is open. Over the four loads
-of `SR-LAB-RELOAD` so far, two died and two did not. The cheapest next test is more repetitions of arm A (and arm C
-with `SR-LAB-RELOAD-VANILLA`, which is ready) until a death shows which side it falls on; a longer idle may be needed.
+existed, so the game has this crash without the mod; whether the mod makes it more likely is open. Over the six loads
+of `SR-LAB-RELOAD` so far, two died and four did not; the two deaths came in the first two loads of the day and none
+since. The cheapest next test is more repetitions of arm A (and arm C with `SR-LAB-RELOAD-VANILLA`, which is ready)
+until a death shows which side it falls on; a longer idle may be needed. The later checks after a reload (`sr-reload2`,
+below) loaded the same save again and are evidence on the same question.
 The `sr-idle-game.js` soak script and the prepared saves are in place for that. No new games died in phases 3 to 9
 (90 AI turns in `p9-soak`; lab games idled for minutes).
 
