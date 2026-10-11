@@ -9,8 +9,10 @@ const MODULE_PREFIX = "/tower-strategic-resources/";
 
 export async function resolve(specifier, context, defaultResolve) {
   if (specifier.startsWith(MODULE_PREFIX)) {
-    const mapped = path.join(projectRoot, specifier.slice(MODULE_PREFIX.length));
-    return { url: pathToFileURL(mapped).href, shortCircuit: true };
+    // A query string (a test loading a fresh instance of a module) is kept on the URL, not the path.
+    const [file, query] = specifier.slice(MODULE_PREFIX.length).split("?");
+    const url = pathToFileURL(path.join(projectRoot, file)).href;
+    return { url: query ? `${url}?${query}` : url, shortCircuit: true };
   }
   return defaultResolve(specifier, context, defaultResolve);
 }
