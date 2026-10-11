@@ -142,10 +142,13 @@ The `Database.log` line "Database XML root elements must start with either <Data
 
 ## Phase 10: save and reload, age transitions
 
-Scripts: `devtools/soak/sr-reload-game.js` and `devtools/soak/sr-age-game.js`, run by `tools/crash-soak/run-soak.sh`
-(copy them into that folder first); `devtools/sr-short-age-probe/` ends Antiquity and Exploration after 10 points. The
-save `SR-LAB-RELOAD.Civ7Save` (Modern, turn 2, Standard, curve on; Tank without Oil, Field Cannon with Niter at 60,24)
-is kept in `tools/crash-soak/runs/sr-reload/`; copy it to `Saves/Single/` to load it.
+Scripts: `devtools/soak/sr-reload-game.js`, `devtools/soak/sr-idle-game.js` (load a save, read once, idle with no
+input for `OPTS_JSON` seconds) and `devtools/soak/sr-age-game.js`, run by `tools/crash-soak/run-soak.sh` (copy them
+into that folder first); `devtools/sr-short-age-probe/` ends Antiquity and Exploration after 10 points. The save
+`SR-LAB-RELOAD.Civ7Save` (Modern, turn 2, Standard, curve on; Tank without Oil, Field Cannon with Niter at 60,24) and
+its mod-off twin `SR-LAB-RELOAD-VANILLA.Civ7Save` (the same game built without the mod) are kept in
+`tools/crash-soak/runs/sr-reload/`; copy one to `Saves/Single/` to load it, and never give `run-soak.sh` the label
+`sr-reload`, which would clear that folder.
 
 | Run | What | Observation | Status |
 | --- | --- | --- | --- |
@@ -153,12 +156,27 @@ is kept in `tools/crash-soak/runs/sr-reload/`; copy it to `Saves/Single/` to loa
 | `sr-reload` (soak, loaded from the shell) | The same save loaded through the main menu, as a player would | Back as saved: Tank 62/0/0 (the Oil gained after the save is gone), Field Cannon 35/45/35, Ironclad 42/17/17; production unchanged (Tank 460 at 8 turns, Field Cannon 270 at 3, Line Infantry 290 at 3, at 68 Production); setup values Standard and curve On; 232 `SR_` modifiers, Oil penalty -3; panel line on the Tank "Unsupplied: no Oil (-3 Combat Strength, slower to train)". Then, idle at turn 2, the game died between 14:00:14 and 14:04:13, about 4 minutes after the load. No crash report was written | watched (death) |
 | `sr-reload` | Panel line with the Field Cannon selected after the Tank | Read "Unsupplied: no Oil ..." although the Field Cannon draws on Niter and held it. Either the panel had not switched units within the 2 s the script waited or the line is stale; not told apart | not watched |
 | not run | A loss after the reload re-checked one roll later | The game died before the step | not watched |
+| `sr-rl-prep1` (lab, mod absent) | A save made the same way without the mod: Modern, seed 4242, Tank and Field Cannon at 63,24, Ironclad at 64,23, Coal at 66,24 then cleared, Niter at 60,24, one turn ended, `Network.saveGame` as `SR-LAB-RELOAD-VANILLA` | Saved at turn 2 (Tank 65/0/0, Field Cannon 35/45/35, Ironclad 45/20/20; Niter held). Kept in `tools/crash-soak/runs/sr-reload/`. The lab restored cleanly, registry unchanged | watched |
+| `sr-rl-prep2` (lab, data-only copy) | A copy of the mod with the same id, data and text and no `UIScripts` or `ImportFiles`, in a fresh Modern game | `Modding.log` applied `strategic-resources-game`, `-modern`, `-modern-standard`, `-modern-curve`; `Database.log` no errors; live database 116 `SR_` rows in `GameModifiers` and 232 in `Modifiers` (the full mod's count); no `[StrategicResources]` line in `UI.log`; a placed Tank read 62 | watched |
+| `sr-rl-prep3` (soak, `sr-idle-game.js`) | `SR-LAB-RELOAD-VANILLA` loaded from the main menu with nothing of the mod in `Mods/`, idle 60 s | Loaded into the game at turn 2; the save re-enabled the same six other mods the `SR-LAB-RELOAD` save does (Aging Warehouses, Demographics, Emigration, All Display Options, Cultural Diffusion, Universal Auto Explore); 0 `SR_` rows; clean quit after the minute | watched |
+| `sr-rl-a1` (soak, arm A: full mod, `SR-LAB-RELOAD`) | The same load as `sr-reload`, then idle 480 s with no input | Back as saved (Tank 62/0/0, Field Cannon 35/45/35, Ironclad 42/17/17, production unchanged, Standard and curve On, 232 `SR_` modifiers, panel line, one "loss re-check on" and one "re-check (game loaded)" line). Clean after 8 min: load 14:36:45, read again 14:44:54, quit by the harness. No crash report | watched (clean) |
+| `sr-rl-a2` (soak, arm A, second run) | The same | Back as saved, the same readings. Clean after 8 min: load 14:46:36, read again 14:54:45, quit by the harness. No crash report | watched (clean) |
+| not run | Arm B (data-only copy, `SR-LAB-RELOAD`) and arm C (`SR-LAB-RELOAD-VANILLA`, mod absent), two runs each | Not run: the plan stops after two clean A runs, since B and C can only be read against a death in A | not watched |
 | not run | Antiquity to Exploration and Exploration to Modern: rows per age, carried units, one "on" line per age, a loss re-checked in the new age | Not started: stopped after the two deaths above (repo `CLAUDE.md`: report after the first falsification) | not watched |
 
-Two deaths after loading a save of a game with the mod, both while idle a few minutes after the load. The first
-hypothesis, that the load call from the game page caused it (`engine-closed.md`: save-load calls from the game context
-crash the UI host thread), is falsified: the load from the main menu died too. Open hypotheses: the mod's UI scripts on
-a loaded game; the mod's data on a loaded game; this save file; any loaded save idling in this harness. The cheapest
-next test is the same save loaded with a copy of the mod that has no UI scripts (same id, data and text only); a death
-there clears the scripts. No new games died in phases 3 to 9 (90 AI turns in `p9-soak`; lab games idled for minutes).
+Two deaths after loading a save of a game with the mod, both while idle a few minutes after the load (`p3c-modern`,
+`sr-reload`). The first hypothesis, that the load call from the game page caused it (`engine-closed.md`: save-load
+calls from the game context crash the UI host thread), is falsified: the load from the main menu died too. The
+positive control was then run twice more on 2026-10-11 (`sr-rl-a1`, `sr-rl-a2`): the same save, the same mod files,
+the same main-menu load through `run-soak.sh`, idle 8 minutes each (the deaths came at about 3.5 and 4 minutes). Both
+runs were clean. The death does not reproduce under this harness today, so nothing is settled: the mod is neither
+cleared nor implicated, and the planned arms B (data-only copy) and C (a save made without the mod) were not run,
+since a clean or dying B or C can only be read against a death in A. What is known about the one crash with a report:
+its signature `1311346:CivilizationVII+0x21091fc,+0x2107ef0,+0x838b3c` on the `AppHost application thread` was also
+written on 2026-09-30 (473 s after launch) and 2026-10-03 (830 s after launch) in lab games run before this mod
+existed, so the game has this crash without the mod; whether the mod makes it more likely is open. Over the four loads
+of `SR-LAB-RELOAD` so far, two died and two did not. The cheapest next test is more repetitions of arm A (and arm C
+with `SR-LAB-RELOAD-VANILLA`, which is ready) until a death shows which side it falls on; a longer idle may be needed.
+The `sr-idle-game.js` soak script and the prepared saves are in place for that. No new games died in phases 3 to 9
+(90 AI turns in `p9-soak`; lab games idled for minutes).
 
