@@ -1,4 +1,4 @@
-# Translating Strategic Resources (`text/`)
+# Translating More Important Strategic Resources (`text/`)
 
 Every string a player sees is a `LOC_SR_*` tag defined here and looked up by the game. The scripts set no display text
 of their own, so a translation needs no code change.

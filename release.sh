@@ -205,7 +205,7 @@ EOF
     fi
 cat >> "$out_path" <<EOF
     "visibility"     "0"
-    "title"          "Strategic Resources"
+    "title"          "More Important Strategic Resources"
 EOF
 # "description" is left out on purpose. steamcmd's workshop_build_item
 # only updates the fields present in this VDF, so leaving it out preserves the

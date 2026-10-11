@@ -3,7 +3,7 @@
 <Database>
     <EnglishText>
         <Row Tag="LOC_SR_MOD_NAME">
-            <Text>Strategic Resources</Text>
+            <Text>More Important Strategic Resources</Text>
         </Row>
         <Row Tag="LOC_SR_MOD_DESCRIPTION">
             <Text>Strategic resources matter again. A unit that draws on Horses, Iron, Niter, Oil, Coal or Rubber fights weaker and trains slower while its owner holds none of that resource, and every copy still adds the game's own bonus. Lose your last copy and the penalty comes back a turn later. Past six copies the count keeps adding strength. Two game setup options set the penalty and switch the late bonus. Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.</Text>

@@ -12,7 +12,7 @@ pandoc "$ROOT_DIR/README.md" \
   --toc \
   --toc-depth=2 \
   --pdf-engine=tectonic \
-  -V title="Strategic Resources - a Civilization VII mod" \
+  -V title="More Important Strategic Resources - a Civilization VII mod" \
   -V author="" \
   -V date="" \
   -V geometry:margin=0.65in \

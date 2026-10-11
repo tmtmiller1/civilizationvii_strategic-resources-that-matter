@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="ko_KR"><Text>전략 자원</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="ko_KR"><Text>더 중요한 전략 자원</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 다시 중요해집니다. 말, 철, 초석, 석유, 석탄, 고무가 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 전투력이 낮아지고 훈련이 느려지며, 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다. 마지막 하나를 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 여섯 개를 넘어서도 수가 계속 전투력을 더합니다. 게임 설정의 두 옵션으로 페널티와 후반 보너스를 정합니다. 싱글 플레이 전용. 멀티플레이에서는 자원을 잃어도 그 플레이어가 자원을 얻기 전까지 페널티가 돌아오지 않습니다.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ko_KR"><Text>보급 없음: {1_Resource} 없음 (전투력 {2_Combat}, 훈련이 느려짐)</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="ko_KR"><Text>보급 없는 유닛</Text></Replace>

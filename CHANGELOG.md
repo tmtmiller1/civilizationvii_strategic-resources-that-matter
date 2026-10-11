@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Strategic Resources mod for Civilization VII. The format follows
+All notable changes to the More Important Strategic Resources mod for Civilization VII. The format follows
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 

@@ -1,4 +1,4 @@
-[h1]Strategic Resources[/h1]
+[h1]More Important Strategic Resources[/h1]
 
 Horses, Iron, Niter, Oil, Coal and Rubber matter again. A unit that draws on one of them fights weaker and trains slower while its owner holds no copy of it, and every copy you hold still adds the game's own bonus, so the count keeps mattering. Lose your last copy, to a raid on the mine or a lost settlement, and the penalty is back a turn later. Past six copies, where the game's own bonus stops, the count keeps adding strength.
 

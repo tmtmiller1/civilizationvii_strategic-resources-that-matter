@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="fr_FR"><Text>Ressources stratégiques</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="fr_FR"><Text>Des ressources stratégiques plus importantes</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="fr_FR"><Text>Les ressources stratégiques comptent à nouveau. Une unité qui dépend des Chevaux, du Fer, du Salpêtre, du Pétrole, du Charbon ou du Caoutchouc combat moins bien et se forme plus lentement tant que son propriétaire n'en possède aucun exemplaire, et chaque exemplaire donne toujours le bonus du jeu. Perdez le dernier et la pénalité revient un tour plus tard. Au-delà de six exemplaires, le nombre continue d'ajouter de la puissance. Deux options de configuration de partie règlent la pénalité et activent le bonus tardif. Solo uniquement. En multijoueur, la perte d'une ressource ne ramène la pénalité que lorsque ce joueur obtient une ressource.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="fr_FR"><Text>Non ravitaillée : pas de {1_Resource} ({2_Combat} en puissance de combat, formation plus lente)</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="fr_FR"><Text>Unités non ravitaillées</Text></Replace>

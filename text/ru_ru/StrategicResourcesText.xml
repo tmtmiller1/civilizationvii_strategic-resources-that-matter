@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="ru_RU"><Text>Стратегические ресурсы</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="ru_RU"><Text>Более важные стратегические ресурсы</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ru_RU"><Text>Стратегические ресурсы снова важны. Отряд, которому нужны лошади, железо, селитра, нефть, уголь или каучук, сражается слабее и обучается дольше, пока у его владельца нет ни одной единицы этого ресурса, а каждая единица по-прежнему дает бонус самой игры. Потеряете последнюю — штраф вернется через ход. Сверх шести единиц их число продолжает добавлять силу. Две настройки создания игры задают штраф и включают поздний бонус. Только для одного игрока. В сетевой игре после потери ресурса штраф возвращается, только когда этот игрок получит какой-нибудь ресурс.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ru_RU"><Text>Без снабжения: нет ресурса «{1_Resource}» ({2_Combat} к боевой мощи, обучение дольше)</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="ru_RU"><Text>Отряды без снабжения</Text></Replace>
