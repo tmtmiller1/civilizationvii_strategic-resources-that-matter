@@ -4,7 +4,7 @@ Every step below was checked on Civilization VII 1.5.0 (macOS) in Tower Bench la
 started over the debugger, with the owner's saves, settings and mod registry backed up first and restored after.
 The other enabled mods (22 of them, the usual set on the development machine) stayed on unless a run says otherwise.
 The reader-facing account is the [README](../README.md); the design and the probes that came before the build are in
-`mod_ideas_tested/strategic_resources/DESIGN.md`. This file is the evidence.
+`docs/DESIGN.md`. This file is the evidence.
 
 Each item is marked **watched** (seen in a running game, with the run named) or **not watched** (reasoned from code
 or data, or covered only by the Node tests).

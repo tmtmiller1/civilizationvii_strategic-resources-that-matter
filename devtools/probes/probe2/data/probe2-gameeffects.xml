@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Warrior base 20. No Iron: 10. Owner-requirement bonus only: 17. Parent-subject bonus only: 13. Both: 20. -->
+<GameEffects xmlns="GameEffects">
+    <!-- Unconditional -10. -->
+    <Modifier id="SRP2_ATTACH_PEN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP2_PEN</Argument>
+    </Modifier>
+    <Modifier id="SRP2_PEN" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES">
+                <Argument name="UnitType">UNIT_WARRIOR</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-10</Argument>
+    </Modifier>
+    <!-- +7: non-inverse has-Iron as OwnerRequirements of the child (the placement that latched in probe 1). -->
+    <Modifier id="SRP2_ATTACH_OWN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP2_BON_OWN</Argument>
+    </Modifier>
+    <Modifier id="SRP2_BON_OWN" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES">
+                <Argument name="UnitType">UNIT_WARRIOR</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">7</Argument>
+    </Modifier>
+    <!-- +3: non-inverse has-Iron as SubjectRequirements of the attach parent (subject = player), the shape
+         independents-gameeffects.xml uses. -->
+    <Modifier id="SRP2_ATTACH_SUBJ" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="ModifierId">SRP2_BON_SUBJ</Argument>
+    </Modifier>
+    <Modifier id="SRP2_BON_SUBJ" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES">
+                <Argument name="UnitType">UNIT_WARRIOR</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">3</Argument>
+    </Modifier>
+    <!-- Same as SRP2_ATTACH_SUBJ with the other player-resource requirement type. -->
+    <Modifier id="SRP2_ATTACH_SUBJ_HR" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_RESOURCE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="ModifierId">SRP2_BON_SUBJ</Argument>
+    </Modifier>
+    <!-- Positive training gate: grant UNIT_FOEDERATI (trait no major has) while the player has Iron, the shape
+         ATTACH_FOEDERATI uses in independents-gameeffects.xml. -->
+    <Modifier id="SRP2_ATTACH_GRANT" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP2_GRANT</Argument>
+    </Modifier>
+    <Modifier id="SRP2_GRANT" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="UnitType">UNIT_FOEDERATI</Argument>
+    </Modifier>
+    <!-- Training block: Warrior build disabled while the player has no Iron. -->
+    <Modifier id="SRP2_ATTACH_GATE" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP2_GATE</Argument>
+    </Modifier>
+    <Modifier id="SRP2_GATE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_DISABLE_BUILD_UNIT">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="UnitType">UNIT_WARRIOR</Argument>
+        <Argument name="PermanentlyDisabled">false</Argument>
+    </Modifier>
+</GameEffects>

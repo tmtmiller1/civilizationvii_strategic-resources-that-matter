@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <GameModifiers>
+        <Row ModifierId="SRP3_ATTACH_PEN"/>
+        <Row ModifierId="SRP3_ATTACH_OWN"/>
+        <Row ModifierId="SRP3_ATTACH_COST_PEN"/>
+        <Row ModifierId="SRP3_ATTACH_COST_OK"/>
+        <Row ModifierId="SRP3_CURVE_A"/>
+        <Row ModifierId="SRP3_ATTACH_CURVE_B"/>
+        <Row ModifierId="SRP3_ATTACH_MO_PEN"/>
+        <Row ModifierId="SRP3_ATTACH_MO_OWN"/>
+    </GameModifiers>
+</Database>

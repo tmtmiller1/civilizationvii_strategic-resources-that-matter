@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Safe set. SRP2_ATTACH_SUBJ and SRP2_ATTACH_SUBJ_HR crash the game (DESIGN.md section 7b); do not list them. -->
+<Database>
+    <GameModifiers>
+        <Row ModifierId="SRP2_ATTACH_PEN"/>
+        <Row ModifierId="SRP2_ATTACH_OWN"/>
+        <Row ModifierId="SRP2_ATTACH_GRANT"/>
+    </GameModifiers>
+</Database>

@@ -1,0 +1,158 @@
+{
+ "name": "sr-probe2-hang-faithful",
+ "seed": 4242,
+ "age": "AGE_ANTIQUITY",
+ "steps": [
+  {
+   "eval": "(()=>{const u=Players.get(0).Units.getUnits()[0]; Game.UnitOperations.sendRequest(u.id,'UNITOPERATION_FOUND_CITY',{X:u.location.x,Y:u.location.y}); return 1;})()"
+  },
+  {
+   "write": {
+    "op": "unit.place",
+    "args": {
+     "x": 66,
+     "y": 12,
+     "type": "UNIT_WARRIOR",
+     "owner": 0
+    }
+   }
+  },
+  {
+   "write": {
+    "op": "resource.set",
+    "args": {
+     "x": 66,
+     "y": 13,
+     "type": "RESOURCE_IRON"
+    }
+   }
+  },
+  {
+   "eval": "(()=>{const c=Players.get(0).Cities.getCities()[0]; Game.CityOperations.sendRequest(c.id, CityOperationTypes.BUILD,{UnitType:GameInfo.Units.lookup('UNIT_SCOUT').$hash}); return 1})()"
+  },
+  {
+   "turns": 2
+  },
+  {
+   "eval": "(()=>{const c=Players.get(0).Cities.getCities()[0]; Game.CityCommands.sendRequest(c.id, CityCommandTypes.EXPAND, {X:66,Y:13}); return 1})()"
+  },
+  {
+   "eval": "(()=>{const t=[[51,39],[53,38],[52,38],[52,40],[54,39],[49,25],[49,23],[48,23],[50,24],[48,25]]; WorldBuilder.startBlock(); for (const [x,y] of t) WorldBuilder.MapPlots.setResource(GameInfo.Resources.lookup('RESOURCE_IRON').$index,{x,y},1); WorldBuilder.endBlock(); return t.length;})()"
+  },
+  {
+   "turns": 1
+  },
+  {
+   "write": {
+    "op": "resource.set",
+    "args": {
+     "x": 66,
+     "y": 13,
+     "type": null
+    }
+   }
+  },
+  {
+   "turns": 1
+  },
+  {
+   "write": {
+    "op": "unit.place",
+    "args": {
+     "x": 64,
+     "y": 12,
+     "type": "UNIT_WARRIOR",
+     "owner": 0
+    }
+   }
+  },
+  {
+   "write": {
+    "op": "map.reveal",
+    "args": {
+     "player": 0
+    }
+   }
+  },
+  {
+   "write": {
+    "op": "unit.place",
+    "args": {
+     "x": 47,
+     "y": 21,
+     "type": "UNIT_WARRIOR",
+     "owner": 0
+    }
+   }
+  },
+  {
+   "write": {
+    "op": "unit.place",
+    "args": {
+     "x": 46,
+     "y": 23,
+     "type": "UNIT_WARRIOR",
+     "owner": 0
+    }
+   }
+  },
+  {
+   "write": {
+    "op": "unit.place",
+    "args": {
+     "x": 47,
+     "y": 22,
+     "type": "UNIT_WARRIOR",
+     "owner": 5
+    }
+   }
+  },
+  {
+   "expect": "Players.get(0).Diplomacy.hasMet(5)"
+  },
+  {
+   "eval": "(()=>{const args={Player1:0, Player2:5, Type:DiplomacyActionTypes.DIPLOMACY_ACTION_DECLARE_WAR}; Game.PlayerOperations.sendRequest(0, PlayerOperationTypes.DECLARE_WAR, args); return 1;})()"
+  },
+  {
+   "expect": "Players.get(0).Diplomacy.isAtWarWith(5)"
+  },
+  {
+   "eval": "(() => {\n  if (!globalThis.__srpHooked) { engine.on(\"SimulateCombatResult\", r => { globalThis.__srpSim = r; }); globalThis.__srpHooked = true; }\n  globalThis.__srpSim = null;\n  const a = MapUnits.getUnits(47, 21).map(id => Units.get(id)).find(u => u.owner == 0);\n  Game.Combat.simulateAttackAsync(a.id, { Location: { x: 47, y: 22 }, X: 47, Y: 22, CombatType: CombatTypes.NO_COMBAT });\n  return \"sent\";\n})()\n"
+  },
+  {
+   "eval": "1"
+  },
+  {
+   "eval": "(() => { const r = globalThis.__srpSim; if (!r) return \"none\";\n  const pick = s => { const o = { str: s.CombatStrength, mod: s.StrengthModifier }; for (const k of Object.keys(s)) if (k.startsWith(\"PreviewText\") && s[k] && s[k].length) o[k.slice(11)] = [...s[k]]; return o; };\n  return JSON.stringify({ att: pick(r.Attacker), def: pick(r.Defender) }); })()\n"
+  },
+  {
+   "write": {
+    "op": "unit.place",
+    "args": {
+     "x": 48,
+     "y": 23,
+     "type": "UNIT_WARRIOR",
+     "owner": 0
+    }
+   }
+  },
+  {
+   "eval": "(()=>{const u=MapUnits.getUnits(48,23).map(id=>Units.get(id)).find(u=>u.owner==0); Game.UnitOperations.sendRequest(u.id,'UNITOPERATION_PILLAGE',{X:48,Y:23}); return MapConstructibles.getConstructibles(48,23).length;})()"
+  },
+  {
+   "eval": "(() => {\n  if (!globalThis.__srpHooked) { engine.on(\"SimulateCombatResult\", r => { globalThis.__srpSim = r; }); globalThis.__srpHooked = true; }\n  globalThis.__srpSim = null;\n  const a = MapUnits.getUnits(47, 21).map(id => Units.get(id)).find(u => u.owner == 0);\n  Game.Combat.simulateAttackAsync(a.id, { Location: { x: 47, y: 22 }, X: 47, Y: 22, CombatType: CombatTypes.NO_COMBAT });\n  return \"sent\";\n})()\n"
+  },
+  {
+   "eval": "1"
+  },
+  {
+   "eval": "(() => { const r = globalThis.__srpSim; if (!r) return \"none\";\n  const pick = s => { const o = { str: s.CombatStrength, mod: s.StrengthModifier }; for (const k of Object.keys(s)) if (k.startsWith(\"PreviewText\") && s[k] && s[k].length) o[k.slice(11)] = [...s[k]]; return o; };\n  return JSON.stringify({ att: pick(r.Attacker), def: pick(r.Defender) }); })()\n"
+  },
+  {
+   "turns": 1
+  },
+  {
+   "expect": "Game.turn >= 6"
+  }
+ ]
+}

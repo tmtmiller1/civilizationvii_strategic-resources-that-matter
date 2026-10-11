@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway probe for DESIGN.md section 7b. Dev only, never ship. -->
+<Mod id="sr-probe2" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Strategic Resources Probe 2 (dev)</Name>
+        <Description>Dev only: Warrior penalty cancelled by has-Iron bonuses in two requirement placements, and a has-no-Iron Warrior build block.</Description>
+        <Authors>Tower</Authors>
+        <Package>SRProbe2</Package>
+        <PackageSortIndex>9996</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="antiquity"><AgeInUse>AGE_ANTIQUITY</AgeInUse></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="sr-probe2-game" scope="game" criteria="antiquity">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/probe2-gameeffects.xml</Item>
+                    <Item>data/probe2.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

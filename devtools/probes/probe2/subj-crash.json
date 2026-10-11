@@ -1,0 +1,16 @@
+{
+  "name": "sr-probe2-subj-crash",
+  "seed": 4242,
+  "age": "AGE_ANTIQUITY",
+  "steps": [
+    { "eval": "(()=>{const u=Players.get(0).Units.getUnits()[0]; Game.UnitOperations.sendRequest(u.id,'UNITOPERATION_FOUND_CITY',{X:u.location.x,Y:u.location.y}); return 1;})()" },
+    { "write": { "op": "unit.place", "args": { "x": 66, "y": 12, "type": "UNIT_WARRIOR", "owner": 0 } } },
+    { "write": { "op": "resource.set", "args": { "x": 66, "y": 13, "type": "RESOURCE_IRON" } } },
+    { "eval": "(()=>{const c=Players.get(0).Cities.getCities()[0]; Game.CityOperations.sendRequest(c.id, CityOperationTypes.BUILD,{UnitType:GameInfo.Units.lookup('UNIT_SCOUT').$hash}); return 1})()" },
+    { "turns": 2 },
+    { "expect": "Players.get(0).Cities.getCities()[0].Growth.isReadyToPlacePopulation === true" },
+    { "eval": "(()=>{const c=Players.get(0).Cities.getCities()[0]; Game.CityCommands.sendRequest(c.id, CityCommandTypes.EXPAND, {X:66,Y:13}); return 1})()" },
+    { "turns": 1 },
+    { "expect": "Players.get(0).Resources.getResources().length > 0" }
+  ]
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway probe for DESIGN.md section 7c. Dev only, never ship. -->
+<Mod id="sr-probe3" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Strategic Resources Probe 3 (dev)</Name>
+        <Description>Dev only: unsupplied combat and cost penalty with has-Iron cancels, late-curve rows, and a re-check script.</Description>
+        <Authors>Tower</Authors>
+        <Package>SRProbe3</Package>
+        <PackageSortIndex>9996</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="sr-probe3-data" scope="game" criteria="always">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/probe3-gameeffects.xml</Item>
+                    <Item>data/probe3.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="sr-probe3-ui" scope="game" criteria="always">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions>
+                <UIScripts><Item>ui/sr-recheck.js</Item></UIScripts>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>
