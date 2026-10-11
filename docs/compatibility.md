@@ -85,7 +85,9 @@ exporter's plot as its value) and the engine counts it for the mod's requirement
 human and for the AI; the panel line follows. So a mod that widens or narrows trade (range, route capacity, what a
 settlement exports) changes which copies a player can reach, and the penalty reads whatever the list holds. A route
 ended by war takes its copies with it at once; an import whose source tile loses the resource is gone from the list at
-once and the penalty follows one turn later. A mod that ends routes some other way has not been watched.
+once and the penalty follows one turn later. A route does not end on its own (one ran 28 turns, past the game's
+unused 20-turn duration parameter), so an import stays until a war or a change at the source tile; a plunder by an
+enemy unit could not be produced from script and has not been watched.
 
 ### 5. Multiplayer
 
