@@ -1,0 +1,30 @@
+# Changelog
+
+All notable changes to the Strategic Resources mod for Civilization VII. The format follows
+[Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
+release is generated from the matching section below by `scripts/steam-changelog.mjs`.
+
+## [1.0.0] - 2026-10-11
+
+Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs the units that need it.
+
+### Added
+- Unsupplied units. A unit that draws on a strategic resource its owner holds no copy of fights weaker and trains
+  slower: -3 Combat Strength and a third less Production toward it by default. One copy lifts the penalty, and the
+  game's own +1 per copy applies as before. Melee strength always; ranged and bombard strength only on units that have
+  them. Cavalry need Horses; infantry from the second tier need Iron; Exploration siege and ships of the line need
+  Niter; Modern artillery Niter, armour and battleships Oil, light warships Coal, aircraft Rubber. Unique units need
+  what the unit they replace needs. Modern infantry need nothing.
+- Losing a resource hurts. The game notices a resource arriving but not one going away; the mod has it check every
+  player again at the start of each turn, so a resource lost to a raid or a lost settlement brings the penalty back a
+  turn later, for the AI players too.
+- Past six copies, where the game's own bonus stops, units gain +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20
+  copies.
+- Two game setup options: Unsupplied Units (Off, Light, Standard, Harsh; Standard by default) and Strategic Resources
+  Past Six (Off, On; On by default).
+- The unit panel says when a unit is unsupplied, for example "Unsupplied: no Iron (-3 Combat Strength, slower to
+  train)".
+- Text in all twelve of the game's languages.
+- Carries the Tower Settings Keeper, so every mod's settings survive a restart.
+
+Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.

@@ -1,0 +1,49 @@
+[h1]Strategic Resources[/h1]
+
+Horses, Iron, Niter, Oil, Coal and Rubber matter again. A unit that draws on one of them fights weaker and trains slower while its owner holds no copy of it, and every copy you hold still adds the game's own bonus, so the count keeps mattering. Lose your last copy, to a raid on the mine or a lost settlement, and the penalty is back a turn later. Past six copies, where the game's own bonus stops, the count keeps adding strength.
+
+Nothing is forbidden: every unit can still be trained and upgraded. Going without just costs you.
+
+[h2]What changes[/h2]
+[list]
+[*][b]No copy of the resource:[/b] less Combat Strength (melee, and ranged and bombard where the unit has them) and less Production toward the unit. Default: -3 and a third less Production, so the unit takes half as long again to train.
+[*][b]One copy or more:[/b] no penalty; the game's +1 per copy as before, up to six.
+[*][b]Past six copies:[/b] +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 copies.
+[*]The unit panel says when a unit is unsupplied, in your language.
+[/list]
+
+[h2]Which units need what[/h2]
+[table]
+[tr][th]Age[/th][th]Units[/th][th]Resource[/th][/tr]
+[tr][td]Antiquity[/td][td]Cavalry[/td][td]Horses[/td][/tr]
+[tr][td]Antiquity[/td][td]Infantry from the second tier (Spearman, Phalanx, Legion...)[/td][td]Iron[/td][/tr]
+[tr][td]Exploration[/td][td]Cavalry[/td][td]Horses[/td][/tr]
+[tr][td]Exploration[/td][td]Infantry from the second tier[/td][td]Iron[/td][/tr]
+[tr][td]Exploration[/td][td]Siege, and ships of the line (Carrack, Galleon)[/td][td]Niter[/td][/tr]
+[tr][td]Modern[/td][td]Artillery[/td][td]Niter[/td][/tr]
+[tr][td]Modern[/td][td]Armour and battleships[/td][td]Oil[/td][/tr]
+[tr][td]Modern[/td][td]Light warships[/td][td]Coal[/td][/tr]
+[tr][td]Modern[/td][td]Aircraft[/td][td]Rubber[/td][/tr]
+[/table]
+Unique units need what the unit they replace needs. The Warrior line, ranged infantry, the first ships and Modern infantry need nothing, so everyone can always defend.
+
+[h2]Losing a resource[/h2]
+The game notices a resource arriving at once, but not one going away. The mod has it check every player again at the start of each turn, so a lost resource brings the penalty back a turn later, for you and for the AI.
+
+[h2]Game setup options[/h2]
+[list]
+[*][b]Unsupplied Units:[/b] Off, Light (-2, 20% less Production), Standard (-3, 33% less), Harsh (-5, 50% less). Default Standard.
+[*][b]Strategic Resources Past Six:[/b] Off or On. Default On.
+[/list]
+
+[h2]Good to know[/h2]
+[list]
+[*]Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.
+[*]Works in new games; a game started with the mod needs it to load.
+[*]Independent powers and city-states are not penalised.
+[*]Adds data and two small scripts; replaces no game file. Tested alongside Readable Tooltips.
+[*]Carries the Tower Settings Keeper, which keeps every mod's settings after a restart.
+[/list]
+
+[h2]Source[/h2]
+MIT licensed. Typed JavaScript, no build step, tests included.

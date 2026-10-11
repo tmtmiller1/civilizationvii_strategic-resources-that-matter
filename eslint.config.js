@@ -39,6 +39,17 @@ const NODE_GLOBALS = {
   structuredClone: "readonly"
 };
 
+// Engine globals the lab tooling in devtools/ uses to set up games: the shell's setup and lobby calls.
+const LAB_GLOBALS = {
+  GameModeTypes: "readonly",
+  GameSetup: "readonly",
+  Network: "readonly",
+  ServerType: "readonly",
+  SlotStatus: "readonly",
+  setInterval: "readonly",
+  CustomEvent: "readonly"
+};
+
 // Test and tool code: correctness rules only. The size limits are for the shipped modules; a test file is a list
 // of scenarios, and splitting one to satisfy a statement count hides the story.
 const TOOL_RULES = {
@@ -88,7 +99,7 @@ export default [
       ecmaVersion: "latest",
       sourceType: "module",
       // Tests stand in for the browser and the engine, so they read and assign those globals too.
-      globals: { ...NODE_GLOBALS, ...ENGINE_GLOBALS, ...BROWSER_GLOBALS }
+      globals: { ...NODE_GLOBALS, ...ENGINE_GLOBALS, ...BROWSER_GLOBALS, ...LAB_GLOBALS }
     },
     rules: TOOL_RULES
   }

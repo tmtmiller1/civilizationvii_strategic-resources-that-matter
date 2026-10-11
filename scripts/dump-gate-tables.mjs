@@ -29,7 +29,9 @@ const units = rows(`SELECT u.UnitType, u.CoreClass, u.Domain, u.Tier, u.TraitTyp
   s.Combat, s.RangedCombat, s.Bombard FROM Units u LEFT JOIN Unit_Stats s USING (UnitType)
   WHERE u.CoreClass = 'CORE_CLASS_MILITARY' ORDER BY u.UnitType`);
 const unitTypes = new Set(units.map((u) => u.UnitType));
-const tags = rows("SELECT Type, Tag FROM TypeTags WHERE Tag NOT LIKE 'SR\\_%' ESCAPE '\\' ORDER BY Type, Tag").filter((r) => unitTypes.has(r.Type));
+// The mod's own SR_SUPPLY_ tags are left out: the dump is the game's tables as the gate map reads them.
+const tags = rows("SELECT Type, Tag FROM TypeTags WHERE Tag NOT LIKE 'SR\\_%' ESCAPE '\\' ORDER BY Type, Tag")
+  .filter((r) => unitTypes.has(r.Type));
 const replaces = rows("SELECT CivUniqueUnitType, ReplacesUnitType FROM UnitReplaces ORDER BY CivUniqueUnitType");
 const upgrades = rows("SELECT Unit, UpgradeUnit FROM UnitUpgrades ORDER BY Unit");
 const resources = rows("SELECT ResourceType, ResourceClassType FROM Resources ORDER BY ResourceType");

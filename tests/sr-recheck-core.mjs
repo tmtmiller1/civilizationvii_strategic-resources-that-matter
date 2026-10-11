@@ -31,7 +31,8 @@ function player(id, { isMajor = true, gain = (h) => (h === 77 ? 0 : null), throw
 assert.equal(RECHECK_RESOURCE, "RESOURCE_CRABS");
 
 // readMajorPlayers
-assert.deepEqual(readMajorPlayers({ getAlive: () => [player(0), player(1, { isMajor: false }), null] }).map((p) => p.id), [0]);
+const alive = [player(0), player(1, { isMajor: false }), null];
+assert.deepEqual(readMajorPlayers({ getAlive: () => alive }).map((p) => p.id), [0]);
 assert.deepEqual(readMajorPlayers(undefined), []);
 assert.deepEqual(readMajorPlayers({ getAlive: () => { throw new Error("x"); } }), []);
 assert.deepEqual(readMajorPlayers({}), []);

@@ -49,11 +49,12 @@ for (const [folder, language] of Object.entries(LANGUAGE_OF)) {
   assert.ok(!/<EnglishText>/.test(xml), `${folder} uses EnglishText; translations use LocalizedText with Replace`);
   for (const [tag, text] of texts) {
     assert.deepEqual(marks(text), marks(english.get(tag) ?? ""), `${folder} ${tag}: placeholders or markup differ`);
-    if (!SAME_AS_ENGLISH_OK.has(tag) && process.env.SR_ALLOW_ENGLISH !== "1") {
+    if (!SAME_AS_ENGLISH_OK.has(tag)) {
       assert.notEqual(text, english.get(tag), `${folder} ${tag} is still the English text`);
     }
     checked += 1;
   }
 }
 
-console.log(`i18n harness passed (${english.size} tags x ${Object.keys(LANGUAGE_OF).length} languages, ${checked} rows)`);
+const languages = Object.keys(LANGUAGE_OF).length;
+console.log(`i18n harness passed (${english.size} tags x ${languages} languages, ${checked} rows)`);

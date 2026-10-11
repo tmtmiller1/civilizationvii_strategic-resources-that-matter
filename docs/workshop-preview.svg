@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#14161c"/>
+  <rect x="40" y="40" width="944" height="944" fill="none" stroke="#b08d4a" stroke-width="8"/>
+  <g transform="translate(512 420)" fill="none" stroke="#d9b56a" stroke-width="18" stroke-linejoin="round">
+    <polygon points="0,-230 199,-115 199,115 0,230 -199,115 -199,-115"/>
+    <polygon points="0,-120 104,-60 104,60 0,120 -104,60 -104,-60" fill="#2a2e38"/>
+  </g>
+  <g transform="translate(512 420)" fill="#d9b56a">
+    <rect x="-14" y="-86" width="28" height="120"/>
+    <rect x="-56" y="-30" width="112" height="22"/>
+    <circle cx="0" cy="62" r="16"/>
+  </g>
+  <text x="512" y="790" font-family="Georgia, serif" font-size="96" fill="#e8e2d0" text-anchor="middle">Strategic</text>
+  <text x="512" y="900" font-family="Georgia, serif" font-size="96" fill="#e8e2d0" text-anchor="middle">Resources</text>
+</svg>
