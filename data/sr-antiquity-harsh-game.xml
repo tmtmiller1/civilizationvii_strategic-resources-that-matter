@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<Database>
+    <GameModifiers>
+        <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_HORSES"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_HORSES"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_HORSES"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_HORSES"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_IRON"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_IRON"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_IRON"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_IRON"/>
+    </GameModifiers>
+</Database>

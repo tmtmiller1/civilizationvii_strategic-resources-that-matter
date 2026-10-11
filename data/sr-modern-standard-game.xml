@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<Database>
+    <GameModifiers>
+        <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_NITER"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_NITER"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_NITER"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_NITER"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_OIL"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_OIL"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_OIL"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_OIL"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_COAL"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_COAL"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_COAL"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_COAL"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_RUBBER"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_RUBBER"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_RUBBER"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_RUBBER"/>
+    </GameModifiers>
+</Database>

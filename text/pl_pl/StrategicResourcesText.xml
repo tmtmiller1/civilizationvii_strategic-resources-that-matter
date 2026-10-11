@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="pl_PL"><Text>Strategic Resources</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="pl_PL"><Text>Strategic resources matter again.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="pl_PL"><Text>Zasoby strategiczne</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="pl_PL"><Text>Zasoby strategiczne znów mają znaczenie. Jednostka, która potrzebuje Koni, Żelaza, Saletry, Ropy, Węgla lub Kauczuku, walczy słabiej i szkoli się wolniej, dopóki jej właściciel nie ma ani jednej sztuki tego zasobu, a każda sztuka nadal daje premię z gry. Gdy stracisz ostatnią, kara wraca turę później. Powyżej sześciu sztuk liczba nadal dodaje siły. Dwie opcje ustawień gry określają karę i włączają późną premię. Tylko dla jednego gracza. W grze wieloosobowej utrata zasobu przywraca karę dopiero wtedy, gdy ten gracz zdobędzie jakiś zasób.</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="pl_PL"><Text>Bez zaopatrzenia: brak zasobu {1_Resource} ({2_Combat} siły bojowej, wolniejsze szkolenie)</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="pl_PL"><Text>Jednostki bez zaopatrzenia</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="pl_PL"><Text>O ile słabsza i wolniejsza w szkoleniu jest jednostka, dopóki jej właściciel nie ma ani jednej sztuki potrzebnego jej zasobu strategicznego.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="pl_PL"><Text>Wyłączone</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="pl_PL"><Text>Bez kary. Każda sztuka nadal daje premię z gry.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="pl_PL"><Text>Łagodne</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="pl_PL"><Text>-2 siły bojowej i 20% mniej produkcji na jednostkę.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="pl_PL"><Text>Standardowe</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="pl_PL"><Text>-3 siły bojowej i 33% mniej produkcji na jednostkę (szkolenie trwa półtora raza dłużej).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="pl_PL"><Text>Surowe</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="pl_PL"><Text>-5 siły bojowej i 50% mniej produkcji na jednostkę (szkolenie trwa dwa razy dłużej).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="pl_PL"><Text>Zasoby strategiczne powyżej sześciu</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="pl_PL"><Text>Premia z gry +1 do siły bojowej za każdą sztukę zasobu strategicznego kończy się na sześciu sztukach. Gdy ta opcja jest włączona, jednostki dostają jeszcze +1 przy 8, 10, 12, 14, 16, 18 i 20 sztukach.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="pl_PL"><Text>Wyłączone</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="pl_PL"><Text>Premia kończy się na sześciu sztukach, jak w podstawowej grze.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="pl_PL"><Text>Włączone</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="pl_PL"><Text>+1 do siły bojowej przy 8, 10, 12, 14, 16, 18 i 20 sztukach.</Text></Replace>
     </LocalizedText>
 </Database>

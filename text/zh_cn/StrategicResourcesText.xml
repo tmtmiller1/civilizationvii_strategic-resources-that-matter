@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hans_CN"><Text>Strategic Resources</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hans_CN"><Text>Strategic resources matter again.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hans_CN"><Text>战略资源</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hans_CN"><Text>战略资源再次变得重要。需要马、铁、硝石、石油、煤或橡胶的单位，在其所有者一份该资源都没有时，战斗力降低、训练变慢；每份资源仍提供游戏原有的加成。失去最后一份后，惩罚会在一回合后恢复。超过六份后，数量仍会继续增加战斗力。两项游戏设置选项决定惩罚程度并开关后期加成。仅限单人游戏。在多人游戏中，失去资源后，要等该玩家获得某种资源时惩罚才会恢复。</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="zh_Hans_CN"><Text>无补给：没有{1_Resource}（战斗力{2_Combat}，训练变慢）</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="zh_Hans_CN"><Text>无补给单位</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="zh_Hans_CN"><Text>当所有者一份所需的战略资源都没有时，单位会变弱多少、训练会慢多少。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>没有惩罚。每份资源仍提供游戏原有的加成。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="zh_Hans_CN"><Text>轻微</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="zh_Hans_CN"><Text>战斗力-2，用于该单位的生产力减少20%。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="zh_Hans_CN"><Text>标准</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="zh_Hans_CN"><Text>战斗力-3，用于该单位的生产力减少33%（训练时间延长一半）。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="zh_Hans_CN"><Text>严酷</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="zh_Hans_CN"><Text>战斗力-5，用于该单位的生产力减少50%（训练时间加倍）。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="zh_Hans_CN"><Text>超过六份的战略资源</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="zh_Hans_CN"><Text>游戏原有的每份战略资源+1战斗力的加成在六份时停止。开启此选项后，单位在拥有8、10、12、14、16、18和20份时各再获得+1。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>加成在六份时停止，与基础游戏相同。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="zh_Hans_CN"><Text>开启</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="zh_Hans_CN"><Text>在8、10、12、14、16、18和20份时战斗力+1。</Text></Replace>
     </LocalizedText>
 </Database>

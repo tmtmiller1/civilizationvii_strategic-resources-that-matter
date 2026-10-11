@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="es_ES"><Text>Strategic Resources</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="es_ES"><Text>Strategic resources matter again.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="es_ES"><Text>Recursos estratégicos</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="es_ES"><Text>Los recursos estratégicos vuelven a importar. Una unidad que depende de Caballos, Hierro, Salitre, Petróleo, Carbón o Caucho lucha peor y tarda más en entrenarse mientras su dueño no tenga ninguna unidad de ese recurso, y cada unidad sigue dando la bonificación del juego. Si pierdes la última, la penalización vuelve un turno después. Por encima de seis unidades, la cantidad sigue sumando fuerza. Dos opciones de configuración de partida fijan la penalización y activan la bonificación tardía. Un jugador. En multijugador, perder un recurso no devuelve la penalización hasta que ese jugador obtenga un recurso.</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="es_ES"><Text>Sin suministro: sin {1_Resource} ({2_Combat} de fuerza de combate, se entrena más despacio)</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="es_ES"><Text>Unidades sin suministro</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="es_ES"><Text>Cuánto más débil y más lenta de entrenar es una unidad mientras su dueño no tenga ninguna unidad del recurso estratégico del que depende.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="es_ES"><Text>Desactivado</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="es_ES"><Text>Sin penalización. Cada unidad sigue dando la bonificación del juego.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="es_ES"><Text>Leve</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="es_ES"><Text>-2 de fuerza de combate y un 20 % menos de producción para la unidad.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="es_ES"><Text>Estándar</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="es_ES"><Text>-3 de fuerza de combate y un 33 % menos de producción para la unidad (tarda la mitad más en entrenarse).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="es_ES"><Text>Dura</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="es_ES"><Text>-5 de fuerza de combate y un 50 % menos de producción para la unidad (tarda el doble en entrenarse).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="es_ES"><Text>Recursos estratégicos más allá de seis</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="es_ES"><Text>La bonificación del juego de +1 de fuerza de combate por cada unidad de un recurso estratégico se detiene en seis unidades. Con esta opción, las unidades ganan +1 más con 8, 10, 12, 14, 16, 18 y 20 unidades.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="es_ES"><Text>Desactivado</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="es_ES"><Text>La bonificación se detiene en seis unidades, como en el juego base.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="es_ES"><Text>Activado</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="es_ES"><Text>+1 de fuerza de combate con 8, 10, 12, 14, 16, 18 y 20 unidades.</Text></Replace>
     </LocalizedText>
 </Database>

@@ -6,7 +6,58 @@
             <Text>Strategic Resources</Text>
         </Row>
         <Row Tag="LOC_SR_MOD_DESCRIPTION">
-            <Text>Strategic resources matter again. A unit that draws on Horses, Iron, Niter, Oil, Coal or Rubber fights weaker and trains slower while you hold none of that resource, and every copy you hold still adds the game's own bonus. Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.</Text>
+            <Text>Strategic resources matter again. A unit that draws on Horses, Iron, Niter, Oil, Coal or Rubber fights weaker and trains slower while its owner holds none of that resource, and every copy still adds the game's own bonus. Lose your last copy and the penalty comes back a turn later. Past six copies the count keeps adding strength. Two game setup options set the penalty and switch the late bonus. Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.</Text>
+        </Row>
+        <Row Tag="LOC_SR_UNSUPPLIED_LINE">
+            <Text>Unsupplied: no {1_Resource} ({2_Combat} Combat Strength, slower to train)</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_NAME">
+            <Text>Unsupplied Units</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION">
+            <Text>How much weaker and slower to train a unit is while its owner holds no copy of the strategic resource it draws on.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_OFF">
+            <Text>Off</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION">
+            <Text>No penalty. Each copy still adds the game's own bonus.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT">
+            <Text>Light</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION">
+            <Text>-2 Combat Strength, and 20% less Production toward the unit.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD">
+            <Text>Standard</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION">
+            <Text>-3 Combat Strength, and 33% less Production toward the unit (half as long again to train).</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH">
+            <Text>Harsh</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION">
+            <Text>-5 Combat Strength, and 50% less Production toward the unit (twice as long to train).</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_LATE_CURVE_NAME">
+            <Text>Strategic Resources Past Six</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION">
+            <Text>The game's bonus of +1 Combat Strength per copy of a strategic resource stops at six copies. With this on, units gain +1 more at 8, 10, 12, 14, 16, 18 and 20 copies.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_LATE_CURVE_OFF">
+            <Text>Off</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION">
+            <Text>The bonus stops at six copies, as in the base game.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_LATE_CURVE_ON">
+            <Text>On</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION">
+            <Text>+1 Combat Strength at 8, 10, 12, 14, 16, 18 and 20 copies.</Text>
         </Row>
     </EnglishText>
 </Database>

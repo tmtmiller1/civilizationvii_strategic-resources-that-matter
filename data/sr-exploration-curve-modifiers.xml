@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- AGE_EXPLORATION, late curve: +1 combat strength at 8, 10, 12, 14, 16, 18, 20 copies, on the units vanilla's per-copy bonus covers (it stops at six copies). -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SR_ATTACH_CURVE_HORSES_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_HORSES_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_HORSES_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_HORSES_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_HORSES_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_HORSES_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_HORSES_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_HORSES_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_HORSES_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_HORSES_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_HORSES_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_HORSES_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_HORSES_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_HORSES_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_HORSES_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_HORSES_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_HORSES_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_HORSES_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_HORSES_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_HORSES_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_HORSES_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IRON_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IRON_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IRON_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IRON_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IRON_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IRON_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IRON_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IRON_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IRON_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IRON_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IRON_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IRON_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IRON_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IRON_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IRON_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IRON_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IRON_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IRON_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IRON_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IRON_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IRON_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_NITER_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_NITER_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_NITER_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_NITER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_NITER_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_NITER_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_NITER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_NITER_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_NITER_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_NITER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_NITER_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_NITER_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_NITER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_NITER_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_NITER_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_NITER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_NITER_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_NITER_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_NITER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_NITER_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_NITER_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+</GameEffects>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- AGE_MODERN, unsupplied penalty light: -2 combat strength and -20% production without the resource, cancelled while the owner holds a copy. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SR_ATTACH_COMBAT_PENALTY_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_PENALTY_NITER</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_PENALTY_NITER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_SUPPLIED_NITER</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_SUPPLIED_NITER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_PENALTY_NITER</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_PENALTY_NITER" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">SR_SUPPLY_NITER</Argument>
+        <Argument name="Percent">-20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_SUPPLIED_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_SUPPLIED_NITER</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_SUPPLIED_NITER" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitClass">SR_SUPPLY_NITER</Argument>
+        <Argument name="Percent">20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_COMBAT_PENALTY_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_PENALTY_OIL</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_PENALTY_OIL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_SUPPLIED_OIL</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_SUPPLIED_OIL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_PENALTY_OIL</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_PENALTY_OIL" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">SR_SUPPLY_OIL</Argument>
+        <Argument name="Percent">-20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_SUPPLIED_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_SUPPLIED_OIL</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_SUPPLIED_OIL" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitClass">SR_SUPPLY_OIL</Argument>
+        <Argument name="Percent">20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_COMBAT_PENALTY_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_PENALTY_COAL</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_PENALTY_COAL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_SUPPLIED_COAL</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_SUPPLIED_COAL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_PENALTY_COAL</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_PENALTY_COAL" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">SR_SUPPLY_COAL</Argument>
+        <Argument name="Percent">-20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_SUPPLIED_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_SUPPLIED_COAL</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_SUPPLIED_COAL" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitClass">SR_SUPPLY_COAL</Argument>
+        <Argument name="Percent">20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_COMBAT_PENALTY_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_PENALTY_RUBBER</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_PENALTY_RUBBER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_SUPPLIED_RUBBER</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_SUPPLIED_RUBBER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">ALL</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_PENALTY_RUBBER</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_PENALTY_RUBBER" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">SR_SUPPLY_RUBBER</Argument>
+        <Argument name="Percent">-20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_SUPPLIED_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_SUPPLIED_RUBBER</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_SUPPLIED_RUBBER" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitClass">SR_SUPPLY_RUBBER</Argument>
+        <Argument name="Percent">20</Argument>
+    </Modifier>
+</GameEffects>

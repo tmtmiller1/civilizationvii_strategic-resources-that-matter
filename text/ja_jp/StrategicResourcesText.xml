@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="ja_JP"><Text>Strategic Resources</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ja_JP"><Text>Strategic resources matter again.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="ja_JP"><Text>戦略資源</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ja_JP"><Text>戦略資源が再び重要になります。馬、鉄、硝石、石油、石炭、ゴムを必要とするユニットは、所有者がその資源を1つも持っていない間、戦闘力が下がり、訓練に時間がかかります。資源1つごとのゲーム本来のボーナスはそのままです。最後の1つを失うと、ペナルティは1ターン後に戻ります。6つを超えても、数がさらに戦闘力を加えます。ゲーム設定の2つのオプションでペナルティの強さと後半のボーナスを選べます。シングルプレイ専用。マルチプレイでは、資源を失っても、そのプレイヤーが資源を得るまでペナルティは戻りません。</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ja_JP"><Text>補給なし: {1_Resource}がない(戦闘力{2_Combat}、訓練が遅くなる)</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="ja_JP"><Text>補給のないユニット</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="ja_JP"><Text>所有者が必要な戦略資源を1つも持っていない間、ユニットがどれだけ弱くなり、訓練が遅くなるか。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="ja_JP"><Text>オフ</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="ja_JP"><Text>ペナルティなし。資源1つごとのゲーム本来のボーナスはそのままです。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="ja_JP"><Text>軽度</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="ja_JP"><Text>戦闘力-2、そのユニットへの生産力が20%減少。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="ja_JP"><Text>標準</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="ja_JP"><Text>戦闘力-3、そのユニットへの生産力が33%減少(訓練に1.5倍の時間)。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="ja_JP"><Text>過酷</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="ja_JP"><Text>戦闘力-5、そのユニットへの生産力が50%減少(訓練に2倍の時間)。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="ja_JP"><Text>6つを超える戦略資源</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="ja_JP"><Text>戦略資源1つごとに戦闘力+1というゲーム本来のボーナスは6つで止まります。このオプションがオンの場合、8、10、12、14、16、18、20個でユニットの戦闘力がさらに+1されます。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="ja_JP"><Text>オフ</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="ja_JP"><Text>基本ゲームと同じく、ボーナスは6つで止まります。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="ja_JP"><Text>オン</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="ja_JP"><Text>8、10、12、14、16、18、20個で戦闘力+1。</Text></Replace>
     </LocalizedText>
 </Database>

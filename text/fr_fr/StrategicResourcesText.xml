@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="fr_FR"><Text>Strategic Resources</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="fr_FR"><Text>Strategic resources matter again.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="fr_FR"><Text>Ressources stratégiques</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="fr_FR"><Text>Les ressources stratégiques comptent à nouveau. Une unité qui dépend des Chevaux, du Fer, du Salpêtre, du Pétrole, du Charbon ou du Caoutchouc combat moins bien et se forme plus lentement tant que son propriétaire n'en possède aucun exemplaire, et chaque exemplaire donne toujours le bonus du jeu. Perdez le dernier et la pénalité revient un tour plus tard. Au-delà de six exemplaires, le nombre continue d'ajouter de la puissance. Deux options de configuration de partie règlent la pénalité et activent le bonus tardif. Solo uniquement. En multijoueur, la perte d'une ressource ne ramène la pénalité que lorsque ce joueur obtient une ressource.</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="fr_FR"><Text>Non ravitaillée : pas de {1_Resource} ({2_Combat} en puissance de combat, formation plus lente)</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="fr_FR"><Text>Unités non ravitaillées</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="fr_FR"><Text>À quel point une unité est plus faible et plus lente à former tant que son propriétaire ne possède aucun exemplaire de la ressource stratégique dont elle dépend.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="fr_FR"><Text>Désactivée</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="fr_FR"><Text>Aucune pénalité. Chaque exemplaire donne toujours le bonus du jeu.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="fr_FR"><Text>Légère</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="fr_FR"><Text>-2 en puissance de combat et 20 % de production en moins pour l'unité.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="fr_FR"><Text>Standard</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="fr_FR"><Text>-3 en puissance de combat et 33 % de production en moins pour l'unité (sa formation prend moitié plus de temps).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="fr_FR"><Text>Sévère</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="fr_FR"><Text>-5 en puissance de combat et 50 % de production en moins pour l'unité (sa formation prend deux fois plus de temps).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="fr_FR"><Text>Ressources stratégiques au-delà de six</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="fr_FR"><Text>Le bonus du jeu de +1 en puissance de combat par exemplaire d'une ressource stratégique s'arrête à six exemplaires. Avec cette option, les unités gagnent +1 de plus à 8, 10, 12, 14, 16, 18 et 20 exemplaires.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="fr_FR"><Text>Désactivée</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="fr_FR"><Text>Le bonus s'arrête à six exemplaires, comme dans le jeu de base.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="fr_FR"><Text>Activée</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="fr_FR"><Text>+1 en puissance de combat à 8, 10, 12, 14, 16, 18 et 20 exemplaires.</Text></Replace>
     </LocalizedText>
 </Database>

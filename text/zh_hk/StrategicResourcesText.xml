@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hant_HK"><Text>Strategic Resources</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hant_HK"><Text>Strategic resources matter again.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hant_HK"><Text>戰略資源</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hant_HK"><Text>戰略資源再次變得重要。需要馬、鐵、硝石、石油、煤或橡膠的單位，在其擁有者一份該資源都沒有時，戰鬥力降低、訓練變慢；每份資源仍提供遊戲原有的加成。失去最後一份後，懲罰會在一回合後恢復。超過六份後，數量仍會繼續增加戰鬥力。兩項遊戲設定選項決定懲罰程度並開關後期加成。僅限單人遊戲。在多人遊戲中，失去資源後，要等該玩家獲得某種資源時懲罰才會恢復。</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="zh_Hant_HK"><Text>無補給：沒有{1_Resource}（戰鬥力{2_Combat}，訓練變慢）</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="zh_Hant_HK"><Text>無補給單位</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="zh_Hant_HK"><Text>當擁有者一份所需的戰略資源都沒有時，單位會變弱多少、訓練會慢多少。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="zh_Hant_HK"><Text>關閉</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="zh_Hant_HK"><Text>沒有懲罰。每份資源仍提供遊戲原有的加成。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="zh_Hant_HK"><Text>輕微</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="zh_Hant_HK"><Text>戰鬥力-2，用於該單位的生產力減少20%。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="zh_Hant_HK"><Text>標準</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="zh_Hant_HK"><Text>戰鬥力-3，用於該單位的生產力減少33%（訓練時間延長一半）。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="zh_Hant_HK"><Text>嚴酷</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="zh_Hant_HK"><Text>戰鬥力-5，用於該單位的生產力減少50%（訓練時間加倍）。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="zh_Hant_HK"><Text>超過六份的戰略資源</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="zh_Hant_HK"><Text>遊戲原有的每份戰略資源+1戰鬥力的加成在六份時停止。開啟此選項後，單位在擁有8、10、12、14、16、18和20份時各再獲得+1。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="zh_Hant_HK"><Text>關閉</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="zh_Hant_HK"><Text>加成在六份時停止，與基礎遊戲相同。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="zh_Hant_HK"><Text>開啟</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="zh_Hant_HK"><Text>在8、10、12、14、16、18和20份時戰鬥力+1。</Text></Replace>
     </LocalizedText>
 </Database>

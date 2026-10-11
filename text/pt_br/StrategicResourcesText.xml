@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="pt_BR"><Text>Strategic Resources</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="pt_BR"><Text>Strategic resources matter again.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="pt_BR"><Text>Recursos Estratégicos</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="pt_BR"><Text>Os recursos estratégicos voltam a importar. Uma unidade que depende de Cavalos, Ferro, Salitre, Petróleo, Carvão ou Borracha luta pior e treina mais devagar enquanto seu dono não tiver nenhuma unidade desse recurso, e cada unidade continua dando o bônus do jogo. Perca a última e a penalidade volta um turno depois. Acima de seis unidades, a quantidade continua somando força. Duas opções de configuração da partida definem a penalidade e ativam o bônus tardio. Apenas um jogador. No multijogador, perder um recurso só traz a penalidade de volta quando esse jogador obtiver um recurso.</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="pt_BR"><Text>Sem suprimento: sem {1_Resource} ({2_Combat} de Força de Combate, treina mais devagar)</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="pt_BR"><Text>Unidades sem suprimento</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="pt_BR"><Text>Quanto mais fraca e lenta de treinar fica uma unidade enquanto seu dono não tiver nenhuma unidade do recurso estratégico de que ela depende.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="pt_BR"><Text>Desligado</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="pt_BR"><Text>Sem penalidade. Cada unidade continua dando o bônus do jogo.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="pt_BR"><Text>Leve</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="pt_BR"><Text>-2 de Força de Combate e 20% menos Produção para a unidade.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="pt_BR"><Text>Padrão</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="pt_BR"><Text>-3 de Força de Combate e 33% menos Produção para a unidade (leva uma vez e meia mais tempo para treinar).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="pt_BR"><Text>Severo</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="pt_BR"><Text>-5 de Força de Combate e 50% menos Produção para a unidade (leva o dobro do tempo para treinar).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="pt_BR"><Text>Recursos estratégicos além de seis</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="pt_BR"><Text>O bônus do jogo de +1 de Força de Combate por unidade de um recurso estratégico para em seis unidades. Com esta opção, as unidades ganham mais +1 com 8, 10, 12, 14, 16, 18 e 20 unidades.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="pt_BR"><Text>Desligado</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="pt_BR"><Text>O bônus para em seis unidades, como no jogo base.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="pt_BR"><Text>Ligado</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="pt_BR"><Text>+1 de Força de Combate com 8, 10, 12, 14, 16, 18 e 20 unidades.</Text></Replace>
     </LocalizedText>
 </Database>

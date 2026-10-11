@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Strategic Resources, a Civilization VII mod.
-  AffectsSavedGames is 1: the mod changes how units fight and train for the whole game, and a game started with it
-  must keep it when loaded.
+  A unit that draws on a strategic resource its owner holds none of fights weaker and trains slower; past six copies
+  the count keeps adding strength. The data does the penalties and the curve; ui/sr-recheck.js makes the engine
+  notice a lost resource; ui/sr-unit-panel.js says on the unit panel when a unit is unsupplied.
+  Groups: the setup options and text at the main menu; the unit tags and scripts in every game; per age, which units
+  draw on which resource; per age and setup value, the penalty (Light, Standard, Harsh; none for Off) and the curve.
+  AffectsSavedGames is 1: the setup options and modifiers are fixed when a game is created, so a save made with the
+  mod needs it to load the same game.
 -->
 <Mod id="tower-strategic-resources" version="1" xmlns="ModInfo">
     <Properties>
@@ -19,10 +24,110 @@
     </Dependencies>
     <ActionCriteria>
         <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+        <Criteria id="antiquity"><AgeInUse>AGE_ANTIQUITY</AgeInUse></Criteria>
+        <Criteria id="exploration"><AgeInUse>AGE_EXPLORATION</AgeInUse></Criteria>
+        <Criteria id="modern"><AgeInUse>AGE_MODERN</AgeInUse></Criteria>
+        <Criteria id="antiquity-light">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_LIGHT</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="antiquity-standard">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_STANDARD</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="antiquity-harsh">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_HARSH</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="antiquity-curve">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesLateCurve</ConfigurationId>
+                <Value>SR_LATE_CURVE_ON</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-light">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_LIGHT</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-standard">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_STANDARD</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-harsh">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_HARSH</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-curve">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesLateCurve</ConfigurationId>
+                <Value>SR_LATE_CURVE_ON</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="modern-light">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_LIGHT</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="modern-standard">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_STANDARD</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="modern-harsh">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_HARSH</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="modern-curve">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesLateCurve</ConfigurationId>
+                <Value>SR_LATE_CURVE_ON</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
     </ActionCriteria>
     <ActionGroups>
         <ActionGroup id="strategic-resources-shell" scope="shell" criteria="always">
             <Actions>
+                <UpdateDatabase><Item>data/sr-setup.sql</Item></UpdateDatabase>
                 <UpdateText>
                     <Item>text/en_us/StrategicResourcesText.xml</Item>
                     <Item locale="de_DE">text/de_de/StrategicResourcesText.xml</Item>
@@ -46,6 +151,7 @@
         <ActionGroup id="strategic-resources-game" scope="game" criteria="always">
             <Properties><LoadOrder>200</LoadOrder></Properties>
             <Actions>
+                <UpdateDatabase><Item>data/sr-tags.xml</Item></UpdateDatabase>
                 <UpdateText>
                     <Item>text/en_us/StrategicResourcesText.xml</Item>
                     <Item locale="de_DE">text/de_de/StrategicResourcesText.xml</Item>
@@ -63,10 +169,136 @@
                 <UIScripts>
                     <!-- Tower Settings Keeper: listed first, imports nothing, so it runs before anything reads storage. -->
                     <Item>ui/settings-keeper.js</Item>
+                    <Item>ui/sr-recheck.js</Item>
+                    <Item>ui/sr-unit-panel.js</Item>
                 </UIScripts>
                 <ImportFiles>
                     <Item>ui/sr-log.js</Item>
+                    <Item>ui/sr-recheck-core.js</Item>
+                    <Item>ui/sr-recheck.js</Item>
+                    <Item>ui/sr-supply.js</Item>
+                    <Item>ui/sr-unit-panel.js</Item>
                 </ImportFiles>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-antiquity" scope="game" criteria="antiquity">
+            <Properties><LoadOrder>201</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-supply.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-antiquity-light" scope="game" criteria="antiquity-light">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-antiquity-light-modifiers.xml</Item>
+                    <Item>data/sr-antiquity-light-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-antiquity-standard" scope="game" criteria="antiquity-standard">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-antiquity-standard-modifiers.xml</Item>
+                    <Item>data/sr-antiquity-standard-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-antiquity-harsh" scope="game" criteria="antiquity-harsh">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-antiquity-harsh-modifiers.xml</Item>
+                    <Item>data/sr-antiquity-harsh-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-antiquity-curve" scope="game" criteria="antiquity-curve">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-antiquity-curve-modifiers.xml</Item>
+                    <Item>data/sr-antiquity-curve-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-exploration" scope="game" criteria="exploration">
+            <Properties><LoadOrder>201</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-supply.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-exploration-light" scope="game" criteria="exploration-light">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-exploration-light-modifiers.xml</Item>
+                    <Item>data/sr-exploration-light-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-exploration-standard" scope="game" criteria="exploration-standard">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-exploration-standard-modifiers.xml</Item>
+                    <Item>data/sr-exploration-standard-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-exploration-harsh" scope="game" criteria="exploration-harsh">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-exploration-harsh-modifiers.xml</Item>
+                    <Item>data/sr-exploration-harsh-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-exploration-curve" scope="game" criteria="exploration-curve">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-exploration-curve-modifiers.xml</Item>
+                    <Item>data/sr-exploration-curve-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-modern" scope="game" criteria="modern">
+            <Properties><LoadOrder>201</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-supply.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-modern-light" scope="game" criteria="modern-light">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-modern-light-modifiers.xml</Item>
+                    <Item>data/sr-modern-light-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-modern-standard" scope="game" criteria="modern-standard">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-modern-standard-modifiers.xml</Item>
+                    <Item>data/sr-modern-standard-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-modern-harsh" scope="game" criteria="modern-harsh">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-modern-harsh-modifiers.xml</Item>
+                    <Item>data/sr-modern-harsh-game.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-modern-curve" scope="game" criteria="modern-curve">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/sr-modern-curve-modifiers.xml</Item>
+                    <Item>data/sr-modern-curve-game.xml</Item>
+                </UpdateDatabase>
             </Actions>
         </ActionGroup>
     </ActionGroups>

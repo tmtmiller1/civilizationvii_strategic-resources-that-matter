@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="ko_KR"><Text>Strategic Resources</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ko_KR"><Text>Strategic resources matter again.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="ko_KR"><Text>전략 자원</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 다시 중요해집니다. 말, 철, 초석, 석유, 석탄, 고무가 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 전투력이 낮아지고 훈련이 느려지며, 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다. 마지막 하나를 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 여섯 개를 넘어서도 수가 계속 전투력을 더합니다. 게임 설정의 두 옵션으로 페널티와 후반 보너스를 정합니다. 싱글 플레이 전용. 멀티플레이에서는 자원을 잃어도 그 플레이어가 자원을 얻기 전까지 페널티가 돌아오지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ko_KR"><Text>보급 없음: {1_Resource} 없음 (전투력 {2_Combat}, 훈련이 느려짐)</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="ko_KR"><Text>보급 없는 유닛</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="ko_KR"><Text>소유자가 필요한 전략 자원을 하나도 갖고 있지 않은 동안 유닛이 얼마나 약해지고 훈련이 느려지는지 정합니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="ko_KR"><Text>끔</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="ko_KR"><Text>페널티가 없습니다. 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="ko_KR"><Text>가벼움</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="ko_KR"><Text>전투력 -2, 그 유닛에 들어가는 생산력 20% 감소.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="ko_KR"><Text>표준</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="ko_KR"><Text>전투력 -3, 그 유닛에 들어가는 생산력 33% 감소 (훈련에 1.5배의 시간).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="ko_KR"><Text>가혹함</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="ko_KR"><Text>전투력 -5, 그 유닛에 들어가는 생산력 50% 감소 (훈련에 2배의 시간).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="ko_KR"><Text>여섯 개를 넘는 전략 자원</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="ko_KR"><Text>전략 자원 하나마다 전투력 +1을 주는 게임 본래의 보너스는 여섯 개에서 멈춥니다. 이 옵션을 켜면 8, 10, 12, 14, 16, 18, 20개에서 유닛이 +1씩 더 얻습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="ko_KR"><Text>끔</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="ko_KR"><Text>기본 게임처럼 보너스가 여섯 개에서 멈춥니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="ko_KR"><Text>켬</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="ko_KR"><Text>8, 10, 12, 14, 16, 18, 20개에서 전투력 +1.</Text></Replace>
     </LocalizedText>
 </Database>

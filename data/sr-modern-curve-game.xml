@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<Database>
+    <GameModifiers>
+        <Row ModifierId="SR_ATTACH_CURVE_NITER_8"/>
+        <Row ModifierId="SR_ATTACH_CURVE_NITER_10"/>
+        <Row ModifierId="SR_ATTACH_CURVE_NITER_12"/>
+        <Row ModifierId="SR_ATTACH_CURVE_NITER_14"/>
+        <Row ModifierId="SR_ATTACH_CURVE_NITER_16"/>
+        <Row ModifierId="SR_ATTACH_CURVE_NITER_18"/>
+        <Row ModifierId="SR_ATTACH_CURVE_NITER_20"/>
+        <Row ModifierId="SR_ATTACH_CURVE_OIL_8"/>
+        <Row ModifierId="SR_ATTACH_CURVE_OIL_10"/>
+        <Row ModifierId="SR_ATTACH_CURVE_OIL_12"/>
+        <Row ModifierId="SR_ATTACH_CURVE_OIL_14"/>
+        <Row ModifierId="SR_ATTACH_CURVE_OIL_16"/>
+        <Row ModifierId="SR_ATTACH_CURVE_OIL_18"/>
+        <Row ModifierId="SR_ATTACH_CURVE_OIL_20"/>
+        <Row ModifierId="SR_ATTACH_CURVE_COAL_8"/>
+        <Row ModifierId="SR_ATTACH_CURVE_COAL_10"/>
+        <Row ModifierId="SR_ATTACH_CURVE_COAL_12"/>
+        <Row ModifierId="SR_ATTACH_CURVE_COAL_14"/>
+        <Row ModifierId="SR_ATTACH_CURVE_COAL_16"/>
+        <Row ModifierId="SR_ATTACH_CURVE_COAL_18"/>
+        <Row ModifierId="SR_ATTACH_CURVE_COAL_20"/>
+        <Row ModifierId="SR_ATTACH_CURVE_RUBBER_8"/>
+        <Row ModifierId="SR_ATTACH_CURVE_RUBBER_10"/>
+        <Row ModifierId="SR_ATTACH_CURVE_RUBBER_12"/>
+        <Row ModifierId="SR_ATTACH_CURVE_RUBBER_14"/>
+        <Row ModifierId="SR_ATTACH_CURVE_RUBBER_16"/>
+        <Row ModifierId="SR_ATTACH_CURVE_RUBBER_18"/>
+        <Row ModifierId="SR_ATTACH_CURVE_RUBBER_20"/>
+    </GameModifiers>
+</Database>

@@ -14,8 +14,8 @@ export const LANGUAGE_OF = {
   pl_pl: "pl_PL", pt_br: "pt_BR", ru_ru: "ru_RU", zh_cn: "zh_Hans_CN", zh_hk: "zh_Hant_HK"
 };
 
-// Text that is the same in English and a translation on purpose: proper names and bare numbers.
-const SAME_AS_ENGLISH_OK = new Set([]);
+// Tags whose translation may read the same as the English on purpose ("Standard" in German, French and Italian).
+const SAME_AS_ENGLISH_OK = new Set(["LOC_SR_SETUP_UNSUPPLIED_STANDARD"]);
 
 /** @param {string} folder @returns {Map<string, string>} tag -> text, and asserts no duplicates */
 function readTexts(folder) {

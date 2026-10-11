@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<Database>
+    <GameModifiers>
+        <Row ModifierId="SR_ATTACH_CURVE_HORSES_8"/>
+        <Row ModifierId="SR_ATTACH_CURVE_HORSES_10"/>
+        <Row ModifierId="SR_ATTACH_CURVE_HORSES_12"/>
+        <Row ModifierId="SR_ATTACH_CURVE_HORSES_14"/>
+        <Row ModifierId="SR_ATTACH_CURVE_HORSES_16"/>
+        <Row ModifierId="SR_ATTACH_CURVE_HORSES_18"/>
+        <Row ModifierId="SR_ATTACH_CURVE_HORSES_20"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IRON_8"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IRON_10"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IRON_12"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IRON_14"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IRON_16"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IRON_18"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IRON_20"/>
+    </GameModifiers>
+</Database>

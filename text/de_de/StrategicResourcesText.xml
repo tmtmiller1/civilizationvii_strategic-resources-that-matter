@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="de_DE"><Text>Strategic Resources</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="de_DE"><Text>Strategic resources matter again.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="de_DE"><Text>Strategische Ressourcen</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="de_DE"><Text>Strategische Ressourcen zählen wieder. Eine Einheit, die Pferde, Eisen, Salpeter, Öl, Kohle oder Kautschuk braucht, kämpft schwächer und wird langsamer ausgebildet, solange ihr Besitzer keine Einheit dieser Ressource hat, und jede Einheit gibt weiterhin den Bonus des Spiels. Geht die letzte verloren, kehrt der Malus eine Runde später zurück. Über sechs Einheiten hinaus bringt die Zahl weiter Stärke. Zwei Optionen der Spieleinrichtung legen den Malus fest und schalten den späten Bonus. Einzelspieler. Im Mehrspielermodus kehrt der Malus nach dem Verlust einer Ressource erst zurück, wenn dieser Spieler eine Ressource erhält.</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="de_DE"><Text>Unversorgt: ohne {1_Resource} ({2_Combat} Kampfstärke, langsamer ausgebildet)</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="de_DE"><Text>Unversorgte Einheiten</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="de_DE"><Text>Wie viel schwächer und langsamer ausgebildet eine Einheit ist, solange ihr Besitzer keine Einheit der strategischen Ressource hat, die sie braucht.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="de_DE"><Text>Aus</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="de_DE"><Text>Kein Malus. Jede Einheit gibt weiterhin den Bonus des Spiels.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="de_DE"><Text>Leicht</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="de_DE"><Text>-2 Kampfstärke und 20 % weniger Produktion für die Einheit.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="de_DE"><Text>Standard</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="de_DE"><Text>-3 Kampfstärke und 33 % weniger Produktion für die Einheit (die Ausbildung dauert anderthalbmal so lange).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="de_DE"><Text>Hart</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="de_DE"><Text>-5 Kampfstärke und 50 % weniger Produktion für die Einheit (die Ausbildung dauert doppelt so lange).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="de_DE"><Text>Strategische Ressourcen über sechs</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="de_DE"><Text>Der Bonus des Spiels von +1 Kampfstärke je Einheit einer strategischen Ressource endet bei sechs Einheiten. Ist diese Option an, erhalten Einheiten bei 8, 10, 12, 14, 16, 18 und 20 Einheiten je +1 mehr.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="de_DE"><Text>Aus</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="de_DE"><Text>Der Bonus endet bei sechs Einheiten, wie im Grundspiel.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="de_DE"><Text>An</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="de_DE"><Text>+1 Kampfstärke bei 8, 10, 12, 14, 16, 18 und 20 Einheiten.</Text></Replace>
     </LocalizedText>
 </Database>
