@@ -46,6 +46,8 @@ A civilization's unique unit needs what the unit it replaces needs.
 | Modern | Light warships: Ironclad, Cruiser, Destroyer, Barbary Corsair | Coal |
 | Modern | Aircraft | Rubber |
 
+A copy that reaches you over a trade route counts the same as one you mine yourself, from the turn the route lands.
+
 Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the Cog
 and the Frigate, the Cuirassier, the Submarine, and Modern infantry, so every player can always defend.
 
@@ -54,7 +56,9 @@ and the Frigate, the Cuirassier, the Submarine, and Modern infantry, so every pl
 The game notices a new resource the moment it arrives: a mine finishing on Iron lifts the penalty on your Spearmen
 at once. It does not notice one going away. The mod makes it check every player again at the start of each turn, so
 a resource lost by pillage, by a tile changing hands or by anything else brings the penalty back one turn later, for
-you and for the AI players alike. A player who still holds a copy keeps the bonus. The same check keeps the strength
+you and for the AI players alike. A trade route ended by a war takes its copies with it at once; an import that
+dries up at the other end is gone from your count at once and the penalty follows one turn later. A player who still
+holds a copy keeps the bonus. The same check keeps the strength
 past six copies honest when the count falls.
 
 ## Game setup options
