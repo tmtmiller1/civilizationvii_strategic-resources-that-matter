@@ -73,7 +73,8 @@ for that strength is 0, and no row uses `Type ALL`.
 | `p3b-modern` (Harsh, curve on) | No Niter, Oil or Rubber | Tank 60/0/0, Field Cannon 30/40/30, Mortar 35/30/50, Biplane 50/30/25; Line Infantry 50/0/0 unchanged | watched |
 | `p3b-modern` | Each gained by a new improvement | Niter: Field Cannon 35/45/35, Mortar 40/35/55; Oil: Tank 65/0/0; Rubber: Biplane 55/35/30; each at once | watched |
 | `p3b-modern` | Niter and Oil cleared | Unchanged until the roll; turn 2: Tank 60/0/0, Field Cannon 30/40/30, Mortar 35/30/50. The Biplane was gone from the player's units after the turn (placed in a city with no air slot), so its loss was not read | watched |
-| not run | Coal units in Modern; the curve's ranged and bombard rows above 7 copies | Coal follows the same generated rows as the other resources; the split curve rows are covered by `tests/data.mjs` only | not watched |
+| `p3c-modern` (Standard, curve on) | Coal: Ironclad (melee, ranged and bombard above 0) | No Coal: 42/17/17. Coal gained by a new mine: 45/20/20 at once. Coal cleared: 45/20/20 until the roll; turn 2: 42/17/17 | watched |
+| not run | The curve's ranged and bombard rows above 7 copies | Planned in the `sr-reload` soak after the reload; that game died first (phase 10). Covered by `tests/data.mjs` only | not watched |
 
 ## Phase 4: loss re-check
 
@@ -138,3 +139,26 @@ Play Now writes, and read back from the configuration before the game began.
 
 The `Database.log` line "Database XML root elements must start with either <Database> or <GameEffects>" after
 `StartupErrorMessages.xml` appears in the vanilla control too: it is not this mod's.
+
+## Phase 10: save and reload, age transitions
+
+Scripts: `devtools/soak/sr-reload-game.js` and `devtools/soak/sr-age-game.js`, run by `tools/crash-soak/run-soak.sh`
+(copy them into that folder first); `devtools/sr-short-age-probe/` ends Antiquity and Exploration after 10 points. The
+save `SR-LAB-RELOAD.Civ7Save` (Modern, turn 2, Standard, curve on; Tank without Oil, Field Cannon with Niter at 60,24)
+is kept in `tools/crash-soak/runs/sr-reload/`; copy it to `Saves/Single/` to load it.
+
+| Run | What | Observation | Status |
+| --- | --- | --- | --- |
+| `p3c-modern` (lab) | Saved with `Network.saveGame` from the game page, Oil gained after the save, then `Network.loadGame` from the game page | The load came up at turn 2 with one new "loss re-check on" line and one "re-check (game loaded)" line. Before anything else was read, the game died 205 s after the load: SIGSEGV at address 0 on the `AppHost application thread` (`CivilizationVII-2026-10-11-134127.ips`, top frames `+0x21091fc`, `+0x2107ef0`, `+0x838b3c`) | watched (crash) |
+| `sr-reload` (soak, loaded from the shell) | The same save loaded through the main menu, as a player would | Back as saved: Tank 62/0/0 (the Oil gained after the save is gone), Field Cannon 35/45/35, Ironclad 42/17/17; production unchanged (Tank 460 at 8 turns, Field Cannon 270 at 3, Line Infantry 290 at 3, at 68 Production); setup values Standard and curve On; 232 `SR_` modifiers, Oil penalty -3; panel line on the Tank "Unsupplied: no Oil (-3 Combat Strength, slower to train)". Then, idle at turn 2, the game died between 14:00:14 and 14:04:13, about 4 minutes after the load. No crash report was written | watched (death) |
+| `sr-reload` | Panel line with the Field Cannon selected after the Tank | Read "Unsupplied: no Oil ..." although the Field Cannon draws on Niter and held it. Either the panel had not switched units within the 2 s the script waited or the line is stale; not told apart | not watched |
+| not run | A loss after the reload re-checked one roll later | The game died before the step | not watched |
+| not run | Antiquity to Exploration and Exploration to Modern: rows per age, carried units, one "on" line per age, a loss re-checked in the new age | Not started: stopped after the two deaths above (repo `CLAUDE.md`: report after the first falsification) | not watched |
+
+Two deaths after loading a save of a game with the mod, both while idle a few minutes after the load. The first
+hypothesis, that the load call from the game page caused it (`engine-closed.md`: save-load calls from the game context
+crash the UI host thread), is falsified: the load from the main menu died too. Open hypotheses: the mod's UI scripts on
+a loaded game; the mod's data on a loaded game; this save file; any loaded save idling in this harness. The cheapest
+next test is the same save loaded with a copy of the mod that has no UI scripts (same id, data and text only); a death
+there clears the scripts. No new games died in phases 3 to 9 (90 AI turns in `p9-soak`; lab games idled for minutes).
+

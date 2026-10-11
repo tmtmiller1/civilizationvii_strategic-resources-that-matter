@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<AgeProgressions>
+		<Update><Where AgeType="AGE_ANTIQUITY"/><Set MaxPoints_Abbreviated="10" MaxPoints_Standard="10" MaxPoints_Long="10"/></Update>
+		<Update><Where AgeType="AGE_EXPLORATION"/><Set MaxPoints_Abbreviated="10" MaxPoints_Standard="10" MaxPoints_Long="10"/></Update>
+	</AgeProgressions>
+</Database>
