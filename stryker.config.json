@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": [
+    "Mutation testing on the engine-free modules the Node tests exercise: the supply rules behind the unit panel",
+    "line and the loss re-check's logic. The command runner re-runs the whole suite per mutant; coverageAnalysis is",
+    "off because the command runner has no per-test hooks. tests/loader.mjs anchors /tower-strategic-resources/ to",
+    "its own location, so the sandbox copy resolves to the mutated files."
+  ],
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "node tests/run-all.mjs sr-"
+  },
+  "coverageAnalysis": "off",
+  "mutate": ["ui/sr-supply.js", "ui/sr-recheck-core.js"],
+  "reporters": ["clear-text", "json"],
+  "jsonReporter": {
+    "fileName": "reports/mutation/mutation.json"
+  },
+  "concurrency": 4,
+  "timeoutMS": 20000,
+  "thresholds": {
+    "high": 75,
+    "low": 60,
+    "break": null
+  }
+}
