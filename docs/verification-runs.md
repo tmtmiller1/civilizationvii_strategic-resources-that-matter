@@ -62,7 +62,18 @@ for that strength is 0, and no row uses `Type ALL`.
 | Run | What | Observation | Status |
 | --- | --- | --- | --- |
 | Node tests | Generated rows against the dumps | 710 modifiers in 12 groups; every strength row reaches only units with that strength above 0 | watched (tests) |
-| none yet | Each age at the earlier setup values: a gated melee unit reads ranged 0 and bombard 0 with and without its resource; a ranged or bombard unit loses and regains its ranged and bombard penalty; loss and re-check as before | Not run: the disk is full (242 MB free; a lab run backs up about 830 MB) and another session's repro runs were using the game | not watched |
+| `p3b-antiquity` (Standard, curve on) | Rows loaded | 18 `MELEE`, 7 `RANGED`, 7 `BOMBARD` rows; every penalty and cancel row is `MELEE` (no gated Antiquity unit has ranged or bombard strength); the ranged and bombard rows are the curve's, on the Hwarang | watched |
+| `p3b-antiquity` | No Iron, no Horses | Spearman 22/0/0, Chariot 27/0/0 (melee/ranged/bombard); Slinger 5/15/5 and Hwarang 5/15/8 unchanged | watched |
+| `p3b-antiquity` | Iron and Horses gained by new improvements | Spearman 25/0/0, Chariot 30/0/0 at once | watched |
+| `p3b-antiquity` | Iron cleared | Spearman stayed 25/0/0 until the roll; turn 2: 22/0/0. Chariot (Horses still held) 30/0/0 | watched |
+| `p3b-exploration` (Light, curve off) | Rows loaded | Penalty and cancel: 6 `MELEE`, 4 `RANGED`, 4 `BOMBARD` (Niter and Iron have units with ranged strength, Horses does not) | watched |
+| `p3b-exploration` | No Niter, Iron or Horses | Man-at-Arms 38/0/0, Courser 38/0/0, Catapult 23/18/38, Bombard 33/28/48; Crossbowman 25/35/25 unchanged | watched |
+| `p3b-exploration` | Each gained by a new improvement | Catapult 25/20/40 and Bombard 35/30/50 on Niter; Man-at-Arms 40/0/0 on Iron; Courser 40/0/0 on Horses; each at once. Xunleichong 2 (Iron, ranged and bombard above 0) placed while Iron was held: 40/25/10 | watched |
+| `p3b-exploration` | Niter and Iron cleared | Unchanged until the roll; turn 2: Catapult 23/18/38, Bombard 33/28/48, Man-at-Arms 38/0/0, Xunleichong 2 38/23/8; Courser (Horses held) 40/0/0 | watched |
+| `p3b-modern` (Harsh, curve on) | No Niter, Oil or Rubber | Tank 60/0/0, Field Cannon 30/40/30, Mortar 35/30/50, Biplane 50/30/25; Line Infantry 50/0/0 unchanged | watched |
+| `p3b-modern` | Each gained by a new improvement | Niter: Field Cannon 35/45/35, Mortar 40/35/55; Oil: Tank 65/0/0; Rubber: Biplane 55/35/30; each at once | watched |
+| `p3b-modern` | Niter and Oil cleared | Unchanged until the roll; turn 2: Tank 60/0/0, Field Cannon 30/40/30, Mortar 35/30/50. The Biplane was gone from the player's units after the turn (placed in a city with no air slot), so its loss was not read | watched |
+| not run | Coal units in Modern; the curve's ranged and bombard rows above 7 copies | Coal follows the same generated rows as the other resources; the split curve rows are covered by `tests/data.mjs` only | not watched |
 
 ## Phase 4: loss re-check
 
