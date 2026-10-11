@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="es_ES"><Text>Recursos estratégicos más importantes</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="es_ES"><Text>Recursos estratégicos que importan</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="es_ES"><Text>Los recursos estratégicos vuelven a importar. Una unidad que depende de Caballos, Hierro, Salitre, Petróleo, Carbón o Caucho lucha peor y tarda más en entrenarse mientras su dueño no tenga ninguna unidad de ese recurso, y cada unidad sigue dando la bonificación del juego. Si pierdes la última, la penalización vuelve un turno después. Por encima de seis unidades, la cantidad sigue sumando fuerza. Dos opciones de configuración de partida fijan la penalización y activan la bonificación tardía. Un jugador. En multijugador, perder un recurso no devuelve la penalización hasta que ese jugador obtenga un recurso.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="es_ES"><Text>Sin suministro: sin {1_Resource} ({2_Combat} de fuerza de combate, se entrena más despacio)</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="es_ES"><Text>Unidades sin suministro</Text></Replace>

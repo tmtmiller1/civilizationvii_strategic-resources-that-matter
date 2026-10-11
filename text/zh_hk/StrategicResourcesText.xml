@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hant_HK"><Text>更重要的戰略資源</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hant_HK"><Text>至關重要的戰略資源</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hant_HK"><Text>戰略資源再次變得重要。需要馬、鐵、硝石、石油、煤或橡膠的單位，在其擁有者一份該資源都沒有時，戰鬥力降低、訓練變慢；每份資源仍提供遊戲原有的加成。失去最後一份後，懲罰會在一回合後恢復。超過六份後，數量仍會繼續增加戰鬥力。兩項遊戲設定選項決定懲罰程度並開關後期加成。僅限單人遊戲。在多人遊戲中，失去資源後，要等該玩家獲得某種資源時懲罰才會恢復。</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="zh_Hant_HK"><Text>無補給：沒有{1_Resource}（戰鬥力{2_Combat}，訓練變慢）</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="zh_Hant_HK"><Text>無補給單位</Text></Replace>

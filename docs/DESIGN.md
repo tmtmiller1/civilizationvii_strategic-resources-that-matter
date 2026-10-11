@@ -1,4 +1,4 @@
-# More Important Strategic Resources: scope
+# Strategic Resources That Matter: scope
 
 Kept in the mod repo since 2026-10-11 (before that in `mod_ideas_tested/strategic_resources/`). The probe mods of
 sections 7a to 7c (`probe/`, `probe2/`, `probe3/`) are in `devtools/probes/`; the evidence for every claim after 7d is
@@ -15,7 +15,7 @@ mods does either. Two local mods rewrite the per-copy resource effects (Multipla
 anime resources mod 3696941273) but neither adds a gate or a penalty for having none. RHQ AI Mod (3507042742) checks in
 its build scripts that aircraft need no `StrategicResource`, so a Rubber gate on aircraft could break its air logic.
 
-Name: **More Important Strategic Resources** (mod id `tower-strategic-resources`; called Strategic Resources until 2026-10-11).
+Name: **Strategic Resources That Matter** (mod id `tower-strategic-resources`; called Strategic Resources until 2026-10-11).
 
 ## 1. Where the idea comes from
 

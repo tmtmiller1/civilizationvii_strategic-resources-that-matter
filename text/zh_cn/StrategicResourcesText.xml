@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hans_CN"><Text>更重要的战略资源</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hans_CN"><Text>至关重要的战略资源</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hans_CN"><Text>战略资源再次变得重要。需要马、铁、硝石、石油、煤或橡胶的单位，在其所有者一份该资源都没有时，战斗力降低、训练变慢；每份资源仍提供游戏原有的加成。失去最后一份后，惩罚会在一回合后恢复。超过六份后，数量仍会继续增加战斗力。两项游戏设置选项决定惩罚程度并开关后期加成。仅限单人游戏。在多人游戏中，失去资源后，要等该玩家获得某种资源时惩罚才会恢复。</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="zh_Hans_CN"><Text>无补给：没有{1_Resource}（战斗力{2_Combat}，训练变慢）</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="zh_Hans_CN"><Text>无补给单位</Text></Replace>

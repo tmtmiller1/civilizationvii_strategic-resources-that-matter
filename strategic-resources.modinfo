@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  More Important Strategic Resources, a Civilization VII mod.
+  Strategic Resources That Matter, a Civilization VII mod.
   A unit that draws on a strategic resource its owner holds none of fights weaker and trains slower; past six copies
   the count keeps adding strength. The data does the penalties and the curve; ui/sr-recheck.js makes the engine
   notice a lost resource; ui/sr-unit-panel.js says on the unit panel when a unit is unsupplied.
