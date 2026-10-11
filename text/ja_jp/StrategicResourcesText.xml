@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <LocalizedText>
-        <Replace Tag="LOC_SR_MOD_NAME" Language="ja_JP"><Text>より重要な戦略資源</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_NAME" Language="ja_JP"><Text>重要な戦略資源</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ja_JP"><Text>戦略資源が再び重要になります。馬、鉄、硝石、石油、石炭、ゴムを必要とするユニットは、所有者がその資源を1つも持っていない間、戦闘力が下がり、訓練に時間がかかります。資源1つごとのゲーム本来のボーナスはそのままです。最後の1つを失うと、ペナルティは1ターン後に戻ります。6つを超えても、数がさらに戦闘力を加えます。ゲーム設定の2つのオプションでペナルティの強さと後半のボーナスを選べます。シングルプレイ専用。マルチプレイでは、資源を失っても、そのプレイヤーが資源を得るまでペナルティは戻りません。</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ja_JP"><Text>補給なし: {1_Resource}がない(戦闘力{2_Combat}、訓練が遅くなる)</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="ja_JP"><Text>補給のないユニット</Text></Replace>

@@ -1,6 +1,6 @@
 # Contributing
 
-More Important Strategic Resources is a Civilization VII mod made mostly of game data, with two small scripts. This page covers the
+Strategic Resources That Matter is a Civilization VII mod made mostly of game data, with two small scripts. This page covers the
 setup, the one check to run before you submit, and the conventions the code follows.
 
 ## Typed JavaScript, no build step
