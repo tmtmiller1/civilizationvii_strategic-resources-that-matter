@@ -4,13 +4,17 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { buildFiles, CURVE_THRESHOLDS, LEVELS } from "../scripts/build-data.mjs";
-import { AGES, AGE_FILE, buildGateMap, gatedResources, upgradeOnlyGatedUnits } from "../scripts/gate-map.mjs";
+import {
+  AGES, AGE_FILE, STRENGTHS, buildGateMap, gatedResources, upgradeOnlyGatedUnits
+} from "../scripts/gate-map.mjs";
 
 // Data gate: the invariants that crash the game or mislead it, checked on the files that ship.
 //   - data/ is exactly what scripts/build-data.mjs writes (no hand edit drifts from the gate map).
 //   - No player-resource requirement on an EFFECT_ATTACH_MODIFIERS parent: it crashes the game (DESIGN.md 7b).
 //   - Every modifier is reached: attached by a parent in the same file, or registered in GameModifiers by its group.
 //   - Every requirement on a child is a known shape, and every cancel equals its penalty.
+//   - No strength row can reach a unit whose base value for that strength is 0: a melee unit has ranged and bombard 0
+//     because it has no such attack, and a row that moved it off 0 could turn on ranged behaviour.
 //   - The gate lists per age are the ones written into DESIGN.md section 4.
 //   - Every unit and resource the data names exists in the game's tables, as dumped from lab games
 //     (devtools/gate-map/<age>.json) and, for the age last played, in the live compiled database
@@ -58,6 +62,38 @@ function parseModifiers(xml) {
 const gameModifierRows = (xml) => [...xml.matchAll(/<Row ModifierId="([^"]+)"\/>/g)].map((m) => m[1]);
 
 const RESOURCE_REQUIREMENT = /^REQUIREMENT_PLAYER_HAS_.*RESOURCE/;
+const STAT_OF = Object.fromEntries(STRENGTHS.map(({ type, stat }) => [type, stat]));
+
+/** @type {Map<string, { stats: Map<string, any>, tagsOf: Map<string, Set<string>> }>} per age: unit stats and tags */
+const ageUnits = new Map();
+for (const age of AGES) {
+  const dump = JSON.parse(fs.readFileSync(path.join("devtools/gate-map", `${AGE_FILE[age]}.json`), "utf8"));
+  const tagsOf = new Map();
+  const tagRows = [...dump.tags,
+    ...[...read(`sr-${AGE_FILE[age]}-supply.xml`).matchAll(/<Row Type="([^"]+)" Tag="([^"]+)"\/>/g)]
+      .map((m) => ({ Type: m[1], Tag: m[2] }))];
+  for (const row of tagRows) {
+    if (!tagsOf.has(row.Type)) tagsOf.set(row.Type, new Set());
+    tagsOf.get(row.Type).add(row.Tag);
+  }
+  ageUnits.set(age, { stats: new Map(dump.units.map((u) => [u.UnitType, u])), tagsOf });
+}
+
+/** A strength row: a known type, and every unit its tags reach has that strength above 0. */
+function checkStrengthRow(/** @type {string} */ age, /** @type {string} */ base, /** @type {ModifierInfo} */ m) {
+  const stat = STAT_OF[m.args.Type];
+  assert.ok(stat, `${base}: ${m.id} changes strength type ${m.args.Type}; only MELEE, RANGED and BOMBARD are used`);
+  const tags = [...m.body.matchAll(/<Argument name="Tag">([^<]+)<\/Argument>/g)].map((t) => t[1]);
+  const { stats, tagsOf } = ageUnits.get(age);
+  let reached = 0;
+  for (const [unit, unitTags] of tagsOf) {
+    if (!tags.some((t) => unitTags.has(t)) || !stats.has(unit)) continue;
+    reached += 1;
+    assert.ok(Number(stats.get(unit)[stat]) > 0,
+      `${base}: ${m.id} (${m.args.Type}) reaches ${unit}, whose base ${stat} is ${stats.get(unit)[stat]}`);
+  }
+  assert.ok(reached > 0, `${base}: ${m.id} reaches no unit`);
+}
 let modifiersChecked = 0;
 
 // 2-4. Every modifier file and its GameModifiers file, one setup group at a time.
@@ -86,12 +122,19 @@ for (const { age, kind } of groups) {
       `${base}: ${m.id} has an unexpected owner requirement`);
     assert.ok(m.subjectRequirements.every((r) => r === "REQUIREMENT_UNIT_TAG_MATCHES"),
       `${base}: ${m.id} has an unexpected subject requirement`);
+    if (m.effect === "EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH") checkStrengthRow(age, base, m);
     modifiersChecked += 1;
   }
   if (kind !== "curve") {
     const level = LEVELS[/** @type {keyof typeof LEVELS} */ (kind)];
     for (const resource of gatedResources(age)) {
       const name = resource.replace("RESOURCE_", "");
+      for (const prefix of ["SR_COMBAT", "SR_RANGED", "SR_BOMBARD"]) {
+        const penalty = byId.get(`${prefix}_PENALTY_${name}`);
+        if (!penalty) continue;
+        assert.equal(Number(byId.get(`${prefix}_SUPPLIED_${name}`)?.args.Amount), -level.combat, `${base} ${prefix}`);
+        assert.equal(byId.get(`${prefix}_SUPPLIED_${name}`)?.args.Type, penalty.args.Type, `${base} ${prefix} type`);
+      }
       assert.equal(Number(byId.get(`SR_COMBAT_PENALTY_${name}`)?.args.Amount), level.combat, `${base} ${name}`);
       assert.equal(Number(byId.get(`SR_COMBAT_SUPPLIED_${name}`)?.args.Amount), -level.combat, `${base} ${name}`);
       assert.equal(Number(byId.get(`SR_PRODUCTION_PENALTY_${name}`)?.args.Percent), level.productionPercent);
@@ -99,7 +142,8 @@ for (const { age, kind } of groups) {
       assert.equal(byId.get(`SR_PRODUCTION_PENALTY_${name}`)?.args.UnitClass, `SR_SUPPLY_${name}`);
       // The penalty is unconditional; only the cancel waits for the resource.
       assert.equal(byId.get(`SR_COMBAT_PENALTY_${name}`)?.ownerRequirements.length, 0);
-      assert.match(byId.get(`SR_COMBAT_SUPPLIED_${name}`)?.body ?? "", new RegExp(`<Argument name="ResourceType">${resource}<`));
+      const cancel = byId.get(`SR_COMBAT_SUPPLIED_${name}`)?.body ?? "";
+      assert.match(cancel, new RegExp(`<Argument name="ResourceType">${resource}<`));
     }
   } else {
     const thresholds = modifiers.filter((m) => m.id.startsWith("SR_CURVE_"))

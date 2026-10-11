@@ -21,7 +21,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_NITER_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_NITER_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_NITER_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_NITER_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_NITER_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_NITER_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_10</Argument>
@@ -42,7 +78,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_NITER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_NITER_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_NITER_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_NITER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_NITER_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_NITER_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_12</Argument>
@@ -63,7 +135,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_NITER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_NITER_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_NITER_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_NITER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_NITER_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_NITER_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_14</Argument>
@@ -84,7 +192,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_NITER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_NITER_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_NITER_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_NITER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_NITER_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_NITER_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_16</Argument>
@@ -105,7 +249,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_NITER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_NITER_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_NITER_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_NITER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_NITER_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_NITER_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_18</Argument>
@@ -126,7 +306,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_NITER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_NITER_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_NITER_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_NITER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_NITER_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_NITER_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_20</Argument>
@@ -147,7 +363,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_NITER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_NITER_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_NITER_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_NITER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_NITER_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_NITER_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_8</Argument>
@@ -168,7 +420,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_OIL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_OIL_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_OIL_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_OIL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_OIL_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_OIL_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_10</Argument>
@@ -189,7 +477,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_OIL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_OIL_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_OIL_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_OIL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_OIL_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_OIL_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_12</Argument>
@@ -210,7 +534,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_OIL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_OIL_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_OIL_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_OIL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_OIL_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_OIL_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_14</Argument>
@@ -231,7 +591,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_OIL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_OIL_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_OIL_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_OIL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_OIL_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_OIL_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_16</Argument>
@@ -252,7 +648,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_OIL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_OIL_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_OIL_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_OIL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_OIL_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_OIL_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_18</Argument>
@@ -273,7 +705,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_OIL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_OIL_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_OIL_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_OIL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_OIL_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_OIL_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_20</Argument>
@@ -294,7 +762,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_OIL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_OIL_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_OIL_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_OIL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_OIL_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_OIL_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_8</Argument>
@@ -306,13 +810,49 @@
                 <Argument name="Amount">8</Argument>
             </Requirement>
         </OwnerRequirements>
-        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+        <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_COAL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_COAL_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_COAL_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_COAL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_COAL_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_COAL_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_10</Argument>
@@ -324,13 +864,49 @@
                 <Argument name="Amount">10</Argument>
             </Requirement>
         </OwnerRequirements>
-        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+        <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_COAL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_COAL_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_COAL_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_COAL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_COAL_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_COAL_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_12</Argument>
@@ -342,13 +918,49 @@
                 <Argument name="Amount">12</Argument>
             </Requirement>
         </OwnerRequirements>
-        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+        <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_COAL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_COAL_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_COAL_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_COAL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_COAL_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_COAL_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_14</Argument>
@@ -360,13 +972,49 @@
                 <Argument name="Amount">14</Argument>
             </Requirement>
         </OwnerRequirements>
-        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+        <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_COAL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_COAL_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_COAL_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_COAL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_COAL_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_COAL_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_16</Argument>
@@ -378,13 +1026,49 @@
                 <Argument name="Amount">16</Argument>
             </Requirement>
         </OwnerRequirements>
-        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+        <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_COAL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_COAL_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_COAL_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_COAL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_COAL_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_COAL_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_18</Argument>
@@ -396,13 +1080,49 @@
                 <Argument name="Amount">18</Argument>
             </Requirement>
         </OwnerRequirements>
-        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+        <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_COAL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_COAL_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_COAL_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_COAL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_COAL_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_COAL_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_20</Argument>
@@ -414,13 +1134,49 @@
                 <Argument name="Amount">20</Argument>
             </Requirement>
         </OwnerRequirements>
-        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+        <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_COAL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_COAL_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_COAL_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_COAL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_COAL_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_COAL_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_8</Argument>
@@ -441,7 +1197,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_RUBBER_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_RUBBER_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_RUBBER_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_RUBBER_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_RUBBER_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_RUBBER_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_10</Argument>
@@ -462,7 +1254,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_RUBBER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_RUBBER_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_RUBBER_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_RUBBER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_RUBBER_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_RUBBER_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_12</Argument>
@@ -483,7 +1311,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_RUBBER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_RUBBER_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_RUBBER_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_RUBBER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_RUBBER_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_RUBBER_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_14</Argument>
@@ -504,7 +1368,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_RUBBER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_RUBBER_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_RUBBER_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_RUBBER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_RUBBER_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_RUBBER_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_16</Argument>
@@ -525,7 +1425,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_RUBBER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_RUBBER_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_RUBBER_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_RUBBER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_RUBBER_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_RUBBER_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_18</Argument>
@@ -546,7 +1482,43 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_RUBBER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_RUBBER_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_RUBBER_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_RUBBER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_RUBBER_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_RUBBER_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_20</Argument>
@@ -567,6 +1539,42 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_RANGED_RUBBER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_RANGED_RUBBER_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_RANGED_RUBBER_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_RANGED_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_BOMBARD_RUBBER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_BOMBARD_RUBBER_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_BOMBARD_RUBBER_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_CURVE_BOMBARD_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
 </GameEffects>

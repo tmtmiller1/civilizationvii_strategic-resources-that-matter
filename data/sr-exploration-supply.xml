@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
-<!-- AGE_EXPLORATION: the units that draw on a resource (DESIGN.md section 4). -->
+<!-- AGE_EXPLORATION: the units that draw on a resource (DESIGN.md section 4), and their strength types. -->
 <Database>
     <TypeTags>
         <Row Type="UNIT_BOMBARD" Tag="SR_SUPPLY_NITER"/>
@@ -48,5 +48,105 @@
         <Row Type="UNIT_VIKINGR_3" Tag="SR_SUPPLY_NITER"/>
         <Row Type="UNIT_XUNLEICHONG_2" Tag="SR_SUPPLY_IRON"/>
         <Row Type="UNIT_XUNLEICHONG_3" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG_2" Tag="SR_RANGED_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG_3" Tag="SR_RANGED_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG_2" Tag="SR_BOMBARD_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG_3" Tag="SR_BOMBARD_IRON"/>
+        <Row Type="UNIT_BOMBARD" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_CARRACK" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_CATAPULT" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_CETBANG_2" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_CETBANG_3" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_CORSAIR_2" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_CORSAIR_3" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_GALLEON" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_HWACHA" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_HWACHA_2" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_HWACHA_3" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_KALAM_2" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_KALAM_3" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_TREBUCHET" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_VIKINGR_2" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_VIKINGR_3" Tag="SR_RANGED_NITER"/>
+        <Row Type="UNIT_BOMBARD" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_CARRACK" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_CATAPULT" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_CETBANG_2" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_CETBANG_3" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_CORSAIR_2" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_CORSAIR_3" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_GALLEON" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_HWACHA" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_HWACHA_2" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_HWACHA_3" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_KALAM_2" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_KALAM_3" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_TREBUCHET" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_VIKINGR_2" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_VIKINGR_3" Tag="SR_BOMBARD_NITER"/>
+        <Row Type="UNIT_KESHIG" Tag="SR_CURVE_RANGED_HORSES"/>
+        <Row Type="UNIT_KESHIG_2" Tag="SR_CURVE_RANGED_HORSES"/>
+        <Row Type="UNIT_KESHIG_3" Tag="SR_CURVE_RANGED_HORSES"/>
+        <Row Type="UNIT_KESHIG" Tag="SR_CURVE_BOMBARD_HORSES"/>
+        <Row Type="UNIT_KESHIG_2" Tag="SR_CURVE_BOMBARD_HORSES"/>
+        <Row Type="UNIT_KESHIG_3" Tag="SR_CURVE_BOMBARD_HORSES"/>
+        <Row Type="UNIT_XUNLEICHONG" Tag="SR_CURVE_RANGED_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG_2" Tag="SR_CURVE_RANGED_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG_3" Tag="SR_CURVE_RANGED_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG" Tag="SR_CURVE_BOMBARD_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG_2" Tag="SR_CURVE_BOMBARD_IRON"/>
+        <Row Type="UNIT_XUNLEICHONG_3" Tag="SR_CURVE_BOMBARD_IRON"/>
+        <Row Type="UNIT_BOMBARD" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_CARRACK" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_CATAPULT" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_CETBANG" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_CETBANG_2" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_CETBANG_3" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_COG" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_CORSAIR" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_CORSAIR_2" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_CORSAIR_3" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_GALLEON" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_HWACHA" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_HWACHA_2" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_HWACHA_3" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_KALAM" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_KALAM_2" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_KALAM_3" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_PRIVATEER" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_PRIVATEER_2" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_SLOOP" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_SLOOP_2" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_SLOOP_3" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_TREBUCHET" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_VIKINGR" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_VIKINGR_2" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_VIKINGR_3" Tag="SR_CURVE_RANGED_NITER"/>
+        <Row Type="UNIT_BOMBARD" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_CARRACK" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_CATAPULT" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_CETBANG" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_CETBANG_2" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_CETBANG_3" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_COG" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_CORSAIR" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_CORSAIR_2" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_CORSAIR_3" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_GALLEON" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_HWACHA" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_HWACHA_2" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_HWACHA_3" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_KALAM" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_KALAM_2" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_KALAM_3" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_PRIVATEER" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_PRIVATEER_2" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_SLOOP" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_SLOOP_2" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_SLOOP_3" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_TREBUCHET" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_VIKINGR" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_VIKINGR_2" Tag="SR_CURVE_BOMBARD_NITER"/>
+        <Row Type="UNIT_VIKINGR_3" Tag="SR_CURVE_BOMBARD_NITER"/>
     </TypeTags>
 </Database>

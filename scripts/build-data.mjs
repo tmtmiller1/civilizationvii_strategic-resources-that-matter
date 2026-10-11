@@ -6,17 +6,23 @@
 // What it writes, and why it is shaped this way (DESIGN.md sections 7b to 7d):
 //   - sr-tags.xml: one unit tag per resource, SR_SUPPLY_<NAME>.
 //   - sr-<age>-supply.xml: that tag on every gated unit of the age (TypeTags), so one modifier per resource covers
-//     its units, for combat (REQUIREMENT_UNIT_TAG_MATCHES) and for production (the UnitClass argument).
+//     its units, for melee strength (REQUIREMENT_UNIT_TAG_MATCHES) and for production (the UnitClass argument). Two
+//     more tags per resource, SR_RANGED_<NAME> and SR_BOMBARD_<NAME>, mark the gated units that have a ranged or a
+//     bombard strength above 0, and SR_CURVE_RANGED_<NAME> and SR_CURVE_BOMBARD_<NAME> do the same for the units the
+//     curve covers. A strength row reaches only units that have that strength.
 //   - sr-<age>-<level>-modifiers.xml and -game.xml: the unsupplied penalty for one setup level. Each penalty is
 //     unconditional and cancelled by an equal bonus while the owner holds at least one copy. Both are attached per
 //     major player (COLLECTION_MAJOR_PLAYERS, EFFECT_ATTACH_MODIFIERS) and the resource requirement sits on the
 //     attached child only: on the attach parent it crashes the game.
 //   - sr-<age>-curve-modifiers.xml and -game.xml: the late curve, +1 combat strength at each count threshold past
-//     six, on the units vanilla's per-copy bonus covers.
+//     six, on the units vanilla's per-copy bonus covers: melee by vanilla's own tags, ranged and bombard by the tags
+//     above.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { AGES, AGE_FILE, VANILLA_PER_COPY, buildGateMap, gatedResources } from "./gate-map.mjs";
+import {
+  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, buildGateMap, gatedResources, strengthUnits
+} from "./gate-map.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -37,6 +43,13 @@ const GENERATED = "<!-- Written by scripts/build-data.mjs; edit the script, not 
 export const shortName = (resource) => resource.replace(/^RESOURCE_/, "");
 /** @param {string} resource */
 export const supplyTag = (resource) => `SR_SUPPLY_${shortName(resource)}`;
+/** The tag a penalty row of one strength type matches. @param {string} type @param {string} resource */
+export const penaltyTag = (type, resource) =>
+  type === "MELEE" ? supplyTag(resource) : `SR_${type}_${shortName(resource)}`;
+/** The tag a ranged or bombard curve row matches. @param {string} type @param {string} resource */
+export const curveTag = (type, resource) => `SR_CURVE_${type}_${shortName(resource)}`;
+/** Modifier id stem for a strength type: COMBAT for melee (the unit panel reads SR_COMBAT_PENALTY_), else the type. */
+const stem = (/** @type {string} */ type) => (type === "MELEE" ? "COMBAT" : type);
 
 /** @param {string} age */
 export function readDump(age) {
@@ -63,20 +76,30 @@ function attach(id, child) {
   ];
 }
 
+/** @param {string[]} tags any of these */
+function tagRequirements(tags) {
+  return [
+    tags.length > 1 ? '        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">' : "        <SubjectRequirements>",
+    ...tags.flatMap((tag) => [
+      '            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">',
+      `                <Argument name="Tag">${tag}</Argument>`,
+      "            </Requirement>"
+    ]),
+    "        </SubjectRequirements>"
+  ];
+}
+
 /**
- * @param {{ id: string, tag: string, amount: number, owner?: string[] }} spec
+ * One strength type's change on the units carrying any of `tags`.
+ * @param {{ id: string, tags: string[], type: string, amount: number, owner?: string[] }} spec
  */
-function combatChild({ id, tag, amount, owner }) {
+function combatChild({ id, tags, type, amount, owner }) {
   return [
     `    <Modifier id="${id}" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">`,
     ...(owner ? ["        <OwnerRequirements>", ...owner, "        </OwnerRequirements>"] : []),
-    "        <SubjectRequirements>",
-    '            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">',
-    `                <Argument name="Tag">${tag}</Argument>`,
-    "            </Requirement>",
-    "        </SubjectRequirements>",
+    ...tagRequirements(tags),
     `        <Argument name="Amount">${amount}</Argument>`,
-    '        <Argument name="Type">ALL</Argument>',
+    `        <Argument name="Type">${type}</Argument>`,
     "    </Modifier>"
   ];
 }
@@ -96,7 +119,8 @@ function productionChild({ id, tag, percent, owner }) {
 
 /** @param {string} comment @param {string[]} body */
 const gameEffects = (comment, body) =>
-  [HEADER, GENERATED, `<!-- ${comment} -->`, '<GameEffects xmlns="GameEffects">', ...body, "</GameEffects>", ""].join("\n");
+  [HEADER, GENERATED, `<!-- ${comment} -->`, '<GameEffects xmlns="GameEffects">', ...body, "</GameEffects>", ""]
+    .join("\n");
 
 /** @param {string[]} ids */
 const gameModifiers = (ids) =>
@@ -104,57 +128,56 @@ const gameModifiers = (ids) =>
     "    </GameModifiers>", "</Database>", ""].join("\n");
 
 /**
- * The penalty modifiers for one resource at one level, and the attach ids to register.
+ * The penalty modifiers for one resource at one level, and the attach ids to register. A strength row is written
+ * only when some gated unit has that strength.
  * @param {string} resource
  * @param {{ combat: number, productionPercent: number }} level
+ * @param {Record<string, string[]>} units gated units per strength type
  */
-export function penaltyFor(resource, level) {
+export function penaltyFor(resource, level, units) {
   const name = shortName(resource);
-  const tag = supplyTag(resource);
   const owner = hasResource(resource, 1);
-  const body = [
-    ...attach(`SR_ATTACH_COMBAT_PENALTY_${name}`, `SR_COMBAT_PENALTY_${name}`),
-    ...combatChild({ id: `SR_COMBAT_PENALTY_${name}`, tag, amount: level.combat }),
-    ...attach(`SR_ATTACH_COMBAT_SUPPLIED_${name}`, `SR_COMBAT_SUPPLIED_${name}`),
-    ...combatChild({ id: `SR_COMBAT_SUPPLIED_${name}`, tag, amount: -level.combat, owner }),
-    ...attach(`SR_ATTACH_PRODUCTION_PENALTY_${name}`, `SR_PRODUCTION_PENALTY_${name}`),
-    ...productionChild({ id: `SR_PRODUCTION_PENALTY_${name}`, tag, percent: level.productionPercent }),
-    ...attach(`SR_ATTACH_PRODUCTION_SUPPLIED_${name}`, `SR_PRODUCTION_SUPPLIED_${name}`),
-    ...productionChild({ id: `SR_PRODUCTION_SUPPLIED_${name}`, tag, percent: -level.productionPercent, owner })
-  ];
-  const ids = ["COMBAT_PENALTY", "COMBAT_SUPPLIED", "PRODUCTION_PENALTY", "PRODUCTION_SUPPLIED"]
-    .map((kind) => `SR_ATTACH_${kind}_${name}`);
+  const body = [];
+  const ids = [];
+  const add = (/** @type {string} */ kind, /** @type {string[]} */ child) => {
+    body.push(...attach(`SR_ATTACH_${kind}_${name}`, `SR_${kind}_${name}`), ...child);
+    ids.push(`SR_ATTACH_${kind}_${name}`);
+  };
+  for (const { type } of STRENGTHS) {
+    if (!units[type].length) continue;
+    const tags = [penaltyTag(type, resource)];
+    add(`${stem(type)}_PENALTY`,
+      combatChild({ id: `SR_${stem(type)}_PENALTY_${name}`, tags, type, amount: level.combat }));
+    add(`${stem(type)}_SUPPLIED`,
+      combatChild({ id: `SR_${stem(type)}_SUPPLIED_${name}`, tags, type, amount: -level.combat, owner }));
+  }
+  const tag = supplyTag(resource);
+  add("PRODUCTION_PENALTY",
+    productionChild({ id: `SR_PRODUCTION_PENALTY_${name}`, tag, percent: level.productionPercent }));
+  add("PRODUCTION_SUPPLIED",
+    productionChild({ id: `SR_PRODUCTION_SUPPLIED_${name}`, tag, percent: -level.productionPercent, owner }));
   return { body, ids };
 }
 
 /**
- * The curve modifiers for one resource of one age.
+ * The curve modifiers for one resource of one age: per threshold, +1 on each strength type some covered unit has.
  * @param {{ resource: string, tags: string[] }} perCopy
+ * @param {Record<string, string[]>} units covered units per strength type
  */
-export function curveFor({ resource, tags }) {
+export function curveFor({ resource, tags }, units) {
   const name = shortName(resource);
   const body = [];
   const ids = [];
   for (const threshold of CURVE_THRESHOLDS) {
-    const id = `SR_CURVE_${name}_${threshold}`;
-    body.push(
-      ...attach(`SR_ATTACH_CURVE_${name}_${threshold}`, id),
-      `    <Modifier id="${id}" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">`,
-      "        <OwnerRequirements>",
-      ...hasResource(resource, threshold),
-      "        </OwnerRequirements>",
-      '        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">',
-      ...tags.flatMap((tag) => [
-        '            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">',
-        `                <Argument name="Tag">${tag}</Argument>`,
-        "            </Requirement>"
-      ]),
-      "        </SubjectRequirements>",
-      '        <Argument name="Amount">1</Argument>',
-      '        <Argument name="Type">ALL</Argument>',
-      "    </Modifier>"
-    );
-    ids.push(`SR_ATTACH_CURVE_${name}_${threshold}`);
+    for (const { type } of STRENGTHS) {
+      if (!units[type].length) continue;
+      const part = type === "MELEE" ? "" : `${type}_`;
+      const id = `SR_CURVE_${part}${name}_${threshold}`;
+      const match = type === "MELEE" ? tags : [curveTag(type, resource)];
+      body.push(...attach(`SR_ATTACH_CURVE_${part}${name}_${threshold}`, id),
+        ...combatChild({ id, tags: match, type, amount: 1, owner: hasResource(resource, threshold) }));
+      ids.push(`SR_ATTACH_CURVE_${part}${name}_${threshold}`);
+    }
   }
   return { body, ids };
 }
@@ -164,25 +187,38 @@ export function buildFiles() {
   /** @type {Map<string, string>} */
   const files = new Map();
   const allResources = [...new Set(AGES.flatMap(gatedResources))];
-  files.set("sr-tags.xml", [HEADER, GENERATED, "<!-- One unit tag per resource a unit can draw on. -->", "<Database>",
-    "    <Tags>", ...allResources.map((r) => `        <Row Tag="${supplyTag(r)}" Category="UNIT_CLASS"/>`),
+  const allTags = allResources.flatMap((r) => [supplyTag(r), penaltyTag("RANGED", r), penaltyTag("BOMBARD", r),
+    curveTag("RANGED", r), curveTag("BOMBARD", r)]);
+  files.set("sr-tags.xml", [HEADER, GENERATED,
+    "<!-- Unit tags: which resource a unit draws on, and which of its strengths the penalty and the curve change. -->",
+    "<Database>", "    <Tags>", ...allTags.map((t) => `        <Row Tag="${t}" Category="UNIT_CLASS"/>`),
     "    </Tags>", "</Database>", ""].join("\n"));
   for (const age of AGES) {
     const file = AGE_FILE[age];
-    const gates = buildGateMap(readDump(age));
+    const dump = readDump(age);
+    const gates = buildGateMap(dump);
+    const strengths = strengthUnits(dump);
+    const rows = [...gates].map(([unit, resource]) => [unit, supplyTag(resource)]);
+    for (const [resource, units] of strengths.penalty) {
+      for (const type of ["RANGED", "BOMBARD"]) rows.push(...units[type].map((u) => [u, penaltyTag(type, resource)]));
+    }
+    for (const [resource, units] of strengths.curve) {
+      for (const type of ["RANGED", "BOMBARD"]) rows.push(...units[type].map((u) => [u, curveTag(type, resource)]));
+    }
     files.set(`sr-${file}-supply.xml`, [HEADER, GENERATED,
-      `<!-- ${age}: the units that draw on a resource (DESIGN.md section 4). -->`, "<Database>", "    <TypeTags>",
-      ...[...gates].map(([unit, resource]) => `        <Row Type="${unit}" Tag="${supplyTag(resource)}"/>`),
+      `<!-- ${age}: the units that draw on a resource (DESIGN.md section 4), and their strength types. -->`,
+      "<Database>", "    <TypeTags>", ...rows.map(([unit, tag]) => `        <Row Type="${unit}" Tag="${tag}"/>`),
       "    </TypeTags>", "</Database>", ""].join("\n"));
     for (const [levelName, level] of Object.entries(LEVELS)) {
-      const parts = gatedResources(age).map((r) => penaltyFor(r, level));
+      const parts = gatedResources(age).map((r) => penaltyFor(r, level, strengths.penalty.get(r) ?? {}));
       files.set(`sr-${file}-${levelName}-modifiers.xml`, gameEffects(
         `${age}, unsupplied penalty ${levelName}: ${level.combat} combat strength and ${level.productionPercent}% ` +
-          "production without the resource, cancelled while the owner holds a copy.",
+          "production without the resource, cancelled while the owner holds a copy; each strength only on units " +
+          "that have it.",
         parts.flatMap((p) => p.body)));
       files.set(`sr-${file}-${levelName}-game.xml`, gameModifiers(parts.flatMap((p) => p.ids)));
     }
-    const curves = VANILLA_PER_COPY[age].map(curveFor);
+    const curves = VANILLA_PER_COPY[age].map((c) => curveFor(c, strengths.curve.get(c.resource) ?? {}));
     files.set(`sr-${file}-curve-modifiers.xml`, gameEffects(
       `${age}, late curve: +1 combat strength at ${CURVE_THRESHOLDS.join(", ")} copies, on the units ` +
         "vanilla's per-copy bonus covers (it stops at six copies).",
@@ -207,12 +243,14 @@ function main() {
   const strays = fs.readdirSync(dataDir).filter((n) => n.startsWith("sr-") && n.endsWith(".xml") && !files.has(n));
   if (check) {
     if (stale.length || strays.length) {
-      console.log(`data:check FAILED\n  stale: ${stale.join(", ") || "none"}\n  not generated: ${strays.join(", ") || "none"}`);
+      console.log(`data:check FAILED\n  stale: ${stale.join(", ") || "none"}\n` +
+        `  not generated: ${strays.join(", ") || "none"}`);
       process.exit(1);
     }
     console.log(`data:check ok (${files.size} files)`);
   } else {
-    console.log(`wrote ${stale.length} of ${files.size} files${strays.length ? `; not generated: ${strays.join(", ")}` : ""}`);
+    const note = strays.length ? `; not generated: ${strays.join(", ")}` : "";
+    console.log(`wrote ${stale.length} of ${files.size} files${note}`);
   }
 }
 

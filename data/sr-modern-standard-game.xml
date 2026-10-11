@@ -4,18 +4,34 @@
     <GameModifiers>
         <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_NITER"/>
         <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_NITER"/>
+        <Row ModifierId="SR_ATTACH_RANGED_PENALTY_NITER"/>
+        <Row ModifierId="SR_ATTACH_RANGED_SUPPLIED_NITER"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_PENALTY_NITER"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_SUPPLIED_NITER"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_NITER"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_NITER"/>
         <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_OIL"/>
         <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_OIL"/>
+        <Row ModifierId="SR_ATTACH_RANGED_PENALTY_OIL"/>
+        <Row ModifierId="SR_ATTACH_RANGED_SUPPLIED_OIL"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_PENALTY_OIL"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_SUPPLIED_OIL"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_OIL"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_OIL"/>
         <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_COAL"/>
         <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_COAL"/>
+        <Row ModifierId="SR_ATTACH_RANGED_PENALTY_COAL"/>
+        <Row ModifierId="SR_ATTACH_RANGED_SUPPLIED_COAL"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_PENALTY_COAL"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_SUPPLIED_COAL"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_COAL"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_COAL"/>
         <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_RUBBER"/>
         <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_RUBBER"/>
+        <Row ModifierId="SR_ATTACH_RANGED_PENALTY_RUBBER"/>
+        <Row ModifierId="SR_ATTACH_RANGED_SUPPLIED_RUBBER"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_PENALTY_RUBBER"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_SUPPLIED_RUBBER"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_RUBBER"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_RUBBER"/>
     </GameModifiers>

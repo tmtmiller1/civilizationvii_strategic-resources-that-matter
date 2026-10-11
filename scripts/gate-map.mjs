@@ -150,3 +150,35 @@ export function upgradeOnlyGatedUnits(dump) {
     .filter((u) => u.CanTrain === 0 && gates.has(u.UnitType) && upgradeTargets.has(u.UnitType))
     .map((u) => u.UnitType);
 }
+
+/**
+ * The strength types the penalty and the curve change, and the Unit_Stats column each one reads. A unit is only ever
+ * given a change on a strength it has: a melee unit's ranged and bombard strength are 0 because it has no such attack,
+ * and raising one above 0 could turn on ranged behaviour, so those rows never reach it.
+ */
+export const STRENGTHS = [
+  { type: "MELEE", stat: "Combat" },
+  { type: "RANGED", stat: "RangedCombat" },
+  { type: "BOMBARD", stat: "Bombard" }
+];
+
+/**
+ * Per resource of one age, the units each strength row may change: the gated units (penalty) and the units vanilla's
+ * per-copy bonus covers (curve), each kept only where the unit's base value for that strength is above 0.
+ * @param {AgeDump & { units: { UnitType: string, Combat?: number, RangedCombat?: number, Bombard?: number }[] }} dump
+ * @returns {{ penalty: Map<string, Record<string, string[]>>, curve: Map<string, Record<string, string[]>> }}
+ */
+export function strengthUnits(dump) {
+  const stats = new Map(dump.units.map((u) => [u.UnitType, u]));
+  const facts = unitFacts(dump);
+  const keep = (/** @type {string[]} */ units, /** @type {string} */ stat) =>
+    units.filter((unit) => Number(/** @type {*} */ (stats.get(unit))?.[stat] ?? 0) > 0).sort();
+  const split = (/** @type {string[]} */ units) =>
+    Object.fromEntries(STRENGTHS.map(({ type, stat }) => [type, keep(units, stat)]));
+  const gates = buildGateMap(dump);
+  const penalty = new Map(gatedResources(dump.age).map((resource) =>
+    [resource, split([...gates].filter(([, r]) => r === resource).map(([unit]) => unit))]));
+  const curve = new Map(VANILLA_PER_COPY[dump.age].map(({ resource, tags }) =>
+    [resource, split([...facts.values()].filter((u) => tags.some((t) => u.tags.has(t))).map((u) => u.UnitType))]));
+  return { penalty, curve };
+}

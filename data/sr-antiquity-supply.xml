@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
-<!-- AGE_ANTIQUITY: the units that draw on a resource (DESIGN.md section 4). -->
+<!-- AGE_ANTIQUITY: the units that draw on a resource (DESIGN.md section 4), and their strength types. -->
 <Database>
     <TypeTags>
         <Row Type="UNIT_CHARIOT" Tag="SR_SUPPLY_HORSES"/>
@@ -25,5 +25,9 @@
         <Row Type="UNIT_PURABHETTARAH" Tag="SR_SUPPLY_HORSES"/>
         <Row Type="UNIT_PURABHETTARAH_2" Tag="SR_SUPPLY_HORSES"/>
         <Row Type="UNIT_SPEARMAN" Tag="SR_SUPPLY_IRON"/>
+        <Row Type="UNIT_HWARANG" Tag="SR_CURVE_RANGED_HORSES"/>
+        <Row Type="UNIT_HWARANG_2" Tag="SR_CURVE_RANGED_HORSES"/>
+        <Row Type="UNIT_HWARANG" Tag="SR_CURVE_BOMBARD_HORSES"/>
+        <Row Type="UNIT_HWARANG_2" Tag="SR_CURVE_BOMBARD_HORSES"/>
     </TypeTags>
 </Database>

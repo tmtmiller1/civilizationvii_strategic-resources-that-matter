@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
-<!-- AGE_MODERN, unsupplied penalty light: -2 combat strength and -20% production without the resource, cancelled while the owner holds a copy. -->
+<!-- AGE_MODERN, unsupplied penalty light: -2 combat strength and -20% production without the resource, cancelled while the owner holds a copy; each strength only on units that have it. -->
 <GameEffects xmlns="GameEffects">
     <Modifier id="SR_ATTACH_COMBAT_PENALTY_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_PENALTY_NITER</Argument>
@@ -12,7 +12,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">-2</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_SUPPLIED_NITER</Argument>
@@ -30,7 +30,67 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">2</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_RANGED_PENALTY_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_RANGED_PENALTY_NITER</Argument>
+    </Modifier>
+    <Modifier id="SR_RANGED_PENALTY_NITER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_RANGED_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_RANGED_SUPPLIED_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_RANGED_SUPPLIED_NITER</Argument>
+    </Modifier>
+    <Modifier id="SR_RANGED_SUPPLIED_NITER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_RANGED_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_BOMBARD_PENALTY_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_BOMBARD_PENALTY_NITER</Argument>
+    </Modifier>
+    <Modifier id="SR_BOMBARD_PENALTY_NITER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_BOMBARD_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_BOMBARD_SUPPLIED_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_BOMBARD_SUPPLIED_NITER</Argument>
+    </Modifier>
+    <Modifier id="SR_BOMBARD_SUPPLIED_NITER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_BOMBARD_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_PRODUCTION_PENALTY_NITER</Argument>
@@ -62,7 +122,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">-2</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_SUPPLIED_OIL</Argument>
@@ -80,7 +140,67 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">2</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_RANGED_PENALTY_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_RANGED_PENALTY_OIL</Argument>
+    </Modifier>
+    <Modifier id="SR_RANGED_PENALTY_OIL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_RANGED_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_RANGED_SUPPLIED_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_RANGED_SUPPLIED_OIL</Argument>
+    </Modifier>
+    <Modifier id="SR_RANGED_SUPPLIED_OIL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_RANGED_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_BOMBARD_PENALTY_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_BOMBARD_PENALTY_OIL</Argument>
+    </Modifier>
+    <Modifier id="SR_BOMBARD_PENALTY_OIL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_BOMBARD_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_BOMBARD_SUPPLIED_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_BOMBARD_SUPPLIED_OIL</Argument>
+    </Modifier>
+    <Modifier id="SR_BOMBARD_SUPPLIED_OIL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_BOMBARD_OIL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_OIL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_PRODUCTION_PENALTY_OIL</Argument>
@@ -112,7 +232,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">-2</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_SUPPLIED_COAL</Argument>
@@ -130,7 +250,67 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">2</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_RANGED_PENALTY_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_RANGED_PENALTY_COAL</Argument>
+    </Modifier>
+    <Modifier id="SR_RANGED_PENALTY_COAL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_RANGED_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_RANGED_SUPPLIED_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_RANGED_SUPPLIED_COAL</Argument>
+    </Modifier>
+    <Modifier id="SR_RANGED_SUPPLIED_COAL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_RANGED_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_BOMBARD_PENALTY_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_BOMBARD_PENALTY_COAL</Argument>
+    </Modifier>
+    <Modifier id="SR_BOMBARD_PENALTY_COAL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_BOMBARD_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_BOMBARD_SUPPLIED_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_BOMBARD_SUPPLIED_COAL</Argument>
+    </Modifier>
+    <Modifier id="SR_BOMBARD_SUPPLIED_COAL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_BOMBARD_COAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_COAL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_PRODUCTION_PENALTY_COAL</Argument>
@@ -162,7 +342,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">-2</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_SUPPLIED_RUBBER</Argument>
@@ -180,7 +360,67 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">2</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_RANGED_PENALTY_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_RANGED_PENALTY_RUBBER</Argument>
+    </Modifier>
+    <Modifier id="SR_RANGED_PENALTY_RUBBER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_RANGED_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_RANGED_SUPPLIED_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_RANGED_SUPPLIED_RUBBER</Argument>
+    </Modifier>
+    <Modifier id="SR_RANGED_SUPPLIED_RUBBER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_RANGED_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">RANGED</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_BOMBARD_PENALTY_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_BOMBARD_PENALTY_RUBBER</Argument>
+    </Modifier>
+    <Modifier id="SR_BOMBARD_PENALTY_RUBBER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_BOMBARD_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_BOMBARD_SUPPLIED_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_BOMBARD_SUPPLIED_RUBBER</Argument>
+    </Modifier>
+    <Modifier id="SR_BOMBARD_SUPPLIED_RUBBER" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_BOMBARD_RUBBER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">BOMBARD</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_RUBBER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_PRODUCTION_PENALTY_RUBBER</Argument>

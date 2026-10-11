@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
-<!-- AGE_ANTIQUITY, unsupplied penalty harsh: -5 combat strength and -50% production without the resource, cancelled while the owner holds a copy. -->
+<!-- AGE_ANTIQUITY, unsupplied penalty harsh: -5 combat strength and -50% production without the resource, cancelled while the owner holds a copy; each strength only on units that have it. -->
 <GameEffects xmlns="GameEffects">
     <Modifier id="SR_ATTACH_COMBAT_PENALTY_HORSES" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_PENALTY_HORSES</Argument>
@@ -12,7 +12,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">-5</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_HORSES" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_SUPPLIED_HORSES</Argument>
@@ -30,7 +30,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">5</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_HORSES" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_PRODUCTION_PENALTY_HORSES</Argument>
@@ -62,7 +62,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">-5</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_IRON" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_SUPPLIED_IRON</Argument>
@@ -80,7 +80,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">5</Argument>
-        <Argument name="Type">ALL</Argument>
+        <Argument name="Type">MELEE</Argument>
     </Modifier>
     <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_IRON" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_PRODUCTION_PENALTY_IRON</Argument>
