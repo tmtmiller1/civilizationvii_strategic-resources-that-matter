@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Antiquity Warrior/Iron, Modern Tank/Oil. Combat: base −10, +7 with the resource. Cost: −50% production, +50% with
+     the resource. Curve: CURVE_A +2 per copy (vanilla shape, no requirement); CURVE_B +3 per copy once the player has
+     at least 2 (child OwnerRequirements). Requirements are only ever on children, never on the attach parent. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SRP3_ATTACH_PEN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP3_PEN</Argument>
+    </Modifier>
+    <Modifier id="SRP3_PEN" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_WARRIOR</Argument></Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-10</Argument>
+    </Modifier>
+    <Modifier id="SRP3_ATTACH_OWN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP3_OWN</Argument>
+    </Modifier>
+    <Modifier id="SRP3_OWN" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument><Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_WARRIOR</Argument></Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">7</Argument>
+    </Modifier>
+    <Modifier id="SRP3_ATTACH_COST_PEN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP3_COST_PEN</Argument>
+    </Modifier>
+    <Modifier id="SRP3_COST_PEN" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitType">UNIT_WARRIOR</Argument>
+        <Argument name="Percent">-50</Argument>
+    </Modifier>
+    <Modifier id="SRP3_ATTACH_COST_OK" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP3_COST_OK</Argument>
+    </Modifier>
+    <Modifier id="SRP3_COST_OK" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument><Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_WARRIOR</Argument>
+        <Argument name="Percent">50</Argument>
+    </Modifier>
+    <!-- Layer 3, A: the vanilla shape (GameModifiers row, COLLECTION_ALL_UNITS), +2 per copy. -->
+    <Modifier id="SRP3_CURVE_A" collection="COLLECTION_ALL_UNITS" effect="EFFECT_UNIT_ADJUST_COMBAT_STRENGTH_PER_RESOURCE">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_WARRIOR</Argument></Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="ResourceType">RESOURCE_IRON</Argument>
+    </Modifier>
+    <!-- Layer 3, B: +3 per copy, only once the player has at least 2. -->
+    <Modifier id="SRP3_ATTACH_CURVE_B" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP3_CURVE_B</Argument>
+    </Modifier>
+    <Modifier id="SRP3_CURVE_B" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_COMBAT_STRENGTH_PER_RESOURCE">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument><Argument name="Amount">2</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_WARRIOR</Argument></Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">3</Argument>
+        <Argument name="ResourceType">RESOURCE_IRON</Argument>
+    </Modifier>
+    <!-- Modern age check: Tank/Oil, same penalty and cancel shape. -->
+    <Modifier id="SRP3_ATTACH_MO_PEN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP3_MO_PEN</Argument>
+    </Modifier>
+    <Modifier id="SRP3_MO_PEN" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_TANK</Argument></Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-10</Argument>
+    </Modifier>
+    <Modifier id="SRP3_ATTACH_MO_OWN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP3_MO_OWN</Argument>
+    </Modifier>
+    <Modifier id="SRP3_MO_OWN" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument><Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_TANK</Argument></Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">7</Argument>
+    </Modifier>
+</GameEffects>

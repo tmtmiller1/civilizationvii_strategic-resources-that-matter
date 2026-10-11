@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway probe for DESIGN.md section 7 (P1-P6). Dev only, never ship. -->
+<Mod id="sr-probe" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Strategic Resources Probe (dev)</Name>
+        <Description>Dev only: gates Warrior and Spearman on Iron, Chariot and Horseman on Horses, and gives Warriors two inverse-requirement penalties.</Description>
+        <Authors>Tower</Authors>
+        <Package>SRProbe</Package>
+        <PackageSortIndex>9996</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="antiquity"><AgeInUse>AGE_ANTIQUITY</AgeInUse></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="sr-probe-game" scope="game" criteria="antiquity">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/gate.sql</Item>
+                    <Item>data/penalty-gameeffects.xml</Item>
+                    <Item>data/penalty.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

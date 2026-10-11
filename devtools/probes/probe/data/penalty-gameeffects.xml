@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- P3: two candidate "has no Iron" requirements, distinct magnitudes so the reading tells which one fired.
+     A: REQUIREMENT_PLAYER_HAS_RESOURCE (declared, unused in vanilla), -3.
+     B: REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE Amount 1 (used by narrative events), -10. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SRP_ATTACH_A" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP_WARRIOR_NO_IRON_A</Argument>
+    </Modifier>
+    <Modifier id="SRP_WARRIOR_NO_IRON_A" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_RESOURCE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES">
+                <Argument name="UnitType">UNIT_WARRIOR</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-3</Argument>
+    </Modifier>
+    <Modifier id="SRP_ATTACH_B" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP_WARRIOR_NO_IRON_B</Argument>
+    </Modifier>
+    <Modifier id="SRP_WARRIOR_NO_IRON_B" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES">
+                <Argument name="UnitType">UNIT_WARRIOR</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-10</Argument>
+    </Modifier>
+</GameEffects>
