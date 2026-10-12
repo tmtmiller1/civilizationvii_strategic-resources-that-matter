@@ -4,42 +4,12 @@
 // call time, so a mod that patches the panel's prototype after this one still runs.
 
 import { log } from "/tower-strategic-resources/ui/sr-log.js";
-import {
-  buildPenaltyIndex,
-  buildSupplyIndex,
-  computeSupplyStatus,
-  countCopies
-} from "/tower-strategic-resources/ui/sr-supply.js";
+import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources/ui/sr-player-supply.js";
+import { computeSupplyStatus } from "/tower-strategic-resources/ui/sr-supply.js";
 
 const LINE_CLASS = "sr-unsupplied-line";
 const LINE_CLASSES = [LINE_CLASS, "font-body", "text-xs", "text-negative-light", "text-center", "mt-1", "px-2"];
 const STATS_SELECTOR = ".unit-actions__stats_container";
-
-/** @type {{ supply: Map<string, string>, penalties: Map<string, import("./sr-supply.js").Penalty> } | null} */
-let indexes = null;
-
-// The unit tags and modifier sizes are fixed for the whole game, so they are read once.
-function readIndexes() {
-  if (!indexes) {
-    indexes = {
-      supply: buildSupplyIndex(/** @type {*} */ (GameInfo.TypeTags) ?? []),
-      penalties: buildPenaltyIndex(/** @type {*} */ (GameInfo.ModifierArguments) ?? [])
-    };
-  }
-  return indexes;
-}
-
-/**
- * @param {*} player
- * @returns {{ resourceType: string | null, isOffMap: boolean }[]}
- */
-function readHoldings(player) {
-  const entries = player?.Resources?.getResources?.() ?? [];
-  return entries.map((/** @type {*} */ entry) => ({
-    resourceType: GameInfo.Resources.lookup(entry?.uniqueResource?.resource)?.ResourceType ?? null,
-    isOffMap: entry?.isOffMap === true
-  }));
-}
 
 /**
  * The panel line for a unit, or null when there is nothing to say.
@@ -52,16 +22,9 @@ export function describeUnit(unit) {
   const unitType = GameInfo.Units.lookup(unit.type)?.UnitType;
   if (!unitType) return null;
   const { supply, penalties } = readIndexes();
-  const holdings = readHoldings(owner);
-  const status = computeSupplyStatus({
-    unitType,
-    supply,
-    penalties,
-    copiesOf: (resourceType) => countCopies(holdings, resourceType)
-  });
+  const status = computeSupplyStatus({ unitType, supply, penalties, copiesOf: copiesCounter(owner) });
   if (!status) return null;
-  const resourceName = GameInfo.Resources.lookup(status.resourceType)?.Name ?? status.resourceType;
-  return Locale.compose("LOC_SR_UNSUPPLIED_LINE", resourceName, status.combat);
+  return Locale.compose("LOC_SR_UNSUPPLIED_LINE", resourceNameKey(status.resourceType), status.combat);
 }
 
 /**

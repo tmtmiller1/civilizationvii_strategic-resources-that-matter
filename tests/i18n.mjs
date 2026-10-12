@@ -14,8 +14,11 @@ export const LANGUAGE_OF = {
   pl_pl: "pl_PL", pt_br: "pt_BR", ru_ru: "ru_RU", zh_cn: "zh_Hans_CN", zh_hk: "zh_Hant_HK"
 };
 
-// Tags whose translation may read the same as the English on purpose ("Standard" in German, French and Italian).
-const SAME_AS_ENGLISH_OK = new Set(["LOC_SR_SETUP_UNSUPPLIED_STANDARD"]);
+// Tags whose translation may read the same as the English on purpose ("Standard" in German, French and Italian; the
+// short "Niter: 2" of a one-row production item and the list's "A, B", only placeholders and punctuation).
+const SAME_AS_ENGLISH_OK = new Set([
+  "LOC_SR_SETUP_UNSUPPLIED_STANDARD", "LOC_SR_PRODUCTION_NEEDS_HELD_SHORT", "LOC_SR_LIST_PAIR"
+]);
 
 /** @param {string} folder @returns {Map<string, string>} tag -> text, and asserts no duplicates */
 function readTexts(folder) {

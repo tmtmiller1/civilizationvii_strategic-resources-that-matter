@@ -6,8 +6,11 @@
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="zh_Hant_HK"><Text>無補給：沒有{1_Resource}（戰鬥力{2_Combat}，訓練變慢）</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="zh_Hant_HK"><Text>需要{1_Resource}。沒有時：戰鬥力{2_Combat}，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="zh_Hant_HK"><Text>需要{1_Resource}（擁有{2_Copies}個）。</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE_SHORT" Language="zh_Hant_HK"><Text>需要{1_Resource}</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD_SHORT" Language="zh_Hant_HK"><Text>{1_Resource}：{2_Copies}個</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES" Language="zh_Hant_HK"><Text>補給單位：{1_Units}。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="zh_Hant_HK"><Text>補給單位：{1_Units}等，另有{2_More}種。</Text></Replace>
+        <Replace Tag="LOC_SR_LIST_PAIR" Language="zh_Hant_HK"><Text>{1_First}、{2_Second}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="zh_Hant_HK"><Text>{2_Combat} 無補給：沒有{3_Resource}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="zh_Hant_HK"><Text>+{2_Combat} {4_Resource}：{3_Copies}份或以上</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="zh_Hant_HK"><Text>無補給單位</Text></Replace>
