@@ -4,6 +4,10 @@
         <Replace Tag="LOC_SR_MOD_NAME" Language="ru_RU"><Text>Стратегические ресурсы, которые имеют значение</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ru_RU"><Text>Стратегические ресурсы снова важны. Отряд, которому нужны лошади, железо, селитра, нефть, уголь или каучук, сражается слабее и обучается дольше, пока у его владельца нет ни одной единицы этого ресурса, а каждая единица по-прежнему дает бонус самой игры. Потеряете последнюю — штраф вернется через ход. Сверх шести единиц их число продолжает добавлять силу. Две настройки создания игры задают штраф и включают поздний бонус. Только для одного игрока. В сетевой игре после потери ресурса штраф возвращается, только когда этот игрок получит какой-нибудь ресурс.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ru_RU"><Text>Без снабжения: нет ресурса «{1_Resource}» ({2_Combat} к боевой мощи, обучение дольше)</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="ru_RU"><Text>Нужен ресурс «{1_Resource}». Без него: {2_Combat} к боевой мощи, обучение дольше.</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="ru_RU"><Text>Нужен ресурс «{1_Resource}» (у вас {2_Copies}).</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_SUPPLIES" Language="ru_RU"><Text>Снабжает отряды: {1_Units}.</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="ru_RU"><Text>Снабжает отряды: {1_Units} и ещё {2_More}.</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="ru_RU"><Text>{2_Combat} Без снабжения: нет ресурса «{3_Resource}»</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="ru_RU"><Text>+{2_Combat} «{4_Resource}»: {3_Copies} единиц и больше</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="ru_RU"><Text>Отряды без снабжения</Text></Replace>

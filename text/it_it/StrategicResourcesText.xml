@@ -4,6 +4,10 @@
         <Replace Tag="LOC_SR_MOD_NAME" Language="it_IT"><Text>Risorse strategiche che contano</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="it_IT"><Text>Le risorse strategiche tornano a contare. Un'unità che dipende da Cavalli, Ferro, Salnitro, Petrolio, Carbone o Gomma combatte peggio e si addestra più lentamente finché il suo proprietario non ne possiede nessuna unità, e ogni unità dà comunque il bonus del gioco. Se perdi l'ultima, la penalità torna un turno dopo. Oltre le sei unità, il numero continua ad aggiungere forza. Due opzioni di configurazione della partita stabiliscono la penalità e attivano il bonus avanzato. Giocatore singolo. In multigiocatore, perdere una risorsa non riporta la penalità finché quel giocatore non ottiene una risorsa.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="it_IT"><Text>Senza rifornimenti: niente {1_Resource} ({2_Combat} di forza di combattimento, addestramento più lento)</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="it_IT"><Text>Richiede {1_Resource}. Senza: {2_Combat} di forza di combattimento, addestramento più lento.</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="it_IT"><Text>Richiede {1_Resource} (ne hai {2_Copies}).</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_SUPPLIES" Language="it_IT"><Text>Rifornisce le unità: {1_Units}.</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="it_IT"><Text>Rifornisce le unità: {1_Units} e altre {2_More}.</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="it_IT"><Text>{2_Combat} Senza rifornimenti: niente {3_Resource}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="it_IT"><Text>+{2_Combat} {4_Resource}: {3_Copies} unità o più</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="it_IT"><Text>Unità senza rifornimenti</Text></Replace>

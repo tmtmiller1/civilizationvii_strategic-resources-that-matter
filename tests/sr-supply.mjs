@@ -4,7 +4,10 @@ import {
   buildSupplyIndex,
   computeSupplyStatus,
   countCopies,
-  resourceForSupplyTag
+  describeProductionCost,
+  resourceForSupplyTag,
+  SUPPLIED_UNITS_SHOWN,
+  unitsSuppliedBy
 } from "/tower-strategic-resources/ui/sr-supply.js";
 
 // The pure half of the unit panel line: which resource a unit draws on and what it costs to lack it.
@@ -65,5 +68,47 @@ const zero = computeSupplyStatus({
   copiesOf: () => 0
 });
 assert.equal(zero, null);
+
+// The resource line: the units a resource supplies, sorted by name, the first three and a count of the rest.
+assert.equal(SUPPLIED_UNITS_SHOWN, 3);
+const ironUnits = new Map([
+  ["UNIT_SPEARMAN", "RESOURCE_IRON"], ["UNIT_PHALANX", "RESOURCE_IRON"], ["UNIT_LEGION", "RESOURCE_IRON"],
+  ["UNIT_HOPLITE", "RESOURCE_IRON"], ["UNIT_CHARIOT", "RESOURCE_HORSES"]
+]);
+const unitNames = new Map([
+  ["UNIT_SPEARMAN", "Spearman"], ["UNIT_PHALANX", "Phalanx"], ["UNIT_LEGION", "Legion"], ["UNIT_HOPLITE", "Hoplite"],
+  ["UNIT_CHARIOT", "Chariot"]
+]);
+assert.deepEqual(unitsSuppliedBy("RESOURCE_IRON", ironUnits, unitNames), {
+  names: ["Hoplite", "Legion", "Phalanx"], more: 1
+});
+assert.deepEqual(unitsSuppliedBy("RESOURCE_HORSES", ironUnits, unitNames), { names: ["Chariot"], more: 0 });
+assert.equal(unitsSuppliedBy("RESOURCE_WINE", ironUnits, unitNames), null, "a resource that supplies nothing");
+const ownUnits = new Map([["UNIT_SPEARMAN", "Spearman"], ["UNIT_LEGION", "Legion"]]);
+assert.deepEqual(unitsSuppliedBy("RESOURCE_IRON", ironUnits, ownUnits), { names: ["Legion", "Spearman"], more: 0 },
+  "a unit without a name (another civilization's unique unit) is left out");
+const sameName = new Map([["UNIT_SPEARMAN", "Spear"], ["UNIT_PHALANX", "Spear"]]);
+assert.deepEqual(unitsSuppliedBy("RESOURCE_IRON", ironUnits, sameName), { names: ["Spear"], more: 0 });
+assert.equal(unitsSuppliedBy("RESOURCE_IRON", ironUnits, new Map()), null);
+
+// The production item line agrees with the unit panel's status.
+const query = (copies) => ({ supply, penalties, copiesOf: () => copies });
+assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", query(0)), {
+  key: "LOC_SR_PRODUCTION_NEEDS_NONE", args: ["RESOURCE_IRON", -3]
+});
+assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", query(2)), {
+  key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: ["RESOURCE_IRON", 2]
+}, "held: the requirement shows before it bites");
+assert.equal(describeProductionCost("UNIT_WARRIOR", query(0)), null, "an ungated unit says nothing");
+assert.equal(describeProductionCost("UNIT_SPEARMAN", { supply, penalties: new Map(), copiesOf: () => 0 }), null,
+  "the Off setting says nothing");
+assert.equal(describeProductionCost("UNIT_SPEARMAN", {
+  supply, penalties: new Map([["RESOURCE_IRON", { combat: 0, productionPercent: 0 }]]), copiesOf: () => 1
+}), null);
+for (const copies of [0, 1, 5]) {
+  const line = describeProductionCost("UNIT_SPEARMAN", query(copies));
+  const unsupplied = computeSupplyStatus({ unitType: "UNIT_SPEARMAN", ...query(copies) }) !== null;
+  assert.equal(line?.key === "LOC_SR_PRODUCTION_NEEDS_NONE", unsupplied, `panel and list agree at ${copies}`);
+}
 
 console.log("sr-supply tests passed");

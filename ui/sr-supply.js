@@ -115,3 +115,42 @@ export function computeSupplyStatus({ unitType, supply, penalties, copiesOf }) {
   if (copiesOf(resourceType) > 0) return null;
   return { resourceType, combat: penalty.combat, productionPercent: penalty.productionPercent };
 }
+
+// The resource line names this many units before "and N more".
+export const SUPPLIED_UNITS_SHOWN = 3;
+
+/**
+ * The units a resource supplies, by display name, for the resource line. A unit missing from `unitNames` is left
+ * out, which is how the caller drops other civilizations' unique units.
+ * @param {string} resourceType
+ * @param {Map<string, string>} supply unit type to the resource it draws on
+ * @param {Map<string, string>} unitNames unit type to its display name
+ * @returns {{ names: string[], more: number } | null} the first names in order and how many follow, or null
+ */
+export function unitsSuppliedBy(resourceType, supply, unitNames) {
+  const names = new Set();
+  for (const [unitType, resource] of supply) {
+    const name = resource === resourceType ? unitNames.get(unitType) : undefined;
+    if (name) names.add(name);
+  }
+  if (names.size === 0) return null;
+  const sorted = [...names].sort((a, b) => a.localeCompare(b));
+  return { names: sorted.slice(0, SUPPLIED_UNITS_SHOWN), more: Math.max(0, sorted.length - SUPPLIED_UNITS_SHOWN) };
+}
+
+/**
+ * The line for a unit's item in the production list: what it needs and, with none held, what that costs. Reads
+ * the same status as the unit panel line, so the two never disagree. Null when the unit draws on nothing or the
+ * penalty is off.
+ * @param {string} unitType
+ * @param {Omit<SupplyQuery, "unitType">} query
+ * @returns {{ key: string, args: (string | number)[] } | null} a text key and its arguments, the resource first
+ */
+export function describeProductionCost(unitType, { supply, penalties, copiesOf }) {
+  const status = computeSupplyStatus({ unitType, supply, penalties, copiesOf });
+  if (status) return { key: "LOC_SR_PRODUCTION_NEEDS_NONE", args: [status.resourceType, status.combat] };
+  const resourceType = supply.get(unitType);
+  const penalty = resourceType ? penalties.get(resourceType) : undefined;
+  if (!resourceType || !penalty || (penalty.combat === 0 && penalty.productionPercent === 0)) return null;
+  return { key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: [resourceType, copiesOf(resourceType)] };
+}
