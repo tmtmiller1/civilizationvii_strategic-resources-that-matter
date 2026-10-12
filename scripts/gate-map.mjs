@@ -40,7 +40,7 @@ export const GATES = {
     { resource: "RESOURCE_NITER", rule: "land siege", test: (u) => has(u, "SIEGE") && u.Domain === "DOMAIN_LAND" },
     {
       resource: "RESOURCE_NITER",
-      rule: "heavy warships from tier 2 (ships of the line)",
+      rule: "heavy warships from tier 2 (the Cog is free)",
       test: (u) => has(u, "NAVAL") && has(u, "HEAVY") && u.Tier >= 2
     }
   ],

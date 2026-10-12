@@ -97,10 +97,10 @@ unit it replaces, a unit that replaces nothing by its own tags and tier. `tests/
 | Exploration | cavalry | Horses | Courser, Knight, Lancer; Boyar 1-3, Chevaler 1-3, Mamluk 1-3, Tobang 1-3 |
 | Exploration | infantry from tier 2 | Iron | Man-at-Arms, Pikeman; Gold Bangles, Kispoko Nena To, Leiomano, Samurai, Tercio, Xunleichong (each 2-3) |
 | Exploration | land siege | Niter | Catapult, Trebuchet, Bombard; Hwacha 1-3 |
-| Exploration | heavy warships from tier 2 (ships of the line; the Cog is free) | Niter | Carrack, Galleon; Cetbang, Corsair, Kalam, Vikingr (each 2-3) |
-| Modern | artillery: land siege and land ranged | Niter | Field Cannon, Field Gun, AT Gun, Mortar, Heavy Artillery, Assault Gun; Chang Beun 1-3, Katyusha 1-2 |
+| Exploration | heavy warships from tier 2 (the Cog is free) | Niter | Carrack, Galleon; Cetbang, Corsair, Kalam, Vikingr (each 2-3) |
+| Modern | artillery: land siege and land ranged | Niter | Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun; Chang Beun 1-3, Katyusha 1-2 |
 | Modern | armour: cavalry from tier 2 (the Cuirassier is free) | Oil | Landship, Tank; Cossack 2-3, Ghilman 2-3, Hussar 2-3 |
-| Modern | battleships: heavy warships from tier 2 (the Frigate is free) | Oil | Dreadnought, Battleship; Mikasa 1-2, Revenge 1-2, Turtle Ship 2-3 |
+| Modern | battleships: heavy warships from tier 2 (the Ship of the Line is free) | Oil | Dreadnought, Battleship; Mikasa 1-2, Revenge 1-2, Turtle Ship 2-3 |
 | Modern | light warships | Coal | Ironclad, Cruiser, Destroyer; Barbary Corsair 1-3 |
 | Modern | aircraft | Rubber | Biplane, Fighter, Trench Fighter, Dive Bomber, Bomber, Heavy Bomber; Stuka 1-2, Zero 1-2 |
 | Modern | infantry | none | count bonus only; gating the basic line unit would lock players out of defence |
@@ -368,32 +368,43 @@ wrapper around `setupUnitInfo`, read from the live count, so it shows a loss bef
 English and German, with Readable Tooltips still the plot tooltip winner.
 
 **What the player is told, and where (watched 2026-10-12, phase 12).** Three places. The unit panel line above. The
-combat preview, for the attacker and the defender: "-3 Unsupplied: no Niter" while the penalty stands, and one curve
-line per step, "+1 Niter: 8 or more copies" beside the game's "+6 Niter Resource". The preview lists combat-time
-modifiers only, so a `Preview` string on the base strength rows (child or attach parent) shows nothing; each line is
-its own `EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER` of 0 on `COLLECTION_PLAYER_COMBAT`, behind the same requirement as the
-change it names (child only), and the text takes the modifier's arguments as parameters (Combat, Copies, Resource), so
-one key per kind of line covers every resource. A curve line is shown from its threshold up to the next, so a unit
-shows one. And the Civilopedia: a page in Game Concepts under Combat (the setup values, what a copy is, losing one,
+combat preview: "-3 Unsupplied: no Niter" while the penalty stands, and one curve line per step, "+1 Niter: 8 or more
+copies" beside the game's "+6 Niter Resource". It is drawn for the attacker, and on the defender's side when the local
+unit attacks an unsupplied AI unit; an AI unit's attack cannot be simulated from the local player's context, so the line
+on the local unit as the defender is not watched. The preview lists combat-time modifiers only, so a `Preview` string on
+the base strength rows (child or attach parent) shows nothing; each line is its own
+`EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER` of 0 on `COLLECTION_PLAYER_COMBAT`, behind the same requirement as the change it
+names (child only), and the text takes the modifier's arguments as parameters sorted by name (Amount 0, then Combat,
+Copies, Resource), followed by two values the engine adds (100, whose meaning is not known, and the owner's leader
+name), so one key per kind of line covers every resource. A curve line is shown from its threshold up to the next, so a
+unit shows one. And the Civilopedia: a page in Game Concepts under Combat (the setup values, what a copy is, losing one,
 past six, the gate table per age), and a chapter on each gated unit's page, "Needs Iron: without a copy, -3 Combat
-Strength and slower to train.", with the game's setup level. That chapter is the mod's own on the `Unit` layout and
-has text only on gated units' pages; a paragraph row in one of the game's chapters would replace its text. Pedia rows
-load in the game scope, as the base game's do.
+Strength and slower to train.", with the game's setup level. That chapter is the mod's own on the `Unit` layout and has
+text only on gated units' pages; a paragraph row in one of the game's chapters would replace its text. Pedia rows load
+in the game scope, as the base game's do. Every age's unit names load in every game, so a unit name could be nested like
+a resource name; the page writes them out, translated against the game's own names. The page's title is "Strategic
+Resources" (the mod's full name was cut in the Civilopedia's sidebar in every Latin and Cyrillic language).
 
-**Where the player chooses (watched 2026-10-12, phase 13).** Two more places, both from script and both reading the
-same status as the unit panel line (`sr-supply.js`), so they cannot disagree. The production list: the game renders an
-empty `ComponentRegistry` slot, `ProductionModInfo`, on every item for mods; the mod chains a line into it. On 1.5.0 an
-item lays out as one row (name, stats, slot), in the game's own chooser and in City Hall's, so the line takes a short
-form there, "Needs Niter" (red, none held) or "Niter: 2"; the sentence "Needs Niter. Without it: -3 Combat Strength,
-slower to train." is kept for an item laid out as a column. The line is drawn again on `PlayerResourceChanged`, so an
-open list follows a gain. The resources: the plot tooltip and every commerce resource tooltip and card draw a
-resource's `Tooltip` text through the `Stylize` component, so the mod chains a `Stylize` that adds "Supplies units:
-..." under that text when it is a strategic resource's, listing the local player's own units (no other civilization's
-unique units, nothing their unique unit replaces), three names and a count. One hook covers the game's plot tooltip,
-the game's commerce tooltips and Empire cards, and the mods on the development machine that draw their own (QD Improved
-Plot Tooltip, Building Location Advisor, Better Commerce Screen UI). Neither line replaces a screen or a tooltip. The
-registry wrapper registers at the priority already there and wraps again if another mod's registration replaces it;
-under Mod Commons, which shims the registry, it registers once.
+**Where the player chooses (watched 2026-10-12, phase 13).** Two more places, both from script and both reading the same
+status as the unit panel line (`sr-supply.js`), so they cannot disagree. The production list: the game renders an empty
+`ComponentRegistry` slot, `ProductionModInfo`, on every item for mods; the mod chains a line into it. The line checks
+the item's layout when it is drawn: where the item lays out as one row (name, stats, slot), as City Hall's did with Mod
+Commons on and as the list of phase 13's game B did (that game's chooser is not known), it takes a short form, "Needs
+Niter" (red, none held) or "Niter: 2"; where the item is a column, as with Mod Commons off and the game's own Production
+and Purchase tabs (`p13-review-mod-commons`), it reads "Needs Niter. Without it: -3 Combat Strength, slower to train."
+under the stats. The line is drawn again on `PlayerResourceChanged`, so an open list follows a gain. The resources: the
+plot tooltip and every commerce resource tooltip and card draw a resource's `Tooltip` text through the `Stylize`
+component, so the mod chains a `Stylize` that adds "Supplies units: ..." under that text when it is a strategic
+resource's, listing the local player's own units (no other civilization's unique units, nothing their unique unit
+replaces), three names and a count. One hook covers the game's plot tooltip, the game's commerce tooltips and Empire
+cards, and the mods on the development machine that draw their own (QD Improved Plot Tooltip, Building Location Advisor,
+Better Commerce Screen UI). Neither line replaces a screen or a tooltip. The registry wrapper registers at the priority
+already there and wraps again if another mod's registration replaces it. Under Mod Commons, which shims the registry so
+the slot never changes, it learns of a later winner through Mod Commons' `onRegister` and wraps again there. A wrapper
+wrapped again around a mod that calls what it replaced sits inside a copy of itself, so the production line is drawn by
+the outermost copy only (the resource line composes its text once by itself). Watched with Mod Commons on and off: one
+line per item, and one after a registration that replaces the slot outright or one that chains it (phase 13,
+`p13-review-rewrap`).
 
 **When supply is lost, and the first time (watched 2026-10-12, phase 14).** Two more, both through the game's own
 systems. A notification: when the local player holds no copy of a resource it held at the previous turn start, one
@@ -402,7 +413,10 @@ until you get Niter back.", the unit the player has most of named, the rest coun
 modifiers. It is the mod's own type (`NOTIFICATION_SR_SUPPLY_LOST`, low severity, the game's "resources lost" icon and
 sound), raised from script with `Game.Notifications.send({Type, Message, Summary}, player)`: the call takes no text
 arguments, so the script composes the sentence, and the engine keeps one notification of a type at a time, so every
-loss of one turn goes into one. It ends with its turn, never holds the turn up, and a right-click dismisses it. The
+loss of one turn goes into one. Last turn's notification is still listed at `TurnBegin` and goes when the local
+player's turn is activated, so the sentence is composed at `TurnBegin` and sent at that player's
+`PlayerTurnActivated`; sent at `TurnBegin`, a loss on the turn after another was dropped (phase 14,
+`p14-review-stale`). It ends with its turn, never holds the turn up, and a right-click dismisses it. The
 counts it compares live in the script's memory; a load takes a first look and says nothing. It rides on the turn-start
 re-check, so it is off in multiplayer with it. And a callout: the first time the player selects one of its own units
 while it is unsupplied, the game's tutorial callout says what that means in two sentences, with the game's "Tell me
