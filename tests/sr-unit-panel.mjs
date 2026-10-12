@@ -1,16 +1,17 @@
 import assert from "node:assert/strict";
 import { captureConsole, element, snapshotGlobals, table } from "./_engine-stubs.mjs";
 
-// The unit panel line: the decorator wraps setupUnitInfo, keeps the panel's own work, and shows, updates or hides
-// one line under the stats.
+// The unit panel cell: the decorator wraps setupUnitInfo, keeps the panel's own work, and shows, updates or hides
+// one stat cell (icon, penalty, the sentence as its tooltip) in the stats row.
 
-const restoreGlobals = snapshotGlobals(["Controls", "GameInfo", "Players", "Units", "Locale", "document"]);
+const restoreGlobals = snapshotGlobals(["Controls", "GameInfo", "Players", "Units", "Locale", "document", "UI"]);
 const log = captureConsole();
 
 /** @type {(component: any) => any} */
 let factory = () => null;
 globalThis.Controls = { decorate: (name, fn) => { assert.equal(name, "unit-actions"); factory = fn; } };
 globalThis.document = { createElement: () => element() };
+globalThis.UI = { getIconURL: (name) => `blp:icon_${String(name).toLowerCase()}` };
 globalThis.Locale = { compose: (key, ...args) => `${key}|${args.join("|")}` };
 globalThis.GameInfo = {
   Units: table([{ UnitType: "UNIT_SPEARMAN" }, { UnitType: "UNIT_WARRIOR" }], "UnitType"),
@@ -35,14 +36,15 @@ try {
   const { resetIndexes } = await import("/tower-strategic-resources-that-matter/ui/sr-player-supply.js");
 
   // describeUnit
-  assert.equal(describeUnit(units.spear), "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3");
+  assert.deepEqual(describeUnit(units.spear),
+    { text: "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3", resourceType: "RESOURCE_IRON", combat: -3 });
   assert.equal(describeUnit(units.warrior), null);
   assert.equal(describeUnit(units.minor), null, "independents and city-states pay no penalty");
   assert.equal(describeUnit(units.unknown), null);
   holdings = [{ uniqueResource: { resource: iron.$hash }, isOffMap: false }];
   assert.equal(describeUnit(units.spear), null, "one copy supplies the unit");
   holdings = [{ uniqueResource: { resource: iron.$hash }, isOffMap: true }, { uniqueResource: null }];
-  assert.match(describeUnit(units.spear) ?? "", /UNSUPPLIED/, "an off-map copy supplies nothing");
+  assert.match(describeUnit(units.spear)?.text ?? "", /UNSUPPLIED/, "an off-map copy supplies nothing");
   holdings = [];
 
   // The decorator around a panel whose prototype owns setupUnitInfo.
@@ -64,14 +66,16 @@ try {
   assert.equal(panel.setupUnitInfo(), "drawn", "the panel's own result is returned");
   assert.equal(ownCalls, 1);
   const line = stats.querySelector(".sr-unsupplied-line");
-  assert.ok(line, "the line is added under the stats");
-  assert.equal(line.textContent, "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3");
+  assert.ok(line, "the cell is added to the stats");
+  assert.equal(line.attributes["data-tooltip-content"], "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3",
+    "the whole sentence is the cell's tooltip");
   assert.equal(line.classList.contains("hidden"), false);
-  assert.ok(line.classList.contains("rounded-full") && line.classList.contains("sr-pill--warning"),
-    "the mod's red status pill");
-  assert.ok(line.classList.contains("min-h-6") && !line.classList.contains("mt-1"),
-    "compact, so the stats block keeps its height");
-  assert.equal(line.style.background, "#A8201A");
+  assert.ok(line.classList.contains("unit-info__stat-container"), "shaped like the panel's own cells");
+  const [icon, value] = line.children;
+  assert.equal(icon.style.backgroundImage, "url(blp:icon_resource_iron)", "the resource's icon");
+  assert.equal(value.textContent, "-3", "the penalty as the value");
+  assert.ok(value.classList.contains("text-negative-light"));
+  assert.equal(stats.children.length, 2, "a divider, then the cell");
 
   // A later prototype patch still runs: the wrapper looks the method up at call time.
   Panel.prototype.setupUnitInfo = function () {
@@ -81,7 +85,7 @@ try {
   panel.unitId = "warrior";
   assert.equal(panel.setupUnitInfo(), "patched");
   assert.equal(ownCalls, 11);
-  assert.equal(stats.children.length, 1, "the same line is reused");
+  assert.equal(stats.children.length, 2, "the same cell is reused");
   assert.equal(line.classList.contains("hidden"), true, "a supplied or ungated unit hides it");
   panel.unitId = null;
   panel.setupUnitInfo();
@@ -127,13 +131,14 @@ try {
     { Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE", Value: "1" }];
   resetIndexes();
   units.spear.type = globalThis.GameInfo.Units.lookup("UNIT_SPEARMAN").$hash;
-  assert.equal(describeUnit(units.spear), "LOC_SR_UNSUPPLIED_LINE_GATED|LOC_RESOURCE_IRON_NAME|-3");
+  assert.equal(describeUnit(units.spear)?.text, "LOC_SR_UNSUPPLIED_LINE_GATED|LOC_RESOURCE_IRON_NAME|-3");
   holdings = [{ uniqueResource: { resource: iron.$hash }, isOffMap: false }];
   assert.equal(describeUnit(units.spear), null, "supplied: nothing to say, gate or not");
   holdings = [];
   globalThis.GameInfo.GlobalParameters = [];
   resetIndexes();
-  assert.equal(describeUnit(units.spear), "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3", "gate off: the 1.0 line");
+  assert.equal(describeUnit(units.spear)?.text, "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3",
+    "gate off: the 1.0 line");
 
 } finally {
   log.restore();
