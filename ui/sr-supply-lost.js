@@ -2,8 +2,11 @@
 // no copy of a resource it held at the previous turn start, one notification in the train says which units the loss
 // reaches and what it costs, "Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower
 // until you get Niter back." The engine keeps one notification of a type at a time and drops a second, so every
-// loss of one turn goes into the same one. The counts live in memory: startSupplyLost takes the first look when a
-// game loads, so a load never reports a loss. sr-recheck.js is off in multiplayer, and so is this.
+// loss of one turn goes into the same one. Last turn's notification is still listed at TurnBegin and is removed
+// when the local player's turn is activated, so the notification is composed at TurnBegin and sent from
+// sendSupplyLost on that player's PlayerTurnActivated; sent at TurnBegin, a loss the turn after another is dropped.
+// The counts live in memory: startSupplyLost takes the first look when a game loads, so a load never reports a loss.
+// sr-recheck.js is off in multiplayer, and so is this.
 
 import { log } from "/tower-strategic-resources/ui/sr-log.js";
 import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources/ui/sr-player-supply.js";
@@ -14,6 +17,8 @@ export const NOTIFICATION_TYPE = "NOTIFICATION_SR_SUPPLY_LOST";
 
 /** @type {Map<string, number> | null} the local player's copies at the last look */
 let lastLook = null;
+/** @type {{ turn: number, player: number, message: string, summary: string, resources: string[] } | null} */
+let pending = null;
 
 /** @returns {*} the local player, or null under Autoplay or before the game has one */
 function localPlayer() {
@@ -54,8 +59,9 @@ export function startSupplyLost() {
   lastLook = player ? look(player) : null;
 }
 
-/** Looks again at a turn start and raises the notification for what was lost since the last look. */
+/** Looks again at a turn start and composes the notification for what was lost since the last look. */
 export function checkSupplyLost() {
+  pending = null;
   const player = localPlayer();
   if (!player) {
     lastLook = null;
@@ -74,6 +80,15 @@ export function checkSupplyLost() {
   const message = Locale.compose("LOC_SR_NOTIFY_LOST_MESSAGE",
     names.reduce((first, second) => Locale.compose("LOC_SR_LIST_PAIR", first, second)));
   const summary = losses.map(sentence).join(" ");
-  Game.Notifications.send({ Type: Game.getHash(NOTIFICATION_TYPE), Message: message, Summary: summary }, player.id);
-  log.info(`supply lost, turn ${Game.turn}: ${losses.map((loss) => loss.resourceType).join(", ")}`);
+  pending = { turn: Game.turn, player: player.id, message, summary, resources: losses.map((l) => l.resourceType) };
+}
+
+/** Sends the notification composed at this turn's start, once the local player's turn is activated. */
+export function sendSupplyLost(/** @type {number} */ playerId) {
+  if (!pending || pending.player !== playerId) return;
+  const { turn, player, message, summary, resources } = pending;
+  pending = null;
+  if (turn !== Game.turn) return;
+  Game.Notifications.send({ Type: Game.getHash(NOTIFICATION_TYPE), Message: message, Summary: summary }, player);
+  log.info(`supply lost, turn ${turn}: ${resources.join(", ")}`);
 }

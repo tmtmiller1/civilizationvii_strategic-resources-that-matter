@@ -55,6 +55,8 @@ try {
   const engine = await load({ players: [makePlayer(0, calls), makePlayer(3, calls), { id: 9, isMajor: false }] });
   assert.deepEqual(calls, [[0, "gain", 77], [0, "remove", 0], [3, "gain", 77], [3, "remove", 0]]);
   assert.ok(engine.handlers.has("TurnBegin"));
+  assert.ok(engine.handlers.has("PlayerTurnActivated"), "the notification is sent when the local turn is activated");
+  engine.handlers.get("PlayerTurnActivated")({ player: 0 });
   calls.length = 0;
   engine.handlers.get("TurnBegin")();
   assert.equal(calls.length, 4);
