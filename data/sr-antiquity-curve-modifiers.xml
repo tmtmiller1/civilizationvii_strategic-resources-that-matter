@@ -56,6 +56,31 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_HORSES_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_HORSES_8</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_HORSES_8" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">1</Argument>
+        <Argument name="Copies">8</Argument>
+        <Argument name="Resource">LOC_RESOURCE_HORSES_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_HORSES_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_HORSES_10</Argument>
     </Modifier>
@@ -109,6 +134,31 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_HORSES_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_HORSES_10</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_HORSES_10" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">2</Argument>
+        <Argument name="Copies">10</Argument>
+        <Argument name="Resource">LOC_RESOURCE_HORSES_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_HORSES_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_HORSES_12</Argument>
@@ -164,6 +214,31 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_HORSES_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_HORSES_12</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_HORSES_12" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">3</Argument>
+        <Argument name="Copies">12</Argument>
+        <Argument name="Resource">LOC_RESOURCE_HORSES_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_HORSES_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_HORSES_14</Argument>
     </Modifier>
@@ -217,6 +292,31 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_HORSES_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_HORSES_14</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_HORSES_14" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">4</Argument>
+        <Argument name="Copies">14</Argument>
+        <Argument name="Resource">LOC_RESOURCE_HORSES_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_HORSES_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_HORSES_16</Argument>
@@ -272,6 +372,31 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_HORSES_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_HORSES_16</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_HORSES_16" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">5</Argument>
+        <Argument name="Copies">16</Argument>
+        <Argument name="Resource">LOC_RESOURCE_HORSES_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_HORSES_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_HORSES_18</Argument>
     </Modifier>
@@ -325,6 +450,31 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_HORSES_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_HORSES_18</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_HORSES_18" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">6</Argument>
+        <Argument name="Copies">18</Argument>
+        <Argument name="Resource">LOC_RESOURCE_HORSES_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_HORSES_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_HORSES_20</Argument>
@@ -380,6 +530,27 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_HORSES_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_HORSES_20</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_HORSES_20" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">7</Argument>
+        <Argument name="Copies">20</Argument>
+        <Argument name="Resource">LOC_RESOURCE_HORSES_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_IRON_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_IRON_8</Argument>
     </Modifier>
@@ -397,6 +568,31 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IRON_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IRON_8</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IRON_8" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">1</Argument>
+        <Argument name="Copies">8</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_IRON_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_IRON_10</Argument>
@@ -416,6 +612,31 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">MELEE</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IRON_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IRON_10</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IRON_10" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">2</Argument>
+        <Argument name="Copies">10</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_IRON_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_IRON_12</Argument>
     </Modifier>
@@ -433,6 +654,31 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IRON_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IRON_12</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IRON_12" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">3</Argument>
+        <Argument name="Copies">12</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_IRON_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_IRON_14</Argument>
@@ -452,6 +698,31 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">MELEE</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IRON_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IRON_14</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IRON_14" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">4</Argument>
+        <Argument name="Copies">14</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_IRON_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_IRON_16</Argument>
     </Modifier>
@@ -469,6 +740,31 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IRON_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IRON_16</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IRON_16" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">5</Argument>
+        <Argument name="Copies">16</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_IRON_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_IRON_18</Argument>
@@ -488,6 +784,31 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">MELEE</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IRON_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IRON_18</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IRON_18" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">6</Argument>
+        <Argument name="Copies">18</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_IRON_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_IRON_20</Argument>
     </Modifier>
@@ -505,5 +826,26 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IRON_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IRON_20</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IRON_20" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">7</Argument>
+        <Argument name="Copies">20</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
 </GameEffects>

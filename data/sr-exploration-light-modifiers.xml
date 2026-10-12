@@ -52,6 +52,26 @@
         <Argument name="UnitClass">SR_SUPPLY_HORSES</Argument>
         <Argument name="Percent">20</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_PENALTY_HORSES" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_PENALTY_HORSES</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_PENALTY_HORSES" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_HORSES</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">-2</Argument>
+        <Argument name="Resource">LOC_RESOURCE_HORSES_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_UNSUPPLIED</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_COMBAT_PENALTY_IRON" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_PENALTY_IRON</Argument>
     </Modifier>
@@ -162,6 +182,26 @@
         <Argument name="UnitClass">SR_SUPPLY_IRON</Argument>
         <Argument name="Percent">20</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_PENALTY_IRON" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_PENALTY_IRON</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_PENALTY_IRON" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_IRON</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">-2</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_UNSUPPLIED</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_COMBAT_PENALTY_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_COMBAT_PENALTY_NITER</Argument>
     </Modifier>
@@ -271,5 +311,25 @@
         </OwnerRequirements>
         <Argument name="UnitClass">SR_SUPPLY_NITER</Argument>
         <Argument name="Percent">20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_PENALTY_NITER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_PENALTY_NITER</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_PENALTY_NITER" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_NITER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">-2</Argument>
+        <Argument name="Resource">LOC_RESOURCE_NITER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_UNSUPPLIED</String>
     </Modifier>
 </GameEffects>

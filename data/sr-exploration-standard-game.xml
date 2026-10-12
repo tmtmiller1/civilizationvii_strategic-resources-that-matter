@@ -6,6 +6,7 @@
         <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_HORSES"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_HORSES"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_HORSES"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_PENALTY_HORSES"/>
         <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_IRON"/>
         <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_IRON"/>
         <Row ModifierId="SR_ATTACH_RANGED_PENALTY_IRON"/>
@@ -14,6 +15,7 @@
         <Row ModifierId="SR_ATTACH_BOMBARD_SUPPLIED_IRON"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_IRON"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_IRON"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_PENALTY_IRON"/>
         <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_NITER"/>
         <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_NITER"/>
         <Row ModifierId="SR_ATTACH_RANGED_PENALTY_NITER"/>
@@ -22,5 +24,6 @@
         <Row ModifierId="SR_ATTACH_BOMBARD_SUPPLIED_NITER"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_NITER"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_NITER"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_PENALTY_NITER"/>
     </GameModifiers>
 </Database>

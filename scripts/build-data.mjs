@@ -17,6 +17,11 @@
 //   - sr-<age>-curve-modifiers.xml and -game.xml: the late curve, +1 combat strength at each count threshold past
 //     six, on the units vanilla's per-copy bonus covers: melee by vanilla's own tags, ranged and bombard by the tags
 //     above.
+//   - In both: one combat preview line per penalty and per curve step. The combat preview lists combat-time
+//     modifiers only, never a base strength change, so each line is its own EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER with
+//     Amount 0 and a Preview string, behind the same requirements as the change it names (DESIGN.md 7e). The preview
+//     text gets the modifier's arguments as its parameters, sorted by argument name: Amount (always 0), then
+//     Combat, Copies and Resource.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -57,10 +62,10 @@ export function readDump(age) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
-/** @param {string} resource @param {number} amount */
-function hasResource(resource, amount) {
+/** @param {string} resource @param {number} amount @param {boolean} [inverse] */
+function hasResource(resource, amount, inverse = false) {
   return [
-    '            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">',
+    `            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE"${inverse ? ' inverse="true"' : ""}>`,
     `                <Argument name="ResourceType">${resource}</Argument>`,
     `                <Argument name="Amount">${amount}</Argument>`,
     "            </Requirement>"
@@ -117,6 +122,29 @@ function productionChild({ id, tag, percent, owner }) {
   ];
 }
 
+/** The game's own name tag of a resource: RESOURCE_IRON -> LOC_RESOURCE_IRON_NAME. @param {string} resource */
+export const resourceNameTag = (resource) => `LOC_${resource}_NAME`;
+
+/** Preview text of the unsupplied line ("-3 Unsupplied: no Niter") and of a curve step ("+1 Niter: 8 or more"). */
+export const PREVIEW_TEXT = { penalty: "LOC_SR_PREVIEW_UNSUPPLIED", curve: "LOC_SR_PREVIEW_CURVE" };
+
+/**
+ * A combat preview line: a strength modifier of 0 whose Preview string names the change made elsewhere. The
+ * arguments after Amount are there for the text only.
+ * @param {{ id: string, tags: string[], owner: string[], text: string, args: Record<string, string | number> }} spec
+ */
+function previewChild({ id, tags, owner, text, args }) {
+  return [
+    `    <Modifier id="${id}" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">`,
+    "        <OwnerRequirements>", ...owner, "        </OwnerRequirements>",
+    ...tagRequirements(tags),
+    '        <Argument name="Amount">0</Argument>',
+    ...Object.entries(args).map(([name, value]) => `        <Argument name="${name}">${value}</Argument>`),
+    `        <String context="Preview">${text}</String>`,
+    "    </Modifier>"
+  ];
+}
+
 /** @param {string} comment @param {string[]} body */
 const gameEffects = (comment, body) =>
   [HEADER, GENERATED, `<!-- ${comment} -->`, '<GameEffects xmlns="GameEffects">', ...body, "</GameEffects>", ""]
@@ -156,11 +184,16 @@ export function penaltyFor(resource, level, units) {
     productionChild({ id: `SR_PRODUCTION_PENALTY_${name}`, tag, percent: level.productionPercent }));
   add("PRODUCTION_SUPPLIED",
     productionChild({ id: `SR_PRODUCTION_SUPPLIED_${name}`, tag, percent: -level.productionPercent, owner }));
+  add("PREVIEW_PENALTY", previewChild({
+    id: `SR_PREVIEW_PENALTY_${name}`, tags: [tag], owner: hasResource(resource, 1, true), text: PREVIEW_TEXT.penalty,
+    args: { Combat: level.combat, Resource: resourceNameTag(resource) }
+  }));
   return { body, ids };
 }
 
 /**
- * The curve modifiers for one resource of one age: per threshold, +1 on each strength type some covered unit has.
+ * The curve modifiers for one resource of one age: per threshold, +1 on each strength type some covered unit has,
+ * and one preview line per step, shown from that threshold up to the next (so a unit shows one curve line).
  * @param {{ resource: string, tags: string[] }} perCopy
  * @param {Record<string, string[]>} units covered units per strength type
  */
@@ -178,6 +211,14 @@ export function curveFor({ resource, tags }, units) {
         ...combatChild({ id, tags: match, type, amount: 1, owner: hasResource(resource, threshold) }));
       ids.push(`SR_ATTACH_CURVE_${part}${name}_${threshold}`);
     }
+    const step = CURVE_THRESHOLDS.indexOf(threshold);
+    const next = CURVE_THRESHOLDS[step + 1];
+    const id = `SR_PREVIEW_CURVE_${name}_${threshold}`;
+    body.push(...attach(`SR_ATTACH_PREVIEW_CURVE_${name}_${threshold}`, id), ...previewChild({
+      id, tags, owner: [...hasResource(resource, threshold), ...(next ? hasResource(resource, next, true) : [])],
+      text: PREVIEW_TEXT.curve, args: { Combat: step + 1, Copies: threshold, Resource: resourceNameTag(resource) }
+    }));
+    ids.push(`SR_ATTACH_PREVIEW_CURVE_${name}_${threshold}`);
   }
   return { body, ids };
 }
