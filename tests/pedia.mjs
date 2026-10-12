@@ -22,6 +22,7 @@ const english = texts("en_us");
 
 const data = fs.readFileSync("data/sr-civilopedia.xml", "utf8");
 const { section, page, layout, chapters, searchTerms, unitChapter, unitHeader } = PEDIA;
+const { unitGateChapter, unitGateHeader } = PEDIA;
 const prefix = `LOC_PEDIA_${section}_PAGE_${page}`;
 
 // The page row and its layout, as written.
@@ -51,6 +52,8 @@ for (const term of searchTerms) {
 }
 assert.match(data, new RegExp(`<Row PageLayoutID="Unit" ChapterID="${unitChapter}" Header="${unitHeader}"`));
 assert.ok(english.has(unitHeader), "unit chapter header text");
+assert.match(data, new RegExp(`<Row PageLayoutID="Unit" ChapterID="${unitGateChapter}" Header="${unitGateHeader}"`));
+assert.ok(english.has(unitGateHeader), "gate chapter header text");
 
 // One line per gated unit and setup level, naming that unit's resource.
 let unitRows = 0;
@@ -79,12 +82,11 @@ for (const age of AGES) {
   const gates = buildGateMap(JSON.parse(fs.readFileSync(`devtools/gate-map/${AGE_FILE[age]}.json`, "utf8")));
   for (const gateName of Object.keys(GATES_OPTION)) {
     const xml = fs.readFileSync(`data/sr-${AGE_FILE[age]}-gate-${gateName}.xml`, "utf8");
-    const rows = [...xml.matchAll(/<Row SectionID="UNITS" PageID="([A-Z0-9_]+)" ChapterID="([A-Z_]+)" Paragraph="([A-Z0-9_]+)" SortIndex="(\d+)"/g)];
+    const rows = [...xml.matchAll(/<Row SectionID="UNITS" PageID="([A-Z0-9_]+)" ChapterID="([A-Z_]+)" Paragraph="([A-Z0-9_]+)"/g)];
     assert.deepEqual(rows.map((r) => r[1]), [...gates.keys()], `${age} gate ${gateName}: one line per gated unit`);
-    for (const [, unit, chapter, tag, sort] of rows) {
-      assert.equal(chapter, unitChapter, `${unit}: chapter`);
+    for (const [, unit, chapter, tag] of rows) {
+      assert.equal(chapter, unitGateChapter, `${unit}: chapter`);
       assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateName), `${age} gate ${gateName} ${unit}: line`);
-      assert.ok(Number(sort) > 10, `${tag}: the gate line follows the level line`);
       assert.ok(english.has(tag), `${tag} has no text`);
       const resourceName = `{${resourceNameTag(gates.get(unit) ?? "")}}`;
       assert.ok(english.get(tag)?.includes(resourceName), `${tag} names another resource`);

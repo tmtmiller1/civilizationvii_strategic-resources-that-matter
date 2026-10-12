@@ -194,12 +194,16 @@ const gameModifiers = (ids, more = []) =>
   [HEADER, GENERATED, "<Database>", "    <GameModifiers>", ...ids.map((id) => `        <Row ModifierId="${id}"/>`),
     "    </GameModifiers>", ...more, "</Database>", ""].join("\n");
 
-/** The Civilopedia page, its chapters in order, and the chapter the mod adds to unit pages. */
+/**
+ * The Civilopedia page, its chapters in order, and the two chapters the mod adds to unit pages: the penalty line
+ * and the gate line. The paragraph table keeps one row per page and chapter, so each line has its own chapter.
+ */
 export const PEDIA = {
   section: "CONCEPTS", page: "SR_STRATEGIC_RESOURCES", group: "COMBAT", layout: "SR_CONCEPT",
   chapters: ["CONTENT", "UNSUPPLIED", "COPY", "LOSS", "PAST_SIX", "GATES", "LOCK"],
   searchTerms: ["LOC_SR_PEDIA_TERM_UNSUPPLIED", "LOC_SR_PEDIA_TERM_STRATEGIC"],
-  unitChapter: "SR_SUPPLY", unitHeader: "LOC_SR_PEDIA_UNIT_CHAPTER"
+  unitChapter: "SR_SUPPLY", unitHeader: "LOC_SR_PEDIA_UNIT_CHAPTER",
+  unitGateChapter: "SR_LOCK", unitGateHeader: "LOC_SR_SETUP_GATE_NAME"
 };
 /** The line on a gated unit's page. @param {string} resource @param {string} levelName */
 export const pediaUnitTag = (resource, levelName) =>
@@ -232,7 +236,7 @@ function gateFile(age, gates, gateName) {
     "    </GlobalParameters>",
     "    <CivilopediaPageChapterParagraphs>",
     ...[...gates].map(([unit, resource]) => `        <Row SectionID="UNITS" PageID="${unit}" ` +
-      `ChapterID="${PEDIA.unitChapter}" Paragraph="${pediaGateTag(resource, gateName)}" SortIndex="20"/>`),
+      `ChapterID="${PEDIA.unitGateChapter}" Paragraph="${pediaGateTag(resource, gateName)}" SortIndex="10"/>`),
     "    </CivilopediaPageChapterParagraphs>",
     "</Database>", ""].join("\n");
 }
@@ -269,6 +273,7 @@ function notificationIconsFile() {
 
 function pediaFile() {
   const { section, page, group, layout, chapters, searchTerms, unitChapter, unitHeader } = PEDIA;
+  const { unitGateChapter, unitGateHeader } = PEDIA;
   return [HEADER, GENERATED,
     "<!-- The Civilopedia page in Game Concepts, and the chapter that gated units' pages show. -->",
     "<Database>",
@@ -277,6 +282,7 @@ function pediaFile() {
     "    <CivilopediaPageLayoutChapters>",
     ...chapters.map((c, i) => `        <Row PageLayoutID="${layout}" ChapterID="${c}" SortIndex="${(i + 1) * 10}"/>`),
     `        <Row PageLayoutID="Unit" ChapterID="${unitChapter}" Header="${unitHeader}" SortIndex="25"/>`,
+    `        <Row PageLayoutID="Unit" ChapterID="${unitGateChapter}" Header="${unitGateHeader}" SortIndex="26"/>`,
     "    </CivilopediaPageLayoutChapters>",
     "    <CivilopediaPages>",
     `        <Row SectionID="${section}" PageID="${page}" PageGroupID="${group}" PageLayoutID="${layout}" ` +

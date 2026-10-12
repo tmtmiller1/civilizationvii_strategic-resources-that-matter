@@ -35,27 +35,27 @@
         <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_HEALING" Value="0"/>
     </GlobalParameters>
     <CivilopediaPageChapterParagraphs>
-        <Row SectionID="UNITS" PageID="UNIT_CHARIOT" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_GAISATAI_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_GAISATAI_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_HOPLITE_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_HOPLITE_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_HORSEMAN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_IMMORTAL" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_IMMORTAL_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_LEGION" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_LEGION_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_MAGARRU" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_MAGARRU_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_MEDJAY_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_MEDJAY_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_PHALANX" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
-        <Row SectionID="UNITS" PageID="UNIT_SPEARMAN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CHARIOT" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_GAISATAI_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_GAISATAI_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_HOPLITE_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_HOPLITE_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_HORSEMAN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_IMMORTAL" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_IMMORTAL_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_LEGION" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_LEGION_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_MAGARRU" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_MAGARRU_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_MEDJAY_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_MEDJAY_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_PHALANX" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_SPEARMAN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
     </CivilopediaPageChapterParagraphs>
 </Database>
