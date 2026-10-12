@@ -3,13 +3,13 @@ Generated from CHANGELOG.md by scripts/steam-changelog.mjs; release.sh uploads t
 To fix an old Workshop entry, paste the text under its ==== line into that entry's Edit box on the change-notes page.
 A block edited by hand is kept as-is. Delete a block to regenerate it from CHANGELOG.md.
 
-==== 1.1.0 | 2026-10-12 | src 161e5d1e242f | gen d27c2c010892 ====
+==== 1.1.0 | 2026-10-12 | src c27572d359ba | gen 90d2fd25d342 ====
 [b]Version 1.1.0 · 12 October 2026[/b]
 Gated Units: a third game setup option, off by default, that locks a unit behind its resource.
 
 [b]Added[/b]
 • Gated Units (Off, Training, Training and upgrade; Off by default). With it on, a unit that draws on a strategic resource cannot be trained or bought while its owner has none of it. It stays in the production list, greyed out, with a “Locked: no Iron” pill after its stats, and is locked again the moment the last one goes. Under Training and upgrade no unit can be upgraded into it either; under Training upgrades stay free. Units already in the field are never gated, and heal as usual. Independent powers and city-states are never gated. The AI is locked by the same rule and never sticks on a locked unit.
-• The unit panel line ends with “New ones cannot be trained.”, a resource's description reads “Needed to train: ...”, the lost-supply notification adds “New ones cannot be trained until then.”, and a second first-time callout, “Locked unit”, explains the lock. The Civilopedia page gains a chapter, “Gated units”, and each gated unit's page a line “Cannot be trained or bought without Iron.” All in the twelve languages.
+• The unit panel's status is now one more cell in the unit's stats, the resource's icon over the penalty in red, with the sentence as its tooltip; under the gate the tooltip ends with “New ones cannot be trained.”. A resource's description reads “Needed to train: ...”, the lost-supply notification adds “New ones cannot be trained until then.”, and a second first-time callout, “Locked unit”, explains the lock. The Civilopedia page gains a chapter, “Gated units”, and each gated unit's page a line “Cannot be trained or bought without Iron.” All in the twelve languages.
 • The production list's line is now a pill, like the game's own “Ageless”, in the short form (“Needs Niter”, “Niter: 2”, “Locked: no Iron”), tinted while the unit is short; the whole sentence sits in the item's hover tooltip under the unit's description, and on the purchase list it says what cannot be bought.
 
 [b]Changed[/b]
