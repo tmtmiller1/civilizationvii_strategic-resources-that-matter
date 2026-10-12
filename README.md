@@ -7,7 +7,7 @@ is back a turn later. Past six, where the game's own bonus stops, the count keep
 
 ![The unit panel of a Chariot with no Horses](docs/screenshots/unit-panel-en.png)
 
-*A Chariot with no Horses: 27 Combat Strength instead of 30, and the pill under its stats says why.*
+*A Chariot with no Horses: 27 Combat Strength instead of 30, and the last cell in its stats says why.*
 
 Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.
 
@@ -27,8 +27,8 @@ going without:
 
 The game tells you why, in your language:
 
-- **Unit panel:** when you select a unit that is short of its resource, a line under its stats says so: "Unsupplied:
-  no Iron (-3 Combat Strength, slower to train)".
+- **Unit panel:** when you select a unit that is short of its resource, its stats gain one more cell, the resource's
+  icon over the penalty in red; its tooltip says "Unsupplied: no Iron (-3 Combat Strength, slower to train)".
 - **Combat preview:** the penalty is a line of its own beside the game's modifiers, for your unit and for the enemy's:
   "-3 Unsupplied: no Niter". Past six, the extra strength shows as one line beside the game's own, such as "+1
   Niter: 8 or more".
@@ -111,7 +111,7 @@ need Iron too.
 
 *Rome with no Horses and no Iron: the Horseman and the Legion stay listed, greyed out, and say why.*
 
-The unit panel line ends with "New ones cannot be trained.", the resource description reads "Needed to train: ..."
+The unit panel's cell tooltip ends with "New ones cannot be trained.", the resource description reads "Needed to train: ..."
 instead of "Supplies units: ...", the lost-supply notification adds "New ones cannot be trained until then.", and a
 second first-time callout, "Locked unit", explains the lock the first time you select a unit of a locked kind or a
 city whose list shows one. The Civilopedia page gains a last chapter, "Gated units", and each gated unit's page a line
@@ -135,7 +135,7 @@ game's own rule, so their spawns and armies are unchanged.
 - Another mod that sets that column or those parameters (a locally installed gameplay overhaul does, with minimums
   of 2 to 6) keeps the engine's rule by its own numbers, and this mod's lock texts step back to their plain form
   rather than promise an unlock at one that does not hold. Turn one of the two off to get a single rule.
-- The unit panel line comes from a wrapper around the panel's own refresh, so mods that change the unit panel keep
+- The unit panel cell comes from a wrapper around the panel's own refresh, so mods that change the unit panel keep
   working. The production line goes in the slot the game keeps for mods on each production item, and the resource
   line into the text the game's description component draws; neither replaces a screen or a tooltip. Tested with
   Readable Tooltips, QD Improved Plot Tooltip, Building Location Advisor, City Hall, Better Commerce Screen UI and Mod
@@ -190,7 +190,7 @@ Civilization VII\Mods\` (Windows), and enable it under Add-ons.
 - `ui/sr-supply-lost.js`: the notification, raised from the same turn start for the local player when a resource
   held at the last turn start is gone. The notification type and its icon are in `data/sr-notification*.xml`.
 - `ui/sr-callout.js`: the first-time callout, an item in the game's tutorial manager at the advisor-warning level.
-- `ui/sr-unit-panel.js`: the line on the unit panel.
+- `ui/sr-unit-panel.js`: the status cell on the unit panel.
 - `ui/sr-production-line.js`: the line on a production item, in the game's `ProductionModInfo` slot.
 - `ui/sr-resource-line.js`: the line in a strategic resource's description, added where the game's `Stylize`
   component draws that text.
