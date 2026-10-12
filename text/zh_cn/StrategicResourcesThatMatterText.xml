@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="zh_Hans_CN"><Text>补给丧失：没有{1_Resource}。在重新获得{1_Resource}之前，你的{2_Unit}和其他{3_Others}个单位战斗力{4_Combat}，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="zh_Hans_CN"><Text>无补给单位</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hans_CN"><Text>你的{1_Unit}需要{2_Resource}，而你一份都没有：在获得之前，它战斗力{3_Combat}，训练变慢。每个需要战略资源的单位都是如此，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="zh_Hans_CN"><Text>单位锁定</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="zh_Hans_CN"><Text>需要战略资源的单位，在其所有者一份该资源都没有时，是否根本无法训练或购买。已在战场上的单位永远不会被锁定；它们按上面设置的无补给单位惩罚处理。独立势力和城邦永远不会被锁定。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>

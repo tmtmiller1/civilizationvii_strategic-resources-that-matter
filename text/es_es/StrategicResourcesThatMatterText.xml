@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="es_ES"><Text>Suministro perdido: sin {1_Resource}. Tu unidad {2_Unit} y {3_Others} {3_Others : plural 1?unidad más; other?unidades más;} combaten con {4_Combat} de fuerza de combate y se entrenan más despacio hasta que vuelvas a tener {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="es_ES"><Text>Unidad sin suministro</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="es_ES"><Text>Tu unidad {1_Unit} depende de {2_Resource} y no tienes nada: hasta que lo consigas, combate con {3_Combat} de fuerza de combate y se entrena más despacio. Así funciona toda unidad que necesita un recurso estratégico, y la página de la Civilopedia {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} explica la regla completa.</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="es_ES"><Text>Unidades bloqueadas</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="es_ES"><Text>Si una unidad que depende de un recurso estratégico puede siquiera entrenarse o comprarse mientras su dueño no tenga ninguna copia. Las unidades que ya están en el campo nunca se bloquean; a ellas se les aplica la penalización de Unidades sin suministro según lo configurado arriba. Los poderes independientes y las ciudades-estado nunca se bloquean.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="es_ES"><Text>Desactivado</Text></Replace>

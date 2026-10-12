@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ko_KR"><Text>보급 상실: {1_Resource} 없음. {1_Resource}을(를) 다시 얻을 때까지 {2_Unit} 외 {3_Others}개 유닛의 전투력 {4_Combat}, 훈련이 느려집니다.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="ko_KR"><Text>보급 없는 유닛</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ko_KR"><Text>이 {1_Unit}에는 {2_Resource}이(가) 필요하지만 하나도 없으므로, 얻을 때까지 전투력 {3_Combat}, 훈련이 느려집니다. 전략 자원이 필요한 모든 유닛이 이와 같으며, 전체 규칙은 문명 백과사전의 "{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}" 페이지에 있습니다.</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="ko_KR"><Text>유닛 잠금</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 필요한 유닛을 소유자가 그 자원을 하나도 갖고 있지 않은 동안 아예 훈련하거나 구매할 수 없게 할지 여부입니다. 이미 전장에 있는 유닛은 절대 잠기지 않으며, 위에서 설정한 보급 없는 유닛 페널티가 적용됩니다. 독립 세력과 도시 국가는 절대 잠기지 않습니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="ko_KR"><Text>끔</Text></Replace>

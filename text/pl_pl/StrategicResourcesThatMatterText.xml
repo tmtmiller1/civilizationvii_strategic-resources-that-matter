@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="pl_PL"><Text>Utracono zaopatrzenie: brak zasobu {1_Resource}. Twoja jednostka {2_Unit} i inne jednostki (jeszcze: {3_Others}) walczą z {4_Combat} siły bojowej i szkolą się wolniej, dopóki znów nie zdobędziesz zasobu {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="pl_PL"><Text>Jednostka bez zaopatrzenia</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="pl_PL"><Text>Twoja jednostka {1_Unit} potrzebuje zasobu {2_Resource}, a nie masz go wcale: dopóki go nie zdobędziesz, walczy z {3_Combat} siły bojowej i szkoli się wolniej. Tak działa każda jednostka wymagająca zasobu strategicznego, a całą zasadę opisuje strona Civilopedii „{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”.</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="pl_PL"><Text>Jednostki zablokowane</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="pl_PL"><Text>Czy jednostkę, która potrzebuje zasobu strategicznego, w ogóle można szkolić lub kupować, dopóki jej właściciel nie ma ani jednej sztuki tego zasobu. Jednostki już w polu nigdy nie są blokowane; dotyczy ich kara dla Jednostek bez zaopatrzenia ustawiona powyżej. Niezależne potęgi i państwa-miasta nigdy nie są blokowane.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="pl_PL"><Text>Wyłączone</Text></Replace>
