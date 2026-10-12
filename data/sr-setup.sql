@@ -12,7 +12,10 @@ VALUES
      'GameOptions', 0, 2100),
     ('StrategicResourcesThatMatterLateCurve', 'LOC_SR_SETUP_LATE_CURVE_NAME', 'LOC_SR_SETUP_LATE_CURVE_DESCRIPTION',
      'StrategicResourcesThatMatterLateCurveValues', 'SR_LATE_CURVE_ON', 'Game', 'StrategicResourcesThatMatterLateCurve',
-     'GameOptions', 0, 2101);
+     'GameOptions', 0, 2101),
+    ('StrategicResourcesThatMatterGate', 'LOC_SR_SETUP_GATE_NAME', 'LOC_SR_SETUP_GATE_DESCRIPTION',
+     'StrategicResourcesThatMatterGateValues', 'SR_GATE_OFF', 'Game', 'StrategicResourcesThatMatterGate',
+     'GameOptions', 0, 2102);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 VALUES
@@ -27,4 +30,10 @@ VALUES
     ('StrategicResourcesThatMatterLateCurveValues', 'SR_LATE_CURVE_OFF', 'LOC_SR_SETUP_LATE_CURVE_OFF',
      'LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION', 10),
     ('StrategicResourcesThatMatterLateCurveValues', 'SR_LATE_CURVE_ON', 'LOC_SR_SETUP_LATE_CURVE_ON',
-     'LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION', 20);
+     'LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION', 20),
+    ('StrategicResourcesThatMatterGateValues', 'SR_GATE_OFF', 'LOC_SR_SETUP_GATE_OFF',
+     'LOC_SR_SETUP_GATE_OFF_DESCRIPTION', 10),
+    ('StrategicResourcesThatMatterGateValues', 'SR_GATE_TRAINING', 'LOC_SR_SETUP_GATE_TRAINING',
+     'LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION', 20),
+    ('StrategicResourcesThatMatterGateValues', 'SR_GATE_UPGRADE', 'LOC_SR_SETUP_GATE_UPGRADE',
+     'LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION', 30);

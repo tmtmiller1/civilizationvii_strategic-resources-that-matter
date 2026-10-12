@@ -12,6 +12,7 @@
         <Row PageLayoutID="SR_CONCEPT" ChapterID="LOSS" SortIndex="40"/>
         <Row PageLayoutID="SR_CONCEPT" ChapterID="PAST_SIX" SortIndex="50"/>
         <Row PageLayoutID="SR_CONCEPT" ChapterID="GATES" SortIndex="60"/>
+        <Row PageLayoutID="SR_CONCEPT" ChapterID="LOCK" SortIndex="70"/>
         <Row PageLayoutID="Unit" ChapterID="SR_SUPPLY" Header="LOC_SR_PEDIA_UNIT_CHAPTER" SortIndex="25"/>
     </CivilopediaPageLayoutChapters>
     <CivilopediaPages>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- AGE_ANTIQUITY, Gated Units upgrade: a gated unit cannot be trained or bought without a copy of its resource, nor upgraded to; the engine reads the owner's live count. -->
+<Database>
+    <Units>
+        <Update><Where UnitType="UNIT_CHARIOT"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_DANTINAS_TATHA"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_DANTINAS_TATHA_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_GAISATAI_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_GAISATAI_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_HOPLITE_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_HOPLITE_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_HORSEMAN"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_IMMORTAL"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_IMMORTAL_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_LEGION"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_LEGION_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_MAGARRU"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_MAGARRU_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_MEDJAY_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_MEDJAY_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_NUMIDIAN_CAVALRY"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_NUMIDIAN_CAVALRY_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_PHALANX"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_PURABHETTARAH"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_PURABHETTARAH_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_SPEARMAN"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+    </Units>
+    <GlobalParameters>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE" Value="1"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_WITH_DISTRICT" Value="1"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE" Value="1"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_WITH_DISTRICT" Value="1"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPGRADING" Value="1"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_HEALING" Value="0"/>
+    </GlobalParameters>
+    <CivilopediaPageChapterParagraphs>
+        <Row SectionID="UNITS" PageID="UNIT_CHARIOT" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_GAISATAI_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_GAISATAI_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_HOPLITE_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_HOPLITE_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_HORSEMAN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_IMMORTAL" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_IMMORTAL_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_LEGION" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_LEGION_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_MAGARRU" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_MAGARRU_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_MEDJAY_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_MEDJAY_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_PHALANX" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_SPEARMAN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="20"/>
+    </CivilopediaPageChapterParagraphs>
+</Database>

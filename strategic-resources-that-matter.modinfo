@@ -4,7 +4,8 @@
   A unit that draws on a strategic resource its owner holds none of fights weaker and trains slower; past six copies
   the count keeps adding strength. The data does the penalties and the curve; ui/sr-recheck.js makes the engine
   notice a lost resource; ui/sr-unit-panel.js says on the unit panel when a unit is unsupplied;
-  ui/sr-production-line.js says on a gated unit's production item what it needs; ui/sr-resource-line.js says in a
+  ui/sr-production-line.js says on a gated unit's production item what it needs; ui/sr-production-lock.js keeps a
+  unit the hard gate locks in the production and purchase lists, greyed, with the reason; ui/sr-resource-line.js says in a
   strategic resource's description which units it supplies; ui/sr-supply-lost.js raises a notification when the
   local player loses the last copy of a resource its units need; ui/sr-callout.js shows a tutorial callout the first
   time the player selects an unsupplied unit.
@@ -13,7 +14,9 @@
   Groups: the setup options and text at the main menu; the unit tags, the Civilopedia page, the notification type
   and its icon, and the scripts in every game; per age, which units draw on which resource; per age and setup value,
   the penalty (Light, Standard, Harsh; none for Off) with its line on each gated unit's Civilopedia page, and the
-  curve.
+  curve; per age and gate value (Gated Units: Training, Training and upgrade; nothing for Off), the
+  Units.StrategicResource column on every gated unit with the engine's own minimum parameters and the gate's line on
+  each gated unit's Civilopedia page.
   AffectsSavedGames is 1: the setup options and modifiers are fixed when a game is created, so a save made with the
   mod needs it to load the same game.
 -->
@@ -24,7 +27,7 @@
         <Authors>Tower</Authors>
         <Package>StrategicResourcesThatMatter</Package>
         <PackageSortIndex>100</PackageSortIndex>
-        <Version>1.0.0</Version>
+        <Version>1.1.0</Version>
         <AffectsSavedGames>1</AffectsSavedGames>
     </Properties>
     <Dependencies>
@@ -131,6 +134,54 @@
                 <Value>SR_LATE_CURVE_ON</Value>
             </ConfigurationValueMatches>
         </Criteria>
+        <Criteria id="antiquity-gate-training">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_TRAINING</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="antiquity-gate-upgrade">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_UPGRADE</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-gate-training">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_TRAINING</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-gate-upgrade">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_UPGRADE</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="modern-gate-training">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_TRAINING</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="modern-gate-upgrade">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_UPGRADE</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
     </ActionCriteria>
     <ActionGroups>
         <ActionGroup id="strategic-resources-that-matter-shell" scope="shell" criteria="always">
@@ -187,6 +238,7 @@
                     <Item>ui/sr-recheck.js</Item>
                     <Item>ui/sr-unit-panel.js</Item>
                     <Item>ui/sr-production-line.js</Item>
+                    <Item>ui/sr-production-lock.js</Item>
                     <Item>ui/sr-resource-line.js</Item>
                     <Item>ui/sr-callout.js</Item>
                 </UIScripts>
@@ -195,6 +247,7 @@
                     <Item>ui/sr-log.js</Item>
                     <Item>ui/sr-player-supply.js</Item>
                     <Item>ui/sr-production-line.js</Item>
+                    <Item>ui/sr-production-lock.js</Item>
                     <Item>ui/sr-recheck-core.js</Item>
                     <Item>ui/sr-recheck.js</Item>
                     <Item>ui/sr-registry.js</Item>
@@ -324,6 +377,30 @@
                     <Item>data/sr-modern-curve-game.xml</Item>
                 </UpdateDatabase>
             </Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-antiquity-gate-training" scope="game" criteria="antiquity-gate-training">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-gate-training.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-antiquity-gate-upgrade" scope="game" criteria="antiquity-gate-upgrade">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-gate-upgrade.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-exploration-gate-training" scope="game" criteria="exploration-gate-training">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-gate-training.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-exploration-gate-upgrade" scope="game" criteria="exploration-gate-upgrade">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-gate-upgrade.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern-gate-training" scope="game" criteria="modern-gate-training">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-gate-training.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern-gate-upgrade" scope="game" criteria="modern-gate-upgrade">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-gate-upgrade.xml</Item></UpdateDatabase></Actions>
         </ActionGroup>
     </ActionGroups>
 </Mod>

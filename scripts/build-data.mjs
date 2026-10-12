@@ -22,6 +22,14 @@
 //     Amount 0 and a Preview string, behind the same requirements as the change it names (DESIGN.md 7e). The preview
 //     text gets the modifier's arguments as its parameters, sorted by argument name: Amount (always 0), then
 //     Combat, Copies and Resource.
+//   - sr-<age>-gate-<value>.xml: the hard gate for one setup value (Gated Units: Training, or Training and upgrade).
+//     Units.StrategicResource on every gated unit of the age, which the engine checks against the owner's live copy
+//     count for training and purchase, and the six STRATEGIC_RESOURCE_MINIMUM global parameters the check reads,
+//     which vanilla 1.5.0 does not define (without them the column blocks for good): one copy to train or buy,
+//     none to heal, and for upgrading none under Training and one under Training and upgrade. Nothing else: no
+//     grant, no trait, no requirement. Independents and city-states are exempt by the game's own rule
+//     (CivilizationLevels.IgnoresUnitStrategicResourceRequirements). Plus one line on each gated unit's Civilopedia
+//     page, after the level line. DESIGN.md 7f.
 //   - sr-notification.xml and sr-notification-icons.xml: the notification ui/sr-supply-lost.js raises when the local
 //     player loses the last copy of a resource its units need. It ends with the turn, never blocks it, and carries
 //     the game's own "trade resources lost" icon and sound. The script passes the composed text as Message and
@@ -47,6 +55,27 @@ export const LEVELS = {
   standard: { value: "SR_UNSUPPLIED_STANDARD", combat: -3, productionPercent: -33 },
   harsh: { value: "SR_UNSUPPLIED_HARSH", combat: -5, productionPercent: -50 }
 };
+
+/** Setup values of the hard gate, and the engine's upgrading minimum each one writes. */
+export const GATES_OPTION = {
+  training: { value: "SR_GATE_TRAINING", upgrading: 0 },
+  upgrade: { value: "SR_GATE_UPGRADE", upgrading: 1 }
+};
+
+/**
+ * The engine's knobs for Units.StrategicResource, as the gate writes them. The purchase and healing minimums are
+ * read against the same live count; a unit in the field is never gated, so healing stays free.
+ * @param {number} upgrading copies needed to upgrade into a gated unit
+ * @returns {[string, number][]}
+ */
+export const gateParameters = (upgrading) => [
+  ["STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", 1],
+  ["STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_WITH_DISTRICT", 1],
+  ["STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE", 1],
+  ["STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_WITH_DISTRICT", 1],
+  ["STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPGRADING", upgrading],
+  ["STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_HEALING", 0]
+];
 
 /** Copies at which the late curve adds +1 combat strength: one point per two copies past six. */
 export const CURVE_THRESHOLDS = [8, 10, 12, 14, 16, 18, 20];
@@ -168,13 +197,45 @@ const gameModifiers = (ids, more = []) =>
 /** The Civilopedia page, its chapters in order, and the chapter the mod adds to unit pages. */
 export const PEDIA = {
   section: "CONCEPTS", page: "SR_STRATEGIC_RESOURCES", group: "COMBAT", layout: "SR_CONCEPT",
-  chapters: ["CONTENT", "UNSUPPLIED", "COPY", "LOSS", "PAST_SIX", "GATES"],
+  chapters: ["CONTENT", "UNSUPPLIED", "COPY", "LOSS", "PAST_SIX", "GATES", "LOCK"],
   searchTerms: ["LOC_SR_PEDIA_TERM_UNSUPPLIED", "LOC_SR_PEDIA_TERM_STRATEGIC"],
   unitChapter: "SR_SUPPLY", unitHeader: "LOC_SR_PEDIA_UNIT_CHAPTER"
 };
 /** The line on a gated unit's page. @param {string} resource @param {string} levelName */
 export const pediaUnitTag = (resource, levelName) =>
   `LOC_SR_PEDIA_UNIT_${shortName(resource)}_${levelName.toUpperCase()}`;
+
+/**
+ * The gate line on a gated unit's page, per resource and gate value.
+ * @param {string} resource
+ * @param {string} gateName
+ */
+export const pediaGateTag = (resource, gateName) =>
+  `LOC_SR_PEDIA_UNIT_${shortName(resource)}_GATE_${gateName.toUpperCase()}`;
+
+/**
+ * The hard gate for one age and setup value: the column on every gated unit, the parameters, and the page line.
+ * @param {string} age @param {Map<string, string>} gates @param {string} gateName
+ */
+function gateFile(age, gates, gateName) {
+  const { upgrading } = GATES_OPTION[/** @type {keyof typeof GATES_OPTION} */ (gateName)];
+  return [HEADER, GENERATED,
+    `<!-- ${age}, Gated Units ${gateName}: a gated unit cannot be trained or bought without a copy of its resource` +
+      `${upgrading ? ", nor upgraded to" : ""}; the engine reads the owner's live count. -->`,
+    "<Database>",
+    "    <Units>",
+    ...[...gates].map(([unit, resource]) =>
+      `        <Update><Where UnitType="${unit}"/><Set StrategicResource="${resource}"/></Update>`),
+    "    </Units>",
+    "    <GlobalParameters>",
+    ...gateParameters(upgrading).map(([name, value]) => `        <Replace Name="${name}" Value="${value}"/>`),
+    "    </GlobalParameters>",
+    "    <CivilopediaPageChapterParagraphs>",
+    ...[...gates].map(([unit, resource]) => `        <Row SectionID="UNITS" PageID="${unit}" ` +
+      `ChapterID="${PEDIA.unitChapter}" Paragraph="${pediaGateTag(resource, gateName)}" SortIndex="20"/>`),
+    "    </CivilopediaPageChapterParagraphs>",
+    "</Database>", ""].join("\n");
+}
 
 /** The lost-supply notification: one type, its sound, and its icon (an UpdateIcons file of its own). */
 export const NOTIFICATION = {
@@ -341,6 +402,9 @@ export function buildFiles() {
         parts.flatMap((p) => p.body)));
       files.set(`sr-${file}-${levelName}-game.xml`,
         gameModifiers(parts.flatMap((p) => p.ids), pediaUnitRows(gates, levelName)));
+    }
+    for (const gateName of Object.keys(GATES_OPTION)) {
+      files.set(`sr-${file}-gate-${gateName}.xml`, gateFile(age, gates, gateName));
     }
     const curves = VANILLA_PER_COPY[age].map((c) => curveFor(c, strengths.curve.get(c.resource) ?? {}));
     files.set(`sr-${file}-curve-modifiers.xml`, gameEffects(
