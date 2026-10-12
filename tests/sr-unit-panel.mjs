@@ -118,7 +118,8 @@ try {
   holdings = [];
   globalThis.GameInfo.Units = table(
     [{ UnitType: "UNIT_SPEARMAN", StrategicResource: "RESOURCE_IRON" }, { UnitType: "UNIT_WARRIOR" }], "UnitType");
-  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }];
+  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" },
+    { Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE", Value: "1" }];
   resetIndexes();
   units.spear.type = globalThis.GameInfo.Units.lookup("UNIT_SPEARMAN").$hash;
   assert.equal(describeUnit(units.spear), "LOC_SR_UNSUPPLIED_LINE_GATED|LOC_RESOURCE_IRON_NAME|-3");

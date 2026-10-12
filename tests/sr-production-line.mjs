@@ -131,7 +131,8 @@ try {
   holdings = [];
   globalThis.GameInfo.Units = table([{ UnitType: "UNIT_FIELD_CANNON", StrategicResource: "RESOURCE_NITER" }],
       "UnitType");
-  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }];
+  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" },
+    { Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE", Value: "1" }];
   resetIndexes();
   assert.deepEqual(describeProductionItem("UNIT_FIELD_CANNON"), {
     text: "LOC_SR_PRODUCTION_LOCKED|LOC_RESOURCE_NITER_NAME|",

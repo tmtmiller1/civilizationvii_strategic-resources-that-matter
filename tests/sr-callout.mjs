@@ -106,7 +106,8 @@ try {
     { UnitType: "UNIT_FIELD_CANNON", Name: "LOC_UNIT_FIELD_CANNON_NAME", StrategicResource: "RESOURCE_NITER" },
     { UnitType: "UNIT_INFANTRY", Name: "LOC_UNIT_INFANTRY_NAME" }
   ], "UnitType");
-  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }];
+  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" },
+    { Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE", Value: "1" }];
   resetIndexes();
   units.cannon.type = unitHash("UNIT_FIELD_CANNON");
   units.infantry.type = unitHash("UNIT_INFANTRY");
