@@ -92,7 +92,8 @@ try {
   globalThis.GameInfo = {
     Units: table([{ UnitType: "UNIT_SCOUT" }, { UnitType: "UNIT_SPEARMAN", StrategicResource: "RESOURCE_IRON" }],
       "UnitType"),
-    GlobalParameters: [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }],
+    GlobalParameters: [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" },
+    { Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE", Value: "1" }],
     TypeTags: [{ Type: "UNIT_SPEARMAN", Tag: "SR_SUPPLY_IRON" }],
     ModifierArguments: [],
     Resources: table([{ ResourceType: "RESOURCE_IRON", Name: "LOC_RESOURCE_IRON_NAME" }], "ResourceType"),

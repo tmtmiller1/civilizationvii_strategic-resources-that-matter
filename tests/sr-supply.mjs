@@ -10,7 +10,7 @@ import {
   resourceForSupplyTag,
   SUPPLIED_UNITS_SHOWN,
   unitsSuppliedBy,
-  GATE_PRODUCTION_PARAMETER,
+  GATE_PRODUCTION_PARAMETER, GATE_PURCHASE_PARAMETER,
   GATE_UPGRADING_PARAMETER,
   lockedBy
 } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
@@ -144,7 +144,8 @@ for (const copies of [0, 1, 5]) {
     [{ UnitType: "UNIT_FIELD_CANNON", StrategicResource: "RESOURCE_NITER" },
       { UnitType: "UNIT_MORTAR", StrategicResource: "RESOURCE_NITER" },
       { UnitType: "UNIT_TANK", StrategicResource: "RESOURCE_OIL" }],
-    [{ Name: GATE_PRODUCTION_PARAMETER, Value: "1" }, { Name: GATE_UPGRADING_PARAMETER, Value: "0" }], lossSupply);
+    [{ Name: GATE_PRODUCTION_PARAMETER, Value: "1" }, { Name: GATE_PURCHASE_PARAMETER, Value: "1" },
+      { Name: GATE_UPGRADING_PARAMETER, Value: "0" }], lossSupply);
   assert.deepEqual(gate.on, true);
   assert.deepEqual(describeSupplyLoss("RESOURCE_NITER", ["UNIT_MORTAR"], { ...indexes, gate }),
     { key: "LOC_SR_NOTIFY_LOST_ONE", resourceType: "RESOURCE_NITER", unitType: "UNIT_MORTAR", others: 0, combat: -3,
@@ -163,26 +164,32 @@ for (const copies of [0, 1, 5]) {
         { UnitType: "UNIT_WARRIOR", StrategicResource: null },
     { UnitType: "UNIT_KNIGHT", StrategicResource: "RESOURCE_HORSES" }];
   const production = { Name: GATE_PRODUCTION_PARAMETER, Value: "1" };
-  const on = buildGateIndex(units, [production, { Name: GATE_UPGRADING_PARAMETER, Value: "1" }], supply);
+  const purchase = { Name: GATE_PURCHASE_PARAMETER, Value: "1" };
+  const on = buildGateIndex(units, [production, purchase, { Name: GATE_UPGRADING_PARAMETER, Value: "1" }], supply);
   assert.deepEqual([on.on, on.upgrade], [true, true]);
   assert.deepEqual([...on.columns], [["UNIT_SPEARMAN", "RESOURCE_IRON"], ["UNIT_CHARIOT", "RESOURCE_HORSES"],
     ["UNIT_KNIGHT", "RESOURCE_HORSES"]], "every column, also one another mod set");
-  const training = buildGateIndex(units, [production, { Name: GATE_UPGRADING_PARAMETER, Value: "0" }], supply);
+  const training = buildGateIndex(units, [production, purchase, { Name: GATE_UPGRADING_PARAMETER, Value: "0" }],
+    supply);
   assert.deepEqual([training.on, training.upgrade], [true, false]);
-  assert.deepEqual([training.on, buildGateIndex(units, [production], supply).upgrade], [true, false],
+  assert.deepEqual([training.on, buildGateIndex(units, [production, purchase], supply).upgrade], [true, false],
       "no upgrading row");
+  const theirs = buildGateIndex(units, [{ Name: GATE_PRODUCTION_PARAMETER, Value: "3" }, purchase], supply);
+  assert.deepEqual([theirs.on, theirs.columns.size], [false, 0],
+    "another mod's threshold: its rule and its texts, the mod's lock texts step back");
+  assert.deepEqual([buildGateIndex(units, [production], supply).on], [false], "no purchase minimum");
   const off = buildGateIndex(units, [], supply);
   assert.deepEqual([off.on, off.upgrade, off.columns.size], [false, false, 0],
     "no production minimum: the column blocks nothing the engine reads, so no unit is locked");
   const partial = buildGateIndex([{ UnitType: "UNIT_SPEARMAN", StrategicResource: null }, ...units.slice(1)],
-      [production], supply);
-  assert.deepEqual([partial.on, [...partial.columns.keys()]], [false, ["UNIT_CHARIOT", "UNIT_KNIGHT"]],
-    "a column on some units only (another mod's) is not the option; each such unit still reads as locked");
-  assert.deepEqual([buildGateIndex(units, [production], new Map()).on], [false], "no gated units at all");
+      [production, purchase], supply);
+  assert.deepEqual([partial.on, partial.columns.size], [false, 0],
+    "a column on some units only (another mod's) is not the option, and reads as no lock of the mod's");
+  assert.deepEqual([buildGateIndex(units, [production, purchase], new Map()).on], [false], "no gated units at all");
   assert.equal(lockedBy("UNIT_SPEARMAN", on, () => 0), "RESOURCE_IRON");
   assert.equal(lockedBy("UNIT_SPEARMAN", on, () => 1), null, "a copy unlocks");
   assert.equal(lockedBy("UNIT_WARRIOR", on, () => 0), null, "no column");
-  assert.equal(lockedBy("UNIT_KNIGHT", partial, () => 0), "RESOURCE_HORSES");
+  assert.equal(lockedBy("UNIT_KNIGHT", partial, () => 0), null, "another mod's column: not the mod's lock");
   assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", { ...query(0), gate: on }),
     { key: "LOC_SR_PRODUCTION_LOCKED", args: ["RESOURCE_IRON"] }, "locked: the lock, not the penalty");
   assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", { ...query(2), gate: on }),

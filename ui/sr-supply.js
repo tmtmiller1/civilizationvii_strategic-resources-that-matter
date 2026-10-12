@@ -239,11 +239,11 @@ function mostCommon(entries) {
 
 // The hard gate (1.1). A gated unit carries Units.StrategicResource, which the engine checks against the owner's
 // live copy count for training and purchase once the production minimum parameter is set (vanilla defines none).
-// Whether the mod's own option is on is read from the data too: every unit of the gate map carries the column only
-// when one of the option's groups loaded. A unit's lock is read per unit, so a column another mod set on a unit of
-// the map is explained the same way.
+// Whether the mod's own option is on is read from the data too: every unit of the gate map carries the column, and
+// the thresholds read one copy, only when one of the option's groups loaded and no later mod wrote its own.
 
 export const GATE_PRODUCTION_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE";
+export const GATE_PURCHASE_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE";
 export const GATE_UPGRADING_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPGRADING";
 
 /**
@@ -254,7 +254,9 @@ export const GATE_UPGRADING_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPG
  */
 
 /**
- * The gate as the loaded data has it.
+ * The gate as the loaded data has it. It is on only when the thresholds are the ones the option writes (one copy
+ * to train or buy) and every unit of the gate map carries its column: another mod's thresholds or columns are that
+ * mod's rule, which its own texts explain, so the mod's lock texts step back to the 1.0 lines.
  * @param {Iterable<{ UnitType?: string, StrategicResource?: string | null }>} units GameInfo.Units rows
  * @param {Iterable<{ Name?: string, Value?: string | number }>} globalParameters GameInfo.GlobalParameters rows
  * @param {Map<string, string>} supply unit type to the resource it draws on
@@ -263,14 +265,15 @@ export const GATE_UPGRADING_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPG
 export function buildGateIndex(units, globalParameters, supply) {
   const rows = [...units];
   const params = readParameters(globalParameters);
-  const checked = (params.get(GATE_PRODUCTION_PARAMETER) ?? 0) >= 1;
-  if (!checked) return { on: false, upgrade: false, columns: new Map() };
+  const own = params.get(GATE_PRODUCTION_PARAMETER) === 1 && params.get(GATE_PURCHASE_PARAMETER) === 1;
+  if (!own) return { on: false, upgrade: false, columns: new Map() };
   /** @type {Map<string, string>} */
   const columns = new Map();
   for (const row of rows) {
     if (row?.UnitType && row.StrategicResource) columns.set(row.UnitType, row.StrategicResource);
   }
   const on = coversSupply(columns, new Set(rows.map((row) => row?.UnitType)), supply);
+  if (!on) columns.clear();
   return { on, upgrade: on && (params.get(GATE_UPGRADING_PARAMETER) ?? 0) >= 1, columns };
 }
 

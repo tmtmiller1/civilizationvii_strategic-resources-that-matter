@@ -105,7 +105,8 @@ try {
 
 
   // Under the hard gate the line says the units cannot be trained without the resource.
-  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }];
+  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" },
+    { Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE", Value: "1" }];
   for (const row of globalThis.GameInfo.Units) row.StrategicResource = supply.get(row.UnitType) ?? null;
   resetIndexes();
   globalThis.GameContext.localPlayerID = 1;

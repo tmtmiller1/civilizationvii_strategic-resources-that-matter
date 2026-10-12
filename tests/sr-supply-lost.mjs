@@ -173,7 +173,8 @@ try {
     { UnitType: "UNIT_IRONCLAD", Name: "LOC_UNIT_IRONCLAD_NAME", StrategicResource: "RESOURCE_COAL" }
   ], "UnitType");
   globalThis.GameInfo.TypeTags.push({ Type: "UNIT_IRONCLAD", Tag: "SR_SUPPLY_COAL" });
-  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }];
+  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" },
+    { Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE", Value: "1" }];
   resetIndexes();
   unitsById.a = { type: globalThis.GameInfo.Units.lookup("UNIT_FIELD_CANNON").$hash };
   unitsById.b = { type: globalThis.GameInfo.Units.lookup("UNIT_TANK").$hash };
