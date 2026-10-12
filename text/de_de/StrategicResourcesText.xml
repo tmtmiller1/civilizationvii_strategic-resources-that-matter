@@ -72,5 +72,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_RUBBER_NAME}: ohne eine Einheit davon -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_RUBBER_NAME}: ohne eine Einheit davon -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="de_DE"><Text>Versorgung verloren</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MESSAGE" Language="de_DE"><Text>Versorgung verloren: {1_Resources}</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_FALLBACK" Language="de_DE"><Text>Eine strategische Ressource, die deine Einheiten brauchen, ist weg. Sie kämpfen schwächer und werden langsamer ausgebildet, bis du sie zurückbekommst.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="de_DE"><Text>Versorgung verloren: ohne {1_Resource}. Einheiten, die darauf angewiesen sind, kämpfen mit {2_Combat} Kampfstärke und werden langsamer ausgebildet, bis du wieder {1_Resource} hast.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="de_DE"><Text>Versorgung verloren: ohne {1_Resource}. Deine Einheit {2_Unit} kämpft mit {3_Combat} Kampfstärke und wird langsamer ausgebildet, bis du wieder {1_Resource} hast.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="de_DE"><Text>Versorgung verloren: ohne {1_Resource}. Deine Einheit {2_Unit} und {3_Others} {3_Others : plural 1?weitere Einheit; other?weitere Einheiten;} kämpfen mit {4_Combat} Kampfstärke und werden langsamer ausgebildet, bis du wieder {1_Resource} hast.</Text></Replace>
     </LocalizedText>
 </Database>

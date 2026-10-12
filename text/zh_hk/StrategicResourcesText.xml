@@ -72,5 +72,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_RUBBER_NAME}：沒有時戰鬥力-3，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_RUBBER_NAME}：沒有時戰鬥力-5，訓練變慢。</Text></Replace>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="zh_Hant_HK"><Text>補給喪失</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MESSAGE" Language="zh_Hant_HK"><Text>補給喪失：{1_Resources}</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_FALLBACK" Language="zh_Hant_HK"><Text>你的單位所需的一種戰略資源沒有了。在重新獲得之前，它們戰鬥力降低，訓練變慢。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="zh_Hant_HK"><Text>補給喪失：沒有{1_Resource}。在重新獲得{1_Resource}之前，需要它的單位戰鬥力{2_Combat}，訓練變慢。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="zh_Hant_HK"><Text>補給喪失：沒有{1_Resource}。在重新獲得{1_Resource}之前，你的{2_Unit}戰鬥力{3_Combat}，訓練變慢。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="zh_Hant_HK"><Text>補給喪失：沒有{1_Resource}。在重新獲得{1_Resource}之前，你的{2_Unit}和其他{3_Others}個單位戰鬥力{4_Combat}，訓練變慢。</Text></Replace>
     </LocalizedText>
 </Database>

@@ -108,3 +108,36 @@ export function forceRecheckAll(players, resourceHash) {
   }
   return result;
 }
+
+// The lost-supply notification looks at the same turn start: which resources the local player held at the last
+// look and holds none of now. The counts live in the script's memory only, so a load starts from what the player
+// holds then and says nothing about losses before it.
+
+/**
+ * A player's copies of each resource given.
+ * @param {Iterable<string>} resourceTypes
+ * @param {(resourceType: string) => number} copiesOf
+ * @returns {Map<string, number>}
+ */
+export function countGatedCopies(resourceTypes, copiesOf) {
+  /** @type {Map<string, number>} */
+  const counts = new Map();
+  for (const resourceType of resourceTypes) counts.set(resourceType, copiesOf(resourceType));
+  return counts;
+}
+
+/**
+ * The resources held at the last look and at zero copies now, in the order of `current`. A resource missing from
+ * the last look (the first look after a load) is never reported.
+ * @param {Map<string, number>} previous
+ * @param {Map<string, number>} current
+ * @returns {string[]}
+ */
+export function lostSinceLastLook(previous, current) {
+  /** @type {string[]} */
+  const lost = [];
+  for (const [resourceType, copies] of current) {
+    if (copies === 0 && (previous.get(resourceType) ?? 0) > 0) lost.push(resourceType);
+  }
+  return lost;
+}

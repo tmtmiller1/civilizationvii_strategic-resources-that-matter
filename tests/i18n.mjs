@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 // Locale gate. Every tag in en_us exists in all eleven other languages, under the Language code the game loads
-// that folder as, with the same {placeholders} and markup, and no tag is defined twice anywhere. A duplicate tag is
+// that folder as, with the same {placeholders} and markup, and no tag is defined twice anywhere. Placeholders are
+// compared as a set, markup by count: a language may name a placeholder twice or once, as its grammar needs (a
+// plural form repeats the count). A duplicate tag is
 // fatal in game: the second insert hits the unique key and the loader rolls back the whole file, so every string in
 // that language shows as a raw tag. A tag missing from a language shows raw in that language.
 
@@ -31,10 +33,12 @@ function readTexts(folder) {
   return texts;
 }
 
-const marks = (/** @type {string} */ s) =>
-  [...s.matchAll(/\{[0-9]+_[A-Za-z]+[^}]*\}|\[icon:[A-Z0-9_]+\]|\[N\]|\[B\]|\[\/B\]|\[BLIST\]|\[LI\]|\[\/LIST\]/g)]
-    .map((m) => m[0].replace(/\s*:.*\}$/, "}"))
-    .sort();
+const marks = (/** @type {string} */ s) => {
+  const found = [...s.matchAll(/\{[0-9]+_[A-Za-z]+[^}]*\}|\[icon:[A-Z0-9_]+\]|\[N\]|\[B\]|\[\/B\]|\[BLIST\]|\[LI\]|\[\/LIST\]/g)]
+    .map((m) => m[0].replace(/\s*:.*\}$/, "}"));
+  const placeholders = new Set(found.filter((mark) => mark.startsWith("{")));
+  return [...placeholders, ...found.filter((mark) => !mark.startsWith("{"))].sort();
+};
 
 const english = readTexts("en_us");
 assert.ok(english.size > 0, "en_us defines no tags (parse failure?)");

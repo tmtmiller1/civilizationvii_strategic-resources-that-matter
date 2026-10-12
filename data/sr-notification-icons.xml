@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- The lost-supply notification's icon: the game's own for traded resources lost. -->
+<Database>
+    <IconDefinitions>
+        <Row>
+            <ID>NOTIFICATION_SR_SUPPLY_LOST</ID>
+            <Path>blp:ntf_trade_res_lost</Path>
+        </Row>
+    </IconDefinitions>
+</Database>

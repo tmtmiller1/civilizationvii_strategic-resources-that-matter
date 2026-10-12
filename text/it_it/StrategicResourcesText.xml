@@ -72,5 +72,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="it_IT"><Text>Richiede {LOC_RESOURCE_RUBBER_NAME}: senza alcuna unità, -3 alla forza di combattimento e addestramento più lento.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="it_IT"><Text>Richiede {LOC_RESOURCE_RUBBER_NAME}: senza alcuna unità, -5 alla forza di combattimento e addestramento più lento.</Text></Replace>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="it_IT"><Text>Rifornimento perso</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MESSAGE" Language="it_IT"><Text>Rifornimento perso: {1_Resources}</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_FALLBACK" Language="it_IT"><Text>Una risorsa strategica che serve alle tue unità non c'è più. Combattono peggio e si addestrano più lentamente finché non la riottieni.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="it_IT"><Text>Rifornimento perso: niente {1_Resource}. Le unità che ne hanno bisogno combattono con {2_Combat} di forza di combattimento e si addestrano più lentamente finché non riottieni {1_Resource}.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="it_IT"><Text>Rifornimento perso: niente {1_Resource}. La tua unità {2_Unit} combatte con {3_Combat} di forza di combattimento e si addestra più lentamente finché non riottieni {1_Resource}.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="it_IT"><Text>Rifornimento perso: niente {1_Resource}. La tua unità {2_Unit} e {3_Others} {3_Others : plural 1?altra unità; other?altre unità;} combattono con {4_Combat} di forza di combattimento e si addestrano più lentamente finché non riottieni {1_Resource}.</Text></Replace>
     </LocalizedText>
 </Database>

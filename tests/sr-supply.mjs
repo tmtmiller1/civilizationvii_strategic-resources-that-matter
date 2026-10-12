@@ -5,6 +5,7 @@ import {
   computeSupplyStatus,
   countCopies,
   describeProductionCost,
+  describeSupplyLoss,
   resourceForSupplyTag,
   SUPPLIED_UNITS_SHOWN,
   unitsSuppliedBy
@@ -109,6 +110,28 @@ for (const copies of [0, 1, 5]) {
   const line = describeProductionCost("UNIT_SPEARMAN", query(copies));
   const unsupplied = computeSupplyStatus({ unitType: "UNIT_SPEARMAN", ...query(copies) }) !== null;
   assert.equal(line?.key === "LOC_SR_PRODUCTION_NEEDS_NONE", unsupplied, `panel and list agree at ${copies}`);
+}
+
+// describeSupplyLoss: the lost-supply notification names the unit type the player has most of and counts the rest
+{
+  const lossSupply = new Map([["UNIT_FIELD_CANNON", "RESOURCE_NITER"], ["UNIT_MORTAR", "RESOURCE_NITER"],
+    ["UNIT_TANK", "RESOURCE_OIL"]]);
+  const lossPenalties = new Map([["RESOURCE_NITER", { combat: -3, productionPercent: -33 }],
+    ["RESOURCE_OIL", { combat: 0, productionPercent: 0 }]]);
+  const indexes = { supply: lossSupply, penalties: lossPenalties };
+  assert.deepEqual(
+    describeSupplyLoss("RESOURCE_NITER", ["UNIT_MORTAR", "UNIT_FIELD_CANNON", "UNIT_FIELD_CANNON", "UNIT_TANK",
+      "UNIT_INFANTRY", "UNIT_FIELD_CANNON", "UNIT_MORTAR"], indexes),
+    { key: "LOC_SR_NOTIFY_LOST_MANY", resourceType: "RESOURCE_NITER", unitType: "UNIT_FIELD_CANNON", others: 4,
+      combat: -3 });
+  assert.deepEqual(describeSupplyLoss("RESOURCE_NITER", ["UNIT_MORTAR", "UNIT_FIELD_CANNON"], indexes)?.unitType,
+    "UNIT_MORTAR", "a tie goes to the first seen");
+  assert.deepEqual(describeSupplyLoss("RESOURCE_NITER", ["UNIT_TANK", "UNIT_MORTAR"], indexes),
+    { key: "LOC_SR_NOTIFY_LOST_ONE", resourceType: "RESOURCE_NITER", unitType: "UNIT_MORTAR", others: 0, combat: -3 });
+  assert.deepEqual(describeSupplyLoss("RESOURCE_NITER", [], indexes),
+    { key: "LOC_SR_NOTIFY_LOST_NONE", resourceType: "RESOURCE_NITER", unitType: null, others: 0, combat: -3 });
+  assert.equal(describeSupplyLoss("RESOURCE_OIL", ["UNIT_TANK"], indexes), null, "the Off setting says nothing");
+  assert.equal(describeSupplyLoss("RESOURCE_COAL", ["UNIT_TANK"], indexes), null, "no penalty modifier loaded");
 }
 
 console.log("sr-supply tests passed");
