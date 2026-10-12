@@ -76,6 +76,7 @@ try {
   assert.equal(value.textContent, "-3", "the penalty as the value");
   assert.ok(value.classList.contains("text-negative-light"));
   assert.equal(stats.children.length, 2, "a divider, then the cell");
+  assert.equal(stats.children[0].style.width, "0.1111rem", "the divider has the game's width");
 
   // A later prototype patch still runs: the wrapper looks the method up at call time.
   Panel.prototype.setupUnitInfo = function () {
