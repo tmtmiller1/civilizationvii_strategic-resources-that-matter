@@ -1,15 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Workshop preview for Strategic Resources That Matter. Tower-mods family look: dark ground, gold frame, parchment hex,
+     serif wordmark. Motif: a crossed sword and pickaxe. release.sh renders this to dist/preview.png at 1024x1024. -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-  <rect width="1024" height="1024" fill="#14161c"/>
-  <rect x="40" y="40" width="944" height="944" fill="none" stroke="#b08d4a" stroke-width="8"/>
-  <g transform="translate(512 420)" fill="none" stroke="#d9b56a" stroke-width="18" stroke-linejoin="round">
-    <polygon points="0,-230 199,-115 199,115 0,230 -199,115 -199,-115"/>
-    <polygon points="0,-120 104,-60 104,60 0,120 -104,60 -104,-60" fill="#2a2e38"/>
-  </g>
-  <g transform="translate(512 420)" fill="#d9b56a">
-    <rect x="-14" y="-86" width="28" height="120"/>
-    <rect x="-56" y="-30" width="112" height="22"/>
-    <circle cx="0" cy="62" r="16"/>
-  </g>
-  <text x="512" y="790" font-family="Georgia, serif" font-size="96" fill="#e8e2d0" text-anchor="middle">Strategic</text>
-  <text x="512" y="900" font-family="Georgia, serif" font-size="96" fill="#e8e2d0" text-anchor="middle">Resources</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#243042"/><stop offset="100%" stop-color="#121821"/></linearGradient>
+    <linearGradient id="parchment" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f7eed1"/><stop offset="100%" stop-color="#e7d4a3"/></linearGradient>
+    <linearGradient id="ingot" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8c66f"/><stop offset="100%" stop-color="#a7782c"/></linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e9edf3"/><stop offset="50%" stop-color="#9aa4b4"/><stop offset="100%" stop-color="#5c6675"/></linearGradient>
+    <linearGradient id="steelv" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a5666"/><stop offset="100%" stop-color="#1e2630"/></linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#8a5a2b"/><stop offset="100%" stop-color="#5a3a18"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e7d4a3" stop-opacity="0.22"/><stop offset="100%" stop-color="#e7d4a3" stop-opacity="0"/></radialGradient>
+    <clipPath id="hexclip"><polygon points="812,430 662,689.8 362,689.8 212,430 362,170.2 662,170.2"/></clipPath>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <rect x="26" y="26" width="972" height="972" rx="30" fill="none" stroke="#c9a24c" stroke-width="4" opacity="0.5"/>
+  <circle cx="512" cy="430" r="340" fill="url(#glow)"/>
+  <polygon points="812,430 662,689.8 362,689.8 212,430 362,170.2 662,170.2" fill="url(#parchment)" stroke="#c9a24c" stroke-width="6" stroke-linejoin="round"/>
+  <g transform="translate(512 440) rotate(-40)"><g>
+      <polygon points="0,-250 22,-205 22,60 -22,60 -22,-205" fill="url(#steel)" stroke="#2a3038" stroke-width="4" stroke-linejoin="round"/>
+      <line x1="0" y1="-215" x2="0" y2="50" stroke="#ffffff" stroke-opacity="0.45" stroke-width="4"/>
+      <rect x="-78" y="60" width="156" height="26" rx="6" fill="url(#ingot)" stroke="#7a5a1e" stroke-width="4"/>
+      <rect x="-16" y="86" width="32" height="90" fill="url(#wood)" stroke="#3a2510" stroke-width="4"/>
+      <circle cx="0" cy="196" r="22" fill="url(#ingot)" stroke="#7a5a1e" stroke-width="4"/>
+    </g></g>
+  <g transform="translate(512 440) rotate(40)"><g>
+      <rect x="-15" y="-262" width="30" height="492" rx="6" fill="url(#wood)" stroke="#3a2510" stroke-width="4"/>
+      <path d="M-238,-132 Q0,-318 238,-132 Q0,-206 -238,-132 Z" fill="url(#steelv)" stroke="#11161c" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M-190,-150 Q0,-282 190,-150" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="5"/>
+      <rect x="-24" y="-232" width="48" height="26" rx="4" fill="url(#ingot)" stroke="#7a5a1e" stroke-width="3"/>
+    </g></g>
+    <text x="512" y="776" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="bold" fill="#e7d4a3" letter-spacing="3">STRATEGIC</text>
+  <text x="512" y="866" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="bold" fill="#e7d4a3" letter-spacing="3">RESOURCES</text>
+  <text x="512" y="934" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#c9a24c" opacity="0.92">Horses &#183; Iron &#183; Niter &#183; Oil &#183; Coal &#183; Rubber</text>
 </svg>
