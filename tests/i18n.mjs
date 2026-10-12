@@ -40,7 +40,24 @@ const marks = (/** @type {string} */ s) => {
   return [...placeholders, ...found.filter((mark) => !mark.startsWith("{"))].sort();
 };
 
+// A plural construct is "{1_Count : plural 1?one; other?many;}": each branch "key?text;" and an other? branch. The
+// placeholder comparison above reads only the part before the colon, so a broken construct is checked here.
+const PLURAL = /\{([0-9]+_[A-Za-z]+)\s*:\s*plural\b([^}]*)\}/g;
+const BRANCH = /^(\s*[A-Za-z0-9=]+\?[^;?{}]*;)+\s*$/;
+/** @param {string} text @returns {string[]} what is wrong with each plural construct */
+export function pluralProblems(text) {
+  const problems = [];
+  for (const [whole, name, branches] of text.matchAll(PLURAL)) {
+    if (!BRANCH.test(branches)) problems.push(`${whole}: each branch "key?text;", ending in ";"`);
+    else if (!/(^|;)\s*other\?/.test(branches)) problems.push(`${whole}: no other? branch for ${name}`);
+  }
+  const opened = (text.match(/\{[0-9]+_[A-Za-z]+\s*:\s*plural\b/g) ?? []).length;
+  if (opened !== [...text.matchAll(PLURAL)].length) problems.push("a plural construct is not closed");
+  return problems;
+}
+
 const english = readTexts("en_us");
+for (const [tag, text] of english) assert.deepEqual(pluralProblems(text), [], `en_us ${tag}: plural construct`);
 assert.ok(english.size > 0, "en_us defines no tags (parse failure?)");
 
 let checked = 0;
@@ -56,6 +73,7 @@ for (const [folder, language] of Object.entries(LANGUAGE_OF)) {
   assert.ok(!/<EnglishText>/.test(xml), `${folder} uses EnglishText; translations use LocalizedText with Replace`);
   for (const [tag, text] of texts) {
     assert.deepEqual(marks(text), marks(english.get(tag) ?? ""), `${folder} ${tag}: placeholders or markup differ`);
+    assert.deepEqual(pluralProblems(text), [], `${folder} ${tag}: plural construct`);
     if (!SAME_AS_ENGLISH_OK.has(tag)) {
       assert.notEqual(text, english.get(tag), `${folder} ${tag} is still the English text`);
     }
