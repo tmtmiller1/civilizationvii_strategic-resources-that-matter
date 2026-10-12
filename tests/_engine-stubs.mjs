@@ -49,6 +49,8 @@ export function element(classes = []) {
       node.attributes[k] = v;
     },
     appendChild: (child) => {
+      // As in the DOM: a child already in the tree moves to the end.
+      node.children = node.children.filter((c) => c !== child);
       node.children.push(child);
       return child;
     },

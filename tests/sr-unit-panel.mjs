@@ -87,6 +87,11 @@ try {
   assert.equal(panel.setupUnitInfo(), "patched");
   assert.equal(ownCalls, 11);
   assert.equal(stats.children.length, 2, "the same cell is reused");
+  panel.unitId = "spear";
+  stats.appendChild(element(["unit-info__stat-container"]));
+  panel.setupUnitInfo();
+  assert.deepEqual(stats.children.map((c) => c.classList.contains("sr-unsupplied-line")), [false, false, true],
+    "the cell goes back to the end after the panel rebuilds its cells");
   assert.equal(line.classList.contains("hidden"), true, "a supplied or ungated unit hides it");
   panel.unitId = null;
   panel.setupUnitInfo();

@@ -104,11 +104,16 @@ function fillCell(cell, status) {
 function renderLine(root, status) {
   const host = root?.querySelector?.(STATS_SELECTOR);
   if (!host) return;
+  const row = /** @type {HTMLElement} */ (host.querySelector(ROW_SELECTOR) ?? host);
   let cell = /** @type {HTMLElement | null} */ (host.querySelector(`.${LINE_CLASS}`));
-  if (status && !cell) cell = addCell(/** @type {HTMLElement} */ (host.querySelector(ROW_SELECTOR) ?? host));
+  if (status && !cell) cell = addCell(row);
   if (!cell) return;
-  if (status) fillCell(cell, status);
   const divider = /** @type {HTMLElement | null} */ (host.querySelector(".sr-unsupplied-divider"));
+  if (status) {
+    fillCell(cell, status);
+    // The panel rebuilds its own cells after the first two on every refresh, so the mod's go back to the end.
+    for (const part of [divider, cell]) if (part) row.appendChild(part);
+  }
   for (const part of [cell, divider]) part?.classList.toggle("hidden", !status);
 }
 
