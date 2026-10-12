@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One grant per locked unit, the Foederati shape: attach per major, the requirement on the child only. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SRP4_ATTACH_GRANT_WARRIOR" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP4_GRANT_WARRIOR</Argument>
+    </Modifier>
+    <Modifier id="SRP4_GRANT_WARRIOR" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD">
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ALL">
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="UnitType">UNIT_WARRIOR</Argument>
+    </Modifier>
+    <Modifier id="SRP4_ATTACH_GRANT_SPEARMAN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP4_GRANT_SPEARMAN</Argument>
+    </Modifier>
+    <Modifier id="SRP4_GRANT_SPEARMAN" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD">
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ALL">
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="UnitType">UNIT_SPEARMAN</Argument>
+    </Modifier>
+    <Modifier id="SRP4_ATTACH_GRANT_CHARIOT" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP4_GRANT_CHARIOT</Argument>
+    </Modifier>
+    <Modifier id="SRP4_GRANT_CHARIOT" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD">
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ALL">
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="UnitType">UNIT_CHARIOT</Argument>
+    </Modifier>
+    <Modifier id="SRP4_ATTACH_GRANT_LEGION" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP4_GRANT_LEGION</Argument>
+    </Modifier>
+    <Modifier id="SRP4_GRANT_LEGION" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD">
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ALL">
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT">
+                <Argument name="TraitType">TRAIT_ROME</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="UnitType">UNIT_LEGION</Argument>
+    </Modifier>
+</GameEffects>

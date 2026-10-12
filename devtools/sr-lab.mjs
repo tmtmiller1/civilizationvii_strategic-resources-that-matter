@@ -2,6 +2,7 @@
 //   SR_LAB_SETUP='{"StrategicResourcesThatMatterUnsupplied":"SR_UNSUPPLIED_LIGHT"}'  game setup values for `lab start`
 //   SR_LAB_LANGUAGE=de_DE                                                 display language for the test game
 //   SR_LAB_MODE=HOTSEAT                                                   a hotseat game with two human seats
+//   SR_LAB_CIV=CIVILIZATION_ROME                                          the local player's civilization
 // Usage: node devtools/sr-lab.mjs <any tower-bench command>, for example
 //   SR_LAB_SETUP='{"StrategicResourcesThatMatterLateCurve":"SR_LATE_CURVE_OFF"}' \
 //     node devtools/sr-lab.mjs lab start --seed 4242
@@ -17,6 +18,7 @@ import { Lab } from "../../../tools/tower-bench/lib/lab.mjs";
 const setup = process.env.SR_LAB_SETUP ? JSON.parse(process.env.SR_LAB_SETUP) : null;
 const language = process.env.SR_LAB_LANGUAGE ?? null;
 const mode = process.env.SR_LAB_MODE ?? null;
+const civ = process.env.SR_LAB_CIV ?? null;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -69,11 +71,11 @@ if (mode === "HOTSEAT") {
   Lab.prototype.playNow = function (seed, age) {
     return startHotseat(this, seed, age);
   };
-} else if (setup) {
+} else if (setup || civ) {
   const playNow = Lab.prototype.playNow;
   Lab.prototype.playNow = async function (seed, age) {
     // Same reset, seeds and age as the lab's own Play Now, then the setup values, then Begin.
-    const result = await this.cdp.call(({ seed, age, setup }) => {
+    const result = await this.cdp.call(({ seed, age, setup, civ }) => {
       const out = { values: {} };
       Configuration.editGame().reset(GameModeTypes.SINGLEPLAYER);
       if (age) Configuration.editGame().setStartAgeType(age);
@@ -81,7 +83,12 @@ if (mode === "HOTSEAT") {
         Configuration.editMap().setMapSeed(seed);
         Configuration.editGame().setGameSeed(seed);
       }
-      for (const [key, value] of Object.entries(setup)) {
+      if (civ) {
+        // The civilization is a player setting, the call the setup screen's civilization picker makes.
+        Configuration.editPlayer(0).setCivilizationTypeName(civ);
+        out.civ = Configuration.getPlayer(0).civilizationTypeName;
+      }
+      for (const [key, value] of Object.entries(setup ?? {})) {
         try {
           GameSetup.setGameParameterValue(key, value);
         } catch (e) {
@@ -91,7 +98,7 @@ if (mode === "HOTSEAT") {
       }
       engine.call("startGame");
       return out;
-    }, { seed: seed ?? null, age: age ?? null, setup });
+    }, { seed: seed ?? null, age: age ?? null, setup, civ });
     console.log(`[sr-lab] before start: ${JSON.stringify(result)}`);
     return result;
   };

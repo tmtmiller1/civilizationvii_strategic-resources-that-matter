@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <GameModifiers>
+        <Row ModifierId="SRP4_ATTACH_GRANT_WARRIOR"/>
+        <Row ModifierId="SRP4_ATTACH_GRANT_SPEARMAN"/>
+        <Row ModifierId="SRP4_ATTACH_GRANT_CHARIOT"/>
+        <Row ModifierId="SRP4_ATTACH_GRANT_LEGION"/>
+        <Row ModifierId="SRP4_GRANT_INDEPENDENT_WARRIOR"/>
+        <Row ModifierId="SRP4_GRANT_INDEPENDENT_SPEARMAN"/>
+        <Row ModifierId="SRP4_GRANT_INDEPENDENT_CHARIOT"/>
+    </GameModifiers>
+</Database>

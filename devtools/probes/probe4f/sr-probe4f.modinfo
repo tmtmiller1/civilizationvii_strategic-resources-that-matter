@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway probe for the hard gate (DESIGN.md section 7f). Dev only, never ship.
+     The gate is Units.StrategicResource alone, with the STRATEGIC_RESOURCE_MINIMUM global parameters the engine
+     reads and vanilla 1.5.0 does not define: production and purchase need one copy, upgrading and healing none.
+     No grant, no TraitType or CanTrain change. Run with Homo Ludens off (it writes the same parameters at load
+     order 9999). -->
+<Mod id="sr-probe4f" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Strategic Resources That Matter Probe 4f (dev)</Name>
+        <Description>Dev only: the StrategicResource column with its global parameters.</Description>
+        <Authors>Tower</Authors>
+        <Package>SRProbe4f</Package>
+        <PackageSortIndex>9996</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="antiquity"><AgeInUse>AGE_ANTIQUITY</AgeInUse></Criteria>
+        <Criteria id="modern"><AgeInUse>AGE_MODERN</AgeInUse></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="sr-probe4f-antiquity" scope="game" criteria="antiquity">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/probe4-params.sql</Item><Item>data/probe4.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="sr-probe4f-modern" scope="game" criteria="modern">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/probe4-params.sql</Item><Item>data/probe4-modern.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

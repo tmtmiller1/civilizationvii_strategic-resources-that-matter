@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway probe for the hard gate (DESIGN.md section 7f). Dev only, never ship.
+     The lock is Units.StrategicResource alone, which the game's own rule exempts independents from; one grant per
+     unit behind has-resource lifts it for major players. TraitType and CanTrain are untouched. -->
+<Mod id="sr-probe4e" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Strategic Resources That Matter Probe 4e (dev)</Name>
+        <Description>Dev only: in-place training locks and grants.</Description>
+        <Authors>Tower</Authors>
+        <Package>SRProbe4e</Package>
+        <PackageSortIndex>9996</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="antiquity"><AgeInUse>AGE_ANTIQUITY</AgeInUse></Criteria>
+        <Criteria id="modern"><AgeInUse>AGE_MODERN</AgeInUse></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="sr-probe4e-antiquity" scope="game" criteria="antiquity">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/probe4.sql</Item>
+                    <Item>data/probe4-gameeffects.xml</Item>
+                    <Item>data/probe4.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="sr-probe4e-modern" scope="game" criteria="modern">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/probe4-modern.sql</Item>
+                    <Item>data/probe4-modern-gameeffects.xml</Item>
+                    <Item>data/probe4-modern.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>
