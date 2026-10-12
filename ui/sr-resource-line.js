@@ -61,14 +61,15 @@ export function unitNamesFor(player, supply) {
   const own = new Map();
   for (const unitType of supply.keys()) {
     const row = GameInfo.Units.lookup(unitType);
-    if (!row || row.CanTrain === false) continue;
-    if (row.TraitType && !traits.has(row.TraitType)) continue;
+    if (!row || (row.TraitType && !traits.has(row.TraitType))) continue;
     own.set(unitType, row);
   }
+  // A unique unit replaces the common one for its civilization even when it is reached by upgrade alone.
   for (const row of /** @type {*} */ (GameInfo.UnitReplaces ?? [])) {
     if (own.has(row.CivUniqueUnitType)) own.delete(row.ReplacesUnitType);
   }
-  return new Map([...own].map(([unitType, row]) => [unitType, Locale.compose(row.Name)]));
+  return new Map([...own].filter(([, row]) => row.CanTrain !== false)
+    .map(([unitType, row]) => [unitType, Locale.compose(row.Name)]));
 }
 
 /**
