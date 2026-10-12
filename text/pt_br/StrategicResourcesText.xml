@@ -72,5 +72,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="pt_BR"><Text>Precisa de {LOC_RESOURCE_RUBBER_NAME}: sem nenhuma unidade, -3 de Força de Combate e treina mais devagar.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="pt_BR"><Text>Precisa de {LOC_RESOURCE_RUBBER_NAME}: sem nenhuma unidade, -5 de Força de Combate e treina mais devagar.</Text></Replace>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="pt_BR"><Text>Suprimento perdido</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MESSAGE" Language="pt_BR"><Text>Suprimento perdido: {1_Resources}</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_FALLBACK" Language="pt_BR"><Text>Um recurso estratégico de que suas unidades precisam acabou. Elas lutam com menos força e treinam mais devagar até você recuperá-lo.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="pt_BR"><Text>Suprimento perdido: sem {1_Resource}. As unidades que precisam dele lutam com {2_Combat} de Força de Combate e treinam mais devagar até você ter {1_Resource} de novo.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="pt_BR"><Text>Suprimento perdido: sem {1_Resource}. Sua unidade {2_Unit} luta com {3_Combat} de Força de Combate e treina mais devagar até você ter {1_Resource} de novo.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="pt_BR"><Text>Suprimento perdido: sem {1_Resource}. Sua unidade {2_Unit} e mais {3_Others} {3_Others : plural 1?unidade; other?unidades;} lutam com {4_Combat} de Força de Combate e treinam mais devagar até você ter {1_Resource} de novo.</Text></Replace>
     </LocalizedText>
 </Database>

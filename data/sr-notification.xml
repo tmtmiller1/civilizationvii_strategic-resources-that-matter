@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- The lost-supply notification: low severity, ends with the turn, never blocks it. -->
+<Database>
+    <Types>
+        <Row Type="NOTIFICATION_SR_SUPPLY_LOST" Kind="KIND_NOTIFICATION"/>
+    </Types>
+    <Notifications>
+        <Row NotificationType="NOTIFICATION_SR_SUPPLY_LOST" SeverityType="LOW" ExpiresEndOfTurn="True" AutoNotify="False" Message="LOC_SR_NOTIFY_LOST_TITLE" Summary="LOC_SR_NOTIFY_LOST_FALLBACK" Priority="2"/>
+    </Notifications>
+    <NotificationSounds>
+        <Row NotificationType="NOTIFICATION_SR_SUPPLY_LOST" Context="Add" Audio="notif-Trade_Resources_Lost"/>
+    </NotificationSounds>
+</Database>

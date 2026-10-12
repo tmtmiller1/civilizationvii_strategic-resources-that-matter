@@ -72,5 +72,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="fr_FR"><Text>Nécessite {LOC_RESOURCE_RUBBER_NAME} : sans exemplaire, -3 en puissance de combat et formation plus lente.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="fr_FR"><Text>Nécessite {LOC_RESOURCE_RUBBER_NAME} : sans exemplaire, -5 en puissance de combat et formation plus lente.</Text></Replace>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="fr_FR"><Text>Ravitaillement perdu</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MESSAGE" Language="fr_FR"><Text>Ravitaillement perdu : {1_Resources}</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_FALLBACK" Language="fr_FR"><Text>Une ressource stratégique dont vos unités ont besoin a disparu. Elles combattent moins bien et sont formées plus lentement jusqu'à ce que vous la récupériez.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="fr_FR"><Text>Ravitaillement perdu : pas de {1_Resource}. Les unités qui en ont besoin combattent à {2_Combat} en puissance de combat et sont formées plus lentement jusqu'à ce que vous ayez de nouveau {1_Resource}.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="fr_FR"><Text>Ravitaillement perdu : pas de {1_Resource}. Votre unité {2_Unit} combat à {3_Combat} en puissance de combat et est formée plus lentement jusqu'à ce que vous ayez de nouveau {1_Resource}.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="fr_FR"><Text>Ravitaillement perdu : pas de {1_Resource}. Votre unité {2_Unit} et {3_Others} {3_Others : plural 1?autre unité; other?autres unités;} combattent à {4_Combat} en puissance de combat et sont formées plus lentement jusqu'à ce que vous ayez de nouveau {1_Resource}.</Text></Replace>
     </LocalizedText>
 </Database>

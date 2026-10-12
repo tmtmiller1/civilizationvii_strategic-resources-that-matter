@@ -72,5 +72,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="pl_PL"><Text>Wymaga zasobu {LOC_RESOURCE_RUBBER_NAME}: bez niego -3 siły bojowej i wolniejsze szkolenie.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="pl_PL"><Text>Wymaga zasobu {LOC_RESOURCE_RUBBER_NAME}: bez niego -5 siły bojowej i wolniejsze szkolenie.</Text></Replace>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="pl_PL"><Text>Utracono zaopatrzenie</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MESSAGE" Language="pl_PL"><Text>Utracono zaopatrzenie: {1_Resources}</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_FALLBACK" Language="pl_PL"><Text>Zniknął zasób strategiczny, którego potrzebują twoje jednostki. Walczą słabiej i szkolą się wolniej, dopóki go nie odzyskasz.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="pl_PL"><Text>Utracono zaopatrzenie: brak zasobu {1_Resource}. Jednostki, które go potrzebują, walczą z {2_Combat} siły bojowej i szkolą się wolniej, dopóki znów nie zdobędziesz zasobu {1_Resource}.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="pl_PL"><Text>Utracono zaopatrzenie: brak zasobu {1_Resource}. Twoja jednostka {2_Unit} walczy z {3_Combat} siły bojowej i szkoli się wolniej, dopóki znów nie zdobędziesz zasobu {1_Resource}.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="pl_PL"><Text>Utracono zaopatrzenie: brak zasobu {1_Resource}. Twoja jednostka {2_Unit} i inne jednostki (jeszcze: {3_Others}) walczą z {4_Combat} siły bojowej i szkolą się wolniej, dopóki znów nie zdobędziesz zasobu {1_Resource}.</Text></Replace>
     </LocalizedText>
 </Database>

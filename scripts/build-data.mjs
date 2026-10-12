@@ -22,6 +22,10 @@
 //     Amount 0 and a Preview string, behind the same requirements as the change it names (DESIGN.md 7e). The preview
 //     text gets the modifier's arguments as its parameters, sorted by argument name: Amount (always 0), then
 //     Combat, Copies and Resource.
+//   - sr-notification.xml and sr-notification-icons.xml: the notification ui/sr-supply-lost.js raises when the local
+//     player loses the last copy of a resource its units need. It ends with the turn, never blocks it, and carries
+//     the game's own "trade resources lost" icon and sound. The script passes the composed text as Message and
+//     Summary (the rows' tags are the fallback), since a notification raised from script takes no text arguments.
 //   - sr-civilopedia.xml: the Civilopedia page in Game Concepts (its chapters' text by key convention,
 //     LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_<chapter>_TITLE and _PARA_<n>), and one chapter on the
 //     unit page layout. A chapter without text is not drawn, so that chapter shows only on the pages the per-level
@@ -172,6 +176,36 @@ export const PEDIA = {
 export const pediaUnitTag = (resource, levelName) =>
   `LOC_SR_PEDIA_UNIT_${shortName(resource)}_${levelName.toUpperCase()}`;
 
+/** The lost-supply notification: one type, its sound, and its icon (an UpdateIcons file of its own). */
+export const NOTIFICATION = {
+  type: "NOTIFICATION_SR_SUPPLY_LOST", message: "LOC_SR_NOTIFY_LOST_TITLE", summary: "LOC_SR_NOTIFY_LOST_FALLBACK",
+  icon: "blp:ntf_trade_res_lost", audio: "notif-Trade_Resources_Lost"
+};
+
+function notificationFile() {
+  const { type, message, summary, audio } = NOTIFICATION;
+  return [HEADER, GENERATED,
+    "<!-- The lost-supply notification: low severity, ends with the turn, never blocks it. -->",
+    "<Database>",
+    "    <Types>", `        <Row Type="${type}" Kind="KIND_NOTIFICATION"/>`, "    </Types>",
+    "    <Notifications>",
+    `        <Row NotificationType="${type}" SeverityType="LOW" ExpiresEndOfTurn="True" AutoNotify="False" ` +
+      `Message="${message}" Summary="${summary}" Priority="2"/>`,
+    "    </Notifications>",
+    "    <NotificationSounds>", `        <Row NotificationType="${type}" Context="Add" Audio="${audio}"/>`,
+    "    </NotificationSounds>",
+    "</Database>", ""].join("\n");
+}
+
+function notificationIconsFile() {
+  const { type, icon } = NOTIFICATION;
+  return [HEADER, GENERATED,
+    "<!-- The lost-supply notification's icon: the game's own for traded resources lost. -->",
+    "<Database>", "    <IconDefinitions>",
+    "        <Row>", `            <ID>${type}</ID>`, `            <Path>${icon}</Path>`, "        </Row>",
+    "    </IconDefinitions>", "</Database>", ""].join("\n");
+}
+
 function pediaFile() {
   const { section, page, group, layout, chapters, searchTerms, unitChapter, unitHeader } = PEDIA;
   return [HEADER, GENERATED,
@@ -276,6 +310,8 @@ export function buildFiles() {
   const allTags = allResources.flatMap((r) => [supplyTag(r), penaltyTag("RANGED", r), penaltyTag("BOMBARD", r),
     curveTag("RANGED", r), curveTag("BOMBARD", r)]);
   files.set("sr-civilopedia.xml", pediaFile());
+  files.set("sr-notification.xml", notificationFile());
+  files.set("sr-notification-icons.xml", notificationIconsFile());
   files.set("sr-tags.xml", [HEADER, GENERATED,
     "<!-- Unit tags: which resource a unit draws on, and which of its strengths the penalty and the curve change. -->",
     "<Database>", "    <Tags>", ...allTags.map((t) => `        <Row Tag="${t}" Category="UNIT_CLASS"/>`),

@@ -72,5 +72,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="ru_RU"><Text>Нужен ресурс «{LOC_RESOURCE_RUBBER_NAME}»: без него -3 к боевой мощи и обучение дольше.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="ru_RU"><Text>Нужен ресурс «{LOC_RESOURCE_RUBBER_NAME}»: без него -5 к боевой мощи и обучение дольше.</Text></Replace>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="ru_RU"><Text>Снабжение потеряно</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MESSAGE" Language="ru_RU"><Text>Снабжение потеряно: {1_Resources}</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_FALLBACK" Language="ru_RU"><Text>Стратегический ресурс, нужный вашим отрядам, закончился. Пока вы его не вернёте, они сражаются слабее и обучаются дольше.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="ru_RU"><Text>Снабжение потеряно: нет ресурса «{1_Resource}». Пока вы снова не получите «{1_Resource}», нуждающиеся в нём отряды получают {2_Combat} к боевой мощи и обучаются дольше.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="ru_RU"><Text>Снабжение потеряно: нет ресурса «{1_Resource}». Пока вы снова не получите «{1_Resource}», ваш отряд «{2_Unit}» получает {3_Combat} к боевой мощи и обучается дольше.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ru_RU"><Text>Снабжение потеряно: нет ресурса «{1_Resource}». Пока вы снова не получите «{1_Resource}», ваш отряд «{2_Unit}» и другие отряды (ещё: {3_Others}) получают {4_Combat} к боевой мощи и обучаются дольше.</Text></Replace>
     </LocalizedText>
 </Database>

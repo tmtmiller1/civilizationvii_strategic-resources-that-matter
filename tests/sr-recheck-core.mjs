@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
 import {
+  countGatedCopies,
   forcePlayerRecheck,
   forceRecheckAll,
   isMultiplayerGame,
+  lostSinceLastLook,
   readMajorPlayers,
   resolveRecheckHash,
   RECHECK_RESOURCE
@@ -68,5 +70,23 @@ const players = [player(0), player(1, { throws: true }), player(2, { gain: () =>
 assert.deepEqual(forceRecheckAll(players, 77), { forced: 2, failed: [1, 2] });
 assert.deepEqual(players[3].calls, [["gain", 77], ["remove", 0]]);
 assert.deepEqual(forceRecheckAll([], 77), { forced: 0, failed: [] });
+
+// countGatedCopies and lostSinceLastLook: the lost-supply notification's look at each turn start
+const held = { RESOURCE_IRON: 2, RESOURCE_HORSES: 0 };
+const counts = countGatedCopies(["RESOURCE_IRON", "RESOURCE_HORSES", "RESOURCE_NITER"],
+  (r) => /** @type {Record<string, number>} */ (held)[r] ?? 0);
+assert.deepEqual([...counts], [["RESOURCE_IRON", 2], ["RESOURCE_HORSES", 0], ["RESOURCE_NITER", 0]]);
+assert.deepEqual([...countGatedCopies([], () => 1)], []);
+const look = (/** @type {Record<string, number>} */ o) => new Map(Object.entries(o));
+assert.deepEqual(
+  lostSinceLastLook(look({ RESOURCE_IRON: 1, RESOURCE_OIL: 3 }), look({ RESOURCE_IRON: 0, RESOURCE_OIL: 0 })),
+  ["RESOURCE_IRON", "RESOURCE_OIL"], "two losses in one turn, in the order of the new look");
+assert.deepEqual(lostSinceLastLook(look({ RESOURCE_IRON: 0 }), look({ RESOURCE_IRON: 0 })), [],
+  "still at zero: reported once, not every turn");
+assert.deepEqual(lostSinceLastLook(look({ RESOURCE_IRON: 3 }), look({ RESOURCE_IRON: 1 })), [],
+  "a drop to one is no loss");
+assert.deepEqual(lostSinceLastLook(look({ RESOURCE_IRON: 0 }), look({ RESOURCE_IRON: 2 })), [], "a gain is no loss");
+assert.deepEqual(lostSinceLastLook(new Map(), look({ RESOURCE_IRON: 0 })), [],
+  "a resource missing from the last look is never reported");
 
 console.log("sr-recheck-core tests passed");

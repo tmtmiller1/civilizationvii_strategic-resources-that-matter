@@ -5,12 +5,14 @@
   the count keeps adding strength. The data does the penalties and the curve; ui/sr-recheck.js makes the engine
   notice a lost resource; ui/sr-unit-panel.js says on the unit panel when a unit is unsupplied;
   ui/sr-production-line.js says on a gated unit's production item what it needs; ui/sr-resource-line.js says in a
-  strategic resource's description which units it supplies.
+  strategic resource's description which units it supplies; ui/sr-supply-lost.js raises a notification when the
+  local player loses the last copy of a resource its units need.
   The Civilopedia rows load in the game scope, as the base game's do (base-standard loads its civilopedia data in
   base-game-main); their text is in the same text files as everything else.
-  Groups: the setup options and text at the main menu; the unit tags, the Civilopedia page and the scripts in every
-  game; per age, which units draw on which resource; per age and setup value, the penalty (Light, Standard, Harsh;
-  none for Off) with its line on each gated unit's Civilopedia page, and the curve.
+  Groups: the setup options and text at the main menu; the unit tags, the Civilopedia page, the notification type
+  and its icon, and the scripts in every game; per age, which units draw on which resource; per age and setup value,
+  the penalty (Light, Standard, Harsh; none for Off) with its line on each gated unit's Civilopedia page, and the
+  curve.
   AffectsSavedGames is 1: the setup options and modifiers are fixed when a game is created, so a save made with the
   mod needs it to load the same game.
 -->
@@ -159,7 +161,11 @@
                 <UpdateDatabase>
                     <Item>data/sr-tags.xml</Item>
                     <Item>data/sr-civilopedia.xml</Item>
+                    <Item>data/sr-notification.xml</Item>
                 </UpdateDatabase>
+                <UpdateIcons>
+                    <Item>data/sr-notification-icons.xml</Item>
+                </UpdateIcons>
                 <UpdateText>
                     <Item>text/en_us/StrategicResourcesText.xml</Item>
                     <Item locale="de_DE">text/de_de/StrategicResourcesText.xml</Item>
@@ -190,6 +196,7 @@
                     <Item>ui/sr-recheck.js</Item>
                     <Item>ui/sr-registry.js</Item>
                     <Item>ui/sr-resource-line.js</Item>
+                    <Item>ui/sr-supply-lost.js</Item>
                     <Item>ui/sr-supply.js</Item>
                     <Item>ui/sr-unit-panel.js</Item>
                 </ImportFiles>

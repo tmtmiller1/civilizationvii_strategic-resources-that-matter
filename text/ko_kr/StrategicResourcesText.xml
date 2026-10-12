@@ -72,5 +72,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME} 필요: 하나도 없으면 전투력 -3, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME} 필요: 하나도 없으면 전투력 -5, 훈련이 느려짐.</Text></Replace>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="ko_KR"><Text>보급 상실</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MESSAGE" Language="ko_KR"><Text>보급 상실: {1_Resources}</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_FALLBACK" Language="ko_KR"><Text>유닛에 필요한 전략 자원이 없어졌습니다. 다시 얻을 때까지 전투력이 낮아지고 훈련이 느려집니다.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="ko_KR"><Text>보급 상실: {1_Resource} 없음. {1_Resource}을(를) 다시 얻을 때까지 이를 필요로 하는 유닛은 전투력 {2_Combat}, 훈련이 느려집니다.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="ko_KR"><Text>보급 상실: {1_Resource} 없음. {1_Resource}을(를) 다시 얻을 때까지 {2_Unit}의 전투력 {3_Combat}, 훈련이 느려집니다.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ko_KR"><Text>보급 상실: {1_Resource} 없음. {1_Resource}을(를) 다시 얻을 때까지 {2_Unit} 외 {3_Others}개 유닛의 전투력 {4_Combat}, 훈련이 느려집니다.</Text></Replace>
     </LocalizedText>
 </Database>

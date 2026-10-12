@@ -211,5 +211,24 @@
             <Text>Needs {LOC_RESOURCE_RUBBER_NAME}: without a copy, -5 Combat Strength and slower to train.</Text>
         </Row>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Row Tag="LOC_SR_NOTIFY_LOST_TITLE">
+            <Text>Supply lost</Text>
+        </Row>
+        <Row Tag="LOC_SR_NOTIFY_LOST_MESSAGE">
+            <Text>Supply lost: {1_Resources}</Text>
+        </Row>
+        <Row Tag="LOC_SR_NOTIFY_LOST_FALLBACK">
+            <Text>A strategic resource your units need is gone. They fight weaker and train slower until you get it back.</Text>
+        </Row>
+        <Row Tag="LOC_SR_NOTIFY_LOST_NONE">
+            <Text>Supply lost: no {1_Resource}. Units that need it fight at {2_Combat} and train slower until you get {1_Resource} back.</Text>
+        </Row>
+        <Row Tag="LOC_SR_NOTIFY_LOST_ONE">
+            <Text>Supply lost: no {1_Resource}. Your {2_Unit} fights at {3_Combat} and trains slower until you get {1_Resource} back.</Text>
+        </Row>
+        <Row Tag="LOC_SR_NOTIFY_LOST_MANY">
+            <Text>Supply lost: no {1_Resource}. Your {2_Unit} and {3_Others} other {3_Others : plural 1?unit; other?units;} fight at {4_Combat} and train slower until you get {1_Resource} back.</Text>
+        </Row>
     </EnglishText>
 </Database>

@@ -72,5 +72,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が必要: 1個もないと戦闘力-3、訓練が遅くなる。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が必要: 1個もないと戦闘力-5、訓練が遅くなる。</Text></Replace>
         <!-- /Civilopedia -->
+        <!-- Lost-supply notification and first-time callout -->
+        <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="ja_JP"><Text>補給喪失</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MESSAGE" Language="ja_JP"><Text>補給喪失: {1_Resources}</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_FALLBACK" Language="ja_JP"><Text>ユニットに必要な戦略資源がなくなりました。再び入手するまで、戦闘力が下がり、訓練も遅くなります。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="ja_JP"><Text>補給喪失: {1_Resource}がありません。{1_Resource}を再び入手するまで、これを必要とするユニットは戦闘力{2_Combat}、訓練も遅くなります。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="ja_JP"><Text>補給喪失: {1_Resource}がありません。{1_Resource}を再び入手するまで、{2_Unit}は戦闘力{3_Combat}、訓練も遅くなります。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ja_JP"><Text>補給喪失: {1_Resource}がありません。{1_Resource}を再び入手するまで、{2_Unit}とほか{3_Others}ユニットは戦闘力{4_Combat}、訓練も遅くなります。</Text></Replace>
     </LocalizedText>
 </Database>

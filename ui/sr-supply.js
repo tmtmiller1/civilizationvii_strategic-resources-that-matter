@@ -154,3 +154,46 @@ export function describeProductionCost(unitType, { supply, penalties, copiesOf }
   if (!resourceType || !penalty || (penalty.combat === 0 && penalty.productionPercent === 0)) return null;
   return { key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: [resourceType, copiesOf(resourceType)] };
 }
+
+/**
+ * @typedef {object} SupplyLoss
+ * @property {"LOC_SR_NOTIFY_LOST_NONE" | "LOC_SR_NOTIFY_LOST_ONE" | "LOC_SR_NOTIFY_LOST_MANY"} key
+ * @property {string} resourceType
+ * @property {string | null} unitType the unit the sentence names, the type the player has most of
+ * @property {number} others how many more of the player's units the loss reaches
+ * @property {number} combat
+ */
+
+/**
+ * What losing the last copy of a resource does to a player's army, for the lost-supply notification: the unit type
+ * to name, how many others, and the penalty. Null when the penalty is off.
+ * @param {string} resourceType
+ * @param {Iterable<string>} unitTypes the player's units, one entry per unit
+ * @param {{ supply: Map<string, string>, penalties: Map<string, Penalty> }} indexes
+ * @returns {SupplyLoss | null}
+ */
+export function describeSupplyLoss(resourceType, unitTypes, { supply, penalties }) {
+  const penalty = penalties.get(resourceType);
+  if (!penalty || (penalty.combat === 0 && penalty.productionPercent === 0)) return null;
+  const reached = [...unitTypes].filter((unitType) => supply.get(unitType) === resourceType);
+  const total = reached.length;
+  const key = total === 0 ? "LOC_SR_NOTIFY_LOST_NONE" : total === 1 ? "LOC_SR_NOTIFY_LOST_ONE" : "LOC_SR_NOTIFY_LOST_MANY";
+  return { key, resourceType, unitType: mostCommon(reached), others: Math.max(0, total - 1), combat: penalty.combat };
+}
+
+/**
+ * The entry that occurs most often, the first seen on a tie; null for none.
+ * @param {string[]} entries
+ * @returns {string | null}
+ */
+function mostCommon(entries) {
+  /** @type {Map<string, number>} */
+  const counts = new Map();
+  for (const entry of entries) counts.set(entry, (counts.get(entry) ?? 0) + 1);
+  let best = null;
+  let most = 0;
+  for (const [entry, count] of counts) {
+    if (count > most) [best, most] = [entry, count];
+  }
+  return best;
+}
