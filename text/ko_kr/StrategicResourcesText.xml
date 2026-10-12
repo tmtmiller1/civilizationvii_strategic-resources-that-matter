@@ -6,8 +6,11 @@
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ko_KR"><Text>보급 없음: {1_Resource} 없음 (전투력 {2_Combat}, 훈련이 느려짐)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="ko_KR"><Text>{1_Resource} 필요. 없으면 전투력 {2_Combat}, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="ko_KR"><Text>{1_Resource} 필요 (보유 {2_Copies}개).</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE_SHORT" Language="ko_KR"><Text>{1_Resource} 필요</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD_SHORT" Language="ko_KR"><Text>{1_Resource}: {2_Copies}개</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES" Language="ko_KR"><Text>보급하는 유닛: {1_Units}.</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="ko_KR"><Text>보급하는 유닛: {1_Units} 외 {2_More}종.</Text></Replace>
+        <Replace Tag="LOC_SR_LIST_PAIR" Language="ko_KR"><Text>{1_First}, {2_Second}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="ko_KR"><Text>{2_Combat} 보급 없음: {3_Resource} 없음</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="ko_KR"><Text>+{2_Combat} {4_Resource}: {3_Copies}개 이상</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="ko_KR"><Text>보급 없는 유닛</Text></Replace>

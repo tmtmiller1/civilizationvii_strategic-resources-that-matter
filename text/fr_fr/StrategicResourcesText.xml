@@ -6,8 +6,11 @@
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="fr_FR"><Text>Non ravitaillée : pas de {1_Resource} ({2_Combat} en puissance de combat, formation plus lente)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="fr_FR"><Text>Nécessite {1_Resource}. Sans : {2_Combat} en puissance de combat, formation plus lente.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="fr_FR"><Text>Nécessite {1_Resource} (vous en avez {2_Copies}).</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE_SHORT" Language="fr_FR"><Text>Nécessite {1_Resource}</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD_SHORT" Language="fr_FR"><Text>{1_Resource} : {2_Copies}</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES" Language="fr_FR"><Text>Ravitaille les unités : {1_Units}.</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="fr_FR"><Text>Ravitaille les unités : {1_Units} et {2_More} autres.</Text></Replace>
+        <Replace Tag="LOC_SR_LIST_PAIR" Language="fr_FR"><Text>{1_First}, {2_Second}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="fr_FR"><Text>{2_Combat} Non ravitaillée : pas de {3_Resource}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="fr_FR"><Text>+{2_Combat} {4_Resource} : {3_Copies} exemplaires ou plus</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="fr_FR"><Text>Unités non ravitaillées</Text></Replace>

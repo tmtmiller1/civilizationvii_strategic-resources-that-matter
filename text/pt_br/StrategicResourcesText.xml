@@ -6,8 +6,11 @@
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="pt_BR"><Text>Sem suprimento: sem {1_Resource} ({2_Combat} de Força de Combate, treina mais devagar)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="pt_BR"><Text>Precisa de {1_Resource}. Sem: {2_Combat} de Força de Combate, treina mais devagar.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="pt_BR"><Text>Precisa de {1_Resource} (você tem {2_Copies}).</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE_SHORT" Language="pt_BR"><Text>Precisa de {1_Resource}</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD_SHORT" Language="pt_BR"><Text>{1_Resource}: {2_Copies}</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES" Language="pt_BR"><Text>Abastece unidades: {1_Units}.</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="pt_BR"><Text>Abastece unidades: {1_Units} e mais {2_More}.</Text></Replace>
+        <Replace Tag="LOC_SR_LIST_PAIR" Language="pt_BR"><Text>{1_First}, {2_Second}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="pt_BR"><Text>{2_Combat} Sem suprimento: sem {3_Resource}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="pt_BR"><Text>+{2_Combat} {4_Resource}: {3_Copies} unidades ou mais</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="pt_BR"><Text>Unidades sem suprimento</Text></Replace>

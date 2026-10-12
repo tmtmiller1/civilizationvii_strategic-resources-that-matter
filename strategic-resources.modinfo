@@ -3,7 +3,9 @@
   Strategic Resources That Matter, a Civilization VII mod.
   A unit that draws on a strategic resource its owner holds none of fights weaker and trains slower; past six copies
   the count keeps adding strength. The data does the penalties and the curve; ui/sr-recheck.js makes the engine
-  notice a lost resource; ui/sr-unit-panel.js says on the unit panel when a unit is unsupplied.
+  notice a lost resource; ui/sr-unit-panel.js says on the unit panel when a unit is unsupplied;
+  ui/sr-production-line.js says on a gated unit's production item what it needs; ui/sr-resource-line.js says in a
+  strategic resource's description which units it supplies.
   The Civilopedia rows load in the game scope, as the base game's do (base-standard loads its civilopedia data in
   base-game-main); their text is in the same text files as everything else.
   Groups: the setup options and text at the main menu; the unit tags, the Civilopedia page and the scripts in every
@@ -177,11 +179,17 @@
                     <Item>ui/settings-keeper.js</Item>
                     <Item>ui/sr-recheck.js</Item>
                     <Item>ui/sr-unit-panel.js</Item>
+                    <Item>ui/sr-production-line.js</Item>
+                    <Item>ui/sr-resource-line.js</Item>
                 </UIScripts>
                 <ImportFiles>
                     <Item>ui/sr-log.js</Item>
+                    <Item>ui/sr-player-supply.js</Item>
+                    <Item>ui/sr-production-line.js</Item>
                     <Item>ui/sr-recheck-core.js</Item>
                     <Item>ui/sr-recheck.js</Item>
+                    <Item>ui/sr-registry.js</Item>
+                    <Item>ui/sr-resource-line.js</Item>
                     <Item>ui/sr-supply.js</Item>
                     <Item>ui/sr-unit-panel.js</Item>
                 </ImportFiles>
