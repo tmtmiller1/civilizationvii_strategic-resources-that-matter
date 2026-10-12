@@ -7,7 +7,7 @@ is back a turn later. Past six, where the game's own bonus stops, the count keep
 
 ![The unit panel of a Chariot with no Horses](docs/screenshots/unit-panel-en.png)
 
-*A Chariot with no Horses: 27 Combat Strength instead of 30, and the line under its stats says why.*
+*A Chariot with no Horses: 27 Combat Strength instead of 30, and the pill under its stats says why.*
 
 Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.
 
