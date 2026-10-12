@@ -6,7 +6,7 @@
             <Text>Strategic Resources That Matter</Text>
         </Row>
         <Row Tag="LOC_SR_MOD_DESCRIPTION">
-            <Text>Strategic resources matter again. A unit that draws on Horses, Iron, Niter, Oil, Coal or Rubber fights weaker and trains slower while its owner holds none of that resource, and every copy still adds the game's own bonus. Lose your last copy and the penalty comes back a turn later. Past six copies the count keeps adding strength. Two game setup options set the penalty and switch the late bonus. Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.</Text>
+            <Text>Strategic resources matter again. A unit that draws on Horses, Iron, Niter, Oil, Coal or Rubber fights weaker and trains slower while its owner holds none of that resource, and every copy still adds the game's own bonus. Lose your last copy and the penalty comes back a turn later. Past six copies the count keeps adding strength. Three game setup options set the penalty, switch the late bonus and, off by default, lock units behind their resource. Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.</Text>
         </Row>
         <Row Tag="LOC_SR_UNSUPPLIED_LINE">
             <Text>Unsupplied: no {1_Resource} ({2_Combat} Combat Strength, slower to train)</Text>
@@ -91,7 +91,7 @@
             <Text>Strategic Resources</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1">
-            <Text>A military unit that draws on {LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME} or {LOC_RESOURCE_RUBBER_NAME} fights weaker and trains slower while its owner holds no copy of that resource. Nothing is forbidden: every unit can still be trained and upgraded as in the base game.</Text>
+            <Text>A military unit that draws on {LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME} or {LOC_RESOURCE_RUBBER_NAME} fights weaker and trains slower while its owner holds no copy of that resource. Nothing is forbidden unless the {LOC_SR_SETUP_GATE_NAME} option is on: see the last chapter.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE">
             <Text>Without a copy</Text>
@@ -235,6 +235,112 @@
         </Row>
         <Row Tag="LOC_SR_CALLOUT_BODY">
             <Text>Your {1_Unit} draws on {2_Resource}, and you hold none: until you get a copy, it fights at {3_Combat} and trains slower. Every unit that needs a strategic resource works this way, and the Civilopedia page {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} has the whole rule.</Text>
+        </Row>
+        <!-- The hard gate (1.1) -->
+        <Row Tag="LOC_SR_SETUP_GATE_NAME">
+            <Text>Gated Units</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_GATE_DESCRIPTION">
+            <Text>Whether a unit that draws on a strategic resource can be trained or bought at all while its owner holds no copy. Units already in the field are never gated; the Unsupplied Units penalty applies to them as set above. Independent powers and city-states are never gated.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_GATE_OFF">
+            <Text>Off</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_GATE_OFF_DESCRIPTION">
+            <Text>Every unit can be trained, bought and upgraded as in the base game.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_GATE_TRAINING">
+            <Text>Training</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION">
+            <Text>A unit that draws on a strategic resource cannot be trained or bought without a copy of it. Upgrading into it stays free.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_GATE_UPGRADE">
+            <Text>Training and upgrade</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION">
+            <Text>A unit that draws on a strategic resource cannot be trained, bought or upgraded into without a copy of it.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PRODUCTION_LOCKED">
+            <Text>Needs {1_Resource}: cannot be trained without it.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PRODUCTION_LOCKED_BUY">
+            <Text>Needs {1_Resource}: cannot be bought without it.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PRODUCTION_LOCKED_SHORT">
+            <Text>Locked: no {1_Resource}</Text>
+        </Row>
+        <Row Tag="LOC_SR_UNSUPPLIED_LINE_GATED">
+            <Text>Unsupplied: no {1_Resource} ({2_Combat} Combat Strength, slower to train). New ones cannot be trained.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE">
+            <Text>Gated units</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1">
+            <Text>With the {LOC_SR_SETUP_GATE_NAME} option on, a unit that draws on a strategic resource cannot be trained or bought while you hold no copy of it: it stays in the production list, greyed out, until a copy arrives, and it is locked again the moment your last copy goes. Under {LOC_SR_SETUP_GATE_UPGRADE} no unit can be upgraded into it either; under {LOC_SR_SETUP_GATE_TRAINING} upgrades stay free.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2">
+            <Text>Units already in the field are never gated: they keep fighting, at the {LOC_SR_SETUP_UNSUPPLIED_NAME} penalty if that option is on, and they heal as usual. A civilization's unique unit is gated like the unit it replaces. The units free of any requirement stay free, so every player can always defend. Independent powers and city-states are never gated.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3">
+            <Text>Under {LOC_SR_SETUP_GATE_UPGRADE}, the Sengoku's Samurai at the second and third tier, which only an upgrade can reach, need {LOC_RESOURCE_IRON_NAME} too.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING">
+            <Text>Cannot be trained or bought without a copy of {LOC_RESOURCE_HORSES_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE">
+            <Text>Cannot be trained, bought or upgraded into without a copy of {LOC_RESOURCE_HORSES_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING">
+            <Text>Cannot be trained or bought without a copy of {LOC_RESOURCE_IRON_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE">
+            <Text>Cannot be trained, bought or upgraded into without a copy of {LOC_RESOURCE_IRON_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING">
+            <Text>Cannot be trained or bought without a copy of {LOC_RESOURCE_NITER_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE">
+            <Text>Cannot be trained, bought or upgraded into without a copy of {LOC_RESOURCE_NITER_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING">
+            <Text>Cannot be trained or bought without a copy of {LOC_RESOURCE_OIL_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE">
+            <Text>Cannot be trained, bought or upgraded into without a copy of {LOC_RESOURCE_OIL_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_TRAINING">
+            <Text>Cannot be trained or bought without a copy of {LOC_RESOURCE_COAL_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE">
+            <Text>Cannot be trained, bought or upgraded into without a copy of {LOC_RESOURCE_COAL_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING">
+            <Text>Cannot be trained or bought without a copy of {LOC_RESOURCE_RUBBER_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE">
+            <Text>Cannot be trained, bought or upgraded into without a copy of {LOC_RESOURCE_RUBBER_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_RESOURCE_NEEDED">
+            <Text>Needed to train: {1_Units}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_RESOURCE_NEEDED_MORE">
+            <Text>Needed to train: {1_Units} and {2_More} more.</Text>
+        </Row>
+        <Row Tag="LOC_SR_NOTIFY_LOCKED_TAIL">
+            <Text>New ones cannot be trained until then.</Text>
+        </Row>
+        <Row Tag="LOC_SR_NOTIFY_LOCKED">
+            <Text>Supply lost: no {1_Resource}. Units that need it cannot be trained until you get {1_Resource} back.</Text>
+        </Row>
+        <Row Tag="LOC_SR_CALLOUT_GATE_TITLE">
+            <Text>Locked unit</Text>
+        </Row>
+        <Row Tag="LOC_SR_CALLOUT_GATE_BODY">
+            <Text>{1_Unit} needs {2_Resource}, and you hold none: it cannot be trained or bought until you get a copy. Every unit that needs a strategic resource is locked this way, and the Civilopedia page {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} has the whole rule.</Text>
+        </Row>
+        <Row Tag="LOC_SR_CALLOUT_GATE_BODY_UPGRADE">
+            <Text>{1_Unit} needs {2_Resource}, and you hold none: it cannot be trained, bought or upgraded into until you get a copy. Every unit that needs a strategic resource is locked this way, and the Civilopedia page {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} has the whole rule.</Text>
         </Row>
     </EnglishText>
 </Database>
