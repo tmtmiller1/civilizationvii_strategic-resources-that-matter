@@ -39,7 +39,7 @@ The game tells you why, in your language:
 - **Resources:** a strategic resource's description, on the map and in the commerce screen, ends with the units it
   supplies for you in this age: "Supplies units: AT Gun, Assault Gun, Field Cannon and 3 more." Resources that supply
   nothing in this age say nothing extra.
-- **Civilopedia:** a page under Game Concepts, Combat, "Strategic Resources That Matter", with the rules and the table
+- **Civilopedia:** a page under Game Concepts, Combat, "Strategic Resources", with the rules and the table
   below; and on each gated unit's page a line such as "Needs Iron: without a copy, -3 Combat Strength and slower to
   train", with the penalty your game was set up with.
 - **Notification:** when you lose your last copy of a resource your units need, one notification at the start of the
