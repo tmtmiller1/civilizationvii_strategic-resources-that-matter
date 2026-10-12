@@ -113,6 +113,18 @@ try {
   assert.equal(buildingLine(), null, "nothing for a building; the default signal is a no-op");
   const [, noProps] = wrapProductionModInfo(() => [])(undefined);
   assert.equal(noProps(), null);
+
+  // Nested: ours around another mod's that calls the factory it replaced, which is ours again (the registry wrapper
+  // re-wrapping a newcomer). The outermost copy draws the line; the inner copy draws only what is inside it.
+  const inner = wrapProductionModInfo((props) => `game:${props.constructibleType}`);
+  const theirs = (/** @type {*} */ props) => ["theirs", inner(props)];
+  const outer = wrapProductionModInfo(theirs);
+  const drawn = outer({ constructibleType: "UNIT_FIELD_CANNON" });
+  const flat = (/** @type {*} */ x) => (Array.isArray(x) ? x.flatMap(flat) : [x]);
+  const lines = flat(drawn).filter((part) => typeof part === "function");
+  assert.equal(lines.length, 1, "one line however deep the nesting");
+  assert.ok(flat(drawn).includes("game:UNIT_FIELD_CANNON"), "what is inside is still drawn");
+  assert.equal(drawn[0][1], "game:UNIT_FIELD_CANNON", "the inner copy hands its props straight through");
 } finally {
   log.restore();
   restoreGlobals();
