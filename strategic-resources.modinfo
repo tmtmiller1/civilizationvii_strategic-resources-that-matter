@@ -4,8 +4,11 @@
   A unit that draws on a strategic resource its owner holds none of fights weaker and trains slower; past six copies
   the count keeps adding strength. The data does the penalties and the curve; ui/sr-recheck.js makes the engine
   notice a lost resource; ui/sr-unit-panel.js says on the unit panel when a unit is unsupplied.
-  Groups: the setup options and text at the main menu; the unit tags and scripts in every game; per age, which units
-  draw on which resource; per age and setup value, the penalty (Light, Standard, Harsh; none for Off) and the curve.
+  The Civilopedia rows load in the game scope, as the base game's do (base-standard loads its civilopedia data in
+  base-game-main); their text is in the same text files as everything else.
+  Groups: the setup options and text at the main menu; the unit tags, the Civilopedia page and the scripts in every
+  game; per age, which units draw on which resource; per age and setup value, the penalty (Light, Standard, Harsh;
+  none for Off) with its line on each gated unit's Civilopedia page, and the curve.
   AffectsSavedGames is 1: the setup options and modifiers are fixed when a game is created, so a save made with the
   mod needs it to load the same game.
 -->
@@ -151,7 +154,10 @@
         <ActionGroup id="strategic-resources-game" scope="game" criteria="always">
             <Properties><LoadOrder>200</LoadOrder></Properties>
             <Actions>
-                <UpdateDatabase><Item>data/sr-tags.xml</Item></UpdateDatabase>
+                <UpdateDatabase>
+                    <Item>data/sr-tags.xml</Item>
+                    <Item>data/sr-civilopedia.xml</Item>
+                </UpdateDatabase>
                 <UpdateText>
                     <Item>text/en_us/StrategicResourcesText.xml</Item>
                     <Item locale="de_DE">text/de_de/StrategicResourcesText.xml</Item>

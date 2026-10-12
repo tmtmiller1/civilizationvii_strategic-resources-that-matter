@@ -39,4 +39,49 @@
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_RUBBER"/>
         <Row ModifierId="SR_ATTACH_PREVIEW_PENALTY_RUBBER"/>
     </GameModifiers>
+    <CivilopediaPageChapterParagraphs>
+        <Row SectionID="UNITS" PageID="UNIT_ASSAULT_GUN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_AT_GUN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_BARBARY_CORSAIR" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_COAL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_BARBARY_CORSAIR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_COAL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_BARBARY_CORSAIR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_COAL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_BATTLESHIP" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_BIPLANE" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_BOMBER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CHANG_BEUN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CHANG_BEUN_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CHANG_BEUN_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_COSSACK_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_COSSACK_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CRUISER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_COAL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_DESTROYER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_COAL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_DIVEBOMBER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_DREADNOUGHT" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_FIELD_CANNON" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_FIELD_GUN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_FIGHTER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_GHILMAN_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_GHILMAN_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_HEAVY_ARTILLERY" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_HEAVY_BOMBER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_HUSSAR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_HUSSAR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_IRONCLAD" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_COAL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_KATYUSHA" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_KATYUSHA_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_LANDSHIP" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_MIKASA" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_MIKASA_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_MORTAR" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_REVENGE" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_REVENGE_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_STUKA" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_STUKA_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_TANK" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_TRENCH_FIGHTER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_TURTLE_SHIP_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_TURTLE_SHIP_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_OIL_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_ZERO" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_ZERO_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" SortIndex="10"/>
+    </CivilopediaPageChapterParagraphs>
 </Database>

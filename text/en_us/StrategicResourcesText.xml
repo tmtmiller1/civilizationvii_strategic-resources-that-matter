@@ -65,5 +65,130 @@
         <Row Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION">
             <Text>+1 Combat Strength at 8, 10, 12, 14, 16, 18 and 20 copies.</Text>
         </Row>
+        <!-- Civilopedia -->
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE">
+            <Text>Strategic Resources That Matter</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1">
+            <Text>A military unit that draws on {LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME} or {LOC_RESOURCE_RUBBER_NAME} fights weaker and trains slower while its owner holds no copy of that resource. Nothing is forbidden: every unit can still be trained and upgraded as in the base game.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE">
+            <Text>Without a copy</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1">
+            <Text>A unit short of its resource has less Combat Strength, on each strength it has (melee, and ranged and bombard where it has them), and its city puts less Production toward training it. The {LOC_SR_SETUP_UNSUPPLIED_NAME} option in game setup sets how much:</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2">
+            <Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] -2 Combat Strength, 20% less Production.[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B] (the default): -3 Combat Strength, 33% less Production, so the unit takes half as long again to train.[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] -5 Combat Strength, 50% less Production, twice as long to train.[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] no penalty.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_3">
+            <Text>The combat preview shows the penalty as a line of its own, such as "-3 Unsupplied: no {LOC_RESOURCE_NITER_NAME}", and the unit panel says so under the unit's stats.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_TITLE">
+            <Text>What counts as a copy</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_PARA_1">
+            <Text>A copy is a strategic resource on the map that you hold: on a tile of yours that carries the improvement for that resource (the one your city builds when it grows onto the tile), or imported over a trade route from another civilization's settlement, from the turn the route lands.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_PARA_2">
+            <Text>A resource granted off the map, with no tile behind it, does not count.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_TITLE">
+            <Text>Losing a copy</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_1">
+            <Text>A new copy lifts the penalty the moment it arrives. A copy that goes away, by pillage, by a tile changing hands or in any other way, brings the penalty back one turn later, for you and for the AI players alike.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2">
+            <Text>A war with a trade partner ends the route: the copies it brought are gone at once, and so is their protection. While a player holds at least one copy, its units have no penalty.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE">
+            <Text>Past six copies</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1">
+            <Text>The game gives +1 Combat Strength per copy, up to six copies. With the {LOC_SR_SETUP_LATE_CURVE_NAME} option on (the default), more copies keep adding: +1 Combat Strength at 8, 10, 12, 14, 16, 18 and 20 copies, on the units the game's per-copy bonus covers. The combat preview shows it as one line beside the game's own, such as "+1 {LOC_RESOURCE_NITER_NAME}: 8 or more copies".</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE">
+            <Text>Which units need what</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1">
+            <Text>A civilization's unique unit needs what the unit it replaces needs.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2">
+            <Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Chariot, Horseman and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Spearman, Phalanx, Legion, Immortal and the others)</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3">
+            <Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Courser, Knight, Lancer and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Man-At-Arms, Pikeman and their unique versions)[N]{LOC_RESOURCE_NITER_NAME}: siege (Catapult, Trebuchet, Bombard, Hwacha) and heavy warships from the second tier (Carrack, Galleon and their unique versions)</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4">
+            <Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}: artillery (Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun)[N]{LOC_RESOURCE_OIL_NAME}: armour (Landship, Tank and their unique versions) and battleships (Dreadnought, Battleship and their unique versions)[N]{LOC_RESOURCE_COAL_NAME}: light warships (Ironclad, Cruiser, Destroyer, Barbary Corsair)[N]{LOC_RESOURCE_RUBBER_NAME}: aircraft</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5">
+            <Text>Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the Cog and the Ship of the Line, the Cuirassier, the Submarine, and Modern infantry, so every player can always defend.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED">
+            <Text>Unsupplied</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_TERM_STRATEGIC">
+            <Text>Strategic resources</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_CHAPTER">
+            <Text>Strategic resource</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HORSES_LIGHT">
+            <Text>Needs {LOC_RESOURCE_HORSES_NAME}: without a copy, -2 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HORSES_STANDARD">
+            <Text>Needs {LOC_RESOURCE_HORSES_NAME}: without a copy, -3 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HORSES_HARSH">
+            <Text>Needs {LOC_RESOURCE_HORSES_NAME}: without a copy, -5 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_IRON_LIGHT">
+            <Text>Needs {LOC_RESOURCE_IRON_NAME}: without a copy, -2 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_IRON_STANDARD">
+            <Text>Needs {LOC_RESOURCE_IRON_NAME}: without a copy, -3 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_IRON_HARSH">
+            <Text>Needs {LOC_RESOURCE_IRON_NAME}: without a copy, -5 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_NITER_LIGHT">
+            <Text>Needs {LOC_RESOURCE_NITER_NAME}: without a copy, -2 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_NITER_STANDARD">
+            <Text>Needs {LOC_RESOURCE_NITER_NAME}: without a copy, -3 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_NITER_HARSH">
+            <Text>Needs {LOC_RESOURCE_NITER_NAME}: without a copy, -5 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_OIL_LIGHT">
+            <Text>Needs {LOC_RESOURCE_OIL_NAME}: without a copy, -2 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_OIL_STANDARD">
+            <Text>Needs {LOC_RESOURCE_OIL_NAME}: without a copy, -3 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_OIL_HARSH">
+            <Text>Needs {LOC_RESOURCE_OIL_NAME}: without a copy, -5 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_COAL_LIGHT">
+            <Text>Needs {LOC_RESOURCE_COAL_NAME}: without a copy, -2 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_COAL_STANDARD">
+            <Text>Needs {LOC_RESOURCE_COAL_NAME}: without a copy, -3 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_COAL_HARSH">
+            <Text>Needs {LOC_RESOURCE_COAL_NAME}: without a copy, -5 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT">
+            <Text>Needs {LOC_RESOURCE_RUBBER_NAME}: without a copy, -2 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD">
+            <Text>Needs {LOC_RESOURCE_RUBBER_NAME}: without a copy, -3 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH">
+            <Text>Needs {LOC_RESOURCE_RUBBER_NAME}: without a copy, -5 Combat Strength and slower to train.</Text>
+        </Row>
+        <!-- /Civilopedia -->
     </EnglishText>
 </Database>
