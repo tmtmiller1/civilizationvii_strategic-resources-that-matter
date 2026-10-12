@@ -14,6 +14,7 @@
         <Row PageLayoutID="SR_CONCEPT" ChapterID="GATES" SortIndex="60"/>
         <Row PageLayoutID="SR_CONCEPT" ChapterID="LOCK" SortIndex="70"/>
         <Row PageLayoutID="Unit" ChapterID="SR_SUPPLY" Header="LOC_SR_PEDIA_UNIT_CHAPTER" SortIndex="25"/>
+        <Row PageLayoutID="Unit" ChapterID="SR_LOCK" Header="LOC_SR_SETUP_GATE_NAME" SortIndex="26"/>
     </CivilopediaPageLayoutChapters>
     <CivilopediaPages>
         <Row SectionID="CONCEPTS" PageID="SR_STRATEGIC_RESOURCES" PageGroupID="COMBAT" PageLayoutID="SR_CONCEPT" Name="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" SortIndex="296"/>

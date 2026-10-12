@@ -299,10 +299,10 @@ for (const f of fs.readdirSync(DATA)) {
   assert.equal(params.find(([n]) => n.endsWith("UNIT_HEALING"))?.[1], 0, `${f}: healing must stay free`);
   assert.equal(params.find(([n]) => n.endsWith("UNIT_UPGRADING"))?.[1], gateName === "upgrade" ? 1 : 0,
       `${f}: upgrading`);
-  const lines = [...xml.matchAll(/<Row SectionID="UNITS" PageID="([A-Z0-9_]+)" ChapterID="([A-Z_]+)" Paragraph="([A-Z0-9_]+)" SortIndex="20"\/>/g)];
+  const lines = [...xml.matchAll(/<Row SectionID="UNITS" PageID="([A-Z0-9_]+)" ChapterID="([A-Z_]+)" Paragraph="([A-Z0-9_]+)" SortIndex="10"\/>/g)];
   assert.deepEqual(lines.map((m) => m[1]), [...gates.keys()], `${f}: one page line per gated unit`);
   for (const [, unit, chapter, tag] of lines) {
-    assert.equal(chapter, PEDIA.unitChapter, `${f} ${unit}: chapter`);
+    assert.equal(chapter, PEDIA.unitGateChapter, `${f} ${unit}: chapter`);
     assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateName), `${f} ${unit}: line`);
   }
   const tables = [...xml.matchAll(/^ {4}<([A-Za-z]+)>$/gm)].map((m) => m[1]);
@@ -346,6 +346,26 @@ if (!fs.existsSync(live)) {
   } else {
     console.warn("data: the live database holds none of the dumped ages in full (another mod set?); dumps checked");
   }
+}
+
+// The paragraph table keeps one row per section, page and chapter; a second insert rolls back the whole file and the
+// game never loads. Rows may share a key only across files of one option (the levels of an age, or the gate values
+// of an age), which never load together.
+const family = (/** @type {string} */ file) => file
+  .replace(/^sr-(antiquity|exploration|modern)-(light|standard|harsh)-game\.xml$/, "$1 level")
+  .replace(/^sr-(antiquity|exploration|modern)-gate-(training|upgrade)\.xml$/, "$1 gate");
+/** @type {Map<string, string[]>} */
+const paragraphKeys = new Map();
+for (const file of fs.readdirSync("data").filter((name) => name.endsWith(".xml"))) {
+  const xml = fs.readFileSync(`data/${file}`, "utf8");
+  for (const m of xml.matchAll(/<Row SectionID="([A-Z_]+)" PageID="([A-Z0-9_]+)" ChapterID="([A-Z0-9_]+)" Paragraph=/g)) {
+    const key = `${m[1]} ${m[2]} ${m[3]}`;
+    paragraphKeys.set(key, [...(paragraphKeys.get(key) ?? []), file]);
+  }
+}
+for (const [key, files] of paragraphKeys) {
+  assert.equal(new Set(files).size, files.length, `${key}: twice in one file`);
+  assert.equal(new Set(files.map(family)).size, 1, `${key}: in files that load together: ${files.join(", ")}`);
 }
 
 console.log(`data harness passed (${modifiersChecked} modifiers in ${groups.length} groups, ` +
