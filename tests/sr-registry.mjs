@@ -163,6 +163,50 @@ try {
     assert.equal(winners.at(-1)({}), "sr(game)");
   }
 
+  // The same host with its onRegister: the slot never changes, so a later winner is seen there and wrapped again.
+  // Our own registration, a registration that lost and another slot's are left alone.
+  {
+    const solid = fakeSolid();
+    const readers = new Set();
+    const winners = [() => "game"];
+    let shimmed = false;
+    /** @type {Function[]} */
+    const listeners = [];
+    const capture = (props) => winners.at(-2)?.(props) ?? "none";
+    const entry = {
+      overridePriority: 0,
+      factory: () => {
+        solid.track(readers);
+        return shimmed ? capture : winners[0];
+      },
+      setFactory: () => solid.notify(readers)
+    };
+    const record = (target, payload, won) => listeners.forEach((fn) => fn("registry", target, { payload, won }));
+    const registry = {
+      get: () => entry,
+      register({ createInstance }) {
+        winners.push(createInstance);
+        shimmed = true;
+        entry.setFactory();
+        record("Slot", createInstance, true);
+        return entry;
+      }
+    };
+    const host = { onRegister: (/** @type {Function} */ fn) => listeners.push(fn) };
+    const settle = () => new Promise((resolve) => setTimeout(resolve, 0));
+    assert.equal(await keepWrapped(registry, solid, "Slot", tag("sr"), { waitMs: 1, waitTries: 1, host }), true);
+    await settle();
+    assert.equal(winners.length, 2, "our own registration is not wrapped again");
+    registry.register({ createInstance: () => "replaced" });
+    await settle();
+    assert.equal(winners.length, 4, "an outright replacement is wrapped again");
+    assert.equal(winners.at(-1)({}), "sr(replaced)");
+    record("Slot", () => "lost", false);
+    record("Other", () => "other", true);
+    await settle();
+    assert.equal(winners.length, 4, "a losing registration and another slot are left alone");
+  }
+
   // Never registered: false and one log line. A wrap that throws is logged and does not escape.
   {
     const solid = fakeSolid();

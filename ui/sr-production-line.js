@@ -74,16 +74,24 @@ export function shortenInRow(element, short) {
   }
 }
 
+/** Set on the props this factory hands down, so a copy of it nested further in draws no second line. */
+const LINE_DRAWN = "__strategicResourcesLineDrawn";
+
 /**
  * The ProductionModInfo factory: whatever was registered before, then the line. The line is drawn again when
- * `holdingsChanged` changes, so an open list follows a copy gained or lost.
+ * `holdingsChanged` changes, so an open list follows a copy gained or lost. A copy of this factory reached through
+ * another mod's (one that calls the factory it replaced, wrapped again by the registry wrapper) draws only what is
+ * inside it: the outermost copy draws the line.
  * @param {Function} previous
  * @param {() => unknown} [holdingsChanged] a signal read for its change only
+ * @param {(...sources: object[]) => object} [mergeProps] Solid's, so the props handed down stay reactive
  * @returns {Function}
  */
-export function wrapProductionModInfo(previous, holdingsChanged = () => 0) {
+export function wrapProductionModInfo(previous, holdingsChanged = () => 0,
+  mergeProps = (...sources) => Object.assign({}, ...sources)) {
   return function StrategicResourcesProductionModInfo(/** @type {*} */ props) {
-    return [previous(props), () => {
+    if (props?.[LINE_DRAWN]) return previous(props);
+    return [previous(mergeProps(props ?? {}, { [LINE_DRAWN]: true })), () => {
       holdingsChanged();
       return productionLineElement(props?.constructibleType);
     }];
@@ -97,7 +105,7 @@ async function start() {
     const [holdingsChanged, setHoldingsChanged] = solid.createSignal(0);
     engine.on("PlayerResourceChanged", () => setHoldingsChanged((/** @type {number} */ n) => n + 1));
     await keepWrapped(ComponentRegistry, solid, "ProductionModInfo", (previous) =>
-      wrapProductionModInfo(previous, holdingsChanged));
+      wrapProductionModInfo(previous, holdingsChanged, solid.mergeProps));
   } catch (e) {
     log.warn("could not add the production line:", e);
   }
