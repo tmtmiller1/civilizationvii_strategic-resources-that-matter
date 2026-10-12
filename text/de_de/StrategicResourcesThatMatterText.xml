@@ -6,7 +6,7 @@
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="de_DE"><Text>Unversorgt: ohne {1_Resource} ({2_Combat} Kampfstärke, langsamer ausgebildet)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="de_DE"><Text>Braucht {1_Resource}. Ohne: {2_Combat} Kampfstärke, langsamer ausgebildet.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="de_DE"><Text>Braucht {1_Resource} (du hast {2_Copies}).</Text></Replace>
-        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE_SHORT" Language="de_DE"><Text>Braucht {1_Resource}</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE_SHORT" Language="de_DE"><Text>Unversorgt: ohne {1_Resource}</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD_SHORT" Language="de_DE"><Text>{1_Resource}: {2_Copies}</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES" Language="de_DE"><Text>Versorgt Einheiten: {1_Units}.</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="de_DE"><Text>Versorgt Einheiten: {1_Units} und {2_More} weitere.</Text></Replace>

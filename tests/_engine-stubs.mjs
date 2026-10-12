@@ -39,7 +39,11 @@ export function element(classes = []) {
     classList: {
       add: (...names) => names.forEach((n) => classSet.add(n)),
       remove: (...names) => names.forEach((n) => classSet.delete(n)),
-      contains: (n) => classSet.has(n)
+      contains: (n) => classSet.has(n),
+      toggle: (n, force) => {
+        if (force ?? !classSet.has(n)) classSet.add(n); else classSet.delete(n);
+        return classSet.has(n);
+      }
     },
     setAttribute: (k, v) => {
       node.attributes[k] = v;

@@ -57,16 +57,15 @@ try {
   assert.equal(unsupplied?.textContent, "LOC_SR_PRODUCTION_NEEDS_NONE_SHORT|LOC_RESOURCE_NITER_NAME|-3");
   assert.ok(unsupplied?.classList.contains("sr-production-line"));
   assert.ok(unsupplied?.classList.contains("rounded-full"), "drawn as a pill");
-  assert.ok(unsupplied?.classList.contains("sr-production-line--unsupplied"), "a missing resource reads as a warning");
-  assert.match(unsupplied?.style.background ?? "", /gradient/, "the warning tint");
-  assert.equal(unsupplied?.style.color, "#F3E9D2", "light text on the tint");
+  assert.ok(unsupplied?.classList.contains("sr-pill--warning"), "a missing resource reads as a warning");
+  assert.equal(unsupplied?.style.background, "#A8201A", "red");
+  assert.equal(unsupplied?.style.color, "#FFF3E3", "light text on the red");
   assert.equal(unsupplied?.attributes.role, "paragraph");
   holdings = [{ uniqueResource: { resource: niter.$hash }, isOffMap: false }];
   const held = productionLineElement("UNIT_FIELD_CANNON");
   assert.equal(held?.textContent, "LOC_SR_PRODUCTION_NEEDS_HELD_SHORT|LOC_RESOURCE_NITER_NAME|1");
-  assert.equal(held?.classList.contains("sr-production-line--unsupplied"), false, "a held resource does not");
-  assert.equal(held?.style.background, "#23252b");
-  assert.equal(held?.style.color, undefined, "the pill's own text colour");
+  assert.equal(held?.classList.contains("sr-pill--warning"), false, "a held resource does not");
+  assert.equal(held?.style.background, "#23252b", "the game's plain pill");
   assert.equal(productionLineElement("UNIT_INFANTRY"), null);
   const savedPlayers = globalThis.Players;
   globalThis.Players = { get: () => { throw new Error("engine gone"); } };
@@ -78,16 +77,21 @@ try {
   holdings = [];
   globalThis.GameInfo.Units = table([{ UnitType: "UNIT_FIELD_CANNON", Description: "LOC_UNIT_FIELD_CANNON_DESCRIPTION" }],
     "UnitType");
-  assert.equal(withProductionLine("UNIT_FIELD_CANNON", "LOC_GIVEN", false),
-    "LOC_GIVEN|[N]LOC_SR_PRODUCTION_NEEDS_NONE|LOC_RESOURCE_NITER_NAME|-3");
+  const NONE = "[STYLE:text-negative]LOC_SR_PRODUCTION_NEEDS_NONE|LOC_RESOURCE_NITER_NAME|-3[/STYLE]";
+  assert.equal(withProductionLine("UNIT_FIELD_CANNON", "LOC_GIVEN", false), `LOC_GIVEN|[N]${NONE}`,
+    "in the game's negative style while the unit is short");
   assert.equal(withProductionLine("UNIT_FIELD_CANNON", undefined, false),
-    "LOC_UNIT_FIELD_CANNON_DESCRIPTION|[N]LOC_SR_PRODUCTION_NEEDS_NONE|LOC_RESOURCE_NITER_NAME|-3",
-    "the unit's own description when the tooltip gives none");
+    `LOC_UNIT_FIELD_CANNON_DESCRIPTION|[N]${NONE}`, "the unit's own description when the tooltip gives none");
+  holdings = [{ uniqueResource: { resource: niter.$hash }, isOffMap: false }];
+  assert.equal(withProductionLine("UNIT_FIELD_CANNON", "LOC_GIVEN", false),
+    "LOC_GIVEN|[N]LOC_SR_PRODUCTION_NEEDS_HELD|LOC_RESOURCE_NITER_NAME|1", "plain once held");
+  holdings = [];
   assert.equal(withProductionLine("UNIT_INFANTRY", "LOC_GIVEN", false), "LOC_GIVEN", "an ungated unit: as it was");
   const tipDrawn = [];
   const tooltip = wrapProductionTooltip((props) => { tipDrawn.push(props); return "tip"; });
-  assert.equal(tooltip({ category: "units", type: "UNIT_FIELD_CANNON", description: "LOC_D", isPurchase: false }), "tip");
-  assert.equal(tipDrawn[0].description, "LOC_D|[N]LOC_SR_PRODUCTION_NEEDS_NONE|LOC_RESOURCE_NITER_NAME|-3");
+  const cannon = { category: "units", type: "UNIT_FIELD_CANNON", description: "LOC_D", isPurchase: false };
+  assert.equal(tooltip(cannon), "tip");
+  assert.equal(tipDrawn[0].description, `LOC_D|[N]${NONE}`);
   assert.equal(tipDrawn[0].type, "UNIT_FIELD_CANNON", "the other props stay");
   const building = { category: "buildings", type: "BUILDING_GROCER", description: "LOC_B" };
   tooltip(building);
@@ -150,13 +154,13 @@ try {
   holdings = [];
   const locked = productionLineElement("UNIT_FIELD_CANNON");
   assert.equal(locked?.textContent, "LOC_SR_PRODUCTION_LOCKED_SHORT|LOC_RESOURCE_NITER_NAME|");
-  assert.ok(locked?.classList.contains("sr-production-line--unsupplied"), "a lock reads as a warning");
-  assert.equal(withProductionLine("UNIT_FIELD_CANNON", "LOC_D", true),
-    "LOC_D|[N]LOC_SR_PRODUCTION_LOCKED_BUY|LOC_RESOURCE_NITER_NAME", "the purchase tooltip says what cannot be bought");
-  assert.equal(withProductionLine("UNIT_FIELD_CANNON", "LOC_D", "true"),
-    "LOC_D|[N]LOC_SR_PRODUCTION_LOCKED_BUY|LOC_RESOURCE_NITER_NAME", "the attribute form too");
+  assert.ok(locked?.classList.contains("sr-pill--warning"), "a lock reads as a warning");
+  const BUY = "[STYLE:text-negative]LOC_SR_PRODUCTION_LOCKED_BUY|LOC_RESOURCE_NITER_NAME[/STYLE]";
+  assert.equal(withProductionLine("UNIT_FIELD_CANNON", "LOC_D", true), `LOC_D|[N]${BUY}`,
+    "the purchase tooltip says what cannot be bought");
+  assert.equal(withProductionLine("UNIT_FIELD_CANNON", "LOC_D", "true"), `LOC_D|[N]${BUY}`, "the attribute form too");
   assert.equal(withProductionLine("UNIT_FIELD_CANNON", "LOC_D", false),
-    "LOC_D|[N]LOC_SR_PRODUCTION_LOCKED|LOC_RESOURCE_NITER_NAME|");
+    "LOC_D|[N][STYLE:text-negative]LOC_SR_PRODUCTION_LOCKED|LOC_RESOURCE_NITER_NAME|[/STYLE]");
   globalThis.GameInfo.GlobalParameters = [];
   resetIndexes();
   assert.equal(describeProductionItem("UNIT_FIELD_CANNON")?.text,

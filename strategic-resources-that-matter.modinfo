@@ -245,6 +245,7 @@
                 <ImportFiles>
                     <Item>ui/sr-callout.js</Item>
                     <Item>ui/sr-log.js</Item>
+                    <Item>ui/sr-pill.js</Item>
                     <Item>ui/sr-player-supply.js</Item>
                     <Item>ui/sr-production-line.js</Item>
                     <Item>ui/sr-production-lock.js</Item>

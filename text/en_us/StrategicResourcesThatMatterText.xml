@@ -18,7 +18,7 @@
             <Text>Needs {1_Resource} (you have {2_Copies}).</Text>
         </Row>
         <Row Tag="LOC_SR_PRODUCTION_NEEDS_NONE_SHORT">
-            <Text>Needs {1_Resource}</Text>
+            <Text>Unsupplied: no {1_Resource}</Text>
         </Row>
         <Row Tag="LOC_SR_PRODUCTION_NEEDS_HELD_SHORT">
             <Text>{1_Resource}: {2_Copies}</Text>
