@@ -97,24 +97,44 @@ function fillCell(cell, status) {
 }
 
 /**
+ * The mod's divider and cell in the stats container, made on first use when there is something to show.
+ * @param {HTMLElement} host
+ * @param {boolean} make
+ * @returns {{ cell: HTMLElement | null, divider: HTMLElement | null }}
+ */
+function parts(host, make) {
+  let cell = /** @type {HTMLElement | null} */ (host.querySelector(`.${LINE_CLASS}`));
+  if (!cell && make) cell = addCell(/** @type {HTMLElement} */ (host.querySelector(ROW_SELECTOR) ?? host));
+  const divider = /** @type {HTMLElement | null} */ (host.querySelector(".sr-unsupplied-divider"));
+  return { cell, divider };
+}
+
+/**
  * Shows, updates or hides the cell and its divider in the panel's root.
  * @param {HTMLElement} root
  * @param {PanelStatus | null} status
  */
 function renderLine(root, status) {
-  const host = root?.querySelector?.(STATS_SELECTOR);
+  const host = /** @type {HTMLElement | null} */ (root?.querySelector?.(STATS_SELECTOR));
   if (!host) return;
-  const row = /** @type {HTMLElement} */ (host.querySelector(ROW_SELECTOR) ?? host);
-  let cell = /** @type {HTMLElement | null} */ (host.querySelector(`.${LINE_CLASS}`));
-  if (status && !cell) cell = addCell(row);
+  const { cell, divider } = parts(host, status !== null);
   if (!cell) return;
-  const divider = /** @type {HTMLElement | null} */ (host.querySelector(".sr-unsupplied-divider"));
-  if (status) {
-    fillCell(cell, status);
-    // The panel rebuilds its own cells after the first two on every refresh, so the mod's go back to the end.
-    for (const part of [divider, cell]) if (part) row.appendChild(part);
-  }
+  if (status) showCell(host, cell, divider, status);
   for (const part of [cell, divider]) part?.classList.toggle("hidden", !status);
+}
+
+/**
+ * Fills the cell and puts it, with its divider, back at the end of the row: the panel rebuilds its own cells after
+ * the first two on every refresh.
+ * @param {HTMLElement} host
+ * @param {HTMLElement} cell
+ * @param {HTMLElement | null} divider
+ * @param {PanelStatus} status
+ */
+function showCell(host, cell, divider, status) {
+  fillCell(cell, status);
+  const row = /** @type {HTMLElement} */ (host.querySelector(ROW_SELECTOR) ?? host);
+  for (const part of [divider, cell]) if (part) row.appendChild(part);
 }
 
 /** @param {*} panel the unit-actions component */
