@@ -59,6 +59,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_NITER_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_NITER_8</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_NITER_8" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_RANGED</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">1</Argument>
+        <Argument name="Copies">8</Argument>
+        <Argument name="Resource">LOC_RESOURCE_NITER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_10</Argument>
     </Modifier>
@@ -115,6 +143,34 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_NITER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_NITER_10</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_NITER_10" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_RANGED</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">2</Argument>
+        <Argument name="Copies">10</Argument>
+        <Argument name="Resource">LOC_RESOURCE_NITER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_12</Argument>
@@ -173,6 +229,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_NITER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_NITER_12</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_NITER_12" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_RANGED</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">3</Argument>
+        <Argument name="Copies">12</Argument>
+        <Argument name="Resource">LOC_RESOURCE_NITER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_14</Argument>
     </Modifier>
@@ -229,6 +313,34 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_NITER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_NITER_14</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_NITER_14" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_RANGED</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">4</Argument>
+        <Argument name="Copies">14</Argument>
+        <Argument name="Resource">LOC_RESOURCE_NITER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_16</Argument>
@@ -287,6 +399,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_NITER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_NITER_16</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_NITER_16" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_RANGED</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">5</Argument>
+        <Argument name="Copies">16</Argument>
+        <Argument name="Resource">LOC_RESOURCE_NITER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_18</Argument>
     </Modifier>
@@ -343,6 +483,34 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_NITER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_NITER_18</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_NITER_18" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_RANGED</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">6</Argument>
+        <Argument name="Copies">18</Argument>
+        <Argument name="Resource">LOC_RESOURCE_NITER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_NITER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_NITER_20</Argument>
@@ -401,6 +569,30 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_NITER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_NITER_20</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_NITER_20" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_RANGED</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_SIEGE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">7</Argument>
+        <Argument name="Copies">20</Argument>
+        <Argument name="Resource">LOC_RESOURCE_NITER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_8</Argument>
     </Modifier>
@@ -457,6 +649,34 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_OIL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_OIL_8</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_OIL_8" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_HEAVY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">1</Argument>
+        <Argument name="Copies">8</Argument>
+        <Argument name="Resource">LOC_RESOURCE_OIL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_10</Argument>
@@ -515,6 +735,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_OIL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_OIL_10</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_OIL_10" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_HEAVY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">2</Argument>
+        <Argument name="Copies">10</Argument>
+        <Argument name="Resource">LOC_RESOURCE_OIL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_12</Argument>
     </Modifier>
@@ -571,6 +819,34 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_OIL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_OIL_12</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_OIL_12" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_HEAVY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">3</Argument>
+        <Argument name="Copies">12</Argument>
+        <Argument name="Resource">LOC_RESOURCE_OIL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_14</Argument>
@@ -629,6 +905,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_OIL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_OIL_14</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_OIL_14" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_HEAVY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">4</Argument>
+        <Argument name="Copies">14</Argument>
+        <Argument name="Resource">LOC_RESOURCE_OIL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_16</Argument>
     </Modifier>
@@ -685,6 +989,34 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_OIL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_OIL_16</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_OIL_16" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_HEAVY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">5</Argument>
+        <Argument name="Copies">16</Argument>
+        <Argument name="Resource">LOC_RESOURCE_OIL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_18</Argument>
@@ -743,6 +1075,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_OIL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_OIL_18</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_OIL_18" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_HEAVY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">6</Argument>
+        <Argument name="Copies">18</Argument>
+        <Argument name="Resource">LOC_RESOURCE_OIL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_OIL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_OIL_20</Argument>
     </Modifier>
@@ -800,6 +1160,30 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_OIL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_OIL_20</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_OIL_20" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_OIL</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_HEAVY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">7</Argument>
+        <Argument name="Copies">20</Argument>
+        <Argument name="Resource">LOC_RESOURCE_OIL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_8</Argument>
     </Modifier>
@@ -853,6 +1237,31 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_COAL_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_COAL_8</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_COAL_8" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">1</Argument>
+        <Argument name="Copies">8</Argument>
+        <Argument name="Resource">LOC_RESOURCE_COAL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_10</Argument>
@@ -908,6 +1317,31 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_COAL_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_COAL_10</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_COAL_10" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">2</Argument>
+        <Argument name="Copies">10</Argument>
+        <Argument name="Resource">LOC_RESOURCE_COAL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_12</Argument>
     </Modifier>
@@ -961,6 +1395,31 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_COAL_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_COAL_12</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_COAL_12" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">3</Argument>
+        <Argument name="Copies">12</Argument>
+        <Argument name="Resource">LOC_RESOURCE_COAL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_14</Argument>
@@ -1016,6 +1475,31 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_COAL_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_COAL_14</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_COAL_14" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">4</Argument>
+        <Argument name="Copies">14</Argument>
+        <Argument name="Resource">LOC_RESOURCE_COAL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_16</Argument>
     </Modifier>
@@ -1069,6 +1553,31 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_COAL_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_COAL_16</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_COAL_16" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">5</Argument>
+        <Argument name="Copies">16</Argument>
+        <Argument name="Resource">LOC_RESOURCE_COAL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_18</Argument>
@@ -1124,6 +1633,31 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_COAL_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_COAL_18</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_COAL_18" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">6</Argument>
+        <Argument name="Copies">18</Argument>
+        <Argument name="Resource">LOC_RESOURCE_COAL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_COAL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_COAL_20</Argument>
     </Modifier>
@@ -1177,6 +1711,27 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_COAL_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_COAL_20</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_COAL_20" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_COAL</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_LIGHT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">7</Argument>
+        <Argument name="Copies">20</Argument>
+        <Argument name="Resource">LOC_RESOURCE_COAL_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_8</Argument>
@@ -1235,6 +1790,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_RUBBER_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_RUBBER_8</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_RUBBER_8" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_AIRCRAFT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">1</Argument>
+        <Argument name="Copies">8</Argument>
+        <Argument name="Resource">LOC_RESOURCE_RUBBER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_10</Argument>
     </Modifier>
@@ -1291,6 +1874,34 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_RUBBER_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_RUBBER_10</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_RUBBER_10" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_AIRCRAFT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">2</Argument>
+        <Argument name="Copies">10</Argument>
+        <Argument name="Resource">LOC_RESOURCE_RUBBER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_12</Argument>
@@ -1349,6 +1960,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_RUBBER_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_RUBBER_12</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_RUBBER_12" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_AIRCRAFT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">3</Argument>
+        <Argument name="Copies">12</Argument>
+        <Argument name="Resource">LOC_RESOURCE_RUBBER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_14</Argument>
     </Modifier>
@@ -1405,6 +2044,34 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_RUBBER_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_RUBBER_14</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_RUBBER_14" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_AIRCRAFT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">4</Argument>
+        <Argument name="Copies">14</Argument>
+        <Argument name="Resource">LOC_RESOURCE_RUBBER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_16</Argument>
@@ -1463,6 +2130,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_RUBBER_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_RUBBER_16</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_RUBBER_16" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_AIRCRAFT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">5</Argument>
+        <Argument name="Copies">16</Argument>
+        <Argument name="Resource">LOC_RESOURCE_RUBBER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_18</Argument>
     </Modifier>
@@ -1520,6 +2215,34 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
     </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_RUBBER_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_RUBBER_18</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_RUBBER_18" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_AIRCRAFT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">6</Argument>
+        <Argument name="Copies">18</Argument>
+        <Argument name="Resource">LOC_RESOURCE_RUBBER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
     <Modifier id="SR_ATTACH_CURVE_RUBBER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
         <Argument name="ModifierId">SR_CURVE_RUBBER_20</Argument>
     </Modifier>
@@ -1576,5 +2299,29 @@
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_RUBBER_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_RUBBER_20</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_RUBBER_20" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_AIRCRAFT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">7</Argument>
+        <Argument name="Copies">20</Argument>
+        <Argument name="Resource">LOC_RESOURCE_RUBBER_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
 </GameEffects>

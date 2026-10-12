@@ -11,6 +11,12 @@
         <Row Tag="LOC_SR_UNSUPPLIED_LINE">
             <Text>Unsupplied: no {1_Resource} ({2_Combat} Combat Strength, slower to train)</Text>
         </Row>
+        <Row Tag="LOC_SR_PREVIEW_UNSUPPLIED">
+            <Text>{2_Combat} Unsupplied: no {3_Resource}</Text>
+        </Row>
+        <Row Tag="LOC_SR_PREVIEW_CURVE">
+            <Text>+{2_Combat} {4_Resource}: {3_Copies} or more copies</Text>
+        </Row>
         <Row Tag="LOC_SR_SETUP_UNSUPPLIED_NAME">
             <Text>Unsupplied Units</Text>
         </Row>

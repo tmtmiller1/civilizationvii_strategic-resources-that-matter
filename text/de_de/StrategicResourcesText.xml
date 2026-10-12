@@ -4,6 +4,8 @@
         <Replace Tag="LOC_SR_MOD_NAME" Language="de_DE"><Text>Strategische Ressourcen, die zählen</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="de_DE"><Text>Strategische Ressourcen zählen wieder. Eine Einheit, die Pferde, Eisen, Salpeter, Öl, Kohle oder Kautschuk braucht, kämpft schwächer und wird langsamer ausgebildet, solange ihr Besitzer keine Einheit dieser Ressource hat, und jede Einheit gibt weiterhin den Bonus des Spiels. Geht die letzte verloren, kehrt der Malus eine Runde später zurück. Über sechs Einheiten hinaus bringt die Zahl weiter Stärke. Zwei Optionen der Spieleinrichtung legen den Malus fest und schalten den späten Bonus. Einzelspieler. Im Mehrspielermodus kehrt der Malus nach dem Verlust einer Ressource erst zurück, wenn dieser Spieler eine Ressource erhält.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="de_DE"><Text>Unversorgt: ohne {1_Resource} ({2_Combat} Kampfstärke, langsamer ausgebildet)</Text></Replace>
+        <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="de_DE"><Text>{2_Combat} Unversorgt: ohne {3_Resource}</Text></Replace>
+        <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="de_DE"><Text>+{2_Combat} {4_Resource}: {3_Copies} oder mehr Einheiten</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="de_DE"><Text>Unversorgte Einheiten</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="de_DE"><Text>Wie viel schwächer und langsamer ausgebildet eine Einheit ist, solange ihr Besitzer keine Einheit der strategischen Ressource hat, die sie braucht.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="de_DE"><Text>Aus</Text></Replace>

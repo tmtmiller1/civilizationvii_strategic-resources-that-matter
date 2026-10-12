@@ -3,9 +3,9 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { buildFiles, CURVE_THRESHOLDS, LEVELS } from "../scripts/build-data.mjs";
+import { buildFiles, CURVE_THRESHOLDS, LEVELS, PREVIEW_TEXT, resourceNameTag } from "../scripts/build-data.mjs";
 import {
-  AGES, AGE_FILE, STRENGTHS, buildGateMap, gatedResources, upgradeOnlyGatedUnits
+  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, buildGateMap, gatedResources, upgradeOnlyGatedUnits
 } from "../scripts/gate-map.mjs";
 
 // Data gate: the invariants that crash the game or mislead it, checked on the files that ship.
@@ -15,6 +15,9 @@ import {
 //   - Every requirement on a child is a known shape, and every cancel equals its penalty.
 //   - No strength row can reach a unit whose base value for that strength is 0: a melee unit has ranged and bombard 0
 //     because it has no such attack, and a row that moved it off 0 could turn on ranged behaviour.
+//   - Every penalty and every curve step has exactly one combat preview line, behind the same requirements, and a
+//     preview line never changes combat (Amount 0). No other modifier carries a string, and the mod adds no string
+//     to a modifier it does not define.
 //   - The gate lists per age are the ones written into DESIGN.md section 4.
 //   - Every unit and resource the data names exists in the game's tables, as dumped from lab games
 //     (devtools/gate-map/<age>.json) and, for the age last played, in the live compiled database
@@ -96,6 +99,31 @@ function checkStrengthRow(/** @type {string} */ age, /** @type {string} */ base,
 }
 let modifiersChecked = 0;
 
+/** The owner requirements of a modifier, as written. @param {ModifierInfo} m */
+function ownerShapes(m) {
+  const section = (m.body.match(/<OwnerRequirements>([\s\S]*?)<\/OwnerRequirements>/) || ["", ""])[1];
+  return [...section.matchAll(/<Requirement type="([^"]+)"( inverse="true")?>([\s\S]*?)<\/Requirement>/g)].map((r) => ({
+    type: r[1], inverse: Boolean(r[2]),
+    resource: (r[3].match(/name="ResourceType">([^<]+)</) || [])[1], amount: Number((r[3].match(/name="Amount">(\d+)</) || [])[1])
+  }));
+}
+/** @param {ModifierInfo} m */
+const subjectTags = (m) => [...(m.body.match(/<SubjectRequirements[^>]*>([\s\S]*?)<\/SubjectRequirements>/) || ["", ""])[1]
+  .matchAll(/<Argument name="Tag">([^<]+)<\/Argument>/g)].map((t) => t[1]);
+
+/**
+ * A preview line: a strength modifier of 0 on the combat collection, with one Preview string.
+ * @param {string} base @param {ModifierInfo} m @param {string} text
+ */
+function checkPreviewLine(base, m, text) {
+  assert.equal(m.effect, "EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER", `${base}: ${m.id} effect`);
+  assert.equal(m.collection, "COLLECTION_PLAYER_COMBAT", `${base}: ${m.id} collection`);
+  assert.equal(m.args.Amount, "0", `${base}: ${m.id} is a preview line and must not change combat`);
+  const strings = [...m.body.matchAll(/<String context="([^"]+)">([^<]+)<\/String>/g)].map((x) => `${x[1]}:${x[2]}`);
+  assert.deepEqual(strings, [`Preview:${text}`], `${base}: ${m.id} strings`);
+}
+let previewLines = 0;
+
 // 2-4. Every modifier file and its GameModifiers file, one setup group at a time.
 const groups = AGES.flatMap((age) => [...Object.keys(LEVELS), "curve"].map((kind) => ({ age, kind })));
 for (const { age, kind } of groups) {
@@ -123,6 +151,10 @@ for (const { age, kind } of groups) {
     assert.ok(m.subjectRequirements.every((r) => r === "REQUIREMENT_UNIT_TAG_MATCHES"),
       `${base}: ${m.id} has an unexpected subject requirement`);
     if (m.effect === "EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH") checkStrengthRow(age, base, m);
+    if (!m.id.startsWith("SR_PREVIEW_")) {
+      assert.ok(!/<String\b/.test(m.body), `${base}: ${m.id} carries a string; only preview lines do`);
+      assert.notEqual(m.effect, "EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER", `${base}: ${m.id} is a combat-time change`);
+    }
     modifiersChecked += 1;
   }
   if (kind !== "curve") {
@@ -144,11 +176,44 @@ for (const { age, kind } of groups) {
       assert.equal(byId.get(`SR_COMBAT_PENALTY_${name}`)?.ownerRequirements.length, 0);
       const cancel = byId.get(`SR_COMBAT_SUPPLIED_${name}`)?.body ?? "";
       assert.match(cancel, new RegExp(`<Argument name="ResourceType">${resource}<`));
+      // One preview line, shown exactly while the penalty stands: no copy held, on the units the penalty reaches.
+      const line = byId.get(`SR_PREVIEW_PENALTY_${name}`);
+      assert.ok(line, `${base}: no preview line for ${name}`);
+      checkPreviewLine(base, line, PREVIEW_TEXT.penalty);
+      assert.deepEqual(ownerShapes(line), [{ type: "REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE", inverse: true, resource,
+        amount: 1 }], `${base}: ${line.id} owner requirement`);
+      assert.deepEqual(subjectTags(line), [`SR_SUPPLY_${name}`], `${base}: ${line.id} subject`);
+      assert.equal(Number(line.args.Combat), level.combat, `${base}: ${line.id} names the wrong penalty`);
+      assert.equal(line.args.Resource, resourceNameTag(resource), `${base}: ${line.id} resource name`);
+      previewLines += 1;
     }
+    assert.equal(modifiers.filter((m) => m.id.startsWith("SR_PREVIEW_")).length, gatedResources(age).length,
+      `${base}: preview lines`);
   } else {
     const thresholds = modifiers.filter((m) => m.id.startsWith("SR_CURVE_"))
       .map((m) => Number((m.body.match(/<Argument name="Amount">(\d+)<\/Argument>\s*<\/Requirement>/) || [])[1]));
     assert.ok(thresholds.length > 0 && thresholds.every((t) => CURVE_THRESHOLDS.includes(t)), `${base} thresholds`);
+    // One preview line per curve step, shown from its threshold up to the next, so a unit shows one curve line.
+    for (const { resource, tags } of VANILLA_PER_COPY[age]) {
+      const name = resource.replace("RESOURCE_", "");
+      CURVE_THRESHOLDS.forEach((threshold, step) => {
+        const line = byId.get(`SR_PREVIEW_CURVE_${name}_${threshold}`);
+        assert.ok(line, `${base}: no preview line for ${name} at ${threshold}`);
+        checkPreviewLine(base, line, PREVIEW_TEXT.curve);
+        const next = CURVE_THRESHOLDS[step + 1];
+        assert.deepEqual(ownerShapes(line), [
+          { type: "REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE", inverse: false, resource, amount: threshold },
+          ...(next ? [{ type: "REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE", inverse: true, resource, amount: next }] : [])
+        ], `${base}: ${line.id} owner requirements`);
+        assert.deepEqual(subjectTags(line), tags, `${base}: ${line.id} subject`);
+        assert.equal(Number(line.args.Combat), step + 1, `${base}: ${line.id} names the wrong step`);
+        assert.equal(Number(line.args.Copies), threshold, `${base}: ${line.id} copies`);
+        assert.equal(line.args.Resource, resourceNameTag(resource), `${base}: ${line.id} resource name`);
+        previewLines += 1;
+      });
+    }
+    assert.equal(modifiers.filter((m) => m.id.startsWith("SR_PREVIEW_")).length,
+      VANILLA_PER_COPY[age].length * CURVE_THRESHOLDS.length, `${base}: preview lines`);
   }
 }
 
@@ -206,6 +271,8 @@ for (const age of AGES) {
 assert.deepEqual(AGES.flatMap((age) => upgradeOnlyGatedUnits(dumps[age])),
   dumps.AGE_EXPLORATION.upgrades.length ? ["UNIT_SAMURAI_2", "UNIT_SAMURAI_3"] : []);
 assert.ok(!fs.readdirSync(DATA).some((f) => /\bStrategicResource\s*=/.test(read(f))), "data sets Units.StrategicResource");
+// Strings only inside the mod's own modifiers (checked above); no file adds one to a modifier of the game's.
+assert.ok(!fs.readdirSync(DATA).some((f) => /ModifierStrings/.test(read(f))), "data writes ModifierStrings rows");
 
 // Every data file is loaded by exactly one action group, and nothing else is.
 const modinfo = fs.readFileSync("strategic-resources.modinfo", "utf8").replace(/<!--[\s\S]*?-->/g, "");
@@ -231,6 +298,9 @@ if (!fs.existsSync(live)) {
     assert.ok(liveResources.has("RESOURCE_CRABS"), "the re-check resource is not in the live DB");
     for (const resource of gatedResources(liveAge)) {
       assert.ok(liveResources.has(resource), `${resource} not in live DB`);
+      // The preview lines name the resource by the game's own name tag.
+      assert.deepEqual(query(`SELECT Name FROM Resources WHERE ResourceType = '${resource}'`),
+        [resourceNameTag(resource)]);
     }
     console.log(`data: live database holds ${liveAge}; all ${buildGateMap(dumps[liveAge]).size} gated units present`);
   } else {
@@ -239,4 +309,5 @@ if (!fs.existsSync(live)) {
 }
 
 console.log(`data harness passed (${modifiersChecked} modifiers in ${groups.length} groups, ` +
+  `${previewLines} preview lines, ` +
   `${Object.values(EXPECTED).flatMap((r) => Object.values(r)).flat().length} gated units)`);
