@@ -22,6 +22,12 @@
 //     Amount 0 and a Preview string, behind the same requirements as the change it names (DESIGN.md 7e). The preview
 //     text gets the modifier's arguments as its parameters, sorted by argument name: Amount (always 0), then
 //     Combat, Copies and Resource.
+//   - sr-civilopedia.xml: the Civilopedia page in Game Concepts (its chapters' text by key convention,
+//     LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_<chapter>_TITLE and _PARA_<n>), and one chapter on the
+//     unit page layout. A chapter without text is not drawn, so that chapter shows only on the pages the per-level
+//     -game.xml files give a paragraph: each gated unit's, "Needs Iron: without it, -3 Combat Strength ...". A
+//     paragraph row replaces a chapter's whole text on its page, so the mod adds its own chapter rather than a row in
+//     one of the game's.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -150,10 +156,49 @@ const gameEffects = (comment, body) =>
   [HEADER, GENERATED, `<!-- ${comment} -->`, '<GameEffects xmlns="GameEffects">', ...body, "</GameEffects>", ""]
     .join("\n");
 
-/** @param {string[]} ids */
-const gameModifiers = (ids) =>
+/** @param {string[]} ids @param {string[]} [more] further tables, already indented */
+const gameModifiers = (ids, more = []) =>
   [HEADER, GENERATED, "<Database>", "    <GameModifiers>", ...ids.map((id) => `        <Row ModifierId="${id}"/>`),
-    "    </GameModifiers>", "</Database>", ""].join("\n");
+    "    </GameModifiers>", ...more, "</Database>", ""].join("\n");
+
+/** The Civilopedia page, its chapters in order, and the chapter the mod adds to unit pages. */
+export const PEDIA = {
+  section: "CONCEPTS", page: "SR_STRATEGIC_RESOURCES", group: "COMBAT", layout: "SR_CONCEPT",
+  chapters: ["CONTENT", "UNSUPPLIED", "COPY", "LOSS", "PAST_SIX", "GATES"],
+  searchTerms: ["LOC_SR_PEDIA_TERM_UNSUPPLIED", "LOC_SR_PEDIA_TERM_STRATEGIC"],
+  unitChapter: "SR_SUPPLY", unitHeader: "LOC_SR_PEDIA_UNIT_CHAPTER"
+};
+/** The line on a gated unit's page. @param {string} resource @param {string} levelName */
+export const pediaUnitTag = (resource, levelName) =>
+  `LOC_SR_PEDIA_UNIT_${shortName(resource)}_${levelName.toUpperCase()}`;
+
+function pediaFile() {
+  const { section, page, group, layout, chapters, searchTerms, unitChapter, unitHeader } = PEDIA;
+  return [HEADER, GENERATED,
+    "<!-- The Civilopedia page in Game Concepts, and the chapter that gated units' pages show. -->",
+    "<Database>",
+    "    <CivilopediaPageLayouts>", `        <Row PageLayoutID="${layout}" UseSidebar="false"/>`,
+    "    </CivilopediaPageLayouts>",
+    "    <CivilopediaPageLayoutChapters>",
+    ...chapters.map((c, i) => `        <Row PageLayoutID="${layout}" ChapterID="${c}" SortIndex="${(i + 1) * 10}"/>`),
+    `        <Row PageLayoutID="Unit" ChapterID="${unitChapter}" Header="${unitHeader}" SortIndex="25"/>`,
+    "    </CivilopediaPageLayoutChapters>",
+    "    <CivilopediaPages>",
+    `        <Row SectionID="${section}" PageID="${page}" PageGroupID="${group}" PageLayoutID="${layout}" ` +
+      `Name="LOC_PEDIA_${section}_PAGE_${page}_TITLE" SortIndex="296"/>`,
+    "    </CivilopediaPages>",
+    "    <CivilopediaPageSearchTerms>",
+    ...searchTerms.map((t) => `        <Row SectionID="${section}" PageID="${page}" Term="${t}"/>`),
+    "    </CivilopediaPageSearchTerms>",
+    "</Database>", ""].join("\n");
+}
+
+/** One paragraph row per gated unit of an age, for one setup level. @param {Map<string, string>} gates */
+const pediaUnitRows = (gates, /** @type {string} */ levelName) => [
+  "    <CivilopediaPageChapterParagraphs>",
+  ...[...gates].map(([unit, resource]) => `        <Row SectionID="UNITS" PageID="${unit}" ` +
+    `ChapterID="${PEDIA.unitChapter}" Paragraph="${pediaUnitTag(resource, levelName)}" SortIndex="10"/>`),
+  "    </CivilopediaPageChapterParagraphs>"];
 
 /**
  * The penalty modifiers for one resource at one level, and the attach ids to register. A strength row is written
@@ -230,6 +275,7 @@ export function buildFiles() {
   const allResources = [...new Set(AGES.flatMap(gatedResources))];
   const allTags = allResources.flatMap((r) => [supplyTag(r), penaltyTag("RANGED", r), penaltyTag("BOMBARD", r),
     curveTag("RANGED", r), curveTag("BOMBARD", r)]);
+  files.set("sr-civilopedia.xml", pediaFile());
   files.set("sr-tags.xml", [HEADER, GENERATED,
     "<!-- Unit tags: which resource a unit draws on, and which of its strengths the penalty and the curve change. -->",
     "<Database>", "    <Tags>", ...allTags.map((t) => `        <Row Tag="${t}" Category="UNIT_CLASS"/>`),
@@ -257,7 +303,8 @@ export function buildFiles() {
           "production without the resource, cancelled while the owner holds a copy; each strength only on units " +
           "that have it.",
         parts.flatMap((p) => p.body)));
-      files.set(`sr-${file}-${levelName}-game.xml`, gameModifiers(parts.flatMap((p) => p.ids)));
+      files.set(`sr-${file}-${levelName}-game.xml`,
+        gameModifiers(parts.flatMap((p) => p.ids), pediaUnitRows(gates, levelName)));
     }
     const curves = VANILLA_PER_COPY[age].map((c) => curveFor(c, strengths.curve.get(c.resource) ?? {}));
     files.set(`sr-${file}-curve-modifiers.xml`, gameEffects(

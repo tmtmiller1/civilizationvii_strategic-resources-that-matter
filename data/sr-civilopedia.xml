@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- The Civilopedia page in Game Concepts, and the chapter that gated units' pages show. -->
+<Database>
+    <CivilopediaPageLayouts>
+        <Row PageLayoutID="SR_CONCEPT" UseSidebar="false"/>
+    </CivilopediaPageLayouts>
+    <CivilopediaPageLayoutChapters>
+        <Row PageLayoutID="SR_CONCEPT" ChapterID="CONTENT" SortIndex="10"/>
+        <Row PageLayoutID="SR_CONCEPT" ChapterID="UNSUPPLIED" SortIndex="20"/>
+        <Row PageLayoutID="SR_CONCEPT" ChapterID="COPY" SortIndex="30"/>
+        <Row PageLayoutID="SR_CONCEPT" ChapterID="LOSS" SortIndex="40"/>
+        <Row PageLayoutID="SR_CONCEPT" ChapterID="PAST_SIX" SortIndex="50"/>
+        <Row PageLayoutID="SR_CONCEPT" ChapterID="GATES" SortIndex="60"/>
+        <Row PageLayoutID="Unit" ChapterID="SR_SUPPLY" Header="LOC_SR_PEDIA_UNIT_CHAPTER" SortIndex="25"/>
+    </CivilopediaPageLayoutChapters>
+    <CivilopediaPages>
+        <Row SectionID="CONCEPTS" PageID="SR_STRATEGIC_RESOURCES" PageGroupID="COMBAT" PageLayoutID="SR_CONCEPT" Name="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" SortIndex="296"/>
+    </CivilopediaPages>
+    <CivilopediaPageSearchTerms>
+        <Row SectionID="CONCEPTS" PageID="SR_STRATEGIC_RESOURCES" Term="LOC_SR_PEDIA_TERM_UNSUPPLIED"/>
+        <Row SectionID="CONCEPTS" PageID="SR_STRATEGIC_RESOURCES" Term="LOC_SR_PEDIA_TERM_STRATEGIC"/>
+    </CivilopediaPageSearchTerms>
+</Database>
