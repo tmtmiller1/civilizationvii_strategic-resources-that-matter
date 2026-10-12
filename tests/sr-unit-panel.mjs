@@ -92,6 +92,8 @@ try {
   panel.setupUnitInfo();
   assert.deepEqual(stats.children.map((c) => c.classList.contains("sr-unsupplied-line")), [false, false, true],
     "the cell goes back to the end after the panel rebuilds its cells");
+  panel.unitId = "warrior";
+  panel.setupUnitInfo();
   assert.equal(line.classList.contains("hidden"), true, "a supplied or ungated unit hides it");
   panel.unitId = null;
   panel.setupUnitInfo();
