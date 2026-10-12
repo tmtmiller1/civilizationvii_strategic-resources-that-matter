@@ -3,7 +3,8 @@
 // unit is short, the game's neutral pill otherwise. The item's disabled state dims the whole item to 0.8, which the
 // red still reads through.
 
-const PILL_CLASSES = ["font-body", "text-sm", "pointer-events-none", "min-h-6", "px-1.5", "flex", "items-center",
+// Wider side padding than the game's small pill, so the text clears the rounded ends.
+const PILL_CLASSES = ["font-body", "text-sm", "pointer-events-none", "min-h-7", "px-3", "flex", "items-center",
   "self-start", "rounded-full", "leading-normal", "whitespace-nowrap"];
 export const WARNING_CLASS = "sr-pill--warning";
 const PLAIN = { border: "1px solid #53565D", background: "#23252b", color: "#E5D2AC" };
