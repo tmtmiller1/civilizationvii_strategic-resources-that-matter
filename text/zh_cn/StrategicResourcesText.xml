@@ -79,5 +79,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="zh_Hans_CN"><Text>补给丧失：没有{1_Resource}。在重新获得{1_Resource}之前，需要它的单位战斗力{2_Combat}，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="zh_Hans_CN"><Text>补给丧失：没有{1_Resource}。在重新获得{1_Resource}之前，你的{2_Unit}战斗力{3_Combat}，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="zh_Hans_CN"><Text>补给丧失：没有{1_Resource}。在重新获得{1_Resource}之前，你的{2_Unit}和其他{3_Others}个单位战斗力{4_Combat}，训练变慢。</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="zh_Hans_CN"><Text>无补给单位</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hans_CN"><Text>你的{1_Unit}需要{2_Resource}，而你一个都没有：在获得之前，它战斗力{3_Combat}，训练变慢。每个需要战略资源的单位都是如此，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
     </LocalizedText>
 </Database>

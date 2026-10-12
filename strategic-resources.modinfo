@@ -6,7 +6,8 @@
   notice a lost resource; ui/sr-unit-panel.js says on the unit panel when a unit is unsupplied;
   ui/sr-production-line.js says on a gated unit's production item what it needs; ui/sr-resource-line.js says in a
   strategic resource's description which units it supplies; ui/sr-supply-lost.js raises a notification when the
-  local player loses the last copy of a resource its units need.
+  local player loses the last copy of a resource its units need; ui/sr-callout.js shows a tutorial callout the first
+  time the player selects an unsupplied unit.
   The Civilopedia rows load in the game scope, as the base game's do (base-standard loads its civilopedia data in
   base-game-main); their text is in the same text files as everything else.
   Groups: the setup options and text at the main menu; the unit tags, the Civilopedia page, the notification type
@@ -187,8 +188,10 @@
                     <Item>ui/sr-unit-panel.js</Item>
                     <Item>ui/sr-production-line.js</Item>
                     <Item>ui/sr-resource-line.js</Item>
+                    <Item>ui/sr-callout.js</Item>
                 </UIScripts>
                 <ImportFiles>
+                    <Item>ui/sr-callout.js</Item>
                     <Item>ui/sr-log.js</Item>
                     <Item>ui/sr-player-supply.js</Item>
                     <Item>ui/sr-production-line.js</Item>

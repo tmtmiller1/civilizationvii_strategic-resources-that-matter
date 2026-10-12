@@ -79,5 +79,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="it_IT"><Text>Rifornimento perso: niente {1_Resource}. Le unità che ne hanno bisogno combattono con {2_Combat} di forza di combattimento e si addestrano più lentamente finché non riottieni {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="it_IT"><Text>Rifornimento perso: niente {1_Resource}. La tua unità {2_Unit} combatte con {3_Combat} di forza di combattimento e si addestra più lentamente finché non riottieni {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="it_IT"><Text>Rifornimento perso: niente {1_Resource}. La tua unità {2_Unit} e {3_Others} {3_Others : plural 1?altra unità; other?altre unità;} combattono con {4_Combat} di forza di combattimento e si addestrano più lentamente finché non riottieni {1_Resource}.</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="it_IT"><Text>Unità senza rifornimenti</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="it_IT"><Text>La tua unità {1_Unit} dipende da {2_Resource} e non ne hai: finché non ne ottieni almeno una, combatte con {3_Combat} di forza di combattimento e si addestra più lentamente. Funziona così per ogni unità che richiede una risorsa strategica, e la pagina della Civilopedia {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} spiega la regola per intero.</Text></Replace>
     </LocalizedText>
 </Database>

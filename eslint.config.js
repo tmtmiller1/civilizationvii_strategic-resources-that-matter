@@ -26,6 +26,7 @@ const BROWSER_GLOBALS = {
   clearTimeout: "readonly",
   HTMLElement: "readonly",
   getComputedStyle: "readonly",
+  localStorage: "readonly",
   globalThis: "readonly"
 };
 

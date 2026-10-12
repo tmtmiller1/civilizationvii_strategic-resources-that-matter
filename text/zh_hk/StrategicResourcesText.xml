@@ -79,5 +79,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="zh_Hant_HK"><Text>補給喪失：沒有{1_Resource}。在重新獲得{1_Resource}之前，需要它的單位戰鬥力{2_Combat}，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="zh_Hant_HK"><Text>補給喪失：沒有{1_Resource}。在重新獲得{1_Resource}之前，你的{2_Unit}戰鬥力{3_Combat}，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="zh_Hant_HK"><Text>補給喪失：沒有{1_Resource}。在重新獲得{1_Resource}之前，你的{2_Unit}和其他{3_Others}個單位戰鬥力{4_Combat}，訓練變慢。</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="zh_Hant_HK"><Text>無補給單位</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hant_HK"><Text>你的{1_Unit}需要{2_Resource}，而你一個都沒有：在獲得之前，它戰鬥力{3_Combat}，訓練變慢。每個需要戰略資源的單位都是如此，完整規則見文明百科頁面「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」。</Text></Replace>
     </LocalizedText>
 </Database>

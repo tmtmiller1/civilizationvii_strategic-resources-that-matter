@@ -79,5 +79,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="ru_RU"><Text>Снабжение потеряно: нет ресурса «{1_Resource}». Пока вы снова не получите «{1_Resource}», нуждающиеся в нём отряды получают {2_Combat} к боевой мощи и обучаются дольше.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="ru_RU"><Text>Снабжение потеряно: нет ресурса «{1_Resource}». Пока вы снова не получите «{1_Resource}», ваш отряд «{2_Unit}» получает {3_Combat} к боевой мощи и обучается дольше.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ru_RU"><Text>Снабжение потеряно: нет ресурса «{1_Resource}». Пока вы снова не получите «{1_Resource}», ваш отряд «{2_Unit}» и другие отряды (ещё: {3_Others}) получают {4_Combat} к боевой мощи и обучаются дольше.</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="ru_RU"><Text>Отряд без снабжения</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ru_RU"><Text>Вашему отряду «{1_Unit}» нужен ресурс «{2_Resource}», а у вас его нет: пока вы его не получите, отряд получает {3_Combat} к боевой мощи и обучается дольше. Так устроен каждый отряд, которому нужен стратегический ресурс, а всё правило описано на странице Цивилопедии «{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}».</Text></Replace>
     </LocalizedText>
 </Database>
