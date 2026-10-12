@@ -1,7 +1,7 @@
 # Compatibility with other mods
 
-Last reviewed 2026-10-12 against Strategic Resources That Matter 1.0.0 on Civilization VII 1.5.0 (production and
-resource lines, the lost-supply notification and the first-time callout added the same day).
+Last reviewed 2026-10-12 against Strategic Resources That Matter 1.1.0 on Civilization VII 1.5.0 (the Gated Units
+option added that day; the 1.0 findings below stand).
 
 This file records what the mod touches, which kinds of mod touch the same things, and what a player would see when
 both are enabled. Most of it comes from reading code: the 1,251 community mods in the reference corpus, the mods
@@ -18,19 +18,21 @@ Everything a conflict could come through. If another mod touches none of these, 
 
 | Surface | What the mod does with it |
 | --- | --- |
-| Database, frontend (shell scope) | Adds two `Parameters` (`StrategicResourcesThatMatterUnsupplied`, `StrategicResourcesThatMatterLateCurve`) in the `GameOptions` group and their `DomainValues`. Changes no base row. |
+| Database, frontend (shell scope) | Adds three `Parameters` (`StrategicResourcesThatMatterUnsupplied`, `StrategicResourcesThatMatterLateCurve`, `StrategicResourcesThatMatterGate`) in the `GameOptions` group and their `DomainValues`. Changes no base row. |
 | Database, gameplay (game scope, LoadOrder 200 to 202) | Adds `Tags` rows (`SR_SUPPLY_`, `SR_RANGED_`, `SR_BOMBARD_`, `SR_CURVE_RANGED_`, `SR_CURVE_BOMBARD_<NAME>`), `TypeTags` rows putting them on base-game and DLC units, `Modifiers` (`SR_` ids) and `GameModifiers` rows. Changes no base row; deletes nothing. |
+| Database, gameplay, with Gated Units on (one group per age and value, LoadOrder 202) | Sets `Units.StrategicResource` on every unit of the gate map for that age (an `Update` of a base column that vanilla leaves empty) and writes the six `STRATEGIC_RESOURCE_MINIMUM_FOR_*` `GlobalParameters` rows (`Replace`: production and purchase 1, upgrading 0 or 1, healing 0), which vanilla 1.5.0 does not define. Adds `CivilopediaPageChapterParagraphs` rows in its own `SR_LOCK` chapter. With the option Off, none of this loads. |
 | Units' combat strength | `EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH` on major players' gated units, per strength type (melee, ranged, bombard), only on units that have that strength. |
 | Cities' unit production | `EFFECT_CITY_ADJUST_UNIT_PRODUCTION` with the mod's own tag as `UnitClass`. |
 | Combat preview | One `EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER` of 0 per penalty and per curve step on `COLLECTION_PLAYER_COMBAT` (`SR_PREVIEW_` ids), each with a `Preview` string, so the preview lists the line. They change no strength. |
 | Civilopedia (game scope) | Adds a page in Game Concepts (`CivilopediaPages` `SR_STRATEGIC_RESOURCES`, group `COMBAT`, its own layout `SR_CONCEPT` and chapters, two `CivilopediaPageSearchTerms`), one chapter `SR_SUPPLY` on the base `Unit` layout, and `CivilopediaPageChapterParagraphs` rows for that chapter on gated units' pages. Changes no base row. |
 | Players' off-map resources | Gains and drops one `RESOURCE_CRABS` per major player at every turn start (`gainOffMapResource`, `removeOffMapResource`). |
 | Unit panel | `Controls.decorate("unit-actions")`: wraps the panel instance's `setupUnitInfo` and adds one element under `.unit-actions__stats_container`. |
+| City unit queries | With Gated Units on, wraps `Game.CityOperations.canStartQuery` and `Game.CityCommands.canStartQuery` (own properties of those objects) for the local player's unit queries only: an entry the engine answers with a bare refusal for a unit the gate locks is rewritten into the shape the chooser keeps (`InsufficientFunds`, one empty reason), so the unit stays listed, greyed. Other players' queries and other query kinds pass through untouched; activating the item still asks the engine, which refuses. |
 | Production list items | `ComponentRegistry` entry `ProductionModInfo` (the game's empty slot for mods on each production item): registered again at the priority already there, rendering the previous factory first, then one element of its own. |
 | Text drawn by `Stylize` | `ComponentRegistry` entry `Stylize`: registered again at the priority already there, passing every prop through; only when `text` is a strategic resource's `Tooltip` key is the text composed with one line added. |
 | Notifications | Adds one notification type, `NOTIFICATION_SR_SUPPLY_LOST` (`Types`, `Notifications`, `NotificationSounds` rows, game scope), and an `IconDefinitions` row for it pointing at the game's `ntf_trade_res_lost` image (`UpdateIcons`). Raises it for the local player with `Game.Notifications.send` at a turn start after a loss. Registers no handler: the train's default handler draws it. |
-| Tutorial manager | Adds one item, `tower_sr_unsupplied_first`, to the game's `TutorialManager` (`add`, then `process("tower strategic resources items")`) at level 2, raised on `UnitSelectionChanged`. Adds no item bank of the game's and changes none of its items. |
-| `localStorage` | The Tower Settings Keeper (shared with other Tower mods; one copy runs). The mod stores one key itself, `tower-strategic-resources-that-matter.unsuppliedCalloutSeen`, once the callout has shown. |
+| Tutorial manager | Adds two items, `tower_sr_unsupplied_first` and `tower_sr_locked_first` (the lock, raised on `UnitSelectionChanged` and `CitySelectionChanged`), to the game's `TutorialManager` (`add`, then `process("tower strategic resources items")`) at level 2, raised on `UnitSelectionChanged`. Adds no item bank of the game's and changes none of its items. |
+| `localStorage` | The Tower Settings Keeper (shared with other Tower mods; one copy runs). The mod stores two keys itself, `tower-strategic-resources-that-matter.unsuppliedCalloutSeen` and `...lockedCalloutSeen`, once each callout has shown. |
 | Globals | None. |
 
 ## Summary
@@ -39,7 +41,7 @@ Everything a conflict could come through. If another mod touches none of these, 
 | --- | --- | --- |
 | Replaces or deletes the game's per-copy combat bonus rows | The penalty and the panel line work as before; the curve past six copies still adds its +1 steps on the base game's classes | Read from code |
 | Retags units (new classes, merged lines) | Units keep the mod's tags; a new unit from another mod is never gated | Read from code |
-| Adds new units | Not gated unless a later version lists them | Read from code |
+| Adds new units | Not gated unless a later version lists them; a new unit that replaces a gated one (`UnitReplaces`) is not gated either, and a new upgrade target of a gated unit is reached without the resource under Training and upgrade | Read from code |
 | Changes unit production costs or production modifiers | The cut adds to theirs; both apply | Read from code |
 | Changes the unit panel by decorating it | Both lines show | Read from code (one such mod examined) |
 | Patches the unit panel's prototype | Both run: the wrapper looks the method up at call time | Read from code |
@@ -51,7 +53,8 @@ Everything a conflict could come through. If another mod touches none of these, 
 | Calls `gainOffMapResource` or reads off-map resources | Sees one Crabs entry during the turn-start call, gone at once | Read from code |
 | Rebalances strategic resources' placement or yields | Works; the penalty reads only whether a copy is held | Read from code |
 | Changes trade routes (range, capacity, duration, what a route carries) | An imported copy is an ordinary entry in the player's resource list and supplies units like a mined one; such a mod changes which routes exist, not how the penalty reads them | Watched (`p11-import-*`: imports count) |
-| AI mods that check `Units.StrategicResource` | Unaffected: the mod sets no `StrategicResource` | Read from code |
+| Sets `Units.StrategicResource` or the `STRATEGIC_RESOURCE_MINIMUM_FOR_*` parameters (a gameplay overhaul installed on the development machine does both, on 34 units across the ages, with minimums of 2 to 6 copies) | The engine applies the later mod's minimums and every column either mod set; its units are locked by its rule. The mod's lock texts, list rewrite and lock callout step back to the 1.0 lines whenever the minimums are not the one copy the option writes or the columns do not cover the whole gate map, so no text promises a one-copy unlock that does not hold. With Gated Units Off, that mod gates alone, as it does without this mod | Tested (finding 9) |
+| AI mods that check `Units.StrategicResource` | See the column with Gated Units on, empty with it Off | Read from code |
 | Changes the combat preview panel | The mod's lines are ordinary `PreviewTextModifier` entries; a panel that prints that list prints them | Read from code |
 | Adds Civilopedia pages, or chapters to unit pages | Both show; the mod's page and chapter have their own ids, and its paragraph rows touch only its own chapter | Read from code |
 | Replaces the notification train's panel or model (Nasuellia Popups, Nasuellia Diplomacy Screens), or adds handlers for its own types (Mav's UI Overhaul) | The lost-supply notification shows and dismisses as before: it is an ordinary `Game.Notifications` entry drawn by the default handler | Tested with the three on (phase 14) and off (the game's own train, `p14-review-plain-train`) |
@@ -187,3 +190,27 @@ The callout is an item in the game's tutorial manager. It shows only when the pl
 on, at most once per profile. A mod that turns tutorials off or replaces the manager with one that ignores added items
 leaves the callout out and changes nothing else. One that clears the manager's saved state does not bring it back: the
 mod keeps its own "seen" flag.
+
+### 9. Mods that gate units on strategic resources themselves
+
+Status: tested 2026-10-12 with the one such mod installed on the development machine (`verification-runs.md`, phase
+15: `p15-probe-column`, `p15-ui-off-overhaul`); the rest read from code.
+
+The engine has one rule for `Units.StrategicResource`: a unit that carries the column is built, bought, upgraded into
+or healed only while its owner holds at least the number of copies the matching `STRATEGIC_RESOURCE_MINIMUM_FOR_*`
+parameter names, and without that parameter the column blocks for good. A `GlobalParameters` row is one value for
+the whole game, so when two mods write it the later load order wins; the columns add up. Homo Ludens (a locally
+installed gameplay overhaul, load order 9999 and 10050, after this mod's 202) sets the column on 34 units of its own
+choosing (its Carrack needs Hardwood, its Landship Coal) and writes the parameters with higher minimums (Modern: 3 to
+train, 6 to buy, 1 to upgrade and to heal). With both on, the engine locks by its numbers and both mods' columns.
+
+This mod reads the loaded data before it explains anything: the lock texts in the production list, the panel line's
+tail, the resource line's "Needed to train", the notification's tail and the lock callout show only when the
+production and purchase minimums read one copy and every unit of the gate map carries its column. Otherwise they step
+back to the 1.0 lines, the list rewrite is off (a unit the other mod locks is absent from the list, as it is under that
+mod alone), and that mod's own list annotation explains its rule. Watched with the option Off and Homo Ludens on
+(game 3): the Tank and Landship refused by its minimums, the list showing the 1.0 "Braucht Salpeter" lines, the panel
+and resource lines in their 1.0 form. With the option on and such a mod on, the engine gates by that mod's minimums
+and this mod's option has no effect of its own beyond its columns; the Civilopedia chapter still describes a one-copy
+lock. Players who want this mod's gate should turn the other mod off, or the other way round.
+

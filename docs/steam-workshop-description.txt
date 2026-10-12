@@ -1,16 +1,16 @@
 [h1]Strategic Resources That Matter[/h1]
 
-Horses, Iron, Niter, Oil, Coal and Rubber matter again. A unit that draws on one of them fights weaker and trains slower while its owner holds no copy of it, and every copy you hold still adds the game's own bonus, so the count keeps mattering. Lose your last copy, to a raid on the mine or a lost settlement, and the penalty is back a turn later. Past six copies, where the game's own bonus stops, the count keeps adding strength.
+Horses, Iron, Niter, Oil, Coal and Rubber matter again. A unit that draws on one of them fights weaker and trains slower while its owner has none of it, and each one you hold still adds the game's own bonus, so the count keeps mattering. Lose your last one, to a raid on the mine or a lost settlement, and the penalty is back a turn later. Past six, where the game's own bonus stops, the count keeps adding strength.
 
-Nothing is forbidden: every unit can still be trained and upgraded. Going without just costs you.
+Nothing is forbidden unless you ask for it: by default every unit can still be trained and upgraded, and going without just costs you. Turn on Gated Units at setup and a unit cannot be trained or bought at all while you have none of its resource.
 
 [h2]What changes[/h2]
 [list]
-[*][b]No copy of the resource:[/b] less Combat Strength (melee, and ranged and bombard where the unit has them) and less Production toward the unit. Default: -3 and a third less Production, so the unit takes half as long again to train.
-[*][b]One copy or more:[/b] no penalty; the game's +1 per copy as before, up to six.
-[*][b]Past six copies:[/b] +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 copies.
-[*]The game says why, in your language: a line on the unit panel, a line on each such unit in the production list ("Needs Niter"), a line in each strategic resource's description on the map and in the commerce screen ("Supplies units: Field Cannon, Mortar ..."), a line of its own in the combat preview ("-3 Unsupplied: no Niter", "+1 Niter: 8 or more copies"), and a Civilopedia page under Game Concepts, with a line on each unit's page that needs a resource.
-[*]A notification when you lose your last copy: "Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower until you get Niter back." It ends with the turn and never holds it up.
+[*][b]None of the resource:[/b] less Combat Strength (melee, and ranged and bombard where the unit has them) and less Production toward the unit. Default: -3 and a third less Production, so the unit takes half as long again to train.
+[*][b]One or more:[/b] no penalty; the game's +1 for each as before, up to six.
+[*][b]Past six:[/b] +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20.
+[*]The game says why, in your language: a line on the unit panel, a pill on each such unit in the production list ("Needs Niter", with the whole sentence in its tooltip), a line in each strategic resource's description on the map and in the commerce screen ("Supplies units: Field Cannon, Mortar ..."), a line of its own in the combat preview ("-3 Unsupplied: no Niter", "+1 Niter: 8 or more"), and a Civilopedia page under Game Concepts, with a line on each unit's page that needs a resource.
+[*]A notification when you lose the last of a resource: "Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower until you get Niter back." It ends with the turn and never holds it up.
 [*]The first time you select a unit that is short of its resource, an advisor callout explains the rule and points to the Civilopedia page. Once, and only with tutorials or advisor warnings on.
 [/list]
 
@@ -27,7 +27,7 @@ Nothing is forbidden: every unit can still be trained and upgraded. Going withou
 [tr][td]Modern[/td][td]Light warships[/td][td]Coal[/td][/tr]
 [tr][td]Modern[/td][td]Aircraft[/td][td]Rubber[/td][/tr]
 [/table]
-A copy that reaches you over a trade route counts the same as one you mine yourself. Unique units need what the unit they replace needs. The Warrior line, ranged infantry, the first ships and Modern infantry need nothing, so everyone can always defend.
+A resource that reaches you over a trade route counts the same as one you mine yourself. Unique units need what the unit they replace needs. The Warrior line, ranged infantry, the first ships and Modern infantry need nothing, so everyone can always defend.
 
 [h2]Losing a resource[/h2]
 The game notices a resource arriving at once, but not one going away. The mod has it check every player again at the start of each turn, so a lost resource brings the penalty back a turn later, for you and for the AI.
@@ -36,13 +36,14 @@ The game notices a resource arriving at once, but not one going away. The mod ha
 [list]
 [*][b]Unsupplied Units:[/b] Off, Light (-2, 20% less Production), Standard (-3, 33% less), Harsh (-5, 50% less). Default Standard.
 [*][b]Strategic Resources Past Six:[/b] Off or On. Default On.
+[*][b]Gated Units:[/b] Off, Training, or Training and upgrade. Default Off. On, a unit that needs a resource stays in the production list, greyed out ("Locked: no Iron"), until you have the resource, and is locked again the moment your last one goes; under Training and upgrade no unit can be upgraded into it either. Units already in the field are never gated, and neither are independent powers and city-states. The AI plays under the same lock.
 [/list]
 
 [h2]Good to know[/h2]
 [list]
 [*]Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.
 [*]Works in new games; a game started with the mod needs it to load.
-[*]Independent powers and city-states are not penalised.
+[*]Independent powers and city-states are not penalised and never gated.
 [*]Adds data and a few small scripts; replaces no game file. Tested alongside Readable Tooltips.
 [*]Carries the Tower Settings Keeper, which keeps every mod's settings after a restart.
 [/list]
