@@ -35,6 +35,7 @@ export function element(classes = []) {
     children: [],
     attributes: {},
     textContent: "",
+    style: {},
     classList: {
       add: (...names) => names.forEach((n) => classSet.add(n)),
       remove: (...names) => names.forEach((n) => classSet.delete(n)),

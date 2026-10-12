@@ -74,8 +74,9 @@ Three layers, each switchable on its own.
 1. **Unsupplied.** A unit whose class draws on a resource you have no copy of fights at a penalty (default -3 combat
    strength) and costs more to train (default +50% production). With one copy you are at vanilla; each further copy
    adds vanilla's +1. This is barnu1rd's kneecap, and it keeps quickonthedrawl's count delta whole.
-2. **Hard gate** (setup option, off by default). The unit cannot be trained or upgraded without the resource, Civ VI
-   style, through `Units.StrategicResource`. The OP's version.
+2. **Hard gate** (setup option "Gated Units", off by default; 1.1). The unit cannot be trained or bought without a
+   copy of the resource, and under the second value not upgraded into either, Civ VI style, through
+   `Units.StrategicResource` and the engine's minimum parameters (7f). The OP's version.
 3. **A steeper late curve** (setup option). Answers the saturation point: the per-copy bonus keeps going past 6 but
    at half rate, so a rival with 10 still beats one with 6. Tuning only, no new mechanism.
 
@@ -118,10 +119,14 @@ artillery). There are no carriers in 1.5.0.
 | --- | --- | --- |
 | Unsupplied, combat | A unit ability per class with `REQUIREMENT_PLAYER_HAS_RESOURCE` (inverse) as its owner requirement and a flat combat strength change; attached by `GameEffects` per age | no |
 | Unsupplied, cost | `EFFECT_CITY_ADJUST_UNIT_PRODUCTION` with a unit tag and the same inverse requirement, negative percent | no |
-| Hard gate | `UPDATE Units SET StrategicResource = ...` per the gate map | no |
+| Hard gate | `Units.StrategicResource` per the gate map plus the six `STRATEGIC_RESOURCE_MINIMUM_FOR_*` global parameters (vanilla defines none; without the production one the column blocks for good), per age and option value | UI only: the locked item kept in the production list, the lock texts, the second callout |
 | Steeper curve | additional `EFFECT_UNIT_ADJUST_COMBAT_STRENGTH_PER_RESOURCE` rows with a count requirement (`REQUIREMENT_PLAYER_HAS_X_RESOURCES`) | no |
 | Plot and unit tooltip line ("Unsupplied: no Iron") | Readable Tooltips-style plot section, unit panel line | yes, UI only |
 | Setup options | `GameSetup` parameters gating each layer's database criteria | no |
+
+Layer 2 is data too; its script keeps a locked unit visible in the production list (the engine's query drops a unit
+it refuses without a reason) and explains the lock. The engine reads the owner's live copy count at every check, so
+the lock lifts the moment a copy arrives and returns the moment the last goes, with no re-check of the mod's.
 
 Layers 1 to 3 are data-only. That keeps the AI, multiplayer and save safety of plain modifiers, and the mod has no
 gameplay script at all. The AI reads unit data at game creation; whether it builds around a gate it cannot meet is
@@ -466,25 +471,64 @@ probe (the probe's doing, not the mod's); the Exploration-start run reached Mode
   every client or only the caller's, before the script may run in multiplayer.
 - The upgrade gate on the Samurai tiers, if the owner wants a one-civilization hard gate.
 
+## 7f. The hard gate (watched 2026-10-12, game 1.5.0; shipped as 1.1)
+
+The shape: `Units.StrategicResource` on every unit of the gate map, written per age and option value, plus the six
+`STRATEGIC_RESOURCE_MINIMUM_FOR_*` global parameters (production and purchase anywhere and with district 1, upgrading
+0 under Training and 1 under Training and upgrade, healing 0). Vanilla 1.5.0 defines none of the parameters, and
+without the production one the column blocks for good (which is what 7a's P1 saw, before a locally installed overhaul
+with those rows was on this machine). With them, the engine reads the owner's live copy count at every check: the
+lock lifts the moment a copy counts and returns the moment the last tile is cleared, within the turn, no roll and no
+re-check of the mod's. No grant, no trait, no requirement set and no `CanTrain` change.
+
+Why not the Foederati shape of 7d: a unit with any `TraitType` leaves the independents' spawn (18 Scouts and no
+Warrior in every such game), and no grant reaches them, not over `COLLECTION_INDEPENDENT_PLAYERS` and not over
+`COLLECTION_ALL_PLAYERS` behind an inverse `REQUIREMENT_PLAYER_IS_MAJOR`; a grant over the replacement rule also lets
+Rome train the Spearman beside the Legion (an inverse `REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT` on the
+grant does work). The column needs none of that: independents and city-states ignore it by the game's own
+`CivilizationLevels.IgnoresUnitStrategicResourceRequirements` (watched: 18 Warriors and 18 Scouts at turn 10, 36
+Warriors at turn 20, the control's numbers), and unique units keep their trait and the replacement rule.
+
+What the engine does and does not do with it (phase 15 in `verification-runs.md`):
+
+- Build and purchase refused without a copy, for the human and the AI; allowed with one; the game's own upgrade
+  reason ("needs 1 Horses to upgrade this type of Unit") under the upgrading minimum, and the upgrade free under 0.
+- The refusal carries no reason and no requirement block, so the game's production chooser drops the unit from its
+  list. The mod wraps `canStartQuery` for the local player's unit queries and rewrites that entry into the one shape
+  the chooser keeps (`InsufficientFunds`, one empty reason): the unit stays listed, greyed, with the mod's line, and
+  activating it still asks the engine, which refuses.
+- A unit already queued when the last copy goes keeps its progress and is completed: the check runs when an item is
+  queued or bought, not when it finishes. Recorded as a known limit; a turn-start purge of locked queue items would
+  be the fix if the owner wants one.
+- Healing stays free (minimum 0); the Samurai tiers sit behind the game's three-kills rule before the Iron check.
+- A later mod that writes the parameters (Homo Ludens: 2 to 6 copies) wins by load order; the mod's lock texts show
+  only when the loaded minimums are its own and every gate-map unit carries the column.
+
 ## 8. Setup options
 
 | Option | Values | Default |
 | --- | --- | --- |
 | Unsupplied Units | Off, Light (-2, -20% production), Standard (-3, -33%), Harsh (-5, -50%) | Standard |
 | Strategic Resources Past Six | Off, On | On |
+| Gated Units (1.1) | Off, Training (no training or purchase without a copy), Training and upgrade (no upgrade into the unit either) | Off |
 
-The hard gate has no option in 1.0 (7e).
+The hard gate has no option in 1.0 (7e); 1.1 adds Gated Units (7f).
 
 ## 9. Versions
 
 - **1.0**: layer 1, the loss re-check, layer 3, setup options, the unit panel line. Single-player.
-- **1.1**: the training gate (Foederati shape).
+- **1.1**: the training gate, as the Gated Units option (the `StrategicResource` column and the engine's
+  minimums, not the Foederati shape: 7f).
 - **1.2**: open question: Civ VI-style consumption on a script ledger, shared with the depletion mod.
 
 ## 10. Decisions (the owner, 2026-10-11)
 
 - Hard gate: not in 1.0. The upgrade gate was to ship where a unit qualified; its only candidates, the Samurai tiers 2
-  and 3, would make it a hard training gate for one civilization, so 1.0 leaves it out (7e). The owner can reverse this.
+  and 3, would make it a hard training gate for one civilization, so 1.0 leaves it out (7e). Reversed for 1.1 (the
+  owner, 2026-10-12): the gate ships as the Gated Units option, Off by default, with the Samurai tiers gated under
+  Training and upgrade only (7f).
+- Independents and city-states are never affected by the mod, not by the penalty and not by the gate (the owner,
+  2026-10-12). A gate shape that reached them was ruled out even as a probe (7f).
 - Units only; no building gates.
 - Modern infantry not gated (count bonus only).
 - Single-player only. In multiplayer, losing a resource does not bring the penalty back until that player gains a

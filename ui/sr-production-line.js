@@ -1,9 +1,10 @@
-// Adds one line to a gated unit's item in the production list: "Needs Niter. Without it: -3 Combat Strength, slower to
-// train." with none held, "Needs Niter (you have 2)." with copies, and under the hard gate "Needs Niter: cannot be
-// trained without it." (bought, in the purchase list) on the greyed item sr-production-lock.js keeps listed. The item
-// is the game's own; the line goes in ProductionModInfo, the empty slot the game renders under each item's name and
-// error line for mods, so the game's own text stays where it is. Mods that draw their own production items and render
-// that slot show the line too.
+// Adds one pill to a gated unit's item in the production list: "Needs Niter" with none held, "Niter: 2" with some,
+// and under the hard gate "Locked: no Niter" on the greyed item sr-production-lock.js keeps listed. The pill goes in
+// ProductionModInfo, the empty slot the game renders under each item's name and error line for mods, so the game's
+// own text stays where it is; it is drawn like the game's own "Ageless" pill, tinted red while the unit is short. The
+// whole sentence ("Needs Niter. Without it: -3 Combat Strength, slower to train.", "Needs Niter: cannot be trained
+// without it.", "... bought ..." on the purchase list) goes into the item's hover tooltip, under the unit's
+// description. Mods that draw their own production items and render that slot show the pill too.
 
 import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
@@ -11,8 +12,15 @@ import { keepWrapped } from "/tower-strategic-resources-that-matter/ui/sr-regist
 import { describeProductionCost } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 const LINE_CLASS = "sr-production-line";
-const LINE_CLASSES = [LINE_CLASS, "font-body", "text-sm", "pointer-events-none"];
-const UNSUPPLIED_CLASS = "text-negative-light";
+// The game's own pill (ui-next/components/pills.js, small): a rounded box with a thin border.
+const PILL_CLASSES = [LINE_CLASS, "font-body", "text-sm", "pointer-events-none", "min-h-6", "px-1.5", "flex",
+  "items-center", "self-start", "rounded-full", "leading-normal", "whitespace-nowrap"];
+const PILL_BORDER = "1px solid #53565D";
+const PILL_BACKGROUND = "#23252b";
+// The game's military-advisor pill gradient; a light text on it, as the game's pills have.
+const WARNING_BACKGROUND = "linear-gradient(90deg, #461314 0%, #2C0A0B 100%)";
+const WARNING_TEXT = "#F3E9D2";
+const UNSUPPLIED_CLASS = "sr-production-line--unsupplied";
 
 /**
  * The line for the local player's production item, or null when there is nothing to say. `short` is the form for a
@@ -41,7 +49,7 @@ export function describeProductionItem(unitType) {
 }
 
 /**
- * The line's element, or null. Never throws: a failure here must not break the production list.
+ * The pill, or null. Never throws: a failure here must not break the production list.
  * @param {string | undefined} unitType
  * @returns {HTMLElement | null}
  */
@@ -50,16 +58,16 @@ export function productionLineElement(unitType) {
     const line = describeProductionItem(unitType);
     if (!line) return null;
     const element = document.createElement("div");
-    element.classList.add(...LINE_CLASSES);
-    if (line.unsupplied) element.classList.add(UNSUPPLIED_CLASS);
+    element.classList.add(...PILL_CLASSES);
     element.setAttribute("role", "paragraph");
-    element.textContent = line.text;
-    // Placed by the time this runs: the item says whether it is for purchase, and the slot's container whether the
-    // item is one row or a column.
-    setTimeout(() => {
-      fitPurchase(element, line.buyText);
-      shortenInRow(element, line.short);
-    }, 0);
+    element.style.border = PILL_BORDER;
+    element.style.background = PILL_BACKGROUND;
+    if (line.unsupplied) {
+      element.classList.add(UNSUPPLIED_CLASS);
+      element.style.background = WARNING_BACKGROUND;
+      element.style.color = WARNING_TEXT;
+    }
+    element.textContent = line.short;
     return element;
   } catch (e) {
     log.warn("could not draw the production line:", e);
@@ -68,34 +76,42 @@ export function productionLineElement(unitType) {
 }
 
 /**
- * Puts the purchase form in when the line sits on a purchase item.
- * @param {HTMLElement} element
- * @param {string | null} buyText
+ * The item's hover tooltip with the whole sentence under the unit's description. The game's ProductionTooltip takes
+ * the item's attributes as props (`category`, `type`, `description`, `isPurchase`); for a unit the mod has a line
+ * for, the description handed on gains the line, composed, on a new line. Anything else passes through untouched.
+ * @param {Function} previous the factory registered before
+ * @param {(...sources: object[]) => object} [mergeProps] Solid's, so the props handed down stay reactive
+ * @returns {Function}
  */
-export function fitPurchase(element, buyText) {
-  try {
-    if (!buyText) return;
-    const item = element.closest?.("production-chooser-item, [data-is-purchase]");
-    if (item?.getAttribute("data-is-purchase") === "true") element.textContent = buyText;
-  } catch (e) {
-    log.warn("could not fit the production line:", e);
-  }
+export function wrapProductionTooltip(previous, mergeProps = (...sources) => Object.assign({}, ...sources)) {
+  return function StrategicResourcesThatMatterProductionTooltip(/** @type {*} */ props) {
+    try {
+      if (props?.category !== "units" || !describeProductionItem(props.type)) return previous(props);
+      return previous(mergeProps(props, {
+        get description() {
+          return withProductionLine(props.type, props.description, props.isPurchase);
+        }
+      }));
+    } catch (e) {
+      log.warn("could not add the production line to the tooltip:", e);
+      return previous(props);
+    }
+  };
 }
 
 /**
- * Puts the short form in when the line sits in a row beside the item's name rather than under it.
- * @param {HTMLElement} element
- * @param {string} short
+ * A unit's description with the mod's sentence after it, or the description as it was.
+ * @param {string} unitType
+ * @param {string | undefined} description the tooltip's own, a text key or text
+ * @param {boolean | string | undefined} isPurchase
+ * @returns {string | undefined}
  */
-export function shortenInRow(element, short) {
-  try {
-    const container = element.parentElement?.parentElement;
-    if (!container || getComputedStyle(container).flexDirection !== "row") return;
-    element.textContent = short;
-    element.classList.add("whitespace-nowrap");
-  } catch (e) {
-    log.warn("could not fit the production line:", e);
-  }
+export function withProductionLine(unitType, description, isPurchase) {
+  const line = describeProductionItem(unitType);
+  if (!line) return description;
+  const base = description ?? GameInfo.Units.lookup(unitType)?.Description ?? "";
+  const sentence = isPurchase === true || isPurchase === "true" ? line.buyText ?? line.text : line.text;
+  return `${Locale.compose(base)}[N]${sentence}`;
 }
 
 /** Set on the props this factory hands down, so a copy of it nested further in draws no second line. */
@@ -130,6 +146,8 @@ async function start() {
     engine.on("PlayerResourceChanged", () => setHoldingsChanged((/** @type {number} */ n) => n + 1));
     await keepWrapped(ComponentRegistry, solid, "ProductionModInfo", (previous) =>
       wrapProductionModInfo(previous, holdingsChanged, solid.mergeProps));
+    await keepWrapped(ComponentRegistry, solid, "ProductionTooltip", (previous) =>
+      wrapProductionTooltip(previous, solid.mergeProps));
   } catch (e) {
     log.warn("could not add the production line:", e);
   }

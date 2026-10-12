@@ -4,6 +4,38 @@ All notable changes to the Strategic Resources That Matter mod for Civilization 
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 
+## [1.1.0] - 2026-10-12
+
+Gated Units: a third game setup option, off by default, that locks a unit behind its resource.
+
+### Added
+- Gated Units (Off, Training, Training and upgrade; Off by default). With it on, a unit that draws on a strategic
+  resource cannot be trained or bought while its owner has none of it. It stays in the production list, greyed
+  out, with a "Locked: no Iron" pill after its stats, and is locked again the moment the last one goes. Under Training and
+  upgrade no unit can be upgraded into it either; under Training upgrades stay free. Units already in the field are
+  never gated, and heal as usual. Independent powers and city-states are never gated. The AI is locked by the same
+  rule and never sticks on a locked unit.
+- The unit panel line ends with "New ones cannot be trained.", a resource's description reads "Needed to train: ...",
+  the lost-supply notification adds "New ones cannot be trained until then.", and a second first-time callout,
+  "Locked unit", explains the lock. The Civilopedia page gains a chapter, "Gated units", and each gated unit's page a
+  line "Cannot be trained or bought without Iron." All in the twelve languages.
+- The production list's line is now a pill, like the game's own "Ageless", in the short form ("Needs Niter",
+  "Niter: 2", "Locked: no Iron"), tinted while the unit is short; the whole sentence sits in the item's hover
+  tooltip under the unit's description, and on the purchase list it says what cannot be bought.
+
+### Changed
+- The Civilopedia page, the setup descriptions and the callouts no longer count resources in "copies": a unit is
+  short while its owner "has none of" the resource, and the game's bonus counts "each of a resource you hold".
+- The Civilopedia page's opening sentence now points at the option; the mod's description names three options.
+- A resource's "Supplies units" line no longer names a unit the player's own unique unit replaces when that unique
+  unit is reached by upgrade alone (the Sengoku's Iron line named the Man-at-Arms and Pikeman).
+
+### Known limits
+- A unit already in the production queue when the resource is lost keeps its progress and is completed; the game
+  checks the resource when a unit is queued or bought.
+- A mod that sets the game's resource-minimum parameters itself keeps the engine's rule by its own numbers; this
+  mod's lock texts then step back to their plain form.
+
 ## [1.0.0] - 2026-10-11
 
 Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs the units that need it.
