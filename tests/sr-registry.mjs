@@ -77,7 +77,7 @@ function fakeRegistry(solid) {
 }
 
 try {
-  const { keepWrapped, wrapOnce } = await import("/tower-strategic-resources/ui/sr-registry.js");
+  const { keepWrapped, wrapOnce } = await import("/tower-strategic-resources-that-matter/ui/sr-registry.js");
   const tag = (/** @type {string} */ label) => (/** @type {Function} */ previous) => (/** @type {*} */ props) =>
     `${label}(${previous(props)})`;
 

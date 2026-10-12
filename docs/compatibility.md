@@ -18,7 +18,7 @@ Everything a conflict could come through. If another mod touches none of these, 
 
 | Surface | What the mod does with it |
 | --- | --- |
-| Database, frontend (shell scope) | Adds two `Parameters` (`StrategicResourcesUnsupplied`, `StrategicResourcesLateCurve`) in the `GameOptions` group and their `DomainValues`. Changes no base row. |
+| Database, frontend (shell scope) | Adds two `Parameters` (`StrategicResourcesThatMatterUnsupplied`, `StrategicResourcesThatMatterLateCurve`) in the `GameOptions` group and their `DomainValues`. Changes no base row. |
 | Database, gameplay (game scope, LoadOrder 200 to 202) | Adds `Tags` rows (`SR_SUPPLY_`, `SR_RANGED_`, `SR_BOMBARD_`, `SR_CURVE_RANGED_`, `SR_CURVE_BOMBARD_<NAME>`), `TypeTags` rows putting them on base-game and DLC units, `Modifiers` (`SR_` ids) and `GameModifiers` rows. Changes no base row; deletes nothing. |
 | Units' combat strength | `EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH` on major players' gated units, per strength type (melee, ranged, bombard), only on units that have that strength. |
 | Cities' unit production | `EFFECT_CITY_ADJUST_UNIT_PRODUCTION` with the mod's own tag as `UnitClass`. |
@@ -30,7 +30,7 @@ Everything a conflict could come through. If another mod touches none of these, 
 | Text drawn by `Stylize` | `ComponentRegistry` entry `Stylize`: registered again at the priority already there, passing every prop through; only when `text` is a strategic resource's `Tooltip` key is the text composed with one line added. |
 | Notifications | Adds one notification type, `NOTIFICATION_SR_SUPPLY_LOST` (`Types`, `Notifications`, `NotificationSounds` rows, game scope), and an `IconDefinitions` row for it pointing at the game's `ntf_trade_res_lost` image (`UpdateIcons`). Raises it for the local player with `Game.Notifications.send` at a turn start after a loss. Registers no handler: the train's default handler draws it. |
 | Tutorial manager | Adds one item, `tower_sr_unsupplied_first`, to the game's `TutorialManager` (`add`, then `process("tower strategic resources items")`) at level 2, raised on `UnitSelectionChanged`. Adds no item bank of the game's and changes none of its items. |
-| `localStorage` | The Tower Settings Keeper (shared with other Tower mods; one copy runs). The mod stores one key itself, `tower-strategic-resources.unsuppliedCalloutSeen`, once the callout has shown. |
+| `localStorage` | The Tower Settings Keeper (shared with other Tower mods; one copy runs). The mod stores one key itself, `tower-strategic-resources-that-matter.unsuppliedCalloutSeen`, once the callout has shown. |
 | Globals | None. |
 
 ## Summary

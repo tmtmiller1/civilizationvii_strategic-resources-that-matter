@@ -8,7 +8,7 @@ import fs from "node:fs";
 // fatal in game: the second insert hits the unique key and the loader rolls back the whole file, so every string in
 // that language shows as a raw tag. A tag missing from a language shows raw in that language.
 
-const FILE = "StrategicResourcesText.xml";
+const FILE = "StrategicResourcesThatMatterText.xml";
 
 /** Folder to the Language attribute its rows must carry (the modinfo's locale="..."). */
 export const LANGUAGE_OF = {

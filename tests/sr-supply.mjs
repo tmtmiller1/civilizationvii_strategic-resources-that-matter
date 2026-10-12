@@ -9,7 +9,7 @@ import {
   resourceForSupplyTag,
   SUPPLIED_UNITS_SHOWN,
   unitsSuppliedBy
-} from "/tower-strategic-resources/ui/sr-supply.js";
+} from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 // The pure half of the unit panel line: which resource a unit draws on and what it costs to lack it.
 

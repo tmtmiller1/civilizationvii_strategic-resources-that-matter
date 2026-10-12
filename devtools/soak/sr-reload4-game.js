@@ -3,7 +3,7 @@
 // Niter put by WorldBuilder on the AI's own owned bare tiles (no district), which the AI expands onto in its turn.
 // Niter on an AI's existing plain mine never counted (sr-reload2), and the AI's expansion list cannot be queried
 // from the local player's context (sr-reload3).
-//   MOD=strategic_resources SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh sr-reload4-game.js sr-reload4 1500
+//   MOD=strategic_resources_that_matter SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh sr-reload4-game.js sr-reload4 1500
 const NAME = "sr-reload4";
 function unitType(u) { return safe(() => String(GameInfo.Units.lookup(u.type).UnitType), "?"); }
 function unitsOf(pid) { return (safe(() => Players.get(pid).Units.getUnits(), []) || []).filter((u) => u && u.Combat); }

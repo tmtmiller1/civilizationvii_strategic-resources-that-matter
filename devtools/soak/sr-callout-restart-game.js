@@ -5,7 +5,7 @@
 //   OPTS_JSON=2  a new game in a new launch: the flag is still there, the manager's item is unseen, and the same
 //                selection shows no callout; the tutorial level put back to 0
 // run-soak.sh does not restore LocalStorage.sqlite or the options files: back them up first and put them back after.
-//   MOD=strategic_resources START_AGE=AGE_MODERN SEED=4242 OPTS_JSON=1 zsh run-soak.sh <this file> sr-restart-1 900
+//   MOD=strategic_resources_that_matter START_AGE=AGE_MODERN SEED=4242 OPTS_JSON=1 zsh run-soak.sh <this file> sr-restart-1 900
 const NAME = "sr-callout-restart";
 const HALF = Number("__OPTS__") || 1;
 const CALLOUT_ID = "tower_sr_unsupplied_first";
@@ -20,7 +20,7 @@ async function closePopups() {
 }
 async function run() {
   const TM = (await import("/base-standard/ui/tutorial/tutorial-manager.js")).default;
-  const CB = await import("/tower-strategic-resources/ui/sr-callout.js");
+  const CB = await import("/tower-strategic-resources-that-matter/ui/sr-callout.js");
   const state = () => `completed=${safe(() => TM.isItemCompleted(CALLOUT_ID))} flag=${safe(() => CB.hasSeen())} raw=${J(safe(() => localStorage.getItem(CB.SEEN_KEY)))} level=${safe(() => Configuration.getUser().tutorialLevel)} focus=${safe(() => document.hasFocus())}`;
   await sleep(4000);
   emit(`H${HALF} start turn=${Game.turn} ${state()}`);

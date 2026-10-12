@@ -5,8 +5,8 @@ of their own, so a translation needs no code change.
 
 | File | Contents |
 | --- | --- |
-| `en_us/StrategicResourcesText.xml` | The source: the mod's name and description, the unit panel line, the setup options. |
-| `<lang>/StrategicResourcesText.xml` | The same tags in one language. |
+| `en_us/StrategicResourcesThatMatterText.xml` | The source: the mod's name and description, the unit panel line, the setup options. |
+| `<lang>/StrategicResourcesThatMatterText.xml` | The same tags in one language. |
 
 The eleven other languages use the game's own words for its terms (Combat Strength, Production, the resource names
 come from the game). English uses an `EnglishText` block with `Row`; every other language a `LocalizedText` block with

@@ -1,11 +1,11 @@
-// Resolves the mod's own "/tower-strategic-resources/..." imports to this checkout, the way the game serves them
-// under the mod id, and the game modules the scripts import to the stand-ins in tests/stubs/.
+// Resolves the mod's own "/tower-strategic-resources-that-matter/..." imports to this checkout, the way the game
+// serves them under the mod id, and the game modules the scripts import to the stand-ins in tests/stubs/.
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const loaderDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(loaderDir, "..");
-const MODULE_PREFIX = "/tower-strategic-resources/";
+const MODULE_PREFIX = "/tower-strategic-resources-that-matter/";
 const GAME_STUBS = new Map([["/base-standard/ui/tutorial/tutorial-manager.js", "tests/stubs/tutorial-manager.mjs"]]);
 
 export async function resolve(specifier, context, defaultResolve) {

@@ -9,12 +9,12 @@
 // Tower Settings Keeper this mod ships is what lets a mod read its own key back.
 
 import TutorialManager from "/base-standard/ui/tutorial/tutorial-manager.js";
-import { log } from "/tower-strategic-resources/ui/sr-log.js";
-import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources/ui/sr-player-supply.js";
-import { computeSupplyStatus } from "/tower-strategic-resources/ui/sr-supply.js";
+import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
+import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
+import { computeSupplyStatus } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 export const CALLOUT_ID = "tower_sr_unsupplied_first";
-export const SEEN_KEY = "tower-strategic-resources.unsuppliedCalloutSeen";
+export const SEEN_KEY = "tower-strategic-resources-that-matter.unsuppliedCalloutSeen";
 const PEDIA_TITLE = "LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE";
 // The game's TutorialLevel.WarningsOnly and TutorialAnchorPosition.MiddleRight.
 const WARNINGS_LEVEL = 2;

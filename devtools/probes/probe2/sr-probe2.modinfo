@@ -2,7 +2,7 @@
 <!-- Throwaway probe for DESIGN.md section 7b. Dev only, never ship. -->
 <Mod id="sr-probe2" version="1" xmlns="ModInfo">
     <Properties>
-        <Name>Strategic Resources Probe 2 (dev)</Name>
+        <Name>Strategic Resources That Matter Probe 2 (dev)</Name>
         <Description>Dev only: Warrior penalty cancelled by has-Iron bonuses in two requirement placements, and a has-no-Iron Warrior build block.</Description>
         <Authors>Tower</Authors>
         <Package>SRProbe2</Package>

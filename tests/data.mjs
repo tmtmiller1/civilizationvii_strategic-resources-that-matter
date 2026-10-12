@@ -275,7 +275,7 @@ assert.ok(!fs.readdirSync(DATA).some((f) => /\bStrategicResource\s*=/.test(read(
 assert.ok(!fs.readdirSync(DATA).some((f) => /ModifierStrings/.test(read(f))), "data writes ModifierStrings rows");
 
 // Every data file is loaded by exactly one action group, and nothing else is.
-const modinfo = fs.readFileSync("strategic-resources.modinfo", "utf8").replace(/<!--[\s\S]*?-->/g, "");
+const modinfo = fs.readFileSync("strategic-resources-that-matter.modinfo", "utf8").replace(/<!--[\s\S]*?-->/g, "");
 const listed = [...modinfo.matchAll(/<Item>(data\/[^<]+)<\/Item>/g)].map((m) => m[1]);
 assert.equal(new Set(listed).size, listed.length, "a data file is listed twice in the modinfo");
 assert.deepEqual([...listed].sort(), fs.readdirSync(DATA).map((f) => `data/${f}`).sort(), "modinfo and data/ differ");

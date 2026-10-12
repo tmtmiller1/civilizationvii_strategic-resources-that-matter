@@ -43,7 +43,7 @@ async function load({ multiplayer = false, crabs = true, players } = {}) {
   globalThis.GameInfo = { Resources: { lookup: (t) => (crabs && t === "RESOURCE_CRABS" ? { $hash: 77 } : null) } };
   Object.defineProperty(globalThis, "Game", { configurable: true, writable: true, value: { turn: 5 } });
   instance += 1;
-  await import(`/tower-strategic-resources/ui/sr-recheck.js?case=${instance}`);
+  await import(`/tower-strategic-resources-that-matter/ui/sr-recheck.js?case=${instance}`);
   engine.ready();
   await new Promise((resolve) => setTimeout(resolve, 0));
   return engine;
@@ -102,7 +102,7 @@ try {
   const broken = globalThis.engine;
   broken.on = () => { throw new Error("no events"); };
   instance += 1;
-  await import(`/tower-strategic-resources/ui/sr-recheck.js?case=${instance}`);
+  await import(`/tower-strategic-resources-that-matter/ui/sr-recheck.js?case=${instance}`);
   broken.ready();
   await new Promise((resolve) => setTimeout(resolve, 0));
   assert.ok(log.lines.some(([level, text]) => level === "error" && text.includes("could not start")));
@@ -110,7 +110,7 @@ try {
   // Without an engine the module does nothing on import.
   delete globalThis.engine;
   instance += 1;
-  await import(`/tower-strategic-resources/ui/sr-recheck.js?case=${instance}`);
+  await import(`/tower-strategic-resources-that-matter/ui/sr-recheck.js?case=${instance}`);
 } finally {
   log.restore();
   restoreGlobals();

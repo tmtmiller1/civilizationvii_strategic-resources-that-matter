@@ -64,7 +64,7 @@ globalThis.Players = { get: (id) => players[id] ?? null };
 
 try {
   const { describeResourceSupply, resourceTooltipIndex, unitNamesFor, withSupplyLine, wrapStylize } =
-    await import("/tower-strategic-resources/ui/sr-resource-line.js");
+    await import("/tower-strategic-resources-that-matter/ui/sr-resource-line.js");
 
   // Only resources some unit draws on, and only those with a description.
   assert.deepEqual([...resourceTooltipIndex()], [

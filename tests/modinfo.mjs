@@ -10,10 +10,10 @@ import { listJs, stripComments } from "./_fs-helpers.mjs";
 //   - No runtime import cycles among ui/ modules (static imports only; a cycle is harmless until a new script
 //     changes the evaluation order, then the whole panel dies).
 
-const MOD_ID = "tower-strategic-resources";
+const MOD_ID = "tower-strategic-resources-that-matter";
 const PREFIX = `/${MOD_ID}/`;
 const KEEPER = "ui/settings-keeper.js";
-const modinfo = fs.readFileSync("strategic-resources.modinfo", "utf8").replace(/<!--[\s\S]*?-->/g, "");
+const modinfo = fs.readFileSync("strategic-resources-that-matter.modinfo", "utf8").replace(/<!--[\s\S]*?-->/g, "");
 
 /** @param {string} id */
 function group(id) {
@@ -28,8 +28,8 @@ function itemsIn(body, tag) {
   return section ? [...section[0].matchAll(/<Item(?:\s+locale="[^"]+")?>([^<]+)<\/Item>/g)].map((m) => m[1]) : [];
 }
 
-const game = group("strategic-resources-game");
-const shell = group("strategic-resources-shell");
+const game = group("strategic-resources-that-matter-game");
+const shell = group("strategic-resources-that-matter-shell");
 
 for (const [name, body] of [["shell", shell], ["game", game]]) {
   assert.equal(itemsIn(body, "UIScripts")[0], KEEPER, `${name} group: the keeper must be the first UIScripts item`);

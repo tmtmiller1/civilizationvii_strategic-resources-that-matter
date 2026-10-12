@@ -125,7 +125,7 @@ adding the mod to a game already under way does nothing until a new game is star
 
 ## Install
 
-Subscribe on the Steam Workshop, or copy the `strategic-resources` folder into
+Subscribe on the Steam Workshop, or copy the `strategic-resources-that-matter` folder into
 `~/Library/Application Support/Civilization VII/Mods/` (macOS) or `%LOCALAPPDATA%\Firaxis Games\Sid Meier's
 Civilization VII\Mods\` (Windows), and enable it under Add-ons.
 

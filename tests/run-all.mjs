@@ -1,4 +1,5 @@
-// Runs every test file in tests/ in its own Node process with the /tower-strategic-resources/ loader registered.
+// Runs every test file in tests/ in its own Node process with the /tower-strategic-resources-that-matter/ loader
+// registered.
 //
 //   node tests/run-all.mjs                 run everything
 //   node tests/run-all.mjs data i18n        only files whose name contains one of the filters

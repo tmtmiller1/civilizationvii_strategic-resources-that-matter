@@ -4,7 +4,7 @@
 // AI, then the late curve's ranged and bombard rows on the Field Cannon at 7, 8 and 10 Niter copies, read from the
 // unit and from the combat preview (a ranged shot at an enemy unit, a bombardment of an enemy city).
 // The save: SR-LAB-RELOAD (Modern, turn 2, Standard, curve on; Tank without Oil, Field Cannon with Niter at 60,24).
-//   MOD=strategic_resources SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh sr-reload2-game.js sr-reload2 1800
+//   MOD=strategic_resources_that_matter SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh sr-reload2-game.js sr-reload2 1800
 const NAME = "sr-reload2";
 const NITER_AT = { x: 60, y: 24 };
 const PANEL_WAIT_MS = 5000;
@@ -174,7 +174,7 @@ async function run() {
   await sleep(5000);
   const g = Configuration.getGame();
   emit(`R1 after load turn=${Game.turn} age=${ageName()} res=${J(resources(0))} | ${strengths(0)}`);
-  emit(`R1 setup=${J([safe(() => g.getValue("StrategicResourcesUnsupplied")), safe(() => g.getValue("StrategicResourcesLateCurve"))])} srModifiers=${safe(() => GameInfo.Modifiers.filter((m) => String(m.ModifierId).startsWith("SR_")).length, "?")}`);
+  emit(`R1 setup=${J([safe(() => g.getValue("StrategicResourcesThatMatterUnsupplied")), safe(() => g.getValue("StrategicResourcesThatMatterLateCurve"))])} srModifiers=${safe(() => GameInfo.Modifiers.filter((m) => String(m.ModifierId).startsWith("SR_")).length, "?")}`);
   // Step 1b: the panel line across unit switches, each read after PANEL_WAIT_MS.
   emit(`P1 ${await panelRead("UNIT_TANK")}`);
   emit(`P2 ${await panelRead("UNIT_FIELD_CANNON")}`);

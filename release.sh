@@ -2,17 +2,17 @@
 # release.sh: produce a clean, debug-disabled zip ready for Steam Workshop upload.
 #
 # Usage:  ./release.sh
-# Output: dist/strategic-resources-vX.Y.Z.zip  (X.Y.Z read from strategic-resources.modinfo <Version>)
+# Output: dist/strategic-resources-that-matter-vX.Y.Z.zip  (X.Y.Z read from strategic-resources-that-matter.modinfo <Version>)
 #
 # What this does:
-#   1. Mirrors the mod source into dist/strategic-resources/
+#   1. Mirrors the mod source into dist/strategic-resources-that-matter/
 #   2. Sed-replaces `const DBG = true` -> `const DBG = false` (the switch in
 #      ui/sr-log.js) so debug traces don't fire in shipped builds.
 #      Source code stays development-friendly; only the dist copy is muted.
 #   3. Always ships readable JS (no minification; transparent source is a core
 #      property of the mod, so there is no minify path).
 #   4. Verifies the modinfo has Version + Authors set to non-default values.
-#   5. Zips the result with `strategic-resources/` as the zip root (Steam
+#   5. Zips the result with `strategic-resources-that-matter/` as the zip root (Steam
 #      Workshop needs the modinfo at zip root, not inside a wrapper folder).
 #
 # Run from the mod source directory.
@@ -28,22 +28,22 @@ if [ "${SKIP_VERIFY:-0}" != "1" ]; then
   npm run release:gate || { echo "release: 'npm run release:gate' FAILED — aborting."; exit 1; }
 fi
 
-# Source detection: this script lives at the mod root (next to strategic-resources.modinfo),
-# but the zip needs `strategic-resources/` as the root folder name regardless.
+# Source detection: this script lives at the mod root (next to strategic-resources-that-matter.modinfo),
+# but the zip needs `strategic-resources-that-matter/` as the root folder name regardless.
 DIST_DIR="dist"
-if [ -f "strategic-resources.modinfo" ]; then
+if [ -f "strategic-resources-that-matter.modinfo" ]; then
     SRC_DIR="."
 else
-    echo "error: no strategic-resources.modinfo in $(pwd)"
+    echo "error: no strategic-resources-that-matter.modinfo in $(pwd)"
     exit 1
 fi
 
 # Pull <Version> from the modinfo (first match wins).
-VERSION="$(grep -oE '<Version>[^<]+</Version>' "$SRC_DIR/strategic-resources.modinfo" \
+VERSION="$(grep -oE '<Version>[^<]+</Version>' "$SRC_DIR/strategic-resources-that-matter.modinfo" \
     | head -1 | sed -E 's|</?Version>||g')"
 [ -n "$VERSION" ] || { echo "error: could not parse <Version> from modinfo"; exit 1; }
 
-AUTHORS="$(grep -oE '<Authors>[^<]+</Authors>' "$SRC_DIR/strategic-resources.modinfo" \
+AUTHORS="$(grep -oE '<Authors>[^<]+</Authors>' "$SRC_DIR/strategic-resources-that-matter.modinfo" \
     | head -1 | sed -E 's|</?Authors>||g')"
 case "$AUTHORS" in
     ""|"Your Name"|"TODO")
@@ -88,8 +88,8 @@ if [ -z "$PUBLISHED_FILE_ID" ] && [ -f "$DIST_DIR/workshop_item.vdf" ]; then
         "$DIST_DIR/workshop_item.vdf" | grep -oE '[0-9]+' | head -1 || true)"
 fi
 
-ZIP_NAME="strategic-resources-v${VERSION}.zip"
-TARGET_DIR="$DIST_DIR/strategic-resources"
+ZIP_NAME="strategic-resources-that-matter-v${VERSION}.zip"
+TARGET_DIR="$DIST_DIR/strategic-resources-that-matter"
 ZIP_PATH="$DIST_DIR/$ZIP_NAME"
 
 echo "==> Cleaning $DIST_DIR/"
@@ -127,20 +127,20 @@ find "$TARGET_DIR" -name '*.js' -type f -print0 \
     | xargs -0 -n1 node -c
 
 echo "==> Verifying modinfo at zip root"
-[ -f "$TARGET_DIR/strategic-resources.modinfo" ] \
-    || { echo "error: $TARGET_DIR/strategic-resources.modinfo missing"; exit 1; }
+[ -f "$TARGET_DIR/strategic-resources-that-matter.modinfo" ] \
+    || { echo "error: $TARGET_DIR/strategic-resources-that-matter.modinfo missing"; exit 1; }
 
 echo "==> Zipping $ZIP_PATH"
-( cd "$DIST_DIR" && zip -qr "$ZIP_NAME" strategic-resources )
+( cd "$DIST_DIR" && zip -qr "$ZIP_NAME" strategic-resources-that-matter )
 
 # Allow-list audit: fail the build on any shipped file that isn't expected, so a
 # loose rsync exclude can't silently ship docs/, tests/, *.d.ts, dev configs,
 # stray CSVs, .DS_Store, etc. Update ALLOW when a new shipped file type is added.
 echo "==> Verifying zip contents against allow-list"
-ALLOW='^strategic-resources/(strategic-resources\.modinfo|README\.md|LICENSE|CHANGELOG\.md)$'
-ALLOW="$ALLOW"'|^strategic-resources/ui/[a-z0-9-]+\.js$'
-ALLOW="$ALLOW"'|^strategic-resources/data/sr-[a-z0-9-]+\.(xml|sql)$'
-ALLOW="$ALLOW"'|^strategic-resources/text/[a-z_]+/StrategicResourcesText\.xml$'
+ALLOW='^strategic-resources-that-matter/(strategic-resources-that-matter\.modinfo|README\.md|LICENSE|CHANGELOG\.md)$'
+ALLOW="$ALLOW"'|^strategic-resources-that-matter/ui/[a-z0-9-]+\.js$'
+ALLOW="$ALLOW"'|^strategic-resources-that-matter/data/sr-[a-z0-9-]+\.(xml|sql)$'
+ALLOW="$ALLOW"'|^strategic-resources-that-matter/text/[a-z_]+/StrategicResourcesThatMatterText\.xml$'
 UNEXPECTED="$(unzip -Z1 "$ZIP_PATH" | grep -vE '/$' | grep -vE "$ALLOW" || true)"
 if [ -n "$UNEXPECTED" ]; then
     echo "error: zip contains entries not on the allow-list:"

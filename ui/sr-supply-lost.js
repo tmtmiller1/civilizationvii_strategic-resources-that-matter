@@ -8,10 +8,10 @@
 // The counts live in memory: startSupplyLost takes the first look when a game loads, so a load never reports a loss.
 // sr-recheck.js is off in multiplayer, and so is this.
 
-import { log } from "/tower-strategic-resources/ui/sr-log.js";
-import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources/ui/sr-player-supply.js";
-import { countGatedCopies, lostSinceLastLook } from "/tower-strategic-resources/ui/sr-recheck-core.js";
-import { describeSupplyLoss } from "/tower-strategic-resources/ui/sr-supply.js";
+import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
+import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
+import { countGatedCopies, lostSinceLastLook } from "/tower-strategic-resources-that-matter/ui/sr-recheck-core.js";
+import { describeSupplyLoss } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 export const NOTIFICATION_TYPE = "NOTIFICATION_SR_SUPPLY_LOST";
 

@@ -68,9 +68,9 @@ When a function trips a limit, extract a small, named helper rather than disabli
 
 - Engine access is defensive. Every engine call is guarded; the scripts degrade and log, and never throw out of an
   event handler. An intentional `catch` that swallows says why in a comment (`tests/no-empty-catch.mjs`).
-- Logging goes through `ui/sr-log.js` only, tagged `[StrategicResources]`. `console.log` never reaches `UI.log`.
+- Logging goes through `ui/sr-log.js` only, tagged `[StrategicResourcesThatMatter]`. `console.log` never reaches `UI.log`.
   `const DBG = true;` there turns on the per-turn lines; `release.sh` sets it to false in the shipped copy.
-- Localization. Every string a player sees is a `LOC_SR_` tag in `text/en_us/StrategicResourcesText.xml` and in all
+- Localization. Every string a player sees is a `LOC_SR_` tag in `text/en_us/StrategicResourcesThatMatterText.xml` and in all
   eleven other languages (`tests/i18n.mjs` checks parity, placeholders, language codes and that each translation is
   translated). A duplicate tag rolls back the whole file in game.
 - Comments explain why (engine behaviour, workarounds), not what.
@@ -85,17 +85,17 @@ When a function trips a limit, extract a small, named helper rather than disabli
   something up with a fallback; `build…` creates a structure without attaching it; `render…` fills an element the
   caller passes in; `force…` makes the engine do something.
 - Names stored in saves or read by the game never change: the mod id, the `LOC_SR_` tags, the `SR_SUPPLY_` tags, the
-  modifier ids, the setup parameter ids (`StrategicResourcesUnsupplied`, `StrategicResourcesLateCurve`) and their
+  modifier ids, the setup parameter ids (`StrategicResourcesThatMatterUnsupplied`, `StrategicResourcesThatMatterLateCurve`) and their
   values. Renaming one breaks games started with an older version.
 
 ## Project layout
 
 ```
-strategic-resources.modinfo   the groups: shell (setup options, text), game (tags, scripts), per age and setup value
+strategic-resources-that-matter.modinfo   the groups: shell (setup options, text), game (tags, scripts), per age and setup value
 data/                         generated data, plus sr-setup.sql
 ui/                           sr-recheck.js (turn-start re-check), sr-unit-panel.js (panel line), their pure helpers,
                               sr-log.js, settings-keeper.js (unchanged copy)
-text/<locale>/                StrategicResourcesText.xml, twelve languages
+text/<locale>/                StrategicResourcesThatMatterText.xml, twelve languages
 scripts/                      data generator, table dump, deploy, release helpers
 tests/                        Node tests and the static gates
 devtools/                     gate-map dumps, sr-lab.mjs (lab games with setup values, a language or hotseat)
@@ -104,7 +104,7 @@ docs/                         verification runs, compatibility, Workshop descrip
 
 ## Trying a change in game
 
-The game runs plain copies from its Mods folder. `node scripts/deploy.mjs` replaces `Mods/strategic-resources` with
+The game runs plain copies from its Mods folder. `node scripts/deploy.mjs` replaces `Mods/strategic-resources-that-matter` with
 the files that ship, `--check` reports a stale copy, and `--remove` takes it out (while it is there it loads into
 every game, your own included). Data changes need a new game. Test in Tower Bench lab games, never your own;
 `node devtools/sr-lab.mjs lab start --seed 4242` starts one, and `SR_LAB_SETUP`, `SR_LAB_LANGUAGE` and
@@ -112,7 +112,7 @@ every game, your own included). Data changes need a new game. Test in Tower Benc
 
 ## Releasing
 
-`./release.sh` runs the release gate, builds `dist/strategic-resources-vX.Y.Z.zip`, checks it against an allow-list,
+`./release.sh` runs the release gate, builds `dist/strategic-resources-that-matter-vX.Y.Z.zip`, checks it against an allow-list,
 and writes the Steam Workshop manifest without a description field.
 
 ## License

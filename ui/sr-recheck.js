@@ -4,15 +4,15 @@
 // games out of step. It says so once in UI.log. The lost-supply notification (sr-supply-lost.js) is composed at the
 // same turn start and sent when the local player's turn is activated, so it is off in multiplayer too.
 
-import { log } from "/tower-strategic-resources/ui/sr-log.js";
+import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 import {
   forceRecheckAll,
   isMultiplayerGame,
   readMajorPlayers,
   resolveRecheckHash,
   RECHECK_RESOURCE
-} from "/tower-strategic-resources/ui/sr-recheck-core.js";
-import { checkSupplyLost, sendSupplyLost, startSupplyLost } from "/tower-strategic-resources/ui/sr-supply-lost.js";
+} from "/tower-strategic-resources-that-matter/ui/sr-recheck-core.js";
+import { checkSupplyLost, sendSupplyLost, startSupplyLost } from "/tower-strategic-resources-that-matter/ui/sr-supply-lost.js";
 
 /** @type {{ resourceHash: number | null, isOff: boolean }} */
 const state = { resourceHash: null, isOff: false };

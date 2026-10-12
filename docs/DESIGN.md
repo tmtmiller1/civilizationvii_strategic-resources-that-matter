@@ -1,12 +1,12 @@
 # Strategic Resources That Matter: scope
 
-Kept in the mod repo since 2026-10-11 (before that in `mod_ideas_tested/strategic_resources/`). The probe mods of
+Kept in the mod repo since 2026-10-11 (before that in `mod_ideas_tested/strategic_resources_that_matter/`). The probe mods of
 sections 7a to 7c (`probe/`, `probe2/`, `probe3/`) are in `devtools/probes/`; the evidence for every claim after 7d is
 `docs/verification-runs.md`.
 
 Status: scoped 2026-10-10. Probes P1 to P6 run 2026-10-11 (section 7a); round 2 on re-checks, crashes, gate routes and
 AI players (7b); round 3 on cost, the late curve, the re-check script and the Modern age (7c); what they change for the
-design in 7d. Built as 1.0 the same day in `tower_mods/strategic_resources/` (section 7e); the evidence is that
+design in 7d. Built as 1.0 the same day in `tower_mods/strategic_resources_that_matter/` (section 7e); the evidence is that
 project's `docs/verification-runs.md`. Open: multiplayer. Engine claims in sections 2 to 6 were read from the 1.5.0 game
 files or the compiled vanilla DB (`firaxis-bug-reports/repro/runs/g1-A-vanilla/gameplay-copy.sqlite`) and predate the
 probes; where sections 7a to 7e disagree, they win. Corpus check 2026-10-10: none of the 1251 reference mods sets
@@ -15,7 +15,9 @@ mods does either. Two local mods rewrite the per-copy resource effects (Multipla
 anime resources mod 3696941273) but neither adds a gate or a penalty for having none. RHQ AI Mod (3507042742) checks in
 its build scripts that aircraft need no `StrategicResource`, so a Rubber gate on aircraft could break its air logic.
 
-Name: **Strategic Resources That Matter** (mod id `tower-strategic-resources`; called Strategic Resources until 2026-10-11).
+Name: **Strategic Resources That Matter** (mod id `tower-strategic-resources-that-matter`; called Strategic Resources
+until 2026-10-11; until 2026-10-12 the id was `tower-strategic-resources`, the folder `strategic_resources` and the
+installed copy `strategic-resources`).
 
 ## 1. Where the idea comes from
 
@@ -87,7 +89,7 @@ needs a script ledger like the depletion mod's. Parked as a 1.2 question.
 
 One resource per unit. Where vanilla gives a class two resources, the gate follows the one that makes historical sense,
 and the other keeps only its count bonus. Built from the live compiled database of each age (`Units`, `TypeTags`,
-`UnitReplaces`) by the rules in `tower_mods/strategic_resources/scripts/gate-map.mjs`; a unique unit is judged as the
+`UnitReplaces`) by the rules in `tower_mods/strategic_resources_that_matter/scripts/gate-map.mjs`; a unique unit is judged as the
 unit it replaces, a unit that replaces nothing by its own tags and tier. `tests/data.mjs` there asserts these lists.
 
 | Age | Rule | Resource | Units (2026-10-11, 1.5.0 with the DLC on the development machine) |
@@ -287,7 +289,7 @@ shows the old resource.
 
 ## 7e. The 1.0 build (watched 2026-10-11, game 1.5.0)
 
-Built in `tower_mods/strategic_resources/`; every item below is in its `docs/verification-runs.md` with run labels.
+Built in `tower_mods/strategic_resources_that_matter/`; every item below is in its `docs/verification-runs.md` with run labels.
 
 **Penalty (layer 1).** Each gated unit carries one tag, `SR_SUPPLY_<NAME>`, so one modifier per resource covers it:
 `REQUIREMENT_UNIT_TAG_MATCHES` for combat, and the `UnitClass` argument of `EFFECT_CITY_ADJUST_UNIT_PRODUCTION` for

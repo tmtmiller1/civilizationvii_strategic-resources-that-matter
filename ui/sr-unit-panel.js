@@ -3,9 +3,9 @@
 // instance's setupUnitInfo and leaves everything it draws in place. The wrapper looks up the method it wraps at
 // call time, so a mod that patches the panel's prototype after this one still runs.
 
-import { log } from "/tower-strategic-resources/ui/sr-log.js";
-import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources/ui/sr-player-supply.js";
-import { computeSupplyStatus } from "/tower-strategic-resources/ui/sr-supply.js";
+import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
+import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
+import { computeSupplyStatus } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 const LINE_CLASS = "sr-unsupplied-line";
 const LINE_CLASSES = [LINE_CLASS, "font-body", "text-xs", "text-negative-light", "text-center", "mt-1", "px-2"];

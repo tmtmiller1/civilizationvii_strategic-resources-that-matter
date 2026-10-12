@@ -4,7 +4,7 @@
 // ranged and bombard rows on the Field Cannon at 7, 8 and 10 Niter copies, each copy gained by the capital's expansion
 // onto a Niter tile and waited for, read from the unit and from the combat preview (a ranged shot at an enemy unit,
 // a bombardment of an enemy city).
-//   MOD=strategic_resources SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh sr-reload3-game.js sr-reload3 2400
+//   MOD=strategic_resources_that_matter SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh sr-reload3-game.js sr-reload3 2400
 const NAME = "sr-reload3";
 const NITER_AT = { x: 60, y: 24 };
 function unitType(u) { return safe(() => String(GameInfo.Units.lookup(u.type).UnitType), "?"); }

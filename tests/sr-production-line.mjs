@@ -27,7 +27,7 @@ globalThis.Players = { get: (id) => players[id] ?? null };
 
 try {
   const { describeProductionItem, productionLineElement, shortenInRow, wrapProductionModInfo } =
-    await import("/tower-strategic-resources/ui/sr-production-line.js");
+    await import("/tower-strategic-resources-that-matter/ui/sr-production-line.js");
 
   // describeProductionItem
   assert.deepEqual(describeProductionItem("UNIT_FIELD_CANNON"), {
