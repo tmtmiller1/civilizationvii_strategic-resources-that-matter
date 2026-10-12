@@ -32,6 +32,7 @@ globalThis.Units = { get: (id) => units[id] ?? null };
 
 try {
   const { describeUnit } = await import("/tower-strategic-resources-that-matter/ui/sr-unit-panel.js");
+  const { resetIndexes } = await import("/tower-strategic-resources-that-matter/ui/sr-player-supply.js");
 
   // describeUnit
   assert.equal(describeUnit(units.spear), "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3");
@@ -112,6 +113,22 @@ try {
   factory(bare);
   assert.equal(bare.setupUnitInfo, undefined);
   assert.ok(log.lines.some(([, text]) => text.includes("has no setupUnitInfo")));
+
+  // Under the hard gate the line adds that new ones cannot be trained; a fielded unit keeps the penalty line only.
+  holdings = [];
+  globalThis.GameInfo.Units = table(
+    [{ UnitType: "UNIT_SPEARMAN", StrategicResource: "RESOURCE_IRON" }, { UnitType: "UNIT_WARRIOR" }], "UnitType");
+  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }];
+  resetIndexes();
+  units.spear.type = globalThis.GameInfo.Units.lookup("UNIT_SPEARMAN").$hash;
+  assert.equal(describeUnit(units.spear), "LOC_SR_UNSUPPLIED_LINE_GATED|LOC_RESOURCE_IRON_NAME|-3");
+  holdings = [{ uniqueResource: { resource: iron.$hash }, isOffMap: false }];
+  assert.equal(describeUnit(units.spear), null, "supplied: nothing to say, gate or not");
+  holdings = [];
+  globalThis.GameInfo.GlobalParameters = [];
+  resetIndexes();
+  assert.equal(describeUnit(units.spear), "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3", "gate off: the 1.0 line");
+
 } finally {
   log.restore();
   restoreGlobals();

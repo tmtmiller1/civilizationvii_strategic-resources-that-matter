@@ -26,18 +26,19 @@ const players = { 0: { isMajor: true, Resources: { getResources: () => holdings 
 globalThis.Players = { get: (id) => players[id] ?? null };
 
 try {
-  const { describeProductionItem, productionLineElement, shortenInRow, wrapProductionModInfo } =
+  const { describeProductionItem, fitPurchase, productionLineElement, shortenInRow, wrapProductionModInfo } =
     await import("/tower-strategic-resources-that-matter/ui/sr-production-line.js");
+  const { resetIndexes } = await import("/tower-strategic-resources-that-matter/ui/sr-player-supply.js");
 
   // describeProductionItem
   assert.deepEqual(describeProductionItem("UNIT_FIELD_CANNON"), {
     text: "LOC_SR_PRODUCTION_NEEDS_NONE|LOC_RESOURCE_NITER_NAME|-3",
-    short: "LOC_SR_PRODUCTION_NEEDS_NONE_SHORT|LOC_RESOURCE_NITER_NAME|-3", unsupplied: true
+    short: "LOC_SR_PRODUCTION_NEEDS_NONE_SHORT|LOC_RESOURCE_NITER_NAME|-3", unsupplied: true, buyText: null
   });
   holdings = [{ uniqueResource: { resource: niter.$hash }, isOffMap: false }];
   assert.deepEqual(describeProductionItem("UNIT_FIELD_CANNON"), {
     text: "LOC_SR_PRODUCTION_NEEDS_HELD|LOC_RESOURCE_NITER_NAME|1",
-    short: "LOC_SR_PRODUCTION_NEEDS_HELD_SHORT|LOC_RESOURCE_NITER_NAME|1", unsupplied: false
+    short: "LOC_SR_PRODUCTION_NEEDS_HELD_SHORT|LOC_RESOURCE_NITER_NAME|1", unsupplied: false, buyText: null
   });
   holdings.push({ uniqueResource: { resource: niter.$hash }, isOffMap: false });
   holdings.push({ uniqueResource: { resource: niter.$hash }, isOffMap: true });
@@ -125,6 +126,46 @@ try {
   assert.equal(lines.length, 1, "one line however deep the nesting");
   assert.ok(flat(drawn).includes("game:UNIT_FIELD_CANNON"), "what is inside is still drawn");
   assert.equal(drawn[0][1], "game:UNIT_FIELD_CANNON", "the inner copy hands its props straight through");
+
+  // Under the hard gate a locked unit reads the locked form (bought, on a purchase item), red; a copy unlocks it.
+  holdings = [];
+  globalThis.GameInfo.Units = table([{ UnitType: "UNIT_FIELD_CANNON", StrategicResource: "RESOURCE_NITER" }],
+      "UnitType");
+  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }];
+  resetIndexes();
+  assert.deepEqual(describeProductionItem("UNIT_FIELD_CANNON"), {
+    text: "LOC_SR_PRODUCTION_LOCKED|LOC_RESOURCE_NITER_NAME|",
+        buyText: "LOC_SR_PRODUCTION_LOCKED_BUY|LOC_RESOURCE_NITER_NAME",
+    short: "LOC_SR_PRODUCTION_LOCKED_SHORT|LOC_RESOURCE_NITER_NAME|", unsupplied: true
+  });
+  holdings = [{ uniqueResource: { resource: niter.$hash }, isOffMap: false }];
+  assert.equal(describeProductionItem("UNIT_FIELD_CANNON")?.text,
+      "LOC_SR_PRODUCTION_NEEDS_HELD|LOC_RESOURCE_NITER_NAME|1");
+  holdings = [];
+  const locked = productionLineElement("UNIT_FIELD_CANNON");
+  assert.ok(locked?.classList.contains("text-negative-light"), "a lock reads as a warning");
+  const buyItem = element([]);
+  buyItem.attributes["data-is-purchase"] = "true";
+  buyItem.getAttribute = (k) => buyItem.attributes[k] ?? null;
+  const onBuy = element([]);
+  onBuy.closest = () => buyItem;
+  onBuy.textContent = "train form";
+  fitPurchase(onBuy, "buy form");
+  assert.equal(onBuy.textContent, "buy form", "the purchase item says what cannot be bought");
+  buyItem.attributes["data-is-purchase"] = "false";
+  onBuy.textContent = "train form";
+  fitPurchase(onBuy, "buy form");
+  assert.equal(onBuy.textContent, "train form");
+  fitPurchase(onBuy, null);
+  assert.equal(onBuy.textContent, "train form", "no purchase form: nothing changes");
+  fitPurchase(/** @type {*} */ ({ closest: () => { throw new Error("detached"); } }), "buy form");
+  assert.ok(log.lines.some(([, text]) => text.includes("could not fit the production line")));
+  globalThis.GameInfo.GlobalParameters = [];
+  resetIndexes();
+  assert.equal(describeProductionItem("UNIT_FIELD_CANNON")?.text,
+      "LOC_SR_PRODUCTION_NEEDS_NONE|LOC_RESOURCE_NITER_NAME|-3",
+    "the column without the engine's parameter locks nothing");
+
 } finally {
   log.restore();
   restoreGlobals();

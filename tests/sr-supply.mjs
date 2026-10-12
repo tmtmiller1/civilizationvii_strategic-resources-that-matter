@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import {
+  buildGateIndex,
   buildPenaltyIndex,
   buildSupplyIndex,
   computeSupplyStatus,
@@ -8,7 +9,10 @@ import {
   describeSupplyLoss,
   resourceForSupplyTag,
   SUPPLIED_UNITS_SHOWN,
-  unitsSuppliedBy
+  unitsSuppliedBy,
+  GATE_PRODUCTION_PARAMETER,
+  GATE_UPGRADING_PARAMETER,
+  lockedBy
 } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 // The pure half of the unit panel line: which resource a unit draws on and what it costs to lack it.
@@ -123,15 +127,71 @@ for (const copies of [0, 1, 5]) {
     describeSupplyLoss("RESOURCE_NITER", ["UNIT_MORTAR", "UNIT_FIELD_CANNON", "UNIT_FIELD_CANNON", "UNIT_TANK",
       "UNIT_INFANTRY", "UNIT_FIELD_CANNON", "UNIT_MORTAR"], indexes),
     { key: "LOC_SR_NOTIFY_LOST_MANY", resourceType: "RESOURCE_NITER", unitType: "UNIT_FIELD_CANNON", others: 4,
-      combat: -3 });
+      combat: -3, locked: false });
   assert.deepEqual(describeSupplyLoss("RESOURCE_NITER", ["UNIT_MORTAR", "UNIT_FIELD_CANNON"], indexes)?.unitType,
     "UNIT_MORTAR", "a tie goes to the first seen");
   assert.deepEqual(describeSupplyLoss("RESOURCE_NITER", ["UNIT_TANK", "UNIT_MORTAR"], indexes),
-    { key: "LOC_SR_NOTIFY_LOST_ONE", resourceType: "RESOURCE_NITER", unitType: "UNIT_MORTAR", others: 0, combat: -3 });
+    { key: "LOC_SR_NOTIFY_LOST_ONE", resourceType: "RESOURCE_NITER", unitType: "UNIT_MORTAR", others: 0, combat: -3,
+      locked: false });
   assert.deepEqual(describeSupplyLoss("RESOURCE_NITER", [], indexes),
-    { key: "LOC_SR_NOTIFY_LOST_NONE", resourceType: "RESOURCE_NITER", unitType: null, others: 0, combat: -3 });
+    { key: "LOC_SR_NOTIFY_LOST_NONE", resourceType: "RESOURCE_NITER", unitType: null, others: 0, combat: -3,
+      locked: false });
   assert.equal(describeSupplyLoss("RESOURCE_OIL", ["UNIT_TANK"], indexes), null, "the Off setting says nothing");
   assert.equal(describeSupplyLoss("RESOURCE_COAL", ["UNIT_TANK"], indexes), null, "no penalty modifier loaded");
+
+  // Under the hard gate the sentence gains its tail, and a loss with the penalty off still locks the units.
+  const gate = buildGateIndex(
+    [{ UnitType: "UNIT_FIELD_CANNON", StrategicResource: "RESOURCE_NITER" },
+      { UnitType: "UNIT_MORTAR", StrategicResource: "RESOURCE_NITER" },
+      { UnitType: "UNIT_TANK", StrategicResource: "RESOURCE_OIL" }],
+    [{ Name: GATE_PRODUCTION_PARAMETER, Value: "1" }, { Name: GATE_UPGRADING_PARAMETER, Value: "0" }], lossSupply);
+  assert.deepEqual(gate.on, true);
+  assert.deepEqual(describeSupplyLoss("RESOURCE_NITER", ["UNIT_MORTAR"], { ...indexes, gate }),
+    { key: "LOC_SR_NOTIFY_LOST_ONE", resourceType: "RESOURCE_NITER", unitType: "UNIT_MORTAR", others: 0, combat: -3,
+      locked: true });
+  assert.deepEqual(describeSupplyLoss("RESOURCE_OIL", ["UNIT_TANK"], { ...indexes, gate }),
+    { key: "LOC_SR_NOTIFY_LOCKED", resourceType: "RESOURCE_OIL", unitType: null, others: 0, combat: 0, locked: true },
+    "penalty off, gate on: the loss still locks");
+  assert.equal(describeSupplyLoss("RESOURCE_COAL", ["UNIT_TANK"], { ...indexes, gate }), null,
+    "a resource nothing of the gate names");
+}
+
+// The hard gate: read from the loaded data, per unit.
+{
+  const units = [{ UnitType: "UNIT_SPEARMAN", StrategicResource: "RESOURCE_IRON" },
+    { UnitType: "UNIT_CHARIOT", StrategicResource: "RESOURCE_HORSES" },
+        { UnitType: "UNIT_WARRIOR", StrategicResource: null },
+    { UnitType: "UNIT_KNIGHT", StrategicResource: "RESOURCE_HORSES" }];
+  const production = { Name: GATE_PRODUCTION_PARAMETER, Value: "1" };
+  const on = buildGateIndex(units, [production, { Name: GATE_UPGRADING_PARAMETER, Value: "1" }], supply);
+  assert.deepEqual([on.on, on.upgrade], [true, true]);
+  assert.deepEqual([...on.columns], [["UNIT_SPEARMAN", "RESOURCE_IRON"], ["UNIT_CHARIOT", "RESOURCE_HORSES"],
+    ["UNIT_KNIGHT", "RESOURCE_HORSES"]], "every column, also one another mod set");
+  const training = buildGateIndex(units, [production, { Name: GATE_UPGRADING_PARAMETER, Value: "0" }], supply);
+  assert.deepEqual([training.on, training.upgrade], [true, false]);
+  assert.deepEqual([training.on, buildGateIndex(units, [production], supply).upgrade], [true, false],
+      "no upgrading row");
+  const off = buildGateIndex(units, [], supply);
+  assert.deepEqual([off.on, off.upgrade, off.columns.size], [false, false, 0],
+    "no production minimum: the column blocks nothing the engine reads, so no unit is locked");
+  const partial = buildGateIndex([{ UnitType: "UNIT_SPEARMAN", StrategicResource: null }, ...units.slice(1)],
+      [production], supply);
+  assert.deepEqual([partial.on, [...partial.columns.keys()]], [false, ["UNIT_CHARIOT", "UNIT_KNIGHT"]],
+    "a column on some units only (another mod's) is not the option; each such unit still reads as locked");
+  assert.deepEqual([buildGateIndex(units, [production], new Map()).on], [false], "no gated units at all");
+  assert.equal(lockedBy("UNIT_SPEARMAN", on, () => 0), "RESOURCE_IRON");
+  assert.equal(lockedBy("UNIT_SPEARMAN", on, () => 1), null, "a copy unlocks");
+  assert.equal(lockedBy("UNIT_WARRIOR", on, () => 0), null, "no column");
+  assert.equal(lockedBy("UNIT_KNIGHT", partial, () => 0), "RESOURCE_HORSES");
+  assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", { ...query(0), gate: on }),
+    { key: "LOC_SR_PRODUCTION_LOCKED", args: ["RESOURCE_IRON"] }, "locked: the lock, not the penalty");
+  assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", { ...query(2), gate: on }),
+    { key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: ["RESOURCE_IRON", 2] }, "unlocked: as 1.0");
+  const penaltyOff = { supply, penalties: new Map(), copiesOf: () => 0, gate: on };
+  assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", penaltyOff),
+    { key: "LOC_SR_PRODUCTION_LOCKED", args: ["RESOURCE_IRON"] }, "penalty off, gate on");
+  assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", { ...query(0), gate: off }),
+    { key: "LOC_SR_PRODUCTION_NEEDS_NONE", args: ["RESOURCE_IRON", -3] }, "gate off: as 1.0");
 }
 
 console.log("sr-supply tests passed");
