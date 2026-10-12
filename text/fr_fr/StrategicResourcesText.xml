@@ -30,7 +30,7 @@
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="fr_FR"><Text>Activée</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="fr_FR"><Text>+1 en puissance de combat à 8, 10, 12, 14, 16, 18 et 20 exemplaires.</Text></Replace>
         <!-- Civilopedia -->
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="fr_FR"><Text>Des ressources stratégiques qui comptent</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="fr_FR"><Text>Ressources stratégiques</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="fr_FR"><Text>Une unité militaire qui dépend de {LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME} ou {LOC_RESOURCE_RUBBER_NAME} se bat moins bien et se forme plus lentement tant que son propriétaire n'en possède aucun exemplaire. Rien n'est interdit : toute unité peut toujours être formée et améliorée comme dans le jeu de base.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="fr_FR"><Text>Sans exemplaire</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="fr_FR"><Text>Une unité privée de sa ressource perd de la puissance de combat sur chacune de ses puissances (corps à corps, et à distance et de bombardement si elle en a), et sa ville consacre moins de production à sa formation. L'option {LOC_SR_SETUP_UNSUPPLIED_NAME} de la configuration de partie fixe l'ampleur :</Text></Replace>

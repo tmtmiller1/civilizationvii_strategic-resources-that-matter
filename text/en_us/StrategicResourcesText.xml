@@ -88,7 +88,7 @@
         </Row>
         <!-- Civilopedia -->
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE">
-            <Text>Strategic Resources That Matter</Text>
+            <Text>Strategic Resources</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1">
             <Text>A military unit that draws on {LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME} or {LOC_RESOURCE_RUBBER_NAME} fights weaker and trains slower while its owner holds no copy of that resource. Nothing is forbidden: every unit can still be trained and upgraded as in the base game.</Text>
