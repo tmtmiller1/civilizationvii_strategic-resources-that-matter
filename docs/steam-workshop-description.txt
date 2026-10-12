@@ -9,7 +9,7 @@ Nothing is forbidden: every unit can still be trained and upgraded. Going withou
 [*][b]No copy of the resource:[/b] less Combat Strength (melee, and ranged and bombard where the unit has them) and less Production toward the unit. Default: -3 and a third less Production, so the unit takes half as long again to train.
 [*][b]One copy or more:[/b] no penalty; the game's +1 per copy as before, up to six.
 [*][b]Past six copies:[/b] +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 copies.
-[*]The game says why, in your language: a line on the unit panel, a line of its own in the combat preview ("-3 Unsupplied: no Niter", "+1 Niter: 8 or more copies"), and a Civilopedia page under Game Concepts, with a line on each unit's page that needs a resource.
+[*]The game says why, in your language: a line on the unit panel, a line on each such unit in the production list ("Needs Niter"), a line in each strategic resource's description on the map and in the commerce screen ("Supplies units: Field Cannon, Mortar ..."), a line of its own in the combat preview ("-3 Unsupplied: no Niter", "+1 Niter: 8 or more copies"), and a Civilopedia page under Game Concepts, with a line on each unit's page that needs a resource.
 [/list]
 
 [h2]Which units need what[/h2]

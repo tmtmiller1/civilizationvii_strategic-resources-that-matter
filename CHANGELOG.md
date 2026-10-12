@@ -27,6 +27,11 @@ Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs 
   train)".
 - The combat preview names the penalty as a line of its own, for both sides, for example "-3 Unsupplied: no Niter",
   and the strength past six copies as one line beside the game's own, for example "+1 Niter: 8 or more copies".
+- The production list marks each unit that needs a resource: "Needs Niter" in red while you hold none, "Niter: 2"
+  once you hold copies, or the full sentence "Needs Niter. Without it: -3 Combat Strength, slower to train." where
+  the item has room. The game's own text on the item is unchanged.
+- A strategic resource's description, on the map and in the commerce screen, names the units it supplies for you in
+  this age, for example "Supplies units: AT Gun, Assault Gun, Field Cannon and 3 more."
 - A Civilopedia page under Game Concepts, Combat: the setup values, what counts as a copy, losing one, past six
   copies, and which units need what. Each unit that needs a resource says so on its own page, with the penalty the
   game was set up with.

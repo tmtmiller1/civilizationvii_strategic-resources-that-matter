@@ -265,3 +265,42 @@ toolkit was switched off for these runs (`mods off multiplayer-toolkit`) and on 
 | `p12-preview-exploration` (Exploration, Standard, curve on) | Players met through a Scout on a neutral tile beside player 2 (who held no Niter), war on player 2; Catapult without Niter against player 2's Catapult | Attacker: "-3 Unsupplied: no Niter", ranged 17. Defender: "+2 King of the World", "-3 Unsupplied: no Niter", 22 | watched |
 
 Each lab was stopped, the run backups deleted, the probe mods removed and the mod removed from `Mods/`.
+
+## Phase 13: the production line and the resource line
+
+Lab games on 2026-10-12 (`sr-lab.mjs lab start --seed 4242 --age AGE_MODERN`, Standard, curve on, the mod deployed;
+the capital at 63,24, holding no Niter at the start), driven from the shell with `tower-bench-private eval`, `set`,
+`place`, `deploy` and `lab turns`. The production list was opened with `UI.Player.selectCity` and read from its
+`production-chooser-item` elements; the plot tooltip by setting `PlotCursor.plotCursorCoords` and reading the
+`PlotDetailsSection` of the open tooltip; the commerce screen by `ContextManager.push("screen-resource-allocation")`,
+its tabs switched with an `engine-input` `mousebutton-left` event, a resource's tooltip opened with a `focus` event on
+its trigger. A copy was given the way the handoff describes (Niter written on the owned bare tile 61,21, a rural
+citizen added, `EXPAND` onto it); an import by a Merchant route to Pearl City (12,15), which exported Niter. The
+Multiplayer Toolkit was off for the runs and on again after.
+
+Four games. A: English, the machine's usual set (Readable Tooltips, QD Improved Plot Tooltip, City Hall, Better Commerce
+Screen UI, Mod Commons, Building Location Advisor on). B: English, Readable Tooltips, QD, City Hall and Better Commerce
+off (Mod Commons was switched off too, but was found on in game C; its state in B is not known). C: German, the same
+four off, Mod Commons on. D: German, the usual set.
+
+| Run | What was done | What was seen | Status |
+| --- | --- | --- | --- |
+| `p13-production-probe` (game A before the build, the mod as committed) | The cheap disproof: a text node appended to the Field Cannon's item in the open list | Still there 1.5 s later: the list does not redraw an item away | watched |
+| `p13-production-probe` | A `ProductionModInfo` factory registered from an eval, chaining the previous one; the list closed and opened | Every item drew the probe line, the Field Cannon's under its name and stats | watched |
+| `p13-resource-probe` (same game) | A `Stylize` factory registered from an eval, adding a probe line to a resource's `Tooltip` text; the plot cursor on Niter at 58,18; Better Commerce's tooltip on Clay | The probe line in the plot tooltip's `PlotDetailsSection` under "Niter / +1 Combat Strength for Siege and Ranged Units (Max +6)", Readable Tooltips and QD on; and in Better Commerce's Clay tooltip (with every key tagged) | watched |
+| `p13-production-a` (game A, the build) | The list with no Niter | The line on the Field Cannon and the Mortar only, eight times each: under Mod Commons the slot's `factory()` returns Mod Commons' renderer, never the mod's, so the re-wrap guard never matched and wrapped to its cap. Fixed (compare what the slot returns after registering) and deployed into the game: one line per item | watched (defect found and fixed) |
+| `p13-production-a` | City Hall's compact list | The line sat inline after the stats and squeezed the unit's name ("FIELD CAN", 51 px). The item's column computes as a row; the short form went in for a row and the name took 65 px with the raw key, 73 of 73 px ("Feldkanone") with the German text in game D | watched |
+| `p13-production-a` | One copy gained with the list open (owned tile 61,21) | The line redrawn at once to the held form (not red); Field Cannon 3 turns before, 2 after, Line Infantry 3 both times | watched |
+| `p13-production-b` (game B, the game's own chooser) | The list with no Niter, then one copy | "Needs Niter" in red after the Field Cannon's and Mortar's stats, names whole; [screenshot](screenshots/production-list-en.png). The game's own item is one row too (name at x 72, stats 175, slot 290, 51 px left), so the short form is what shows. Gain: "Niter: 1", Field Cannon 5 turns to 3, Line Infantry 4 both times. The full sentence was drawn for the first frame of a redraw, before the row check ran | watched |
+| `p13-production-purchase` (games A and B) | The purchase view | Not reached: City Hall's panel and the game's both put `isPurchase` back to false within 50 ms of an eval setting it, and the tab bar did not switch from script. The purchase list is the same `production-chooser-item` with the same slot (`data-is-purchase` changes the cost shown), so the line is drawn there the same way | read from code |
+| `p13-production-de` (games C and D) | The list in German, no Niter, then one copy | "Braucht Salpeter" in red; "Salpeter: 1" after the gain, Field Cannon 5 to 3 turns. The sentences composed in game: "Braucht Salpeter. Ohne: -3 Kampfstärke, langsamer ausgebildet.", "Braucht Salpeter (du hast 1)." | watched |
+| `p13-resource-a` (game A) | Plot tooltip on Niter (58,18), Coal (68,18), Rubber (60,27), Clay (62,22, owned) | One line each on the three: "Supplies units: AT Gun, Assault Gun, Field Cannon and 3 more.", "Cruiser, Destroyer, Ironclad." (no Barbary Corsair, another civilization's unique unit), "Biplane, Bomber, Dive bomber and 3 more."; Clay none. The list read "AT Gun,Assault Gun": the game trims the spaces of `LOC_GRAMMAR_COMMA_SEPARATOR`; the names are now joined through the mod's own "{1_First}, {2_Second}" key | watched |
+| `p13-resource-a` | Better Commerce's tooltips: Clay, imported Horses and Wine (from Goryeo), Niter in the route cards, the active route importing Niter from Pearl City | No line on Clay, Horses (no unit draws on it in Modern) or Wine; the line on Niter in the available routes and on the imported Niter of the active route | watched |
+| `p13-resource-b` (game B, Readable Tooltips and QD off) | Plot tooltip on unowned Niter, owned Niter (61,21), Clay; the game's commerce screen: Clay's tooltip, the Empire tab before and after the Pearl City import | Niter both tiles: "Supplies units: AT Gun, Assault Gun, Field Cannon and 3 more." (spaced), Clay none; Building Location Advisor was the plot tooltip winner (priority 1000). Commerce: Clay none; the Empire tab's Niter card carries the line, and the same card after the import ("Niter ×2", with its origins) | watched |
+| `p13-resource-c` (game C, German, Readable Tooltips off) | Plot tooltip | No plot tooltip opened at all, for any tile, in this game (Mod Commons on, Building Location Advisor winning); the commerce screen's tooltips did. The same build showed plot tooltips in games A, B and D, so this is not read as the mod's doing; not explained. The Empire tab's Niter card: "Versorgt Einheiten: Angriffsgeschütz, Feldgeschütz, Feldkanone und 3 weitere." | watched (plot tooltip not shown in this game) |
+| `p13-resource-d` (game D, German, Readable Tooltips on) | Plot tooltip on Niter, Coal, Clay; Better Commerce's Niter tooltip on the route cards (turn 2) | Niter: "Versorgt Einheiten: Angriffsgeschütz, Feldgeschütz, Feldkanone und 3 weitere."; Coal: "Kreuzer, Panzerschiff, Zerstörer."; Clay none; the commerce tooltip the same as on the map | watched |
+
+The plot line with Readable Tooltips off was watched in English only (game B); in German only with it on (game D).
+UI.log held no warning from the new scripts in any game. Each lab was stopped, its backup deleted, and the mod removed from
+`Mods/` after the last; the four mods switched off for B and C were switched on again (Readable Tooltips' Workshop
+copy live, as before).

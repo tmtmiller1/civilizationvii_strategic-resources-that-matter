@@ -1,6 +1,7 @@
 # Compatibility with other mods
 
-Last reviewed 2026-10-12 against Strategic Resources That Matter 1.0.0 on Civilization VII 1.5.0.
+Last reviewed 2026-10-12 against Strategic Resources That Matter 1.0.0 on Civilization VII 1.5.0 (production and
+resource lines added the same day).
 
 This file records what the mod touches, which kinds of mod touch the same things, and what a player would see when
 both are enabled. Most of it comes from reading code: the 1,251 community mods in the reference corpus, the mods
@@ -25,6 +26,8 @@ Everything a conflict could come through. If another mod touches none of these, 
 | Civilopedia (game scope) | Adds a page in Game Concepts (`CivilopediaPages` `SR_STRATEGIC_RESOURCES`, group `COMBAT`, its own layout `SR_CONCEPT` and chapters, two `CivilopediaPageSearchTerms`), one chapter `SR_SUPPLY` on the base `Unit` layout, and `CivilopediaPageChapterParagraphs` rows for that chapter on gated units' pages. Changes no base row. |
 | Players' off-map resources | Gains and drops one `RESOURCE_CRABS` per major player at every turn start (`gainOffMapResource`, `removeOffMapResource`). |
 | Unit panel | `Controls.decorate("unit-actions")`: wraps the panel instance's `setupUnitInfo` and adds one element under `.unit-actions__stats_container`. |
+| Production list items | `ComponentRegistry` entry `ProductionModInfo` (the game's empty slot for mods on each production item): registered again at the priority already there, rendering the previous factory first, then one element of its own. |
+| Text drawn by `Stylize` | `ComponentRegistry` entry `Stylize`: registered again at the priority already there, passing every prop through; only when `text` is a strategic resource's `Tooltip` key is the text composed with one line added. |
 | `localStorage` | The Tower Settings Keeper (shared with other Tower mods; one copy runs). The mod stores nothing itself. |
 | Globals | None. |
 
@@ -38,7 +41,11 @@ Everything a conflict could come through. If another mod touches none of these, 
 | Changes unit production costs or production modifiers | The cut adds to theirs; both apply | Read from code |
 | Changes the unit panel by decorating it | Both lines show | Read from code (one such mod examined) |
 | Patches the unit panel's prototype | Both run: the wrapper looks the method up at call time | Read from code |
-| Replaces the plot tooltip or the unit flag tooltip (Readable Tooltips and others) | No interaction: this mod registers no tooltip | Tested with Readable Tooltips |
+| Replaces or wraps the plot tooltip (Readable Tooltips, QD Improved Plot Tooltip, Building Location Advisor) | The resource line shows: each still draws the game's resource row with `Stylize` | Tested with each (see finding 7) |
+| Replaces the commerce screen's tabs or tooltips (Better Commerce Screen UI) | The resource line shows in its tooltips: it draws a resource's description with `Stylize` | Tested |
+| Replaces or restyles the production chooser (City Hall, Better City UI) | The production line shows where the mod renders `ProductionModInfo`; City Hall: short form beside the name, name intact | Tested with City Hall; Better City UI read from code |
+| Registers its own `Stylize` or `ProductionModInfo` | Composes when the other mod calls what was registered before it; one that draws its own text from scratch inside tooltips drops the resource line if it loads after this mod | Read from code (finding 7) |
+| Mod Commons | Both lines show once; Mod Commons layers the registrations | Tested |
 | Calls `gainOffMapResource` or reads off-map resources | Sees one Crabs entry during the turn-start call, gone at once | Read from code |
 | Rebalances strategic resources' placement or yields | Works; the penalty reads only whether a copy is held | Read from code |
 | Changes trade routes (range, capacity, duration, what a route carries) | An imported copy is an ordinary entry in the player's resource list and supplies units like a mined one; such a mod changes which routes exist, not how the penalty reads them | Watched (`p11-import-*`: imports count) |
@@ -114,3 +121,29 @@ add unit-page chapters.
 Not a mod conflict, but the same surface: in any multiplayer game (internet, LAN, hotseat) the turn-start re-check is
 off and says so once in `UI.log` (tested in hotseat). The penalty and the curve still load, so a lost resource keeps its
 bonus until that player gains a resource.
+
+### 7. Mods that change the production list or the resource tooltips
+
+Status: watched 2026-10-12 (`verification-runs.md`, phase 13) with the mods named; the others read from code.
+
+The production line lives in `ProductionModInfo`, the empty `ComponentRegistry` slot the game's production item
+renders for mods. A mod that replaces the item and keeps rendering the slot shows the line where it puts the slot.
+City Hall (beezany) keeps it, inline after the unit's stats; the mod then uses its short form ("Needs Niter") and the
+unit's name keeps its full width (watched in English and German). Najane's Better City UI renders the slot in its own
+production item (read from code). A chooser that drops the slot drops the line, and nothing else changes.
+
+The resource line is added in the `Stylize` component when the text it draws is a strategic resource's `Tooltip` key.
+Every plot tooltip on the development machine draws the resource row through it: the game's own, QD Improved Plot
+Tooltip (which renders the game's `PlotTooltipContent`), Building Location Advisor, and Readable Tooltips (which only
+moves the tooltip). Better Commerce Screen UI draws its own resource tooltip with `Stylize` too. All watched.
+
+Two mods registering the same entry: the registry keeps one factory, and the later of equal priority wins. This mod
+registers at the priority already there and calls the previous factory, so a later mod that also calls what was there
+keeps both. If a later mod replaces the entry outright, this mod wraps again around it (up to eight times, against two
+mods that both keep re-wrapping). Scapeh's Better Nested Tooltips registers `Stylize` at priority 100 and, inside
+tooltips, draws the original `text` itself: if it loads after this mod the re-wrap puts this mod's text back in front
+of it; if Mod Commons is also on, Mod Commons decides the order (read from code, not tested).
+
+Under Mod Commons the registry is shimmed: `factory()` returns Mod Commons' own renderer, never the registered
+function. The mod's first build re-wrapped on every read there and drew the production line eight times; it now
+registers once and compares what the slot returns before and after (watched: one line per item, Mod Commons on).

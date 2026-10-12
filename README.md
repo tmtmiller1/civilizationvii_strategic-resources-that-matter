@@ -32,6 +32,13 @@ The game tells you why, in your language:
 - **Combat preview:** the penalty is a line of its own beside the game's modifiers, for your unit and for the enemy's:
   "-3 Unsupplied: no Niter". Past six copies the extra strength shows as one line beside the game's own, such as "+1
   Niter: 8 or more copies".
+- **Production list:** a unit that needs a resource says so on its item, beside the game's own text: "Needs Niter" in
+  red while you hold none (the turn count shown is the slower one), "Niter: 2" once you hold copies. Where the item has
+  room for a sentence it reads "Needs Niter. Without it: -3 Combat Strength, slower to train." The line follows a copy
+  gained or lost while the list is open.
+- **Resources:** a strategic resource's description, on the map and in the commerce screen, ends with the units it
+  supplies for you in this age: "Supplies units: AT Gun, Assault Gun, Field Cannon and 3 more." Resources that supply
+  nothing in this age say nothing extra.
 - **Civilopedia:** a page under Game Concepts, Combat, "Strategic Resources That Matter", with the rules and the table
   below; and on each gated unit's page a line such as "Needs Iron: without a copy, -3 Combat Strength and slower to
   train", with the penalty your game was set up with.
@@ -89,8 +96,11 @@ with no Iron kept building Warriors where, with Iron, it built Legions.
 ## Compatibility
 
 - Adds unit tags, modifiers and two game setup options. Changes no base-game row and replaces no base-game file.
-- The unit panel line comes from a wrapper around the panel's own refresh, so mods that change the unit panel or the
-  plot and unit tooltips keep working. Readable Tooltips was tested alongside.
+- The unit panel line comes from a wrapper around the panel's own refresh, so mods that change the unit panel keep
+  working. The production line goes in the slot the game keeps for mods on each production item, and the resource
+  line into the text the game's description component draws; neither replaces a screen or a tooltip. Tested with
+  Readable Tooltips, QD Improved Plot Tooltip, Building Location Advisor, City Hall, Better Commerce Screen UI and Mod
+  Commons.
 - Mods that rewrite the game's per-copy resource bonus leave the penalty alone; the curve past six copies follows the
   base game's unit classes (read from code, not tested).
 - Ships the Tower Settings Keeper, which runs first and keeps every mod's settings readable after a restart. The mod
@@ -127,6 +137,11 @@ Civilization VII\Mods\` (Windows), and enable it under Add-ons.
   for every major player. Gaining a resource is what makes the game re-check a player's requirements at the next
   turn roll.
 - `ui/sr-unit-panel.js`: the line on the unit panel.
+- `ui/sr-production-line.js`: the line on a production item, in the game's `ProductionModInfo` slot.
+- `ui/sr-resource-line.js`: the line in a strategic resource's description, added where the game's `Stylize`
+  component draws that text.
+- `ui/sr-registry.js`, `ui/sr-player-supply.js`, `ui/sr-supply.js`: the shared registry wrapper, engine reads and pure
+  rules the three lines use, so they never disagree.
 - `ui/settings-keeper.js`: the Tower Settings Keeper, unchanged.
 
 The evidence for each of these, run by run, is in [docs/verification-runs.md](docs/verification-runs.md).

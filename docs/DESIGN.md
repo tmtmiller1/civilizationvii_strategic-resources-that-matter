@@ -380,6 +380,21 @@ Strength and slower to train.", with the game's setup level. That chapter is the
 has text only on gated units' pages; a paragraph row in one of the game's chapters would replace its text. Pedia rows
 load in the game scope, as the base game's do.
 
+**Where the player chooses (watched 2026-10-12, phase 13).** Two more places, both from script and both reading the
+same status as the unit panel line (`sr-supply.js`), so they cannot disagree. The production list: the game renders an
+empty `ComponentRegistry` slot, `ProductionModInfo`, on every item for mods; the mod chains a line into it. On 1.5.0 an
+item lays out as one row (name, stats, slot), in the game's own chooser and in City Hall's, so the line takes a short
+form there, "Needs Niter" (red, none held) or "Niter: 2"; the sentence "Needs Niter. Without it: -3 Combat Strength,
+slower to train." is kept for an item laid out as a column. The line is drawn again on `PlayerResourceChanged`, so an
+open list follows a gain. The resources: the plot tooltip and every commerce resource tooltip and card draw a
+resource's `Tooltip` text through the `Stylize` component, so the mod chains a `Stylize` that adds "Supplies units:
+..." under that text when it is a strategic resource's, listing the local player's own units (no other civilization's
+unique units, nothing their unique unit replaces), three names and a count. One hook covers the game's plot tooltip,
+the game's commerce tooltips and Empire cards, and the mods on the development machine that draw their own (QD Improved
+Plot Tooltip, Building Location Advisor, Better Commerce Screen UI). Neither line replaces a screen or a tooltip. The
+registry wrapper registers at the priority already there and wraps again if another mod's registration replaces it;
+under Mod Commons, which shims the registry, it registers once.
+
 **AI.** 90 turns of Antiquity, seed 4242, mod on and off: the games stayed identical until turn 61 (no AI had built a
 gated unit), then diverged; at turn 91 Rome had 14 Warriors and no Iron with the mod, 4 Legions with Iron in the
 vanilla game. No crash, no hang, one re-check line per turn. Cost: 16 ms per turn against a noise of 28 ms (one
