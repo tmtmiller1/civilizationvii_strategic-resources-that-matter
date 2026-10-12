@@ -2,7 +2,7 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_SR_MOD_NAME" Language="ko_KR"><Text>중요한 전략 자원</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 다시 중요해집니다. 말, 철, 질산칼륨, 석유, 석탄, 고무가 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 전투력이 낮아지고 훈련이 느려지며, 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다. 마지막 하나를 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 여섯 개를 넘어서도 수가 계속 전투력을 더합니다. 게임 설정의 두 옵션으로 페널티와 후반 보너스를 정합니다. 싱글 플레이 전용. 멀티플레이에서는 자원을 잃어도 그 플레이어가 자원을 얻기 전까지 페널티가 돌아오지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 다시 중요해집니다. 말, 철, 질산칼륨, 석유, 석탄, 고무가 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 전투력이 낮아지고 훈련이 느려지며, 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다. 마지막 하나를 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 여섯 개를 넘어서도 수가 계속 전투력을 더합니다. 게임 설정의 세 옵션으로 페널티와 후반 보너스를 정하고, 기본값은 꺼짐인 세 번째 옵션으로 자원이 없는 유닛을 잠급니다. 싱글 플레이 전용. 멀티플레이에서는 자원을 잃어도 그 플레이어가 자원을 얻기 전까지 페널티가 돌아오지 않습니다.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ko_KR"><Text>보급 없음: {1_Resource} 없음 (전투력 {2_Combat}, 훈련이 느려짐)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="ko_KR"><Text>{1_Resource} 필요. 없으면 전투력 {2_Combat}, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="ko_KR"><Text>{1_Resource} 필요 (보유 {2_Copies}개).</Text></Replace>
@@ -31,7 +31,7 @@
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="ko_KR"><Text>8, 10, 12, 14, 16, 18, 20개에서 전투력 +1.</Text></Replace>
         <!-- Civilopedia -->
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="ko_KR"><Text>중요해진 전략 자원</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME}, {LOC_RESOURCE_RUBBER_NAME}을(를) 쓰는 군사 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 더 약하게 싸우고 더 느리게 훈련됩니다. 금지되는 것은 없습니다. 모든 유닛은 기본 게임처럼 계속 훈련하고 업그레이드할 수 있습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME}, {LOC_RESOURCE_RUBBER_NAME}을(를) 쓰는 군사 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 더 약하게 싸우고 더 느리게 훈련됩니다. {LOC_SR_SETUP_GATE_NAME} 옵션이 꺼져 있는 한 금지되는 것은 없습니다. 마지막 장을 참조하세요.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="ko_KR"><Text>자원이 없을 때</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="ko_KR"><Text>자원이 없는 유닛은 가진 모든 전투력(근접, 그리고 있다면 원거리와 폭격)이 낮아지고, 도시가 그 유닛 훈련에 쓰는 생산력도 줄어듭니다. 얼마나 낮아지는지는 게임 설정의 {LOC_SR_SETUP_UNSUPPLIED_NAME} 옵션이 정합니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="ko_KR"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] 전투력 -2, 생산력 20% 감소.[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B] (기본값): 전투력 -3, 생산력 33% 감소, 그래서 훈련에 1.5배의 시간이 걸립니다.[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] 전투력 -5, 생산력 50% 감소, 훈련 시간 2배.[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] 페널티 없음.</Text></Replace>
@@ -81,5 +81,41 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ko_KR"><Text>보급 상실: {1_Resource} 없음. {1_Resource}을(를) 다시 얻을 때까지 {2_Unit} 외 {3_Others}개 유닛의 전투력 {4_Combat}, 훈련이 느려집니다.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="ko_KR"><Text>보급 없는 유닛</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ko_KR"><Text>이 {1_Unit}에는 {2_Resource}이(가) 필요하지만 하나도 없으므로, 얻을 때까지 전투력 {3_Combat}, 훈련이 느려집니다. 전략 자원이 필요한 모든 유닛이 이와 같으며, 전체 규칙은 문명 백과사전의 "{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}" 페이지에 있습니다.</Text></Replace>
+        <!-- The hard gate (1.1) -->
+        <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="ko_KR"><Text>유닛 잠금</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 필요한 유닛을 소유자가 그 자원을 하나도 갖고 있지 않은 동안 아예 훈련하거나 구매할 수 없게 할지 여부입니다. 이미 전장에 있는 유닛은 절대 잠기지 않으며, 위에서 설정한 보급 없는 유닛 페널티가 적용됩니다. 독립 세력과 도시 국가는 절대 잠기지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="ko_KR"><Text>끔</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_OFF_DESCRIPTION" Language="ko_KR"><Text>모든 유닛을 기본 게임처럼 훈련, 구매, 업그레이드할 수 있습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING" Language="ko_KR"><Text>훈련</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 필요한 유닛은 그 자원이 하나도 없으면 훈련도 구매도 할 수 없습니다. 그 유닛으로의 업그레이드는 자유롭습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE" Language="ko_KR"><Text>훈련과 업그레이드</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 필요한 유닛은 그 자원이 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_LOCKED" Language="ko_KR"><Text>{1_Resource} 필요: 없으면 훈련할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_LOCKED_BUY" Language="ko_KR"><Text>{1_Resource} 필요: 없으면 구매할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_LOCKED_SHORT" Language="ko_KR"><Text>잠김: {1_Resource} 없음</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE_GATED" Language="ko_KR"><Text>보급 없음: {1_Resource} 없음 (전투력 {2_Combat}, 훈련이 느려짐). 새로 훈련할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="ko_KR"><Text>잠기는 유닛</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="ko_KR"><Text>{LOC_SR_SETUP_GATE_NAME} 옵션이 켜져 있으면 전략 자원이 필요한 유닛은 그 자원이 하나도 없는 동안 훈련도 구매도 할 수 없습니다. 생산 목록에 회색으로 남아 있다가 자원이 하나 들어오면 풀리고, 마지막 하나를 잃는 순간 다시 잠깁니다. {LOC_SR_SETUP_GATE_UPGRADE}에서는 어떤 유닛도 그 유닛으로 업그레이드할 수 없고, {LOC_SR_SETUP_GATE_TRAINING}에서는 업그레이드가 자유롭습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="ko_KR"><Text>이미 전장에 있는 유닛은 절대 잠기지 않습니다. {LOC_SR_SETUP_UNSUPPLIED_NAME} 옵션이 켜져 있으면 그 페널티를 받으며 계속 싸우고, 회복도 평소처럼 합니다. 문명의 고유 유닛은 그것이 대체하는 유닛과 같이 잠깁니다. 아무것도 필요로 하지 않는 유닛은 그대로 자유로우므로 모든 플레이어가 언제나 방어할 수 있습니다. 독립 세력과 도시 국가는 절대 잠기지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ko_KR"><Text>{LOC_SR_SETUP_GATE_UPGRADE}에서는 업그레이드로만 도달할 수 있는 센고쿠의 2단계, 3단계 사무라이에도 {LOC_RESOURCE_IRON_NAME}이(가) 필요합니다.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_IRON_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_IRON_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_NITER_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_NITER_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_OIL_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_OIL_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_COAL_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_COAL_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="ko_KR"><Text>훈련에 필요: {1_Units}.</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="ko_KR"><Text>훈련에 필요: {1_Units} 외 {2_More}종.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOCKED_TAIL" Language="ko_KR"><Text>그때까지 새로 훈련할 수 없습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOCKED" Language="ko_KR"><Text>보급 상실: {1_Resource} 없음. {1_Resource}을(를) 다시 얻을 때까지 그 자원이 필요한 유닛을 훈련할 수 없습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_GATE_TITLE" Language="ko_KR"><Text>잠긴 유닛</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_GATE_BODY" Language="ko_KR"><Text>{1_Unit}에는 {2_Resource}이(가) 필요하지만 하나도 없으므로, 하나를 얻을 때까지 훈련도 구매도 할 수 없습니다. 전략 자원이 필요한 모든 유닛이 이렇게 잠기며, 전체 규칙은 문명 백과사전의 "{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}" 페이지에 있습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_GATE_BODY_UPGRADE" Language="ko_KR"><Text>{1_Unit}에는 {2_Resource}이(가) 필요하지만 하나도 없으므로, 하나를 얻을 때까지 훈련, 구매, 업그레이드로 얻기 모두 할 수 없습니다. 전략 자원이 필요한 모든 유닛이 이렇게 잠기며, 전체 규칙은 문명 백과사전의 "{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}" 페이지에 있습니다.</Text></Replace>
     </LocalizedText>
 </Database>

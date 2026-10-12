@@ -2,7 +2,7 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_SR_MOD_NAME" Language="ja_JP"><Text>重要な戦略資源</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ja_JP"><Text>戦略資源が再び重要になります。馬、鉄、硝石、石油、石炭、ゴムを必要とするユニットは、所有者がその資源を1つも持っていない間、戦闘力が下がり、訓練に時間がかかります。資源1つごとのゲーム本来のボーナスはそのままです。最後の1つを失うと、ペナルティは1ターン後に戻ります。6つを超えても、数がさらに戦闘力を加えます。ゲーム設定の2つのオプションでペナルティの強さと後半のボーナスを選べます。シングルプレイ専用。マルチプレイでは、資源を失っても、そのプレイヤーが資源を得るまでペナルティは戻りません。</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ja_JP"><Text>戦略資源が再び重要になります。馬、鉄、硝石、石油、石炭、ゴムを必要とするユニットは、所有者がその資源を1つも持っていない間、戦闘力が下がり、訓練に時間がかかります。資源1つごとのゲーム本来のボーナスはそのままです。最後の1つを失うと、ペナルティは1ターン後に戻ります。6つを超えても、数がさらに戦闘力を加えます。ゲーム設定の3つのオプションでペナルティの強さと後半のボーナスを選べるほか、初期設定ではオフの、資源のないユニットをロックする設定もあります。シングルプレイ専用。マルチプレイでは、資源を失っても、そのプレイヤーが資源を得るまでペナルティは戻りません。</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ja_JP"><Text>補給なし: {1_Resource}がない(戦闘力{2_Combat}、訓練が遅くなる)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="ja_JP"><Text>{1_Resource}が必要。ないと戦闘力{2_Combat}、訓練が遅くなる。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="ja_JP"><Text>{1_Resource}が必要(保有数{2_Copies})。</Text></Replace>
@@ -31,7 +31,7 @@
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="ja_JP"><Text>8、10、12、14、16、18、20個で戦闘力+1。</Text></Replace>
         <!-- Civilopedia -->
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="ja_JP"><Text>重要な戦略資源</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}、{LOC_RESOURCE_RUBBER_NAME}を使う軍事ユニットは、所有者がその資源を1個も持っていない間、戦闘で弱くなり、訓練も遅くなる。禁止されるものはない。すべてのユニットは基本ゲームと同じく訓練もアップグレードもできる。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}、{LOC_RESOURCE_RUBBER_NAME}を使う軍事ユニットは、所有者がその資源を1個も持っていない間、戦闘で弱くなり、訓練も遅くなる。「{LOC_SR_SETUP_GATE_NAME}」オプションがオフなら禁止されるものはない。最後の章を参照。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="ja_JP"><Text>資源がない場合</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="ja_JP"><Text>資源が足りないユニットは、持っているすべての戦闘力(近接、および遠隔と砲撃を持つ場合はそれも)が下がり、その都市が訓練に回す生産力も減る。どれだけ下がるかはゲーム設定の「{LOC_SR_SETUP_UNSUPPLIED_NAME}」オプションで決まる:</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="ja_JP"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] 戦闘力-2、生産力20%減。[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B](初期設定): 戦闘力-3、生産力33%減で、訓練に1.5倍の時間がかかる。[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] 戦闘力-5、生産力50%減で、訓練に2倍の時間がかかる。[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] ペナルティなし。</Text></Replace>
@@ -81,5 +81,41 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ja_JP"><Text>補給喪失: {1_Resource}がありません。{1_Resource}を再び入手するまで、{2_Unit}とほか{3_Others}ユニットは戦闘力{4_Combat}、訓練も遅くなります。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="ja_JP"><Text>補給のないユニット</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ja_JP"><Text>この{1_Unit}は{2_Resource}を必要としますが、1つも保有していないため、入手するまで戦闘力{3_Combat}、訓練も遅くなります。戦略資源を必要とするユニットはすべて同じで、詳しいルールはシヴィロペディアの「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」にあります。</Text></Replace>
+        <!-- The hard gate (1.1) -->
+        <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="ja_JP"><Text>ユニットのロック</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="ja_JP"><Text>戦略資源を必要とするユニットを、所有者がその資源を1つも持っていない間、そもそも訓練・購入できるかどうか。すでに戦場にいるユニットがロックされることはなく、上で設定した「補給のないユニット」のペナルティが適用される。独立勢力と都市国家がロックされることはない。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="ja_JP"><Text>オフ</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_OFF_DESCRIPTION" Language="ja_JP"><Text>すべてのユニットを基本ゲームと同じく訓練・購入・アップグレードできる。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING" Language="ja_JP"><Text>訓練</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION" Language="ja_JP"><Text>戦略資源を必要とするユニットは、その資源が1つもないと訓練も購入もできない。アップグレードでそのユニットにすることは自由のまま。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE" Language="ja_JP"><Text>訓練とアップグレード</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION" Language="ja_JP"><Text>戦略資源を必要とするユニットは、その資源が1つもないと訓練も購入も、アップグレードでそのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_LOCKED" Language="ja_JP"><Text>{1_Resource}が必要: ないと訓練できない。</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_LOCKED_BUY" Language="ja_JP"><Text>{1_Resource}が必要: ないと購入できない。</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_LOCKED_SHORT" Language="ja_JP"><Text>ロック中: {1_Resource}がない</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE_GATED" Language="ja_JP"><Text>補給なし: {1_Resource}がない(戦闘力{2_Combat}、訓練が遅くなる)。新たに訓練することはできない。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="ja_JP"><Text>ロックされるユニット</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="ja_JP"><Text>「{LOC_SR_SETUP_GATE_NAME}」オプションがオンのとき、戦略資源を必要とするユニットは、その資源を1つも持っていない間は訓練も購入もできない。生産リストには灰色のまま残り、資源が1つ届くまで待つことになり、最後の1つを失った瞬間に再びロックされる。「{LOC_SR_SETUP_GATE_UPGRADE}」では、どのユニットもそのユニットにアップグレードできない。「{LOC_SR_SETUP_GATE_TRAINING}」では、アップグレードは自由のまま。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="ja_JP"><Text>すでに戦場にいるユニットがロックされることはない。「{LOC_SR_SETUP_UNSUPPLIED_NAME}」オプションがオンならそのペナルティを受けつつ戦い続け、回復も通常どおりだ。文明の固有ユニットは、それが置き換えるユニットと同じようにロックされる。何も必要としないユニットは自由のままなので、どのプレイヤーも常に防衛できる。独立勢力と都市国家がロックされることはない。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ja_JP"><Text>「{LOC_SR_SETUP_GATE_UPGRADE}」では、アップグレードでしか到達できない戦国の侍の第2・第3段階にも{LOC_RESOURCE_IRON_NAME}が必要になる。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_IRON_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_IRON_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_NITER_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_NITER_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_OIL_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_OIL_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_COAL_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_COAL_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="ja_JP"><Text>次の訓練に必要: {1_Units}。</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="ja_JP"><Text>次の訓練に必要: {1_Units}、ほか{2_More}種。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOCKED_TAIL" Language="ja_JP"><Text>それまで新たに訓練することはできません。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOCKED" Language="ja_JP"><Text>補給喪失: {1_Resource}がありません。{1_Resource}を再び入手するまで、それを必要とするユニットは訓練できません。</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_GATE_TITLE" Language="ja_JP"><Text>ロックされたユニット</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_GATE_BODY" Language="ja_JP"><Text>{1_Unit}は{2_Resource}を必要としますが、1つも保有していないため、入手するまで訓練も購入もできません。戦略資源を必要とするユニットはすべて同じようにロックされ、詳しいルールはシヴィロペディアの「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」にあります。</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_GATE_BODY_UPGRADE" Language="ja_JP"><Text>{1_Unit}は{2_Resource}を必要としますが、1つも保有していないため、入手するまで訓練も購入も、アップグレードでこのユニットにすることもできません。戦略資源を必要とするユニットはすべて同じようにロックされ、詳しいルールはシヴィロペディアの「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」にあります。</Text></Replace>
     </LocalizedText>
 </Database>

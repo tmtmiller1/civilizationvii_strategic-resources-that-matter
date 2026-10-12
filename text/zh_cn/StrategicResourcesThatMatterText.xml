@@ -2,7 +2,7 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hans_CN"><Text>至关重要的战略资源</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hans_CN"><Text>战略资源再次变得重要。需要马、铁、硝石、石油、煤或橡胶的单位，在其所有者一份该资源都没有时，战斗力降低、训练变慢；每份资源仍提供游戏原有的加成。失去最后一份后，惩罚会在一回合后恢复。超过六份后，数量仍会继续增加战斗力。两项游戏设置选项决定惩罚程度并开关后期加成。仅限单人游戏。在多人游戏中，失去资源后，要等该玩家获得某种资源时惩罚才会恢复。</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hans_CN"><Text>战略资源再次变得重要。需要马、铁、硝石、石油、煤或橡胶的单位，在其所有者一份该资源都没有时，战斗力降低、训练变慢；每份资源仍提供游戏原有的加成。失去最后一份后，惩罚会在一回合后恢复。超过六份后，数量仍会继续增加战斗力。三项游戏设置选项决定惩罚程度、开关后期加成，并可将单位锁定在其资源之后（默认关闭）。仅限单人游戏。在多人游戏中，失去资源后，要等该玩家获得某种资源时惩罚才会恢复。</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="zh_Hans_CN"><Text>无补给：没有{1_Resource}（战斗力{2_Combat}，训练变慢）</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="zh_Hans_CN"><Text>需要{1_Resource}。没有时：战斗力{2_Combat}，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="zh_Hans_CN"><Text>需要{1_Resource}（拥有{2_Copies}个）。</Text></Replace>
@@ -31,7 +31,7 @@
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="zh_Hans_CN"><Text>在8、10、12、14、16、18和20份时战斗力+1。</Text></Replace>
         <!-- Civilopedia -->
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="zh_Hans_CN"><Text>重要的战略资源</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}或{LOC_RESOURCE_RUBBER_NAME}的军事单位，在其所有者没有该资源时，战斗更弱，训练更慢。没有任何东西被禁止：所有单位仍可像基础游戏中一样训练和升级。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}或{LOC_RESOURCE_RUBBER_NAME}的军事单位，在其所有者没有该资源时，战斗更弱，训练更慢。除非{LOC_SR_SETUP_GATE_NAME}选项开启，否则没有任何东西被禁止：见最后一章。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="zh_Hans_CN"><Text>没有资源时</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="zh_Hans_CN"><Text>缺少资源的单位，其拥有的每项战斗力（近战，以及远程和轰炸，如果有的话）都会降低，所在城市投入训练它的生产力也会减少。降低多少由游戏设置中的{LOC_SR_SETUP_UNSUPPLIED_NAME}选项决定：</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="zh_Hans_CN"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}：[/B]战斗力-2，生产力减少20%。[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B]（默认）：战斗力-3，生产力减少33%，训练时间变为1.5倍。[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}：[/B]战斗力-5，生产力减少50%，训练时间加倍。[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}：[/B]无惩罚。</Text></Replace>
@@ -81,5 +81,41 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="zh_Hans_CN"><Text>补给丧失：没有{1_Resource}。在重新获得{1_Resource}之前，你的{2_Unit}和其他{3_Others}个单位战斗力{4_Combat}，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="zh_Hans_CN"><Text>无补给单位</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hans_CN"><Text>你的{1_Unit}需要{2_Resource}，而你一份都没有：在获得之前，它战斗力{3_Combat}，训练变慢。每个需要战略资源的单位都是如此，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
+        <!-- The hard gate (1.1) -->
+        <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="zh_Hans_CN"><Text>单位锁定</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="zh_Hans_CN"><Text>需要战略资源的单位，在其所有者一份该资源都没有时，是否根本无法训练或购买。已在战场上的单位永远不会被锁定；它们按上面设置的无补给单位惩罚处理。独立势力和城邦永远不会被锁定。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>所有单位都可像基础游戏中一样训练、购买和升级。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING" Language="zh_Hans_CN"><Text>训练</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION" Language="zh_Hans_CN"><Text>需要战略资源的单位，没有一份该资源时无法训练或购买。升级为该单位不受限制。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE" Language="zh_Hans_CN"><Text>训练与升级</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION" Language="zh_Hans_CN"><Text>需要战略资源的单位，没有一份该资源时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_LOCKED" Language="zh_Hans_CN"><Text>需要{1_Resource}：没有时无法训练。</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_LOCKED_BUY" Language="zh_Hans_CN"><Text>需要{1_Resource}：没有时无法购买。</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_LOCKED_SHORT" Language="zh_Hans_CN"><Text>已锁定：没有{1_Resource}</Text></Replace>
+        <Replace Tag="LOC_SR_UNSUPPLIED_LINE_GATED" Language="zh_Hans_CN"><Text>无补给：没有{1_Resource}（战斗力{2_Combat}，训练变慢）。无法训练新的。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="zh_Hans_CN"><Text>锁定的单位</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="zh_Hans_CN"><Text>开启{LOC_SR_SETUP_GATE_NAME}选项后，需要战略资源的单位在你一份该资源都没有时无法训练或购买：它留在生产列表中，呈灰色，直到有一份资源到手；而你失去最后一份的那一刻，它会再次被锁定。在{LOC_SR_SETUP_GATE_UPGRADE}下，任何单位也无法升级为它；在{LOC_SR_SETUP_GATE_TRAINING}下，升级不受限制。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="zh_Hans_CN"><Text>已在战场上的单位永远不会被锁定：它们继续战斗，若{LOC_SR_SETUP_UNSUPPLIED_NAME}选项开启则受其惩罚，并照常恢复。文明的特色单位与它所替代的单位一样被锁定。没有任何要求的单位仍不受限制，因此每位玩家始终能够防御。独立势力和城邦永远不会被锁定。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="zh_Hans_CN"><Text>在{LOC_SR_SETUP_GATE_UPGRADE}下，只能通过升级获得的战国第二、第三阶武士也需要{LOC_RESOURCE_IRON_NAME}。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_HORSES_NAME}时无法训练或购买。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_HORSES_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_IRON_NAME}时无法训练或购买。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_IRON_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_NITER_NAME}时无法训练或购买。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_NITER_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_OIL_NAME}时无法训练或购买。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_OIL_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_COAL_NAME}时无法训练或购买。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_COAL_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_RUBBER_NAME}时无法训练或购买。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_RUBBER_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="zh_Hans_CN"><Text>训练所需：{1_Units}。</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="zh_Hans_CN"><Text>训练所需：{1_Units}等，另有{2_More}种。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOCKED_TAIL" Language="zh_Hans_CN"><Text>在此之前无法训练新的。</Text></Replace>
+        <Replace Tag="LOC_SR_NOTIFY_LOCKED" Language="zh_Hans_CN"><Text>补给丧失：没有{1_Resource}。在重新获得{1_Resource}之前，需要它的单位无法训练。</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_GATE_TITLE" Language="zh_Hans_CN"><Text>锁定的单位</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_GATE_BODY" Language="zh_Hans_CN"><Text>{1_Unit}需要{2_Resource}，而你一份都没有：在获得一份之前，它无法训练或购买。每个需要战略资源的单位都这样被锁定，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_GATE_BODY_UPGRADE" Language="zh_Hans_CN"><Text>{1_Unit}需要{2_Resource}，而你一份都没有：在获得一份之前，它无法训练、购买，也无法通过升级获得。每个需要战略资源的单位都这样被锁定，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
     </LocalizedText>
 </Database>
