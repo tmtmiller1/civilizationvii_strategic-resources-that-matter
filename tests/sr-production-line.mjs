@@ -75,8 +75,8 @@ try {
 
   // withProductionLine and wrapProductionTooltip: the whole sentence under the unit's description.
   holdings = [];
-  globalThis.GameInfo.Units = table([{ UnitType: "UNIT_FIELD_CANNON", Description: "LOC_UNIT_FIELD_CANNON_DESCRIPTION" }],
-    "UnitType");
+  globalThis.GameInfo.Units = table(
+    [{ UnitType: "UNIT_FIELD_CANNON", Description: "LOC_UNIT_FIELD_CANNON_DESCRIPTION" }], "UnitType");
   const NONE = "[STYLE:text-negative]LOC_SR_PRODUCTION_NEEDS_NONE|LOC_RESOURCE_NITER_NAME|-3[/STYLE]";
   assert.equal(withProductionLine("UNIT_FIELD_CANNON", "LOC_GIVEN", false), `LOC_GIVEN|[N]${NONE}`,
     "in the game's negative style while the unit is short");
