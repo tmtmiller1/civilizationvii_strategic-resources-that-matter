@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <GameModifiers>
+        <Row ModifierId="SRP4_ATTACH_GRANT_WARRIOR"/>
+        <Row ModifierId="SRP4_ATTACH_GRANT_SPEARMAN"/>
+        <Row ModifierId="SRP4_ATTACH_GRANT_CHARIOT"/>
+        <Row ModifierId="SRP4_ATTACH_GRANT_LEGION"/>
+        <Row ModifierId="SRP4_ATTACH_MINOR_GRANTS"/>
+        <Row ModifierId="SRP4_ATTACH_MINOR_GRANTS_2"/>
+    </GameModifiers>
+</Database>

@@ -1,0 +1,1 @@
+UPDATE Units SET StrategicResource = 'RESOURCE_NITER' WHERE UnitType = 'UNIT_FIELD_CANNON';

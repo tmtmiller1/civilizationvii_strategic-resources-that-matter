@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- probe4b: independent players get every locked unit back, unconditionally, over the game's own collection of
+     independent players (the crisis stories' tribe armies use it). -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SRP4_GRANT_INDEPENDENT_WARRIOR" collection="COLLECTION_INDEPENDENT_PLAYERS" effect="EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD">
+        <Argument name="UnitType">UNIT_WARRIOR</Argument>
+    </Modifier>
+    <Modifier id="SRP4_GRANT_INDEPENDENT_SPEARMAN" collection="COLLECTION_INDEPENDENT_PLAYERS" effect="EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD">
+        <Argument name="UnitType">UNIT_SPEARMAN</Argument>
+    </Modifier>
+    <Modifier id="SRP4_GRANT_INDEPENDENT_CHARIOT" collection="COLLECTION_INDEPENDENT_PLAYERS" effect="EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD">
+        <Argument name="UnitType">UNIT_CHARIOT</Argument>
+    </Modifier>
+</GameEffects>
