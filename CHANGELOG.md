@@ -15,7 +15,9 @@ Gated Units: a third game setup option, off by default, that locks a unit behind
   upgrade no unit can be upgraded into it either; under Training upgrades stay free. Units already in the field are
   never gated, and heal as usual. Independent powers and city-states are never gated. The AI is locked by the same
   rule and never sticks on a locked unit.
-- The unit panel line ends with "New ones cannot be trained.", a resource's description reads "Needed to train: ...",
+- The unit panel's status is now one more cell in the unit's stats, the resource's icon over the penalty in red,
+  with the sentence as its tooltip; under the gate the tooltip ends with "New ones cannot be trained.". A resource's
+  description reads "Needed to train: ...",
   the lost-supply notification adds "New ones cannot be trained until then.", and a second first-time callout,
   "Locked unit", explains the lock. The Civilopedia page gains a chapter, "Gated units", and each gated unit's page a
   line "Cannot be trained or bought without Iron." All in the twelve languages.
