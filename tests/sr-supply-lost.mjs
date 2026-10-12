@@ -190,6 +190,11 @@ try {
     "<LOC_SR_NOTIFY_LOCKED_TAIL> LOC_SR_NOTIFY_LOCKED(LOC_RESOURCE_COAL_NAME)");
   globalThis.GameInfo.GlobalParameters = [];
   resetIndexes();
+  const { withTail } = await import("/tower-strategic-resources-that-matter/ui/sr-supply-lost.js");
+  assert.equal(withTail("Fights at -3.", "New ones cannot be trained."), "Fights at -3. New ones cannot be trained.");
+  assert.equal(withTail("戦闘力-3、訓練も遅くなります。", "それまで新たに訓練することはできません。"),
+    "戦闘力-3、訓練も遅くなります。それまで新たに訓練することはできません。", "no space after a full-width stop");
+  assert.equal(withTail("战斗力-3，训练变慢。", "在此之前无法训练新的。"), "战斗力-3，训练变慢。在此之前无法训练新的。");
 
 } finally {
   log.restore();

@@ -51,12 +51,19 @@ function sentence(loss) {
   const resource = resourceNameKey(loss.resourceType);
   const unit = loss.unitType ? GameInfo.Units.lookup(loss.unitType)?.Name ?? loss.unitType : "";
   if (loss.key === "LOC_SR_NOTIFY_LOCKED") return Locale.compose(loss.key, resource);
-  const tail = loss.locked ? ` ${Locale.compose("LOC_SR_NOTIFY_LOCKED_TAIL")}` : "";
-  if (loss.key === "LOC_SR_NOTIFY_LOST_MANY") {
-    return Locale.compose(loss.key, resource, unit, loss.others, loss.combat) + tail;
-  }
-  if (loss.key === "LOC_SR_NOTIFY_LOST_ONE") return Locale.compose(loss.key, resource, unit, loss.combat) + tail;
-  return Locale.compose(loss.key, resource, loss.combat) + tail;
+  const text = loss.key === "LOC_SR_NOTIFY_LOST_MANY" ? Locale.compose(loss.key, resource, unit, loss.others, loss.combat)
+    : loss.key === "LOC_SR_NOTIFY_LOST_ONE" ? Locale.compose(loss.key, resource, unit, loss.combat)
+      : Locale.compose(loss.key, resource, loss.combat);
+  return loss.locked ? withTail(text, Locale.compose("LOC_SR_NOTIFY_LOCKED_TAIL")) : text;
+}
+
+/**
+ * The gate's tail after the penalty's sentence: a space between them, none after a full-width stop (Japanese and
+ * Chinese write no space between sentences).
+ * @param {string} text @param {string} tail @returns {string}
+ */
+export function withTail(text, tail) {
+  return /[\u3002\uff01\uff1f]$/.test(text) ? text + tail : `${text} ${tail}`;
 }
 
 /** Takes the first look, when a game loads. */

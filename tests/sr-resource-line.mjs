@@ -42,11 +42,12 @@ globalThis.GameInfo = {
     { UnitType: "UNIT_HOWITZER", Name: "LOC_UNIT_HOWITZER_NAME" },
     { UnitType: "UNIT_AT_GUN", Name: "LOC_UNIT_AT_GUN_NAME" },
     { UnitType: "UNIT_HWACHA", Name: "LOC_UNIT_HWACHA_NAME", TraitType: "TRAIT_JOSEON" },
-    { UnitType: "UNIT_HIDDEN", Name: "LOC_UNIT_HIDDEN_NAME", CanTrain: false },
+    { UnitType: "UNIT_HIDDEN", Name: "LOC_UNIT_HIDDEN_NAME", CanTrain: false, TraitType: "TRAIT_PRUSSIA" },
     { UnitType: "UNIT_TANK", Name: "LOC_UNIT_TANK_NAME" },
     { UnitType: "UNIT_PANZER", Name: "LOC_UNIT_PANZER_NAME", TraitType: "TRAIT_PRUSSIA" }
   ], "UnitType"),
-  UnitReplaces: [{ CivUniqueUnitType: "UNIT_PANZER", ReplacesUnitType: "UNIT_TANK" }],
+  UnitReplaces: [{ CivUniqueUnitType: "UNIT_PANZER", ReplacesUnitType: "UNIT_TANK" },
+    { CivUniqueUnitType: "UNIT_HIDDEN", ReplacesUnitType: "UNIT_MORTAR" }],
   Civilizations: table([{ CivilizationType: "CIVILIZATION_PRUSSIA" }, { CivilizationType: "CIVILIZATION_MEXICO" }],
     "CivilizationType"),
   Leaders: table([{ LeaderType: "LEADER_A" }], "LeaderType"),
@@ -80,14 +81,16 @@ try {
   assert.equal(prussia.has("UNIT_TANK"), false, "replaced by the player's own unique unit");
   assert.equal(prussia.has("UNIT_HWACHA"), false, "another civilization's unique unit");
   assert.equal(prussia.has("UNIT_HIDDEN"), false, "a unit that cannot be trained");
+  assert.equal(prussia.has("UNIT_MORTAR"), false, "replaced by the player's own unique unit, trainable or not");
   assert.equal(prussia.has("UNIT_COAL_SHIP"), false, "a unit type the game does not know");
   const mexico = unitNamesFor(players[1], supply);
   assert.equal(mexico.get("UNIT_TANK"), "Tank");
   assert.equal(mexico.has("UNIT_PANZER"), false);
+  assert.equal(mexico.has("UNIT_MORTAR"), true, "another civilization's unique unit replaces nothing here");
 
   // The line, sorted by name, three names and the count of the rest.
   assert.equal(describeResourceSupply("RESOURCE_NITER"),
-    "LOC_SR_RESOURCE_SUPPLIES_MORE|AT Gun, Field Cannon, Field Gun|2");
+    "LOC_SR_RESOURCE_SUPPLIES_MORE|AT Gun, Field Cannon, Field Gun|1");
   assert.equal(describeResourceSupply("RESOURCE_OIL"), "LOC_SR_RESOURCE_SUPPLIES|Panzer");
   assert.equal(describeResourceSupply("RESOURCE_WINE"), null, "a resource that supplies nothing");
   const calls = composeCalls;
@@ -115,7 +118,7 @@ try {
 
   // withSupplyLine
   assert.equal(withSupplyLine("LOC_MOD_RESOURCE_NITER_TOOLTIP", undefined),
-    "<LOC_MOD_RESOURCE_NITER_TOOLTIP>[N]LOC_SR_RESOURCE_SUPPLIES_MORE|AT Gun, Field Cannon, Field Gun|2");
+    "<LOC_MOD_RESOURCE_NITER_TOOLTIP>[N]LOC_SR_RESOURCE_SUPPLIES_MORE|AT Gun, Field Cannon, Field Gun|1");
   assert.equal(withSupplyLine("LOC_MOD_RESOURCE_OIL_TOOLTIP", ["x"]),
     "LOC_MOD_RESOURCE_OIL_TOOLTIP|x[N]LOC_SR_RESOURCE_SUPPLIES|Panzer", "the text's own arguments are kept");
   assert.equal(withSupplyLine("LOC_ANT_RESOURCE_WINE_TOOLTIP", undefined), "LOC_ANT_RESOURCE_WINE_TOOLTIP");
