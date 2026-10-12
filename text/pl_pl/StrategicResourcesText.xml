@@ -4,6 +4,10 @@
         <Replace Tag="LOC_SR_MOD_NAME" Language="pl_PL"><Text>Zasoby strategiczne, które mają znaczenie</Text></Replace>
         <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="pl_PL"><Text>Zasoby strategiczne znów mają znaczenie. Jednostka, która potrzebuje Koni, Żelaza, Saletry, Ropy, Węgla lub Kauczuku, walczy słabiej i szkoli się wolniej, dopóki jej właściciel nie ma ani jednej sztuki tego zasobu, a każda sztuka nadal daje premię z gry. Gdy stracisz ostatnią, kara wraca turę później. Powyżej sześciu sztuk liczba nadal dodaje siły. Dwie opcje ustawień gry określają karę i włączają późną premię. Tylko dla jednego gracza. W grze wieloosobowej utrata zasobu przywraca karę dopiero wtedy, gdy ten gracz zdobędzie jakiś zasób.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="pl_PL"><Text>Bez zaopatrzenia: brak zasobu {1_Resource} ({2_Combat} siły bojowej, wolniejsze szkolenie)</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="pl_PL"><Text>Wymaga zasobu {1_Resource}. Bez niego: {2_Combat} siły bojowej, wolniejsze szkolenie.</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="pl_PL"><Text>Wymaga zasobu {1_Resource} (masz: {2_Copies}).</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_SUPPLIES" Language="pl_PL"><Text>Zaopatruje jednostki: {1_Units}.</Text></Replace>
+        <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="pl_PL"><Text>Zaopatruje jednostki: {1_Units} i {2_More} innych.</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="pl_PL"><Text>{2_Combat} Bez zaopatrzenia: brak zasobu {3_Resource}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="pl_PL"><Text>+{2_Combat} {4_Resource}: {3_Copies} sztuk lub więcej</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="pl_PL"><Text>Jednostki bez zaopatrzenia</Text></Replace>
