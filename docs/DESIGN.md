@@ -74,7 +74,7 @@ Three layers, each switchable on its own.
 1. **Unsupplied.** A unit whose class draws on a resource you have no copy of fights at a penalty (default -3 combat
    strength) and costs more to train (default +50% production). With one copy you are at vanilla; each further copy
    adds vanilla's +1. This is barnu1rd's kneecap, and it keeps quickonthedrawl's count delta whole.
-2. **Hard gate** (setup option "Gated Units", off by default; 1.1). The unit cannot be trained or bought without a
+2. **Hard gate** (setup option "Gated Units", off by default). The unit cannot be trained or bought without a
    copy of the resource, and under the second value not upgraded into either, Civ VI style, through
    `Units.StrategicResource` and the engine's minimum parameters (7f). The OP's version.
 3. **A steeper late curve** (setup option). Answers the saturation point: the per-copy bonus keeps going past 6 but
@@ -460,7 +460,7 @@ probe (the probe's doing, not the mod's); the Exploration-start run reached Mode
 
 **Next (not in 1.0).**
 
-- Training gate (1.1): the Foederati shape from 7b, a gated copy of each unit with an unused `TraitType` and a grant
+- Training gate (then planned as a later version): the Foederati shape from 7b, a gated copy of each unit with an unused `TraitType` and a grant
   per resource. Depends on 7b (grant unlocks on gain, relocks after a forced re-check) and P4 (the AI builds granted
   units); needs a look at upgrades and unique replacements.
 - Building gates: none in 1.0 (units only, the owner's call). A Factory or Railyard on Coal would use the same tag and
@@ -471,7 +471,7 @@ probe (the probe's doing, not the mod's); the Exploration-start run reached Mode
   every client or only the caller's, before the script may run in multiplayer.
 - The upgrade gate on the Samurai tiers, if the owner wants a one-civilization hard gate.
 
-## 7f. The hard gate (watched 2026-10-12, game 1.5.0; shipped as 1.1)
+## 7f. The hard gate (watched 2026-10-12, game 1.5.0; in the 1.0.0 release)
 
 The shape: `Units.StrategicResource` on every unit of the gate map, written per age and option value, plus the six
 `STRATEGIC_RESOURCE_MINIMUM_FOR_*` global parameters (production and purchase anywhere and with district 1, upgrading
@@ -510,23 +510,23 @@ What the engine does and does not do with it (phase 15 in `verification-runs.md`
 | --- | --- | --- |
 | Unsupplied Units | Off, Light (-2, -20% production), Standard (-3, -33%), Harsh (-5, -50%) | Standard |
 | Strategic Resources Past Six | Off, On | On |
-| Gated Units (1.1) | Off, Training (no training or purchase without a copy), Training and upgrade (no upgrade into the unit either) | Off |
+| Gated Units | Off, Training (no training or purchase without a copy), Training and upgrade (no upgrade into the unit either) | Off |
 
-The hard gate has no option in 1.0 (7e); 1.1 adds Gated Units (7f).
+The hard gate was built after the rest of 1.0 (7e) and shipped with it as Gated Units (7f).
 
 ## 9. Versions
 
-- **1.0**: layer 1, the loss re-check, layer 3, setup options, the unit panel line. Single-player.
-- **1.1**: the training gate, as the Gated Units option (the `StrategicResource` column and the engine's
-  minimums, not the Foederati shape: 7f).
+- **1.0**: layer 1, the loss re-check, layer 3, setup options, the unit panel cell, the production pill, the
+  Civilopedia page, the notification and the callouts; the training gate as the Gated Units option (the
+  `StrategicResource` column and the engine's minimums, not the Foederati shape: 7f). Single-player.
 - **1.2**: open question: Civ VI-style consumption on a script ledger, shared with the depletion mod.
 
 ## 10. Decisions (the owner, 2026-10-11)
 
 - Hard gate: not in 1.0. The upgrade gate was to ship where a unit qualified; its only candidates, the Samurai tiers 2
-  and 3, would make it a hard training gate for one civilization, so 1.0 leaves it out (7e). Reversed for 1.1 (the
-  owner, 2026-10-12): the gate ships as the Gated Units option, Off by default, with the Samurai tiers gated under
-  Training and upgrade only (7f).
+  and 3, would make it a hard training gate for one civilization, so the first build left it out (7e). Reversed
+  before the release (the owner, 2026-10-12): the gate ships in 1.0.0 as the Gated Units option, Off by default,
+  with the Samurai tiers gated under Training and upgrade only (7f).
 - Independents and city-states are never affected by the mod, not by the penalty and not by the gate (the owner,
   2026-10-12). A gate shape that reached them was ruled out even as a probe (7f).
 - Units only; no building gates.

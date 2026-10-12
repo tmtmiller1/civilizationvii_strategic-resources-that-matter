@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="fr_FR"><Text>Ravitaillement perdu : pas de {1_Resource}. Votre unité {2_Unit} et {3_Others} {3_Others : plural 1?autre unité; other?autres unités;} combattent à {4_Combat} en puissance de combat et sont formées plus lentement jusqu'à ce que vous ayez de nouveau {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="fr_FR"><Text>Unité non ravitaillée</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="fr_FR"><Text>Votre unité {1_Unit} dépend de {2_Resource} et vous n'en avez aucun exemplaire : tant que vous n'en obtenez pas, elle combat à {3_Combat} en puissance de combat et est formée plus lentement. Toute unité qui a besoin d'une ressource stratégique fonctionne ainsi, et la page de la Civilopédia {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} explique la règle en entier.</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="fr_FR"><Text>Unités verrouillées</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="fr_FR"><Text>Si une unité qui dépend d'une ressource stratégique peut être formée ou achetée du tout tant que son propriétaire n'en possède aucun exemplaire. Les unités déjà sur le terrain ne sont jamais verrouillées ; la pénalité des Unités non ravitaillées s'applique à elles comme réglé ci-dessus. Les puissances indépendantes et les cités-États ne sont jamais verrouillées.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="fr_FR"><Text>Désactivée</Text></Replace>

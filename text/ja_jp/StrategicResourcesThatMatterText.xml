@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ja_JP"><Text>補給喪失: {1_Resource}がありません。{1_Resource}を再び入手するまで、{2_Unit}とほか{3_Others}ユニットは戦闘力{4_Combat}、訓練も遅くなります。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="ja_JP"><Text>補給のないユニット</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ja_JP"><Text>この{1_Unit}は{2_Resource}を必要としますが、1つも保有していないため、入手するまで戦闘力{3_Combat}、訓練も遅くなります。戦略資源を必要とするユニットはすべて同じで、詳しいルールはシヴィロペディアの「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」にあります。</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="ja_JP"><Text>ユニットのロック</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="ja_JP"><Text>戦略資源を必要とするユニットを、所有者がその資源を1つも持っていない間、そもそも訓練・購入できるかどうか。すでに戦場にいるユニットがロックされることはなく、上で設定した「補給のないユニット」のペナルティが適用される。独立勢力と都市国家がロックされることはない。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="ja_JP"><Text>オフ</Text></Replace>

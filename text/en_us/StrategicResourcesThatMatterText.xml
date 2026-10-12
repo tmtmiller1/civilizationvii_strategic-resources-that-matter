@@ -236,7 +236,7 @@
         <Row Tag="LOC_SR_CALLOUT_BODY">
             <Text>Your {1_Unit} needs {2_Resource}, and you have none: until you get some, it fights at {3_Combat} and trains slower. Every unit that needs a strategic resource works this way, and the Civilopedia page {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} has the whole rule.</Text>
         </Row>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Row Tag="LOC_SR_SETUP_GATE_NAME">
             <Text>Gated Units</Text>
         </Row>

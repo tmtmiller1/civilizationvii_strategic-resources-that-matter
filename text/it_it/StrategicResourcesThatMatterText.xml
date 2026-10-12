@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="it_IT"><Text>Rifornimento perso: niente {1_Resource}. La tua unità {2_Unit} e {3_Others} {3_Others : plural 1?altra unità; other?altre unità;} combattono con {4_Combat} di forza di combattimento e si addestrano più lentamente finché non riottieni {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="it_IT"><Text>Unità senza rifornimenti</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="it_IT"><Text>La tua unità {1_Unit} dipende da {2_Resource} e non ne hai: finché non ne ottieni almeno una copia, combatte con {3_Combat} di forza di combattimento e si addestra più lentamente. Funziona così per ogni unità che richiede una risorsa strategica, e la pagina della Civilopedia {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} spiega la regola per intero.</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="it_IT"><Text>Unità bloccate</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="it_IT"><Text>Se un'unità che dipende da una risorsa strategica possa essere addestrata o acquistata affatto finché il suo proprietario non ne possiede alcuna copia. Le unità già sul campo non vengono mai bloccate; a loro si applica la penalità delle Unità senza rifornimenti come impostata sopra. Le potenze indipendenti e le città-stato non vengono mai bloccate.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="it_IT"><Text>Disattivata</Text></Replace>

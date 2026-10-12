@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="de_DE"><Text>Versorgung verloren: ohne {1_Resource}. Deine Einheit {2_Unit} und {3_Others} {3_Others : plural 1?weitere Einheit; other?weitere Einheiten;} kämpfen mit {4_Combat} Kampfstärke und werden langsamer ausgebildet, bis du wieder {1_Resource} hast.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="de_DE"><Text>Unversorgte Einheit</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="de_DE"><Text>Deine Einheit {1_Unit} ist auf {2_Resource} angewiesen, und du hast nichts davon: Solange das so bleibt, kämpft sie mit {3_Combat} Kampfstärke und wird langsamer ausgebildet. So geht es jeder Einheit, die eine strategische Ressource braucht, und die Zivilopädie-Seite {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} erklärt die ganze Regel.</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="de_DE"><Text>Gesperrte Einheiten</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="de_DE"><Text>Ob eine Einheit, die eine strategische Ressource braucht, überhaupt ausgebildet oder gekauft werden kann, solange ihr Besitzer keine Einheit davon hat. Einheiten, die schon im Feld stehen, werden nie gesperrt; für sie gilt der Malus für Unversorgte Einheiten wie oben eingestellt. Unabhängige Mächte und Stadtstaaten werden nie gesperrt.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="de_DE"><Text>Aus</Text></Replace>

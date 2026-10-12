@@ -448,7 +448,7 @@ under the option's data groups; no grant, no `TraitType` or `CanTrain` change, n
 groups as the 1.0 level rows already do (phase 12 watched a level's own line). Each lab was stopped, its run backup
 deleted and the probe removed; Homo Ludens was switched on again after games 6 and 7.
 
-### The 1.1.0 build
+### The gate build
 
 Lab games on 2026-10-12 with the build deployed (`scripts/deploy.mjs`), seed 4242, one game per age and option value,
 Homo Ludens off unless a row says otherwise, the Multiplayer Toolkit off for each run and on again after. Readings as

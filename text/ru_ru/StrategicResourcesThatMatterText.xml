@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ru_RU"><Text>Снабжение потеряно: нет ресурса «{1_Resource}». Пока вы снова не получите ресурс «{1_Resource}», ваш отряд «{2_Unit}» и другие отряды (ещё: {3_Others}) получают {4_Combat} к боевой мощи и обучаются дольше.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="ru_RU"><Text>Отряд без снабжения</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ru_RU"><Text>Вашему отряду «{1_Unit}» нужен ресурс «{2_Resource}», а у вас его нет: пока вы его не получите, отряд получает {3_Combat} к боевой мощи и обучается дольше. Так устроен каждый отряд, которому нужен стратегический ресурс, а всё правило описано на странице Цивилопедии «{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}».</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="ru_RU"><Text>Заблокированные отряды</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="ru_RU"><Text>Можно ли вообще обучить или купить отряд, которому нужен стратегический ресурс, пока у его владельца нет ни одной единицы этого ресурса. Отряды, уже стоящие в поле, никогда не блокируются; к ним применяется штраф «Отряды без снабжения», как задано выше. Независимые державы и города-государства никогда не блокируются.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="ru_RU"><Text>Выкл.</Text></Replace>

@@ -81,7 +81,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="zh_Hant_HK"><Text>補給喪失：沒有{1_Resource}。在重新獲得{1_Resource}之前，你的{2_Unit}和其他{3_Others}個單位戰鬥力{4_Combat}，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="zh_Hant_HK"><Text>無補給單位</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hant_HK"><Text>你的{1_Unit}需要{2_Resource}，而你一份都沒有：在獲得之前，它戰鬥力{3_Combat}，訓練變慢。每個需要戰略資源的單位都是如此，完整規則見文明百科頁面「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」。</Text></Replace>
-        <!-- The hard gate (1.1) -->
+        <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="zh_Hant_HK"><Text>單位鎖定</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="zh_Hant_HK"><Text>需要戰略資源的單位，在其擁有者一份該資源都沒有時，是否根本無法訓練或購買。已在戰場上的單位永遠不會被鎖定；它們按上面設定的無補給單位懲罰處理。獨立勢力和城邦永遠不會被鎖定。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="zh_Hant_HK"><Text>關閉</Text></Replace>
