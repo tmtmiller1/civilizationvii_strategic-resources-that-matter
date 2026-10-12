@@ -79,5 +79,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="fr_FR"><Text>Ravitaillement perdu : pas de {1_Resource}. Les unités qui en ont besoin combattent à {2_Combat} en puissance de combat et sont formées plus lentement jusqu'à ce que vous ayez de nouveau {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="fr_FR"><Text>Ravitaillement perdu : pas de {1_Resource}. Votre unité {2_Unit} combat à {3_Combat} en puissance de combat et est formée plus lentement jusqu'à ce que vous ayez de nouveau {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="fr_FR"><Text>Ravitaillement perdu : pas de {1_Resource}. Votre unité {2_Unit} et {3_Others} {3_Others : plural 1?autre unité; other?autres unités;} combattent à {4_Combat} en puissance de combat et sont formées plus lentement jusqu'à ce que vous ayez de nouveau {1_Resource}.</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="fr_FR"><Text>Unité non ravitaillée</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="fr_FR"><Text>Votre unité {1_Unit} dépend de {2_Resource} et vous n'en avez aucun exemplaire : tant que vous n'en obtenez pas, elle combat à {3_Combat} en puissance de combat et est formée plus lentement. Toute unité qui a besoin d'une ressource stratégique fonctionne ainsi, et la page de la Civilopédia {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} explique la règle en entier.</Text></Replace>
     </LocalizedText>
 </Database>

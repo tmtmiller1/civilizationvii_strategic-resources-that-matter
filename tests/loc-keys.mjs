@@ -9,8 +9,12 @@ import { listFiles, rel, ROOT, stripComments } from "./_fs-helpers.mjs";
 // base-game tag listed below. A tag that is neither shows as the raw "LOC_..." string in game. tests/i18n.mjs then
 // carries every en_us tag into the other languages.
 
-/** Base-game tags the mod uses without defining: the module name, and the gated resources' names (preview lines). */
-const BASE_GAME_KEYS = new Set(["LOC_MODULE_BASE_STANDARD_NAME",
+/**
+ * Base-game tags the mod uses without defining: the module name, the gated resources' names (preview lines), and
+ * the tutorial callout's two buttons, the game's own.
+ */
+const BASE_GAME_KEYS = new Set(["LOC_MODULE_BASE_STANDARD_NAME", "LOC_TUTORIAL_CALLOUT_CLOSE",
+  "LOC_TUTORIAL_CIVILOPEDIA_TELL_ME_MORE",
   ...AGES.flatMap(gatedResources).map(resourceNameTag)]);
 
 const defined = new Set(

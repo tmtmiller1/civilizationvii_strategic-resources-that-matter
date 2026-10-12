@@ -79,5 +79,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="de_DE"><Text>Versorgung verloren: ohne {1_Resource}. Einheiten, die darauf angewiesen sind, kämpfen mit {2_Combat} Kampfstärke und werden langsamer ausgebildet, bis du wieder {1_Resource} hast.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="de_DE"><Text>Versorgung verloren: ohne {1_Resource}. Deine Einheit {2_Unit} kämpft mit {3_Combat} Kampfstärke und wird langsamer ausgebildet, bis du wieder {1_Resource} hast.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="de_DE"><Text>Versorgung verloren: ohne {1_Resource}. Deine Einheit {2_Unit} und {3_Others} {3_Others : plural 1?weitere Einheit; other?weitere Einheiten;} kämpfen mit {4_Combat} Kampfstärke und werden langsamer ausgebildet, bis du wieder {1_Resource} hast.</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="de_DE"><Text>Unversorgte Einheit</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="de_DE"><Text>Deine Einheit {1_Unit} ist auf {2_Resource} angewiesen, und du hast nichts davon: Bis du eine Einheit davon bekommst, kämpft sie mit {3_Combat} Kampfstärke und wird langsamer ausgebildet. So geht es jeder Einheit, die eine strategische Ressource braucht, und die Zivilopädie-Seite {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} erklärt die ganze Regel.</Text></Replace>
     </LocalizedText>
 </Database>

@@ -79,5 +79,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="ko_KR"><Text>보급 상실: {1_Resource} 없음. {1_Resource}을(를) 다시 얻을 때까지 이를 필요로 하는 유닛은 전투력 {2_Combat}, 훈련이 느려집니다.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="ko_KR"><Text>보급 상실: {1_Resource} 없음. {1_Resource}을(를) 다시 얻을 때까지 {2_Unit}의 전투력 {3_Combat}, 훈련이 느려집니다.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ko_KR"><Text>보급 상실: {1_Resource} 없음. {1_Resource}을(를) 다시 얻을 때까지 {2_Unit} 외 {3_Others}개 유닛의 전투력 {4_Combat}, 훈련이 느려집니다.</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="ko_KR"><Text>보급 없는 유닛</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ko_KR"><Text>이 {1_Unit}에는 {2_Resource}이(가) 필요하지만 하나도 없으므로, 얻을 때까지 전투력 {3_Combat}, 훈련이 느려집니다. 전략 자원이 필요한 모든 유닛이 이와 같으며, 전체 규칙은 문명 백과사전의 "{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}" 페이지에 있습니다.</Text></Replace>
     </LocalizedText>
 </Database>

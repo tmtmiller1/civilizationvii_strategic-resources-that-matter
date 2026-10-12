@@ -230,5 +230,11 @@
         <Row Tag="LOC_SR_NOTIFY_LOST_MANY">
             <Text>Supply lost: no {1_Resource}. Your {2_Unit} and {3_Others} other {3_Others : plural 1?unit; other?units;} fight at {4_Combat} and train slower until you get {1_Resource} back.</Text>
         </Row>
+        <Row Tag="LOC_SR_CALLOUT_TITLE">
+            <Text>Unsupplied unit</Text>
+        </Row>
+        <Row Tag="LOC_SR_CALLOUT_BODY">
+            <Text>Your {1_Unit} draws on {2_Resource}, and you hold none: until you get a copy, it fights at {3_Combat} and trains slower. Every unit that needs a strategic resource works this way, and the Civilopedia page {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} has the whole rule.</Text>
+        </Row>
     </EnglishText>
 </Database>

@@ -79,5 +79,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="es_ES"><Text>Suministro perdido: sin {1_Resource}. Las unidades que lo necesitan combaten con {2_Combat} de fuerza de combate y se entrenan más despacio hasta que vuelvas a tener {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="es_ES"><Text>Suministro perdido: sin {1_Resource}. Tu unidad {2_Unit} combate con {3_Combat} de fuerza de combate y se entrena más despacio hasta que vuelvas a tener {1_Resource}.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="es_ES"><Text>Suministro perdido: sin {1_Resource}. Tu unidad {2_Unit} y {3_Others} {3_Others : plural 1?unidad más; other?unidades más;} combaten con {4_Combat} de fuerza de combate y se entrenan más despacio hasta que vuelvas a tener {1_Resource}.</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="es_ES"><Text>Unidad sin suministro</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="es_ES"><Text>Tu unidad {1_Unit} depende de {2_Resource} y no tienes nada: hasta que lo consigas, combate con {3_Combat} de fuerza de combate y se entrena más despacio. Así funciona toda unidad que necesita un recurso estratégico, y la página de la Civilopedia {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} explica la regla completa.</Text></Replace>
     </LocalizedText>
 </Database>

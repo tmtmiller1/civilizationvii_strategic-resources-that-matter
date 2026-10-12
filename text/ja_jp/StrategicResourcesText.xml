@@ -79,5 +79,7 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_NONE" Language="ja_JP"><Text>補給喪失: {1_Resource}がありません。{1_Resource}を再び入手するまで、これを必要とするユニットは戦闘力{2_Combat}、訓練も遅くなります。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="ja_JP"><Text>補給喪失: {1_Resource}がありません。{1_Resource}を再び入手するまで、{2_Unit}は戦闘力{3_Combat}、訓練も遅くなります。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="ja_JP"><Text>補給喪失: {1_Resource}がありません。{1_Resource}を再び入手するまで、{2_Unit}とほか{3_Others}ユニットは戦闘力{4_Combat}、訓練も遅くなります。</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="ja_JP"><Text>補給のないユニット</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ja_JP"><Text>この{1_Unit}は{2_Resource}を必要としますが、1つも保有していないため、入手するまで戦闘力{3_Combat}、訓練も遅くなります。戦略資源を必要とするユニットはすべて同じで、詳しいルールはシヴィロペディアの「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」にあります。</Text></Replace>
     </LocalizedText>
 </Database>
