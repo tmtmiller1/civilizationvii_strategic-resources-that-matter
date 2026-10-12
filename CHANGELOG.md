@@ -12,10 +12,10 @@ Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs 
 - Unsupplied units. A unit that draws on a strategic resource its owner holds no copy of fights weaker and trains
   slower: -3 Combat Strength and a third less Production toward it by default. One copy lifts the penalty, and the
   game's own +1 per copy applies as before. Melee strength always; ranged and bombard strength only on units that have
-  them. Cavalry need Horses; infantry from the second tier need Iron; Exploration siege and ships of the line need
-  Niter; Modern artillery Niter, armour and battleships Oil, light warships Coal, aircraft Rubber. Unique units need
-  what the unit they replace needs. Modern infantry need nothing. A copy that reaches a player over a trade route
-  counts the same as a mined one, from the turn the route lands.
+  them. Cavalry need Horses; infantry from the second tier need Iron; Exploration siege and heavy warships from the
+  second tier need Niter; Modern artillery Niter, armour and battleships Oil, light warships Coal, aircraft Rubber.
+  Unique units need what the unit they replace needs. Modern infantry need nothing. A copy that reaches a player over
+  a trade route counts the same as a mined one, from the turn the route lands.
 - Losing a resource hurts. The game notices a resource arriving but not one going away; the mod has it check every
   player again at the start of each turn, so a resource lost to a raid or a lost settlement brings the penalty back a
   turn later, for the AI players too.
@@ -25,6 +25,11 @@ Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs 
   Past Six (Off, On; On by default).
 - The unit panel says when a unit is unsupplied, for example "Unsupplied: no Iron (-3 Combat Strength, slower to
   train)".
+- The combat preview names the penalty as a line of its own, for both sides, for example "-3 Unsupplied: no Niter",
+  and the strength past six copies as one line beside the game's own, for example "+1 Niter: 8 or more copies".
+- A Civilopedia page under Game Concepts, Combat: the setup values, what counts as a copy, losing one, past six
+  copies, and which units need what. Each unit that needs a resource says so on its own page, with the penalty the
+  game was set up with.
 - Text in all twelve of the game's languages.
 - Carries the Tower Settings Keeper, so every mod's settings survive a restart.
 

@@ -1,6 +1,6 @@
 # Compatibility with other mods
 
-Last reviewed 2026-10-11 against Strategic Resources That Matter 1.0.0 on Civilization VII 1.5.0.
+Last reviewed 2026-10-12 against Strategic Resources That Matter 1.0.0 on Civilization VII 1.5.0.
 
 This file records what the mod touches, which kinds of mod touch the same things, and what a player would see when
 both are enabled. Most of it comes from reading code: the 1,251 community mods in the reference corpus, the mods
@@ -21,6 +21,8 @@ Everything a conflict could come through. If another mod touches none of these, 
 | Database, gameplay (game scope, LoadOrder 200 to 202) | Adds `Tags` rows (`SR_SUPPLY_`, `SR_RANGED_`, `SR_BOMBARD_`, `SR_CURVE_RANGED_`, `SR_CURVE_BOMBARD_<NAME>`), `TypeTags` rows putting them on base-game and DLC units, `Modifiers` (`SR_` ids) and `GameModifiers` rows. Changes no base row; deletes nothing. |
 | Units' combat strength | `EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH` on major players' gated units, per strength type (melee, ranged, bombard), only on units that have that strength. |
 | Cities' unit production | `EFFECT_CITY_ADJUST_UNIT_PRODUCTION` with the mod's own tag as `UnitClass`. |
+| Combat preview | One `EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER` of 0 per penalty and per curve step on `COLLECTION_PLAYER_COMBAT` (`SR_PREVIEW_` ids), each with a `Preview` string, so the preview lists the line. They change no strength. |
+| Civilopedia (game scope) | Adds a page in Game Concepts (`CivilopediaPages` `SR_STRATEGIC_RESOURCES`, group `COMBAT`, its own layout `SR_CONCEPT` and chapters, two `CivilopediaPageSearchTerms`), one chapter `SR_SUPPLY` on the base `Unit` layout, and `CivilopediaPageChapterParagraphs` rows for that chapter on gated units' pages. Changes no base row. |
 | Players' off-map resources | Gains and drops one `RESOURCE_CRABS` per major player at every turn start (`gainOffMapResource`, `removeOffMapResource`). |
 | Unit panel | `Controls.decorate("unit-actions")`: wraps the panel instance's `setupUnitInfo` and adds one element under `.unit-actions__stats_container`. |
 | `localStorage` | The Tower Settings Keeper (shared with other Tower mods; one copy runs). The mod stores nothing itself. |
@@ -41,6 +43,8 @@ Everything a conflict could come through. If another mod touches none of these, 
 | Rebalances strategic resources' placement or yields | Works; the penalty reads only whether a copy is held | Read from code |
 | Changes trade routes (range, capacity, duration, what a route carries) | An imported copy is an ordinary entry in the player's resource list and supplies units like a mined one; such a mod changes which routes exist, not how the penalty reads them | Watched (`p11-import-*`: imports count) |
 | AI mods that check `Units.StrategicResource` | Unaffected: the mod sets no `StrategicResource` | Read from code |
+| Changes the combat preview panel | The mod's lines are ordinary `PreviewTextModifier` entries; a panel that prints that list prints them | Read from code |
+| Adds Civilopedia pages, or chapters to unit pages | Both show; the mod's page and chapter have their own ids, and its paragraph rows touch only its own chapter | Read from code |
 | Tower's Demographics, Canals, Emigration, Readable Tooltips and the others | No interaction found; Readable Tooltips and the usual development set were on in every test game | Tested (the 22-mod set) |
 
 ## Findings
@@ -89,7 +93,23 @@ once and the penalty follows one turn later. A route does not end on its own (on
 unused 20-turn duration parameter), so an import stays until a war or a change at the source tile; a plunder by an
 enemy unit could not be produced from script and has not been watched.
 
-### 5. Multiplayer
+### 5. Mods that change the combat preview or the Civilopedia
+
+Status: read from code; the mod's own lines and pages watched 2026-10-12 with the usual mod set on
+(`verification-runs.md`, phase 12).
+
+The preview lines are combat-time modifiers of 0 with a `Preview` string, so they arrive in the engine's
+`PreviewTextModifier` list like any tradition's or ability's line. A mod that restyles or replaces
+`panel-unit-combat-preview` and still prints that list shows them; one that prints only the strength numbers drops
+them, and the numbers are unchanged either way.
+
+In the Civilopedia the mod adds its own page, layout and chapter and changes no base row. The unit chapter is drawn
+only on pages that have a paragraph row for it, and the mod writes rows for its own chapter only: a paragraph row in a
+chapter replaces that chapter's text on the page, so a mod that wrote rows into `SR_SUPPLY` would replace the mod's
+line, and the mod never writes rows into another chapter. The reference corpus was not searched for mods that
+add unit-page chapters.
+
+### 6. Multiplayer
 
 Not a mod conflict, but the same surface: in any multiplayer game (internet, LAN, hotseat) the turn-start re-check is
 off and says so once in `UI.log` (tested in hotseat). The penalty and the curve still load, so a lost resource keeps its

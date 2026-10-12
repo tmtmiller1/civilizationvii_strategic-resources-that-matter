@@ -25,8 +25,16 @@ going without:
 - **More than six copies:** +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 copies, on the same units the
   game's per-copy bonus covers.
 
-When you select a unit that is short of its resource, the unit panel says so under its stats, in your language:
-"Unsupplied: no Iron (-3 Combat Strength, slower to train)".
+The game tells you why, in your language:
+
+- **Unit panel:** when you select a unit that is short of its resource, a line under its stats says so: "Unsupplied:
+  no Iron (-3 Combat Strength, slower to train)".
+- **Combat preview:** the penalty is a line of its own beside the game's modifiers, for your unit and for the enemy's:
+  "-3 Unsupplied: no Niter". Past six copies the extra strength shows as one line beside the game's own, such as "+1
+  Niter: 8 or more copies".
+- **Civilopedia:** a page under Game Concepts, Combat, "Strategic Resources That Matter", with the rules and the table
+  below; and on each gated unit's page a line such as "Needs Iron: without a copy, -3 Combat Strength and slower to
+  train", with the penalty your game was set up with.
 
 ## Which units need what
 
@@ -37,10 +45,10 @@ A civilization's unique unit needs what the unit it replaces needs.
 | Antiquity | Cavalry: Chariot, Horseman and their unique versions | Horses |
 | Antiquity | Infantry from the second tier: Spearman, Phalanx, Legion, Immortal and the others | Iron |
 | Exploration | Cavalry: Courser, Knight, Lancer and their unique versions | Horses |
-| Exploration | Infantry from the second tier: Man-at-Arms, Pikeman and their unique versions | Iron |
+| Exploration | Infantry from the second tier: Man-At-Arms, Pikeman and their unique versions | Iron |
 | Exploration | Siege: Catapult, Trebuchet, Bombard, Hwacha | Niter |
-| Exploration | Ships of the line: Carrack, Galleon and their unique versions | Niter |
-| Modern | Artillery: Field Cannon, Field Gun, AT Gun, Mortar, Heavy Artillery, Assault Gun | Niter |
+| Exploration | Heavy warships from the second tier: Carrack, Galleon and their unique versions | Niter |
+| Modern | Artillery: Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun | Niter |
 | Modern | Armour: Landship, Tank and their unique versions | Oil |
 | Modern | Battleships: Dreadnought, Battleship and their unique versions | Oil |
 | Modern | Light warships: Ironclad, Cruiser, Destroyer, Barbary Corsair | Coal |
@@ -49,7 +57,7 @@ A civilization's unique unit needs what the unit it replaces needs.
 A copy that reaches you over a trade route counts the same as one you mine yourself, from the turn the route lands.
 
 Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the Cog
-and the Frigate, the Cuirassier, the Submarine, and Modern infantry, so every player can always defend.
+and the Ship of the Line, the Cuirassier, the Submarine, and Modern infantry, so every player can always defend.
 
 ## Losing a resource
 

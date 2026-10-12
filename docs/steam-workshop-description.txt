@@ -9,7 +9,7 @@ Nothing is forbidden: every unit can still be trained and upgraded. Going withou
 [*][b]No copy of the resource:[/b] less Combat Strength (melee, and ranged and bombard where the unit has them) and less Production toward the unit. Default: -3 and a third less Production, so the unit takes half as long again to train.
 [*][b]One copy or more:[/b] no penalty; the game's +1 per copy as before, up to six.
 [*][b]Past six copies:[/b] +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 copies.
-[*]The unit panel says when a unit is unsupplied, in your language.
+[*]The game says why, in your language: a line on the unit panel, a line of its own in the combat preview ("-3 Unsupplied: no Niter", "+1 Niter: 8 or more copies"), and a Civilopedia page under Game Concepts, with a line on each unit's page that needs a resource.
 [/list]
 
 [h2]Which units need what[/h2]
@@ -19,7 +19,7 @@ Nothing is forbidden: every unit can still be trained and upgraded. Going withou
 [tr][td]Antiquity[/td][td]Infantry from the second tier (Spearman, Phalanx, Legion...)[/td][td]Iron[/td][/tr]
 [tr][td]Exploration[/td][td]Cavalry[/td][td]Horses[/td][/tr]
 [tr][td]Exploration[/td][td]Infantry from the second tier[/td][td]Iron[/td][/tr]
-[tr][td]Exploration[/td][td]Siege, and ships of the line (Carrack, Galleon)[/td][td]Niter[/td][/tr]
+[tr][td]Exploration[/td][td]Siege, and heavy warships from the second tier (Carrack, Galleon)[/td][td]Niter[/td][/tr]
 [tr][td]Modern[/td][td]Artillery[/td][td]Niter[/td][/tr]
 [tr][td]Modern[/td][td]Armour and battleships[/td][td]Oil[/td][/tr]
 [tr][td]Modern[/td][td]Light warships[/td][td]Coal[/td][/tr]
