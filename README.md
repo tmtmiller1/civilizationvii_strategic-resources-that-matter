@@ -42,6 +42,13 @@ The game tells you why, in your language:
 - **Civilopedia:** a page under Game Concepts, Combat, "Strategic Resources That Matter", with the rules and the table
   below; and on each gated unit's page a line such as "Needs Iron: without a copy, -3 Combat Strength and slower to
   train", with the penalty your game was set up with.
+- **Notification:** when you lose your last copy of a resource your units need, one notification at the start of the
+  next turn: "Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower until you get
+  Niter back." Once per loss; it ends with the turn, never holds the turn up, and a right-click dismisses it. Two
+  losses in one turn share one notification.
+- **The first time:** the first time you select one of your units while it is short of its resource, an advisor
+  callout explains the rule in two sentences, and "Tell me more" opens the Civilopedia page. It shows once, not in
+  every game, and only with tutorials or advisor warnings on in the game's options.
 
 ## Which units need what
 
@@ -73,8 +80,8 @@ at once. It does not notice one going away. The mod makes it check every player 
 a resource lost by pillage, by a tile changing hands or by anything else brings the penalty back one turn later, for
 you and for the AI players alike. A trade route ended by a war takes its copies with it at once; an import that
 dries up at the other end is gone from your count at once and the penalty follows one turn later. A player who still
-holds a copy keeps the bonus. The same check keeps the strength
-past six copies honest when the count falls.
+holds a copy keeps the bonus. The same check keeps the strength past six copies honest when the count falls, and
+raises the notification above when your last copy goes.
 
 ## Game setup options
 
@@ -101,10 +108,13 @@ with no Iron kept building Warriors where, with Iron, it built Legions.
   line into the text the game's description component draws; neither replaces a screen or a tooltip. Tested with
   Readable Tooltips, QD Improved Plot Tooltip, Building Location Advisor, City Hall, Better Commerce Screen UI and Mod
   Commons.
+- The notification is an ordinary game notification of the mod's own type, and the callout an item in the game's own
+  tutorial manager, so mods that restyle the notification train or the tutorials show them as they show the game's
+  (tested with Mav's UI Overhaul, Nasuellia Popups and Nasuellia Diplomacy Screens).
 - Mods that rewrite the game's per-copy resource bonus leave the penalty alone; the curve past six copies follows the
   base game's unit classes (read from code, not tested).
 - Ships the Tower Settings Keeper, which runs first and keeps every mod's settings readable after a restart. The mod
-  itself stores no settings.
+  itself stores one flag: whether the first-time callout has shown.
 
 More detail, by kind of mod: [docs/compatibility.md](docs/compatibility.md).
 
@@ -125,6 +135,9 @@ Civilization VII\Mods\` (Windows), and enable it under Add-ons.
   switches it off and says so in the game's log. There, a lost resource brings its penalty back only once that player
   gains some resource.
 - A loss shows one turn later, not at once.
+- The first-time callout follows the game's options: with tutorials and advisor warnings both off it never shows.
+  The game marks it seen in that save anyway, so turning warnings on later shows it in the next new game. In
+  multiplayer neither the notification nor the callout shows.
 - The curve stops at 20 copies.
 
 ## How it works
@@ -136,12 +149,15 @@ Civilization VII\Mods\` (Windows), and enable it under Add-ons.
 - `ui/sr-recheck.js`: at the start of every turn, gains and drops one off-map copy of a resource nothing else reads,
   for every major player. Gaining a resource is what makes the game re-check a player's requirements at the next
   turn roll.
+- `ui/sr-supply-lost.js`: the notification, raised from the same turn start for the local player when a resource
+  held at the last turn start is gone. The notification type and its icon are in `data/sr-notification*.xml`.
+- `ui/sr-callout.js`: the first-time callout, an item in the game's tutorial manager at the advisor-warning level.
 - `ui/sr-unit-panel.js`: the line on the unit panel.
 - `ui/sr-production-line.js`: the line on a production item, in the game's `ProductionModInfo` slot.
 - `ui/sr-resource-line.js`: the line in a strategic resource's description, added where the game's `Stylize`
   component draws that text.
 - `ui/sr-registry.js`, `ui/sr-player-supply.js`, `ui/sr-supply.js`: the shared registry wrapper, engine reads and pure
-  rules the three lines use, so they never disagree.
+  rules the lines, the notification and the callout use, so they never disagree.
 - `ui/settings-keeper.js`: the Tower Settings Keeper, unchanged.
 
 The evidence for each of these, run by run, is in [docs/verification-runs.md](docs/verification-runs.md).

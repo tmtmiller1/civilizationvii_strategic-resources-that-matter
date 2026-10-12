@@ -1,7 +1,7 @@
 # Compatibility with other mods
 
 Last reviewed 2026-10-12 against Strategic Resources That Matter 1.0.0 on Civilization VII 1.5.0 (production and
-resource lines added the same day).
+resource lines, the lost-supply notification and the first-time callout added the same day).
 
 This file records what the mod touches, which kinds of mod touch the same things, and what a player would see when
 both are enabled. Most of it comes from reading code: the 1,251 community mods in the reference corpus, the mods
@@ -28,7 +28,9 @@ Everything a conflict could come through. If another mod touches none of these, 
 | Unit panel | `Controls.decorate("unit-actions")`: wraps the panel instance's `setupUnitInfo` and adds one element under `.unit-actions__stats_container`. |
 | Production list items | `ComponentRegistry` entry `ProductionModInfo` (the game's empty slot for mods on each production item): registered again at the priority already there, rendering the previous factory first, then one element of its own. |
 | Text drawn by `Stylize` | `ComponentRegistry` entry `Stylize`: registered again at the priority already there, passing every prop through; only when `text` is a strategic resource's `Tooltip` key is the text composed with one line added. |
-| `localStorage` | The Tower Settings Keeper (shared with other Tower mods; one copy runs). The mod stores nothing itself. |
+| Notifications | Adds one notification type, `NOTIFICATION_SR_SUPPLY_LOST` (`Types`, `Notifications`, `NotificationSounds` rows, game scope), and an `IconDefinitions` row for it pointing at the game's `ntf_trade_res_lost` image (`UpdateIcons`). Raises it for the local player with `Game.Notifications.send` at a turn start after a loss. Registers no handler: the train's default handler draws it. |
+| Tutorial manager | Adds one item, `tower_sr_unsupplied_first`, to the game's `TutorialManager` (`add`, then `process("tower strategic resources items")`) at level 2, raised on `UnitSelectionChanged`. Adds no item bank of the game's and changes none of its items. |
+| `localStorage` | The Tower Settings Keeper (shared with other Tower mods; one copy runs). The mod stores one key itself, `tower-strategic-resources.unsuppliedCalloutSeen`, once the callout has shown. |
 | Globals | None. |
 
 ## Summary
@@ -52,6 +54,9 @@ Everything a conflict could come through. If another mod touches none of these, 
 | AI mods that check `Units.StrategicResource` | Unaffected: the mod sets no `StrategicResource` | Read from code |
 | Changes the combat preview panel | The mod's lines are ordinary `PreviewTextModifier` entries; a panel that prints that list prints them | Read from code |
 | Adds Civilopedia pages, or chapters to unit pages | Both show; the mod's page and chapter have their own ids, and its paragraph rows touch only its own chapter | Read from code |
+| Replaces the notification train's panel or model (Nasuellia Popups, Nasuellia Diplomacy Screens), or adds handlers for its own types (Mav's UI Overhaul) | The lost-supply notification shows and dismisses as before: it is an ordinary `Game.Notifications` entry drawn by the default handler | Tested (all three on in every phase 14 game) |
+| Raises its own notifications | Each type is separate; the engine keeps one live notification per type, so another mod's notifications do not hold this one back | Read from code, with the engine fact watched |
+| Turns tutorials off, replaces the tutorial manager, or clears tutorial state | The callout follows the player's setting through the game's manager; a mod that replaces the manager's file without `add` and `process` drops the callout and nothing else | Read from code |
 | Tower's Demographics, Canals, Emigration, Readable Tooltips and the others | No interaction found; Readable Tooltips and the usual development set were on in every test game | Tested (the 22-mod set) |
 
 ## Findings
@@ -120,7 +125,8 @@ add unit-page chapters.
 
 Not a mod conflict, but the same surface: in any multiplayer game (internet, LAN, hotseat) the turn-start re-check is
 off and says so once in `UI.log` (tested in hotseat). The penalty and the curve still load, so a lost resource keeps its
-bonus until that player gains a resource.
+bonus until that player gains a resource. The lost-supply notification rides on the re-check and is off with it (tested in hotseat), and
+the game's tutorial manager drops the callout in any multiplayer game (read from code).
 
 ### 7. Mods that change the production list or the resource tooltips
 
@@ -147,3 +153,19 @@ of it; if Mod Commons is also on, Mod Commons decides the order (read from code,
 Under Mod Commons the registry is shimmed: `factory()` returns Mod Commons' own renderer, never the registered
 function. The mod's first build re-wrapped on every read there and drew the production line eight times; it now
 registers once and compares what the slot returns before and after (watched: one line per item, Mod Commons on).
+
+### 8. Mods that change the notification train or the tutorials
+
+Status: tested with the three on the development machine; the rest read from code. The lost-supply notification is a
+`Game.Notifications` entry of the mod's own type. The train draws every type it has no handler for with the game's
+default handler (look at the location, dismiss on right-click), so a mod that rewrites the train's panel or model
+keeps showing it as long as it keeps that path. Nasuellia Popups replaces `panel-notification-train.js` and adds its
+own entries beside the game's; Nasuellia Diplomacy Screens replaces `model-notification-train.js`; Mav's UI Overhaul
+registers handlers for a few base types. All three were on in the phase 14 games, and the notification showed, read
+its text as its tooltip and dismissed by right-click. A train that draws only types it knows would leave it out; the
+penalty is unchanged either way.
+
+The callout is an item in the game's tutorial manager. It shows only when the player has tutorials or advisor warnings
+on, at most once per profile. A mod that turns tutorials off or replaces the manager with one that ignores added items
+leaves the callout out and changes nothing else. One that clears the manager's saved state does not bring it back: the
+mod keeps its own "seen" flag.
