@@ -3,9 +3,11 @@
 // unit is short, the game's neutral pill otherwise. The item's disabled state dims the whole item to 0.8, which the
 // red still reads through.
 
-// Wider side padding than the game's small pill, so the text clears the rounded ends.
-const PILL_CLASSES = ["font-body", "text-sm", "pointer-events-none", "min-h-7", "px-3", "flex", "items-center",
-  "self-start", "rounded-full", "leading-normal", "whitespace-nowrap"];
+// Wider side padding than the game's small pill, so the text clears the rounded ends. The compact form keeps the
+// unit panel's stats block at its height, so the unit's name stays inside the panel's frame.
+const PILL_CLASSES = ["font-body", "text-sm", "pointer-events-none", "px-3", "flex", "items-center", "self-start",
+  "rounded-full", "whitespace-nowrap"];
+const SIZE = { regular: ["min-h-7", "leading-normal"], compact: ["min-h-6", "leading-tight"] };
 export const WARNING_CLASS = "sr-pill--warning";
 const PLAIN = { border: "1px solid #53565D", background: "#23252b", color: "#E5D2AC" };
 const WARNING = { border: "1px solid #FF7A66", background: "#A8201A", color: "#FFF3E3" };
@@ -13,13 +15,13 @@ const WARNING = { border: "1px solid #FF7A66", background: "#A8201A", color: "#F
 /**
  * A pill element, or null where the DOM is not there.
  * @param {string} text
- * @param {{ warning?: boolean, className?: string }} [options]
+ * @param {{ warning?: boolean, className?: string, compact?: boolean }} [options]
  * @returns {HTMLElement | null}
  */
-export function statusPill(text, { warning = false, className = "" } = {}) {
+export function statusPill(text, { warning = false, className = "", compact = false } = {}) {
   if (typeof document === "undefined") return null;
   const element = document.createElement("div");
-  element.classList.add(...PILL_CLASSES);
+  element.classList.add(...PILL_CLASSES, ...SIZE[compact ? "compact" : "regular"]);
   if (className) element.classList.add(className);
   element.setAttribute("role", "paragraph");
   stylePill(element, warning);

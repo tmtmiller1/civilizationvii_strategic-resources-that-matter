@@ -9,7 +9,7 @@ import { computeSupplyStatus } from "/tower-strategic-resources-that-matter/ui/s
 import { statusPill } from "/tower-strategic-resources-that-matter/ui/sr-pill.js";
 
 const LINE_CLASS = "sr-unsupplied-line";
-const LINE_CLASSES = [LINE_CLASS, "mt-1", "self-center"];
+const LINE_CLASSES = [LINE_CLASS, "self-center"];
 const STATS_SELECTOR = ".unit-actions__stats_container";
 
 /**
@@ -43,7 +43,7 @@ function renderLine(root, text) {
     return;
   }
   if (!line) {
-    line = statusPill(text, { warning: true });
+    line = statusPill(text, { warning: true, compact: true });
     if (!line) return;
     line.classList.add(...LINE_CLASSES);
     host.appendChild(line);
