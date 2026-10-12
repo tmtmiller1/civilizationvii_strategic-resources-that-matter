@@ -95,6 +95,10 @@ Three options in game setup, beside the game's own options such as age length:
 
 Play Now uses the defaults. The options are fixed for the whole game once it starts.
 
+![The three options in Advanced Options](docs/screenshots/setup-options-en.png)
+
+*Advanced Options, Game Settings: the three options sit after the game's own.*
+
 ### Gated Units
 
 With Gated Units on, a unit that needs a strategic resource cannot be trained or bought while you have none of it.
