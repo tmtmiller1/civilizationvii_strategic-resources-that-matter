@@ -69,6 +69,8 @@ try {
   assert.equal(line.classList.contains("hidden"), false);
   assert.ok(line.classList.contains("rounded-full") && line.classList.contains("sr-pill--warning"),
     "the mod's red status pill");
+  assert.ok(line.classList.contains("min-h-6") && !line.classList.contains("mt-1"),
+    "compact, so the stats block keeps its height");
   assert.equal(line.style.background, "#A8201A");
 
   // A later prototype patch still runs: the wrapper looks the method up at call time.
