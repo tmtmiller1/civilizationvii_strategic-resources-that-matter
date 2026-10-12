@@ -367,6 +367,19 @@ Exploration; Harsh loads 16 and 28 in Modern; Off loads only the 14 curve rows a
 wrapper around `setupUnitInfo`, read from the live count, so it shows a loss before the penalty lands. Watched in
 English and German, with Readable Tooltips still the plot tooltip winner.
 
+**What the player is told, and where (watched 2026-10-12, phase 12).** Three places. The unit panel line above. The
+combat preview, for the attacker and the defender: "-3 Unsupplied: no Niter" while the penalty stands, and one curve
+line per step, "+1 Niter: 8 or more copies" beside the game's "+6 Niter Resource". The preview lists combat-time
+modifiers only, so a `Preview` string on the base strength rows (child or attach parent) shows nothing; each line is
+its own `EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER` of 0 on `COLLECTION_PLAYER_COMBAT`, behind the same requirement as the
+change it names (child only), and the text takes the modifier's arguments as parameters (Combat, Copies, Resource), so
+one key per kind of line covers every resource. A curve line is shown from its threshold up to the next, so a unit
+shows one. And the Civilopedia: a page in Game Concepts under Combat (the setup values, what a copy is, losing one,
+past six, the gate table per age), and a chapter on each gated unit's page, "Needs Iron: without a copy, -3 Combat
+Strength and slower to train.", with the game's setup level. That chapter is the mod's own on the `Unit` layout and
+has text only on gated units' pages; a paragraph row in one of the game's chapters would replace its text. Pedia rows
+load in the game scope, as the base game's do.
+
 **AI.** 90 turns of Antiquity, seed 4242, mod on and off: the games stayed identical until turn 61 (no AI had built a
 gated unit), then diverged; at turn 91 Rome had 14 Warriors and no Iron with the mod, 4 Legions with Iron in the
 vanilla game. No crash, no hang, one re-check line per turn. Cost: 16 ms per turn against a noise of 28 ms (one
