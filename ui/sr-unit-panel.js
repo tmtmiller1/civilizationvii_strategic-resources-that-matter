@@ -6,9 +6,10 @@
 import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
 import { computeSupplyStatus } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
+import { statusPill } from "/tower-strategic-resources-that-matter/ui/sr-pill.js";
 
 const LINE_CLASS = "sr-unsupplied-line";
-const LINE_CLASSES = [LINE_CLASS, "font-body", "text-xs", "text-negative-light", "text-center", "mt-1", "px-2"];
+const LINE_CLASSES = [LINE_CLASS, "mt-1", "self-center"];
 const STATS_SELECTOR = ".unit-actions__stats_container";
 
 /**
@@ -42,9 +43,9 @@ function renderLine(root, text) {
     return;
   }
   if (!line) {
-    line = document.createElement("div");
+    line = statusPill(text, { warning: true });
+    if (!line) return;
     line.classList.add(...LINE_CLASSES);
-    line.setAttribute("role", "paragraph");
     host.appendChild(line);
   }
   line.textContent = text;

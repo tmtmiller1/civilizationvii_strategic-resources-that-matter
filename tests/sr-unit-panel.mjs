@@ -67,6 +67,9 @@ try {
   assert.ok(line, "the line is added under the stats");
   assert.equal(line.textContent, "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3");
   assert.equal(line.classList.contains("hidden"), false);
+  assert.ok(line.classList.contains("rounded-full") && line.classList.contains("sr-pill--warning"),
+    "the mod's red status pill");
+  assert.equal(line.style.background, "#A8201A");
 
   // A later prototype patch still runs: the wrapper looks the method up at call time.
   Panel.prototype.setupUnitInfo = function () {

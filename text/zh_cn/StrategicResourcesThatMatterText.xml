@@ -6,7 +6,7 @@
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="zh_Hans_CN"><Text>无补给：没有{1_Resource}（战斗力{2_Combat}，训练变慢）</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="zh_Hans_CN"><Text>需要{1_Resource}。没有时：战斗力{2_Combat}，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="zh_Hans_CN"><Text>需要{1_Resource}（拥有{2_Copies}个）。</Text></Replace>
-        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE_SHORT" Language="zh_Hans_CN"><Text>需要{1_Resource}</Text></Replace>
+        <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE_SHORT" Language="zh_Hans_CN"><Text>无补给：没有{1_Resource}</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD_SHORT" Language="zh_Hans_CN"><Text>{1_Resource}：{2_Copies}个</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES" Language="zh_Hans_CN"><Text>补给单位：{1_Units}。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="zh_Hans_CN"><Text>补给单位：{1_Units}等，另有{2_More}种。</Text></Replace>

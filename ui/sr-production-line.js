@@ -1,7 +1,7 @@
 // Adds one pill to a gated unit's item in the production list: "Needs Niter" with none held, "Niter: 2" with some,
 // and under the hard gate "Locked: no Niter" on the greyed item sr-production-lock.js keeps listed. The pill goes in
 // ProductionModInfo, the empty slot the game renders under each item's name and error line for mods, so the game's
-// own text stays where it is; it is drawn like the game's own "Ageless" pill, tinted red while the unit is short. The
+// own text stays where it is; it is the mod's status pill (sr-pill.js), red while the unit is short. The
 // whole sentence ("Needs Niter. Without it: -3 Combat Strength, slower to train.", "Needs Niter: cannot be trained
 // without it.", "... bought ..." on the purchase list) goes into the item's hover tooltip, under the unit's
 // description. Mods that draw their own production items and render that slot show the pill too.
@@ -9,18 +9,10 @@
 import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
 import { keepWrapped } from "/tower-strategic-resources-that-matter/ui/sr-registry.js";
+import { negative, statusPill } from "/tower-strategic-resources-that-matter/ui/sr-pill.js";
 import { describeProductionCost } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 const LINE_CLASS = "sr-production-line";
-// The game's own pill (ui-next/components/pills.js, small): a rounded box with a thin border.
-const PILL_CLASSES = [LINE_CLASS, "font-body", "text-sm", "pointer-events-none", "min-h-6", "px-1.5", "flex",
-  "items-center", "self-start", "rounded-full", "leading-normal", "whitespace-nowrap"];
-const PILL_BORDER = "1px solid #53565D";
-const PILL_BACKGROUND = "#23252b";
-// The game's military-advisor pill gradient; a light text on it, as the game's pills have.
-const WARNING_BACKGROUND = "linear-gradient(90deg, #461314 0%, #2C0A0B 100%)";
-const WARNING_TEXT = "#F3E9D2";
-const UNSUPPLIED_CLASS = "sr-production-line--unsupplied";
 
 /**
  * The line for the local player's production item, or null when there is nothing to say. `short` is the form for a
@@ -56,19 +48,7 @@ export function describeProductionItem(unitType) {
 export function productionLineElement(unitType) {
   try {
     const line = describeProductionItem(unitType);
-    if (!line) return null;
-    const element = document.createElement("div");
-    element.classList.add(...PILL_CLASSES);
-    element.setAttribute("role", "paragraph");
-    element.style.border = PILL_BORDER;
-    element.style.background = PILL_BACKGROUND;
-    if (line.unsupplied) {
-      element.classList.add(UNSUPPLIED_CLASS);
-      element.style.background = WARNING_BACKGROUND;
-      element.style.color = WARNING_TEXT;
-    }
-    element.textContent = line.short;
-    return element;
+    return line ? statusPill(line.short, { warning: line.unsupplied, className: LINE_CLASS }) : null;
   } catch (e) {
     log.warn("could not draw the production line:", e);
     return null;
@@ -111,7 +91,7 @@ export function withProductionLine(unitType, description, isPurchase) {
   if (!line) return description;
   const base = description ?? GameInfo.Units.lookup(unitType)?.Description ?? "";
   const sentence = isPurchase === true || isPurchase === "true" ? line.buyText ?? line.text : line.text;
-  return `${Locale.compose(base)}[N]${sentence}`;
+  return `${Locale.compose(base)}[N]${line.unsupplied ? negative(sentence) : sentence}`;
 }
 
 /** Set on the props this factory hands down, so a copy of it nested further in draws no second line. */
