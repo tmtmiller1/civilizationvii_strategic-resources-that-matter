@@ -6,7 +6,7 @@
 //                hands-free as in engine-closed.md)
 //   Exploration: the rows loaded, the units carried over, fresh gated units, a gain and a loss re-checked, then turns
 //   Modern:      the same, then finish
-//   MOD=strategic_resources PROBES=strategic_resources/devtools/sr-short-age-probe START_AGE=AGE_ANTIQUITY SEED=4242 \
+//   MOD=strategic_resources_that_matter PROBES=strategic_resources_that_matter/devtools/sr-short-age-probe START_AGE=AGE_ANTIQUITY SEED=4242 \
 //     zsh run-soak.sh <this file> sr-age 3000
 const NAME = "sr-age";
 const PLAN = {

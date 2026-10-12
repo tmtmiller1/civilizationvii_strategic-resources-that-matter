@@ -1,5 +1,5 @@
 // Copies the files that ship into the game's Mods folder (the game runs plain copies, not symlinks).
-//   node scripts/deploy.mjs           replace Mods/strategic-resources with the ship set
+//   node scripts/deploy.mjs           replace Mods/strategic-resources-that-matter with the ship set
 //   node scripts/deploy.mjs --check   exit 1 when the deployed copy is missing or differs
 //   node scripts/deploy.mjs --remove  delete the deployed copy (the mod then loads into no game)
 // Only the ship allow-list is copied (the same set release.sh zips), so a dist/ folder with a second modinfo can
@@ -11,10 +11,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const target = path.join(os.homedir(), "Library/Application Support/Civilization VII/Mods/strategic-resources");
+const target = path.join(os.homedir(),
+  "Library/Application Support/Civilization VII/Mods/strategic-resources-that-matter");
 export const SHIP = [
-  /^strategic-resources\.modinfo$/, /^README\.md$/, /^LICENSE$/, /^CHANGELOG\.md$/,
-  /^ui\/[a-z0-9-]+\.js$/, /^data\/[a-z0-9-]+\.(xml|sql)$/, /^text\/[a-z_]+\/StrategicResourcesText\.xml$/
+  /^strategic-resources-that-matter\.modinfo$/, /^README\.md$/, /^LICENSE$/, /^CHANGELOG\.md$/,
+  /^ui\/[a-z0-9-]+\.js$/, /^data\/[a-z0-9-]+\.(xml|sql)$/, /^text\/[a-z_]+\/StrategicResourcesThatMatterText\.xml$/
 ];
 
 /** @param {string} dir @param {string} [base] @returns {string[]} */

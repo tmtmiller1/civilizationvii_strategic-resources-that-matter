@@ -1,7 +1,7 @@
 // The game reads the panel, production and resource lines share: which units draw on what, the penalty sizes, and
 // a player's copies. The pure work is in sr-supply.js; this file only fetches its inputs from the engine.
 
-import { buildPenaltyIndex, buildSupplyIndex, countCopies } from "/tower-strategic-resources/ui/sr-supply.js";
+import { buildPenaltyIndex, buildSupplyIndex, countCopies } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 /** @type {{ supply: Map<string, string>, penalties: Map<string, import("./sr-supply.js").Penalty> } | null} */
 let indexes = null;

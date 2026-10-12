@@ -2,7 +2,7 @@
 // loaded: a Modern game from Play Now, N turns ended as a player would (OPTS_JSON, default 60), the wall time of each
 // turn, and every 10 turns each AI's military units that draw on a resource and its copies of the four. Run once with
 // the mod and once without on the same seed, and compare:
-//   MOD=strategic_resources START_AGE=AGE_MODERN SEED=4242 OPTS_JSON=60 zsh run-soak.sh sr-ai-game.js sr-ai-on 3000
+//   MOD=strategic_resources_that_matter START_AGE=AGE_MODERN SEED=4242 OPTS_JSON=60 zsh run-soak.sh sr-ai-game.js sr-ai-on 3000
 //   MOD=none START_AGE=AGE_MODERN SEED=4242 OPTS_JSON=60 zsh run-soak.sh sr-ai-game.js sr-ai-off 3000
 const NAME = "sr-ai";
 const TURNS = Number("__OPTS__") || 60;

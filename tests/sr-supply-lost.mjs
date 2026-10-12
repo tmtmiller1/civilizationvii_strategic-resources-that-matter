@@ -60,7 +60,7 @@ Object.defineProperty(globalThis, "Game", {
 
 try {
   const { checkSupplyLost, sendSupplyLost, startSupplyLost, NOTIFICATION_TYPE } =
-    await import("/tower-strategic-resources/ui/sr-supply-lost.js");
+    await import("/tower-strategic-resources-that-matter/ui/sr-supply-lost.js");
   /** One turn start: TurnBegin, then the local player's PlayerTurnActivated. */
   const turnStart = () => {
     checkSupplyLost();

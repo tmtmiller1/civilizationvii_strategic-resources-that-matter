@@ -2,7 +2,7 @@
 // test: the shell loads SAVE from the main menu; this script reads the mod's state back once (the same read the
 // sr-reload run made before it died), then idles with no input for IDLE_S seconds, reads once more and finishes.
 // IDLE_S comes from OPTS_JSON (seconds, default 480). The three arms differ only in SAVE and what is in Mods/:
-//   MOD=strategic_resources SAVE=SR-LAB-RELOAD.Civ7Save OPTS_JSON=480 zsh run-soak.sh sr-idle-game.js sr-rl-a1 900
+//   MOD=strategic_resources_that_matter SAVE=SR-LAB-RELOAD.Civ7Save OPTS_JSON=480 zsh run-soak.sh sr-idle-game.js sr-rl-a1 900
 //   MOD=none SAVE=SR-LAB-RELOAD.Civ7Save OPTS_JSON=480 zsh run-soak.sh sr-idle-game.js sr-rl-b1 900   # data-only copy in Mods/
 //   MOD=none SAVE=SR-LAB-RELOAD-VANILLA.Civ7Save OPTS_JSON=480 zsh run-soak.sh sr-idle-game.js sr-rl-c1 900
 // Never run it with the label "sr-reload": run-soak.sh clears runs/<label>, and that folder keeps the saves.
@@ -46,7 +46,7 @@ async function panelLine(type) {
 async function report(label) {
   const g = Configuration.getGame();
   emit(`${label} turn=${Game.turn} age=${ageName()} res=${J(resources(0))} | ${strengths(0)}`);
-  emit(`${label} production=${J(safe(() => production(), "?"))} setup=${J([safe(() => g.getValue("StrategicResourcesUnsupplied")), safe(() => g.getValue("StrategicResourcesLateCurve"))])} rows=${J(srRows())}`);
+  emit(`${label} production=${J(safe(() => production(), "?"))} setup=${J([safe(() => g.getValue("StrategicResourcesThatMatterUnsupplied")), safe(() => g.getValue("StrategicResourcesThatMatterLateCurve"))])} rows=${J(srRows())}`);
   emit(`${label} panel Tank: ${await panelLine("UNIT_TANK")} | panel Field Cannon: ${await panelLine("UNIT_FIELD_CANNON")}`);
 }
 

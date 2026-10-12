@@ -6,10 +6,10 @@
 // The units listed are the local player's: other civilizations' unique units and a unit the player's own unique unit
 // replaces are left out. A resource that supplies none of them in this age gets no line.
 
-import { log } from "/tower-strategic-resources/ui/sr-log.js";
-import { readIndexes } from "/tower-strategic-resources/ui/sr-player-supply.js";
-import { keepWrapped } from "/tower-strategic-resources/ui/sr-registry.js";
-import { unitsSuppliedBy } from "/tower-strategic-resources/ui/sr-supply.js";
+import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
+import { readIndexes } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
+import { keepWrapped } from "/tower-strategic-resources-that-matter/ui/sr-registry.js";
+import { unitsSuppliedBy } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 /** @type {Map<string, string> | null} a resource's Tooltip text key to the resource, for resources units draw on */
 let tooltipIndex = null;
@@ -124,7 +124,7 @@ export function withSupplyLine(text, args) {
  */
 export function wrapStylize(mergeProps) {
   return (previous) =>
-    function StrategicResourcesStylize(/** @type {*} */ props) {
+    function StrategicResourcesThatMatterStylize(/** @type {*} */ props) {
       return previous(mergeProps(props, {
         get text() {
           return withSupplyLine(props.text, props.args);

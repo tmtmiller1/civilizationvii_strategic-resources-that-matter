@@ -12,16 +12,16 @@ console.log = () => {
   logged += 1;
 };
 try {
-  const { log: srLog } = await import("/tower-strategic-resources/ui/sr-log.js");
+  const { log: srLog } = await import("/tower-strategic-resources-that-matter/ui/sr-log.js");
   srLog.debug("d", 1);
   srLog.info("i");
   srLog.warn("w");
   srLog.error("e");
   assert.deepEqual(log.lines, [
-    ["warn", "[StrategicResources] d 1"],
-    ["warn", "[StrategicResources] i"],
-    ["warn", "[StrategicResources] w"],
-    ["error", "[StrategicResources] e"]
+    ["warn", "[StrategicResourcesThatMatter] d 1"],
+    ["warn", "[StrategicResourcesThatMatter] i"],
+    ["warn", "[StrategicResourcesThatMatter] w"],
+    ["error", "[StrategicResourcesThatMatter] e"]
   ]);
   assert.equal(logged, 0);
 } finally {

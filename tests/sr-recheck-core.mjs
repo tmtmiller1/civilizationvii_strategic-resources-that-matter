@@ -8,7 +8,7 @@ import {
   readMajorPlayers,
   resolveRecheckHash,
   RECHECK_RESOURCE
-} from "/tower-strategic-resources/ui/sr-recheck-core.js";
+} from "/tower-strategic-resources-that-matter/ui/sr-recheck-core.js";
 
 // The loss re-check's logic, driven with plain objects in place of the engine.
 

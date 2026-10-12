@@ -44,7 +44,8 @@ globalThis.localStorage = /** @type {*} */ ({
 });
 
 try {
-  const { CALLOUT_ID, SEEN_KEY, calloutItem, hasSeen } = await import("/tower-strategic-resources/ui/sr-callout.js");
+  const { CALLOUT_ID, SEEN_KEY, calloutItem, hasSeen } =
+    await import("/tower-strategic-resources-that-matter/ui/sr-callout.js");
 
   // Added once, at the advisor-warning level, triggered by unit selection, and processed under its own name.
   assert.equal(TutorialManager.added.length, 1);
@@ -106,7 +107,7 @@ try {
 
   // A manager that refuses the item is logged, not thrown.
   TutorialManager.throws = true;
-  await import("/tower-strategic-resources/ui/sr-callout.js?refused");
+  await import("/tower-strategic-resources-that-matter/ui/sr-callout.js?refused");
   assert.ok(log.lines.some(([, text]) => text.includes("could not add the first-time callout")));
 } finally {
   log.restore();

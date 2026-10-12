@@ -5,7 +5,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "/tower-strategic-resources/*": ["./*"],
+      "/tower-strategic-resources-that-matter/*": ["./*"],
       "/core/*": ["./types/engine-core-stub.d.ts"],
       "/base-standard/*": ["./types/engine-core-stub.d.ts"]
     },

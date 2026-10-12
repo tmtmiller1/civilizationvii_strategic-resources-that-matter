@@ -2,7 +2,7 @@
 <!-- Throwaway probe for DESIGN.md section 7 (P1-P6). Dev only, never ship. -->
 <Mod id="sr-probe" version="1" xmlns="ModInfo">
     <Properties>
-        <Name>Strategic Resources Probe (dev)</Name>
+        <Name>Strategic Resources That Matter Probe (dev)</Name>
         <Description>Dev only: gates Warrior and Spearman on Iron, Chariot and Horseman on Horses, and gives Warriors two inverse-requirement penalties.</Description>
         <Authors>Tower</Authors>
         <Package>SRProbe</Package>

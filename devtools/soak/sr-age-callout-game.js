@@ -7,7 +7,7 @@
 //                unsupplied Field Cannon selected shows no callout; Niter gained, a roll, lost, a roll: one
 //                notification; one more roll: none; the tutorial level put back to 0
 // The run changes LocalStorage.sqlite and UserOptions.txt; back both up first and put them back after.
-//   MOD=strategic_resources PROBES=strategic_resources/devtools/sr-short-age-probe START_AGE=AGE_EXPLORATION SEED=4242 \
+//   MOD=strategic_resources_that_matter PROBES=strategic_resources_that_matter/devtools/sr-short-age-probe START_AGE=AGE_EXPLORATION SEED=4242 \
 //     zsh run-soak.sh <this file> sr-age-callout 2400
 const NAME = "sr-age-callout";
 const CALLOUT_ID = "tower_sr_unsupplied_first";
@@ -103,7 +103,7 @@ let TM = null;
 let CB = null;
 async function modules() {
   if (!TM) TM = (await import("/base-standard/ui/tutorial/tutorial-manager.js")).default;
-  if (!CB) CB = await import("/tower-strategic-resources/ui/sr-callout.js");
+  if (!CB) CB = await import("/tower-strategic-resources-that-matter/ui/sr-callout.js");
 }
 function setLevel(n) { safe(() => { Configuration.getUser().setTutorialLevel(n); engine.trigger("update-tutorial-level"); }); }
 function unitOf(type) {

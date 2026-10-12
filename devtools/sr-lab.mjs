@@ -1,9 +1,10 @@
 // Tower Bench with three additions for this mod's lab games, set by environment variables:
-//   SR_LAB_SETUP='{"StrategicResourcesUnsupplied":"SR_UNSUPPLIED_LIGHT"}'  game setup values for `lab start`
+//   SR_LAB_SETUP='{"StrategicResourcesThatMatterUnsupplied":"SR_UNSUPPLIED_LIGHT"}'  game setup values for `lab start`
 //   SR_LAB_LANGUAGE=de_DE                                                 display language for the test game
 //   SR_LAB_MODE=HOTSEAT                                                   a hotseat game with two human seats
 // Usage: node devtools/sr-lab.mjs <any tower-bench command>, for example
-//   SR_LAB_SETUP='{"StrategicResourcesLateCurve":"SR_LATE_CURVE_OFF"}' node devtools/sr-lab.mjs lab start --seed 4242
+//   SR_LAB_SETUP='{"StrategicResourcesThatMatterLateCurve":"SR_LATE_CURVE_OFF"}' \
+//     node devtools/sr-lab.mjs lab start --seed 4242
 // Setup values go through GameSetup.setGameParameterValue, the call the setup screen makes, right after the lab's
 // Play Now resets the configuration; each is read back from the game configuration and printed. The language is
 // written into AppOptions.txt after the lab has backed it up, so `lab stop` puts the player's own file back.

@@ -4,7 +4,7 @@
 // reports nothing), then gives the player one Niter (an owned bare tile, a rural citizen, an expand request, the
 // lab recipe), rolls, clears every Niter tile the player draws on (the save already holds one), rolls, and reads the
 // notification the loss raised.
-//   MOD=strategic_resources SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh sr-notify-reload-game.js p14-notify-reload 1500
+//   MOD=strategic_resources_that_matter SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh sr-notify-reload-game.js p14-notify-reload 1500
 const NAME = "sr-notify-reload";
 const TYPE = "NOTIFICATION_SR_SUPPLY_LOST";
 function mine() {

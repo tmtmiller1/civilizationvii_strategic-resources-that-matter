@@ -2,7 +2,7 @@
 <!-- Throwaway probe for DESIGN.md section 7c. Dev only, never ship. -->
 <Mod id="sr-probe3" version="1" xmlns="ModInfo">
     <Properties>
-        <Name>Strategic Resources Probe 3 (dev)</Name>
+        <Name>Strategic Resources That Matter Probe 3 (dev)</Name>
         <Description>Dev only: unsupplied combat and cost penalty with has-Iron cancels, late-curve rows, and a re-check script.</Description>
         <Authors>Tower</Authors>
         <Package>SRProbe3</Package>

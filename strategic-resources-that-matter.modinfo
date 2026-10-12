@@ -17,12 +17,12 @@
   AffectsSavedGames is 1: the setup options and modifiers are fixed when a game is created, so a save made with the
   mod needs it to load the same game.
 -->
-<Mod id="tower-strategic-resources" version="1" xmlns="ModInfo">
+<Mod id="tower-strategic-resources-that-matter" version="1" xmlns="ModInfo">
     <Properties>
         <Name>LOC_SR_MOD_NAME</Name>
         <Description>LOC_SR_MOD_DESCRIPTION</Description>
         <Authors>Tower</Authors>
-        <Package>StrategicResources</Package>
+        <Package>StrategicResourcesThatMatter</Package>
         <PackageSortIndex>100</PackageSortIndex>
         <Version>1.0.0</Version>
         <AffectsSavedGames>1</AffectsSavedGames>
@@ -39,7 +39,7 @@
             <AgeInUse>AGE_ANTIQUITY</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
                 <Value>SR_UNSUPPLIED_LIGHT</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -47,7 +47,7 @@
             <AgeInUse>AGE_ANTIQUITY</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
                 <Value>SR_UNSUPPLIED_STANDARD</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -55,7 +55,7 @@
             <AgeInUse>AGE_ANTIQUITY</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
                 <Value>SR_UNSUPPLIED_HARSH</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -63,7 +63,7 @@
             <AgeInUse>AGE_ANTIQUITY</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesLateCurve</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterLateCurve</ConfigurationId>
                 <Value>SR_LATE_CURVE_ON</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -71,7 +71,7 @@
             <AgeInUse>AGE_EXPLORATION</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
                 <Value>SR_UNSUPPLIED_LIGHT</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -79,7 +79,7 @@
             <AgeInUse>AGE_EXPLORATION</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
                 <Value>SR_UNSUPPLIED_STANDARD</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -87,7 +87,7 @@
             <AgeInUse>AGE_EXPLORATION</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
                 <Value>SR_UNSUPPLIED_HARSH</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -95,7 +95,7 @@
             <AgeInUse>AGE_EXPLORATION</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesLateCurve</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterLateCurve</ConfigurationId>
                 <Value>SR_LATE_CURVE_ON</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -103,7 +103,7 @@
             <AgeInUse>AGE_MODERN</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
                 <Value>SR_UNSUPPLIED_LIGHT</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -111,7 +111,7 @@
             <AgeInUse>AGE_MODERN</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
                 <Value>SR_UNSUPPLIED_STANDARD</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -119,7 +119,7 @@
             <AgeInUse>AGE_MODERN</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesUnsupplied</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
                 <Value>SR_UNSUPPLIED_HARSH</Value>
             </ConfigurationValueMatches>
         </Criteria>
@@ -127,28 +127,28 @@
             <AgeInUse>AGE_MODERN</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesLateCurve</ConfigurationId>
+                <ConfigurationId>StrategicResourcesThatMatterLateCurve</ConfigurationId>
                 <Value>SR_LATE_CURVE_ON</Value>
             </ConfigurationValueMatches>
         </Criteria>
     </ActionCriteria>
     <ActionGroups>
-        <ActionGroup id="strategic-resources-shell" scope="shell" criteria="always">
+        <ActionGroup id="strategic-resources-that-matter-shell" scope="shell" criteria="always">
             <Actions>
                 <UpdateDatabase><Item>data/sr-setup.sql</Item></UpdateDatabase>
                 <UpdateText>
-                    <Item>text/en_us/StrategicResourcesText.xml</Item>
-                    <Item locale="de_DE">text/de_de/StrategicResourcesText.xml</Item>
-                    <Item locale="es_ES">text/es_es/StrategicResourcesText.xml</Item>
-                    <Item locale="fr_FR">text/fr_fr/StrategicResourcesText.xml</Item>
-                    <Item locale="it_IT">text/it_it/StrategicResourcesText.xml</Item>
-                    <Item locale="ja_JP">text/ja_jp/StrategicResourcesText.xml</Item>
-                    <Item locale="ko_KR">text/ko_kr/StrategicResourcesText.xml</Item>
-                    <Item locale="pl_PL">text/pl_pl/StrategicResourcesText.xml</Item>
-                    <Item locale="pt_BR">text/pt_br/StrategicResourcesText.xml</Item>
-                    <Item locale="ru_RU">text/ru_ru/StrategicResourcesText.xml</Item>
-                    <Item locale="zh_Hans_CN">text/zh_cn/StrategicResourcesText.xml</Item>
-                    <Item locale="zh_Hant_HK">text/zh_hk/StrategicResourcesText.xml</Item>
+                    <Item>text/en_us/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="de_DE">text/de_de/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="es_ES">text/es_es/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="fr_FR">text/fr_fr/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="it_IT">text/it_it/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="ja_JP">text/ja_jp/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="ko_KR">text/ko_kr/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="pl_PL">text/pl_pl/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="pt_BR">text/pt_br/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="ru_RU">text/ru_ru/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="zh_Hans_CN">text/zh_cn/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="zh_Hant_HK">text/zh_hk/StrategicResourcesThatMatterText.xml</Item>
                 </UpdateText>
                 <UIScripts>
                     <!-- Tower Settings Keeper: listed first, imports nothing, so it runs before anything reads storage. -->
@@ -156,7 +156,7 @@
                 </UIScripts>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-game" scope="game" criteria="always">
+        <ActionGroup id="strategic-resources-that-matter-game" scope="game" criteria="always">
             <Properties><LoadOrder>200</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -168,18 +168,18 @@
                     <Item>data/sr-notification-icons.xml</Item>
                 </UpdateIcons>
                 <UpdateText>
-                    <Item>text/en_us/StrategicResourcesText.xml</Item>
-                    <Item locale="de_DE">text/de_de/StrategicResourcesText.xml</Item>
-                    <Item locale="es_ES">text/es_es/StrategicResourcesText.xml</Item>
-                    <Item locale="fr_FR">text/fr_fr/StrategicResourcesText.xml</Item>
-                    <Item locale="it_IT">text/it_it/StrategicResourcesText.xml</Item>
-                    <Item locale="ja_JP">text/ja_jp/StrategicResourcesText.xml</Item>
-                    <Item locale="ko_KR">text/ko_kr/StrategicResourcesText.xml</Item>
-                    <Item locale="pl_PL">text/pl_pl/StrategicResourcesText.xml</Item>
-                    <Item locale="pt_BR">text/pt_br/StrategicResourcesText.xml</Item>
-                    <Item locale="ru_RU">text/ru_ru/StrategicResourcesText.xml</Item>
-                    <Item locale="zh_Hans_CN">text/zh_cn/StrategicResourcesText.xml</Item>
-                    <Item locale="zh_Hant_HK">text/zh_hk/StrategicResourcesText.xml</Item>
+                    <Item>text/en_us/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="de_DE">text/de_de/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="es_ES">text/es_es/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="fr_FR">text/fr_fr/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="it_IT">text/it_it/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="ja_JP">text/ja_jp/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="ko_KR">text/ko_kr/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="pl_PL">text/pl_pl/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="pt_BR">text/pt_br/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="ru_RU">text/ru_ru/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="zh_Hans_CN">text/zh_cn/StrategicResourcesThatMatterText.xml</Item>
+                    <Item locale="zh_Hant_HK">text/zh_hk/StrategicResourcesThatMatterText.xml</Item>
                 </UpdateText>
                 <UIScripts>
                     <!-- Tower Settings Keeper: listed first, imports nothing, so it runs before anything reads storage. -->
@@ -205,11 +205,11 @@
                 </ImportFiles>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-antiquity" scope="game" criteria="antiquity">
+        <ActionGroup id="strategic-resources-that-matter-antiquity" scope="game" criteria="antiquity">
             <Properties><LoadOrder>201</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-antiquity-supply.xml</Item></UpdateDatabase></Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-antiquity-light" scope="game" criteria="antiquity-light">
+        <ActionGroup id="strategic-resources-that-matter-antiquity-light" scope="game" criteria="antiquity-light">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -218,7 +218,7 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-antiquity-standard" scope="game" criteria="antiquity-standard">
+        <ActionGroup id="strategic-resources-that-matter-antiquity-standard" scope="game" criteria="antiquity-standard">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -227,7 +227,7 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-antiquity-harsh" scope="game" criteria="antiquity-harsh">
+        <ActionGroup id="strategic-resources-that-matter-antiquity-harsh" scope="game" criteria="antiquity-harsh">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -236,7 +236,7 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-antiquity-curve" scope="game" criteria="antiquity-curve">
+        <ActionGroup id="strategic-resources-that-matter-antiquity-curve" scope="game" criteria="antiquity-curve">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -245,11 +245,11 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-exploration" scope="game" criteria="exploration">
+        <ActionGroup id="strategic-resources-that-matter-exploration" scope="game" criteria="exploration">
             <Properties><LoadOrder>201</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-exploration-supply.xml</Item></UpdateDatabase></Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-exploration-light" scope="game" criteria="exploration-light">
+        <ActionGroup id="strategic-resources-that-matter-exploration-light" scope="game" criteria="exploration-light">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -258,7 +258,7 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-exploration-standard" scope="game" criteria="exploration-standard">
+        <ActionGroup id="strategic-resources-that-matter-exploration-standard" scope="game" criteria="exploration-standard">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -267,7 +267,7 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-exploration-harsh" scope="game" criteria="exploration-harsh">
+        <ActionGroup id="strategic-resources-that-matter-exploration-harsh" scope="game" criteria="exploration-harsh">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -276,7 +276,7 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-exploration-curve" scope="game" criteria="exploration-curve">
+        <ActionGroup id="strategic-resources-that-matter-exploration-curve" scope="game" criteria="exploration-curve">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -285,11 +285,11 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-modern" scope="game" criteria="modern">
+        <ActionGroup id="strategic-resources-that-matter-modern" scope="game" criteria="modern">
             <Properties><LoadOrder>201</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-modern-supply.xml</Item></UpdateDatabase></Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-modern-light" scope="game" criteria="modern-light">
+        <ActionGroup id="strategic-resources-that-matter-modern-light" scope="game" criteria="modern-light">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -298,7 +298,7 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-modern-standard" scope="game" criteria="modern-standard">
+        <ActionGroup id="strategic-resources-that-matter-modern-standard" scope="game" criteria="modern-standard">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -307,7 +307,7 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-modern-harsh" scope="game" criteria="modern-harsh">
+        <ActionGroup id="strategic-resources-that-matter-modern-harsh" scope="game" criteria="modern-harsh">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>
@@ -316,7 +316,7 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-modern-curve" scope="game" criteria="modern-curve">
+        <ActionGroup id="strategic-resources-that-matter-modern-curve" scope="game" criteria="modern-curve">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions>
                 <UpdateDatabase>

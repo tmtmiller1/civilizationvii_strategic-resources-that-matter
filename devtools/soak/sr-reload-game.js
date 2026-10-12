@@ -2,7 +2,7 @@
 // in a Modern lab game (Tank unsupplied, Field Cannon supplied by Niter at 60,24), read everything back, wait out the
 // window in which a reload issued from the game page crashed, lose Niter and roll, then the late curve's ranged and
 // bombard rows on the Field Cannon from 7 to 10 Niter copies.
-//   MOD=strategic_resources SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh <this file> sr-reload 1800
+//   MOD=strategic_resources_that_matter SAVE=SR-LAB-RELOAD.Civ7Save zsh run-soak.sh <this file> sr-reload 1800
 const NAME = "sr-reload";
 const NITER_AT = { x: 60, y: 24 };
 function unitType(u) { return safe(() => String(GameInfo.Units.lookup(u.type).UnitType), "?"); }
@@ -44,7 +44,7 @@ async function panelLine(type) {
 async function report(label) {
   const g = Configuration.getGame();
   emit(`${label} turn=${Game.turn} age=${ageName()} res=${J(resources(0))} | ${strengths(0)}`);
-  emit(`${label} production=${J(production())} setup=${J([safe(() => g.getValue("StrategicResourcesUnsupplied")), safe(() => g.getValue("StrategicResourcesLateCurve"))])} rows=${J(srRows())}`);
+  emit(`${label} production=${J(production())} setup=${J([safe(() => g.getValue("StrategicResourcesThatMatterUnsupplied")), safe(() => g.getValue("StrategicResourcesThatMatterLateCurve"))])} rows=${J(srRows())}`);
   emit(`${label} panel Tank: ${await panelLine("UNIT_TANK")} | panel Field Cannon: ${await panelLine("UNIT_FIELD_CANNON")}`);
 }
 function setResource(type, l) {

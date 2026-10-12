@@ -3,7 +3,7 @@
   "_comment": [
     "Mutation testing on the engine-free modules the Node tests exercise: the supply rules behind the unit panel",
     "line and the loss re-check's logic. The command runner re-runs the whole suite per mutant; coverageAnalysis is",
-    "off because the command runner has no per-test hooks. tests/loader.mjs anchors /tower-strategic-resources/ to",
+    "off because the command runner has no per-test hooks. tests/loader.mjs anchors /tower-strategic-resources-that-matter/ to",
     "its own location, so the sandbox copy resolves to the mutated files."
   ],
   "testRunner": "command",

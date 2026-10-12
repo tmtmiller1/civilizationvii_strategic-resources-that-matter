@@ -10,7 +10,7 @@
 // host's onRegister instead, and the wrapper is applied again around it the same way. A wrapper that can end up
 // nested inside a copy of itself (around a mod that calls the factory it replaced) must draw its addition once.
 
-import { log } from "/tower-strategic-resources/ui/sr-log.js";
+import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 
 export const WRAPPED = "__strategicResourcesWrapped";
 const MAX_WRAPS = 8;

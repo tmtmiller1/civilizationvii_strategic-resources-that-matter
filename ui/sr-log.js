@@ -2,7 +2,7 @@
 // console.warn or console.error. release.sh sets DBG to false in the shipped copy, which silences debug lines only.
 
 const DBG = true;
-const TAG = "[StrategicResources]";
+const TAG = "[StrategicResourcesThatMatter]";
 
 /** @param {unknown[]} parts */
 function line(parts) {

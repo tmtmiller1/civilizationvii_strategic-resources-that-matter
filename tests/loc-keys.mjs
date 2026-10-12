@@ -18,7 +18,7 @@ const BASE_GAME_KEYS = new Set(["LOC_MODULE_BASE_STANDARD_NAME", "LOC_TUTORIAL_C
   ...AGES.flatMap(gatedResources).map(resourceNameTag)]);
 
 const defined = new Set(
-  [...fs.readFileSync(path.join(ROOT, "text/en_us/StrategicResourcesText.xml"), "utf8")
+  [...fs.readFileSync(path.join(ROOT, "text/en_us/StrategicResourcesThatMatterText.xml"), "utf8")
     .matchAll(/Tag="(LOC_[A-Z0-9_]+)"/g)].map((m) => m[1])
 );
 assert.ok(defined.size > 0, "en_us defines no tags (parse failure?)");
@@ -28,8 +28,8 @@ const stripSql = (/** @type {string} */ s) => s.replace(/--[^\n]*/g, "");
 const sources = [
   ...listFiles(path.join(ROOT, "ui"), /\.js$/).map((f) => [f, stripComments(fs.readFileSync(f, "utf8"))]),
   ...listFiles(path.join(ROOT, "data"), /\.(xml|sql)$/).map((f) => [f, stripSql(stripXml(fs.readFileSync(f, "utf8")))]),
-  [path.join(ROOT, "strategic-resources.modinfo"),
-    stripXml(fs.readFileSync(path.join(ROOT, "strategic-resources.modinfo"), "utf8"))]
+  [path.join(ROOT, "strategic-resources-that-matter.modinfo"),
+    stripXml(fs.readFileSync(path.join(ROOT, "strategic-resources-that-matter.modinfo"), "utf8"))]
 ];
 
 const missing = [];

@@ -14,7 +14,7 @@ import { AGES, AGE_FILE, buildGateMap, gatedResources } from "../scripts/gate-ma
 // It does not show that the game draws the page; opening the Civilopedia in a game does that
 // (docs/verification-runs.md, phase 12).
 
-const FILE = "StrategicResourcesText.xml";
+const FILE = "StrategicResourcesThatMatterText.xml";
 /** @param {string} folder @returns {Map<string, string>} */
 const texts = (folder) => new Map([...fs.readFileSync(`text/${folder}/${FILE}`, "utf8")
   .matchAll(/<(?:Row|Replace)\s+Tag="(LOC_[A-Z0-9_]+)"[^>]*>\s*<Text>([\s\S]*?)<\/Text>/g)].map((m) => [m[1], m[2]]));

@@ -7,7 +7,7 @@ import { listJs, rel, stripComments, UI_DIR } from "./_fs-helpers.mjs";
 // Engine-import existence gate: every `/core/...` or `/base-standard/...` module specifier that
 // ui/ imports must exist in the installed game's script tree, so a game patch that moves or
 // renames an engine module (or a typo in a new import) is caught here instead of as a blank
-// screen at load. The mod's own `/tower-strategic-resources/...` imports are covered by tests/modinfo.mjs.
+// screen at load. The mod's own `/tower-strategic-resources-that-matter/...` imports are covered by tests/modinfo.mjs.
 //
 // The game location follows scripts/deploy.mjs: it works under the same per-user
 // "Library/Application Support" root that deploy.mjs targets for Mods; the Steam install sits

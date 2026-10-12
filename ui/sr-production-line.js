@@ -3,10 +3,10 @@
 // ProductionModInfo, the empty slot the game renders under each item's name and error line for mods, so the game's
 // own text stays where it is. Mods that draw their own production items and render that slot show the line too.
 
-import { log } from "/tower-strategic-resources/ui/sr-log.js";
-import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources/ui/sr-player-supply.js";
-import { keepWrapped } from "/tower-strategic-resources/ui/sr-registry.js";
-import { describeProductionCost } from "/tower-strategic-resources/ui/sr-supply.js";
+import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
+import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
+import { keepWrapped } from "/tower-strategic-resources-that-matter/ui/sr-registry.js";
+import { describeProductionCost } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 const LINE_CLASS = "sr-production-line";
 const LINE_CLASSES = [LINE_CLASS, "font-body", "text-sm", "pointer-events-none"];
@@ -89,7 +89,7 @@ const LINE_DRAWN = "__strategicResourcesLineDrawn";
  */
 export function wrapProductionModInfo(previous, holdingsChanged = () => 0,
   mergeProps = (...sources) => Object.assign({}, ...sources)) {
-  return function StrategicResourcesProductionModInfo(/** @type {*} */ props) {
+  return function StrategicResourcesThatMatterProductionModInfo(/** @type {*} */ props) {
     if (props?.[LINE_DRAWN]) return previous(props);
     return [previous(mergeProps(props ?? {}, { [LINE_DRAWN]: true })), () => {
       holdingsChanged();

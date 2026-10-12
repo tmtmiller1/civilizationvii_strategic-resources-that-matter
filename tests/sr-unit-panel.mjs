@@ -31,7 +31,7 @@ const units = {
 globalThis.Units = { get: (id) => units[id] ?? null };
 
 try {
-  const { describeUnit } = await import("/tower-strategic-resources/ui/sr-unit-panel.js");
+  const { describeUnit } = await import("/tower-strategic-resources-that-matter/ui/sr-unit-panel.js");
 
   // describeUnit
   assert.equal(describeUnit(units.spear), "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3");
