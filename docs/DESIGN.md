@@ -395,6 +395,23 @@ Plot Tooltip, Building Location Advisor, Better Commerce Screen UI). Neither lin
 registry wrapper registers at the priority already there and wraps again if another mod's registration replaces it;
 under Mod Commons, which shims the registry, it registers once.
 
+**When supply is lost, and the first time (watched 2026-10-12, phase 14).** Two more, both through the game's own
+systems. A notification: when the local player holds no copy of a resource it held at the previous turn start, one
+notification in the train, "Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower
+until you get Niter back.", the unit the player has most of named, the rest counted, the penalty read from the loaded
+modifiers. It is the mod's own type (`NOTIFICATION_SR_SUPPLY_LOST`, low severity, the game's "resources lost" icon and
+sound), raised from script with `Game.Notifications.send({Type, Message, Summary}, player)`: the call takes no text
+arguments, so the script composes the sentence, and the engine keeps one notification of a type at a time, so every
+loss of one turn goes into one. It ends with its turn, never holds the turn up, and a right-click dismisses it. The
+counts it compares live in the script's memory; a load takes a first look and says nothing. It rides on the turn-start
+re-check, so it is off in multiplayer with it. And a callout: the first time the player selects one of its own units
+while it is unsupplied, the game's tutorial callout says what that means in two sentences, with the game's "Tell me
+more" button opening the mod's Civilopedia page. It is an item in the game's tutorial manager at the advisor-warning
+level (2), so it shows when the player has tutorials or advisor warnings on, never when both are off (the manager uses
+it up silently then), and never in multiplayer (the manager drops it). The manager keeps an item's state in the save,
+so the game's own items come back in each new game; the mod keeps its callout to once per profile with a flag in the
+profile's storage, written when it shows, through the Tower Settings Keeper.
+
 **AI.** 90 turns of Antiquity, seed 4242, mod on and off: the games stayed identical until turn 61 (no AI had built a
 gated unit), then diverged; at turn 91 Rome had 14 Warriors and no Iron with the mod, 4 Legions with Iron in the
 vanilla game. No crash, no hang, one re-check line per turn. Cost: 16 ms per turn against a noise of 28 ms (one

@@ -3,7 +3,7 @@ Generated from CHANGELOG.md by scripts/steam-changelog.mjs; release.sh uploads t
 To fix an old Workshop entry, paste the text under its ==== line into that entry's Edit box on the change-notes page.
 A block edited by hand is kept as-is. Delete a block to regenerate it from CHANGELOG.md.
 
-==== 1.0.0 | 2026-10-11 | src 9edfdf66d764 | gen 4e250531575b ====
+==== 1.0.0 | 2026-10-11 | src 8109be62580c | gen a9a03efd9b82 ====
 [b]Version 1.0.0 · 11 October 2026[/b]
 Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs the units that need it.
 
@@ -17,6 +17,8 @@ Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs 
 • The production list marks each unit that needs a resource: “Needs Niter” in red while you hold none, “Niter: 2” once you hold copies, or the full sentence “Needs Niter. Without it: -3 Combat Strength, slower to train.” where the item has room. The game's own text on the item is unchanged.
 • A strategic resource's description, on the map and in the commerce screen, names the units it supplies for you in this age, for example “Supplies units: AT Gun, Assault Gun, Field Cannon and 3 more.”
 • A Civilopedia page under Game Concepts, Combat: the setup values, what counts as a copy, losing one, past six copies, and which units need what. Each unit that needs a resource says so on its own page, with the penalty the game was set up with.
+• A notification when you lose your last copy of a resource your units need, at the start of the next turn: “Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower until you get Niter back.” Once per loss; it ends with the turn and never holds the turn up. Two losses in one turn share one notification.
+• The first time you select one of your units while it is short of its resource, an advisor callout explains the rule and offers the Civilopedia page. It shows once, not in every game, and only with tutorials or advisor warnings on.
 • Text in all twelve of the game's languages.
 • Carries the Tower Settings Keeper, so every mod's settings survive a restart.
 Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.

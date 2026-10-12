@@ -35,6 +35,11 @@ Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs 
 - A Civilopedia page under Game Concepts, Combat: the setup values, what counts as a copy, losing one, past six
   copies, and which units need what. Each unit that needs a resource says so on its own page, with the penalty the
   game was set up with.
+- A notification when you lose your last copy of a resource your units need, at the start of the next turn: "Supply
+  lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower until you get Niter back." Once per
+  loss; it ends with the turn and never holds the turn up. Two losses in one turn share one notification.
+- The first time you select one of your units while it is short of its resource, an advisor callout explains the rule
+  and offers the Civilopedia page. It shows once, not in every game, and only with tutorials or advisor warnings on.
 - Text in all twelve of the game's languages.
 - Carries the Tower Settings Keeper, so every mod's settings survive a restart.
 
