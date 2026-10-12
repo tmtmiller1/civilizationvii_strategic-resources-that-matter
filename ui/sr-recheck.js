@@ -1,8 +1,8 @@
 // Game-scope entry for the loss re-check (see sr-recheck-core.js for why it exists). At every turn start, and once
 // when a game loads, it triggers a resource re-check for every alive major player. In a multiplayer game it does
 // nothing: the call changes state on this machine only and is not a network request, so it could put players'
-// games out of step. It says so once in UI.log. The lost-supply notification (sr-supply-lost.js) rides on the same
-// turn start, so it is off in multiplayer too.
+// games out of step. It says so once in UI.log. The lost-supply notification (sr-supply-lost.js) is composed at the
+// same turn start and sent when the local player's turn is activated, so it is off in multiplayer too.
 
 import { log } from "/tower-strategic-resources/ui/sr-log.js";
 import {
@@ -12,7 +12,7 @@ import {
   resolveRecheckHash,
   RECHECK_RESOURCE
 } from "/tower-strategic-resources/ui/sr-recheck-core.js";
-import { checkSupplyLost, startSupplyLost } from "/tower-strategic-resources/ui/sr-supply-lost.js";
+import { checkSupplyLost, sendSupplyLost, startSupplyLost } from "/tower-strategic-resources/ui/sr-supply-lost.js";
 
 /** @type {{ resourceHash: number | null, isOff: boolean }} */
 const state = { resourceHash: null, isOff: false };
@@ -47,6 +47,15 @@ function onTurnBegin() {
   }
 }
 
+/** @param {{ player?: number }} [data] */
+function onPlayerTurnActivated(data) {
+  try {
+    sendSupplyLost(data?.player ?? -1);
+  } catch (e) {
+    log.warn("could not raise the lost-supply notification:", e);
+  }
+}
+
 function start() {
   if (isMultiplayerGame(typeof Configuration === "undefined" ? undefined : Configuration)) {
     state.isOff = true;
@@ -60,6 +69,7 @@ function start() {
     return;
   }
   engine.on("TurnBegin", onTurnBegin);
+  engine.on("PlayerTurnActivated", onPlayerTurnActivated);
   try {
     startSupplyLost();
   } catch (e) {

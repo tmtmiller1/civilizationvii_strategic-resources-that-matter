@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import { captureConsole, snapshotGlobals, table } from "./_engine-stubs.mjs";
 
 // The lost-supply notification: the first look at load says nothing, a loss at a turn start raises one notification
-// for the local player with every loss of that turn in it, and a resource still at zero is not reported again.
+// for the local player with every loss of that turn in it, and a resource still at zero is not reported again. The
+// notification is composed at TurnBegin (checkSupplyLost) and sent when the local player's turn is activated
+// (sendSupplyLost): the engine still lists last turn's notification at TurnBegin and drops a second one of a type.
 
 const restoreGlobals = snapshotGlobals(["GameInfo", "Players", "Units", "Locale", "Game", "GameContext"]);
 const log = captureConsole();
@@ -57,25 +59,30 @@ Object.defineProperty(globalThis, "Game", {
 });
 
 try {
-  const { checkSupplyLost, startSupplyLost, NOTIFICATION_TYPE } =
+  const { checkSupplyLost, sendSupplyLost, startSupplyLost, NOTIFICATION_TYPE } =
     await import("/tower-strategic-resources/ui/sr-supply-lost.js");
+  /** One turn start: TurnBegin, then the local player's PlayerTurnActivated. */
+  const turnStart = () => {
+    checkSupplyLost();
+    sendSupplyLost(0);
+  };
 
   // A check before any look takes the first look and says nothing.
   held = [];
-  checkSupplyLost();
+  turnStart();
   assert.equal(sent.length, 0);
 
   // Load: the player already holds nothing; the first look reports nothing, and neither does the next turn.
   startSupplyLost();
-  checkSupplyLost();
+  turnStart();
   assert.equal(sent.length, 0, "a load never reports a loss");
 
   // Niter held, then gone: one notification naming the Field Cannon and one other unit.
   held = ["RESOURCE_NITER", "RESOURCE_NITER", "RESOURCE_OIL"];
-  checkSupplyLost();
+  turnStart();
   assert.equal(sent.length, 0, "a gain says nothing");
   held = ["RESOURCE_OIL"];
-  checkSupplyLost();
+  turnStart();
   assert.equal(sent.length, 1);
   const [first, player] = sent[0];
   assert.equal(player, 0);
@@ -86,44 +93,73 @@ try {
   assert.ok(log.lines.some(([, text]) => text.includes("supply lost, turn 7: RESOURCE_NITER")));
 
   // Still at zero next turn: not reported again.
-  checkSupplyLost();
+  turnStart();
   assert.equal(sent.length, 1, "once per loss, not every turn");
 
   // Two losses in one turn go into one notification.
   held = ["RESOURCE_NITER", "RESOURCE_OIL"];
-  checkSupplyLost();
+  turnStart();
   held = [];
-  checkSupplyLost();
+  turnStart();
   assert.equal(sent.length, 2);
   assert.equal(sent[1][0].Message,
     "LOC_SR_NOTIFY_LOST_MESSAGE(LOC_SR_LIST_PAIR(<LOC_RESOURCE_NITER_NAME>,<LOC_RESOURCE_OIL_NAME>))");
   assert.equal(sent[1][0].Summary, "LOC_SR_NOTIFY_LOST_MANY(LOC_RESOURCE_NITER_NAME,LOC_UNIT_FIELD_CANNON_NAME,1,-3) " +
     "LOC_SR_NOTIFY_LOST_ONE(LOC_RESOURCE_OIL_NAME,LOC_UNIT_TANK_NAME,-3)");
 
-  // A resource with no penalty loaded (Coal here) is not watched at all.
-  held = ["RESOURCE_COAL"];
+  // Losses on two turns in a row: each turn's notification is sent once that turn is activated, not at TurnBegin.
+  held = ["RESOURCE_NITER", "RESOURCE_OIL"];
+  turnStart();
+  held = ["RESOURCE_OIL"];
   checkSupplyLost();
+  assert.equal(sent.length, 2, "nothing is sent at TurnBegin");
+  sendSupplyLost(3);
+  assert.equal(sent.length, 2, "another player's activation sends nothing");
+  sendSupplyLost(0);
+  assert.equal(sent.length, 3);
+  assert.equal(sent[2][0].Message, "LOC_SR_NOTIFY_LOST_MESSAGE(<LOC_RESOURCE_NITER_NAME>)");
+  held = [];
+  turnStart();
+  assert.equal(sent.length, 4, "the next turn's loss is raised too");
+  assert.equal(sent[3][0].Message, "LOC_SR_NOTIFY_LOST_MESSAGE(<LOC_RESOURCE_OIL_NAME>)");
+  sendSupplyLost(0);
+  assert.equal(sent.length, 4, "sent once");
+
+  // A notification composed in one turn is not sent in a later one (no activation came in between).
+  held = ["RESOURCE_NITER"];
+  turnStart();
   held = [];
   checkSupplyLost();
+  globalThis.Game.turn = 8;
+  sendSupplyLost(0);
+  globalThis.Game.turn = 7;
+  assert.equal(sent.length, 4, "a stale composition is dropped");
+  sent.splice(2);
+
+  // A resource with no penalty loaded (Coal here) is not watched at all.
+  held = ["RESOURCE_COAL"];
+  turnStart();
+  held = [];
+  turnStart();
   assert.equal(sent.length, 2);
 
   // A loss reaching no unit still says what it costs.
   delete unitsById.d;
   held = ["RESOURCE_OIL"];
-  checkSupplyLost();
+  turnStart();
   held = [];
-  checkSupplyLost();
+  turnStart();
   assert.equal(sent[2][0].Summary, "LOC_SR_NOTIFY_LOST_NONE(LOC_RESOURCE_OIL_NAME,-3)");
 
   // No local player (Autoplay): nothing, and the next look starts over.
   held = ["RESOURCE_NITER"];
-  checkSupplyLost();
+  turnStart();
   globalThis.GameContext = { localPlayerID: -1 };
-  checkSupplyLost();
+  turnStart();
   startSupplyLost();
   globalThis.GameContext = { localPlayerID: 0 };
   held = [];
-  checkSupplyLost();
+  turnStart();
   assert.equal(sent.length, 3, "a loss across an Autoplay stretch is not reported");
 } finally {
   log.restore();
