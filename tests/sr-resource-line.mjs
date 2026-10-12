@@ -65,6 +65,7 @@ globalThis.Players = { get: (id) => players[id] ?? null };
 try {
   const { describeResourceSupply, resourceTooltipIndex, unitNamesFor, withSupplyLine, wrapStylize } =
     await import("/tower-strategic-resources-that-matter/ui/sr-resource-line.js");
+  const { resetIndexes } = await import("/tower-strategic-resources-that-matter/ui/sr-player-supply.js");
 
   // Only resources some unit draws on, and only those with a description.
   assert.deepEqual([...resourceTooltipIndex()], [
@@ -98,6 +99,19 @@ try {
   globalThis.GameContext.localPlayerID = 9;
   assert.equal(describeResourceSupply("RESOURCE_NITER"), null, "no line for a player the penalty skips");
   globalThis.GameContext.localPlayerID = 0;
+
+
+  // Under the hard gate the line says the units cannot be trained without the resource.
+  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }];
+  for (const row of globalThis.GameInfo.Units) row.StrategicResource = supply.get(row.UnitType) ?? null;
+  resetIndexes();
+  globalThis.GameContext.localPlayerID = 1;
+  assert.equal(describeResourceSupply("RESOURCE_NITER"),
+      "LOC_SR_RESOURCE_NEEDED_MORE|AT Gun, Field Cannon, Field Gun|2");
+  globalThis.GameContext.localPlayerID = 0;
+  globalThis.GameInfo.GlobalParameters = [];
+  for (const row of globalThis.GameInfo.Units) delete row.StrategicResource;
+  resetIndexes();
 
   // withSupplyLine
   assert.equal(withSupplyLine("LOC_MOD_RESOURCE_NITER_TOOLTIP", undefined),

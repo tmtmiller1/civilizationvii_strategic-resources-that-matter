@@ -1,7 +1,9 @@
-// Adds one line to a gated unit's item in the production list: "Needs Niter. Without it: -3 Combat Strength, slower
-// to train." with none held, "Needs Niter (you have 2)." with copies. The item is the game's own; the line goes in
-// ProductionModInfo, the empty slot the game renders under each item's name and error line for mods, so the game's
-// own text stays where it is. Mods that draw their own production items and render that slot show the line too.
+// Adds one line to a gated unit's item in the production list: "Needs Niter. Without it: -3 Combat Strength, slower to
+// train." with none held, "Needs Niter (you have 2)." with copies, and under the hard gate "Needs Niter: cannot be
+// trained without it." (bought, in the purchase list) on the greyed item sr-production-lock.js keeps listed. The item
+// is the game's own; the line goes in ProductionModInfo, the empty slot the game renders under each item's name and
+// error line for mods, so the game's own text stays where it is. Mods that draw their own production items and render
+// that slot show the line too.
 
 import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
@@ -15,23 +17,26 @@ const UNSUPPLIED_CLASS = "text-negative-light";
 /**
  * The line for the local player's production item, or null when there is nothing to say. `short` is the form for a
  * one-row item (City Hall's compact list), where the sentence would squeeze the unit's name.
+ * `buyText` is the locked form for the purchase list, where the item says what cannot be bought.
  * @param {string | undefined} unitType
- * @returns {{ text: string, short: string, unsupplied: boolean } | null}
+ * @returns {{ text: string, buyText: string | null, short: string, unsupplied: boolean } | null}
  */
 export function describeProductionItem(unitType) {
   if (!unitType) return null;
   const player = Players.get(GameContext.localPlayerID);
   if (!player?.isMajor) return null;
-  const { supply, penalties } = readIndexes();
-  if (!supply.has(unitType)) return null;
-  const line = describeProductionCost(unitType, { supply, penalties, copiesOf: copiesCounter(player) });
+  const { supply, penalties, gate } = readIndexes();
+  if (!supply.has(unitType) && !gate.columns.has(unitType)) return null;
+  const line = describeProductionCost(unitType, { supply, penalties, copiesOf: copiesCounter(player), gate });
   if (!line) return null;
   const [resourceType, value] = line.args;
   const name = resourceNameKey(String(resourceType));
+  const locked = line.key === "LOC_SR_PRODUCTION_LOCKED";
   return {
     text: Locale.compose(line.key, name, value),
+    buyText: locked ? Locale.compose("LOC_SR_PRODUCTION_LOCKED_BUY", name) : null,
     short: Locale.compose(`${line.key}_SHORT`, name, value),
-    unsupplied: line.key === "LOC_SR_PRODUCTION_NEEDS_NONE"
+    unsupplied: line.key === "LOC_SR_PRODUCTION_NEEDS_NONE" || locked
   };
 }
 
@@ -49,12 +54,31 @@ export function productionLineElement(unitType) {
     if (line.unsupplied) element.classList.add(UNSUPPLIED_CLASS);
     element.setAttribute("role", "paragraph");
     element.textContent = line.text;
-    // Placed by the time this runs: the slot's container says whether the item is one row or a column.
-    setTimeout(() => shortenInRow(element, line.short), 0);
+    // Placed by the time this runs: the item says whether it is for purchase, and the slot's container whether the
+    // item is one row or a column.
+    setTimeout(() => {
+      fitPurchase(element, line.buyText);
+      shortenInRow(element, line.short);
+    }, 0);
     return element;
   } catch (e) {
     log.warn("could not draw the production line:", e);
     return null;
+  }
+}
+
+/**
+ * Puts the purchase form in when the line sits on a purchase item.
+ * @param {HTMLElement} element
+ * @param {string | null} buyText
+ */
+export function fitPurchase(element, buyText) {
+  try {
+    if (!buyText) return;
+    const item = element.closest?.("production-chooser-item, [data-is-purchase]");
+    if (item?.getAttribute("data-is-purchase") === "true") element.textContent = buyText;
+  } catch (e) {
+    log.warn("could not fit the production line:", e);
   }
 }
 

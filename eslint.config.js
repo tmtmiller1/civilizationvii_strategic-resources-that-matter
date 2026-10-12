@@ -15,7 +15,9 @@ const ENGINE_GLOBALS = {
   Locale: "readonly",
   engine: "readonly",
   Controls: "readonly",
-  UI: "readonly"
+  UI: "readonly",
+  CityQueryType: "readonly",
+  CityOperationTypes: "readonly"
 };
 
 const BROWSER_GLOBALS = {

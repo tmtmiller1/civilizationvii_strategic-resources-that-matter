@@ -65,4 +65,9 @@ declare global {
   };
 
   const UI: EngineHandle;
+
+  /** The kinds of city query the production chooser asks the engine about. */
+  const CityQueryType: { Unit: number; Constructible: number; [key: string]: any };
+
+  const CityOperationTypes: { BUILD: number; [key: string]: any };
 }

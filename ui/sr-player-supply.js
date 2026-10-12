@@ -1,23 +1,40 @@
 // The game reads the panel, production and resource lines share: which units draw on what, the penalty sizes, and
 // a player's copies. The pure work is in sr-supply.js; this file only fetches its inputs from the engine.
 
-import { buildPenaltyIndex, buildSupplyIndex, countCopies } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
+import {
+  buildGateIndex, buildPenaltyIndex, buildSupplyIndex, countCopies
+} from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
-/** @type {{ supply: Map<string, string>, penalties: Map<string, import("./sr-supply.js").Penalty> } | null} */
+/**
+ * @typedef {object} Indexes
+ * @property {Map<string, string>} supply
+ * @property {Map<string, import("./sr-supply.js").Penalty>} penalties
+ * @property {import("./sr-supply.js").Gate} gate
+ */
+
+/** @type {Indexes | null} */
 let indexes = null;
 
 /**
- * The unit tags and modifier sizes, fixed for the whole game, so read once.
- * @returns {{ supply: Map<string, string>, penalties: Map<string, import("./sr-supply.js").Penalty> }}
+ * The unit tags, modifier sizes and the gate's column, fixed for the whole game, so read once.
+ * @returns {Indexes}
  */
 export function readIndexes() {
   if (!indexes) {
+    const supply = buildSupplyIndex(/** @type {*} */ (GameInfo.TypeTags) ?? []);
     indexes = {
-      supply: buildSupplyIndex(/** @type {*} */ (GameInfo.TypeTags) ?? []),
-      penalties: buildPenaltyIndex(/** @type {*} */ (GameInfo.ModifierArguments) ?? [])
+      supply,
+      penalties: buildPenaltyIndex(/** @type {*} */ (GameInfo.ModifierArguments) ?? []),
+      gate: buildGateIndex(/** @type {*} */ (GameInfo.Units) ?? [],
+        /** @type {*} */ (GameInfo.GlobalParameters) ?? [], supply)
     };
   }
   return indexes;
+}
+
+/** Forgets the indexes, so the next read takes the tables again (the tests change them; a game never does). */
+export function resetIndexes() {
+  indexes = null;
 }
 
 /**

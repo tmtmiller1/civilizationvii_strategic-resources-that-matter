@@ -1,7 +1,7 @@
-// Adds one line under the stats of the selected-unit panel when the unit is unsupplied, for example
-// "Unsupplied: no Iron (-3 combat strength, slower to train)". The panel is the game's own; this wraps the panel
-// instance's setupUnitInfo and leaves everything it draws in place. The wrapper looks up the method it wraps at
-// call time, so a mod that patches the panel's prototype after this one still runs.
+// Adds one line under the stats of the selected-unit panel when the unit is unsupplied, for example "Unsupplied: no
+// Iron (-3 combat strength, slower to train)", with "New ones cannot be trained." under the hard gate. The panel is the
+// game's own; this wraps the panel instance's setupUnitInfo and leaves everything it draws in place. The wrapper looks
+// up the method it wraps at call time, so a mod that patches the panel's prototype after this one still runs.
 
 import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
@@ -21,10 +21,11 @@ export function describeUnit(unit) {
   if (!owner?.isMajor) return null;
   const unitType = GameInfo.Units.lookup(unit.type)?.UnitType;
   if (!unitType) return null;
-  const { supply, penalties } = readIndexes();
+  const { supply, penalties, gate } = readIndexes();
   const status = computeSupplyStatus({ unitType, supply, penalties, copiesOf: copiesCounter(owner) });
   if (!status) return null;
-  return Locale.compose("LOC_SR_UNSUPPLIED_LINE", resourceNameKey(status.resourceType), status.combat);
+  const key = gate.on && gate.columns.has(unitType) ? "LOC_SR_UNSUPPLIED_LINE_GATED" : "LOC_SR_UNSUPPLIED_LINE";
+  return Locale.compose(key, resourceNameKey(status.resourceType), status.combat);
 }
 
 /**

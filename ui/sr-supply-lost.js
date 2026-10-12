@@ -1,12 +1,13 @@
-// The lost-supply notification. At each turn start sr-recheck.js calls checkSupplyLost: when the local player holds
-// no copy of a resource it held at the previous turn start, one notification in the train says which units the loss
+// The lost-supply notification. At each turn start sr-recheck.js calls checkSupplyLost: when the local player holds no
+// copy of a resource it held at the previous turn start, one notification in the train says which units the loss
 // reaches and what it costs, "Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower
-// until you get Niter back." The engine keeps one notification of a type at a time and drops a second, so every
-// loss of one turn goes into the same one. Last turn's notification is still listed at TurnBegin and is removed
-// when the local player's turn is activated, so the notification is composed at TurnBegin and sent from
-// sendSupplyLost on that player's PlayerTurnActivated; sent at TurnBegin, a loss the turn after another is dropped.
-// The counts live in memory: startSupplyLost takes the first look when a game loads, so a load never reports a loss.
-// sr-recheck.js is off in multiplayer, and so is this.
+// until you get Niter back.", with "New ones cannot be trained until then." under the hard gate, which also reports a
+// loss when the penalty is off: "Units that need it cannot be trained until you get Niter back." The engine keeps one
+// notification of a type at a time and drops a second, so every loss of one turn goes into the same one. Last turn's
+// notification is still listed at TurnBegin and is removed when the local player's turn is activated, so the
+// notification is composed at TurnBegin and sent from sendSupplyLost on that player's PlayerTurnActivated; sent at
+// TurnBegin, a loss the turn after another is dropped. The counts live in memory: startSupplyLost takes the first look
+// when a game loads, so a load never reports a loss. sr-recheck.js is off in multiplayer, and so is this.
 
 import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
@@ -28,8 +29,9 @@ function localPlayer() {
 
 /** @param {*} player @returns {Map<string, number>} */
 function look(player) {
-  const { penalties } = readIndexes();
-  const gated = [...penalties].filter(([, p]) => p.combat !== 0 || p.productionPercent !== 0).map(([r]) => r);
+  const { penalties, gate } = readIndexes();
+  const gated = new Set([...penalties].filter(([, p]) => p.combat !== 0 || p.productionPercent !== 0).map(([r]) => r));
+  if (gate.on) for (const resource of gate.columns.values()) gated.add(resource);
   return countGatedCopies(gated, copiesCounter(player));
 }
 
@@ -48,9 +50,13 @@ function unitTypesOf(player) {
 function sentence(loss) {
   const resource = resourceNameKey(loss.resourceType);
   const unit = loss.unitType ? GameInfo.Units.lookup(loss.unitType)?.Name ?? loss.unitType : "";
-  if (loss.key === "LOC_SR_NOTIFY_LOST_MANY") return Locale.compose(loss.key, resource, unit, loss.others, loss.combat);
-  if (loss.key === "LOC_SR_NOTIFY_LOST_ONE") return Locale.compose(loss.key, resource, unit, loss.combat);
-  return Locale.compose(loss.key, resource, loss.combat);
+  if (loss.key === "LOC_SR_NOTIFY_LOCKED") return Locale.compose(loss.key, resource);
+  const tail = loss.locked ? ` ${Locale.compose("LOC_SR_NOTIFY_LOCKED_TAIL")}` : "";
+  if (loss.key === "LOC_SR_NOTIFY_LOST_MANY") {
+    return Locale.compose(loss.key, resource, unit, loss.others, loss.combat) + tail;
+  }
+  if (loss.key === "LOC_SR_NOTIFY_LOST_ONE") return Locale.compose(loss.key, resource, unit, loss.combat) + tail;
+  return Locale.compose(loss.key, resource, loss.combat) + tail;
 }
 
 /** Takes the first look, when a game loads. */

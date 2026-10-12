@@ -61,6 +61,7 @@ Object.defineProperty(globalThis, "Game", {
 try {
   const { checkSupplyLost, sendSupplyLost, startSupplyLost, NOTIFICATION_TYPE } =
     await import("/tower-strategic-resources-that-matter/ui/sr-supply-lost.js");
+  const { resetIndexes } = await import("/tower-strategic-resources-that-matter/ui/sr-player-supply.js");
   /** One turn start: TurnBegin, then the local player's PlayerTurnActivated. */
   const turnStart = () => {
     checkSupplyLost();
@@ -161,6 +162,35 @@ try {
   held = [];
   turnStart();
   assert.equal(sent.length, 3, "a loss across an Autoplay stretch is not reported");
+
+  // Under the hard gate: the sentence gains its tail, and a resource with no penalty but a column (Coal here,
+  // penalty Off) still raises the lock sentence.
+  sent.splice(0);
+  globalThis.GameInfo.Units = table([
+    { UnitType: "UNIT_FIELD_CANNON", Name: "LOC_UNIT_FIELD_CANNON_NAME", StrategicResource: "RESOURCE_NITER" },
+    { UnitType: "UNIT_TANK", Name: "LOC_UNIT_TANK_NAME", StrategicResource: "RESOURCE_OIL" },
+    { UnitType: "UNIT_INFANTRY", Name: "LOC_UNIT_INFANTRY_NAME" },
+    { UnitType: "UNIT_IRONCLAD", Name: "LOC_UNIT_IRONCLAD_NAME", StrategicResource: "RESOURCE_COAL" }
+  ], "UnitType");
+  globalThis.GameInfo.TypeTags.push({ Type: "UNIT_IRONCLAD", Tag: "SR_SUPPLY_COAL" });
+  globalThis.GameInfo.GlobalParameters = [{ Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE", Value: "1" }];
+  resetIndexes();
+  unitsById.a = { type: globalThis.GameInfo.Units.lookup("UNIT_FIELD_CANNON").$hash };
+  unitsById.b = { type: globalThis.GameInfo.Units.lookup("UNIT_TANK").$hash };
+  startSupplyLost();
+  held = ["RESOURCE_NITER", "RESOURCE_COAL"];
+  turnStart();
+  held = [];
+  turnStart();
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0][0].Message,
+    "LOC_SR_NOTIFY_LOST_MESSAGE(LOC_SR_LIST_PAIR(<LOC_RESOURCE_NITER_NAME>,<LOC_RESOURCE_COAL_NAME>))",
+    "a loss of a resource the gate names is reported even with no penalty on it");
+  assert.equal(sent[0][0].Summary, "LOC_SR_NOTIFY_LOST_ONE(LOC_RESOURCE_NITER_NAME,LOC_UNIT_FIELD_CANNON_NAME,-3) " +
+    "<LOC_SR_NOTIFY_LOCKED_TAIL> LOC_SR_NOTIFY_LOCKED(LOC_RESOURCE_COAL_NAME)");
+  globalThis.GameInfo.GlobalParameters = [];
+  resetIndexes();
+
 } finally {
   log.restore();
   restoreGlobals();

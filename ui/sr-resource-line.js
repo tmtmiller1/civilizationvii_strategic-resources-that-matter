@@ -1,7 +1,8 @@
-// Adds one line to a strategic resource's description wherever the game shows it: "Supplies units: Field Cannon,
-// Field Gun and 2 more." The plot tooltip and the commerce screen's resource tooltip both draw a resource's Tooltip
-// text through the Stylize component, so the line is added there, keyed on that text, and the tooltips themselves
-// are left as they are. Mods that draw their own plot or resource tooltip with Stylize get the line too.
+// Adds one line to a strategic resource's description wherever the game shows it: "Supplies units: Field Cannon, Field
+// Gun and 2 more.", or "Needed to train: ..." under the hard gate. The plot tooltip and the commerce screen's resource
+// tooltip both draw a resource's Tooltip text through the Stylize component, so the line is added there, keyed on that
+// text, and the tooltips themselves are left as they are. Mods that draw their own plot or resource tooltip with
+// Stylize get the line too.
 //
 // The units listed are the local player's: other civilizations' unique units and a unit the player's own unique unit
 // replaces are left out. A resource that supplies none of them in this age gets no line.
@@ -82,14 +83,13 @@ export function describeResourceSupply(resourceType) {
   let line = null;
   const player = Players.get(playerId);
   if (player?.isMajor) {
-    const { supply } = readIndexes();
+    const { supply, gate } = readIndexes();
     const units = unitsSuppliedBy(resourceType, supply, unitNamesFor(player, supply));
     if (units) {
       // A key of the form "{1_First}, {2_Second}" carries the spacing: the game trims a separator key's own spaces.
       const list = units.names.reduce((first, second) => Locale.compose("LOC_SR_LIST_PAIR", first, second));
-      line = units.more > 0
-        ? Locale.compose("LOC_SR_RESOURCE_SUPPLIES_MORE", list, units.more)
-        : Locale.compose("LOC_SR_RESOURCE_SUPPLIES", list);
+      const stem = gate.on ? "LOC_SR_RESOURCE_NEEDED" : "LOC_SR_RESOURCE_SUPPLIES";
+      line = units.more > 0 ? Locale.compose(`${stem}_MORE`, list, units.more) : Locale.compose(stem, list);
     }
   }
   lines.set(key, line);
