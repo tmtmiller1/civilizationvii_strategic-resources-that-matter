@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- AGE_EXPLORATION, Gated Units training: a gated unit cannot be trained or bought without a copy of its resource; the engine reads the owner's live count. -->
+<Database>
+    <Units>
+        <Update><Where UnitType="UNIT_BOMBARD"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_BOYAR"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_BOYAR_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_BOYAR_3"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_CARRACK"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_CATAPULT"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_CETBANG_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_CETBANG_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_CHEVALER"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_CHEVALER_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_CHEVALER_3"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_CORSAIR_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_CORSAIR_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_COURSER"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_GALLEON"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_GOLD_BANGLES_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_GOLD_BANGLES_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_HWACHA"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_HWACHA_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_HWACHA_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_KALAM_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_KALAM_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_KISPOKO_NENA_TO_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_KISPOKO_NENA_TO_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_KNIGHT"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_LANCER"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_LEIOMANO_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_LEIOMANO_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_MAMLUK"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_MAMLUK_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_MAMLUK_3"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_MAN_AT_ARMS"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_PIKEMAN"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_SAMURAI_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_SAMURAI_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_TERCIO_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_TERCIO_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_TOBANG"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_TOBANG_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_TOBANG_3"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_TREBUCHET"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_VIKINGR_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_VIKINGR_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_XUNLEICHONG_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+        <Update><Where UnitType="UNIT_XUNLEICHONG_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
+    </Units>
+    <GlobalParameters>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_ANYWHERE" Value="1"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_PRODUCTION_WITH_DISTRICT" Value="1"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE" Value="1"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_WITH_DISTRICT" Value="1"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPGRADING" Value="0"/>
+        <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_HEALING" Value="0"/>
+    </GlobalParameters>
+    <CivilopediaPageChapterParagraphs>
+        <Row SectionID="UNITS" PageID="UNIT_BOMBARD" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_BOYAR" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_BOYAR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_BOYAR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CARRACK" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CATAPULT" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CETBANG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CETBANG_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CHEVALER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CHEVALER_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CHEVALER_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CORSAIR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_CORSAIR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_COURSER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_GALLEON" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_GOLD_BANGLES_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_GOLD_BANGLES_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_HWACHA" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_HWACHA_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_HWACHA_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_KALAM_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_KALAM_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_KISPOKO_NENA_TO_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_KISPOKO_NENA_TO_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_KNIGHT" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_LANCER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_LEIOMANO_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_LEIOMANO_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_MAMLUK" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_MAMLUK_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_MAMLUK_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_MAN_AT_ARMS" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_PIKEMAN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_SAMURAI_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_SAMURAI_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_TERCIO_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_TERCIO_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_TOBANG" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_TOBANG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_TOBANG_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_TREBUCHET" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_VIKINGR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_VIKINGR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_XUNLEICHONG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+        <Row SectionID="UNITS" PageID="UNIT_XUNLEICHONG_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="20"/>
+    </CivilopediaPageChapterParagraphs>
+</Database>

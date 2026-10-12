@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { LEVELS, PEDIA, pediaUnitTag, resourceNameTag } from "../scripts/build-data.mjs";
+import { GATES_OPTION, LEVELS, PEDIA, pediaGateTag, pediaUnitTag, resourceNameTag } from "../scripts/build-data.mjs";
 import { AGES, AGE_FILE, buildGateMap, gatedResources } from "../scripts/gate-map.mjs";
 
 // Civilopedia gate. The game finds a chapter's text by key convention and draws nothing, with no error, for a
@@ -73,6 +73,26 @@ for (const age of AGES) {
   }
 }
 
+// The gate's line: one per gated unit and gate value, after the level line, naming that unit's resource.
+let gateRows = 0;
+for (const age of AGES) {
+  const gates = buildGateMap(JSON.parse(fs.readFileSync(`devtools/gate-map/${AGE_FILE[age]}.json`, "utf8")));
+  for (const gateName of Object.keys(GATES_OPTION)) {
+    const xml = fs.readFileSync(`data/sr-${AGE_FILE[age]}-gate-${gateName}.xml`, "utf8");
+    const rows = [...xml.matchAll(/<Row SectionID="UNITS" PageID="([A-Z0-9_]+)" ChapterID="([A-Z_]+)" Paragraph="([A-Z0-9_]+)" SortIndex="(\d+)"/g)];
+    assert.deepEqual(rows.map((r) => r[1]), [...gates.keys()], `${age} gate ${gateName}: one line per gated unit`);
+    for (const [, unit, chapter, tag, sort] of rows) {
+      assert.equal(chapter, unitChapter, `${unit}: chapter`);
+      assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateName), `${age} gate ${gateName} ${unit}: line`);
+      assert.ok(Number(sort) > 10, `${tag}: the gate line follows the level line`);
+      assert.ok(english.has(tag), `${tag} has no text`);
+      const resourceName = `{${resourceNameTag(gates.get(unit) ?? "")}}`;
+      assert.ok(english.get(tag)?.includes(resourceName), `${tag} names another resource`);
+      gateRows += 1;
+    }
+  }
+}
+
 // Nested names: the same in every language, and loaded in every game.
 const NESTABLE = new Set([...AGES.flatMap(gatedResources).map(resourceNameTag),
   "LOC_AGE_ANTIQUITY_NAME", "LOC_AGE_EXPLORATION_NAME", "LOC_AGE_MODERN_NAME"]);
@@ -88,4 +108,5 @@ for (const folder of fs.readdirSync("text").filter((d) => d !== "en_us" && fs.ex
   }
 }
 
-console.log(`pedia harness passed (${chapters.length} chapters, ${paragraphs} paragraphs, ${unitRows} unit lines)`);
+console.log(`pedia harness passed (${chapters.length} chapters, ${paragraphs} paragraphs, ${unitRows} unit lines,
+    ${gateRows} gate lines)`);

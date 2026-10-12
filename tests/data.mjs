@@ -3,7 +3,9 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { buildFiles, CURVE_THRESHOLDS, LEVELS, PREVIEW_TEXT, resourceNameTag } from "../scripts/build-data.mjs";
+import {
+  buildFiles, CURVE_THRESHOLDS, GATES_OPTION, gateParameters, LEVELS, PEDIA, pediaGateTag, PREVIEW_TEXT, resourceNameTag
+} from "../scripts/build-data.mjs";
 import {
   AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, buildGateMap, gatedResources, upgradeOnlyGatedUnits
 } from "../scripts/gate-map.mjs";
@@ -19,6 +21,11 @@ import {
 //     preview line never changes combat (Amount 0). No other modifier carries a string, and the mod adds no string
 //     to a modifier it does not define.
 //   - The gate lists per age are the ones written into DESIGN.md section 4.
+//   - The hard gate's files (sr-<age>-gate-<value>.xml) set Units.StrategicResource on exactly the gated units of
+//     the age, write exactly the six STRATEGIC_RESOURCE_MINIMUM parameters (upgrading 0 under Training, 1 under
+//     Training and upgrade, healing 0), carry one page line per gated unit, and touch no other table; no other
+//     file sets the column (DESIGN.md 7f). Nothing of the gate reaches independents: the engine's own exemption
+//     covers them, and the files carry no grant and no trait.
 //   - Every unit and resource the data names exists in the game's tables, as dumped from lab games
 //     (devtools/gate-map/<age>.json) and, for the age last played, in the live compiled database
 //     (Debug/gameplay-copy.sqlite). The live check is skipped with a message when that file is absent.
@@ -270,7 +277,40 @@ for (const age of AGES) {
 // and 3, which the Sengoku player can get no other way. This pins that finding to the dumps.
 assert.deepEqual(AGES.flatMap((age) => upgradeOnlyGatedUnits(dumps[age])),
   dumps.AGE_EXPLORATION.upgrades.length ? ["UNIT_SAMURAI_2", "UNIT_SAMURAI_3"] : []);
-assert.ok(!fs.readdirSync(DATA).some((f) => /\bStrategicResource\s*=/.test(read(f))), "data sets Units.StrategicResource");
+// The hard gate: the column only in the gate files, exactly the gate map, with the engine's parameters.
+const GATE_FILE = /^sr-(antiquity|exploration|modern)-gate-(training|upgrade)\.xml$/;
+let gateUnits = 0;
+for (const f of fs.readdirSync(DATA)) {
+  const xml = read(f);
+  const match = f.match(GATE_FILE);
+  if (!match) {
+    assert.ok(!/StrategicResource\s*=|StrategicResource="/.test(xml), `${f} sets Units.StrategicResource outside a gate file`);
+    assert.ok(!/GlobalParameters/.test(xml), `${f} writes global parameters outside a gate file`);
+    continue;
+  }
+  const age = AGES.find((a) => AGE_FILE[a] === match[1]);
+  const gateName = /** @type {keyof typeof GATES_OPTION} */ (match[2]);
+  const gates = buildGateMap(dumps[age]);
+  const updates = [...xml.matchAll(/<Update><Where UnitType="([A-Z0-9_]+)"\/><Set StrategicResource="([A-Z_]+)"\/><\/Update>/g)]
+    .map((m) => [m[1], m[2]]);
+  assert.deepEqual(updates, [...gates], `${f}: the column rows differ from the gate map`);
+  const params = [...xml.matchAll(/<Replace Name="([A-Z_]+)" Value="(\d+)"\/>/g)].map((m) => [m[1], Number(m[2])]);
+  assert.deepEqual(params, gateParameters(GATES_OPTION[gateName].upgrading), `${f}: parameters`);
+  assert.equal(params.find(([n]) => n.endsWith("UNIT_HEALING"))?.[1], 0, `${f}: healing must stay free`);
+  assert.equal(params.find(([n]) => n.endsWith("UNIT_UPGRADING"))?.[1], gateName === "upgrade" ? 1 : 0,
+      `${f}: upgrading`);
+  const lines = [...xml.matchAll(/<Row SectionID="UNITS" PageID="([A-Z0-9_]+)" ChapterID="([A-Z_]+)" Paragraph="([A-Z0-9_]+)" SortIndex="20"\/>/g)];
+  assert.deepEqual(lines.map((m) => m[1]), [...gates.keys()], `${f}: one page line per gated unit`);
+  for (const [, unit, chapter, tag] of lines) {
+    assert.equal(chapter, PEDIA.unitChapter, `${f} ${unit}: chapter`);
+    assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateName), `${f} ${unit}: line`);
+  }
+  const tables = [...xml.matchAll(/^ {4}<([A-Za-z]+)>$/gm)].map((m) => m[1]);
+  assert.deepEqual(tables, ["Units", "GlobalParameters", "CivilopediaPageChapterParagraphs"], `${f}: tables`);
+  assert.ok(!/Modifier|Requirement|TraitType|CanTrain/.test(xml), `${f}: the gate is the column and its parameters only`);
+  gateUnits += updates.length;
+}
+assert.equal(gateUnits, 2 * Object.values(EXPECTED).flatMap((r) => Object.values(r)).flat().length, "gate rows");
 // Strings only inside the mod's own modifiers (checked above); no file adds one to a modifier of the game's.
 assert.ok(!fs.readdirSync(DATA).some((f) => /ModifierStrings/.test(read(f))), "data writes ModifierStrings rows");
 
@@ -309,5 +349,5 @@ if (!fs.existsSync(live)) {
 }
 
 console.log(`data harness passed (${modifiersChecked} modifiers in ${groups.length} groups, ` +
-  `${previewLines} preview lines, ` +
+  `${previewLines} preview lines, ${gateUnits} gate rows, ` +
   `${Object.values(EXPECTED).flatMap((r) => Object.values(r)).flat().length} gated units)`);
