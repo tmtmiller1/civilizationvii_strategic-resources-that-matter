@@ -46,10 +46,10 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="zh_Hans_CN"><Text>游戏每份资源给予战斗力+1，最多六份。开启{LOC_SR_SETUP_LATE_CURVE_NAME}选项（默认）时，更多资源会继续增加：在8、10、12、14、16、18和20份时战斗力+1，作用于游戏每份资源加成所覆盖的单位。战斗预览会在游戏自身那一行旁边以一行显示，例如“+1 {LOC_RESOURCE_NITER_NAME}：8份或以上”。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="zh_Hans_CN"><Text>哪些单位需要什么</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="zh_Hans_CN"><Text>文明的特色单位需要其所取代的单位所需的资源。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（战车, 骑手及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（长枪兵, 方阵, 军团, 长生军等）</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（追猎者, 骑士, 枪骑兵及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（披甲战士, 长柄枪兵及其特色版本）[N]{LOC_RESOURCE_NITER_NAME}：攻城单位（石弩, 抛石机, 射石炮, 火车）和第二级起的重型战舰（克拉克帆船, 盖伦帆船及其特色版本）</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}：炮兵（野战加农炮, 野战炮, 反坦克炮, 臼炮, 榴弹炮, 突击炮）[N]{LOC_RESOURCE_OIL_NAME}：装甲部队（陆地战舰, 坦克及其特色版本）和战列舰（无畏战舰, 战列舰及其特色版本）[N]{LOC_RESOURCE_COAL_NAME}：轻型战舰（铁甲舰, 巡洋舰, 驱逐舰, 巴巴里海盗）[N]{LOC_RESOURCE_RUBBER_NAME}：飞机</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="zh_Hans_CN"><Text>不受任何要求限制：战士系列和探路者、远程步兵（弓箭手, 弩手, 钩铳手）、柯克船和风帆战列舰、胸甲骑兵、潜艇以及近代步兵，因此每位玩家都始终能够防御。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（战车、骑手及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（长枪兵、方阵、军团、长生军等）</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（追猎者、骑士、枪骑兵及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（披甲战士、长柄枪兵及其特色版本）[N]{LOC_RESOURCE_NITER_NAME}：攻城单位（石弩、抛石机、射石炮、火车）和第二级起的重型战舰（克拉克帆船、盖伦帆船及其特色版本）</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}：炮兵（野战加农炮、野战炮、反坦克炮、臼炮、榴弹炮、突击炮）[N]{LOC_RESOURCE_OIL_NAME}：装甲部队（陆地战舰、坦克及其特色版本）和战列舰（无畏战舰、战列舰及其特色版本）[N]{LOC_RESOURCE_COAL_NAME}：轻型战舰（铁甲舰、巡洋舰、驱逐舰、巴巴里海盗）[N]{LOC_RESOURCE_RUBBER_NAME}：飞机</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="zh_Hans_CN"><Text>不受任何要求限制：战士系列和探路者、远程步兵（弓箭手、弩手、钩铳手）、柯克船和风帆战列舰、胸甲骑兵、潜艇以及近代步兵，因此每位玩家都始终能够防御。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED" Language="zh_Hans_CN"><Text>无补给</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_STRATEGIC" Language="zh_Hans_CN"><Text>战略资源</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_CHAPTER" Language="zh_Hans_CN"><Text>战略资源</Text></Replace>
@@ -80,6 +80,6 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="zh_Hans_CN"><Text>补给丧失：没有{1_Resource}。在重新获得{1_Resource}之前，你的{2_Unit}战斗力{3_Combat}，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="zh_Hans_CN"><Text>补给丧失：没有{1_Resource}。在重新获得{1_Resource}之前，你的{2_Unit}和其他{3_Others}个单位战斗力{4_Combat}，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="zh_Hans_CN"><Text>无补给单位</Text></Replace>
-        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hans_CN"><Text>你的{1_Unit}需要{2_Resource}，而你一个都没有：在获得之前，它战斗力{3_Combat}，训练变慢。每个需要战略资源的单位都是如此，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hans_CN"><Text>你的{1_Unit}需要{2_Resource}，而你一份都没有：在获得之前，它战斗力{3_Combat}，训练变慢。每个需要战略资源的单位都是如此，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
     </LocalizedText>
 </Database>

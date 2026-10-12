@@ -46,10 +46,10 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="zh_Hant_HK"><Text>遊戲每份資源給予戰鬥力+1，最多六份。開啟{LOC_SR_SETUP_LATE_CURVE_NAME}選項（預設）時，更多資源會繼續增加：在8、10、12、14、16、18和20份時戰鬥力+1，作用於遊戲每份資源加成所涵蓋的單位。戰鬥預覽會在遊戲自身那一行旁邊以一行顯示，例如「+1 {LOC_RESOURCE_NITER_NAME}：8份或以上」。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="zh_Hant_HK"><Text>哪些單位需要甚麼</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="zh_Hant_HK"><Text>文明的特色單位需要其所取代的單位所需的資源。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：騎兵（馬戰車, 騎手及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二級起的步兵（槍兵, 方陣, 羅馬軍團, 長生軍等）</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：騎兵（追獵者, 騎士, 槍騎兵及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二級起的步兵（披甲戰士, 長矛兵及其特色版本）[N]{LOC_RESOURCE_NITER_NAME}：攻城單位（投石機, 拋石機, 射石砲, 火車）和第二級起的重型戰艦（克拉克帆船, 蓋倫帆船及其特色版本）</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}：炮兵（野戰加農砲, 野戰砲, 反坦克砲, 迫擊砲, 榴彈砲, 突擊砲）[N]{LOC_RESOURCE_OIL_NAME}：裝甲部隊（陸地戰艦, 戰車及其特色版本）和戰列艦（無畏戰艦, 戰艦及其特色版本）[N]{LOC_RESOURCE_COAL_NAME}：輕型戰艦（裝甲艦, 巡洋艦, 驅逐艦, 巴巴里海盜）[N]{LOC_RESOURCE_RUBBER_NAME}：飛機</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="zh_Hant_HK"><Text>不受任何要求限制：戰士系列和偵察兵、遠程步兵（弓箭手, 弩手, 鉤銃手）、柯克船和風帆戰列艦、胸甲騎兵、潛水艇以及近代步兵，因此每位玩家都始終能夠防禦。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：騎兵（馬戰車、騎手及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二級起的步兵（槍兵、方陣、羅馬軍團、長生軍等）</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：騎兵（追獵者、騎士、槍騎兵及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二級起的步兵（披甲戰士、長矛兵及其特色版本）[N]{LOC_RESOURCE_NITER_NAME}：攻城單位（投石機、拋石機、射石砲、火車）和第二級起的重型戰艦（克拉克帆船、蓋倫帆船及其特色版本）</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}：炮兵（野戰加農砲、野戰砲、反坦克砲、迫擊砲、榴彈砲、突擊砲）[N]{LOC_RESOURCE_OIL_NAME}：裝甲部隊（陸地戰艦、戰車及其特色版本）和戰列艦（無畏戰艦、戰艦及其特色版本）[N]{LOC_RESOURCE_COAL_NAME}：輕型戰艦（裝甲艦、巡洋艦、驅逐艦、巴巴里海盜）[N]{LOC_RESOURCE_RUBBER_NAME}：飛機</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="zh_Hant_HK"><Text>不受任何要求限制：戰士系列和偵察兵、遠程步兵（弓箭手、弩手、鉤銃手）、柯克船和風帆戰列艦、胸甲騎兵、潛水艇以及近代步兵，因此每位玩家都始終能夠防禦。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED" Language="zh_Hant_HK"><Text>無補給</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_STRATEGIC" Language="zh_Hant_HK"><Text>戰略資源</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_CHAPTER" Language="zh_Hant_HK"><Text>戰略資源</Text></Replace>
@@ -80,6 +80,6 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="zh_Hant_HK"><Text>補給喪失：沒有{1_Resource}。在重新獲得{1_Resource}之前，你的{2_Unit}戰鬥力{3_Combat}，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="zh_Hant_HK"><Text>補給喪失：沒有{1_Resource}。在重新獲得{1_Resource}之前，你的{2_Unit}和其他{3_Others}個單位戰鬥力{4_Combat}，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="zh_Hant_HK"><Text>無補給單位</Text></Replace>
-        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hant_HK"><Text>你的{1_Unit}需要{2_Resource}，而你一個都沒有：在獲得之前，它戰鬥力{3_Combat}，訓練變慢。每個需要戰略資源的單位都是如此，完整規則見文明百科頁面「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」。</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hant_HK"><Text>你的{1_Unit}需要{2_Resource}，而你一份都沒有：在獲得之前，它戰鬥力{3_Combat}，訓練變慢。每個需要戰略資源的單位都是如此，完整規則見文明百科頁面「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」。</Text></Replace>
     </LocalizedText>
 </Database>

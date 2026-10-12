@@ -2,7 +2,7 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_SR_MOD_NAME" Language="de_DE"><Text>Strategische Ressourcen, die zählen</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="de_DE"><Text>Strategische Ressourcen zählen wieder. Eine Einheit, die Pferde, Eisen, Salpeter, Öl, Kohle oder Kautschuk braucht, kämpft schwächer und wird langsamer ausgebildet, solange ihr Besitzer keine Einheit dieser Ressource hat, und jede Einheit gibt weiterhin den Bonus des Spiels. Geht die letzte verloren, kehrt der Malus eine Runde später zurück. Über sechs Einheiten hinaus bringt die Zahl weiter Stärke. Zwei Optionen der Spieleinrichtung legen den Malus fest und schalten den späten Bonus. Einzelspieler. Im Mehrspielermodus kehrt der Malus nach dem Verlust einer Ressource erst zurück, wenn dieser Spieler eine Ressource erhält.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="de_DE"><Text>Strategische Ressourcen zählen wieder. Eine Einheit, die Pferde, Eisen, Salpeter, Öl, Kohle oder Gummi braucht, kämpft schwächer und wird langsamer ausgebildet, solange ihr Besitzer keine Einheit dieser Ressource hat, und jede Einheit der Ressource gibt weiterhin den Bonus des Spiels. Geht die letzte verloren, kehrt der Malus eine Runde später zurück. Über sechs Stück hinaus bringt die Zahl weiter Stärke. Zwei Optionen der Spieleinrichtung legen den Malus fest und schalten den späten Bonus. Einzelspieler. Im Mehrspielermodus kehrt der Malus nach dem Verlust einer Ressource erst zurück, wenn dieser Spieler eine Ressource erhält.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="de_DE"><Text>Unversorgt: ohne {1_Resource} ({2_Combat} Kampfstärke, langsamer ausgebildet)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="de_DE"><Text>Braucht {1_Resource}. Ohne: {2_Combat} Kampfstärke, langsamer ausgebildet.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="de_DE"><Text>Braucht {1_Resource} (du hast {2_Copies}).</Text></Replace>
@@ -12,11 +12,11 @@
         <Replace Tag="LOC_SR_RESOURCE_SUPPLIES_MORE" Language="de_DE"><Text>Versorgt Einheiten: {1_Units} und {2_More} weitere.</Text></Replace>
         <Replace Tag="LOC_SR_LIST_PAIR" Language="de_DE"><Text>{1_First}, {2_Second}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="de_DE"><Text>{2_Combat} Unversorgt: ohne {3_Resource}</Text></Replace>
-        <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="de_DE"><Text>+{2_Combat} {4_Resource}: {3_Copies} oder mehr Einheiten</Text></Replace>
+        <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="de_DE"><Text>+{2_Combat} {4_Resource}: ab {3_Copies} Stück</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="de_DE"><Text>Unversorgte Einheiten</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="de_DE"><Text>Wie viel schwächer und langsamer ausgebildet eine Einheit ist, solange ihr Besitzer keine Einheit der strategischen Ressource hat, die sie braucht.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="de_DE"><Text>Aus</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="de_DE"><Text>Kein Malus. Jede Einheit gibt weiterhin den Bonus des Spiels.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="de_DE"><Text>Kein Malus. Jede Einheit einer Ressource gibt weiterhin den Bonus des Spiels.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="de_DE"><Text>Leicht</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT_DESCRIPTION" Language="de_DE"><Text>-2 Kampfstärke und 20 % weniger Produktion für die Einheit.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD" Language="de_DE"><Text>Standard</Text></Replace>
@@ -24,13 +24,13 @@
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="de_DE"><Text>Hart</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="de_DE"><Text>-5 Kampfstärke und 50 % weniger Produktion für die Einheit (die Ausbildung dauert doppelt so lange).</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="de_DE"><Text>Strategische Ressourcen über sechs</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="de_DE"><Text>Der Bonus des Spiels von +1 Kampfstärke je Einheit einer strategischen Ressource endet bei sechs Einheiten. Ist diese Option an, erhalten Einheiten bei 8, 10, 12, 14, 16, 18 und 20 Einheiten je +1 mehr.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="de_DE"><Text>Der Bonus des Spiels von +1 Kampfstärke je Einheit einer strategischen Ressource endet bei sechs Stück. Ist diese Option an, erhalten die Truppen bei 8, 10, 12, 14, 16, 18 und 20 Stück je +1 mehr.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="de_DE"><Text>Aus</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="de_DE"><Text>Der Bonus endet bei sechs Einheiten, wie im Grundspiel.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="de_DE"><Text>Der Bonus endet bei sechs Stück, wie im Grundspiel.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="de_DE"><Text>An</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="de_DE"><Text>+1 Kampfstärke bei 8, 10, 12, 14, 16, 18 und 20 Einheiten.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="de_DE"><Text>+1 Kampfstärke bei 8, 10, 12, 14, 16, 18 und 20 Stück.</Text></Replace>
         <!-- Civilopedia -->
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="de_DE"><Text>Strategische Ressourcen, die zählen</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="de_DE"><Text>Strategische Ressourcen</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="de_DE"><Text>Eine Militäreinheit, die {LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME} oder {LOC_RESOURCE_RUBBER_NAME} braucht, kämpft schwächer und wird langsamer ausgebildet, solange ihr Besitzer keine Einheit dieser Ressource hat. Nichts ist verboten: Jede Einheit kann weiterhin wie im Grundspiel ausgebildet und aufgewertet werden.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="de_DE"><Text>Ohne die Ressource</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="de_DE"><Text>Einer Einheit ohne ihre Ressource fehlt Kampfstärke, bei jeder Stärke, die sie hat (Nahkampf sowie Fernkampf und Bombardierung, wo vorhanden), und ihre Stadt bringt weniger Produktion für ihre Ausbildung auf. Wie viel, legt die Option {LOC_SR_SETUP_UNSUPPLIED_NAME} in der Spieleinrichtung fest:</Text></Replace>
@@ -42,8 +42,8 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_TITLE" Language="de_DE"><Text>Verlust einer Ressource</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_1" Language="de_DE"><Text>Eine neue Einheit einer Ressource hebt den Malus sofort auf. Geht eine verloren, durch Plünderung, durch ein Feld, das den Besitzer wechselt, oder auf andere Weise, kehrt der Malus eine Runde später zurück, für menschliche wie für KI-Spieler.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="de_DE"><Text>Ein Krieg mit einem Handelspartner beendet die Route: Was sie brachte, ist sofort weg, und mit ihm der Schutz vor dem Malus. Solange ein Spieler mindestens eine Einheit der Ressource hält, bleiben seine Truppen ohne Malus.</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE" Language="de_DE"><Text>Über sechs Einheiten</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="de_DE"><Text>Das Spiel gibt +1 Kampfstärke pro Einheit einer Ressource, bis zu sechs. Mit der Option {LOC_SR_SETUP_LATE_CURVE_NAME} an (Voreinstellung) bringen weitere mehr: +1 Kampfstärke bei 8, 10, 12, 14, 16, 18 und 20 Einheiten, für die Truppen, die der Bonus des Spiels erfasst. Die Kampfvorschau zeigt das als eine Zeile neben der des Spiels, etwa „+1 {LOC_RESOURCE_NITER_NAME}: 8 oder mehr Einheiten“.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE" Language="de_DE"><Text>Mehr als sechs</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="de_DE"><Text>Das Spiel gibt +1 Kampfstärke pro Einheit einer Ressource, bis zu sechs. Mit der Option {LOC_SR_SETUP_LATE_CURVE_NAME} an (Voreinstellung) bringen weitere mehr: +1 Kampfstärke bei 8, 10, 12, 14, 16, 18 und 20 Stück, für die Truppen, die der Bonus des Spiels erfasst. Die Kampfvorschau zeigt das als eine Zeile neben der des Spiels, etwa „+1 {LOC_RESOURCE_NITER_NAME}: ab 8 Stück“.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="de_DE"><Text>Welche Truppen was brauchen</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="de_DE"><Text>Die Spezialeinheit einer Zivilisation braucht, was die Einheit braucht, die sie ersetzt.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="de_DE"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: Kavallerie (Streitwagen, Reiter und ihre Spezialversionen)[N]{LOC_RESOURCE_IRON_NAME}: Infanterie ab der zweiten Stufe (Speerkämpfer, Phalanx, Legion, Unsterblicher und die übrigen)</Text></Replace>
@@ -53,24 +53,24 @@
         <Replace Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED" Language="de_DE"><Text>Unversorgt</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_STRATEGIC" Language="de_DE"><Text>Strategische Ressourcen</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_CHAPTER" Language="de_DE"><Text>Strategische Ressource</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_HORSES_NAME}: ohne eine Einheit davon -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_HORSES_NAME}: ohne eine Einheit davon -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_HORSES_NAME}: ohne eine Einheit davon -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_IRON_NAME}: ohne eine Einheit davon -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_IRON_NAME}: ohne eine Einheit davon -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_IRON_NAME}: ohne eine Einheit davon -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_NITER_NAME}: ohne eine Einheit davon -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_NITER_NAME}: ohne eine Einheit davon -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_NITER_NAME}: ohne eine Einheit davon -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_OIL_NAME}: ohne eine Einheit davon -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_OIL_NAME}: ohne eine Einheit davon -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_OIL_NAME}: ohne eine Einheit davon -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_COAL_NAME}: ohne eine Einheit davon -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_COAL_NAME}: ohne eine Einheit davon -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_COAL_NAME}: ohne eine Einheit davon -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_RUBBER_NAME}: ohne eine Einheit davon -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_RUBBER_NAME}: ohne eine Einheit davon -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
-        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_RUBBER_NAME}: ohne eine Einheit davon -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_HORSES_NAME}: ohne diese Ressource -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_HORSES_NAME}: ohne diese Ressource -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_HORSES_NAME}: ohne diese Ressource -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_IRON_NAME}: ohne diese Ressource -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_IRON_NAME}: ohne diese Ressource -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_IRON_NAME}: ohne diese Ressource -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_NITER_NAME}: ohne diese Ressource -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_NITER_NAME}: ohne diese Ressource -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_NITER_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_NITER_NAME}: ohne diese Ressource -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_OIL_NAME}: ohne diese Ressource -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_OIL_NAME}: ohne diese Ressource -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_OIL_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_OIL_NAME}: ohne diese Ressource -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_COAL_NAME}: ohne diese Ressource -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_COAL_NAME}: ohne diese Ressource -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_COAL_NAME}: ohne diese Ressource -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" Language="de_DE"><Text>Braucht {LOC_RESOURCE_RUBBER_NAME}: ohne diese Ressource -2 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="de_DE"><Text>Braucht {LOC_RESOURCE_RUBBER_NAME}: ohne diese Ressource -3 Kampfstärke und langsamere Ausbildung.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="de_DE"><Text>Braucht {LOC_RESOURCE_RUBBER_NAME}: ohne diese Ressource -5 Kampfstärke und langsamere Ausbildung.</Text></Replace>
         <!-- /Civilopedia -->
         <!-- Lost-supply notification and first-time callout -->
         <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="de_DE"><Text>Versorgung verloren</Text></Replace>
@@ -80,6 +80,6 @@
         <Replace Tag="LOC_SR_NOTIFY_LOST_ONE" Language="de_DE"><Text>Versorgung verloren: ohne {1_Resource}. Deine Einheit {2_Unit} kämpft mit {3_Combat} Kampfstärke und wird langsamer ausgebildet, bis du wieder {1_Resource} hast.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOST_MANY" Language="de_DE"><Text>Versorgung verloren: ohne {1_Resource}. Deine Einheit {2_Unit} und {3_Others} {3_Others : plural 1?weitere Einheit; other?weitere Einheiten;} kämpfen mit {4_Combat} Kampfstärke und werden langsamer ausgebildet, bis du wieder {1_Resource} hast.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_TITLE" Language="de_DE"><Text>Unversorgte Einheit</Text></Replace>
-        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="de_DE"><Text>Deine Einheit {1_Unit} ist auf {2_Resource} angewiesen, und du hast nichts davon: Bis du eine Einheit davon bekommst, kämpft sie mit {3_Combat} Kampfstärke und wird langsamer ausgebildet. So geht es jeder Einheit, die eine strategische Ressource braucht, und die Zivilopädie-Seite {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} erklärt die ganze Regel.</Text></Replace>
+        <Replace Tag="LOC_SR_CALLOUT_BODY" Language="de_DE"><Text>Deine Einheit {1_Unit} ist auf {2_Resource} angewiesen, und du hast nichts davon: Solange das so bleibt, kämpft sie mit {3_Combat} Kampfstärke und wird langsamer ausgebildet. So geht es jeder Einheit, die eine strategische Ressource braucht, und die Zivilopädie-Seite {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} erklärt die ganze Regel.</Text></Replace>
     </LocalizedText>
 </Database>
