@@ -13,7 +13,9 @@ const LINE_CLASS = "sr-unsupplied-line";
 const STATS_SELECTOR = ".unit-actions__stats_container";
 // The game's stats row and its cells (unit-actions.js): a divider, then an icon over a value.
 const ROW_SELECTOR = ".unit-actions__unit-stats-container";
-const DIVIDER_CLASSES = ["unit-actions__stat-div", "flex", "w-0.5", "sr-unsupplied-divider"];
+// The game's divider class is "w-0\.5" (the backslash is part of the name); the width is set outright instead.
+const DIVIDER_CLASSES = ["unit-actions__stat-div", "flex", "sr-unsupplied-divider"];
+const DIVIDER_WIDTH = "0.1111rem";
 const CELL_CLASSES = [LINE_CLASS, "unit-info__stat-container", "pointer-events-auto", "flex", "flex-col",
   "justify-end", "items-center", "bg-no-repeat"];
 const ICON_CLASSES = ["unit-info__stat-icon", "flex", "size-7", "bg-contain", "bg-no-repeat"];
@@ -56,6 +58,7 @@ export function describeUnit(unit) {
 function addCell(row) {
   const divider = document.createElement("div");
   divider.classList.add(...DIVIDER_CLASSES);
+  divider.style.width = DIVIDER_WIDTH;
   row.appendChild(divider);
   const cell = document.createElement("div");
   cell.classList.add(...CELL_CLASSES);
