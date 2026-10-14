@@ -4,6 +4,15 @@ All notable changes to the Strategic Resources That Matter mod for Civilization 
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 
+## [1.0.1] - 2026-10-14
+
+The license now says that Civilization VII and its art and data belong to Firaxis and 2K. The mod itself plays exactly
+as in 1.0.0.
+
+### Changed
+- The LICENSE file ends with a notice that Sid Meier's Civilization VII and its assets belong to Firaxis Games and 2K,
+  that the MIT license doesn't cover them, and that the game screenshots are there for illustration.
+
 ## [1.0.0] - 2026-10-12
 
 Horses, Iron, Niter, Oil, Coal and Rubber matter again: going without one costs the units that need it, and can
