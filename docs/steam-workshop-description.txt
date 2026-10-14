@@ -62,7 +62,7 @@ A civilization's unique unit needs what the unit it replaces needs. A resource t
 [/list]
 
 [h2]Languages[/h2]
-English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and Simplified and Traditional Chinese, using the game's own words for its terms. The translations are machine-made; corrections are welcome in the comments.
+English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and Simplified and Traditional Chinese, using the game's own words for its terms. Corrections to the translations are welcome in the comments.
 
 [h2]Source and documentation[/h2]
 [list]
