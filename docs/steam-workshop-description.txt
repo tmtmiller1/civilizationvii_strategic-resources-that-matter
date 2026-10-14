@@ -1,52 +1,84 @@
 [h1]Strategic Resources That Matter[/h1]
+[b]Version 1.0.0. Compatible with Civilization VII 1.5.0. Single-player only[/b]
 
-Horses, Iron, Niter, Oil, Coal and Rubber matter again. A unit that draws on one of them fights weaker and trains slower while its owner has none of it, and each one you hold still adds the game's own bonus, so the count keeps mattering. Lose your last one, to a raid on the mine or a lost settlement, and the penalty is back a turn later. Past six, where the game's own bonus stops, the count keeps adding strength.
+Horses, Iron, Niter, Oil, Coal and Rubber count for the units that need them. In the base game a missing one costs you nothing; with the mod, a unit whose owner has none of its resource fights weaker and trains slower, losing your last one brings the penalty back a turn later, and the count keeps adding strength past six. Nothing is forbidden unless you ask for it: turn on Gated Units at setup and a unit cannot be trained or bought at all while you have none of its resource.
 
-Nothing is forbidden unless you ask for it: by default every unit can still be trained and upgraded, and going without just costs you. Turn on Gated Units at setup and a unit cannot be trained or bought at all while you have none of its resource.
+Three options in Advanced Options, under Game Settings, each with an Off value, combine freely, so you choose the rules per game: the standard penalty with no gate (the default), a harsh penalty with the gate on, the gate alone, or any other mix. The AI plays under the same rules; independent powers and city-states are never affected.
 
 [h2]What changes[/h2]
 [list]
-[*][b]None of the resource:[/b] less Combat Strength (melee, and ranged and bombard where the unit has them) and less Production toward the unit. Default: -3 and a third less Production, so the unit takes half as long again to train.
-[*][b]One or more:[/b] no penalty; the game's +1 for each as before, up to six.
-[*][b]Past six:[/b] +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20.
-[*]The game says why, in your language: a cell in the unit panel's stats with the penalty in red, a pill on each such unit in the production list ("Needs Niter", with the whole sentence in its tooltip), a line in each strategic resource's description on the map and in the commerce screen ("Supplies units: Field Cannon, Mortar ..."), a line of its own in the combat preview ("-3 Unsupplied: no Niter", "+1 Niter: 8 or more"), and a Civilopedia page under Game Concepts, with a line on each unit's page that needs a resource.
-[*]A notification when you lose the last of a resource: "Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower until you get Niter back." It ends with the turn and never holds it up.
-[*]The first time you select a unit that is short of its resource, an advisor callout explains the rule and points to the Civilopedia page. Once, and only with tutorials or advisor warnings on.
+[*][b]Unsupplied units.[/b] A unit whose owner has none of its strategic resource loses Combat Strength on each strength it has (melee, and ranged and bombard where it has them), and its city puts less Production toward it. Default: -3 and a third less Production. One of the resource lifts the penalty; the game's own +1 for each applies as before, up to six.
+[*][b]Losing a resource hurts.[/b] The game notices a resource arriving but not one going away. The mod has it check every player again each turn, so a resource lost to a raid, a lost settlement or an ended trade route brings the penalty back a turn later, for you and for the AI alike.
+[*][b]Past six.[/b] Where the game's own bonus stops, the count keeps adding: +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 of a resource.
+[*][b]Gated Units (off by default).[/b] A unit that needs a strategic resource cannot be trained or bought while you have none of it. It stays in the production list, greyed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under Training and upgrade, no unit can be upgraded into it either; under Training, upgrades stay free. Units already in the field are never gated. The Warrior line, the Scout, ranged infantry, the Cog and Modern infantry need nothing, so everyone can always defend. The AI is locked by the same rule and never sticks on a locked unit.
+[/list]
+
+[h2]Game setup options[/h2]
+Play Now uses the defaults. The options are fixed for the whole game once it starts.
+[list]
+[*][b]Unsupplied Units:[/b] Off, Light (-2, 20% less Production), Standard (-3, 33% less), Harsh (-5, 50% less). Default Standard.
+[*][b]Strategic Resources Past Six:[/b] Off or On. Default On.
+[*][b]Gated Units:[/b] Off, Training, or Training and upgrade. Default Off.
 [/list]
 
 [h2]Which units need what[/h2]
 [table]
 [tr][th]Age[/th][th]Units[/th][th]Resource[/th][/tr]
-[tr][td]Antiquity[/td][td]Cavalry[/td][td]Horses[/td][/tr]
-[tr][td]Antiquity[/td][td]Infantry from the second tier (Spearman, Phalanx, Legion...)[/td][td]Iron[/td][/tr]
-[tr][td]Exploration[/td][td]Cavalry[/td][td]Horses[/td][/tr]
-[tr][td]Exploration[/td][td]Infantry from the second tier[/td][td]Iron[/td][/tr]
+[tr][td]Antiquity[/td][td]Cavalry (Chariot, Horseman)[/td][td]Horses[/td][/tr]
+[tr][td]Antiquity[/td][td]Infantry from the second tier (Spearman, Phalanx, Legion, Immortal...)[/td][td]Iron[/td][/tr]
+[tr][td]Exploration[/td][td]Cavalry (Courser, Knight, Lancer)[/td][td]Horses[/td][/tr]
+[tr][td]Exploration[/td][td]Infantry from the second tier (Man-At-Arms, Pikeman)[/td][td]Iron[/td][/tr]
 [tr][td]Exploration[/td][td]Siege, and heavy warships from the second tier (Carrack, Galleon)[/td][td]Niter[/td][/tr]
-[tr][td]Modern[/td][td]Artillery[/td][td]Niter[/td][/tr]
+[tr][td]Modern[/td][td]Artillery (Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun)[/td][td]Niter[/td][/tr]
 [tr][td]Modern[/td][td]Armour and battleships[/td][td]Oil[/td][/tr]
-[tr][td]Modern[/td][td]Light warships[/td][td]Coal[/td][/tr]
+[tr][td]Modern[/td][td]Light warships (Ironclad, Cruiser, Destroyer)[/td][td]Coal[/td][/tr]
 [tr][td]Modern[/td][td]Aircraft[/td][td]Rubber[/td][/tr]
 [/table]
-A resource that reaches you over a trade route counts the same as one you mine yourself. Unique units need what the unit they replace needs. The Warrior line, ranged infantry, the first ships and Modern infantry need nothing, so everyone can always defend.
+A civilization's unique unit needs what the unit it replaces needs. A resource that reaches you over a trade route counts the same as one you mine yourself.
 
-[h2]Losing a resource[/h2]
-The game notices a resource arriving at once, but not one going away. The mod has it check every player again at the start of each turn, so a lost resource brings the penalty back a turn later, for you and for the AI.
-
-[h2]Game setup options[/h2]
+[h2]What the game tells you[/h2]
 [list]
-[*][b]Unsupplied Units:[/b] Off, Light (-2, 20% less Production), Standard (-3, 33% less), Harsh (-5, 50% less). Default Standard.
-[*][b]Strategic Resources Past Six:[/b] Off or On. Default On.
-[*][b]Gated Units:[/b] Off, Training, or Training and upgrade. Default Off. On, a unit that needs a resource stays in the production list, greyed out ("Locked: no Iron"), until you have the resource, and is locked again the moment your last one goes; under Training and upgrade no unit can be upgraded into it either. Units already in the field are never gated, and neither are independent powers and city-states. The AI plays under the same lock.
+[*][b]Unit panel.[/b] A unit short of its resource gains one more cell in its stats, the resource's icon over the penalty in red, with "Unsupplied: no Horses (-3 Combat Strength, slower to train)" as its tooltip.
+[*][b]Production list.[/b] A pill like the game's own "Ageless" on each unit that needs a resource: "Unsupplied: no Niter" on a red tint while you have none, "Niter: 2" once you have some, "Locked: no Iron" under Gated Units.
+[*][b]Combat preview.[/b] The penalty as a line of its own, for both sides ("-3 Unsupplied: no Niter"), and the strength past six beside the game's own ("+1 Niter: 8 or more").
+[*][b]Resources.[/b] Each strategic resource's description names the units it supplies for you in this age.
+[*][b]Notification.[/b] When you lose the last of a resource your units need: "Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower until you get Niter back." Once per loss; it never holds the turn up.
+[*][b]First time.[/b] An advisor callout the first time you select a unit short of its resource, and a second one under Gated Units for the lock. Each shows once, and only with tutorials or advisor warnings on.
+[*][b]Civilopedia.[/b] A page under Game Concepts, Combat, and a line on each such unit's page.
 [/list]
 
-[h2]Good to know[/h2]
+[h2]Known limits[/h2]
 [list]
-[*]Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.
-[*]Works in new games; a game started with the mod needs it to load.
-[*]Independent powers and city-states are not penalised and never gated.
-[*]Adds data and a few small scripts; replaces no game file. Tested alongside Readable Tooltips.
-[*]Carries the Tower Settings Keeper, which keeps every mod's settings after a restart.
+[*][b]Single-player.[/b] In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.
+[*][b]New games.[/b] A game started with the mod needs it to load; added to a game under way, the mod does nothing until a new game starts.
+[*][b]Under Gated Units,[/b] a unit already in the production queue when the resource is lost keeps its progress and is completed.
+[*][b]Another mod that sets the game's resource minimums itself[/b] keeps the engine's rule by its own numbers; this mod's lock texts then step back to their plain form.
 [/list]
 
-[h2]Source[/h2]
-MIT licensed. Typed JavaScript, no build step, tests included.
+[h2]Compatibility[/h2]
+[list]
+[*]Adds unit tags, modifiers and three setup options; replaces no base-game file. The panel cell, the pill and the resource line use the slots the game keeps for mods. Tested with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3757582073]Readable Tooltips[/url], QD Improved Plot Tooltip, Building Location Advisor, City Hall, Better Commerce Screen UI, Mod Commons and Mav's UI Overhaul.
+[*]Carries the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3815023570]Tower Settings Keeper[/url], so every mod's settings survive a restart.
+[/list]
+
+[h2]Languages[/h2]
+English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and Simplified and Traditional Chinese, using the game's own words for its terms. The translations are machine-made; corrections are welcome in the comments.
+
+[h2]Source and documentation[/h2]
+[list]
+[*]Open source on GitHub: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]source and full documentation[/url], and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases]release notes[/url].
+[*]This version: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.0.0]Strategic Resources That Matter 1.0.0[/url], with the zip for a manual install.
+[/list]
+
+[h2]For modders[/h2]
+This mod is developed with [url=https://github.com/tmtmiller1/civilizationvii_tower-bench]Tower Bench[/url], a free, open-source test bench for Civilization VII mods: inspect and change a running game from your browser or the command line, diff the world between two turns, prove your deployed code is what the game runs, and find which mod causes a crash.
+
+[h2]Credits[/h2]
+[list]
+[*][b]Tower[/b], for design and Civilization VII implementation.
+[/list]
+
+[h2]Special Thanks[/h2]
+[list]
+[*][b]Potato McWhisky[/b], for teaching me to love again, Civilization-wise (Civ VI), after growing up as a Civilization II, IV, and V player. Making this mod is an act of faith that the community will eventually help make Civilization VII as good as the previous entries.
+[/list]
