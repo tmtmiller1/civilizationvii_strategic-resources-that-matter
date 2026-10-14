@@ -111,7 +111,6 @@ function hasResource(resource, amount, inverse = false) {
   ];
 }
 
-/** @param {string} id @param {string} child */
 function attach(id, child) {
   return [
     `    <Modifier id="${id}" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">`,
@@ -148,9 +147,6 @@ function combatChild({ id, tags, type, amount, owner }) {
   ];
 }
 
-/**
- * @param {{ id: string, tag: string, percent: number, owner?: string[] }} spec
- */
 function productionChild({ id, tag, percent, owner }) {
   return [
     `    <Modifier id="${id}" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">`,
