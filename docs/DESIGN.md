@@ -140,7 +140,7 @@ probe P4.
 | Demographics | per-civ count of each strategic resource as a series; unsupplied unit count |
 | Mod Commons | none; no UI surface contested |
 
-## 7. Probe ladder (disproof gate)
+## 7. Probe ladder
 
 | ID | Hypothesis | Cheapest disproof | Kills if wrong |
 | --- | --- | --- | --- |
