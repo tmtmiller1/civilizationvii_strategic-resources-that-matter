@@ -30,11 +30,7 @@ export function resourceTooltipIndex() {
   return tooltipIndex;
 }
 
-/**
- * The player's traits, from their civilization and their leader.
- * @param {*} player
- * @returns {Set<string>}
- */
+/** @param {*} player @returns {Set<string>} */
 function playerTraits(player) {
   const civilization = GameInfo.Civilizations.lookup(player.civilizationType)?.CivilizationType;
   const leader = GameInfo.Leaders.lookup(player.leaderType)?.LeaderType;

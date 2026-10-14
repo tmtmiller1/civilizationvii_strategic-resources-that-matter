@@ -111,7 +111,6 @@ function liveFacts() {
 }
 
 /**
- * The wrapper around one query function.
  * @param {Function} original
  * @param {(cityId: *, queryType: *) => boolean} applies
  */
