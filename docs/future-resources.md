@@ -40,8 +40,7 @@ bonuses, which is why the set is six and not "every strategic resource".
   Niter and Hardwood) cannot be gated on both; the soft penalty can stack two tags, the hard gate cannot. Decide per
   unit which resource gates it before any data is written.
 - Texts: the resource line and pedia lines per resource, twelve languages; the setup descriptions stay.
-- A probe first (the disproof gate in `CLAUDE.md`): one unit, one new resource, one lab game, read `canStart` and the
-  panel before building the map.
+- A probe first: one unit, one new resource, one lab game, read `canStart` and the panel before building the map.
 - Watch the AI: a ship line gated on Hardwood changes what coastal AIs build in Exploration; a soak with and without
   it, as phase 15 did for Iron.
 
