@@ -196,12 +196,7 @@ export function describeSupplyLoss(resourceType, unitTypes, { supply, penalties,
   };
 }
 
-/**
- * Whether the gate is on and some unit's column names the resource.
- * @param {Gate | undefined} gate
- * @param {string} resourceType
- * @returns {boolean}
- */
+/** @param {Gate | undefined} gate @param {string} resourceType */
 function gateNames(gate, resourceType) {
   if (!gate?.on) return false;
   for (const resource of gate.columns.values()) {
@@ -211,7 +206,6 @@ function gateNames(gate, resourceType) {
 }
 
 /**
- * The notification's text for a loss that reaches this many units.
  * @param {number} total
  * @returns {"LOC_SR_NOTIFY_LOST_NONE" | "LOC_SR_NOTIFY_LOST_ONE" | "LOC_SR_NOTIFY_LOST_MANY"}
  */
@@ -277,11 +271,7 @@ export function buildGateIndex(units, globalParameters, supply) {
   return { on, upgrade: on && (params.get(GATE_UPGRADING_PARAMETER) ?? 0) >= 1, columns };
 }
 
-/**
- * GlobalParameters as name to number, leaving out rows without a name or a numeric value.
- * @param {Iterable<{ Name?: string, Value?: string | number }>} globalParameters
- * @returns {Map<string, number>}
- */
+/** @param {Iterable<{ Name?: string, Value?: string | number }>} globalParameters */
 function readParameters(globalParameters) {
   /** @type {Map<string, number>} */
   const params = new Map();
