@@ -19,7 +19,6 @@ if (!AGES[age]) {
 const db = process.argv[3] ??
   path.join(os.homedir(), "Library/Application Support/Civilization VII/Debug/gameplay-copy.sqlite");
 
-/** @param {string} query */
 const rows = (query) => {
   const out = execFileSync("sqlite3", ["-readonly", "-json", db, query], { encoding: "utf8", maxBuffer: 1 << 26 });
   return out.trim() ? JSON.parse(out) : [];
