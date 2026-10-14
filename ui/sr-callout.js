@@ -66,10 +66,6 @@ export function selectedUnsupplied() {
   return [Locale.compose(unitInfo.Name), Locale.compose(resourceNameKey(status.resourceType)), String(status.combat)];
 }
 
-/**
- * The unit type of the local player's selected unit, if any.
- * @returns {string | undefined}
- */
 function selectedOwnUnitType() {
   const unitId = UI.Player.getHeadSelectedUnit();
   const unit = unitId ? Units.get(unitId) : null;
