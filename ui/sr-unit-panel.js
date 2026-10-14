@@ -50,11 +50,7 @@ export function describeUnit(unit) {
   };
 }
 
-/**
- * The cell: a divider and the icon-over-value column the panel's own cells have.
- * @param {HTMLElement} row
- * @returns {HTMLElement}
- */
+/** @param {HTMLElement} row */
 function addCell(row) {
   const divider = document.createElement("div");
   divider.classList.add(...DIVIDER_CLASSES);
@@ -84,7 +80,6 @@ function iconUrl(resourceType) {
 }
 
 /**
- * Puts a status into the cell: the resource's icon, the penalty, the sentence as the tooltip.
  * @param {HTMLElement} cell
  * @param {PanelStatus} status
  */
@@ -109,11 +104,7 @@ function parts(host, make) {
   return { cell, divider };
 }
 
-/**
- * Shows, updates or hides the cell and its divider in the panel's root.
- * @param {HTMLElement} root
- * @param {PanelStatus | null} status
- */
+/** @param {HTMLElement} root @param {PanelStatus | null} status */
 function renderLine(root, status) {
   const host = /** @type {HTMLElement | null} */ (root?.querySelector?.(STATS_SELECTOR));
   if (!host) return;
