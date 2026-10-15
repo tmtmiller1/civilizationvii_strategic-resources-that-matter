@@ -3,6 +3,13 @@ Generated from CHANGELOG.md by scripts/steam-changelog.mjs; release.sh uploads t
 To fix an old Workshop entry, paste the text under its ==== line into that entry's Edit box on the change-notes page.
 A block edited by hand is kept as-is. Delete a block to regenerate it from CHANGELOG.md.
 
+==== 1.0.2 | 2026-10-15 | src 9a5c1f9f95c9 | gen e3f4c086e8e8 ====
+[b]Version 1.0.2 · 15 October 2026[/b]
+The Catapult and the Trebuchet no longer need Niter. Neither one uses gunpowder, so in the Exploration Age Niter is now for the Bombard and the heavy warships.
+
+[b]Changed[/b]
+• Exploration siege needs Niter from the third tier only: the Bombard and the Hwacha that replaces it. The Catapult, the Trebuchet and the two Hwacha that replace them are free of any requirement, with Gated Units on or off. The game's own +1 Combat Strength per Niter still applies to them, as in the base game, and so does the mod's extra strength past six.
+
 ==== 1.0.1 | 2026-10-14 | src 718a5869f91d | gen 016ef674326b ====
 [b]Version 1.0.1 · 14 October 2026[/b]
 The license now says that Civilization VII and its art and data belong to Firaxis and 2K. The mod itself plays exactly as in 1.0.0.
