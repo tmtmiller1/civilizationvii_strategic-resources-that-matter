@@ -4,23 +4,17 @@ All notable changes to the Strategic Resources That Matter mod for Civilization 
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 
-## [1.0.2] - 2026-10-15
+## [1.0.1] - 2026-10-15
 
 The Catapult and the Trebuchet no longer need Niter. Neither one uses gunpowder, so in the Exploration Age Niter is now
-for the Bombard and the heavy warships.
+for the Bombard and the heavy warships. The license now says that Civilization VII and its art and data belong to
+Firaxis and 2K.
 
 ### Changed
 - Exploration siege needs Niter from the third tier only: the Bombard and the Hwacha that replaces it. The Catapult,
   the Trebuchet and the two Hwacha that replace them are free of any requirement, with Gated Units on or off. The
   game's own +1 Combat Strength per Niter still applies to them, as in the base game, and so does the mod's extra
   strength past six.
-
-## [1.0.1] - 2026-10-14
-
-The license now says that Civilization VII and its art and data belong to Firaxis and 2K. The mod itself plays exactly
-as in 1.0.0.
-
-### Changed
 - The LICENSE file ends with a notice that Sid Meier's Civilization VII and its assets belong to Firaxis Games and 2K,
   that the MIT license doesn't cover them, and that the game screenshots are there for illustration.
 
