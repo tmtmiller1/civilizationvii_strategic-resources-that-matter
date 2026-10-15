@@ -5,7 +5,7 @@
 //
 // What it writes, and why it is shaped this way (DESIGN.md sections 7b to 7d):
 //   - sr-tags.xml: one unit tag per resource, SR_SUPPLY_<NAME>.
-//   - sr-<age>-supply.xml: that tag on every gated unit of the age (TypeTags), so one modifier per resource covers
+//   - sr-<age>-supply.sql: that tag on every gated unit of the age (TypeTags), so one modifier per resource covers
 //     its units, for melee strength (REQUIREMENT_UNIT_TAG_MATCHES) and for production (the UnitClass argument). Two
 //     more tags per resource, SR_RANGED_<NAME> and SR_BOMBARD_<NAME>, mark the gated units that have a ranged or a
 //     bombard strength above 0, and SR_CURVE_RANGED_<NAME> and SR_CURVE_BOMBARD_<NAME> do the same for the units the
@@ -82,6 +82,7 @@ export const CURVE_THRESHOLDS = [8, 10, 12, 14, 16, 18, 20];
 
 const HEADER = '<?xml version="1.0" encoding="utf-8"?>';
 const GENERATED = "<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->";
+const GENERATED_SQL = "Written by scripts/build-data.mjs; edit the script, not this file.";
 
 /** @param {string} resource RESOURCE_IRON -> IRON */
 export const shortName = (resource) => resource.replace(/^RESOURCE_/, "");
@@ -365,6 +366,24 @@ export function curveFor({ resource, tags }, units) {
   return { body, ids };
 }
 
+/**
+ * The tags for one age, as SQL: each row is inserted only when its unit is in Types, so a unit from a DLC the player
+ * doesn't own, or one a game update removed, is skipped instead of failing the TypeTags foreign key. A failed key
+ * stops the game from starting.
+ * @param {string} age @param {string[][]} rows [unit, tag]
+ */
+function supplyFile(age, rows) {
+  /** @type {Map<string, string[]>} */
+  const byTag = new Map();
+  for (const [unit, tag] of rows) byTag.set(tag, [...(byTag.get(tag) ?? []), unit]);
+  return [`-- ${GENERATED_SQL}`,
+    `-- ${age}: the units that draw on a resource (DESIGN.md section 4), and their strength types.`,
+    ...[...byTag].flatMap(([tag, units]) => ["",
+      `INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, '${tag}' FROM Types WHERE Type IN (`,
+      units.map((u) => `    '${u}'`).join(",\n") + ");"]),
+    ""].join("\n");
+}
+
 /** @returns {Map<string, string>} file name in data/ -> contents */
 export function buildFiles() {
   /** @type {Map<string, string>} */
@@ -391,10 +410,7 @@ export function buildFiles() {
     for (const [resource, units] of strengths.curve) {
       for (const type of ["RANGED", "BOMBARD"]) rows.push(...units[type].map((u) => [u, curveTag(type, resource)]));
     }
-    files.set(`sr-${file}-supply.xml`, [HEADER, GENERATED,
-      `<!-- ${age}: the units that draw on a resource (DESIGN.md section 4), and their strength types. -->`,
-      "<Database>", "    <TypeTags>", ...rows.map(([unit, tag]) => `        <Row Type="${unit}" Tag="${tag}"/>`),
-      "    </TypeTags>", "</Database>", ""].join("\n"));
+    files.set(`sr-${file}-supply.sql`, supplyFile(age, rows));
     for (const [levelName, level] of Object.entries(LEVELS)) {
       const parts = gatedResources(age).map((r) => penaltyFor(r, level, strengths.penalty.get(r) ?? {}));
       files.set(`sr-${file}-${levelName}-modifiers.xml`, gameEffects(
@@ -430,7 +446,8 @@ function main() {
     stale.push(name);
     if (!check) fs.writeFileSync(target, text);
   }
-  const strays = fs.readdirSync(dataDir).filter((n) => n.startsWith("sr-") && n.endsWith(".xml") && !files.has(n));
+  const strays = fs.readdirSync(dataDir)
+    .filter((n) => n.startsWith("sr-") && (n.endsWith(".xml") || n.endsWith("-supply.sql")) && !files.has(n));
   if (check) {
     if (stale.length || strays.length) {
       console.log(`data:check FAILED\n  stale: ${stale.join(", ") || "none"}\n` +

@@ -135,6 +135,8 @@ game's own rule, so their spawns and armies are unchanged.
 
 ## Compatibility
 
+- Works with any mix of DLC. The unit tags only go on units that are in your game, so a unique unit from a DLC you
+  don't own is skipped, and so is one a game update removes.
 - Adds unit tags, modifiers and three game setup options. Changes no base-game row and replaces no base-game file
   with Gated Units off; with it on, sets the game's own `StrategicResource` column on the gated units and the six
   resource-minimum parameters the game defines but leaves empty.
