@@ -99,7 +99,7 @@ unit it replaces, a unit that replaces nothing by its own tags and tier. `tests/
 | Antiquity | infantry from tier 2 (the Warrior line and the Scout are free) | Iron | Spearman, Phalanx; Gaisatai 2-3, Hoplite 2-3, Immortal 1-2, Legion 1-2, Medjay 2-3 |
 | Exploration | cavalry | Horses | Courser, Knight, Lancer; Boyar 1-3, Chevaler 1-3, Mamluk 1-3, Tobang 1-3 |
 | Exploration | infantry from tier 2 | Iron | Man-at-Arms, Pikeman; Gold Bangles, Kispoko Nena To, Leiomano, Samurai, Tercio, Xunleichong (each 2-3) |
-| Exploration | land siege | Niter | Catapult, Trebuchet, Bombard; Hwacha 1-3 |
+| Exploration | land siege from tier 3 (the Catapult and Trebuchet are free) | Niter | Bombard; Hwacha 3 |
 | Exploration | heavy warships from tier 2 (the Cog is free) | Niter | Carrack, Galleon; Cetbang, Corsair, Kalam, Vikingr (each 2-3) |
 | Modern | artillery: land siege and land ranged | Niter | Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun; Chang Beun 1-3, Katyusha 1-2 |
 | Modern | armour: cavalry from tier 2 (the Cuirassier is free) | Oil | Landship, Tank; Cossack 2-3, Ghilman 2-3, Hussar 2-3 |
@@ -108,10 +108,11 @@ unit it replaces, a unit that replaces nothing by its own tags and tier. `tests/
 | Modern | aircraft | Rubber | Biplane, Fighter, Trench Fighter, Dive Bomber, Bomber, Heavy Bomber; Stuka 1-2, Zero 1-2 |
 | Modern | infantry | none | count bonus only; gating the basic line unit would lock players out of defence |
 
-Totals: Antiquity 22 units, Exploration 45, Modern 43. Not gated, by the rules: ranged infantry (Archer, Crossbowman,
-Arquebusier and their uniques; the Keshig and Hwarang follow the archer they replace), the Submarine (neither light nor
-heavy), and the Modern infantry line including the Sepoy (it replaces Line Infantry, so its siege tag does not make it
-artillery). There are no carriers in 1.5.0.
+Totals: Antiquity 22 units, Exploration 41, Modern 43. Not gated, by the rules: ranged infantry (Archer, Crossbowman,
+Arquebusier and their uniques; the Keshig and Hwarang follow the archer they replace), the Catapult and Trebuchet with
+the Hwacha 1-2 that replace them (siege without gunpowder), the Submarine (neither light nor heavy), and the Modern
+infantry line including the Sepoy (it replaces Line Infantry, so its siege tag does not make it artillery). There are no
+carriers in 1.5.0.
 
 ## 5. How it would be built
 

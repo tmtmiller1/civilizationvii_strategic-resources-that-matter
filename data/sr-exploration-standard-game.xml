@@ -32,7 +32,6 @@
         <Row SectionID="UNITS" PageID="UNIT_BOYAR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_BOYAR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CARRACK" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_CATAPULT" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CETBANG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CETBANG_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CHEVALER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
@@ -44,8 +43,6 @@
         <Row SectionID="UNITS" PageID="UNIT_GALLEON" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GOLD_BANGLES_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GOLD_BANGLES_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_STANDARD" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_HWACHA" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_HWACHA_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_HWACHA_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_KALAM_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_KALAM_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
@@ -67,7 +64,6 @@
         <Row SectionID="UNITS" PageID="UNIT_TOBANG" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TOBANG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TOBANG_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_TREBUCHET" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_VIKINGR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_VIKINGR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_XUNLEICHONG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_STANDARD" SortIndex="10"/>

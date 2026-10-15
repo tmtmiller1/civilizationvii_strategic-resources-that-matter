@@ -37,7 +37,11 @@ export const GATES = {
   AGE_EXPLORATION: [
     { resource: "RESOURCE_HORSES", rule: "cavalry", test: (u) => has(u, "CAVALRY") },
     { resource: "RESOURCE_IRON", rule: "infantry from tier 2", test: (u) => has(u, "INFANTRY") && u.Tier >= 2 },
-    { resource: "RESOURCE_NITER", rule: "land siege", test: (u) => has(u, "SIEGE") && u.Domain === "DOMAIN_LAND" },
+    {
+      resource: "RESOURCE_NITER",
+      rule: "land siege from tier 3 (the Catapult and Trebuchet are free)",
+      test: (u) => has(u, "SIEGE") && u.Domain === "DOMAIN_LAND" && u.Tier >= 3
+    },
     {
       resource: "RESOURCE_NITER",
       rule: "heavy warships from tier 2 (the Cog is free)",
