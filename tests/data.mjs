@@ -32,6 +32,10 @@ import {
 
 const DATA = "data";
 const read = (/** @type {string} */ f) => fs.readFileSync(path.join(DATA, f), "utf8");
+/** The [unit, tag] rows of an age's supply file, each statement guarded by `FROM Types WHERE Type IN (...)`. */
+const supplyRows = (/** @type {string} */ age) => [...read(`sr-${AGE_FILE[age]}-supply.sql`)
+  .matchAll(/INSERT OR IGNORE INTO TypeTags \(Type, Tag\) SELECT Type, '([A-Z_]+)' FROM Types WHERE Type IN \(([^)]*)\);/g)]
+  .flatMap((m) => [...m[2].matchAll(/'([A-Z0-9_]+)'/g)].map((u) => [u[1], m[1]]));
 
 // 1. Generated files are current.
 for (const [name, text] of buildFiles()) {
@@ -80,8 +84,7 @@ for (const age of AGES) {
   const dump = JSON.parse(fs.readFileSync(path.join("devtools/gate-map", `${AGE_FILE[age]}.json`), "utf8"));
   const tagsOf = new Map();
   const tagRows = [...dump.tags,
-    ...[...read(`sr-${AGE_FILE[age]}-supply.xml`).matchAll(/<Row Type="([^"]+)" Tag="([^"]+)"\/>/g)]
-      .map((m) => ({ Type: m[1], Tag: m[2] }))];
+    ...supplyRows(age).map(([Type, Tag]) => ({ Type, Tag }))];
   for (const row of tagRows) {
     if (!tagsOf.has(row.Type)) tagsOf.set(row.Type, new Set());
     tagsOf.get(row.Type).add(row.Tag);
@@ -268,9 +271,10 @@ for (const age of AGES) {
   const byResource = {};
   for (const [unit, resource] of buildGateMap(dumps[age])) (byResource[resource] ??= []).push(unit);
   assert.deepEqual(byResource, EXPECTED[age], `${age}: the gate map differs from DESIGN.md section 4`);
-  const tagged = [...read(`sr-${AGE_FILE[age]}-supply.xml`).matchAll(/<Row Type="([^"]+)" Tag="SR_SUPPLY_([A-Z]+)"\/>/g)];
+  const tagged = supplyRows(age).filter(([, tag]) => tag.startsWith("SR_SUPPLY_"));
   const known = new Set(dumps[age].units.map((/** @type {{ UnitType: string }} */ u) => u.UnitType));
-  for (const [, unit] of tagged) assert.ok(known.has(unit), `${age}: ${unit} is not a unit of this age`);
+  assert.ok(tagged.length, `${age}: no SR_SUPPLY_ rows read from the supply file`);
+  for (const [unit] of tagged) assert.ok(known.has(unit), `${age}: ${unit} is not a unit of this age`);
 }
 
 // The upgrade gate is left out of 1.0 (DESIGN.md section 7e): the only units it could gate are Samurai tiers 2
@@ -313,6 +317,14 @@ for (const f of fs.readdirSync(DATA)) {
 assert.equal(gateUnits, 2 * Object.values(EXPECTED).flatMap((r) => Object.values(r)).flat().length, "gate rows");
 // Strings only inside the mod's own modifiers (checked above); no file adds one to a modifier of the game's.
 assert.ok(!fs.readdirSync(DATA).some((f) => /ModifierStrings/.test(read(f))), "data writes ModifierStrings rows");
+// A tag row for a unit the player's game lacks (a DLC they don't own, a unit an update removed) fails the TypeTags
+// foreign key, and the game won't start. Every tag insert must go through Types.
+for (const f of fs.readdirSync(DATA)) {
+  assert.ok(!/<TypeTags>/.test(read(f)), `${f}: TypeTags rows in XML can't skip a missing unit; use the guarded SQL`);
+  for (const m of read(f).matchAll(/INSERT[^;]*INTO TypeTags[^;]*;/g)) {
+    assert.match(m[0], /SELECT Type, '[A-Z_]+' FROM Types WHERE Type IN \(/, `${f}: an unguarded TypeTags insert`);
+  }
+}
 
 // Every data file is loaded by exactly one action group, and nothing else is.
 const modinfo = fs.readFileSync("strategic-resources-that-matter.modinfo", "utf8").replace(/<!--[\s\S]*?-->/g, "");

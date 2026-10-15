@@ -82,10 +82,9 @@ Strategic Resources Past Six off at setup.
 
 Status: read from code. The gate map is a list of unit types built from the base game and DLC tables on 1.5.0
 (`devtools/gate-map/`). A unit added by another mod carries none of the mod's tags, so it is never penalised and the
-panel shows nothing for it. A mod that removes a base unit leaves its `TypeTags` row pointing at nothing; the
-`TypeTags` foreign key to `Types` would then refuse that row, and a refused row rolls back the whole file, so that
-age's units would lose their tags and no unit would be penalised. The symptom is a `Database.log` error on
-`sr-<age>-supply.xml`.
+panel shows nothing for it. The tags go in through `Types` (`sr-<age>-supply.sql`), so a unit that isn't in the
+player's game is skipped: one from a DLC they don't own, one a game update removed, or one another mod deleted. The
+units that are there get their tags as usual.
 
 ### 3. Mods that change the unit panel
 

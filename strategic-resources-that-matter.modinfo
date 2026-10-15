@@ -261,7 +261,7 @@
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-antiquity" scope="game" criteria="antiquity">
             <Properties><LoadOrder>201</LoadOrder></Properties>
-            <Actions><UpdateDatabase><Item>data/sr-antiquity-supply.xml</Item></UpdateDatabase></Actions>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-supply.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-antiquity-light" scope="game" criteria="antiquity-light">
             <Properties><LoadOrder>202</LoadOrder></Properties>
@@ -301,7 +301,7 @@
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-exploration" scope="game" criteria="exploration">
             <Properties><LoadOrder>201</LoadOrder></Properties>
-            <Actions><UpdateDatabase><Item>data/sr-exploration-supply.xml</Item></UpdateDatabase></Actions>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-supply.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-exploration-light" scope="game" criteria="exploration-light">
             <Properties><LoadOrder>202</LoadOrder></Properties>
@@ -341,7 +341,7 @@
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-modern" scope="game" criteria="modern">
             <Properties><LoadOrder>201</LoadOrder></Properties>
-            <Actions><UpdateDatabase><Item>data/sr-modern-supply.xml</Item></UpdateDatabase></Actions>
+            <Actions><UpdateDatabase><Item>data/sr-modern-supply.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-modern-light" scope="game" criteria="modern-light">
             <Properties><LoadOrder>202</LoadOrder></Properties>
