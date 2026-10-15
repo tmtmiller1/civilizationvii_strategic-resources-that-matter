@@ -4,6 +4,15 @@ All notable changes to the Strategic Resources That Matter mod for Civilization 
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 
+## [1.0.2] - 2026-10-15
+
+Games start again for players who don't own every DLC. The mod tagged other civilizations' unique units, like the
+Hwarang and the Numidian Cavalry, and when one of those DLCs was missing the game refused to start.
+
+### Fixed
+- The unit tags only go on units that are in your game, so any mix of DLC loads, and so does a game update that
+  removes a unit.
+
 ## [1.0.1] - 2026-10-15
 
 The Catapult and the Trebuchet no longer need Niter. Neither one uses gunpowder, so in the Exploration Age Niter is now
