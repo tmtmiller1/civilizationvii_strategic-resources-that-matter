@@ -1,5 +1,5 @@
 [h1]Strategic Resources That Matter[/h1]
-[b]Version 1.0.2. Compatible with Civilization VII 1.5.0. Single-player only[/b]
+[b]Version 1.0.1. Compatible with Civilization VII 1.5.0. Single-player only[/b]
 
 Horses, Iron, Niter, Oil, Coal and Rubber count for the units that need them. In the base game a missing one costs you nothing; with the mod, a unit whose owner has none of its resource fights weaker and trains slower, losing your last one brings the penalty back a turn later, and the count keeps adding strength past six. Nothing is forbidden unless you ask for it: turn on Gated Units at setup and a unit cannot be trained or bought at all while you have none of its resource.
 
@@ -67,7 +67,7 @@ English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian P
 [h2]Source and documentation[/h2]
 [list]
 [*]Open source on GitHub: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]source and full documentation[/url], and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases]release notes[/url].
-[*]This version: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.0.2]Strategic Resources That Matter 1.0.2[/url], with the zip for a manual install.
+[*]This version: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.0.1]Strategic Resources That Matter 1.0.1[/url], with the zip for a manual install.
 [/list]
 
 [h2]For modders[/h2]
