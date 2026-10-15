@@ -1,5 +1,5 @@
 [h1]Strategic Resources That Matter[/h1]
-[b]Version 1.0.1. Compatible with Civilization VII 1.5.0. Single-player only[/b]
+[b]Version 1.0.2. Compatible with Civilization VII 1.5.0. Single-player only[/b]
 
 Horses, Iron, Niter, Oil, Coal and Rubber count for the units that need them. In the base game a missing one costs you nothing; with the mod, a unit whose owner has none of its resource fights weaker and trains slower, losing your last one brings the penalty back a turn later, and the count keeps adding strength past six. Nothing is forbidden unless you ask for it: turn on Gated Units at setup and a unit cannot be trained or bought at all while you have none of its resource.
 
@@ -10,7 +10,7 @@ Three options in Advanced Options, under Game Settings, each with an Off value, 
 [*][b]Unsupplied units.[/b] A unit whose owner has none of its strategic resource loses Combat Strength on each strength it has (melee, and ranged and bombard where it has them), and its city puts less Production toward it. Default: -3 and a third less Production. One of the resource lifts the penalty; the game's own +1 for each applies as before, up to six.
 [*][b]Losing a resource hurts.[/b] The game notices a resource arriving but not one going away. The mod has it check every player again each turn, so a resource lost to a raid, a lost settlement or an ended trade route brings the penalty back a turn later, for you and for the AI alike.
 [*][b]Past six.[/b] Where the game's own bonus stops, the count keeps adding: +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 of a resource.
-[*][b]Gated Units (off by default).[/b] A unit that needs a strategic resource cannot be trained or bought while you have none of it. It stays in the production list, greyed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under Training and upgrade, no unit can be upgraded into it either; under Training, upgrades stay free. Units already in the field are never gated. The Warrior line, the Scout, ranged infantry, the Cog and Modern infantry need nothing, so everyone can always defend. The AI is locked by the same rule and never sticks on a locked unit.
+[*][b]Gated Units (off by default).[/b] A unit that needs a strategic resource cannot be trained or bought while you have none of it. It stays in the production list, greyed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under Training and upgrade, no unit can be upgraded into it either; under Training, upgrades stay free. Units already in the field are never gated. The Warrior line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog and Modern infantry need nothing, so everyone can always defend. The AI is locked by the same rule and never sticks on a locked unit.
 [/list]
 
 [h2]Game setup options[/h2]
@@ -28,7 +28,7 @@ Play Now uses the defaults. The options are fixed for the whole game once it sta
 [tr][td]Antiquity[/td][td]Infantry from the second tier (Spearman, Phalanx, Legion, Immortal...)[/td][td]Iron[/td][/tr]
 [tr][td]Exploration[/td][td]Cavalry (Courser, Knight, Lancer)[/td][td]Horses[/td][/tr]
 [tr][td]Exploration[/td][td]Infantry from the second tier (Man-At-Arms, Pikeman)[/td][td]Iron[/td][/tr]
-[tr][td]Exploration[/td][td]Siege, and heavy warships from the second tier (Carrack, Galleon)[/td][td]Niter[/td][/tr]
+[tr][td]Exploration[/td][td]Siege from the third tier (Bombard), and heavy warships from the second tier (Carrack, Galleon)[/td][td]Niter[/td][/tr]
 [tr][td]Modern[/td][td]Artillery (Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun)[/td][td]Niter[/td][/tr]
 [tr][td]Modern[/td][td]Armour and battleships[/td][td]Oil[/td][/tr]
 [tr][td]Modern[/td][td]Light warships (Ironclad, Cruiser, Destroyer)[/td][td]Coal[/td][/tr]
@@ -67,7 +67,7 @@ English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian P
 [h2]Source and documentation[/h2]
 [list]
 [*]Open source on GitHub: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]source and full documentation[/url], and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases]release notes[/url].
-[*]This version: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.0.1]Strategic Resources That Matter 1.0.1[/url], with the zip for a manual install.
+[*]This version: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.0.2]Strategic Resources That Matter 1.0.2[/url], with the zip for a manual install.
 [/list]
 
 [h2]For modders[/h2]
