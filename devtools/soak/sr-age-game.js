@@ -11,7 +11,7 @@
 const NAME = "sr-age";
 const PLAN = {
   AGE_ANTIQUITY: { place: ["UNIT_SPEARMAN", "UNIT_CHARIOT", "UNIT_SLINGER"] },
-  AGE_EXPLORATION: { place: ["UNIT_MAN_AT_ARMS", "UNIT_CATAPULT", "UNIT_CROSSBOWMAN"], cycle: "RESOURCE_NITER" },
+  AGE_EXPLORATION: { place: ["UNIT_MAN_AT_ARMS", "UNIT_BOMBARD", "UNIT_CROSSBOWMAN"], cycle: "RESOURCE_NITER" },
   AGE_MODERN: { place: ["UNIT_TANK", "UNIT_FIELD_CANNON", "UNIT_LINE_INFANTRY"], cycle: "RESOURCE_OIL" },
 };
 function unitType(u) { return safe(() => String(GameInfo.Units.lookup(u.type).UnitType), "?"); }

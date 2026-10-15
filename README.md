@@ -60,7 +60,7 @@ A civilization's unique unit needs what the unit it replaces needs.
 | Antiquity | Infantry from the second tier: Spearman, Phalanx, Legion, Immortal and the others | Iron |
 | Exploration | Cavalry: Courser, Knight, Lancer and their unique versions | Horses |
 | Exploration | Infantry from the second tier: Man-At-Arms, Pikeman and their unique versions | Iron |
-| Exploration | Siege: Catapult, Trebuchet, Bombard, Hwacha | Niter |
+| Exploration | Siege from the third tier: Bombard and its unique version | Niter |
 | Exploration | Heavy warships from the second tier: Carrack, Galleon and their unique versions | Niter |
 | Modern | Artillery: Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun | Niter |
 | Modern | Armour: Landship, Tank and their unique versions | Oil |
@@ -70,8 +70,9 @@ A civilization's unique unit needs what the unit it replaces needs.
 
 A resource that reaches you over a trade route counts the same as one you mine yourself, from the turn the route lands.
 
-Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the Cog
-and the Ship of the Line, the Cuirassier, the Submarine, and Modern infantry, so every player can always defend.
+Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the
+Catapult and the Trebuchet, the Cog and the Ship of the Line, the Cuirassier, the Submarine, and Modern infantry, so
+every player can always defend.
 
 ## Losing a resource
 
@@ -106,7 +107,8 @@ It stays in the production list, greyed out, with a "Locked: no Iron" pill after
 it is locked again the moment your last one goes. Under Training and upgrade, no unit can be upgraded into it either;
 under Training, upgrades stay free, as in the base game. Units already in the field are never gated: they keep
 fighting, at the Unsupplied Units penalty if that option is on, and heal as usual. The units free of any requirement
-(the Warrior line, the Scout, ranged infantry, the Cog, Modern infantry) stay free, so every player can always defend.
+(the Warrior line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog, Modern infantry) stay free, so
+every player can always defend.
 Independent powers and city-states are never gated. A civilization's unique unit is gated like the unit it replaces;
 under Training and upgrade, the Sengoku's Samurai at the second and third tier, which only an upgrade can reach,
 need Iron too.

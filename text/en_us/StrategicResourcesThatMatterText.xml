@@ -139,13 +139,13 @@
             <Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Chariot, Horseman and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Spearman, Phalanx, Legion, Immortal and the others)</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3">
-            <Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Courser, Knight, Lancer and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Man-At-Arms, Pikeman and their unique versions)[N]{LOC_RESOURCE_NITER_NAME}: siege (Catapult, Trebuchet, Bombard, Hwacha) and heavy warships from the second tier (Carrack, Galleon and their unique versions)</Text>
+            <Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Courser, Knight, Lancer and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Man-At-Arms, Pikeman and their unique versions)[N]{LOC_RESOURCE_NITER_NAME}: siege from the third tier (Bombard, Hwacha) and heavy warships from the second tier (Carrack, Galleon and their unique versions)</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4">
             <Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}: artillery (Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun)[N]{LOC_RESOURCE_OIL_NAME}: armour (Landship, Tank and their unique versions) and battleships (Dreadnought, Battleship and their unique versions)[N]{LOC_RESOURCE_COAL_NAME}: light warships (Ironclad, Cruiser, Destroyer, Barbary Corsair)[N]{LOC_RESOURCE_RUBBER_NAME}: aircraft</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5">
-            <Text>Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the Cog and the Ship of the Line, the Cuirassier, the Submarine, and Modern infantry, so every player can always defend.</Text>
+            <Text>Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the Catapult and the Trebuchet, the Cog and the Ship of the Line, the Cuirassier, the Submarine, and Modern infantry, so every player can always defend.</Text>
         </Row>
         <Row Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED">
             <Text>Unsupplied</Text>

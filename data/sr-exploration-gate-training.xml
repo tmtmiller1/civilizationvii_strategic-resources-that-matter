@@ -8,7 +8,6 @@
         <Update><Where UnitType="UNIT_BOYAR_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_BOYAR_3"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_CARRACK"/><Set StrategicResource="RESOURCE_NITER"/></Update>
-        <Update><Where UnitType="UNIT_CATAPULT"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_CETBANG_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_CETBANG_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_CHEVALER"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
@@ -20,8 +19,6 @@
         <Update><Where UnitType="UNIT_GALLEON"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_GOLD_BANGLES_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
         <Update><Where UnitType="UNIT_GOLD_BANGLES_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
-        <Update><Where UnitType="UNIT_HWACHA"/><Set StrategicResource="RESOURCE_NITER"/></Update>
-        <Update><Where UnitType="UNIT_HWACHA_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_HWACHA_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_KALAM_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_KALAM_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
@@ -43,7 +40,6 @@
         <Update><Where UnitType="UNIT_TOBANG"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_TOBANG_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_TOBANG_3"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
-        <Update><Where UnitType="UNIT_TREBUCHET"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_VIKINGR_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_VIKINGR_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_XUNLEICHONG_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
@@ -63,7 +59,6 @@
         <Row SectionID="UNITS" PageID="UNIT_BOYAR_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_BOYAR_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CARRACK" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_CATAPULT" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CETBANG_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CETBANG_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CHEVALER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="10"/>
@@ -75,8 +70,6 @@
         <Row SectionID="UNITS" PageID="UNIT_GALLEON" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GOLD_BANGLES_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GOLD_BANGLES_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_HWACHA" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_HWACHA_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_HWACHA_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_KALAM_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_KALAM_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
@@ -98,7 +91,6 @@
         <Row SectionID="UNITS" PageID="UNIT_TOBANG" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TOBANG_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TOBANG_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_TREBUCHET" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_VIKINGR_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_VIKINGR_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_XUNLEICHONG_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="10"/>

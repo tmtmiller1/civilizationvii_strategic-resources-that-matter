@@ -1,7 +1,7 @@
 // sr-age-callout-game.js - crash-soak game script (tools/crash-soak/run-soak.sh) for the first-time callout and the
 // lost-supply notification across the Exploration to Modern transition. With the short-age probe an Exploration start
 // reaches Modern in about 10 turns. The transition reloads every game-scope script, so this file runs once per age:
-//   Exploration: tutorial level 2 (advisor warnings), an unsupplied Catapult selected: the callout shows and writes the
+//   Exploration: tutorial level 2 (advisor warnings), an unsupplied Bombard selected: the callout shows and writes the
 //                profile flag; closed with the game's own "cancel" input; then turns until the age ends
 //   Modern:      the manager's item unseen again (its state is wiped at the transition) while the flag holds; an
 //                unsupplied Field Cannon selected shows no callout; Niter gained, a roll, lost, a roll: one
@@ -134,9 +134,9 @@ async function selectAndLook(type, label) {
 }
 async function exploration() {
   setLevel(2);
-  place("UNIT_CATAPULT"); await sleep(2500);
+  place("UNIT_BOMBARD"); await sleep(2500);
   emit(`E start niter=${countOf(0, "RESOURCE_NITER")} completed=${safe(() => TM.isItemCompleted(CALLOUT_ID))} flag=${safe(() => CB.hasSeen())}`);
-  const shown = await selectAndLook("UNIT_CATAPULT", "E");
+  const shown = await selectAndLook("UNIT_BOMBARD", "E");
   check("exploration: the callout shows for an unsupplied unit", shown);
   check("exploration: showing it writes the profile flag", safe(() => CB.hasSeen()) === true);
   if (shown) { await pressCancel(); await sleep(2000); }
