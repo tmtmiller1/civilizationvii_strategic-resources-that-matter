@@ -51,7 +51,8 @@ const LAB_GLOBALS = {
   ServerType: "readonly",
   SlotStatus: "readonly",
   setInterval: "readonly",
-  CustomEvent: "readonly"
+  CustomEvent: "readonly",
+  GameplayMap: "readonly"
 };
 
 // Test and tool code: correctness rules only. The size limits are for the shipped modules; a test file is a list
