@@ -54,8 +54,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildGateMap, gatedResources, lineCopies,
-  lineLocks, strengthUnits
+  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildGateMap,
+  gatedResources, lineCopies, lineLocks, strengthUnits
 } from "./gate-map.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -226,6 +226,13 @@ export const pediaGateTag = (resource, gateName) =>
   `LOC_SR_PEDIA_UNIT_${shortName(resource)}_GATE_${gateName.toUpperCase()}`;
 
 /**
+ * Which gate value's line a unit's page carries. A unit the game tiers up by kills gets the training line under both
+ * values, since that tier-up never asks for the resource (KILL_TIER_UNITS).
+ * @param {string} unit @param {string} gateName
+ */
+export const gateLineFor = (unit, gateName) => (KILL_TIER_UNITS.has(unit) ? "training" : gateName);
+
+/**
  * The hard gate for one age and setup value: the column on every gated unit, the parameters, and the page line.
  * @param {string} age @param {Map<string, string>} gates @param {string} gateName
  */
@@ -244,7 +251,8 @@ function gateFile(age, gates, gateName) {
     "    </GlobalParameters>",
     "    <CivilopediaPageChapterParagraphs>",
     ...[...gates].map(([unit, resource]) => `        <Row SectionID="UNITS" PageID="${unit}" ` +
-      `ChapterID="${PEDIA.unitGateChapter}" Paragraph="${pediaGateTag(resource, gateName)}" SortIndex="10"/>`),
+      `ChapterID="${PEDIA.unitGateChapter}" Paragraph="${pediaGateTag(resource, gateLineFor(unit, gateName))}" ` +
+      `SortIndex="10"/>`),
     "    </CivilopediaPageChapterParagraphs>",
     "</Database>", ""].join("\n");
 }

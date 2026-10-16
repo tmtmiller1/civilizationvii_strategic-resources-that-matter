@@ -84,8 +84,8 @@
         <Row SectionID="UNITS" PageID="UNIT_MAMLUK_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_MAN_AT_ARMS" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_PIKEMAN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_SAMURAI_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_SAMURAI_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_SAMURAI_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_SAMURAI_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TERCIO_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TERCIO_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TOBANG" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>

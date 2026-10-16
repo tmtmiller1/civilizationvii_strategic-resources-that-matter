@@ -4,12 +4,12 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
-  buildFiles, CURVE_THRESHOLDS, GATES_OPTION, gateParameters, ICON_PATHS, LEVELS, PEDIA, pediaGateTag, PREVIEW_TEXT,
-  remapId, remapLabelTag, resourceNameTag
+  buildFiles, CURVE_THRESHOLDS, GATES_OPTION, gateLineFor, gateParameters, ICON_PATHS, LEVELS, PEDIA, pediaGateTag,
+  PREVIEW_TEXT, remapId, remapLabelTag, resourceNameTag
 } from "../scripts/build-data.mjs";
 import {
-  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildGateMap, gatedResources, lineCopies,
-  lineLocks, upgradeOnlyGatedUnits
+  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildGateMap,
+  gatedResources, lineCopies, lineLocks, upgradeOnlyGatedUnits
 } from "../scripts/gate-map.mjs";
 
 // Data gate: the invariants that crash the game or mislead it, checked on the files that ship.
@@ -284,10 +284,14 @@ for (const age of AGES) {
   for (const [unit] of tagged) assert.ok(known.has(unit), `${age}: ${unit} is not a unit of this age`);
 }
 
-// The upgrade gate is left out of 1.0 (DESIGN.md section 7e): the only units it could gate are Samurai tiers 2
-// and 3, which the Sengoku player can get no other way. This pins that finding to the dumps.
+// The only gated units nobody trains that an upgrade leads to are the Samurai tiers 2 and 3 (DESIGN.md 7e, 7f).
+// This pins that finding to the dumps.
 assert.deepEqual(AGES.flatMap((age) => upgradeOnlyGatedUnits(dumps[age])),
   dumps.AGE_EXPLORATION.upgrades.length ? ["UNIT_SAMURAI_2", "UNIT_SAMURAI_3"] : []);
+// The units the game tiers up by kills are among them, and gated, so their page line is the one that matters.
+for (const unit of KILL_TIER_UNITS) {
+  assert.ok(upgradeOnlyGatedUnits(dumps.AGE_EXPLORATION).includes(unit), `${unit}: a kill tier the gate map holds`);
+}
 // The hard gate: the column only in the gate files, exactly the gate map, with the engine's parameters.
 const GATE_FILE = /^sr-(antiquity|exploration|modern)-gate-(training|upgrade)\.xml$/;
 let gateUnits = 0;
@@ -314,7 +318,15 @@ for (const f of fs.readdirSync(DATA)) {
   assert.deepEqual(lines.map((m) => m[1]), [...gates.keys()], `${f}: one page line per gated unit`);
   for (const [, unit, chapter, tag] of lines) {
     assert.equal(chapter, PEDIA.unitGateChapter, `${f} ${unit}: chapter`);
-    assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateName), `${f} ${unit}: line`);
+    assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateLineFor(unit, gateName)), `${f} ${unit}: line`);
+  }
+  // The Samurai tiers come by kills, which the game grants without asking for Iron (watch run 2, block 1, X1), so
+  // their pages say "trained or bought" under both values, never "upgraded into".
+  if (match[1] === "exploration" && gates.size) {
+    for (const unit of KILL_TIER_UNITS) {
+      const line = lines.find((m) => m[1] === unit);
+      assert.equal(line?.[3], "LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING", `${f} ${unit}: the kill tier-up line`);
+    }
   }
   const tables = [...xml.matchAll(/^ {4}<([A-Za-z]+)>$/gm)].map((m) => m[1]);
   assert.deepEqual(tables, ["Units", "GlobalParameters", "CivilopediaPageChapterParagraphs"], `${f}: tables`);
