@@ -524,8 +524,28 @@ column gates under both settings (read from data, not watched); and the upgrade 
 Samurai, because the kills step comes first and does the upgrade itself.
 
 The Civilopedia says so: the Gated Units chapter's Samurai paragraph and the tier pages' line ("Cannot be trained or
-bought without Iron" under both settings, `KILL_TIER_UNITS` in `scripts/gate-map.mjs`). Gating the step itself is the
-owner's call (the options are in `tools/plans/watch2-block1-parallel-fix-notes.md`, section 2).
+bought without Iron" under both settings, `KILL_TIER_UNITS` in `scripts/gate-map.mjs`).
+
+**Free Tier-Up by Kills** (the owner, 2026-10-16). A setup option, On by default, which keeps the behaviour above. Off
+loads `data/sr-kill-tiers-off.sql` (load order 203, after the gate files at 202). `UnitUpgradeKills` has only
+`UnitType` and `KillCount` in the compiled schema, with no requirement or
+resource column, so the only data lever is the row itself: the file deletes the kill row of every unit that carries a
+`StrategicResource`, but only while the upgrading minimum is 1 or more (Gated Units "Training and upgrade", or another
+mod writing the same parameter and column). Under "Training", where upgrades are free, or with Gated Units off, it
+does nothing, since an ordinary upgrade wouldn't check the resource either. It also swaps those units' gate line from
+the training line to "upgraded into". Everything is selected through `Units` and `GlobalParameters`, so without the
+Sengoku DLC it touches nothing (tested, and run on a copy of a compiled database with no Samurai). Off overrides any
+other mod's change to the Samurai's kill counts, by deleting the row it changed; the option's description says so.
+Independents and city-states never field the Samurai and ignore the column, so they're untouched.
+
+What Off is meant to do, not watched: with the kill row gone the engine has no kills step for the tier, so the
+Samurai reaches tier 2 and 3 only through the upgrade command, at its gold cost and with the upgrading minimum's Iron
+check, as the Courser's was refused in `p15-gate-upgrade`. Unsure until a lab game shows it: whether the upgrade is
+offered at all for a tier no tech unlocks (the Samurai tiers have no `ProgressionTreeNodeUnlocks` row; tier 2 replaces
+the Man-at-Arms, which Heraldry unlocks, and `p15-gate-upgrade` with Heraldry and two Iron saw the kills rule as the
+only refusal). If it isn't offered, a Sengoku player with Off reaches tier 2 only by training it after Kinsei, and
+tier 3 never. Also unwatched: whether the tier-1 Samurai goes obsolete once tier 2 counts as unlocked, now that an
+ordinary upgrade leads to it (the stranding case of "Grant-only lines" below).
 
 ### Grant-only lines: a free unit stays until its owner could train the next one (after 1.0.2)
 
@@ -607,6 +627,7 @@ after). This is read from data; the launch with Silla off, in `docs/verification
 | Unsupplied Units | Off, Light (-2, -20% production), Standard (-3, -33%), Harsh (-5, -50%) | Standard |
 | Strategic Resources Past Six | Off, On | On |
 | Gated Units | Off, Training (no training or purchase without a copy), Training and upgrade (no upgrade into the unit either) | Off |
+| Free Tier-Up by Kills | On (the Samurai tier up after three kills without Iron), Off (under Training and upgrade, the Samurai upgrade only as other units do, with Iron) | On |
 
 The hard gate was built after the rest of 1.0 (7e) and shipped with it as Gated Units (7f).
 

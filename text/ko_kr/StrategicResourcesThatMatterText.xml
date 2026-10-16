@@ -90,6 +90,12 @@
         <Replace Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 필요한 유닛은 그 자원이 하나도 없으면 훈련도 구매도 할 수 없습니다. 그 유닛으로의 업그레이드는 자유롭습니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE" Language="ko_KR"><Text>훈련과 업그레이드</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 필요한 유닛은 그 자원이 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_NAME" Language="ko_KR"><Text>처치로 자유 승급</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION" Language="ko_KR"><Text>센고쿠의 사무라이는 유닛 3개를 처치하면 저절로 한 단계 올라갑니다. 켜면 철이 있든 없든 승급합니다. 끄는 것은 유닛 잠금이 "훈련과 업그레이드"일 때만 의미가 있습니다. 처치로는 더 이상 승급하지 않고, 다른 유닛처럼 업그레이드로 올라가며 철이 필요합니다. 끄면 다른 모드가 바꾼 처치 수도 덮어씁니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF" Language="ko_KR"><Text>끔</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION" Language="ko_KR"><Text>유닛 잠금이 "훈련과 업그레이드"이면 사무라이는 처치로 승급하지 않습니다. 다른 유닛처럼 업그레이드하며, 철이 있을 때만 가능합니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON" Language="ko_KR"><Text>켬</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION" Language="ko_KR"><Text>사무라이는 단계마다 3개를 처치하면 철이 있든 없든 승급합니다. 기본 게임과 같습니다.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED" Language="ko_KR"><Text>{1_Resource} 필요: 없으면 훈련할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_BUY" Language="ko_KR"><Text>{1_Resource} 필요: 없으면 구매할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_SHORT" Language="ko_KR"><Text>잠김: {1_Resource} 없음</Text></Replace>
@@ -97,7 +103,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="ko_KR"><Text>잠기는 유닛</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="ko_KR"><Text>{LOC_SR_SETUP_GATE_NAME} 옵션이 켜져 있으면 전략 자원이 필요한 유닛은 그 자원이 하나도 없는 동안 훈련도 구매도 할 수 없습니다. 생산 목록에 회색으로 남아 있다가 자원이 하나 들어오면 풀리고, 마지막 하나를 잃는 순간 다시 잠깁니다. {LOC_SR_SETUP_GATE_UPGRADE}에서는 어떤 유닛도 그 유닛으로 업그레이드할 수 없고, {LOC_SR_SETUP_GATE_TRAINING}에서는 업그레이드가 자유롭습니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="ko_KR"><Text>이미 전장에 있는 유닛은 절대 잠기지 않습니다. {LOC_SR_SETUP_UNSUPPLIED_NAME} 옵션이 켜져 있으면 그 페널티를 받으며 계속 싸우고, 회복도 평소처럼 합니다. 문명의 고유 유닛은 그것이 대체하는 유닛과 같이 잠깁니다. 아무것도 필요로 하지 않는 유닛은 그대로 자유로우므로 모든 플레이어가 언제나 방어할 수 있습니다. 독립 세력과 도시 국가는 절대 잠기지 않습니다.</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ko_KR"><Text>센고쿠의 사무라이는 단계마다 유닛 3개를 처치하면 저절로 2단계, 3단계로 올라갑니다. 이 승급에는 {LOC_SR_SETUP_GATE_UPGRADE}에서도 {LOC_RESOURCE_IRON_NAME}이(가) 필요하지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ko_KR"><Text>센고쿠의 사무라이는 단계마다 유닛 3개를 처치하면 저절로 2단계, 3단계로 올라갑니다. {LOC_SR_SETUP_KILL_TIERS_NAME}이(가) 켜져 있으면(기본값) {LOC_SR_SETUP_GATE_UPGRADE}에서도 이 승급에 {LOC_RESOURCE_IRON_NAME}이(가) 필요하지 않습니다. 꺼져 있고 {LOC_SR_SETUP_GATE_UPGRADE}이면 처치로는 승급하지 않고, 다른 유닛처럼 업그레이드하며 {LOC_RESOURCE_IRON_NAME}이(가) 필요합니다.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_IRON_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
