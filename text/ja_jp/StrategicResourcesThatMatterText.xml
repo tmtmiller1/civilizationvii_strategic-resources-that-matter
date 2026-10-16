@@ -97,7 +97,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="ja_JP"><Text>ロックされるユニット</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="ja_JP"><Text>「{LOC_SR_SETUP_GATE_NAME}」オプションがオンのとき、戦略資源を必要とするユニットは、その資源を1つも持っていない間は訓練も購入もできない。生産リストには灰色のまま残り、資源が1つ届くまで待つことになり、最後の1つを失った瞬間に再びロックされる。「{LOC_SR_SETUP_GATE_UPGRADE}」では、どのユニットもそのユニットにアップグレードできない。「{LOC_SR_SETUP_GATE_TRAINING}」では、アップグレードは自由のまま。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="ja_JP"><Text>すでに戦場にいるユニットがロックされることはない。「{LOC_SR_SETUP_UNSUPPLIED_NAME}」オプションがオンならそのペナルティを受けつつ戦い続け、回復も通常どおりだ。文明の固有ユニットは、それが置き換えるユニットと同じようにロックされる。何も必要としないユニットは自由のままなので、どのプレイヤーも常に防衛できる。独立勢力と都市国家がロックされることはない。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ja_JP"><Text>「{LOC_SR_SETUP_GATE_UPGRADE}」では、アップグレードでしか到達できない戦国の侍の第2・第3段階にも{LOC_RESOURCE_IRON_NAME}が必要になる。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ja_JP"><Text>戦国の侍は、各段階で3体のユニットを倒すと自動で第2・第3段階に上がる。この昇格には「{LOC_SR_SETUP_GATE_UPGRADE}」でも{LOC_RESOURCE_IRON_NAME}は要らない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_IRON_NAME}が1つもないと訓練も購入もできない。</Text></Replace>

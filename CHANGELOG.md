@@ -4,6 +4,13 @@ All notable changes to the Strategic Resources That Matter mod for Civilization 
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 
+## [Unreleased]
+
+### Fixed
+- The Civilopedia no longer says the Sengoku's Samurai need Iron to reach tier 2 and 3 under "Training and upgrade".
+  The Samurai move up by themselves after three kills at each tier, and the game doesn't ask for Iron then, so the
+  page now says that. Training a tier-2 Samurai still needs Iron, as before.
+
 ## [1.0.3] - 2026-10-15
 
 With Gated Units on, a player without Niter keeps a siege unit. Gunpowder used to take the Catapult and the Trebuchet

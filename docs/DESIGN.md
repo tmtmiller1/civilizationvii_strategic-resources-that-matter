@@ -501,9 +501,31 @@ What the engine does and does not do with it (phase 15 in `verification-runs.md`
 - A unit already queued when the last copy goes keeps its progress and is completed: the check runs when an item is
   queued or bought, not when it finishes. Recorded as a known limit; a turn-start purge of locked queue items would
   be the fix if the owner wants one.
-- Healing stays free (minimum 0); the Samurai tiers sit behind the game's three-kills rule before the Iron check.
+- Healing stays free (minimum 0). The Samurai tiers aren't gated by the upgrade setting at all: see "The Samurai's
+  tier-up by kills" below.
 - A later mod that writes the parameters (Homo Ludens: 2 to 6 copies) wins by load order; the mod's lock texts show
   only when the loaded minimums are its own and every gate-map unit carries the column.
+
+### The Samurai's tier-up by kills (watch run 2, block 1, 2026-10-16)
+
+The Sengoku DLC tiers its Samurai through `UnitUpgradeKills` (`UNIT_SAMURAI_2` and `UNIT_SAMURAI_3`, three kills
+each; `UnitUpgrades` links the tiers). No modifier, ability or script does it: nothing in the DLC's data or the base
+game's scripts, and nothing in the usual set, sends an upgrade for it, and the table isn't read anywhere outside the
+engine. The engine swaps the unit itself when the count is reached, without the upgrade command, so the upgrading
+minimum and the column never come into it. Run X1 (usual set, Exploration seed 4242, Training and upgrade, no Iron)
+watched a Samurai become tier 2 after its third kill with no upgrade command sent, and tier 3 three kills later; the
+live database had `StrategicResource` RESOURCE_IRON on both tiers and the upgrading minimum at 1, and the tier-2
+upgrade check read only "Must defeat 3 units (1/3)". So under either setting a Sengoku player reaches tier 2 and 3
+without Iron, and the new tier fights at the unsupplied penalty (the tiers carry `SR_SUPPLY_IRON`).
+
+Two corrections to 7e that the read turned up: the upgrade isn't the only way to tier 2, since the Sengoku's Kinsei
+civic lets them train `UNIT_SAMURAI_2` (`KINSEI_MOD_MOD_SAMURAI_2`, `EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD`), which the
+column gates under both settings (read from data, not watched); and the upgrade setting changes nothing for the
+Samurai, because the kills step comes first and does the upgrade itself.
+
+The Civilopedia says so: the Gated Units chapter's Samurai paragraph and the tier pages' line ("Cannot be trained or
+bought without Iron" under both settings, `KILL_TIER_UNITS` in `scripts/gate-map.mjs`). Gating the step itself is the
+owner's call (the options are in `tools/plans/watch2-block1-parallel-fix-notes.md`, section 2).
 
 ### Grant-only lines: a free unit stays until its owner could train the next one (after 1.0.2)
 

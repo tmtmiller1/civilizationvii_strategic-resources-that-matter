@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { GATES_OPTION, LEVELS, PEDIA, pediaGateTag, pediaUnitTag, resourceNameTag } from "../scripts/build-data.mjs";
+import {
+  GATES_OPTION, gateLineFor, LEVELS, PEDIA, pediaGateTag, pediaUnitTag, resourceNameTag
+} from "../scripts/build-data.mjs";
 import { AGES, AGE_FILE, buildGateMap, gatedResources } from "../scripts/gate-map.mjs";
 
 // Civilopedia gate. The game finds a chapter's text by key convention and draws nothing, with no error, for a
@@ -86,7 +88,8 @@ for (const age of AGES) {
     assert.deepEqual(rows.map((r) => r[1]), [...gates.keys()], `${age} gate ${gateName}: one line per gated unit`);
     for (const [, unit, chapter, tag] of rows) {
       assert.equal(chapter, unitGateChapter, `${unit}: chapter`);
-      assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateName), `${age} gate ${gateName} ${unit}: line`);
+      assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateLineFor(unit, gateName)),
+        `${age} gate ${gateName} ${unit}: line`);
       assert.ok(english.has(tag), `${tag} has no text`);
       const resourceName = `{${resourceNameTag(gates.get(unit) ?? "")}}`;
       assert.ok(english.get(tag)?.includes(resourceName), `${tag} names another resource`);

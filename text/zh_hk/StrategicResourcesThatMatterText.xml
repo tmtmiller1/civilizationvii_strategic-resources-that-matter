@@ -97,7 +97,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="zh_Hant_HK"><Text>鎖定的單位</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="zh_Hant_HK"><Text>開啟{LOC_SR_SETUP_GATE_NAME}選項後，需要戰略資源的單位在你一份該資源都沒有時無法訓練或購買：它留在生產列表中，呈灰色，直到有一份資源到手；而你失去最後一份的那一刻，它會再次被鎖定。在{LOC_SR_SETUP_GATE_UPGRADE}下，任何單位也無法升級為它；在{LOC_SR_SETUP_GATE_TRAINING}下，升級不受限制。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="zh_Hant_HK"><Text>已在戰場上的單位永遠不會被鎖定：它們繼續戰鬥，若{LOC_SR_SETUP_UNSUPPLIED_NAME}選項開啟則受其懲罰，並照常恢復。文明的特色單位與它所替代的單位一樣被鎖定。沒有任何要求的單位仍不受限制，因此每位玩家始終能夠防禦。獨立勢力和城邦永遠不會被鎖定。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="zh_Hant_HK"><Text>在{LOC_SR_SETUP_GATE_UPGRADE}下，只能透過升級獲得的戰國第二、第三階武士也需要{LOC_RESOURCE_IRON_NAME}。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="zh_Hant_HK"><Text>戰國的武士在每一階擊敗3個單位後會自動升到第二階和第三階。即使在{LOC_SR_SETUP_GATE_UPGRADE}下，這次升階也不需要{LOC_RESOURCE_IRON_NAME}。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_HORSES_NAME}時無法訓練或購買。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_HORSES_NAME}時無法訓練、購買，也無法透過升級獲得。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_IRON_NAME}時無法訓練或購買。</Text></Replace>

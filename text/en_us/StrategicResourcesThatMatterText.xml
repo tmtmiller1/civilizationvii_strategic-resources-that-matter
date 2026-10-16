@@ -283,7 +283,7 @@
             <Text>Units already in the field are never gated: they keep fighting, at the {LOC_SR_SETUP_UNSUPPLIED_NAME} penalty if that option is on, and they heal as usual. A civilization's unique unit is gated like the unit it replaces. The units free of any requirement stay free, so every player can always defend. Independent powers and city-states are never gated.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3">
-            <Text>Under {LOC_SR_SETUP_GATE_UPGRADE}, the Sengoku's Samurai at the second and third tier, which only an upgrade can reach, need {LOC_RESOURCE_IRON_NAME} too.</Text>
+            <Text>The Sengoku's Samurai move up to their second and third tier by themselves, after three kills at each tier. That step doesn't need {LOC_RESOURCE_IRON_NAME}, even under {LOC_SR_SETUP_GATE_UPGRADE}.</Text>
         </Row>
         <Row Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING">
             <Text>Cannot be trained or bought without {LOC_RESOURCE_HORSES_NAME}.</Text>

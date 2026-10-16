@@ -142,6 +142,15 @@ export function buildGateMap(dump) {
 }
 
 /**
+ * Units the game tiers up on its own after a number of kills (the Sengoku DLC's UnitUpgradeKills rows: three kills
+ * at each tier). The engine swaps the unit without the upgrade command, so neither the gold cost nor the upgrading
+ * minimum applies: watch run 2, block 1, run X1 saw a Samurai with no Iron reach tier 2 and 3 under "Training and
+ * upgrade". Their page carries the training line under both gate values. The dumps don't carry the kills table, so
+ * the list is named here; tests/data.mjs keeps it inside upgradeOnlyGatedUnits.
+ */
+export const KILL_TIER_UNITS = new Set(["UNIT_SAMURAI_2", "UNIT_SAMURAI_3"]);
+
+/**
  * Gated units that no one can train (CanTrain 0) but that an upgrade leads to: the only units on which
  * Units.StrategicResource would gate an upgrade without also blocking training (DESIGN.md section 7a, P1 and P2).
  * @param {AgeDump} dump
