@@ -6,6 +6,12 @@ release is generated from the matching section below by `scripts/steam-changelog
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-16
+
+The Sengoku's Samurai move up a tier after three kills, and the game doesn't ask for Iron then, even with Gated Units
+on "Training and upgrade". A new setup option lets you keep that, as in the base game, or make the Samurai upgrade
+like any other unit, with Iron.
+
 ### Added
 - A new game setup option, Free Tier-Up by Kills, On by default. On, the Sengoku's Samurai move up a tier after three
   kills whether or not you hold Iron, as in the base game. Off, with Gated Units on "Training and upgrade", kills don't

@@ -86,19 +86,20 @@ notification above when your last one goes.
 
 ## Game setup options
 
-Three options in game setup, beside the game's own options such as age length:
+Four options in game setup, beside the game's own options such as age length:
 
 | Option | Values | Default |
 | --- | --- | --- |
 | Unsupplied Units | Off; Light (-2, 20% less Production); Standard (-3, 33% less); Harsh (-5, 50% less, twice as long to train) | Standard |
 | Strategic Resources Past Six | Off; On (+1 at 8, 10, 12, 14, 16, 18 and 20 of a resource) | On |
 | Gated Units | Off; Training; Training and upgrade | Off |
+| Free Tier-Up by Kills | Off; On (the Sengoku's Samurai move up a tier after three kills, Iron or not) | On |
 
 Play Now uses the defaults. The options are fixed for the whole game once it starts.
 
 ![The three options in Advanced Options](docs/screenshots/setup-options-en.png)
 
-*Advanced Options, Game Settings: the three options sit after the game's own.*
+*Advanced Options, Game Settings: the mod's options sit after the game's own.*
 
 ### Gated Units
 
@@ -117,9 +118,13 @@ Once you have the resource, the line works as in the base game: the old unit goe
 Rome, Persia, Meiji Japan and Great Britain get their own Warrior or Frigate for this, the same unit under the same
 name and with the same look, which upgrades straight into the Legion, the Immortal, the Mikasa or the Revenge, and
 takes the same story rewards a Warrior or Frigate would.
-Independent powers and city-states are never gated. A civilization's unique unit is gated like the unit it replaces;
-under Training and upgrade, the Sengoku's Samurai at the second and third tier, which only an upgrade can reach,
-need Iron too.
+Independent powers and city-states are never gated. A civilization's unique unit is gated like the unit it replaces.
+
+The Sengoku's Samurai reach their second and third tier by themselves, after three kills at each tier, and the game
+doesn't ask for Iron for that step, even under Training and upgrade. That's what you get with Free Tier-Up by Kills
+on, the default. Turn it off with Gated Units on Training and upgrade and kills don't move a Samurai up any more: it
+upgrades like any other unit, which needs Iron. Off takes out the Samurai's kill counts, so it overrides another mod
+that changes them. Without the Sengoku DLC the option doesn't change anything.
 
 ![The production list with a locked Horseman and Legion](docs/screenshots/production-locked-en.png)
 
@@ -145,7 +150,7 @@ the game's own rule, so their spawns and armies are unchanged.
 
 - Works with any mix of DLC. The unit tags only go on units that are in your game, so a unique unit from a DLC you
   don't own is skipped, and so is one a game update removes.
-- Adds unit tags, modifiers and three game setup options. With Gated Units off, every base-game row and file stays as
+- Adds unit tags, modifiers and four game setup options. With Gated Units off, every base-game row and file stays as
   the game has it; with it on, the mod sets the game's own `StrategicResource` column on the gated units and the
   game's six resource-minimum parameters.
 - Another mod that sets that column or those parameters (a locally installed gameplay overhaul does, with minimums
@@ -190,8 +195,7 @@ Civilization VII\Mods\` (Windows), and enable it under Add-ons.
 - Under Gated Units, a unit already in the production queue when the resource is lost keeps its progress and is
   completed: the game checks the resource when a unit is queued or bought, not when it finishes. Units it would
   have bought or queued after the loss are locked.
-- Under Training and upgrade, the Sengoku's Samurai tiers were read from the data, not watched: the game asks for
-  three kills before that upgrade, and the test games could not supply them.
+- Free Tier-Up by Kills set to Off was read from the data and hasn't been watched in a game yet.
 - The lock callout, like the unsupplied one, follows the game's tutorial options and shows once per profile.
 
 ## How it works
