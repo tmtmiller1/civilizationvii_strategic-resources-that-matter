@@ -300,7 +300,8 @@ for (const f of fs.readdirSync(DATA)) {
   const match = f.match(GATE_FILE);
   if (!match) {
     assert.ok(!/StrategicResource\s*=|StrategicResource="/.test(xml), `${f} sets Units.StrategicResource outside a gate file`);
-    assert.ok(!/GlobalParameters/.test(xml), `${f} writes global parameters outside a gate file`);
+    assert.ok(!/<GlobalParameters>|(INSERT|REPLACE|UPDATE)\s+(OR\s+[A-Z]+\s+)?(INTO\s+)?GlobalParameters/i.test(xml),
+      `${f} writes global parameters outside a gate file`);
     continue;
   }
   const age = AGES.find((a) => AGE_FILE[a] === match[1]);
@@ -462,6 +463,75 @@ if (!fs.existsSync(live)) {
   } else {
     console.warn("data: the live database holds none of the dumped ages in full (another mod set?); dumps checked");
   }
+}
+
+// "Free Tier-Up by Kills" set to Off: sr-kill-tiers-off.sql, run against a small database shaped like the game's, in
+// each setup it can meet. It must take out only the kill rows of tiers that need a resource, only while upgrades are
+// gated, swap only those pages' gate line, and do nothing (and not fail) when the Sengoku DLC isn't there.
+{
+  const killSql = read("sr-kill-tiers-off.sql");
+  const schema = `CREATE TABLE Units (UnitType TEXT PRIMARY KEY, StrategicResource TEXT);
+    CREATE TABLE UnitUpgradeKills (UnitType TEXT PRIMARY KEY REFERENCES Units(UnitType), KillCount INTEGER NOT NULL);
+    CREATE TABLE GlobalParameters (Name TEXT PRIMARY KEY, Value TEXT NOT NULL);
+    CREATE TABLE CivilopediaPageChapterParagraphs (ChapterID TEXT, PageID TEXT, SectionID TEXT, Paragraph TEXT,
+      SortIndex INTEGER, PRIMARY KEY (ChapterID, PageID, SectionID));
+    INSERT INTO Units VALUES ('UNIT_MAN_AT_ARMS', 'RESOURCE_IRON'), ('UNIT_OTHER_2', NULL);
+    INSERT INTO UnitUpgradeKills VALUES ('UNIT_OTHER_2', 5);
+    INSERT INTO CivilopediaPageChapterParagraphs VALUES
+      ('SR_LOCK', 'UNIT_MAN_AT_ARMS', 'UNITS', 'LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING', 10);`;
+  const sengoku = `INSERT INTO Units VALUES ('UNIT_SAMURAI', NULL), ('UNIT_SAMURAI_2', 'RESOURCE_IRON'),
+      ('UNIT_SAMURAI_3', 'RESOURCE_IRON');
+    INSERT INTO UnitUpgradeKills VALUES ('UNIT_SAMURAI_2', 3), ('UNIT_SAMURAI_3', 3);
+    INSERT INTO CivilopediaPageChapterParagraphs VALUES
+      ('SR_LOCK', 'UNIT_SAMURAI_2', 'UNITS', 'LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING', 10),
+      ('SR_LOCK', 'UNIT_SAMURAI_3', 'UNITS', 'LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING', 10);`;
+  const upgrading = (/** @type {number} */ n) =>
+    `INSERT INTO GlobalParameters VALUES ('STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPGRADING', '${n}');`;
+  /** @param {string} setup @returns {{ kills: string[], pages: string[], fk: string[] }} */
+  const run = (setup) => {
+    const out = execFileSync("sqlite3", [":memory:"], {
+      encoding: "utf8",
+      input: `PRAGMA foreign_keys = ON; ${schema} ${setup}\n${killSql}\n` +
+        "SELECT 'K|' || UnitType || ':' || KillCount FROM UnitUpgradeKills ORDER BY UnitType;\n" +
+        "SELECT 'P|' || PageID || ':' || Paragraph FROM CivilopediaPageChapterParagraphs ORDER BY PageID;\n" +
+        "SELECT 'F|' || \"table\" FROM pragma_foreign_key_check;\n"
+    }).trim().split("\n").filter(Boolean);
+    const pick = (/** @type {string} */ k) => out.filter((l) => l.startsWith(`${k}|`)).map((l) => l.slice(2));
+    return { kills: pick("K"), pages: pick("P"), fk: pick("F") };
+  };
+  const untouchedPages = ["UNIT_MAN_AT_ARMS:LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING"];
+  // Training and upgrade, Sengoku present: the Samurai's kill rows go, their pages say "upgraded into".
+  assert.deepEqual(run(sengoku + upgrading(1)), {
+    kills: ["UNIT_OTHER_2:5"],
+    pages: [...untouchedPages, "UNIT_SAMURAI_2:LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE",
+      "UNIT_SAMURAI_3:LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE"],
+    fk: []
+  }, "kill tiers off, Training and upgrade");
+  // Training only (upgrades free) or no gate at all: nothing changes, the Samurai still tier up by kills.
+  const unchanged = {
+    kills: ["UNIT_OTHER_2:5", "UNIT_SAMURAI_2:3", "UNIT_SAMURAI_3:3"],
+    pages: [...untouchedPages, "UNIT_SAMURAI_2:LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING",
+      "UNIT_SAMURAI_3:LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING"],
+    fk: []
+  };
+  assert.deepEqual(run(sengoku + upgrading(0)), unchanged, "kill tiers off, Training");
+  assert.deepEqual(run(sengoku), unchanged, "kill tiers off, Gated Units off");
+  // No Sengoku DLC: the file runs without error and touches nothing.
+  assert.deepEqual(run(upgrading(1)), { kills: ["UNIT_OTHER_2:5"], pages: untouchedPages, fk: [] },
+    "kill tiers off without the Sengoku DLC");
+}
+// The option's default is On, and only its Off value loads the file, after the gate files.
+{
+  const setup = read("sr-setup.sql");
+  assert.match(setup, /'StrategicResourcesThatMatterKillTiers', 'LOC_SR_SETUP_KILL_TIERS_NAME', [\s\S]*?'SR_KILL_TIERS_ON', 'Game', 'StrategicResourcesThatMatterKillTiers'/,
+    "Free Tier-Up by Kills defaults to On");
+  const criteria = (modinfo.match(/<Criteria id="kill-tiers-off">[\s\S]*?<\/Criteria>/) ?? [""])[0];
+  assert.match(criteria, /<ConfigurationId>StrategicResourcesThatMatterKillTiers<\/ConfigurationId>\s*<Value>SR_KILL_TIERS_OFF<\/Value>/,
+    "the off file loads only for Off");
+  const killGroup = (modinfo.match(/<ActionGroup id="strategic-resources-that-matter-kill-tiers-off"[\s\S]*?<\/ActionGroup>/) ?? [""])[0];
+  assert.match(killGroup, /criteria="kill-tiers-off"/, "kill tiers group criteria");
+  assert.match(killGroup, /<LoadOrder>203<\/LoadOrder>/, "kill tiers group loads after the gate files (202)");
+  assert.match(killGroup, /<Item>data\/sr-kill-tiers-off\.sql<\/Item>/, "kill tiers group file");
 }
 
 // The paragraph table keeps one row per section, page and chapter; a second insert rolls back the whole file and the

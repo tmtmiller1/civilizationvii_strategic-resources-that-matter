@@ -19,7 +19,9 @@
   each gated unit's Civilopedia page, plus the grant-only lines (sr-<age>-gate-lines.sql) that keep a free unit
   trainable until its owner could train the gated unit it upgrades into, with a civilization's own copy of the
   Warrior or the Frigate where its unique stands in for the next unit (its icon and look in sr-line-icons.xml and
-  sr-line-visuals.xml).
+  sr-line-visuals.xml). With Free Tier-Up by Kills off, sr-kill-tiers-off.sql takes out the kill-count tier-up of
+  any unit whose tier needs a resource while upgrades are gated, so the ordinary upgrade (and its resource check) is
+  the only way up.
   AffectsSavedGames is 1: the setup options and modifiers are fixed when a game is created, so a save made with the
   mod needs it to load the same game.
 -->
@@ -183,6 +185,13 @@
                 <Group>Game</Group>
                 <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
                 <Value>SR_GATE_UPGRADE</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="kill-tiers-off">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterKillTiers</ConfigurationId>
+                <Value>SR_KILL_TIERS_OFF</Value>
             </ConfigurationValueMatches>
         </Criteria>
     </ActionCriteria>
@@ -417,6 +426,11 @@
         <ActionGroup id="strategic-resources-that-matter-modern-gate-upgrade" scope="game" criteria="modern-gate-upgrade">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-modern-gate-upgrade.xml</Item><Item>data/sr-modern-gate-lines.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <!-- After the gate files (202): the SQL reads the column and the upgrading minimum they write. -->
+        <ActionGroup id="strategic-resources-that-matter-kill-tiers-off" scope="game" criteria="kill-tiers-off">
+            <Properties><LoadOrder>203</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-kill-tiers-off.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
     </ActionGroups>
 </Mod>

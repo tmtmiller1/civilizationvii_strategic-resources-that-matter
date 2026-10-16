@@ -90,6 +90,12 @@
         <Replace Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION" Language="zh_Hans_CN"><Text>需要战略资源的单位，没有一份该资源时无法训练或购买。升级为该单位不受限制。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE" Language="zh_Hans_CN"><Text>训练与升级</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION" Language="zh_Hans_CN"><Text>需要战略资源的单位，没有一份该资源时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_NAME" Language="zh_Hans_CN"><Text>击败升阶无需资源</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION" Language="zh_Hans_CN"><Text>战国的武士击败3个单位后会自动升一阶。开启时，无论有没有铁都会升阶。关闭只在单位锁定为“训练与升级”时生效：击败不再让它们升阶，它们要像其他单位一样升级，这需要铁。关闭还会覆盖其他模组对这些击败数的改动。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>单位锁定为“训练与升级”时，武士不会因击败而升阶。它像其他单位一样升级，且只有持有铁时才能升级。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON" Language="zh_Hans_CN"><Text>开启</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION" Language="zh_Hans_CN"><Text>武士在每一阶击败3个单位后升阶，有没有铁都一样，与基础游戏相同。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED" Language="zh_Hans_CN"><Text>需要{1_Resource}：没有时无法训练。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_BUY" Language="zh_Hans_CN"><Text>需要{1_Resource}：没有时无法购买。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_SHORT" Language="zh_Hans_CN"><Text>已锁定：没有{1_Resource}</Text></Replace>
@@ -97,7 +103,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="zh_Hans_CN"><Text>锁定的单位</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="zh_Hans_CN"><Text>开启{LOC_SR_SETUP_GATE_NAME}选项后，需要战略资源的单位在你一份该资源都没有时无法训练或购买：它留在生产列表中，呈灰色，直到有一份资源到手；而你失去最后一份的那一刻，它会再次被锁定。在{LOC_SR_SETUP_GATE_UPGRADE}下，任何单位也无法升级为它；在{LOC_SR_SETUP_GATE_TRAINING}下，升级不受限制。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="zh_Hans_CN"><Text>已在战场上的单位永远不会被锁定：它们继续战斗，若{LOC_SR_SETUP_UNSUPPLIED_NAME}选项开启则受其惩罚，并照常恢复。文明的特色单位与它所替代的单位一样被锁定。没有任何要求的单位仍不受限制，因此每位玩家始终能够防御。独立势力和城邦永远不会被锁定。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="zh_Hans_CN"><Text>战国的武士在每一阶击败3个单位后会自动升到第二阶和第三阶。即使在{LOC_SR_SETUP_GATE_UPGRADE}下，这次升阶也不需要{LOC_RESOURCE_IRON_NAME}。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="zh_Hans_CN"><Text>战国的武士在每一阶击败3个单位后会自动升到第二阶和第三阶。{LOC_SR_SETUP_KILL_TIERS_NAME}开启时（默认），即使在{LOC_SR_SETUP_GATE_UPGRADE}下，这次升阶也不需要{LOC_RESOURCE_IRON_NAME}。关闭且选择{LOC_SR_SETUP_GATE_UPGRADE}时，击败不会让它们升阶：它们要像其他单位一样升级，这需要{LOC_RESOURCE_IRON_NAME}。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_HORSES_NAME}时无法训练或购买。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_HORSES_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_IRON_NAME}时无法训练或购买。</Text></Replace>

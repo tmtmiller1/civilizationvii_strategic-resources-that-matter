@@ -261,6 +261,24 @@
         <Row Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION">
             <Text>A unit that needs a strategic resource cannot be trained, bought or upgraded into while its owner has none of it.</Text>
         </Row>
+        <Row Tag="LOC_SR_SETUP_KILL_TIERS_NAME">
+            <Text>Free Tier-Up by Kills</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION">
+            <Text>The Sengoku's Samurai move up a tier by themselves after three kills. With this on, that happens whether or not you hold Iron. Turning it off only matters with Gated Units on "Training and upgrade": kills stop moving them up, and they upgrade like any other unit, which needs Iron. Off also overrides any other mod's change to those kill counts.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_KILL_TIERS_OFF">
+            <Text>Off</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION">
+            <Text>With Gated Units on "Training and upgrade", kills don't move a Samurai up. It upgrades like any other unit, and only while you hold Iron.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_KILL_TIERS_ON">
+            <Text>On</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION">
+            <Text>A Samurai moves up after three kills at each tier, Iron or not, as in the base game.</Text>
+        </Row>
         <Row Tag="LOC_SR_PRODUCTION_LOCKED">
             <Text>Needs {1_Resource}: cannot be trained without it.</Text>
         </Row>
@@ -283,7 +301,7 @@
             <Text>Units already in the field are never gated: they keep fighting, at the {LOC_SR_SETUP_UNSUPPLIED_NAME} penalty if that option is on, and they heal as usual. A civilization's unique unit is gated like the unit it replaces. The units free of any requirement stay free, so every player can always defend. Independent powers and city-states are never gated.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3">
-            <Text>The Sengoku's Samurai move up to their second and third tier by themselves, after three kills at each tier. That step doesn't need {LOC_RESOURCE_IRON_NAME}, even under {LOC_SR_SETUP_GATE_UPGRADE}.</Text>
+            <Text>The Sengoku's Samurai move up to their second and third tier by themselves, after three kills at each tier. With {LOC_SR_SETUP_KILL_TIERS_NAME} on (the default), that step doesn't need {LOC_RESOURCE_IRON_NAME}, even under {LOC_SR_SETUP_GATE_UPGRADE}. With it off and {LOC_SR_SETUP_GATE_UPGRADE} set, kills don't move them up: they upgrade like any other unit, which needs {LOC_RESOURCE_IRON_NAME}.</Text>
         </Row>
         <Row Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING">
             <Text>Cannot be trained or bought without {LOC_RESOURCE_HORSES_NAME}.</Text>

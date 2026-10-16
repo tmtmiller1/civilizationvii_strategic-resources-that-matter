@@ -15,7 +15,10 @@ VALUES
      'GameOptions', 0, 2101),
     ('StrategicResourcesThatMatterGate', 'LOC_SR_SETUP_GATE_NAME', 'LOC_SR_SETUP_GATE_DESCRIPTION',
      'StrategicResourcesThatMatterGateValues', 'SR_GATE_OFF', 'Game', 'StrategicResourcesThatMatterGate',
-     'GameOptions', 0, 2102);
+     'GameOptions', 0, 2102),
+    ('StrategicResourcesThatMatterKillTiers', 'LOC_SR_SETUP_KILL_TIERS_NAME', 'LOC_SR_SETUP_KILL_TIERS_DESCRIPTION',
+     'StrategicResourcesThatMatterKillTierValues', 'SR_KILL_TIERS_ON', 'Game', 'StrategicResourcesThatMatterKillTiers',
+     'GameOptions', 0, 2103);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 VALUES
@@ -36,4 +39,8 @@ VALUES
     ('StrategicResourcesThatMatterGateValues', 'SR_GATE_TRAINING', 'LOC_SR_SETUP_GATE_TRAINING',
      'LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION', 20),
     ('StrategicResourcesThatMatterGateValues', 'SR_GATE_UPGRADE', 'LOC_SR_SETUP_GATE_UPGRADE',
-     'LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION', 30);
+     'LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION', 30),
+    ('StrategicResourcesThatMatterKillTierValues', 'SR_KILL_TIERS_OFF', 'LOC_SR_SETUP_KILL_TIERS_OFF',
+     'LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION', 10),
+    ('StrategicResourcesThatMatterKillTierValues', 'SR_KILL_TIERS_ON', 'LOC_SR_SETUP_KILL_TIERS_ON',
+     'LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION', 20);

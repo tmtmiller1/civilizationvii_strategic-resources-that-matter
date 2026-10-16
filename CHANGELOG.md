@@ -6,10 +6,16 @@ release is generated from the matching section below by `scripts/steam-changelog
 
 ## [Unreleased]
 
+### Added
+- A new game setup option, Free Tier-Up by Kills, On by default. On, the Sengoku's Samurai move up a tier after three
+  kills whether or not you hold Iron, as in the base game. Off, with Gated Units on "Training and upgrade", kills don't
+  move them up any more: they upgrade like any other unit, which needs Iron. Off also overrides any other mod's change
+  to the Samurai's kill counts.
+
 ### Fixed
 - The Civilopedia no longer says the Sengoku's Samurai need Iron to reach tier 2 and 3 under "Training and upgrade".
   The Samurai move up by themselves after three kills at each tier, and the game doesn't ask for Iron then, so the
-  page now says that. Training a tier-2 Samurai still needs Iron, as before.
+  page now says that, and names the new option that changes it.
 
 ## [1.0.3] - 2026-10-15
 

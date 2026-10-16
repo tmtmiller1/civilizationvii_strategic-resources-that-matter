@@ -90,6 +90,12 @@
         <Replace Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION" Language="ja_JP"><Text>戦略資源を必要とするユニットは、その資源が1つもないと訓練も購入もできない。アップグレードでそのユニットにすることは自由のまま。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE" Language="ja_JP"><Text>訓練とアップグレード</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION" Language="ja_JP"><Text>戦略資源を必要とするユニットは、その資源が1つもないと訓練も購入も、アップグレードでそのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_NAME" Language="ja_JP"><Text>撃破による無条件の昇格</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION" Language="ja_JP"><Text>戦国の侍は3体のユニットを倒すと自動で1段階上がる。オンにすると、鉄があってもなくても昇格する。オフが効くのは「ユニットのロック」が「訓練とアップグレード」のときだけで、撃破では昇格せず、ほかのユニットと同じくアップグレードで上がり、それには鉄が必要になる。オフにすると、ほかのMODがこの撃破数を変えていても上書きする。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF" Language="ja_JP"><Text>オフ</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION" Language="ja_JP"><Text>「ユニットのロック」が「訓練とアップグレード」のとき、侍は撃破では昇格しない。ほかのユニットと同じくアップグレードで上がり、鉄があるときだけできる。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON" Language="ja_JP"><Text>オン</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION" Language="ja_JP"><Text>侍は各段階で3体倒すと昇格する。鉄の有無は問わない（基本ゲームと同じ）。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED" Language="ja_JP"><Text>{1_Resource}が必要: ないと訓練できない。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_BUY" Language="ja_JP"><Text>{1_Resource}が必要: ないと購入できない。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_SHORT" Language="ja_JP"><Text>ロック中: {1_Resource}がない</Text></Replace>
@@ -97,7 +103,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="ja_JP"><Text>ロックされるユニット</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="ja_JP"><Text>「{LOC_SR_SETUP_GATE_NAME}」オプションがオンのとき、戦略資源を必要とするユニットは、その資源を1つも持っていない間は訓練も購入もできない。生産リストには灰色のまま残り、資源が1つ届くまで待つことになり、最後の1つを失った瞬間に再びロックされる。「{LOC_SR_SETUP_GATE_UPGRADE}」では、どのユニットもそのユニットにアップグレードできない。「{LOC_SR_SETUP_GATE_TRAINING}」では、アップグレードは自由のまま。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="ja_JP"><Text>すでに戦場にいるユニットがロックされることはない。「{LOC_SR_SETUP_UNSUPPLIED_NAME}」オプションがオンならそのペナルティを受けつつ戦い続け、回復も通常どおりだ。文明の固有ユニットは、それが置き換えるユニットと同じようにロックされる。何も必要としないユニットは自由のままなので、どのプレイヤーも常に防衛できる。独立勢力と都市国家がロックされることはない。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ja_JP"><Text>戦国の侍は、各段階で3体のユニットを倒すと自動で第2・第3段階に上がる。この昇格には「{LOC_SR_SETUP_GATE_UPGRADE}」でも{LOC_RESOURCE_IRON_NAME}は要らない。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ja_JP"><Text>戦国の侍は、各段階で3体のユニットを倒すと自動で第2・第3段階に上がる。「{LOC_SR_SETUP_KILL_TIERS_NAME}」がオン（初期設定）なら、「{LOC_SR_SETUP_GATE_UPGRADE}」でもこの昇格に{LOC_RESOURCE_IRON_NAME}は要らない。オフで「{LOC_SR_SETUP_GATE_UPGRADE}」のときは撃破では昇格せず、ほかのユニットと同じくアップグレードで上がり、それには{LOC_RESOURCE_IRON_NAME}が必要になる。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_IRON_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
