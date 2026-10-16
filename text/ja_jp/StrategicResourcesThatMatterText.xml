@@ -41,7 +41,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_PARA_2" Language="ja_JP"><Text>マップ外で与えられた、タイルの裏付けのない資源は数えられない。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_TITLE" Language="ja_JP"><Text>資源を失った場合</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_1" Language="ja_JP"><Text>新しい資源は届いた瞬間にペナルティを解除する。略奪、タイルの所有者の変更、その他どんな理由でも資源を失うと、1ターン後にペナルティが戻る。人間のプレイヤーにもAIプレイヤーにも同じく適用される。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="ja_JP"><Text>交易相手と戦争になると交易路が終わり、それで届いていた資源はすぐに失われ、その保護もなくなる。少なくとも1個持っている間、そのプレイヤーのユニットにペナルティはない。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="ja_JP"><Text>交易相手と戦争になると交易路が終わり、それで届いていた資源はすぐに失われ、その保護もなくなる。少なくとも1個持っている間、その資源を必要とするユニットは通常どおり戦い、通常の速さで訓練される。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE" Language="ja_JP"><Text>6個を超えた場合</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="ja_JP"><Text>ゲームは資源1個につき戦闘力+1を与えるが、6個までである。「{LOC_SR_SETUP_LATE_CURVE_NAME}」オプションがオン(初期設定)なら、それ以上の資源もさらに効く。8、10、12、14、16、18、20個で戦闘力+1が、ゲームの1個ごとのボーナスが及ぶユニットに加わる。戦闘プレビューではゲーム自身の行の横に「+1 {LOC_RESOURCE_NITER_NAME}: 8個以上」のような1行で表示される。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="ja_JP"><Text>どのユニットが何を必要とするか</Text></Replace>
@@ -117,5 +117,9 @@
         <Replace Tag="LOC_SR_CALLOUT_GATE_TITLE" Language="ja_JP"><Text>ロックされたユニット</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_GATE_BODY" Language="ja_JP"><Text>{1_Unit}は{2_Resource}を必要としますが、1つも保有していないため、入手するまで訓練も購入もできません。戦略資源を必要とするユニットはすべて同じようにロックされ、詳しいルールはシヴィロペディアの「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」にあります。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_GATE_BODY_UPGRADE" Language="ja_JP"><Text>{1_Unit}は{2_Resource}を必要としますが、1つも保有していないため、入手するまで訓練も購入も、アップグレードでこのユニットにすることもできません。戦略資源を必要とするユニットはすべて同じようにロックされ、詳しいルールはシヴィロペディアの「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」にあります。</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_WARRIOR_ROME" Language="ja_JP"><Text>ローマの戦士は戦士の見た目になる (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_WARRIOR_PERSIA" Language="ja_JP"><Text>ペルシアの戦士は戦士の見た目になる (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_FRIGATE_MEIJI" Language="ja_JP"><Text>明治日本のフリゲートはフリゲートの見た目になる (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_FRIGATE_GREAT_BRITAIN" Language="ja_JP"><Text>グレートブリテンのフリゲートはフリゲートの見た目になる (Strategic Resources That Matter)</Text></Replace>
     </LocalizedText>
 </Database>

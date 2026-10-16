@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- The unit-flag icon of each civilization's copy of a free unit (the copied unit's). -->
+<Database>
+    <IconDefinitions>
+        <Row><ID>UNIT_WARRIOR_SR_PERSIA</ID><Path>blp:unitflag_warrior</Path></Row>
+        <Row><ID>UNIT_WARRIOR_SR_ROME</ID><Path>blp:unitflag_warrior</Path></Row>
+        <Row><ID>UNIT_FRIGATE_SR_GREAT_BRITAIN</ID><Path>blp:unitflag_frigate</Path></Row>
+        <Row><ID>UNIT_FRIGATE_SR_MEIJI</ID><Path>blp:unitflag_frigate</Path></Row>
+    </IconDefinitions>
+</Database>

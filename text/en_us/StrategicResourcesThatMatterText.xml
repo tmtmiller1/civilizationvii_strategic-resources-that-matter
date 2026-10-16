@@ -121,7 +121,7 @@
             <Text>Gaining a resource lifts the penalty the moment it arrives. Losing your last one, to pillage, to a tile changing hands or in any other way, brings the penalty back one turn later, for you and for the AI players alike.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2">
-            <Text>A war with a trade partner ends the route: the resources it brought are gone at once, and so is their protection. While a player has at least one of a resource, its units have no penalty from it.</Text>
+            <Text>A war with a trade partner ends the route: the resources it brought are gone at once, and so is their protection. As long as a player holds at least one of a resource, the units that need it fight and train as usual.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE">
             <Text>Past six</Text>
@@ -341,6 +341,18 @@
         </Row>
         <Row Tag="LOC_SR_CALLOUT_GATE_BODY_UPGRADE">
             <Text>{1_Unit} needs {2_Resource}, and you have none: it cannot be trained, bought or upgraded into until you get some. Every unit that needs a strategic resource is locked this way, and the Civilopedia page {LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE} has the whole rule.</Text>
+        </Row>
+        <Row Tag="LOC_SR_REMAP_WARRIOR_ROME">
+            <Text>Rome's Warrior looks like the Warrior (Strategic Resources That Matter)</Text>
+        </Row>
+        <Row Tag="LOC_SR_REMAP_WARRIOR_PERSIA">
+            <Text>Persia's Warrior looks like the Warrior (Strategic Resources That Matter)</Text>
+        </Row>
+        <Row Tag="LOC_SR_REMAP_FRIGATE_MEIJI">
+            <Text>Meiji Japan's Frigate looks like the Frigate (Strategic Resources That Matter)</Text>
+        </Row>
+        <Row Tag="LOC_SR_REMAP_FRIGATE_GREAT_BRITAIN">
+            <Text>Great Britain's Frigate looks like the Frigate (Strategic Resources That Matter)</Text>
         </Row>
     </EnglishText>
 </Database>

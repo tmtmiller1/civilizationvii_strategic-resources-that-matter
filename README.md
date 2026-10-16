@@ -37,8 +37,8 @@ The game tells you why, in your language:
   The item's hover tooltip carries the whole sentence under the unit's description: "Needs Niter. Without it: -3
   Combat Strength, slower to train." The pill follows a resource gained or lost while the list is open.
 - **Resources:** a strategic resource's description, on the map and in the commerce screen, ends with the units it
-  supplies for you in this age: "Supplies units: AT Gun, Assault Gun, Field Cannon and 3 more." Resources that supply
-  nothing in this age say nothing extra.
+  supplies for you in this age: "Supplies units: AT Gun, Assault Gun, Field Cannon and 3 more." A resource that doesn't
+  supply any unit in this age keeps the game's own description.
 - **Civilopedia:** a page under Game Concepts, Combat, "Strategic Resources", with the rules and the table
   below; and on each gated unit's page a line such as "Needs Iron: with none, -3 Combat Strength and slower to
   train", with the penalty your game was set up with.
@@ -109,6 +109,14 @@ under Training, upgrades stay free, as in the base game. Units already in the fi
 fighting, at the Unsupplied Units penalty if that option is on, and heal as usual. The units free of any requirement
 (the Warrior line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog, Modern infantry) stay free, so
 every player can always defend.
+They also stay in the production list when the next unit in their line is gated. In the base game a unit goes out of
+date as soon as the tech for its upgrade is in, so without Niter you'd lose the Trebuchet at Gunpowder and have no
+siege unit at all. With Gated Units on, the Trebuchet stays trainable after Gunpowder until you have Niter, and the
+same goes for the Warrior, the Swordsman, the Cog, the Cuirassier, the Frigate and the unique units in those lines.
+Once you have the resource, the line works as in the base game: the old unit goes out of date and you can upgrade it.
+Rome, Persia, Meiji Japan and Great Britain get their own Warrior or Frigate for this, the same unit under the same
+name and with the same look, which upgrades straight into the Legion, the Immortal, the Mikasa or the Revenge, and
+takes the same story rewards a Warrior or Frigate would.
 Independent powers and city-states are never gated. A civilization's unique unit is gated like the unit it replaces;
 under Training and upgrade, the Sengoku's Samurai at the second and third tier, which only an upgrade can reach,
 need Iron too.
@@ -125,21 +133,21 @@ city whose list shows one. The Civilopedia page gains a last chapter, "Gated uni
 
 ## AI players
 
-The AI plays under the same rules and needs no special handling: the penalty is ordinary unit and city data, and the
-turn-start check covers every major player. Independent powers and city-states are not penalised. In testing, an AI
-with no Iron kept building Warriors where, with Iron, it built Legions.
+The AI plays under the same rules. The penalty is ordinary unit and city data, so it reaches the AI the same way it
+reaches you, and the turn-start check covers every major player. Independent powers and city-states are not
+penalised. In testing, an AI with no Iron kept building Warriors where, with Iron, it built Legions.
 
-Under Gated Units the AI is locked by the same data: an AI with no Iron builds no Spearman, and its production queue
-never sticks on a locked unit (it builds something else). Independent powers and city-states ignore the gate by the
-game's own rule, so their spawns and armies are unchanged.
+Under Gated Units the AI is locked by the same data: an AI with no Iron can't train a Spearman, and its production
+queue never sticks on a locked unit (it builds something else). Independent powers and city-states ignore the gate by
+the game's own rule, so their spawns and armies are unchanged.
 
 ## Compatibility
 
 - Works with any mix of DLC. The unit tags only go on units that are in your game, so a unique unit from a DLC you
   don't own is skipped, and so is one a game update removes.
-- Adds unit tags, modifiers and three game setup options. Changes no base-game row and replaces no base-game file
-  with Gated Units off; with it on, sets the game's own `StrategicResource` column on the gated units and the six
-  resource-minimum parameters the game defines but leaves empty.
+- Adds unit tags, modifiers and three game setup options. With Gated Units off, every base-game row and file stays as
+  the game has it; with it on, the mod sets the game's own `StrategicResource` column on the gated units and the
+  game's six resource-minimum parameters.
 - Another mod that sets that column or those parameters (a locally installed gameplay overhaul does, with minimums
   of 2 to 6) keeps the engine's rule by its own numbers, and this mod's lock texts step back to their plain form
   rather than promise an unlock at one that does not hold. Turn one of the two off to get a single rule.
@@ -160,8 +168,8 @@ More detail, by kind of mod: [docs/compatibility.md](docs/compatibility.md).
 
 ## Saves
 
-The setup options and the unit data are fixed when a game is created. A game started with the mod needs it to load;
-adding the mod to a game already under way does nothing until a new game is started.
+The setup options and the unit data are fixed when a game is created. A game started with the mod needs it to load.
+If you add the mod while a game is under way, it takes effect from the next new game.
 
 ## Install
 

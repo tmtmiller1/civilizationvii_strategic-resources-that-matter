@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
-<!-- Unit tags: which resource a unit draws on, and which of its strengths the penalty and the curve change. -->
+<!-- Unit tags: which resource a unit draws on, which of its strengths the penalty and the curve change, and which units keep the plain portrait frame under the gate. -->
 <Database>
     <Tags>
         <Row Tag="SR_SUPPLY_HORSES" Category="UNIT_CLASS"/>
@@ -33,5 +33,6 @@
         <Row Tag="SR_BOMBARD_RUBBER" Category="UNIT_CLASS"/>
         <Row Tag="SR_CURVE_RANGED_RUBBER" Category="UNIT_CLASS"/>
         <Row Tag="SR_CURVE_BOMBARD_RUBBER" Category="UNIT_CLASS"/>
+        <Row Tag="SR_LINE_PLAIN" Category="UNIT_CLASS"/>
     </Tags>
 </Database>

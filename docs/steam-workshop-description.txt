@@ -10,7 +10,7 @@ Three options in Advanced Options, under Game Settings, each with an Off value, 
 [*][b]Unsupplied units.[/b] A unit whose owner has none of its strategic resource loses Combat Strength on each strength it has (melee, and ranged and bombard where it has them), and its city puts less Production toward it. Default: -3 and a third less Production. One of the resource lifts the penalty; the game's own +1 for each applies as before, up to six.
 [*][b]Losing a resource hurts.[/b] The game notices a resource arriving but not one going away. The mod has it check every player again each turn, so a resource lost to a raid, a lost settlement or an ended trade route brings the penalty back a turn later, for you and for the AI alike.
 [*][b]Past six.[/b] Where the game's own bonus stops, the count keeps adding: +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 of a resource.
-[*][b]Gated Units (off by default).[/b] A unit that needs a strategic resource cannot be trained or bought while you have none of it. It stays in the production list, greyed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under Training and upgrade, no unit can be upgraded into it either; under Training, upgrades stay free. Units already in the field are never gated. The Warrior line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog and Modern infantry need nothing, so everyone can always defend. The AI is locked by the same rule and never sticks on a locked unit.
+[*][b]Gated Units (off by default).[/b] A unit that needs a strategic resource cannot be trained or bought while you have none of it. It stays in the production list, greyed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under Training and upgrade, no unit can be upgraded into it either; under Training, upgrades stay free. Units already in the field are never gated. The Warrior line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog and Modern infantry need nothing, so everyone can always defend. A unit that needs nothing stays in your list until you hold the resource for the next one in its line, so Gunpowder never leaves you without a siege unit, and the upgrade still works once you have it. The AI is locked by the same rule and never sticks on a locked unit.
 [/list]
 
 [h2]Game setup options[/h2]
@@ -50,7 +50,7 @@ A civilization's unique unit needs what the unit it replaces needs. A resource t
 [h2]Known limits[/h2]
 [list]
 [*][b]Single-player.[/b] In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.
-[*][b]New games.[/b] A game started with the mod needs it to load; added to a game under way, the mod does nothing until a new game starts.
+[*][b]New games.[/b] A game started with the mod needs it to load; added to a game under way, it takes effect from the next new game.
 [*][b]Under Gated Units,[/b] a unit already in the production queue when the resource is lost keeps its progress and is completed.
 [*][b]Another mod that sets the game's resource minimums itself[/b] keeps the engine's rule by its own numbers; this mod's lock texts then step back to their plain form.
 [/list]

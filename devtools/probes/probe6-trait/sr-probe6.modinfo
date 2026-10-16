@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dev only, never shipped. Does a trait lock on the Bombard stop the engine making the Trebuchet obsolete, and
+     does a grant behind has-Niter then make the Bombard trainable, the Trebuchet obsolete and the upgrade work?
+     Puts the Trebuchet -> Bombard upgrade back (the gate files delete it). Remove it from Mods/ afterward. -->
+<Mod id="tower-sr-probe6" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name>SR probe 6: trait (dev)</Name>
+		<Description>Dev only.</Description>
+		<Authors>Tower</Authors>
+		<Package>StrategicResourcesThatMatter</Package>
+		<ShowInBrowser>1</ShowInBrowser>
+		<AffectsSavedGames>1</AffectsSavedGames>
+	</Properties>
+	<ActionCriteria>
+		<Criteria id="exploration"><AgeInUse>AGE_EXPLORATION</AgeInUse></Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="sr-probe6-data" scope="game" criteria="exploration">
+			<Actions>
+				<UpdateDatabase>
+					<Item>data/probe6-modifiers.xml</Item>
+					<Item>data/probe6.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+			<Properties><LoadOrder>10003</LoadOrder></Properties>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>

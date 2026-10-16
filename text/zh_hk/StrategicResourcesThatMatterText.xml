@@ -41,7 +41,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_PARA_2" Language="zh_Hant_HK"><Text>在地圖之外給予、背後沒有格子的資源不計算在內。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_TITLE" Language="zh_Hant_HK"><Text>失去資源</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_1" Language="zh_Hant_HK"><Text>新的一份資源一到就會解除懲罰。因掠奪、格子易主或任何其他原因失去一份資源，懲罰會在一回合後恢復，對你和AI玩家都一樣。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="zh_Hant_HK"><Text>與貿易夥伴開戰會終止路線：路線帶來的資源立即消失，保護也隨之消失。只要玩家至少擁有一份資源，其單位就沒有懲罰。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="zh_Hant_HK"><Text>與貿易夥伴開戰會終止路線：路線帶來的資源立即消失，保護也隨之消失。只要玩家至少擁有一份資源，需要它的單位就能照常作戰和訓練。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE" Language="zh_Hant_HK"><Text>超過六份</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="zh_Hant_HK"><Text>遊戲每份資源給予戰鬥力+1，最多六份。開啟{LOC_SR_SETUP_LATE_CURVE_NAME}選項（預設）時，更多資源會繼續增加：在8、10、12、14、16、18和20份時戰鬥力+1，作用於遊戲每份資源加成所涵蓋的單位。戰鬥預覽會在遊戲自身那一行旁邊以一行顯示，例如「+1 {LOC_RESOURCE_NITER_NAME}：8份或以上」。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="zh_Hant_HK"><Text>哪些單位需要甚麼</Text></Replace>
@@ -117,5 +117,9 @@
         <Replace Tag="LOC_SR_CALLOUT_GATE_TITLE" Language="zh_Hant_HK"><Text>鎖定的單位</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_GATE_BODY" Language="zh_Hant_HK"><Text>{1_Unit}需要{2_Resource}，而你一份都沒有：在獲得一份之前，它無法訓練或購買。每個需要戰略資源的單位都這樣被鎖定，完整規則見文明百科頁面「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_GATE_BODY_UPGRADE" Language="zh_Hant_HK"><Text>{1_Unit}需要{2_Resource}，而你一份都沒有：在獲得一份之前，它無法訓練、購買，也無法透過升級獲得。每個需要戰略資源的單位都這樣被鎖定，完整規則見文明百科頁面「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」。</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_WARRIOR_ROME" Language="zh_Hant_HK"><Text>羅馬的勇士外觀與勇士相同 (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_WARRIOR_PERSIA" Language="zh_Hant_HK"><Text>波斯的勇士外觀與勇士相同 (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_FRIGATE_MEIJI" Language="zh_Hant_HK"><Text>明治日本的護衛艦外觀與護衛艦相同 (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_FRIGATE_GREAT_BRITAIN" Language="zh_Hant_HK"><Text>大不列顛的護衛艦外觀與護衛艦相同 (Strategic Resources That Matter)</Text></Replace>
     </LocalizedText>
 </Database>

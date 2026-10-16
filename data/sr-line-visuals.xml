@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- Each civilization's copy of a free unit looks like the unit it copies. -->
+<Database>
+    <VisualRemaps>
+        <Row><ID>REMAP_SR_WARRIOR_SR_PERSIA</ID><DisplayName>LOC_SR_REMAP_WARRIOR_PERSIA</DisplayName><Kind>UNIT</Kind><From>UNIT_WARRIOR_SR_PERSIA</From><To>UNIT_WARRIOR</To></Row>
+        <Row><ID>REMAP_SR_WARRIOR_SR_ROME</ID><DisplayName>LOC_SR_REMAP_WARRIOR_ROME</DisplayName><Kind>UNIT</Kind><From>UNIT_WARRIOR_SR_ROME</From><To>UNIT_WARRIOR</To></Row>
+        <Row><ID>REMAP_SR_FRIGATE_SR_GREAT_BRITAIN</ID><DisplayName>LOC_SR_REMAP_FRIGATE_GREAT_BRITAIN</DisplayName><Kind>UNIT</Kind><From>UNIT_FRIGATE_SR_GREAT_BRITAIN</From><To>UNIT_FRIGATE</To></Row>
+        <Row><ID>REMAP_SR_FRIGATE_SR_MEIJI</ID><DisplayName>LOC_SR_REMAP_FRIGATE_MEIJI</DisplayName><Kind>UNIT</Kind><From>UNIT_FRIGATE_SR_MEIJI</From><To>UNIT_FRIGATE</To></Row>
+    </VisualRemaps>
+</Database>

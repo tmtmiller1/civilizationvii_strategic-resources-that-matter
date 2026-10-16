@@ -4,10 +4,12 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
-  buildFiles, CURVE_THRESHOLDS, GATES_OPTION, gateParameters, LEVELS, PEDIA, pediaGateTag, PREVIEW_TEXT, resourceNameTag
+  buildFiles, CURVE_THRESHOLDS, GATES_OPTION, gateParameters, ICON_PATHS, LEVELS, PEDIA, pediaGateTag, PREVIEW_TEXT,
+  remapId, remapLabelTag, resourceNameTag
 } from "../scripts/build-data.mjs";
 import {
-  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, buildGateMap, gatedResources, upgradeOnlyGatedUnits
+  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildGateMap, gatedResources, lineCopies,
+  lineLocks, upgradeOnlyGatedUnits
 } from "../scripts/gate-map.mjs";
 
 // Data gate: the invariants that crash the game or mislead it, checked on the files that ship.
@@ -26,6 +28,11 @@ import {
 //     Training and upgrade, healing 0), carry one page line per gated unit, and touch no other table; no other
 //     file sets the column (DESIGN.md 7f). Nothing of the gate reaches independents: the engine's own exemption
 //     covers them, and the files carry no grant and no trait.
+//   - The line files (sr-<age>-gate-lines.sql) make exactly lineLocks' units grant-only, each statement guarded by
+//     its unit so a missing DLC skips it, every grant on the major players, the traits changed last, and no unit
+//     upgrade row deleted (an upgrade into a gated unit works once the player holds the resource). The copies
+//     (lineCopies) come last, each from a temp table that is dropped, each adding exactly one upgrade row, with an
+//     icon in sr-line-icons.xml and a remap with a labelled checkbox in sr-line-visuals.xml.
 //   - Every unit and resource the data names exists in the game's tables, as dumped from lab games
 //     (devtools/gate-map/<age>.json) and, for the age last played, in the live compiled database
 //     (Debug/gameplay-copy.sqlite). The live check is skipped with a message when that file is absent.
@@ -314,6 +321,82 @@ for (const f of fs.readdirSync(DATA)) {
   assert.ok(!/Modifier|Requirement|TraitType|CanTrain/.test(xml), `${f}: the gate is the column and its parameters only`);
   gateUnits += updates.length;
 }
+// The copies, pinned: the four civilizations whose unique stands in for a line target without a line of its own.
+const copyList = (/** @type {string} */ age) => lineCopies(dumps[age]).map((c) => `${c.unit}>${c.upgradeTo}`);
+assert.deepEqual(Object.fromEntries(AGES.map((age) => [age, copyList(age)])), {
+  AGE_ANTIQUITY: ["UNIT_WARRIOR_SR_PERSIA>UNIT_IMMORTAL", "UNIT_WARRIOR_SR_ROME>UNIT_LEGION"],
+  AGE_EXPLORATION: [],
+  AGE_MODERN: ["UNIT_FRIGATE_SR_GREAT_BRITAIN>UNIT_REVENGE", "UNIT_FRIGATE_SR_MEIJI>UNIT_MIKASA"]
+}, "the copies");
+{
+  const all = AGES.flatMap((age) => lineCopies(dumps[age]));
+  const icons = read("sr-line-icons.xml");
+  const visuals = read("sr-line-visuals.xml");
+  for (const c of all) {
+    assert.ok(icons.includes(`<Row><ID>${c.unit}</ID><Path>${ICON_PATHS[c.base]}</Path></Row>`), `${c.unit}: icon`);
+    assert.ok(visuals.includes(`<Row><ID>${remapId(c)}</ID><DisplayName>${remapLabelTag(c)}</DisplayName>` +
+      `<Kind>UNIT</Kind><From>${c.unit}</From><To>${c.base}</To></Row>`), `${c.unit}: remap`);
+  }
+  assert.equal((visuals.match(/<Row>/g) ?? []).length, all.length, "one remap per copy");
+}
+// The line locks, pinned: every gated unit a free unit upgrades into, and every gated unique that replaces one.
+// Not the Samurai tiers (tier 2 and 3 are reached only by upgrade).
+const lockList = (/** @type {string} */ age) => lineLocks(dumps[age]).map((l) => `${l.unit}:${l.kind}`);
+assert.deepEqual(Object.fromEntries(AGES.map((age) => [age, lockList(age)])), {
+  AGE_ANTIQUITY: ["UNIT_GAISATAI_2:unique", "UNIT_HOPLITE_2:unique", "UNIT_IMMORTAL:unique", "UNIT_LEGION:unique",
+    "UNIT_MEDJAY_2:unique", "UNIT_SPEARMAN:base"],
+  AGE_EXPLORATION: ["UNIT_BOMBARD:base", "UNIT_CARRACK:base", "UNIT_CETBANG_2:unique", "UNIT_CORSAIR_2:granted",
+    "UNIT_GOLD_BANGLES_2:unique", "UNIT_HWACHA_3:unique", "UNIT_KALAM_2:unique", "UNIT_KISPOKO_NENA_TO_2:unique",
+    "UNIT_LEIOMANO_2:unique", "UNIT_MAN_AT_ARMS:base", "UNIT_TERCIO_2:unique", "UNIT_VIKINGR_2:unique",
+    "UNIT_XUNLEICHONG_2:unique"],
+  AGE_MODERN: ["UNIT_COSSACK_2:unique", "UNIT_DREADNOUGHT:base", "UNIT_GHILMAN_2:unique", "UNIT_HUSSAR_2:unique",
+    "UNIT_LANDSHIP:base", "UNIT_MIKASA:unique", "UNIT_REVENGE:unique", "UNIT_TURTLE_SHIP_2:unique"]
+}, "the line locks");
+for (const age of AGES) {
+  const f = `sr-${AGE_FILE[age]}-gate-lines.sql`;
+  const sql = read(f);
+  const locks = lineLocks(dumps[age]);
+  for (const lock of locks) {
+    assert.equal(lock.resource, buildGateMap(dumps[age]).get(lock.unit), `${f} ${lock.unit}: resource`);
+    assert.ok(sql.includes(`-- ${lock.unit}: ${lock.kind}, needs ${lock.resource}`), `${f}: ${lock.unit} missing`);
+  }
+  const statements = sql.split(";\n").map((x) => x.replace(/^(--[^\n]*\n|\s)+/, "")).filter(Boolean);
+  for (const st of statements) {
+    if (st === "INSERT INTO Modifiers SELECT * FROM sr_mods") continue; // the reward twins, from a guarded temp table
+    if (/^INSERT (OR IGNORE )?INTO (Modifiers|GameModifiers|RequirementSets) /.test(st)) {
+      assert.ok(/ FROM Units WHERE UnitType = '/.test(st), `${f}: unguarded statement: ${st.slice(0, 120)}`);
+    }
+  }
+  assert.ok(!/DELETE FROM UnitUpgrades|UPDATE UnitUpgrades/.test(sql), `${f} removes or changes an upgrade row`);
+  const copies = lineCopies(dumps[age]);
+  const copyBlocks = [...sql.matchAll(/^-- (UNIT_[A-Z_]+): this civilization's (UNIT_[A-Z_]+), standing in for it and upgrading straight into (UNIT_[A-Z_]+)\./gm)]
+    .map((m) => [m[1], m[2], m[3]]);
+  assert.deepEqual(copyBlocks, copies.map((c) => [c.unit, c.base, c.upgradeTo]), `${f}: the copies`);
+  assert.equal((sql.match(/^CREATE TEMP TABLE /gm) ?? []).length, (sql.match(/^DROP TABLE /gm) ?? []).length,
+    `${f}: every temp table dropped`);
+  assert.equal((sql.match(/INSERT INTO UnitUpgrades /g) ?? []).length, copies.length, `${f}: one upgrade row per copy`);
+  for (const c of copies) {
+    assert.ok(sql.includes(`CREATE TEMP TABLE sr_copy AS SELECT * FROM Units WHERE UnitType = '${c.base}'\n    ` +
+      `AND EXISTS (SELECT 1 FROM Units WHERE UnitType = '${c.upgradeTo}' AND TraitType = '${LOCKED_TRAIT}')`),
+    `${f} ${c.unit}: the copy is guarded by its unique being locked`);
+    assert.ok(ICON_PATHS[c.base], `${c.unit}: no icon path for ${c.base}`);
+    assert.ok(sql.includes(`-- Story rewards that make ${c.base} cheaper get a twin for ${c.unit}.`),
+      `${f}: ${c.unit} twins`);
+    if (copies.length) assert.ok(sql.indexOf("UPDATE Units SET TraitType") < sql.indexOf(`-- ${c.unit}:`),
+      `${f}: ${c.unit} made after the traits change`);
+  }
+  assert.ok(!/StrategicResource/.test(sql), `${f} sets the column`);
+  assert.ok(!/COLLECTION_ALL_PLAYERS|COLLECTION_INDEPENDENT/.test(sql), `${f}: a grant beyond the major players`);
+  const updates = [...sql.matchAll(/^UPDATE Units SET TraitType = '([A-Z_]+)' WHERE UnitType IN \(([^)]*)\)/gm)]
+    .map((m) => [m[1], m[2].split(", ").map((u) => u.replace(/'/g, ""))]);
+  assert.deepEqual(updates, [
+    [MINOR_CIV_TRAIT, locks.filter((l) => l.kind === "base").map((l) => l.unit)],
+    [LOCKED_TRAIT, locks.filter((l) => l.kind === "unique").map((l) => l.unit)]
+  ].filter(([, units]) => units.length), `${f}: the trait changes`);
+  const traitsAt = sql.indexOf("UPDATE Units SET TraitType");
+  assert.ok(sql.lastIndexOf("'SR_LINE_GRANT_TYPE'") < traitsAt && sql.lastIndexOf("SR_LINE_IS_") < traitsAt,
+    `${f}: the traits change after every grant and requirement is in`);
+}
 assert.equal(gateUnits, 2 * Object.values(EXPECTED).flatMap((r) => Object.values(r)).flat().length, "gate rows");
 // Strings only inside the mod's own modifiers (checked above); no file adds one to a modifier of the game's.
 assert.ok(!fs.readdirSync(DATA).some((f) => /ModifierStrings/.test(read(f))), "data writes ModifierStrings rows");
@@ -322,15 +405,24 @@ assert.ok(!fs.readdirSync(DATA).some((f) => /ModifierStrings/.test(read(f))), "d
 for (const f of fs.readdirSync(DATA)) {
   assert.ok(!/<TypeTags>/.test(read(f)), `${f}: TypeTags rows in XML can't skip a missing unit; use the guarded SQL`);
   for (const m of read(f).matchAll(/INSERT[^;]*INTO TypeTags[^;]*;/g)) {
+    // The copies' tags come through a temp table filled only when the copied unit exists, after the copy's Types row.
+    if (m[0] === "INSERT INTO TypeTags SELECT * FROM sr_rows;" ||
+      m[0] === "INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT UnitType, 'SR_LINE_PLAIN' FROM sr_copy;") continue;
     assert.match(m[0], /SELECT Type, '[A-Z_]+' FROM Types WHERE Type IN \(/, `${f}: an unguarded TypeTags insert`);
   }
 }
 
-// Every data file is loaded by exactly one action group, and nothing else is.
+// Every data file is loaded by exactly one action group, and nothing else is; the line files by both gate values',
+// the remaps by the shell and the game, as the game's own.
 const modinfo = fs.readFileSync("strategic-resources-that-matter.modinfo", "utf8").replace(/<!--[\s\S]*?-->/g, "");
 const listed = [...modinfo.matchAll(/<Item>(data\/[^<]+)<\/Item>/g)].map((m) => m[1]);
-assert.equal(new Set(listed).size, listed.length, "a data file is listed twice in the modinfo");
-assert.deepEqual([...listed].sort(), fs.readdirSync(DATA).map((f) => `data/${f}`).sort(), "modinfo and data/ differ");
+for (const item of new Set(listed)) {
+  const twice = item.endsWith("-gate-lines.sql") || item.endsWith("sr-line-visuals.xml");
+  assert.equal(listed.filter((x) => x === item).length, twice ? 2 : 1,
+    `${item}: listed the wrong number of times in the modinfo`);
+}
+assert.deepEqual([...new Set(listed)].sort(), fs.readdirSync(DATA).map((f) => `data/${f}`).sort(),
+  "modinfo and data/ differ");
 
 // 6. The live compiled database, for the age it holds.
 const live = path.join(os.homedir(), "Library/Application Support/Civilization VII/Debug/gameplay-copy.sqlite");

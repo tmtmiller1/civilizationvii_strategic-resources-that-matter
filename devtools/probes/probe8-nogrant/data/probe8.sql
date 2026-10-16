@@ -1,0 +1,2 @@
+UPDATE Units SET TraitType = 'TRAIT_ROME', CanTrain = 1 WHERE UnitType = 'UNIT_LEGION';
+DELETE FROM GameModifiers WHERE ModifierId = 'SR_LINE_ATTACH_UNIT_LEGION';

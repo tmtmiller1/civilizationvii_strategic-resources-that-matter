@@ -4,6 +4,21 @@ All notable changes to the Strategic Resources That Matter mod for Civilization 
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 
+## [1.0.3] - 2026-10-15
+
+With Gated Units on, a player without Niter keeps a siege unit. Gunpowder used to take the Catapult and the Trebuchet
+out of the production list because the Bombard was unlocked, even though you couldn't train it, so you were left with
+nothing.
+
+### Fixed
+- Under Gated Units, a free unit stays trainable until you hold the resource for the next unit in its line: the
+  Trebuchet after Gunpowder, the Warrior after Bronze Working, the Swordsman, the Cog, the Cuirassier and the Frigate
+  after the techs for their gated successors, and the unique units in those lines, Rome's and Persia's included. Once
+  you have the resource, the old unit goes out of date and upgrades as in the base game. The gated unit stays in the
+  production list, greyed out, while you can't train it. Rome, Persia, Meiji Japan and Great Britain get their own
+  Warrior or Frigate for this, under the same name and with the same look, which upgrades straight into their unique
+  unit and takes the story rewards a Warrior or Frigate would. With Gated Units off, nothing changes.
+
 ## [1.0.2] - 2026-10-15
 
 Games start again for players who don't own every DLC. The mod tagged other civilizations' unique units, like the

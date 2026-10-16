@@ -26,10 +26,20 @@
 //     Units.StrategicResource on every gated unit of the age, which the engine checks against the owner's live copy
 //     count for training and purchase, and the six STRATEGIC_RESOURCE_MINIMUM global parameters the check reads,
 //     which vanilla 1.5.0 does not define (without them the column blocks for good): one copy to train or buy,
-//     none to heal, and for upgrading none under Training and one under Training and upgrade. Nothing else: no
-//     grant, no trait, no requirement. Independents and city-states are exempt by the game's own rule
+//     none to heal, and for upgrading none under Training and one under Training and upgrade. No grant, no trait,
+//     no requirement. Independents and city-states are exempt by the game's own rule
 //     (CivilizationLevels.IgnoresUnitStrategicResourceRequirements). Plus one line on each gated unit's Civilopedia
 //     page, after the level line. DESIGN.md 7f.
+//   - sr-<age>-gate-lines.sql, loaded with either gate value: the gated units a free unit upgrades into (and the
+//     uniques that replace them) are made grant-only, through a trait and a grant behind the resource, so the free
+//     unit before them stays trainable until the player could train them (gate-map.mjs lineLocks). The engine makes a
+//     unit obsolete once its upgrade is unlocked by tech, whatever the column says, so without this the Trebuchet
+//     would go at Gunpowder and a player with no Niter would have no siege unit; with it the upgrade still works.
+//     Written as SQL that selects through Units, so a unit the player's game lacks skips its rows. The same file
+//     gives Rome, Persia, Meiji Japan and Great Britain their own copy of the Warrior or the Frigate, made at load
+//     time from the game's own rows, which upgrades straight into their unique (gate-map.mjs lineCopies); the
+//     copies' unit icons and looks come from sr-line-icons.xml and sr-line-visuals.xml (a visual remap to the unit
+//     they copy, the game's own way to give one unit another's look).
 //   - sr-notification.xml and sr-notification-icons.xml: the notification ui/sr-supply-lost.js raises when the local
 //     player loses the last copy of a resource its units need. It ends with the turn, never blocks it, and carries
 //     the game's own "trade resources lost" icon and sound. The script passes the composed text as Message and
@@ -44,7 +54,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, buildGateMap, gatedResources, strengthUnits
+  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildGateMap, gatedResources, lineCopies,
+  lineLocks, strengthUnits
 } from "./gate-map.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -238,6 +249,263 @@ function gateFile(age, gates, gateName) {
     "</Database>", ""].join("\n");
 }
 
+/** The ids the line locks write. @param {string} unit */
+export const lineIds = (unit) => ({
+  attach: `SR_LINE_ATTACH_${unit}`, grant: `SR_LINE_GRANT_${unit}`, reqs: `SR_LINE_REQS_${unit}`
+});
+/** The shared requirement ids: one copy of a resource held, or none. @param {string} resource */
+export const lineHas = (resource) => `SR_LINE_HAS_${shortName(resource)}`;
+export const lineHasNone = (resource) => `SR_LINE_NO_${shortName(resource)}`;
+const GRANT_EFFECT = "EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD";
+
+/**
+ * The tag on the units whose portrait keeps the plain frame (ui/sr-line-look.js): the base units the gate locks by
+ * trait, and a civilization's copy of a free unit. The game puts any unit with a trait in the unique-unit frame.
+ */
+export const PLAIN_TAG = "SR_LINE_PLAIN";
+/**
+ * The SQL that gives a story reward which makes the base unit cheaper a twin for the copy. The engine resolves a
+ * unit grant and a "unit type matches" requirement to a civilization's stand-in by itself (p16-look-rome,
+ * p16-grant-rome), but not the unit named by a production bonus (EFFECT_CITY_ADJUST_UNIT_PRODUCTION): a Warrior
+ * reward left Rome's copy at full cost. So each such reward gets a second modifier naming the copy, with the same
+ * arguments and requirement sets, on the same story with the same activation, the way the game already gives one
+ * story several rewards. Only when the copy exists.
+ * @param {import("./gate-map.mjs").LineCopy} copy
+ */
+function rewardTwins(copy) {
+  const q = (/** @type {string} */ v) => `'${v}'`;
+  const suffix = q(`_SR_${copy.trait.replace(/^TRAIT_/, "")}`);
+  const ifCopy = `EXISTS (SELECT 1 FROM Units WHERE UnitType = ${q(copy.unit)})`;
+  return ["", `-- Story rewards that make ${copy.base} cheaper get a twin for ${copy.unit}.`,
+    "CREATE TEMP TABLE sr_mods AS SELECT m.* FROM Modifiers m " +
+      "JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType\n    " +
+      "JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType' " +
+      `AND a.Value = ${q(copy.base)}\n    ` +
+      "JOIN NarrativeRewards r ON r.ModifierID = m.ModifierId\n    " +
+      `WHERE d.EffectType = 'EFFECT_CITY_ADJUST_UNIT_PRODUCTION' AND ${ifCopy};`,
+    "CREATE TEMP TABLE sr_args AS SELECT a.* FROM ModifierArguments a JOIN sr_mods m ON m.ModifierId = a.ModifierId;",
+    `UPDATE sr_args SET Value = ${q(copy.unit)} WHERE Name = 'UnitType';`,
+    `UPDATE sr_args SET ModifierId = ModifierId || ${suffix};`,
+    "CREATE TEMP TABLE sr_rewards AS SELECT r.NarrativeRewardType AS Reward, m.ModifierId AS Mid " +
+      "FROM NarrativeRewards r " +
+      "JOIN sr_mods m ON m.ModifierId = r.ModifierID;",
+    `UPDATE sr_mods SET ModifierId = ModifierId || ${suffix};`,
+    "INSERT INTO Modifiers SELECT * FROM sr_mods;",
+    "INSERT INTO ModifierArguments SELECT * FROM sr_args;",
+    "INSERT INTO NarrativeRewards (NarrativeRewardType, ModifierID) " +
+      `SELECT Reward || ${suffix}, Mid || ${suffix} FROM sr_rewards;`,
+    "INSERT INTO NarrativeStory_Rewards " +
+      "(NarrativeRewardType, NarrativeStoryType, Activation, BonusEligible, Temporary) " +
+      `SELECT Reward || ${suffix}, s.NarrativeStoryType, s.Activation, s.BonusEligible, s.Temporary ` +
+      "FROM sr_rewards\n    " +
+      "JOIN NarrativeStory_Rewards s ON s.NarrativeRewardType = Reward;",
+    "DROP TABLE sr_rewards;", "DROP TABLE sr_args;", "DROP TABLE sr_mods;"];
+}
+
+/** The unit-flag icon of each free unit a civilization may get a copy of (the game's unit-icons.xml). */
+export const ICON_PATHS = { UNIT_WARRIOR: "blp:unitflag_warrior", UNIT_FRIGATE: "blp:unitflag_frigate" };
+/** The remap id and the Options label of a copy's look. @param {import("./gate-map.mjs").LineCopy} copy */
+export const remapId = (copy) => `REMAP_SR_${copy.unit.replace(/^UNIT_/, "")}`;
+export const remapLabelTag = (copy) => `LOC_SR_REMAP_${copy.unit.replace(/^UNIT_/, "").replace(/_SR_/, "_")}`;
+
+/**
+ * The tables a unit's rows are copied from, with the column that names the unit. Everything else that names a unit
+ * (AI biases, narrative grants) is left to the base unit, as it is for the Hoplite.
+ */
+const COPIED_TABLES = [["Unit_Stats", "UnitType"], ["Unit_Costs", "UnitType"], ["Unit_Advisories", "UnitType"],
+  ["TypeTags", "Type"]];
+
+/**
+ * The SQL that makes one civilization's copy of a free unit (gate-map.mjs lineCopies), at load time from the game's
+ * own rows, so it matches the unit in whatever version the player has: the Units row with the civilization's trait,
+ * its stats, cost, advisory and tags, standing in for the base unit and upgrading into the unique. Only when the
+ * unique is in the game and locked by this file, the trait exists and the civilization has no stand-in of its own.
+ * Temp tables carry whole rows, so a column a game update adds comes along.
+ * @param {import("./gate-map.mjs").LineCopy} copy
+ */
+function copyUnit(copy) {
+  const q = (/** @type {string} */ v) => `'${v}'`;
+  const guard = `FROM Units WHERE UnitType = ${q(copy.base)}\n    ` +
+    `AND EXISTS (SELECT 1 FROM Units WHERE UnitType = ${q(copy.upgradeTo)} AND TraitType = ${q(LOCKED_TRAIT)})\n    ` +
+    `AND EXISTS (SELECT 1 FROM Traits WHERE TraitType = ${q(copy.trait)})\n    ` +
+    "AND NOT EXISTS (SELECT 1 FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType\n        " +
+    `WHERE r.ReplacesUnitType = ${q(copy.base)} AND u.TraitType = ${q(copy.trait)})`;
+  const out = ["",
+    `-- ${copy.unit}: this civilization's ${copy.base}, standing in for it and upgrading straight into ` +
+      `${copy.upgradeTo}.`,
+  `CREATE TEMP TABLE sr_copy AS SELECT * ${guard};`,
+  `UPDATE sr_copy SET UnitType = ${q(copy.unit)}, TraitType = ${q(copy.trait)};`,
+  "INSERT INTO Types (Type, Kind) SELECT UnitType, 'KIND_UNIT' FROM sr_copy;",
+  "INSERT INTO Units SELECT * FROM sr_copy;",
+  `INSERT INTO UnitReplaces (CivUniqueUnitType, ReplacesUnitType) SELECT UnitType, ${q(copy.base)} FROM sr_copy;`,
+  `INSERT INTO UnitUpgrades (Unit, UpgradeUnit) SELECT UnitType, ${q(copy.upgradeTo)} FROM sr_copy;`,
+  "INSERT OR IGNORE INTO CivilopediaPageExcludes (PageID, SectionID) SELECT UnitType, 'UNITS' FROM sr_copy;",
+  `INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT UnitType, ${q(PLAIN_TAG)} FROM sr_copy;`];
+  for (const [table, column] of COPIED_TABLES) {
+    out.push(`CREATE TEMP TABLE sr_rows AS SELECT * FROM ${table} WHERE ${column} = ${q(copy.base)} ` +
+      "AND EXISTS (SELECT 1 FROM sr_copy);",
+    `UPDATE sr_rows SET ${column} = ${q(copy.unit)};`, `INSERT INTO ${table} SELECT * FROM sr_rows;`,
+    "DROP TABLE sr_rows;");
+  }
+  out.push("DROP TABLE sr_copy;");
+  return out;
+}
+
+/**
+ * The copies' unit-flag icons: the icon of the unit each one copies.
+ * @param {import("./gate-map.mjs").LineCopy[]} copies
+ */
+function lineIconsFile(copies) {
+  return [HEADER, GENERATED,
+    "<!-- The unit-flag icon of each civilization's copy of a free unit (the copied unit's). -->",
+    "<Database>", "    <IconDefinitions>",
+    ...copies.map((c) => `        <Row><ID>${c.unit}</ID><Path>${ICON_PATHS[c.base]}</Path></Row>`),
+    "    </IconDefinitions>", "</Database>", ""].join("\n");
+}
+
+/**
+ * The copies' looks: a visual remap from each copy to the unit it copies, the game's own way to show one unit with
+ * another's art (its Founder skins). The game lists each remap as a checkbox under Options, Game, Extras, on unless
+ * the player turns it off, so each carries a label of the mod's.
+ * @param {import("./gate-map.mjs").LineCopy[]} copies
+ */
+function lineVisualsFile(copies) {
+  return [HEADER, GENERATED, "<!-- Each civilization's copy of a free unit looks like the unit it copies. -->",
+    "<Database>", "    <VisualRemaps>",
+    ...copies.map((c) => `        <Row><ID>${remapId(c)}</ID><DisplayName>${remapLabelTag(c)}</DisplayName>` +
+      `<Kind>UNIT</Kind><From>${c.unit}</From><To>${c.base}</To></Row>`),
+    "    </VisualRemaps>", "</Database>", ""].join("\n");
+}
+
+/**
+ * The SQL that makes one age's line targets grant-only (gate-map.mjs lineLocks). Each statement selects through
+ * Units, so a unit the game lacks (a DLC not owned, a unit an update removed) skips its rows. The grants go on the
+ * major players only, with every requirement on the child (a requirement on an attach parent crashes the game:
+ * DESIGN.md 7b). Order matters: the requirements read the game's traits before the traits change at the end.
+ * @param {string} age @param {import("./gate-map.mjs").LineLock[]} locks
+ * @param {import("./gate-map.mjs").LineCopy[]} copies
+ */
+function linesFile(age, locks, copies) {
+  const q = (/** @type {string} */ v) => `'${v}'`;
+  const insert = (/** @type {string} */ table, /** @type {string} */ columns, /** @type {string} */ rest,
+    ignore = false) => `INSERT ${ignore ? "OR IGNORE " : ""}INTO ${table} (${columns})\n    ${rest};`;
+  const ifUnit = (/** @type {string} */ unit) => `FROM Units WHERE UnitType = ${q(unit)}`;
+  const HAS_TRAIT = "'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT'";
+  const out = [`-- ${GENERATED_SQL}`,
+    `-- ${age}, Gated Units on: the units below are grant-only, so the free unit before each one stays trainable`,
+    "-- until its owner could train it. See scripts/build-data.mjs.", "",
+    insert("Types", "Type, Kind", `VALUES (${q(LOCKED_TRAIT)}, 'KIND_TRAIT'), ` +
+      "('SR_LINE_ATTACH_TYPE', 'KIND_MODIFIER'), ('SR_LINE_GRANT_TYPE', 'KIND_MODIFIER')", true),
+    insert("Traits", "TraitType, InternalOnly", `VALUES (${q(LOCKED_TRAIT)}, 1)`, true),
+    insert("DynamicModifiers", "ModifierType, CollectionType, EffectType",
+      "VALUES ('SR_LINE_ATTACH_TYPE', 'COLLECTION_MAJOR_PLAYERS', 'EFFECT_ATTACH_MODIFIERS'), " +
+      `('SR_LINE_GRANT_TYPE', 'COLLECTION_OWNER', ${q(GRANT_EFFECT)})`, true)];
+  for (const resource of [...new Set(locks.map((l) => l.resource))].sort()) {
+    const pairs = /** @type {[string, number][]} */ ([[lineHas(resource), 0], [lineHasNone(resource), 1]]);
+    for (const [id, inverse] of pairs) {
+      out.push(insert("Requirements", "RequirementId, RequirementType, Inverse",
+        `VALUES (${q(id)}, 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', ${inverse})`, true),
+      insert("RequirementArguments", "RequirementId, Name, Value",
+        `VALUES (${q(id)}, 'ResourceType', ${q(resource)}), (${q(id)}, 'Amount', '1')`, true));
+    }
+  }
+  /** One grant of a unit to the major players behind its own requirement set. */
+  const grant = (/** @type {string} */ unit, /** @type {string} */ guard) => {
+    const id = lineIds(unit);
+    return [insert("Modifiers", "ModifierId, ModifierType", `SELECT ${q(id.attach)}, 'SR_LINE_ATTACH_TYPE' ${guard}`),
+      insert("ModifierArguments", "ModifierId, Name, Value",
+        `SELECT ${q(id.attach)}, 'ModifierId', ${q(id.grant)} ${guard}`),
+      insert("RequirementSets", "RequirementSetId, RequirementSetType",
+        `SELECT ${q(id.reqs)}, 'REQUIREMENTSET_TEST_ALL' ${guard}`),
+      insert("Modifiers", "ModifierId, ModifierType, SubjectRequirementSetId",
+        `SELECT ${q(id.grant)}, 'SR_LINE_GRANT_TYPE', ${q(id.reqs)} ${guard}`),
+      insert("ModifierArguments", "ModifierId, Name, Value", `SELECT ${q(id.grant)}, 'UnitType', ${q(unit)} ${guard}`),
+      insert("GameModifiers", "ModifierId", `SELECT ${q(id.attach)} ${guard}`)];
+  };
+  const inSet = (/** @type {string} */ set, /** @type {string} */ select, ignore = false) =>
+    insert("RequirementSetRequirements", "RequirementSetId, RequirementId", select, ignore);
+  const setExists = (/** @type {string} */ set) =>
+    `EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = ${q(set)})`;
+  /** The game's own grants of a unit, as FROM ... WHERE over their modifiers (m) and requirement sets. */
+  const gameGrants = (/** @type {string} */ unit, join = "") =>
+    "FROM Modifiers m JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType\n    " +
+    "JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType' " +
+    `AND a.Value = ${q(unit)}${join}\n    ` +
+    `WHERE d.EffectType = ${q(GRANT_EFFECT)} AND m.ModifierId NOT LIKE 'SR_LINE_%' ` +
+    "AND m.SubjectRequirementSetId IS NOT NULL";
+  for (const lock of locks) {
+    const id = lineIds(lock.unit);
+    const has = q(lineHas(lock.resource));
+    out.push("", `-- ${lock.unit}: ${lock.kind}, needs ${lock.resource}` +
+      (lock.predecessors.length ? `; keeps ${lock.predecessors.join(", ")} trainable without it.` : "."));
+    if (lock.kind === "base") {
+      const guard = `${ifUnit(lock.unit)} AND TraitType IS NULL`;
+      const replacers = "FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType\n    " +
+        `WHERE r.ReplacesUnitType = ${q(lock.unit)} AND u.TraitType IS NOT NULL`;
+      out.push(...grant(lock.unit, guard), inSet(id.reqs, `SELECT ${q(id.reqs)}, ${has} ${guard}`),
+        "-- Not for a civilization whose unique replaces it: the grant would lift the replacement.",
+        insert("Requirements", "RequirementId, RequirementType, Inverse",
+          `SELECT 'SR_LINE_NOT_' || u.TraitType, ${HAS_TRAIT}, 1 ${replacers}`, true),
+        insert("RequirementArguments", "RequirementId, Name, Value",
+          `SELECT 'SR_LINE_NOT_' || u.TraitType, 'TraitType', u.TraitType ${replacers}`, true),
+        inSet(id.reqs, `SELECT ${q(id.reqs)}, 'SR_LINE_NOT_' || u.TraitType ${replacers} AND ${setExists(id.reqs)}`,
+          true));
+    } else if (lock.kind === "unique") {
+      const guard = `${ifUnit(lock.unit)} AND TraitType IS NOT NULL AND TraitType <> ${q(LOCKED_TRAIT)}`;
+      out.push(...grant(lock.unit, guard), inSet(id.reqs, `SELECT ${q(id.reqs)}, ${has} ${guard}`),
+        "-- Only for the civilization it belongs to, by the trait the game gives it.",
+        insert("Requirements", "RequirementId, RequirementType",
+          `SELECT 'SR_LINE_IS_' || TraitType, ${HAS_TRAIT} ${guard}`, true),
+        insert("RequirementArguments", "RequirementId, Name, Value",
+          `SELECT 'SR_LINE_IS_' || TraitType, 'TraitType', TraitType ${guard}`, true),
+        inSet(id.reqs, `SELECT ${q(id.reqs)}, 'SR_LINE_IS_' || TraitType ${guard}`));
+    } else {
+      out.push("-- The game grants it already: its grants also need the resource.",
+        inSet("", `SELECT m.SubjectRequirementSetId, ${has} ${gameGrants(lock.unit)}\n    ` +
+          "AND m.SubjectRequirementSetId IN (SELECT RequirementSetId FROM RequirementSets " +
+          "WHERE RequirementSetType = 'REQUIREMENTSET_TEST_ALL')", true));
+      for (const pre of lock.predecessors) {
+        const preId = lineIds(pre);
+        const guard = `${ifUnit(pre)} AND EXISTS (SELECT 1 ${gameGrants(pre)})`;
+        const theirs = gameGrants(pre, "\n    JOIN RequirementSetRequirements rr ON rr.RequirementSetId = " +
+          "m.SubjectRequirementSetId JOIN Requirements rq ON rq.RequirementId = rr.RequirementId");
+        out.push(`-- And ${pre} stays granted without it, on the game's own terms for ${pre} other than its techs.`,
+          ...grant(pre, guard), inSet(preId.reqs, `SELECT ${q(preId.reqs)}, ${q(lineHasNone(lock.resource))} ${guard}`),
+          inSet(preId.reqs, `SELECT DISTINCT ${q(preId.reqs)}, rr.RequirementId ${theirs}\n    ` +
+            "AND rq.RequirementType <> 'REQUIREMENT_PLAYER_HAS_COMPLETED_PROGRESSION_TREE_NODE' " +
+            `AND ${setExists(preId.reqs)}`,
+          true));
+      }
+    }
+  }
+  const base = locks.filter((l) => l.kind === "base").map((l) => q(l.unit)).join(", ");
+  const unique = locks.filter((l) => l.kind === "unique").map((l) => q(l.unit)).join(", ");
+  out.push("", "-- The traits last, once every requirement has read the game's own.");
+  if (base) {
+    out.push(`UPDATE Units SET TraitType = ${q(MINOR_CIV_TRAIT)} WHERE UnitType IN (${base}) AND TraitType IS NULL;`);
+  }
+  if (unique) {
+    out.push(`UPDATE Units SET TraitType = ${q(LOCKED_TRAIT)} WHERE UnitType IN (${unique}) ` +
+      "AND TraitType IS NOT NULL;");
+  }
+  if (base) {
+    const list = base.replaceAll("'", '"');
+    out.push("-- The Civilopedia keeps the city-state-trait units with the ordinary ones, not under unique units.",
+      "UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NULL',\n    " +
+        `'AND (TraitType IS NULL OR UnitType IN (${list}))')\n    ` +
+        "WHERE SectionID = 'UNITS' AND SQL LIKE '%AND TraitType IS NULL%';",
+      "UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NOT NULL',\n    " +
+        `'AND TraitType IS NOT NULL AND UnitType NOT IN (${list})')\n    ` +
+        "WHERE SectionID = 'UNITS' AND SQL LIKE '%AND TraitType IS NOT NULL%';");
+  }
+  if (base) {
+    out.push("-- Their portraits keep the plain frame (ui/sr-line-look.js).",
+      `INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, ${q(PLAIN_TAG)} FROM Types WHERE Type IN (${base});`);
+  }
+  for (const copy of copies) out.push(...copyUnit(copy), ...rewardTwins(copy));
+  return [...out, ""].join("\n");
+}
+
 /** The lost-supply notification: one type, its sound, and its icon (an UpdateIcons file of its own). */
 export const NOTIFICATION = {
   type: "NOTIFICATION_SR_SUPPLY_LOST", message: "LOC_SR_NOTIFY_LOST_TITLE", summary: "LOC_SR_NOTIFY_LOST_FALLBACK",
@@ -394,9 +662,14 @@ export function buildFiles() {
   files.set("sr-civilopedia.xml", pediaFile());
   files.set("sr-notification.xml", notificationFile());
   files.set("sr-notification-icons.xml", notificationIconsFile());
+  const copies = AGES.flatMap((age) => lineCopies(readDump(age)));
+  files.set("sr-line-icons.xml", lineIconsFile(copies));
+  files.set("sr-line-visuals.xml", lineVisualsFile(copies));
   files.set("sr-tags.xml", [HEADER, GENERATED,
-    "<!-- Unit tags: which resource a unit draws on, and which of its strengths the penalty and the curve change. -->",
-    "<Database>", "    <Tags>", ...allTags.map((t) => `        <Row Tag="${t}" Category="UNIT_CLASS"/>`),
+    "<!-- Unit tags: which resource a unit draws on, which of its strengths the penalty and the curve change, and " +
+      "which units keep the plain portrait frame under the gate. -->",
+    "<Database>", "    <Tags>",
+    ...[...allTags, PLAIN_TAG].map((t) => `        <Row Tag="${t}" Category="UNIT_CLASS"/>`),
     "    </Tags>", "</Database>", ""].join("\n"));
   for (const age of AGES) {
     const file = AGE_FILE[age];
@@ -421,6 +694,7 @@ export function buildFiles() {
       files.set(`sr-${file}-${levelName}-game.xml`,
         gameModifiers(parts.flatMap((p) => p.ids), pediaUnitRows(gates, levelName)));
     }
+    files.set(`sr-${file}-gate-lines.sql`, linesFile(age, lineLocks(dump), lineCopies(dump)));
     for (const gateName of Object.keys(GATES_OPTION)) {
       files.set(`sr-${file}-gate-${gateName}.xml`, gateFile(age, gates, gateName));
     }
@@ -447,7 +721,8 @@ function main() {
     if (!check) fs.writeFileSync(target, text);
   }
   const strays = fs.readdirSync(dataDir)
-    .filter((n) => n.startsWith("sr-") && (n.endsWith(".xml") || n.endsWith("-supply.sql")) && !files.has(n));
+    .filter((n) => n.startsWith("sr-") && !files.has(n) &&
+      (n.endsWith(".xml") || n.endsWith("-supply.sql") || n.endsWith("-gate-lines.sql")));
   if (check) {
     if (stale.length || strays.length) {
       console.log(`data:check FAILED\n  stale: ${stale.join(", ") || "none"}\n` +

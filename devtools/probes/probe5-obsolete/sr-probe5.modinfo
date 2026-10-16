@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dev only, never shipped. Does a per-player build lock on the Bombard stop the engine making the Trebuchet
+     obsolete? Puts the Trebuchet -> Bombard upgrade back (the gate files delete it) and locks the Bombard for major
+     players without Niter with EFFECT_PLAYER_DISABLE_BUILD_UNIT, the switch the Sengoku uses on the Man-at-Arms.
+     Remove it from Mods/ afterward. -->
+<Mod id="tower-sr-probe5" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name>SR probe 5: obsolete (dev)</Name>
+		<Description>Dev only.</Description>
+		<Authors>Tower</Authors>
+		<Package>StrategicResourcesThatMatter</Package>
+		<ShowInBrowser>1</ShowInBrowser>
+		<AffectsSavedGames>1</AffectsSavedGames>
+	</Properties>
+	<ActionCriteria>
+		<Criteria id="exploration"><AgeInUse>AGE_EXPLORATION</AgeInUse></Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="sr-probe5-data" scope="game" criteria="exploration">
+			<Actions>
+				<UpdateDatabase>
+					<Item>data/probe5-modifiers.xml</Item>
+					<Item>data/probe5.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+			<Properties><LoadOrder>10003</LoadOrder></Properties>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>
