@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SRP6_ATTACH_GRANT_BOMBARD" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP6_GRANT_BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SRP6_GRANT_BOMBARD" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD">
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ALL">
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="UnitType">UNIT_BOMBARD</Argument>
+    </Modifier>
+</GameEffects>

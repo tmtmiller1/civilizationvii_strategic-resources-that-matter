@@ -156,6 +156,110 @@ export function upgradeOnlyGatedUnits(dump) {
 }
 
 /**
+ * Upgrades from a free unit into a gated one that both can be trained. The engine retires a unit as obsolete once
+ * the unit it upgrades into is unlocked by tech, whether or not the column lets the player train that unit, so under
+ * the gate a player without the resource would lose the free unit too (the Trebuchet once Gunpowder unlocks the
+ * Bombard: verification-runs.md, p16-siege-order). An upgrade into a unit nobody trains (the Samurai tiers) is left
+ * alone: it's the only way to get that unit, and the gate doesn't change it.
+ * @param {AgeDump} dump
+ * @returns {{ Unit: string, UpgradeUnit: string }[]}
+ */
+export function strandingUpgrades(dump) {
+  const gates = buildGateMap(dump);
+  const trainable = new Set(dump.units.filter((u) => u.CanTrain === 1).map((u) => u.UnitType));
+  return dump.upgrades
+    .filter((r) => trainable.has(r.Unit) && trainable.has(r.UpgradeUnit) && !gates.has(r.Unit) &&
+      gates.has(r.UpgradeUnit))
+    .sort((a, b) => (a.Unit < b.Unit ? -1 : a.Unit > b.Unit ? 1 : 0));
+}
+
+/** The trait the game's own city-state units carry (the Corsair): city-states hold it, majors only through a grant. */
+export const MINOR_CIV_TRAIT = "TRAIT_LEADER_MINOR_CIV";
+/** A trait nobody holds, for a civilization's unique unit that the gate makes grant-only. */
+export const LOCKED_TRAIT = "TRAIT_SR_LOCKED";
+
+/**
+ * @typedef {object} LineLock
+ * @property {string} unit the gated unit a free unit upgrades into, or a unique that replaces one
+ * @property {string} resource what it needs
+ * @property {"base" | "unique" | "granted"} kind base: no trait in the game, gets the city-state trait; unique: a
+ *   civilization's own unit, gets a trait nobody holds; granted: already reached only through the game's grants (the
+ *   Corsair tiers), which get the resource added
+ * @property {string | null} trait the trait the game gives it
+ * @property {string[]} predecessors the free units that upgrade into it
+ */
+
+/**
+ * The gated units whose availability has to follow the resource for each player, so that the free unit before them
+ * is only made obsolete once the player could train them. The engine skips a unit the player isn't allowed to build
+ * (a trait it lacks, with no grant) when it decides what's obsolete, but not one the column refuses
+ * (verification-runs.md, p16-trait). Each one gets a trait and a grant behind the resource: without a copy the free
+ * unit stays trainable, with one the line works as in the base game, upgrades included. Every target from
+ * strandingUpgrades, and every gated unique that replaces one (the Legion for the Spearman), since a civilization's
+ * free unit upgrades into its own unique.
+ * @param {AgeDump & { units: { UnitType: string, CanTrain: number, TraitType?: string | null }[] }} dump
+ * @returns {LineLock[]}
+ */
+export function lineLocks(dump) {
+  const gates = buildGateMap(dump);
+  const units = new Map(dump.units.map((u) => [u.UnitType, u]));
+  const targets = new Set(strandingUpgrades(dump).map((r) => r.UpgradeUnit));
+  for (const r of dump.replaces) {
+    if (targets.has(r.ReplacesUnitType) && gates.has(r.CivUniqueUnitType) &&
+      units.get(r.CivUniqueUnitType)?.CanTrain === 1) targets.add(r.CivUniqueUnitType);
+  }
+  return [...targets].sort().map((unit) => {
+    const trait = units.get(unit)?.TraitType ?? null;
+    return {
+      unit,
+      resource: /** @type {string} */ (gates.get(unit)),
+      kind: trait === null ? "base" : trait === MINOR_CIV_TRAIT ? "granted" : "unique",
+      trait,
+      predecessors: dump.upgrades.filter((r) => r.UpgradeUnit === unit).map((r) => r.Unit).sort()
+    };
+  });
+}
+
+/**
+ * @typedef {object} LineCopy
+ * @property {string} unit the copy's type, <base>_SR_<civilization>
+ * @property {string} base the free unit it copies and stands in for
+ * @property {string} trait the civilization's trait
+ * @property {string} upgradeTo the civilization's unique, which the copy upgrades straight into
+ */
+
+/**
+ * A civilization's own copy of a free unit, for each unique that replaces a line target without a line of its own
+ * (the Legion replaces the Spearman; nothing upgrades into the Legion). Such a civilization's free unit (the Warrior)
+ * upgrades by the game's row into the base unit, and the engine resolves that to the unique only while the unique
+ * isn't granted (verification-runs.md, p16-rome-grant), so under the gate the Warrior would upgrade into a Spearman.
+ * The copy is the shape the Hoplite, the Medjay and the Gaisatai already have: it stands in for the Warrior
+ * (UnitReplaces) and upgrades by its own row into the unique, which needs no resolving. A civilization that already
+ * has its own stand-in for the free unit needs none.
+ * @param {AgeDump & { units: { UnitType: string, TraitType?: string | null }[] }} dump
+ * @returns {LineCopy[]}
+ */
+export function lineCopies(dump) {
+  const units = new Map(dump.units.map((u) => [u.UnitType, u]));
+  const standsIn = (/** @type {string} */ base, /** @type {string} */ trait) =>
+    dump.replaces.some((r) => r.ReplacesUnitType === base && units.get(r.CivUniqueUnitType)?.TraitType === trait);
+  /** @type {LineCopy[]} */
+  const out = [];
+  for (const lock of lineLocks(dump)) {
+    if (lock.kind !== "unique" || lock.predecessors.length || !lock.trait) continue;
+    for (const r of dump.replaces) {
+      if (r.CivUniqueUnitType !== lock.unit) continue;
+      for (const up of dump.upgrades) {
+        if (up.UpgradeUnit !== r.ReplacesUnitType || !units.has(up.Unit) || standsIn(up.Unit, lock.trait)) continue;
+        out.push({ unit: `${up.Unit}_SR_${lock.trait.replace(/^TRAIT_/, "")}`, base: up.Unit, trait: lock.trait,
+          upgradeTo: lock.unit });
+      }
+    }
+  }
+  return out.sort((a, b) => (a.unit < b.unit ? -1 : a.unit > b.unit ? 1 : 0));
+}
+
+/**
  * The strength types the penalty and the curve change, and the Unit_Stats column each one reads. A unit is only ever
  * given a change on a strength it has: a melee unit's ranged and bombard strength are 0 because it has no such attack,
  * and raising one above 0 could turn on ranged behaviour, so those rows never reach it.

@@ -41,7 +41,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_PARA_2" Language="zh_Hans_CN"><Text>在地图之外给予、背后没有单元格的资源不计算在内。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_TITLE" Language="zh_Hans_CN"><Text>失去资源</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_1" Language="zh_Hans_CN"><Text>新的一份资源一到就会解除惩罚。因掠夺、单元格易主或任何其他原因失去一份资源，惩罚会在一回合后恢复，对你和AI玩家都一样。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="zh_Hans_CN"><Text>与贸易伙伴开战会终止路线：路线带来的资源立即消失，保护也随之消失。只要玩家至少拥有一份资源，其单位就没有惩罚。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="zh_Hans_CN"><Text>与贸易伙伴开战会终止路线：路线带来的资源立即消失，保护也随之消失。只要玩家至少拥有一份资源，需要它的单位就能照常作战和训练。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE" Language="zh_Hans_CN"><Text>超过六份</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="zh_Hans_CN"><Text>游戏每份资源给予战斗力+1，最多六份。开启{LOC_SR_SETUP_LATE_CURVE_NAME}选项（默认）时，更多资源会继续增加：在8、10、12、14、16、18和20份时战斗力+1，作用于游戏每份资源加成所覆盖的单位。战斗预览会在游戏自身那一行旁边以一行显示，例如“+1 {LOC_RESOURCE_NITER_NAME}：8份或以上”。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="zh_Hans_CN"><Text>哪些单位需要什么</Text></Replace>
@@ -117,5 +117,9 @@
         <Replace Tag="LOC_SR_CALLOUT_GATE_TITLE" Language="zh_Hans_CN"><Text>锁定的单位</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_GATE_BODY" Language="zh_Hans_CN"><Text>{1_Unit}需要{2_Resource}，而你一份都没有：在获得一份之前，它无法训练或购买。每个需要战略资源的单位都这样被锁定，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_GATE_BODY_UPGRADE" Language="zh_Hans_CN"><Text>{1_Unit}需要{2_Resource}，而你一份都没有：在获得一份之前，它无法训练、购买，也无法通过升级获得。每个需要战略资源的单位都这样被锁定，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_WARRIOR_ROME" Language="zh_Hans_CN"><Text>罗马的勇士外观与勇士相同 (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_WARRIOR_PERSIA" Language="zh_Hans_CN"><Text>波斯的勇士外观与勇士相同 (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_FRIGATE_MEIJI" Language="zh_Hans_CN"><Text>明治日本的护卫舰外观与护卫舰相同 (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_FRIGATE_GREAT_BRITAIN" Language="zh_Hans_CN"><Text>大不列颠的护卫舰外观与护卫舰相同 (Strategic Resources That Matter)</Text></Replace>
     </LocalizedText>
 </Database>

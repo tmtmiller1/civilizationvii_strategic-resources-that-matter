@@ -505,6 +505,79 @@ What the engine does and does not do with it (phase 15 in `verification-runs.md`
 - A later mod that writes the parameters (Homo Ludens: 2 to 6 copies) wins by load order; the mod's lock texts show
   only when the loaded minimums are its own and every gate-map unit carries the column.
 
+### Grant-only lines: a free unit stays until its owner could train the next one (after 1.0.2)
+
+The engine marks a unit obsolete once the unit it upgrades into is unlocked by tech, whether or not the column lets
+the player train it (`p16-siege-order`: with Gunpowder and no Niter, the Catapult and Trebuchet were `Obsolete` and
+the Bombard refused, so no siege unit could be trained). The same holds for every free unit whose next tier is gated:
+24 upgrade rows across the three ages, the Warrior -> Spearman among them. Deleting those rows fixes the training but
+loses the upgrade, which the owner ruled out.
+
+What the engine does count, read with probes 5 to 8 (`p16-line-disable`, `p16-trait`, `p16-rome-cantrain`,
+`p16-rome-grant`): a per-player build lock (`EFFECT_PLAYER_DISABLE_BUILD_UNIT`) on the Bombard changes nothing, but a
+unit the player isn't allowed to build at all, by a trait it lacks or by `CanTrain` 0, isn't an upgrade target for
+the obsolescence check, and a grant (`EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD`, the Corsair's shape) lifts either lock
+the moment its requirement holds. So with Gated Units on, `sr-<age>-gate-lines.sql` makes every gated unit a free
+unit upgrades into grant-only (`lineLocks` in `scripts/gate-map.mjs`, 27 units): a base unit gets the city-state
+trait (city-states keep it; majors get a grant behind the resource, not for a civilization whose unique replaces
+it), a unique gets a trait nobody holds and a grant behind the resource and its own civilization's trait, and the
+Corsair tiers, already grant-only, get the resource added to the game's grants. Each statement selects through
+`Units`, so a missing DLC skips it. Watched (`p16-lines-exploration`): without Niter the Trebuchet trains and buys
+after Gunpowder and the Bombard sits greyed in the list; with Niter the Trebuchet is obsolete, the Bombard trains and
+the upgrade costs 200 gold; one roll after the Niter goes, the Trebuchet is back.
+
+One hole: a civilization whose unique stands in for the next unit without a line of its own (Rome's Legion for the
+Spearman, Persia's Immortal, Meiji Japan's Mikasa and Great Britain's Revenge for the Dreadnought). Their free unit's
+upgrade row points at the base unit, and the engine resolves that to the unique only while the unique isn't granted
+(`p16-rome-grant`: with the Legion as the game has it, the Warrior upgrades into a Legion with and without Iron; with
+the mod's grant active, into a Spearman). No lever changes that, so those four get a copy of their free unit
+(`lineCopies`): `UNIT_WARRIOR_SR_ROME` stands in for the Warrior and upgrades by its own row into the Legion, the
+shape the Hoplite, the Medjay and the Gaisatai already have. The copy is made at load time from the game's own rows
+(temp tables, so a column an update adds comes along), its icon is the Warrior's, and a visual remap gives it the
+Warrior's look (the game's own Founder-skin mechanism). Two things the game reads off a unit's trait or the remap
+list are put back by `ui/sr-line-look.js`: the unit panel and the army panel frame any unit with a trait as unique
+(`WorldUI.requestPortrait(asset, key, background)` with the unique background), so the units carrying the
+`SR_LINE_PLAIN` tag, the six base units and the copies, keep the plain frame, and a copy, which has a model through
+the remap but no 2D portrait of its own, is drawn with the portrait of the unit it stands in for under its own key
+(`p16-look-rome-2`); and the Options screen lists every remap as a checkbox under Game,
+Extras (`VisualRemaps.getAvailableRemaps`), so the mod's are left out of that list and switched back on if an earlier
+build left one off. The game's own rewards that name the Warrior: a unit grant and a "unit type matches" requirement
+resolve to the copy by themselves (`p16-look-rome`, `p16-grant-rome`); a production bonus doesn't, so each such story
+reward gets a twin naming the copy (`rewardTwins`), the game's own several-rewards-per-story shape. Watched for Rome (`p16-copies-rome`): the copy is what Rome is offered and builds, it looks like the
+Warrior, it stays trainable without Iron with the Legion greyed, upgrades into the Legion, and with Iron it goes
+obsolete as the Warrior would. The same for Meiji Japan's Frigate and the Mikasa (`p16-copies-meiji`), and for the
+base lines in Exploration and Modern (`p16-lines-exploration`, `p16-lines-modern`).
+
+## 7g. Any mix of DLC (1.0.2)
+
+Up to 1.0.1 the unit tags were XML rows in `TypeTags`, one per gate-map unit, other civilizations' DLC units included.
+For a player missing one of those DLC, a row failed `TypeTags`' foreign key to `Types` and the game rolled every mod
+back and wouldn't start (the repro on 2026-10-15 with Silla off: `Invalid Reference on TypeTags.Type - "UNIT_HWARANG"`,
+a curve tag). 1.0.2 inserts the tags from SQL that selects through `Types` (`data/sr-<age>-supply.sql`), so a unit
+that isn't in the game is skipped, and `tests/data.mjs` fails on any `TypeTags` insert that isn't guarded that way.
+
+**Offline any-DLC check, 2026-10-15** (`devtools/any-dlc-check/`). On a copy of a clean 1.5.0 compile (Antiquity,
+every DLC, the 16 Tower mods, this mod at 1.0.2 with Standard and the curve on:
+`gameplay-copy-usualset-antiquity-seed4242-20261015-150736.sqlite` in `~/.tower-bench/runs/2026-10-15T19-07-19/`),
+with foreign keys off and the game's cascade-on-delete triggers dropped, the parents defined only under the game's
+`DLC/` folders were deleted with their `Types` rows: 33 units (the Hwarang among them), 19 leaders, 20 civilizations,
+19 constructibles, no resources.
+
+| Step | `foreign_key_check` rows |
+| --- | --- |
+| DLC parents gone, the mod's rows as compiled | 3,595 (10 of them the mod's tags on DLC units) |
+| The mod's rows deleted (26 tags on units, 30 tags, 104 modifiers with their types, arguments and requirements, 52 game modifiers, the pedia and notification rows) | 3,585 |
+| The 1.0.2 files loaded again in modinfo order | 3,585, the same rows: every mod tag on a type that's there, and none on `UNIT_HWARANG` |
+| Control: 1.0.1's XML (`056ced1`) loaded the same way | 3,595: the 10 failing tags back, 4 of them on the Hwarang |
+
+The reloaded rows match the compiled ones row for row, except the 10 tags on the missing units. The 3,585 rows left are
+the DLC's own rows and other mods' set-based rows, which a game without the DLC never loads. Either Gated Units file on
+top leaves the count at 3,585 (the column lands on 16 of the 22 Antiquity units). A Modern compile without this mod
+(`other_peoples_mods_analysis/_debug-db/gameplay-copy.sqlite`, 2026-10-12) with its 22 DLC units deleted takes the
+Modern files and the upgrade gate with its count unchanged, where 1.0.1's Modern XML adds 49 broken rows. No Exploration
+compile was on disk. `CultureSlotAllowances` can't be checked (its key to `Traditions` is a schema mismatch, before and
+after). This is read from data; the launch with Silla off, in `docs/verification-runs.md`, is the watch.
+
 ## 8. Setup options
 
 | Option | Values | Default |

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SRP5_ATTACH_NO_BOMBARD" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP5_NO_BOMBARD</Argument>
+    </Modifier>
+    <Modifier id="SRP5_NO_BOMBARD" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_DISABLE_BUILD_UNIT">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_NITER</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="UnitType">UNIT_BOMBARD</Argument>
+    </Modifier>
+</GameEffects>

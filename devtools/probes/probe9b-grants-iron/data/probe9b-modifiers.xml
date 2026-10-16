@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SRP9B_ATTACH_GRANT" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP9B_GRANT</Argument>
+    </Modifier>
+    <Modifier id="SRP9B_GRANT" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" permanent="true" run-once="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_WARRIOR</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="SRP9B_ATTACH_PROD" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP9B_PROD</Argument>
+    </Modifier>
+    <Modifier id="SRP9B_PROD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IRON</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_WARRIOR</Argument>
+        <Argument name="Percent">50</Argument>
+    </Modifier>
+    <Modifier id="SRP9B_ATTACH_PROD_COPY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP9B_PROD_COPY</Argument>
+    </Modifier>
+    <Modifier id="SRP9B_PROD_COPY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_HORSES</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_WARRIOR_SR_ROME</Argument>
+        <Argument name="Percent">100</Argument>
+    </Modifier>
+</GameEffects>

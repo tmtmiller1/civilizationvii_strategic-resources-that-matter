@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SRP9_ATTACH_GRANT" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP9_GRANT</Argument>
+    </Modifier>
+    <Modifier id="SRP9_GRANT" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" permanent="true" run-once="true">
+        <Argument name="UnitType">UNIT_WARRIOR</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="SRP9_ATTACH_PROD" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP9_PROD</Argument>
+    </Modifier>
+    <Modifier id="SRP9_PROD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION" permanent="true">
+        <Argument name="UnitType">UNIT_WARRIOR</Argument>
+        <Argument name="Percent">50</Argument>
+    </Modifier>
+    <Modifier id="SRP9_ATTACH_STR_ALL" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP9_STR_ALL</Argument>
+    </Modifier>
+    <Modifier id="SRP9_STR_ALL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_WARRIOR</Argument></Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">5</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SRP9_ATTACH_STR_ANY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SRP9_STR_ANY</Argument>
+    </Modifier>
+    <Modifier id="SRP9_STR_ANY" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_WARRIOR</Argument></Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_WARRIOR_SR_ROME</Argument></Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">3</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+</GameEffects>

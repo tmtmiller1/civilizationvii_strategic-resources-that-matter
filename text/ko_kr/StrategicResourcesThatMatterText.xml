@@ -41,7 +41,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_PARA_2" Language="ko_KR"><Text>지도 밖에서 주어진, 타일이 없는 자원은 세지 않습니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_TITLE" Language="ko_KR"><Text>자원을 잃었을 때</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_1" Language="ko_KR"><Text>새 자원은 도착하는 즉시 페널티를 없앱니다. 약탈, 타일 소유권 변경 등 어떤 이유로든 자원을 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 플레이어와 AI 플레이어 모두 똑같습니다.</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="ko_KR"><Text>교역 상대와 전쟁을 하면 교역로가 끝나고, 그 교역로로 들어온 자원은 즉시 사라지며 그 보호도 함께 사라집니다. 하나라도 보유하고 있는 동안에는 그 플레이어의 유닛에 페널티가 없습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="ko_KR"><Text>교역 상대와 전쟁을 하면 교역로가 끝나고, 그 교역로로 들어온 자원은 즉시 사라지며 그 보호도 함께 사라집니다. 하나라도 보유하고 있는 동안에는 그 자원이 필요한 유닛이 평소대로 싸우고 평소 속도로 훈련됩니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE" Language="ko_KR"><Text>6개를 넘었을 때</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="ko_KR"><Text>게임은 자원 하나당 전투력 +1을 주지만 6개까지입니다. {LOC_SR_SETUP_LATE_CURVE_NAME} 옵션을 켜면(기본값) 그 이상도 계속 더해집니다. 8, 10, 12, 14, 16, 18, 20개에서 전투력 +1이 게임의 개당 보너스가 적용되는 유닛에 붙습니다. 전투 미리보기는 게임 자체의 줄 옆에 "+1 {LOC_RESOURCE_NITER_NAME}: 8개 이상"처럼 한 줄로 보여 줍니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="ko_KR"><Text>어떤 유닛이 무엇을 필요로 하는가</Text></Replace>
@@ -117,5 +117,9 @@
         <Replace Tag="LOC_SR_CALLOUT_GATE_TITLE" Language="ko_KR"><Text>잠긴 유닛</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_GATE_BODY" Language="ko_KR"><Text>{1_Unit}에는 {2_Resource}이(가) 필요하지만 하나도 없으므로, 하나를 얻을 때까지 훈련도 구매도 할 수 없습니다. 전략 자원이 필요한 모든 유닛이 이렇게 잠기며, 전체 규칙은 문명 백과사전의 "{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}" 페이지에 있습니다.</Text></Replace>
         <Replace Tag="LOC_SR_CALLOUT_GATE_BODY_UPGRADE" Language="ko_KR"><Text>{1_Unit}에는 {2_Resource}이(가) 필요하지만 하나도 없으므로, 하나를 얻을 때까지 훈련, 구매, 업그레이드로 얻기 모두 할 수 없습니다. 전략 자원이 필요한 모든 유닛이 이렇게 잠기며, 전체 규칙은 문명 백과사전의 "{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}" 페이지에 있습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_WARRIOR_ROME" Language="ko_KR"><Text>로마의 전사는 전사의 모습으로 보입니다 (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_WARRIOR_PERSIA" Language="ko_KR"><Text>페르시아의 전사는 전사의 모습으로 보입니다 (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_FRIGATE_MEIJI" Language="ko_KR"><Text>메이지 일본의 프리깃은 프리깃의 모습으로 보입니다 (Strategic Resources That Matter)</Text></Replace>
+        <Replace Tag="LOC_SR_REMAP_FRIGATE_GREAT_BRITAIN" Language="ko_KR"><Text>영국의 프리깃은 프리깃의 모습으로 보입니다 (Strategic Resources That Matter)</Text></Replace>
     </LocalizedText>
 </Database>

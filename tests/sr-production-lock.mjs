@@ -3,7 +3,8 @@ import { captureConsole, snapshotGlobals, table } from "./_engine-stubs.mjs";
 
 // The locked units kept in the production and purchase lists: which bare refusals are rewritten (a locked unit
 // the player could otherwise train), into the one shape the chooser keeps and greys, and the wrapper around the
-// engine's query that does it for the local player's cities only, never throwing into the list.
+// engine's query that does it for the local player's cities only, never throwing into the list. And the grant-only
+// units (the gate's line files) the engine leaves out entirely, added back greyed for the players the grant reaches.
 
 const restoreGlobals = snapshotGlobals(["GameInfo", "GameContext", "Players", "Game", "CityQueryType", "engine"]);
 const log = captureConsole();
@@ -27,7 +28,8 @@ const facts = () => ({
 });
 
 try {
-  const { couldTrainButForGate, hasUnlocked, isBareRefusal, keepLockedEntries, lockedResult } =
+  const { addLockedLines, couldTrainButForGate, hasUnlocked, isBareRefusal, keepLockedEntries, lineUnitsFor,
+    lockedResult } =
     await import("/tower-strategic-resources-that-matter/ui/sr-production-lock.js");
 
   // hasUnlocked: every node that lists the unit, to the depth it asks; a unit no node lists is open.
@@ -86,6 +88,29 @@ try {
   assert.deepEqual(keepLockedEntries([{ index: 9, result: { Success: false } }], nameless),
     [], "an index that names no unit");
 
+  // lineUnitsFor: the grant-only units this player's grant would reach, read from the grant requirement sets.
+  const setRows = [
+    { RequirementSetId: "SR_LINE_REQS_UNIT_SPEARMAN", RequirementId: "SR_LINE_HAS_IRON" },
+    { RequirementSetId: "SR_LINE_REQS_UNIT_SPEARMAN", RequirementId: "SR_LINE_NOT_TRAIT_ROME" },
+    { RequirementSetId: "SR_LINE_REQS_UNIT_LEGION", RequirementId: "SR_LINE_HAS_IRON" },
+    { RequirementSetId: "SR_LINE_REQS_UNIT_LEGION", RequirementId: "SR_LINE_IS_TRAIT_ROME" },
+    { RequirementSetId: "SOME_OTHER_SET", RequirementId: "SR_LINE_IS_TRAIT_ROME" }, null
+  ];
+  assert.deepEqual(lineUnitsFor(setRows, new Set(["TRAIT_ROME"])), ["UNIT_LEGION"], "Rome: its Legion, no Spearman");
+  assert.deepEqual(lineUnitsFor(setRows, new Set(["TRAIT_EGYPT"])), ["UNIT_SPEARMAN"], "anyone else: the Spearman");
+
+  // addLockedLines: appended, greyed, when absent, locked and otherwise trainable.
+  const lineTypes = ["UNIT_SCOUT", "UNIT_WARRIOR", "UNIT_SPEARMAN", "UNIT_PHALANX"];
+  const indexOf = (/** @type {string} */ u) => (lineTypes.includes(u) ? lineTypes.indexOf(u) : undefined);
+  const listed = [{ index: 0, result: { Success: true } }, { index: 1, result: { Success: true } }];
+  const lineDeps = { lineUnits: ["UNIT_SPEARMAN", "UNIT_PHALANX", "UNIT_LEGION"], indexOf,
+    unitTypeOf: (/** @type {number} */ i) => lineTypes[i], locked, facts: facts() };
+  assert.deepEqual(addLockedLines(listed, lineDeps), ["UNIT_SPEARMAN"],
+    "the Phalanx not unlocked, the Legion not in this game");
+  assert.deepEqual(listed.at(-1), { index: 2, result: lockedResult() });
+  assert.deepEqual(addLockedLines(listed, lineDeps), [], "already listed: nothing added twice");
+  assert.deepEqual(addLockedLines([], { ...lineDeps, locked: () => null }), [], "held: the engine lists it itself");
+
   // The wrapper: the local player's unit query only, the engine's array handed back, a failure contained.
   globalThis.GameContext = { localPlayerID: 0 };
   globalThis.CityQueryType = { Unit: 7, Constructible: 8 };
@@ -97,7 +122,8 @@ try {
     TypeTags: [{ Type: "UNIT_SPEARMAN", Tag: "SR_SUPPLY_IRON" }],
     ModifierArguments: [],
     Resources: table([{ ResourceType: "RESOURCE_IRON", Name: "LOC_RESOURCE_IRON_NAME" }], "ResourceType"),
-    ProgressionTreeNodeUnlocks: [], UnitUpgrades: [], ProgressionTreeNodes: table([], "ProgressionTreeNodeType")
+    ProgressionTreeNodeUnlocks: [], UnitUpgrades: [], ProgressionTreeNodes: table([], "ProgressionTreeNodeType"),
+    RequirementSetRequirements: [], CivilizationTraits: [], LeaderTraits: []
   };
   let holdings = [];
   globalThis.Players = { get: (id) => (id === 0 ? { isMajor: true, id: 0,

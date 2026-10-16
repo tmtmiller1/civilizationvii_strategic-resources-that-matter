@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dev only, never shipped. Leaves story 3293A as the only Antiquity story in the "fight" queue, so a fight brings it
+     up: its choice C makes Warriors 25% cheaper, the reward the gate twins for a civilization's Warrior copy. Remove
+     after the run. -->
+<Mod id="tower-sr-probe10" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name>SR probe 10: one fight story (dev)</Name>
+		<Description>Dev only.</Description>
+		<Authors>Tower</Authors>
+		<Package>StrategicResourcesThatMatter</Package>
+		<ShowInBrowser>1</ShowInBrowser>
+		<AffectsSavedGames>1</AffectsSavedGames>
+	</Properties>
+	<ActionCriteria>
+		<Criteria id="antiquity"><AgeInUse>AGE_ANTIQUITY</AgeInUse></Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="sr-probe10-data" scope="game" criteria="antiquity">
+			<Actions><UpdateDatabase><Item>data/probe10.sql</Item></UpdateDatabase></Actions>
+			<Properties><LoadOrder>10003</LoadOrder></Properties>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>
