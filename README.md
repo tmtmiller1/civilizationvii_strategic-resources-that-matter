@@ -123,8 +123,10 @@ Independent powers and city-states are never gated. A civilization's unique unit
 The Sengoku's Samurai reach their second and third tier by themselves, after three kills at each tier, and the game
 doesn't ask for Iron for that step, even under Training and upgrade. That's what you get with Free Tier-Up by Kills
 on, the default. Turn it off with Gated Units on Training and upgrade and kills don't move a Samurai up any more: it
-upgrades like any other unit, which needs Iron. Off takes out the Samurai's kill counts, so it overrides another mod
-that changes them. Without the Sengoku DLC the option doesn't change anything.
+upgrades like any other unit, which needs Iron: tier 2 once you have Heraldry, tier 3 once you have Metal Casting.
+Off takes out the Samurai's kill counts, so it overrides another mod that changes them. Either way, a Sengoku player
+with no Iron keeps the first-tier Samurai after the Kinsei civic, and the second tier takes over once Iron is held.
+Without the Sengoku DLC the option doesn't change anything.
 
 ![The production list with a locked Horseman and Legion](docs/screenshots/production-locked-en.png)
 
@@ -195,7 +197,6 @@ Civilization VII\Mods\` (Windows), and enable it under Add-ons.
 - Under Gated Units, a unit already in the production queue when the resource is lost keeps its progress and is
   completed: the game checks the resource when a unit is queued or bought, not when it finishes. Units it would
   have bought or queued after the loss are locked.
-- Free Tier-Up by Kills set to Off was read from the data and hasn't been watched in a game yet.
 - The lock callout, like the unsupplied one, follows the game's tutorial options and shows once per profile.
 
 ## How it works
