@@ -2,7 +2,7 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hans_CN"><Text>至关重要的战略资源</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hans_CN"><Text>战略资源再次变得重要。需要马、铁、硝石、石油、煤或橡胶的单位，在其所有者一份该资源都没有时，战斗力降低、训练变慢；每份资源仍提供游戏原有的加成。失去最后一份后，惩罚会在一回合后恢复。超过六份后，数量仍会继续增加战斗力。三项游戏设置选项决定惩罚程度、开关后期加成，并可将单位锁定在其资源之后（默认关闭）。仅限单人游戏。在多人游戏中，失去资源后，要等该玩家获得某种资源时惩罚才会恢复。</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hans_CN"><Text>战略资源再次变得重要。需要马、铁、硝石、硬木、石油、煤或橡胶的单位，在其所有者一份该资源都没有时，战斗力降低、训练变慢；每份资源仍提供游戏原有的加成。失去最后一份后，惩罚会在一回合后恢复。超过六份后，数量仍会继续增加战斗力。游戏设置选项决定惩罚程度（直至将单位锁定在其资源之后）、开关后期加成，并可让近代的每个单位需要第二种资源。仅限单人游戏。在多人游戏中，失去资源后，要等该玩家获得某种资源时惩罚才会恢复。</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="zh_Hans_CN"><Text>无补给：没有{1_Resource}（战斗力{2_Combat}，训练变慢）</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="zh_Hans_CN"><Text>需要{1_Resource}。没有时：战斗力{2_Combat}，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="zh_Hans_CN"><Text>需要{1_Resource}（拥有{2_Copies}个）。</Text></Replace>
@@ -14,7 +14,7 @@
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="zh_Hans_CN"><Text>{2_Combat} 无补给：没有{3_Resource}</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="zh_Hans_CN"><Text>+{2_Combat} {4_Resource}：{3_Copies}份或以上</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="zh_Hans_CN"><Text>无补给单位</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="zh_Hans_CN"><Text>当所有者一份所需的战略资源都没有时，单位会变弱多少、训练会慢多少。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="zh_Hans_CN"><Text>当所有者一份所需的战略资源都没有时，单位会变弱多少、训练会慢多少。两个锁定值在严酷惩罚之上加上锁定：没有资源时，单位根本无法训练或购买。已在战场上的单位永远不会被锁定；独立势力和城邦永远不受影响。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>没有惩罚。每份资源仍提供游戏原有的加成。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="zh_Hans_CN"><Text>轻微</Text></Replace>
@@ -23,18 +23,28 @@
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="zh_Hans_CN"><Text>战斗力-3，用于该单位的生产力减少33%（训练时间延长一半）。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="zh_Hans_CN"><Text>严酷</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="zh_Hans_CN"><Text>战斗力-5，用于该单位的生产力减少50%（训练时间加倍）。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED" Language="zh_Hans_CN"><Text>锁定：训练</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_DESCRIPTION" Language="zh_Hans_CN"><Text>战场上为严酷惩罚，而需要战略资源的单位在所有者一份该资源都没有时无法训练或购买。升级为它仍不受限制。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE" Language="zh_Hans_CN"><Text>锁定：训练与升级</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE_DESCRIPTION" Language="zh_Hans_CN"><Text>战场上为严酷惩罚，而需要战略资源的单位在所有者一份该资源都没有时无法训练、购买，也无法通过升级获得。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="zh_Hans_CN"><Text>超过六份的战略资源</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="zh_Hans_CN"><Text>游戏原有的每份战略资源+1战斗力的加成在六份时停止。开启此选项后，单位在拥有8、10、12、14、16、18和20份时各再获得+1。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>加成在六份时停止，与基础游戏相同。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="zh_Hans_CN"><Text>开启</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="zh_Hans_CN"><Text>在8、10、12、14、16、18和20份时战斗力+1。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_NAME" Language="zh_Hans_CN"><Text>近代供应链</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_DESCRIPTION" Language="zh_Hans_CN"><Text>在近代，每个需要战略资源的单位还需要第二种资源：火炮、装甲部队和战列舰的钢材需要煤，轻型战舰的火炮需要硝石，飞机需要石油。每缺一种资源都承受完整的惩罚，在锁定值下单位需要两种资源才能训练。默认关闭：这是一场艰难的游戏。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>近代的每个单位需要一种资源，与其他时代相同。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_ON" Language="zh_Hans_CN"><Text>开启</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_ON_DESCRIPTION" Language="zh_Hans_CN"><Text>炮兵需要硝石和煤；装甲部队和战列舰需要石油和煤；轻型战舰需要煤和硝石；飞机需要橡胶和石油。</Text></Replace>
         <!-- Civilopedia -->
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="zh_Hans_CN"><Text>重要的战略资源</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}或{LOC_RESOURCE_RUBBER_NAME}的军事单位，在其所有者没有该资源时，战斗更弱，训练更慢。除非{LOC_SR_SETUP_GATE_NAME}选项开启，否则没有任何东西被禁止：见最后一章。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_HARDWOOD_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}或{LOC_RESOURCE_RUBBER_NAME}的军事单位，在其所有者没有该资源时，战斗更弱，训练更慢。除非{LOC_SR_SETUP_UNSUPPLIED_NAME}设为锁定值之一，否则没有任何东西被禁止：见最后一章。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="zh_Hans_CN"><Text>没有资源时</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="zh_Hans_CN"><Text>缺少资源的单位，其拥有的每项战斗力（近战，以及远程和轰炸，如果有的话）都会降低，所在城市投入训练它的生产力也会减少。降低多少由游戏设置中的{LOC_SR_SETUP_UNSUPPLIED_NAME}选项决定：</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="zh_Hans_CN"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}：[/B]战斗力-2，生产力减少20%。[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B]（默认）：战斗力-3，生产力减少33%，训练时间变为1.5倍。[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}：[/B]战斗力-5，生产力减少50%，训练时间加倍。[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}：[/B]无惩罚。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="zh_Hans_CN"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}：[/B]战斗力-2，生产力减少20%。[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B]（默认）：战斗力-3，生产力减少33%，训练时间变为1.5倍。[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}：[/B]战斗力-5，生产力减少50%，训练时间加倍。[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}：[/B]无惩罚。[N][B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED}[/B]和[B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}：[/B]严酷惩罚，并且在你一份该资源都没有时单位被锁定（见最后一章）。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_3" Language="zh_Hans_CN"><Text>战斗预览会把惩罚单独列为一行，例如“-3 无补给：没有{LOC_RESOURCE_NITER_NAME}”，单位面板也会在属性下方注明。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_TITLE" Language="zh_Hans_CN"><Text>什么算一份资源</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_PARA_1" Language="zh_Hans_CN"><Text>你拥有的地图上的战略资源算一份：位于你的单元格上并带有该资源的改良设施（城市扩张到该单元格时建造的那种），或通过贸易路线从其他文明的定居点进口，从路线到达的回合起计算。</Text></Replace>
@@ -47,9 +57,11 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="zh_Hans_CN"><Text>哪些单位需要什么</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="zh_Hans_CN"><Text>文明的特色单位需要其所取代的单位所需的资源。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（战车、骑手及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（长枪兵、方阵、军团、长生军等）</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（追猎者、骑士、枪骑兵及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（披甲战士、长柄枪兵及其特色版本）[N]{LOC_RESOURCE_NITER_NAME}：第三级起的攻城单位（射石炮、火车）和第二级起的重型战舰（克拉克帆船、盖伦帆船及其特色版本）</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（追猎者、骑士、枪骑兵及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（披甲战士、长柄枪兵及其特色版本）[N]{LOC_RESOURCE_NITER_NAME}：第三级起的攻城单位（射石炮、火车）[N]{LOC_RESOURCE_HARDWOOD_NAME}：第二级起的重型战舰（克拉克帆船、盖伦帆船及其特色版本）</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}：炮兵（野战加农炮、野战炮、反坦克炮、臼炮、榴弹炮、突击炮）[N]{LOC_RESOURCE_OIL_NAME}：装甲部队（陆地战舰、坦克及其特色版本）和战列舰（无畏战舰、战列舰及其特色版本）[N]{LOC_RESOURCE_COAL_NAME}：轻型战舰（铁甲舰、巡洋舰、驱逐舰、巴巴里海盗）[N]{LOC_RESOURCE_RUBBER_NAME}：飞机</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="zh_Hans_CN"><Text>不受任何要求限制：战士系列和探路者、远程步兵（弓箭手、弩手、钩铳手）、石弩和抛石机、柯克船和风帆战列舰、胸甲骑兵、潜艇以及近代步兵，因此每位玩家都始终能够防御。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_TITLE" Language="zh_Hans_CN"><Text>近代供应链</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_PARA_1" Language="zh_Hans_CN"><Text>{LOC_SR_SETUP_CHAINS_NAME}开启时（默认关闭），每个需要资源的近代单位还需要第二种资源：炮兵需要{LOC_RESOURCE_NITER_NAME}和{LOC_RESOURCE_COAL_NAME}，装甲部队和战列舰需要{LOC_RESOURCE_OIL_NAME}和{LOC_RESOURCE_COAL_NAME}，轻型战舰需要{LOC_RESOURCE_COAL_NAME}和{LOC_RESOURCE_NITER_NAME}，飞机需要{LOC_RESOURCE_RUBBER_NAME}和{LOC_RESOURCE_OIL_NAME}。每缺一种资源都承受完整的惩罚，因此两种都缺的单位承受双倍惩罚，在锁定值下两种都没有就无法训练。近代地图上没有铁，因此以煤代表钢材。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED" Language="zh_Hans_CN"><Text>无补给</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_STRATEGIC" Language="zh_Hans_CN"><Text>战略资源</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_CHAPTER" Language="zh_Hans_CN"><Text>战略资源</Text></Replace>
@@ -69,8 +81,11 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_STANDARD" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_COAL_NAME}：没有时战斗力-3，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_HARSH" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_COAL_NAME}：没有时战斗力-5，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_RUBBER_NAME}：没有时战斗力-2，训练变慢。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HARDWOOD_NAME}：没有时战斗力-2，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_RUBBER_NAME}：没有时战斗力-3，训练变慢。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_STANDARD" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HARDWOOD_NAME}：没有时战斗力-3，训练变慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_RUBBER_NAME}：没有时战斗力-5，训练变慢。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_HARSH" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HARDWOOD_NAME}：没有时战斗力-5，训练变慢。</Text></Replace>
         <!-- /Civilopedia -->
         <!-- Lost-supply notification and first-time callout -->
         <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="zh_Hans_CN"><Text>补给丧失</Text></Replace>
@@ -83,27 +98,21 @@
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="zh_Hans_CN"><Text>你的{1_Unit}需要{2_Resource}，而你一份都没有：在获得之前，它战斗力{3_Combat}，训练变慢。每个需要战略资源的单位都是如此，完整规则见文明百科页面“{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}”。</Text></Replace>
         <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="zh_Hans_CN"><Text>单位锁定</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="zh_Hans_CN"><Text>需要战略资源的单位，在其所有者一份该资源都没有时，是否根本无法训练或购买。已在战场上的单位永远不会被锁定；它们按上面设置的无补给单位惩罚处理。独立势力和城邦永远不会被锁定。</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>所有单位都可像基础游戏中一样训练、购买和升级。</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING" Language="zh_Hans_CN"><Text>训练</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION" Language="zh_Hans_CN"><Text>需要战略资源的单位，没有一份该资源时无法训练或购买。升级为该单位不受限制。</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE" Language="zh_Hans_CN"><Text>训练与升级</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION" Language="zh_Hans_CN"><Text>需要战略资源的单位，没有一份该资源时无法训练、购买，也无法通过升级获得。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_NAME" Language="zh_Hans_CN"><Text>击败升阶无需资源</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION" Language="zh_Hans_CN"><Text>战国的武士击败3个单位后会自动升一阶。开启时，无论有没有铁都会升阶。关闭只在单位锁定为“训练与升级”时生效：击败不再让它们升阶，它们要像其他单位一样升级，这需要铁。关闭还会覆盖其他模组对这些击败数的改动。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION" Language="zh_Hans_CN"><Text>战国的武士击败3个单位后会自动升一阶。开启时，无论有没有铁都会升阶。关闭只在无补给单位为“锁定：训练与升级”时生效：击败不再让它们升阶，它们要像其他单位一样升级，这需要铁。关闭还会覆盖其他模组对这些击败数的改动。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF" Language="zh_Hans_CN"><Text>关闭</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>单位锁定为“训练与升级”时，武士不会因击败而升阶。它像其他单位一样升级，且只有持有铁时才能升级。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION" Language="zh_Hans_CN"><Text>无补给单位为“锁定：训练与升级”时，武士不会因击败而升阶。它像其他单位一样升级，且只有持有铁时才能升级。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON" Language="zh_Hans_CN"><Text>开启</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION" Language="zh_Hans_CN"><Text>武士在每一阶击败3个单位后升阶，有没有铁都一样，与基础游戏相同。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED" Language="zh_Hans_CN"><Text>需要{1_Resource}：没有时无法训练。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_BUY" Language="zh_Hans_CN"><Text>需要{1_Resource}：没有时无法购买。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_SHORT" Language="zh_Hans_CN"><Text>已锁定：没有{1_Resource}</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE_GATED" Language="zh_Hans_CN"><Text>无补给：没有{1_Resource}（战斗力{2_Combat}，训练变慢）。无法训练新的。</Text></Replace>
+        <Replace Tag="LOC_SR_ARMY_UPGRADE_LOCKED" Language="zh_Hans_CN"><Text>{1_Unit}：没有{2_Resource}无法升级。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="zh_Hans_CN"><Text>锁定的单位</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="zh_Hans_CN"><Text>开启{LOC_SR_SETUP_GATE_NAME}选项后，需要战略资源的单位在你一份该资源都没有时无法训练或购买：它留在生产列表中，呈灰色，直到有一份资源到手；而你失去最后一份的那一刻，它会再次被锁定。在{LOC_SR_SETUP_GATE_UPGRADE}下，任何单位也无法升级为它；在{LOC_SR_SETUP_GATE_TRAINING}下，升级不受限制。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="zh_Hans_CN"><Text>已在战场上的单位永远不会被锁定：它们继续战斗，若{LOC_SR_SETUP_UNSUPPLIED_NAME}选项开启则受其惩罚，并照常恢复。文明的特色单位与它所替代的单位一样被锁定。没有任何要求的单位仍不受限制，因此每位玩家始终能够防御。独立势力和城邦永远不会被锁定。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="zh_Hans_CN"><Text>战国的武士在每一阶击败3个单位后会自动升到第二阶和第三阶。{LOC_SR_SETUP_KILL_TIERS_NAME}开启时（默认），即使在{LOC_SR_SETUP_GATE_UPGRADE}下，这次升阶也不需要{LOC_RESOURCE_IRON_NAME}。关闭且选择{LOC_SR_SETUP_GATE_UPGRADE}时，击败不会让它们升阶：它们要像其他单位一样升级，这需要{LOC_RESOURCE_IRON_NAME}。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="zh_Hans_CN"><Text>{LOC_SR_SETUP_UNSUPPLIED_NAME}设为锁定值之一后，需要战略资源的单位在你一份该资源都没有时无法训练或购买：它留在生产列表中，呈灰色，直到有一份资源到手；而你失去最后一份的那一刻，它会再次被锁定。在{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}下，任何单位也无法升级为它，指挥官的“升级全部单位”也会让它保持原样；在{LOC_SR_SETUP_UNSUPPLIED_LOCKED}下，升级不受限制。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="zh_Hans_CN"><Text>已在战场上的单位永远不会被锁定：它们继续战斗，受{LOC_SR_SETUP_UNSUPPLIED_HARSH}惩罚，并照常恢复。文明的特色单位与它所替代的单位一样被锁定。没有任何要求的单位仍不受限制，因此每位玩家始终能够防御。独立势力和城邦永远不会被锁定。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="zh_Hans_CN"><Text>战国的武士在每一阶击败3个单位后会自动升到第二阶和第三阶。{LOC_SR_SETUP_KILL_TIERS_NAME}开启时（默认），即使在{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}下，这次升阶也不需要{LOC_RESOURCE_IRON_NAME}。关闭且选择{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}时，击败不会让它们升阶：它们要像其他单位一样升级，这需要{LOC_RESOURCE_IRON_NAME}。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_HORSES_NAME}时无法训练或购买。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_HORSES_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_IRON_NAME}时无法训练或购买。</Text></Replace>
@@ -115,7 +124,9 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_COAL_NAME}时无法训练或购买。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_COAL_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_RUBBER_NAME}时无法训练或购买。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_HARDWOOD_NAME}时无法训练或购买。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_RUBBER_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_HARDWOOD_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="zh_Hans_CN"><Text>训练所需：{1_Units}。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="zh_Hans_CN"><Text>训练所需：{1_Units}等，另有{2_More}种。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOCKED_TAIL" Language="zh_Hans_CN"><Text>在此之前无法训练新的。</Text></Replace>

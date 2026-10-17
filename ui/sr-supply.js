@@ -1,7 +1,8 @@
 // Which resource a unit draws on, and what the player pays without it. Pure: the inputs are rows already read
 // from the game's database and the player's resource list, so the tests run it without the engine.
 //
-// The data files mark every gated unit with one tag, SR_SUPPLY_<NAME>, and the resource it needs is RESOURCE_<NAME>.
+// The data files mark every gated unit with a tag per resource it draws on, SR_SUPPLY_<NAME>, and the resource is
+// RESOURCE_<NAME>. A unit carries one tag, or two with the Modern Supply Chains option on; the penalties stack.
 // The penalty sizes are read back from the loaded modifiers rather than kept here as well, so the panel always
 // shows what the game is actually applying under the setup option chosen.
 
@@ -25,7 +26,7 @@ export const PRODUCTION_PENALTY_PREFIX = "SR_PRODUCTION_PENALTY_";
 /**
  * @typedef {object} SupplyQuery
  * @property {string} unitType
- * @property {Map<string, string>} supply unit type to the resource it draws on
+ * @property {Map<string, string[]>} supply unit type to the resources it draws on, in the data's order
  * @property {Map<string, Penalty>} penalties resource type to its penalty
  * @property {(resourceType: string) => number} copiesOf the owner's copies of a resource
  */
@@ -42,16 +43,19 @@ export function resourceForSupplyTag(tag) {
 }
 
 /**
- * Unit type to the resource it draws on, from TypeTags rows.
+ * Unit type to the resources it draws on, from TypeTags rows, each once, in the rows' order.
  * @param {Iterable<{ Type?: string, Tag?: string }>} typeTags
- * @returns {Map<string, string>}
+ * @returns {Map<string, string[]>}
  */
 export function buildSupplyIndex(typeTags) {
-  /** @type {Map<string, string>} */
+  /** @type {Map<string, string[]>} */
   const index = new Map();
   for (const row of typeTags) {
     const resource = resourceForSupplyTag(row?.Tag ?? "");
-    if (resource && row.Type) index.set(row.Type, resource);
+    if (!resource || !row.Type) continue;
+    const list = index.get(row.Type) ?? [];
+    if (!list.includes(resource)) list.push(resource);
+    index.set(row.Type, list);
   }
   return index;
 }
@@ -102,18 +106,30 @@ export function countCopies(holdings, resourceType) {
 }
 
 /**
- * The unsupplied status of one unit type for a player holding `copies` of what it needs, or null when the unit is
- * supplied, draws on nothing, or the penalty is off.
+ * The unsupplied statuses of one unit type for its owner: one per resource the unit draws on that the owner holds
+ * none of and that carries a penalty. Empty when the unit is supplied, draws on nothing, or the penalty is off.
+ * @param {SupplyQuery} input
+ * @returns {SupplyStatus[]}
+ */
+export function computeSupplyStatuses({ unitType, supply, penalties, copiesOf }) {
+  /** @type {SupplyStatus[]} */
+  const statuses = [];
+  for (const resourceType of supply.get(unitType) ?? []) {
+    const penalty = penalties.get(resourceType);
+    if (!penalty || (penalty.combat === 0 && penalty.productionPercent === 0)) continue;
+    if (copiesOf(resourceType) > 0) continue;
+    statuses.push({ resourceType, combat: penalty.combat, productionPercent: penalty.productionPercent });
+  }
+  return statuses;
+}
+
+/**
+ * The first unsupplied status of a unit type, or null: what the callout names.
  * @param {SupplyQuery} input
  * @returns {SupplyStatus | null}
  */
-export function computeSupplyStatus({ unitType, supply, penalties, copiesOf }) {
-  const resourceType = supply.get(unitType);
-  if (!resourceType) return null;
-  const penalty = penalties.get(resourceType);
-  if (!penalty || (penalty.combat === 0 && penalty.productionPercent === 0)) return null;
-  if (copiesOf(resourceType) > 0) return null;
-  return { resourceType, combat: penalty.combat, productionPercent: penalty.productionPercent };
+export function computeSupplyStatus(input) {
+  return computeSupplyStatuses(input)[0] ?? null;
 }
 
 // The resource line names this many units before "and N more".
@@ -123,14 +139,14 @@ export const SUPPLIED_UNITS_SHOWN = 3;
  * The units a resource supplies, by display name, for the resource line. A unit missing from `unitNames` is left
  * out, which is how the caller drops other civilizations' unique units.
  * @param {string} resourceType
- * @param {Map<string, string>} supply unit type to the resource it draws on
+ * @param {Map<string, string[]>} supply unit type to the resources it draws on
  * @param {Map<string, string>} unitNames unit type to its display name
  * @returns {{ names: string[], more: number } | null} the first names in order and how many follow, or null
  */
 export function unitsSuppliedBy(resourceType, supply, unitNames) {
   const names = new Set();
-  for (const [unitType, resource] of supply) {
-    const name = resource === resourceType ? unitNames.get(unitType) : undefined;
+  for (const [unitType, resources] of supply) {
+    const name = resources.includes(resourceType) ? unitNames.get(unitType) : undefined;
     if (name) names.add(name);
   }
   if (names.size === 0) return null;
@@ -139,23 +155,37 @@ export function unitsSuppliedBy(resourceType, supply, unitNames) {
 }
 
 /**
- * The line for a unit's item in the production list: what it needs and, with none held, what that costs. Reads
- * the same status as the unit panel line, so the two never disagree. Null when the unit draws on nothing or the
- * penalty is off.
- * Under the hard gate, a unit the owner cannot train for want of its resource reads the locked form instead.
+ * @typedef {object} ProductionLine
+ * @property {"LOC_SR_PRODUCTION_LOCKED" | "LOC_SR_PRODUCTION_NEEDS_NONE" | "LOC_SR_PRODUCTION_NEEDS_HELD"} key
+ * @property {(string | number)[]} args the text's arguments, the resource first
+ */
+
+/**
+ * The lines for a unit's item in the production list, one per resource it draws on: what it needs and, with none
+ * held, what that costs. Reads the same statuses as the unit panel, so the two never disagree. Under the hard
+ * gate, a resource the owner cannot train the unit without reads the locked form instead. Empty when the unit draws
+ * on nothing, or when the penalty is off and nothing is locked.
  * @param {string} unitType
  * @param {Omit<SupplyQuery, "unitType"> & { gate?: Gate }} query
- * @returns {{ key: string, args: (string | number)[] } | null} a text key and its arguments, the resource first
+ * @returns {ProductionLine[]}
  */
 export function describeProductionCost(unitType, { supply, penalties, copiesOf, gate }) {
-  const locked = gate ? lockedBy(unitType, gate, copiesOf) : null;
-  if (locked) return { key: "LOC_SR_PRODUCTION_LOCKED", args: [locked] };
-  const status = computeSupplyStatus({ unitType, supply, penalties, copiesOf });
-  if (status) return { key: "LOC_SR_PRODUCTION_NEEDS_NONE", args: [status.resourceType, status.combat] };
-  const resourceType = supply.get(unitType);
-  const penalty = resourceType ? penalties.get(resourceType) : undefined;
-  if (!resourceType || !penalty || (penalty.combat === 0 && penalty.productionPercent === 0)) return null;
-  return { key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: [resourceType, copiesOf(resourceType)] };
+  const locked = new Set(gate ? lockedResources(unitType, gate, copiesOf) : []);
+  const resources = [...new Set([...locked, ...(supply.get(unitType) ?? [])])];
+  /** @type {ProductionLine[]} */
+  const lines = [];
+  for (const resourceType of resources) {
+    if (locked.has(resourceType)) {
+      lines.push({ key: "LOC_SR_PRODUCTION_LOCKED", args: [resourceType] });
+      continue;
+    }
+    const penalty = penalties.get(resourceType);
+    if (!penalty || (penalty.combat === 0 && penalty.productionPercent === 0)) continue;
+    const copies = copiesOf(resourceType);
+    lines.push(copies > 0 ? { key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: [resourceType, copies] }
+      : { key: "LOC_SR_PRODUCTION_NEEDS_NONE", args: [resourceType, penalty.combat] });
+  }
+  return lines;
 }
 
 /**
@@ -175,7 +205,7 @@ export function describeProductionCost(unitType, { supply, penalties, copiesOf, 
  * units that need the resource (LOC_SR_NOTIFY_LOCKED, with nothing to count). Null when neither applies.
  * @param {string} resourceType
  * @param {Iterable<string>} unitTypes the player's units, one entry per unit
- * @param {{ supply: Map<string, string>, penalties: Map<string, Penalty>, gate?: Gate }} indexes
+ * @param {{ supply: Map<string, string[]>, penalties: Map<string, Penalty>, gate?: Gate }} indexes
  * @returns {SupplyLoss | null}
  */
 export function describeSupplyLoss(resourceType, unitTypes, { supply, penalties, gate }) {
@@ -185,7 +215,7 @@ export function describeSupplyLoss(resourceType, unitTypes, { supply, penalties,
     if (!locked) return null;
     return { key: "LOC_SR_NOTIFY_LOCKED", resourceType, unitType: null, others: 0, combat: 0, locked };
   }
-  const reached = [...unitTypes].filter((unitType) => supply.get(unitType) === resourceType);
+  const reached = [...unitTypes].filter((unitType) => (supply.get(unitType) ?? []).includes(resourceType));
   return {
     key: lossKey(reached.length),
     resourceType,
@@ -199,8 +229,8 @@ export function describeSupplyLoss(resourceType, unitTypes, { supply, penalties,
 /** @param {Gate | undefined} gate @param {string} resourceType */
 function gateNames(gate, resourceType) {
   if (!gate?.on) return false;
-  for (const resource of gate.columns.values()) {
-    if (resource === resourceType) return true;
+  for (const resources of gate.needs.values()) {
+    if (resources.includes(resourceType)) return true;
   }
   return false;
 }
@@ -245,6 +275,8 @@ export const GATE_UPGRADING_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPG
  * @property {boolean} on the option is on: every gated unit carries the column and the engine checks it
  * @property {boolean} upgrade upgrading into a gated unit needs a copy too
  * @property {Map<string, string>} columns unit type to the resource its StrategicResource column names
+ * @property {Map<string, string[]>} needs unit type to every resource the gate locks it behind: the column's, then
+ *   any other the unit draws on (Modern Supply Chains), which the grant-only lines lock it behind
  */
 
 /**
@@ -253,22 +285,42 @@ export const GATE_UPGRADING_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPG
  * mod's rule, which its own texts explain, so the mod's lock texts step back to the 1.0 lines.
  * @param {Iterable<{ UnitType?: string, StrategicResource?: string | null }>} units GameInfo.Units rows
  * @param {Iterable<{ Name?: string, Value?: string | number }>} globalParameters GameInfo.GlobalParameters rows
- * @param {Map<string, string>} supply unit type to the resource it draws on
+ * @param {Map<string, string[]>} supply unit type to the resources it draws on
  * @returns {Gate}
  */
 export function buildGateIndex(units, globalParameters, supply) {
   const rows = [...units];
   const params = readParameters(globalParameters);
   const own = params.get(GATE_PRODUCTION_PARAMETER) === 1 && params.get(GATE_PURCHASE_PARAMETER) === 1;
-  if (!own) return { on: false, upgrade: false, columns: new Map() };
+  if (!own) return { on: false, upgrade: false, columns: new Map(), needs: new Map() };
+  const columns = readColumns(rows);
+  const on = coversSupply(columns, new Set(rows.map((row) => row?.UnitType)), supply);
+  if (!on) columns.clear();
+  const upgrade = on && (params.get(GATE_UPGRADING_PARAMETER) ?? 0) >= 1;
+  return { on, upgrade, columns, needs: needsOf(columns, supply) };
+}
+
+/** @param {{ UnitType?: string, StrategicResource?: string | null }[]} rows @returns {Map<string, string>} */
+function readColumns(rows) {
   /** @type {Map<string, string>} */
   const columns = new Map();
   for (const row of rows) {
     if (row?.UnitType && row.StrategicResource) columns.set(row.UnitType, row.StrategicResource);
   }
-  const on = coversSupply(columns, new Set(rows.map((row) => row?.UnitType)), supply);
-  if (!on) columns.clear();
-  return { on, upgrade: on && (params.get(GATE_UPGRADING_PARAMETER) ?? 0) >= 1, columns };
+  return columns;
+}
+
+/**
+ * Every resource the gate locks each column unit behind: the column's first, then the rest it draws on.
+ * @param {Map<string, string>} columns @param {Map<string, string[]>} supply @returns {Map<string, string[]>}
+ */
+function needsOf(columns, supply) {
+  /** @type {Map<string, string[]>} */
+  const needs = new Map();
+  for (const [unitType, resource] of columns) {
+    needs.set(unitType, [...new Set([resource, ...(supply.get(unitType) ?? [])])]);
+  }
+  return needs;
 }
 
 /** @param {Iterable<{ Name?: string, Value?: string | number }>} globalParameters */
@@ -283,32 +335,42 @@ function readParameters(globalParameters) {
 }
 
 /**
- * Whether every unit of the gate map the game knows carries its resource in the column, which is what the option's
- * groups write; another mod's column covers only some of them. False when the game knows none of them.
+ * Whether every unit of the gate map the game knows carries one of its resources in the column, which is what the
+ * option's groups write; another mod's column covers only some of them. False when the game knows none of them.
  * @param {Map<string, string>} columns
  * @param {Set<string | undefined>} known the unit types in the table
- * @param {Map<string, string>} supply
+ * @param {Map<string, string[]>} supply
  * @returns {boolean}
  */
 function coversSupply(columns, known, supply) {
   let seen = 0;
-  for (const [unitType, resource] of supply) {
+  for (const [unitType, resources] of supply) {
     if (!known.has(unitType)) continue;
-    if (columns.get(unitType) !== resource) return false;
+    const column = columns.get(unitType);
+    if (!column || !resources.includes(column)) return false;
     seen += 1;
   }
   return seen > 0;
 }
 
 /**
- * The resource a unit cannot be trained or bought without, when the owner holds none of it; null otherwise.
+ * The resources a unit cannot be trained or bought without that the owner holds none of, in the gate's order.
+ * @param {string} unitType
+ * @param {Gate} gate
+ * @param {(resourceType: string) => number} copiesOf
+ * @returns {string[]}
+ */
+export function lockedResources(unitType, gate, copiesOf) {
+  return (gate.needs.get(unitType) ?? []).filter((resource) => copiesOf(resource) === 0);
+}
+
+/**
+ * The first resource a unit cannot be trained or bought without, when the owner holds none of it; null otherwise.
  * @param {string} unitType
  * @param {Gate} gate
  * @param {(resourceType: string) => number} copiesOf
  * @returns {string | null}
  */
 export function lockedBy(unitType, gate, copiesOf) {
-  const resource = gate.columns.get(unitType);
-  if (!resource || copiesOf(resource) > 0) return null;
-  return resource;
+  return lockedResources(unitType, gate, copiesOf)[0] ?? null;
 }

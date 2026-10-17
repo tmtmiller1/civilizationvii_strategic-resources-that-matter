@@ -18,6 +18,11 @@
         <Row Tag="SR_BOMBARD_NITER" Category="UNIT_CLASS"/>
         <Row Tag="SR_CURVE_RANGED_NITER" Category="UNIT_CLASS"/>
         <Row Tag="SR_CURVE_BOMBARD_NITER" Category="UNIT_CLASS"/>
+        <Row Tag="SR_SUPPLY_HARDWOOD" Category="UNIT_CLASS"/>
+        <Row Tag="SR_RANGED_HARDWOOD" Category="UNIT_CLASS"/>
+        <Row Tag="SR_BOMBARD_HARDWOOD" Category="UNIT_CLASS"/>
+        <Row Tag="SR_CURVE_RANGED_HARDWOOD" Category="UNIT_CLASS"/>
+        <Row Tag="SR_CURVE_BOMBARD_HARDWOOD" Category="UNIT_CLASS"/>
         <Row Tag="SR_SUPPLY_OIL" Category="UNIT_CLASS"/>
         <Row Tag="SR_RANGED_OIL" Category="UNIT_CLASS"/>
         <Row Tag="SR_BOMBARD_OIL" Category="UNIT_CLASS"/>

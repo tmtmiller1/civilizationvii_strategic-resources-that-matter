@@ -1,9 +1,12 @@
 # Future update: more resources, more units
 
 Scoped on 2026-10-12 from the owner's questions after the 1.0.0 release ("we missed Uranium for nukes? Timber for
-Exploration ships?" and "there are absolutely nukes"). Nothing here is built. Status: scoped, not started. Map
-placement and icons for Hardwood and Pitch, which resource gates a unit that could need two, and the probe as a lab
-recipe were added on 2026-10-15 ("Hardwood and Pitch on the map" below); the probe hasn't run.
+Exploration ships?" and "there are absolutely nukes"). Status: Hardwood is built (1.2, DESIGN.md 7h): the
+Exploration heavy warships from tier 2 draw on it instead of Niter, by one rule in `gate-map.mjs`, and two resources
+per unit exist as the Modern Supply Chains option, with the second one held by the grant-only lines rather than the
+column. Pitch, Tin and the nuclear weapons are still open. Map placement and icons for Hardwood and Pitch, which
+resource gates a unit that could need two, and the probe as a lab recipe were added on 2026-10-15 ("Hardwood and
+Pitch on the map" below); the Hardwood probe became the 1.2 lab run instead.
 
 ## What the game has (1.5.0, read from the dumped tables in `devtools/gate-map/`)
 

@@ -1,8 +1,8 @@
 # Strategic Resources That Matter
 
-A Civilization VII mod. Horses, Iron, Niter, Oil, Coal and Rubber matter again. A unit that draws on one of them
-fights weaker and trains slower while its owner has none of it, and each one you do hold still adds the game's own
-bonus, so the count keeps mattering. Lose your last one, to a raid on the mine or a lost settlement, and the penalty
+A Civilization VII mod. Horses, Iron, Niter, Hardwood, Oil, Coal and Rubber matter again. A unit that draws on one
+of them fights weaker and trains slower while its owner has none of it, and each one you do hold still adds the
+game's own bonus, so the count keeps mattering. Lose your last one, to a raid on the mine or a lost settlement, and the penalty
 is back a turn later. Past six, where the game's own bonus stops, the count keeps adding strength.
 
 ![The unit panel of a Chariot with no Horses](docs/screenshots/unit-panel-en.png)
@@ -61,7 +61,7 @@ A civilization's unique unit needs what the unit it replaces needs.
 | Exploration | Cavalry: Courser, Knight, Lancer and their unique versions | Horses |
 | Exploration | Infantry from the second tier: Man-At-Arms, Pikeman and their unique versions | Iron |
 | Exploration | Siege from the third tier: Bombard and its unique version | Niter |
-| Exploration | Heavy warships from the second tier: Carrack, Galleon and their unique versions | Niter |
+| Exploration | Heavy warships from the second tier: Carrack, Galleon and their unique versions | Hardwood |
 | Modern | Artillery: Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun | Niter |
 | Modern | Armour: Landship, Tank and their unique versions | Oil |
 | Modern | Battleships: Dreadnought, Battleship and their unique versions | Oil |
@@ -69,6 +69,8 @@ A civilization's unique unit needs what the unit it replaces needs.
 | Modern | Aircraft | Rubber |
 
 A resource that reaches you over a trade route counts the same as one you mine yourself, from the turn the route lands.
+With Modern Supply Chains on (a setup option, off by default), every Modern unit needs a second resource as well:
+see below.
 
 Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the
 Catapult and the Trebuchet, the Cog and the Ship of the Line, the Cuirassier, the Submarine, and Modern infantry, so
@@ -90,26 +92,30 @@ Four options in game setup, beside the game's own options such as age length:
 
 | Option | Values | Default |
 | --- | --- | --- |
-| Unsupplied Units | Off; Light (-2, 20% less Production); Standard (-3, 33% less); Harsh (-5, 50% less, twice as long to train) | Standard |
+| Unsupplied Units | Off; Light (-2, 20% less Production); Standard (-3, 33% less); Harsh (-5, 50% less, twice as long to train); Locked: training; Locked: training and upgrade | Standard |
 | Strategic Resources Past Six | Off; On (+1 at 8, 10, 12, 14, 16, 18 and 20 of a resource) | On |
-| Gated Units | Off; Training; Training and upgrade | Off |
+| Modern Supply Chains | Off; On (every Modern unit needs a second resource) | Off |
 | Free Tier-Up by Kills | Off; On (the Sengoku's Samurai move up a tier after three kills, Iron or not) | On |
 
-Play Now uses the defaults. The options are fixed for the whole game once it starts.
+Play Now uses the defaults. The options are fixed for the whole game once it starts. Before 1.2 the lock was its own
+option, Gated Units; a save made with it keeps the gate it was started with.
 
 ![The three options in Advanced Options](docs/screenshots/setup-options-en.png)
 
 *Advanced Options, Game Settings: the mod's options sit after the game's own.*
 
-### Gated Units
+### Locked units
 
-With Gated Units on, a unit that needs a strategic resource cannot be trained or bought while you have none of it.
-It stays in the production list, greyed out, with a "Locked: no Iron" pill after its stats, until you get some, and
-it is locked again the moment your last one goes. Under Training and upgrade, no unit can be upgraded into it either;
-under Training, upgrades stay free, as in the base game. Units already in the field are never gated: they keep
-fighting, at the Unsupplied Units penalty if that option is on, and heal as usual. The units free of any requirement
-(the Warrior line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog, Modern infantry) stay free, so
-every player can always defend.
+The two hardest values of Unsupplied Units lock units as well as penalising them. Units in the field take the Harsh
+penalty, and a unit that needs a strategic resource cannot be trained or bought while you have none of it. It stays
+in the production list, greyed out, with a "Locked: no Iron" pill after its stats, until you get some, and it is
+locked again the moment your last one goes. Under "Locked: training and upgrade", no unit can be upgraded into it
+either, and a commander's Upgrade All leaves it as it is, with the button greyed and the reason in its tooltip, as
+long as every unit in the army is locked; with a mix, the button stays lit and the tooltip names the units that stay
+as they are. Under "Locked: training", upgrades stay free, as in the base game. Units already in the field are never
+locked: they keep fighting, at the Harsh penalty, and heal as usual. The units free of any requirement (the Warrior
+line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog, Modern infantry) stay free, so every player
+can always defend.
 They also stay in the production list when the next unit in their line is gated. In the base game a unit goes out of
 date as soon as the tech for its upgrade is in, so without Niter you'd lose the Trebuchet at Gunpowder and have no
 siege unit at all. With Gated Units on, the Trebuchet stays trainable after Gunpowder until you have Niter, and the
@@ -118,11 +124,11 @@ Once you have the resource, the line works as in the base game: the old unit goe
 Rome, Persia, Meiji Japan and Great Britain get their own Warrior or Frigate for this, the same unit under the same
 name and with the same look, which upgrades straight into the Legion, the Immortal, the Mikasa or the Revenge, and
 takes the same story rewards a Warrior or Frigate would.
-Independent powers and city-states are never gated. A civilization's unique unit is gated like the unit it replaces.
+Independent powers and city-states are never locked. A civilization's unique unit is locked like the unit it replaces.
 
 The Sengoku's Samurai reach their second and third tier by themselves, after three kills at each tier, and the game
-doesn't ask for Iron for that step, even under Training and upgrade. That's what you get with Free Tier-Up by Kills
-on, the default. Turn it off with Gated Units on Training and upgrade and kills don't move a Samurai up any more: it
+doesn't ask for Iron for that step, even under "Locked: training and upgrade". That's what you get with Free Tier-Up
+by Kills on, the default. Turn it off under that value and kills don't move a Samurai up any more: it
 upgrades like any other unit, which needs Iron: tier 2 once you have Heraldry, tier 3 once you have Metal Casting.
 Off takes out the Samurai's kill counts, so it overrides another mod that changes them. Either way, a Sengoku player
 with no Iron keeps the first-tier Samurai after the Kinsei civic, and the second tier takes over once Iron is held.
@@ -135,8 +141,28 @@ Without the Sengoku DLC the option doesn't change anything.
 The unit panel's cell tooltip ends with "New ones cannot be trained.", the resource description reads "Needed to train: ..."
 instead of "Supplies units: ...", the lost-supply notification adds "New ones cannot be trained until then.", and a
 second first-time callout, "Locked unit", explains the lock the first time you select a unit of a locked kind or a
-city whose list shows one. The Civilopedia page gains a last chapter, "Gated units", and each gated unit's page a line
+city whose list shows one. The Civilopedia page gains a last chapter, "Locked units", and each gated unit's page a line
 "Cannot be trained or bought without Iron."
+
+### Modern Supply Chains
+
+Off by default, because it makes for a hard game. On, every Modern unit that needs a resource needs a second one
+too, so the supply lines of the industrial age matter as much as the first resource did:
+
+| Units | Resources |
+| --- | --- |
+| Artillery: Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun and their unique versions | Niter and Coal |
+| Armour: Landship, Tank and their unique versions | Oil and Coal |
+| Battleships: Dreadnought, Battleship and their unique versions | Oil and Coal |
+| Light warships: Ironclad, Cruiser, Destroyer, Barbary Corsair | Coal and Niter |
+| Aircraft | Rubber and Oil |
+
+Iron isn't placed on Modern maps, so Coal stands for steel. Each missing resource costs the full Unsupplied Units
+penalty, so a Tank with neither Oil nor Coal fights at twice it, and the unit panel shows one cell per missing
+resource; the production pill reads "Needs Oil, Needs Coal". Under a locked value the unit needs both to be trained,
+bought or (under "training and upgrade") upgraded into, and the pill reads "Locked: no Coal" for whichever is
+missing. The lost-supply notification, the resource descriptions and the Civilopedia lines follow the second
+resource too.
 
 ## AI players
 
@@ -144,7 +170,7 @@ The AI plays under the same rules. The penalty is ordinary unit and city data, s
 reaches you, and the turn-start check covers every major player. Independent powers and city-states are not
 penalised. In testing, an AI with no Iron kept building Warriors where, with Iron, it built Legions.
 
-Under Gated Units the AI is locked by the same data: an AI with no Iron can't train a Spearman, and its production
+Under a locked value the AI is locked by the same data: an AI with no Iron can't train a Spearman, and its production
 queue never sticks on a locked unit (it builds something else). Independent powers and city-states ignore the gate by
 the game's own rule, so their spawns and armies are unchanged.
 
@@ -152,9 +178,10 @@ the game's own rule, so their spawns and armies are unchanged.
 
 - Works with any mix of DLC. The unit tags only go on units that are in your game, so a unique unit from a DLC you
   don't own is skipped, and so is one a game update removes.
-- Adds unit tags, modifiers and four game setup options. With Gated Units off, every base-game row and file stays as
-  the game has it; with it on, the mod sets the game's own `StrategicResource` column on the gated units and the
-  game's six resource-minimum parameters.
+- Adds unit tags, modifiers and four game setup options. Below the locked values, every base-game row and file stays
+  as the game has it; under a locked value, the mod sets the game's own `StrategicResource` column on the gated units
+  and the game's six resource-minimum parameters, and makes the units a free unit upgrades into (every Modern unit
+  with Modern Supply Chains on) grant-only behind their resource.
 - Another mod that sets that column or those parameters (a locally installed gameplay overhaul does, with minimums
   of 2 to 6) keeps the engine's rule by its own numbers, and this mod's lock texts step back to their plain form
   rather than promise an unlock at one that does not hold. Turn one of the two off to get a single rule.
@@ -194,17 +221,21 @@ Civilization VII\Mods\` (Windows), and enable it under Add-ons.
   The game marks it seen in that save anyway, so turning warnings on later shows it in the next new game. In
   multiplayer neither the notification nor the callout shows.
 - The curve stops at 20 of a resource.
-- Under Gated Units, a unit already in the production queue when the resource is lost keeps its progress and is
+- Under a locked value, a unit already in the production queue when the resource is lost keeps its progress and is
   completed: the game checks the resource when a unit is queued or bought, not when it finishes. Units it would
   have bought or queued after the loss are locked.
+- The commander's Upgrade All is the game's own command, and its check doesn't read the resource: the mod greys the
+  button and names the reason when every unit in the army is locked, and lists the locked ones when some can go.
+  The engine refuses the locked units' upgrades either way; the AI's Upgrade All goes through the same engine check.
 - The lock callout, like the unsupplied one, follows the game's tutorial options and shows once per profile.
 
 ## How it works
 
-- `data/`: each unit that needs a resource gets one tag, `SR_SUPPLY_<NAME>`. Per age and setup value, every major
-  player's units get the combat penalty and their cities the production cut, each cancelled by an equal bonus while
-  the player has one. The curve is a set of +1 bonuses behind higher counts. The files are written by
-  `scripts/build-data.mjs` from the rules in `scripts/gate-map.mjs`.
+- `data/`: each unit that needs a resource gets one tag, `SR_SUPPLY_<NAME>` (a second one with Modern Supply Chains
+  on, from `sr-modern-chains.sql`). Per age and setup value, every major player's units get the combat penalty and
+  their cities the production cut, each cancelled by an equal bonus while the player has one. The curve is a set of
+  +1 bonuses behind higher counts. The files are written by `scripts/build-data.mjs` from the rules in
+  `scripts/gate-map.mjs`.
 - `ui/sr-recheck.js`: at the start of every turn, gains and drops one off-map unit of a resource nothing else reads,
   for every major player. Gaining a resource is what makes the game re-check a player's requirements at the next
   turn roll.
@@ -213,6 +244,8 @@ Civilization VII\Mods\` (Windows), and enable it under Add-ons.
 - `ui/sr-callout.js`: the first-time callout, an item in the game's tutorial manager at the advisor-warning level.
 - `ui/sr-unit-panel.js`: the status cell on the unit panel.
 - `ui/sr-production-line.js`: the line on a production item, in the game's `ProductionModInfo` slot.
+- `ui/sr-army-upgrade.js`: the commander's Upgrade All under a locked value, read against each packed unit's own
+  upgrade check.
 - `ui/sr-resource-line.js`: the line in a strategic resource's description, added where the game's `Stylize`
   component draws that text.
 - `ui/sr-registry.js`, `ui/sr-player-supply.js`, `ui/sr-supply.js`: the shared registry wrapper, engine reads and pure

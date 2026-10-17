@@ -1,13 +1,14 @@
-// Adds one stat cell to the selected-unit panel's stats row when the unit is unsupplied: the resource's icon with the
-// penalty in red, like the panel's own cells, and the whole sentence as the cell's tooltip, for example "Unsupplied:
-// no Iron (-3 combat strength, slower to train)", with "New ones cannot be trained." under the hard gate. The panel
+// Adds one stat cell to the selected-unit panel's stats row per resource the unit is short of: the resource's icon
+// with the penalty in red, like the panel's own cells, and the whole sentence as the cell's tooltip, for example
+// "Unsupplied: no Iron (-3 combat strength, slower to train)", with "New ones cannot be trained." under the hard gate.
+// A unit short of two resources (Modern Supply Chains) gets two cells. The panel
 // is the game's own; this wraps the panel instance's setupUnitInfo and leaves everything it draws in place. The
 // wrapper looks up the method it wraps at call time, so a mod that patches the panel's prototype after this one
 // still runs.
 
 import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
-import { computeSupplyStatus } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
+import { computeSupplyStatuses } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 const LINE_CLASS = "sr-unsupplied-line";
 const STATS_SELECTOR = ".unit-actions__stats_container";
@@ -30,24 +31,23 @@ const VALUE_COLOR = "#FF7A66";
  */
 
 /**
- * The panel cell for a unit, or null when there is nothing to say.
+ * The panel cells for a unit, one per resource it is short of; empty when there is nothing to say.
  * @param {*} unit
- * @returns {PanelStatus | null}
+ * @returns {PanelStatus[]}
  */
 export function describeUnit(unit) {
   const owner = Players.get(unit?.owner);
-  if (!owner?.isMajor) return null;
+  if (!owner?.isMajor) return [];
   const unitType = GameInfo.Units.lookup(unit.type)?.UnitType;
-  if (!unitType) return null;
+  if (!unitType) return [];
   const { supply, penalties, gate } = readIndexes();
-  const status = computeSupplyStatus({ unitType, supply, penalties, copiesOf: copiesCounter(owner) });
-  if (!status) return null;
+  const statuses = computeSupplyStatuses({ unitType, supply, penalties, copiesOf: copiesCounter(owner) });
   const key = gate.on && gate.columns.has(unitType) ? "LOC_SR_UNSUPPLIED_LINE_GATED" : "LOC_SR_UNSUPPLIED_LINE";
-  return {
+  return statuses.map((status) => ({
     text: Locale.compose(key, resourceNameKey(status.resourceType), status.combat),
     resourceType: status.resourceType,
     combat: status.combat
-  };
+  }));
 }
 
 /** @param {HTMLElement} row */
@@ -92,26 +92,31 @@ function fillCell(cell, status) {
 }
 
 /**
- * The mod's divider and cell in the stats container, made on first use when there is something to show.
+ * The mod's dividers and cells in the stats container, as many as `count` asks for, made on first use. Each cell's
+ * divider is the element before it.
  * @param {HTMLElement} host
- * @param {boolean} make
- * @returns {{ cell: HTMLElement | null, divider: HTMLElement | null }}
+ * @param {number} count
+ * @returns {{ cell: HTMLElement, divider: HTMLElement | null }[]} every cell made so far
  */
-function parts(host, make) {
-  let cell = /** @type {HTMLElement | null} */ (host.querySelector(`.${LINE_CLASS}`));
-  if (!cell && make) cell = addCell(/** @type {HTMLElement} */ (host.querySelector(ROW_SELECTOR) ?? host));
-  const divider = /** @type {HTMLElement | null} */ (host.querySelector(".sr-unsupplied-divider"));
-  return { cell, divider };
+function parts(host, count) {
+  const row = /** @type {HTMLElement} */ (host.querySelector(ROW_SELECTOR) ?? host);
+  const all = (/** @type {string} */ className) => /** @type {HTMLElement[]} */ ([...host.querySelectorAll(`.${className}`)]);
+  const cells = all(LINE_CLASS);
+  while (cells.length < count) cells.push(addCell(row));
+  const dividers = all("sr-unsupplied-divider");
+  return cells.map((cell, i) => ({ cell, divider: dividers[i] ?? null }));
 }
 
-/** @param {HTMLElement} root @param {PanelStatus | null} status */
-function renderLine(root, status) {
+/** @param {HTMLElement} root @param {PanelStatus[]} statuses */
+function renderLine(root, statuses) {
   const host = /** @type {HTMLElement | null} */ (root?.querySelector?.(STATS_SELECTOR));
   if (!host) return;
-  const { cell, divider } = parts(host, status !== null);
-  if (!cell) return;
-  if (status) showCell(host, cell, divider, status);
-  for (const part of [cell, divider]) part?.classList.toggle("hidden", !status);
+  const made = parts(host, statuses.length);
+  made.forEach(({ cell, divider }, i) => {
+    const status = statuses[i];
+    if (status) showCell(host, cell, divider, status);
+    for (const part of [cell, divider]) part?.classList.toggle("hidden", !status);
+  });
 }
 
 /**
@@ -131,7 +136,7 @@ function showCell(host, cell, divider, status) {
 /** @param {*} panel the unit-actions component */
 function refreshLine(panel) {
   const unit = panel.unitId ? Units.get(panel.unitId) : null;
-  renderLine(panel.Root, unit ? describeUnit(unit) : null);
+  renderLine(panel.Root, unit ? describeUnit(unit) : []);
 }
 
 class UnitPanelSupplyLine {

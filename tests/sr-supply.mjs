@@ -4,6 +4,7 @@ import {
   buildPenaltyIndex,
   buildSupplyIndex,
   computeSupplyStatus,
+  computeSupplyStatuses,
   countCopies,
   describeProductionCost,
   describeSupplyLoss,
@@ -12,7 +13,8 @@ import {
   unitsSuppliedBy,
   GATE_PRODUCTION_PARAMETER, GATE_PURCHASE_PARAMETER,
   GATE_UPGRADING_PARAMETER,
-  lockedBy
+  lockedBy,
+  lockedResources
 } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 // The pure half of the unit panel line: which resource a unit draws on and what it costs to lack it.
@@ -27,9 +29,14 @@ const supply = buildSupplyIndex([
   { Type: "UNIT_SPEARMAN", Tag: "SR_SUPPLY_IRON" },
   { Type: "UNIT_CHARIOT", Tag: "SR_SUPPLY_HORSES" },
   { Tag: "SR_SUPPLY_OIL" },
-  /** @type {*} */ (null)
+  /** @type {*} */ (null),
+  // A unit that draws on two resources (Modern Supply Chains): both, in the rows' order, each once.
+  { Type: "UNIT_TANK", Tag: "SR_SUPPLY_OIL" },
+  { Type: "UNIT_TANK", Tag: "SR_SUPPLY_COAL" },
+  { Type: "UNIT_TANK", Tag: "SR_SUPPLY_OIL" }
 ]);
-assert.deepEqual([...supply], [["UNIT_SPEARMAN", "RESOURCE_IRON"], ["UNIT_CHARIOT", "RESOURCE_HORSES"]]);
+assert.deepEqual([...supply], [["UNIT_SPEARMAN", ["RESOURCE_IRON"]], ["UNIT_CHARIOT", ["RESOURCE_HORSES"]],
+  ["UNIT_TANK", ["RESOURCE_OIL", "RESOURCE_COAL"]]]);
 
 const penalties = buildPenaltyIndex([
   { ModifierId: "SR_COMBAT_PENALTY_IRON", Name: "Amount", Value: "-3" },
@@ -45,6 +52,8 @@ assert.deepEqual(penalties.get("RESOURCE_IRON"), { combat: -3, productionPercent
 assert.deepEqual(penalties.get("RESOURCE_HORSES"), { combat: 0, productionPercent: -20 });
 assert.equal(penalties.has("RESOURCE_OIL"), false, "a combat penalty is read from Amount only");
 assert.equal(penalties.size, 2);
+const twoPenalties = new Map([...penalties, ["RESOURCE_OIL", { combat: -3, productionPercent: -33 }],
+  ["RESOURCE_COAL", { combat: -3, productionPercent: -33 }]]);
 
 const holdings = [
   { resourceType: "RESOURCE_IRON", isOffMap: false },
@@ -73,12 +82,23 @@ const zero = computeSupplyStatus({
   copiesOf: () => 0
 });
 assert.equal(zero, null);
+// Two resources: one status per resource the owner holds none of; the first is what the callout names.
+const tankCopies = (/** @type {Record<string, number>} */ held) => (/** @type {string} */ r) => held[r] ?? 0;
+assert.deepEqual(computeSupplyStatuses({ unitType: "UNIT_TANK", supply, penalties: twoPenalties, copiesOf: tankCopies({}) }),
+  [{ resourceType: "RESOURCE_OIL", combat: -3, productionPercent: -33 },
+    { resourceType: "RESOURCE_COAL", combat: -3, productionPercent: -33 }]);
+assert.deepEqual(computeSupplyStatuses({ unitType: "UNIT_TANK", supply, penalties: twoPenalties,
+  copiesOf: tankCopies({ RESOURCE_OIL: 1 }) }), [{ resourceType: "RESOURCE_COAL", combat: -3, productionPercent: -33 }]);
+assert.deepEqual(computeSupplyStatuses({ unitType: "UNIT_TANK", supply, penalties: twoPenalties,
+  copiesOf: tankCopies({ RESOURCE_OIL: 1, RESOURCE_COAL: 2 }) }), []);
+assert.deepEqual(computeSupplyStatus({ unitType: "UNIT_TANK", supply, penalties: twoPenalties, copiesOf: tankCopies({}) }),
+  { resourceType: "RESOURCE_OIL", combat: -3, productionPercent: -33 });
 
 // The resource line: the units a resource supplies, sorted by name, the first three and a count of the rest.
 assert.equal(SUPPLIED_UNITS_SHOWN, 3);
 const ironUnits = new Map([
-  ["UNIT_SPEARMAN", "RESOURCE_IRON"], ["UNIT_PHALANX", "RESOURCE_IRON"], ["UNIT_LEGION", "RESOURCE_IRON"],
-  ["UNIT_HOPLITE", "RESOURCE_IRON"], ["UNIT_CHARIOT", "RESOURCE_HORSES"]
+  ["UNIT_SPEARMAN", ["RESOURCE_IRON"]], ["UNIT_PHALANX", ["RESOURCE_IRON"]], ["UNIT_LEGION", ["RESOURCE_IRON"]],
+  ["UNIT_HOPLITE", ["RESOURCE_IRON"]], ["UNIT_CHARIOT", ["RESOURCE_HORSES"]], ["UNIT_TANK", ["RESOURCE_OIL", "RESOURCE_COAL"]]
 ]);
 const unitNames = new Map([
   ["UNIT_SPEARMAN", "Spearman"], ["UNIT_PHALANX", "Phalanx"], ["UNIT_LEGION", "Legion"], ["UNIT_HOPLITE", "Hoplite"],
@@ -88,6 +108,8 @@ assert.deepEqual(unitsSuppliedBy("RESOURCE_IRON", ironUnits, unitNames), {
   names: ["Hoplite", "Legion", "Phalanx"], more: 1
 });
 assert.deepEqual(unitsSuppliedBy("RESOURCE_HORSES", ironUnits, unitNames), { names: ["Chariot"], more: 0 });
+assert.deepEqual(unitsSuppliedBy("RESOURCE_COAL", ironUnits, new Map([["UNIT_TANK", "Tank"]])), { names: ["Tank"], more: 0 },
+  "a unit's second resource lists it too");
 assert.equal(unitsSuppliedBy("RESOURCE_WINE", ironUnits, unitNames), null, "a resource that supplies nothing");
 const ownUnits = new Map([["UNIT_SPEARMAN", "Spearman"], ["UNIT_LEGION", "Legion"]]);
 assert.deepEqual(unitsSuppliedBy("RESOURCE_IRON", ironUnits, ownUnits), { names: ["Legion", "Spearman"], more: 0 },
@@ -98,28 +120,32 @@ assert.equal(unitsSuppliedBy("RESOURCE_IRON", ironUnits, new Map()), null);
 
 // The production item line agrees with the unit panel's status.
 const query = (copies) => ({ supply, penalties, copiesOf: () => copies });
-assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", query(0)), {
+assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", query(0)), [{
   key: "LOC_SR_PRODUCTION_NEEDS_NONE", args: ["RESOURCE_IRON", -3]
-});
-assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", query(2)), {
+}]);
+assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", query(2)), [{
   key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: ["RESOURCE_IRON", 2]
-}, "held: the requirement shows before it bites");
-assert.equal(describeProductionCost("UNIT_WARRIOR", query(0)), null, "an ungated unit says nothing");
-assert.equal(describeProductionCost("UNIT_SPEARMAN", { supply, penalties: new Map(), copiesOf: () => 0 }), null,
+}], "held: the requirement shows before it bites");
+assert.deepEqual(describeProductionCost("UNIT_WARRIOR", query(0)), [], "an ungated unit says nothing");
+assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", { supply, penalties: new Map(), copiesOf: () => 0 }), [],
   "the Off setting says nothing");
-assert.equal(describeProductionCost("UNIT_SPEARMAN", {
+assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", {
   supply, penalties: new Map([["RESOURCE_IRON", { combat: 0, productionPercent: 0 }]]), copiesOf: () => 1
-}), null);
+}), []);
 for (const copies of [0, 1, 5]) {
-  const line = describeProductionCost("UNIT_SPEARMAN", query(copies));
+  const [line] = describeProductionCost("UNIT_SPEARMAN", query(copies));
   const unsupplied = computeSupplyStatus({ unitType: "UNIT_SPEARMAN", ...query(copies) }) !== null;
   assert.equal(line?.key === "LOC_SR_PRODUCTION_NEEDS_NONE", unsupplied, `panel and list agree at ${copies}`);
 }
+// Two resources: one line per resource, each in its own state.
+assert.deepEqual(describeProductionCost("UNIT_TANK", { supply, penalties: twoPenalties, copiesOf: tankCopies({ RESOURCE_COAL: 2 }) }),
+  [{ key: "LOC_SR_PRODUCTION_NEEDS_NONE", args: ["RESOURCE_OIL", -3] },
+    { key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: ["RESOURCE_COAL", 2] }]);
 
 // describeSupplyLoss: the lost-supply notification names the unit type the player has most of and counts the rest
 {
-  const lossSupply = new Map([["UNIT_FIELD_CANNON", "RESOURCE_NITER"], ["UNIT_MORTAR", "RESOURCE_NITER"],
-    ["UNIT_TANK", "RESOURCE_OIL"]]);
+  const lossSupply = new Map([["UNIT_FIELD_CANNON", ["RESOURCE_NITER"]], ["UNIT_MORTAR", ["RESOURCE_NITER"]],
+    ["UNIT_TANK", ["RESOURCE_OIL"]]]);
   const lossPenalties = new Map([["RESOURCE_NITER", { combat: -3, productionPercent: -33 }],
     ["RESOURCE_OIL", { combat: 0, productionPercent: 0 }]]);
   const indexes = { supply: lossSupply, penalties: lossPenalties };
@@ -191,14 +217,34 @@ for (const copies of [0, 1, 5]) {
   assert.equal(lockedBy("UNIT_WARRIOR", on, () => 0), null, "no column");
   assert.equal(lockedBy("UNIT_KNIGHT", partial, () => 0), null, "another mod's column: not the mod's lock");
   assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", { ...query(0), gate: on }),
-    { key: "LOC_SR_PRODUCTION_LOCKED", args: ["RESOURCE_IRON"] }, "locked: the lock, not the penalty");
+    [{ key: "LOC_SR_PRODUCTION_LOCKED", args: ["RESOURCE_IRON"] }], "locked: the lock, not the penalty");
   assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", { ...query(2), gate: on }),
-    { key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: ["RESOURCE_IRON", 2] }, "unlocked: as 1.0");
+    [{ key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: ["RESOURCE_IRON", 2] }], "unlocked: as 1.0");
   const penaltyOff = { supply, penalties: new Map(), copiesOf: () => 0, gate: on };
   assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", penaltyOff),
-    { key: "LOC_SR_PRODUCTION_LOCKED", args: ["RESOURCE_IRON"] }, "penalty off, gate on");
+    [{ key: "LOC_SR_PRODUCTION_LOCKED", args: ["RESOURCE_IRON"] }], "penalty off, gate on");
   assert.deepEqual(describeProductionCost("UNIT_SPEARMAN", { ...query(0), gate: off }),
-    { key: "LOC_SR_PRODUCTION_NEEDS_NONE", args: ["RESOURCE_IRON", -3] }, "gate off: as 1.0");
+    [{ key: "LOC_SR_PRODUCTION_NEEDS_NONE", args: ["RESOURCE_IRON", -3] }], "gate off: as 1.0");
+
+  // Two resources under the gate (Modern Supply Chains): the column's resource and the second one both lock, in
+  // the gate's order; the needs list carries both, the column only the first.
+  const chainUnits = [...units, { UnitType: "UNIT_TANK", StrategicResource: "RESOURCE_OIL" }];
+  const chains = buildGateIndex(chainUnits, [production, purchase, { Name: GATE_UPGRADING_PARAMETER, Value: "1" }],
+    supply);
+  assert.deepEqual(chains.needs.get("UNIT_TANK"), ["RESOURCE_OIL", "RESOURCE_COAL"]);
+  assert.deepEqual(chains.needs.get("UNIT_SPEARMAN"), ["RESOURCE_IRON"]);
+  assert.deepEqual(lockedResources("UNIT_TANK", chains, tankCopies({})), ["RESOURCE_OIL", "RESOURCE_COAL"]);
+  assert.deepEqual(lockedResources("UNIT_TANK", chains, tankCopies({ RESOURCE_OIL: 1 })), ["RESOURCE_COAL"]);
+  assert.equal(lockedBy("UNIT_TANK", chains, tankCopies({ RESOURCE_OIL: 1 })), "RESOURCE_COAL");
+  assert.equal(lockedBy("UNIT_TANK", chains, tankCopies({ RESOURCE_OIL: 1, RESOURCE_COAL: 1 })), null);
+  assert.deepEqual(describeProductionCost("UNIT_TANK", { supply, penalties: twoPenalties, gate: chains,
+    copiesOf: tankCopies({ RESOURCE_OIL: 3 }) }),
+    [{ key: "LOC_SR_PRODUCTION_LOCKED", args: ["RESOURCE_COAL"] }, { key: "LOC_SR_PRODUCTION_NEEDS_HELD", args: ["RESOURCE_OIL", 3] }],
+    "the locked resource first, then the held one");
+  // A column naming a resource the unit's tags don't is another mod's rule, not the option's.
+  const otherColumn = buildGateIndex([{ UnitType: "UNIT_TANK", StrategicResource: "RESOURCE_NITER" }, ...units],
+    [production, purchase], supply);
+  assert.equal(otherColumn.on, false);
 }
 
 console.log("sr-supply tests passed");

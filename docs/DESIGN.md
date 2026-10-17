@@ -100,7 +100,7 @@ unit it replaces, a unit that replaces nothing by its own tags and tier. `tests/
 | Exploration | cavalry | Horses | Courser, Knight, Lancer; Boyar 1-3, Chevaler 1-3, Mamluk 1-3, Tobang 1-3 |
 | Exploration | infantry from tier 2 | Iron | Man-at-Arms, Pikeman; Gold Bangles, Kispoko Nena To, Leiomano, Samurai, Tercio, Xunleichong (each 2-3) |
 | Exploration | land siege from tier 3 (the Catapult and Trebuchet are free) | Niter | Bombard; Hwacha 3 |
-| Exploration | heavy warships from tier 2 (the Cog is free) | Niter | Carrack, Galleon; Cetbang, Corsair, Kalam, Vikingr (each 2-3) |
+| Exploration | heavy warships from tier 2 (the Cog is free): the hull, not the powder (1.2) | Hardwood | Carrack, Galleon; Cetbang, Corsair, Kalam, Vikingr (each 2-3) |
 | Modern | artillery: land siege and land ranged | Niter | Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun; Chang Beun 1-3, Katyusha 1-2 |
 | Modern | armour: cavalry from tier 2 (the Cuirassier is free) | Oil | Landship, Tank; Cossack 2-3, Ghilman 2-3, Hussar 2-3 |
 | Modern | battleships: heavy warships from tier 2 (the Ship of the Line is free) | Oil | Dreadnought, Battleship; Mikasa 1-2, Revenge 1-2, Turtle Ship 2-3 |
@@ -648,23 +648,66 @@ Modern files and the upgrade gate with its count unchanged, where 1.0.1's Modern
 compile was on disk. `CultureSlotAllowances` can't be checked (its key to `Traditions` is a schema mismatch, before and
 after). This is read from data; the launch with Silla off, in `docs/verification-runs.md`, is the watch.
 
+## 7h. Hardwood, the locked levels, Modern Supply Chains and the commander's Upgrade All (1.2, built 2026-10-16)
+
+Three Workshop suggestions, taken up by the owner the same day, and one report:
+
+- **Hardwood for the Exploration heavy warships.** Niter was carrying the Bombard and the Carrack line both; the
+  Carrack, the Galleon and their uniques now draw on Hardwood (an Empire resource placed in every age, with no unit
+  of its own in the base game: `docs/future-resources.md`), the Bombard and the Hwacha 3 keep Niter, and the Ironclad
+  line keeps Coal, as the owner asked. One rule change in `gate-map.mjs`; the penalty, gate and line files follow.
+- **The lock as the hardest values of Unsupplied Units.** "Gated Units" as an option of its own read as a second
+  rule beside the penalty. It is now the two last values of Unsupplied Units, "Locked: training" and "Locked:
+  training and upgrade", each the Harsh penalty in the field plus the gate (`sr-setup.sql`; the modinfo loads the
+  harsh files with the gate files under those values). The old `StrategicResourcesThatMatterGate` key stays in the
+  modinfo's criteria, so a save from before 1.2 keeps the gate it was started with, at whatever penalty it carries.
+- **Modern Supply Chains**, a new option, Off by default: every Modern unit that needs a resource needs a second one
+  (`gate-map.mjs` CHAINS; Iron isn't placed on Modern maps, so Coal stands for steel). One file,
+  `sr-modern-chains.sql`, loaded under the one value: the second resource's tags, so the age's own penalty modifiers
+  reach the unit for it too and the penalties stack; the second resource's page line, chosen by the penalty level the
+  loaded modifiers carry (none when the penalty is off); and, only once the gate files have set the column (every
+  grant guarded by `StrategicResource IS NOT NULL`, every insert OR IGNORE), the grant-only lock of every gated unit
+  behind both resources, on top of the plain line file. The engine's column takes one resource, so the second is held
+  by the same shape as the lines (7f): a trait and a grant behind both. The UI's supply index carries a list per unit
+  (`buildSupplyIndex`), the gate index a `needs` list per column unit, the panel one cell per missing resource, the
+  pill one part per resource. Dry-run on a Modern compiled database copy (gate emulated, the plain lines, then the
+  chains file twice): every statement runs, the second run changes nothing, the locks land only with the column set,
+  foreign keys clean. Watched (`m1-chains`, `verification-runs.md` Phase 17): the game starts with the file loaded;
+  a Tank with neither resource at 55 of 65 with two cells; with Oil alone 60 and one cell; the Field Cannon refused
+  by the engine's own query with Niter held but no Coal, and trainable once Coal is held. Not watched: the option
+  with the penalty alone (no lock), and the Civilopedia pages drawn.
+- **The commander's Upgrade All ignores the gate** (a Workshop report). Watched (`a1-army-upgrade`): with no Iron
+  under the upgrade gate, a packed Warrior's own `UNITCOMMAND_UPGRADE` is refused with the game's reason, while the
+  commander's `UNITCOMMAND_UPGRADE_ARMY` answers Success with "Upgrade 1 units: 120 Gold" and the button is lit;
+  sending it does nothing (gold and unit unchanged), and with Iron it upgrades the Warrior for 120 gold. So the
+  engine honours the gate when it runs the command and only the check is wrong. `ui/sr-army-upgrade.js` wraps
+  `Game.UnitCommands.canStart` for that command on the local player's commanders: each packed unit whose next unit
+  the gate locks (the column under "training and upgrade", the grant-only lines under "training", only where the
+  next unit's tech is known) is asked for its own upgrade; when none can go the answer becomes a refusal with one
+  line per locked unit ("Warrior: cannot be upgraded without Iron."), when some can the lines go in as warnings.
+  Watched in the same game after a UI reload: the exclusion pass untouched, the enabled pass refused with the line,
+  the button drawn inactive with the red line, and with Iron the wrapped command passed and upgraded the unit.
+
 ## 8. Setup options
 
 | Option | Values | Default |
 | --- | --- | --- |
-| Unsupplied Units | Off, Light (-2, -20% production), Standard (-3, -33%), Harsh (-5, -50%) | Standard |
+| Unsupplied Units | Off, Light (-2, -20% production), Standard (-3, -33%), Harsh (-5, -50%), Locked: training (Harsh, and no training or purchase without a copy), Locked: training and upgrade (no upgrade into the unit either) | Standard |
 | Strategic Resources Past Six | Off, On | On |
-| Gated Units | Off, Training (no training or purchase without a copy), Training and upgrade (no upgrade into the unit either) | Off |
-| Free Tier-Up by Kills | On (the Samurai tier up after three kills without Iron), Off (under Training and upgrade, the Samurai upgrade only as other units do, with Iron) | On |
+| Modern Supply Chains | Off, On (every Modern unit needs a second resource; 7h) | Off |
+| Free Tier-Up by Kills | On (the Samurai tier up after three kills without Iron), Off (under "Locked: training and upgrade", the Samurai upgrade only as other units do, with Iron) | On |
 
-The hard gate was built after the rest of 1.0 (7e) and shipped with it as Gated Units (7f).
+The hard gate was built after the rest of 1.0 (7e) and shipped with it as Gated Units (7f); 1.2 folded it into
+Unsupplied Units (7h). A save from before 1.2 keeps its Gated Units value through the modinfo's old criteria.
 
 ## 9. Versions
 
 - **1.0**: layer 1, the loss re-check, layer 3, setup options, the unit panel cell, the production pill, the
   Civilopedia page, the notification and the callouts; the training gate as the Gated Units option (the
   `StrategicResource` column and the engine's minimums, not the Foederati shape: 7f). Single-player.
-- **1.2**: open question: Civ VI-style consumption on a script ledger, shared with the depletion mod.
+- **1.2**: Hardwood for the Exploration heavy warships, the lock as the two hardest values of Unsupplied Units,
+  Modern Supply Chains, and the commander's Upgrade All reading the gate (7h).
+- **Later**: open question: Civ VI-style consumption on a script ledger, shared with the depletion mod.
 
 ## 10. Decisions (the owner, 2026-10-11)
 
@@ -678,3 +721,6 @@ The hard gate was built after the rest of 1.0 (7e) and shipped with it as Gated 
 - Modern infantry not gated (count bonus only).
 - Single-player only. In multiplayer, losing a resource does not bring the penalty back until that player gains a
   resource.
+- Hardwood for the Exploration heavy warships, the Ironclad line kept on Coal; Modern Supply Chains as an option,
+  off by default, because it is hard; the lock inside Unsupplied Units (the owner, 2026-10-16, from Workshop
+  suggestions).

@@ -14,14 +14,16 @@
   Groups: the setup options and text at the main menu; the unit tags, the Civilopedia page, the notification type
   and its icon, and the scripts in every game; per age, which units draw on which resource; per age and setup value,
   the penalty (Light, Standard, Harsh; none for Off) with its line on each gated unit's Civilopedia page, and the
-  curve; per age and gate value (Gated Units: Training, Training and upgrade; nothing for Off), the
-  Units.StrategicResource column on every gated unit with the engine's own minimum parameters and the gate's line on
-  each gated unit's Civilopedia page, plus the grant-only lines (sr-<age>-gate-lines.sql) that keep a free unit
-  trainable until its owner could train the gated unit it upgrades into, with a civilization's own copy of the
-  Warrior or the Frigate where its unique stands in for the next unit (its icon and look in sr-line-icons.xml and
-  sr-line-visuals.xml). With Free Tier-Up by Kills off, sr-kill-tiers-off.sql takes out the kill-count tier-up of
-  any unit whose tier needs a resource while upgrades are gated, so the ordinary upgrade (and its resource check) is
-  the only way up.
+  curve; per age, for the two locked levels of Unsupplied Units (Locked: training; Locked: training and upgrade),
+  the harsh penalty plus the Units.StrategicResource column on every gated unit with the engine's own minimum
+  parameters and the gate's line on each gated unit's Civilopedia page, plus the grant-only lines
+  (sr-<age>-gate-lines.sql) that keep a free unit trainable until its owner could train the gated unit it upgrades
+  into, with a civilization's own copy of the Warrior or the Frigate where its unique stands in for the next unit
+  (its icon and look in sr-line-icons.xml and sr-line-visuals.xml); the same gate files under the Gated Units value
+  a save from before 1.2 carries. With Modern Supply Chains on, sr-modern-chains.sql gives every Modern unit a second
+  resource (its tags, its page lines, and under the locked levels its grant-only lock behind both). With Free
+  Tier-Up by Kills off, sr-kill-tiers-off.sql takes out the kill-count tier-up of any unit whose tier needs a
+  resource while upgrades are gated, so the ordinary upgrade (and its resource check) is the only way up.
   AffectsSavedGames is 1: the setup options and modifiers are fixed when a game is created, so a save made with the
   mod needs it to load the same game.
 -->
@@ -32,7 +34,7 @@
         <Authors>Tower</Authors>
         <Package>StrategicResourcesThatMatter</Package>
         <PackageSortIndex>100</PackageSortIndex>
-        <Version>1.1.1</Version>
+        <Version>1.2.0</Version>
         <AffectsSavedGames>1</AffectsSavedGames>
     </Properties>
     <Dependencies>
@@ -75,6 +77,38 @@
                 <Value>SR_LATE_CURVE_ON</Value>
             </ConfigurationValueMatches>
         </Criteria>
+        <Criteria id="antiquity-locked">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_LOCKED</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="antiquity-locked-upgrade">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_LOCKED_UPGRADE</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="antiquity-gate-training">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_TRAINING</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="antiquity-gate-upgrade">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_UPGRADE</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="exploration-light">
             <AgeInUse>AGE_EXPLORATION</AgeInUse>
             <ConfigurationValueMatches>
@@ -105,6 +139,38 @@
                 <Group>Game</Group>
                 <ConfigurationId>StrategicResourcesThatMatterLateCurve</ConfigurationId>
                 <Value>SR_LATE_CURVE_ON</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-locked">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_LOCKED</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-locked-upgrade">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_LOCKED_UPGRADE</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-gate-training">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_TRAINING</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="exploration-gate-upgrade">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
+                <Value>SR_GATE_UPGRADE</Value>
             </ConfigurationValueMatches>
         </Criteria>
         <Criteria id="modern-light">
@@ -139,36 +205,20 @@
                 <Value>SR_LATE_CURVE_ON</Value>
             </ConfigurationValueMatches>
         </Criteria>
-        <Criteria id="antiquity-gate-training">
-            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+        <Criteria id="modern-locked">
+            <AgeInUse>AGE_MODERN</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
-                <Value>SR_GATE_TRAINING</Value>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_LOCKED</Value>
             </ConfigurationValueMatches>
         </Criteria>
-        <Criteria id="antiquity-gate-upgrade">
-            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+        <Criteria id="modern-locked-upgrade">
+            <AgeInUse>AGE_MODERN</AgeInUse>
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
-                <Value>SR_GATE_UPGRADE</Value>
-            </ConfigurationValueMatches>
-        </Criteria>
-        <Criteria id="exploration-gate-training">
-            <AgeInUse>AGE_EXPLORATION</AgeInUse>
-            <ConfigurationValueMatches>
-                <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
-                <Value>SR_GATE_TRAINING</Value>
-            </ConfigurationValueMatches>
-        </Criteria>
-        <Criteria id="exploration-gate-upgrade">
-            <AgeInUse>AGE_EXPLORATION</AgeInUse>
-            <ConfigurationValueMatches>
-                <Group>Game</Group>
-                <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
-                <Value>SR_GATE_UPGRADE</Value>
+                <ConfigurationId>StrategicResourcesThatMatterUnsupplied</ConfigurationId>
+                <Value>SR_UNSUPPLIED_LOCKED_UPGRADE</Value>
             </ConfigurationValueMatches>
         </Criteria>
         <Criteria id="modern-gate-training">
@@ -185,6 +235,14 @@
                 <Group>Game</Group>
                 <ConfigurationId>StrategicResourcesThatMatterGate</ConfigurationId>
                 <Value>SR_GATE_UPGRADE</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="modern-chains">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterChains</ConfigurationId>
+                <Value>SR_CHAINS_ON</Value>
             </ConfigurationValueMatches>
         </Criteria>
         <Criteria id="kill-tiers-off">
@@ -261,11 +319,13 @@
                     <Item>ui/sr-unit-panel.js</Item>
                     <Item>ui/sr-production-line.js</Item>
                     <Item>ui/sr-production-lock.js</Item>
+                    <Item>ui/sr-army-upgrade.js</Item>
                     <Item>ui/sr-resource-line.js</Item>
                     <Item>ui/sr-callout.js</Item>
                     <Item>ui/sr-line-look.js</Item>
                 </UIScripts>
                 <ImportFiles>
+                    <Item>ui/sr-army-upgrade.js</Item>
                     <Item>ui/sr-callout.js</Item>
                     <Item>ui/sr-line-look.js</Item>
                     <Item>ui/sr-log.js</Item>
@@ -289,119 +349,27 @@
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-antiquity-light" scope="game" criteria="antiquity-light">
             <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-antiquity-light-modifiers.xml</Item>
-                    <Item>data/sr-antiquity-light-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-light-modifiers.xml</Item><Item>data/sr-antiquity-light-game.xml</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-antiquity-standard" scope="game" criteria="antiquity-standard">
             <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-antiquity-standard-modifiers.xml</Item>
-                    <Item>data/sr-antiquity-standard-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-standard-modifiers.xml</Item><Item>data/sr-antiquity-standard-game.xml</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-antiquity-harsh" scope="game" criteria="antiquity-harsh">
             <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-antiquity-harsh-modifiers.xml</Item>
-                    <Item>data/sr-antiquity-harsh-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-harsh-modifiers.xml</Item><Item>data/sr-antiquity-harsh-game.xml</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-antiquity-curve" scope="game" criteria="antiquity-curve">
             <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-antiquity-curve-modifiers.xml</Item>
-                    <Item>data/sr-antiquity-curve-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-curve-modifiers.xml</Item><Item>data/sr-antiquity-curve-game.xml</Item></UpdateDatabase></Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-exploration" scope="game" criteria="exploration">
-            <Properties><LoadOrder>201</LoadOrder></Properties>
-            <Actions><UpdateDatabase><Item>data/sr-exploration-supply.sql</Item></UpdateDatabase></Actions>
-        </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-exploration-light" scope="game" criteria="exploration-light">
+        <ActionGroup id="strategic-resources-that-matter-antiquity-locked" scope="game" criteria="antiquity-locked">
             <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-exploration-light-modifiers.xml</Item>
-                    <Item>data/sr-exploration-light-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-harsh-modifiers.xml</Item><Item>data/sr-antiquity-harsh-game.xml</Item><Item>data/sr-antiquity-gate-training.xml</Item><Item>data/sr-antiquity-gate-lines.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-exploration-standard" scope="game" criteria="exploration-standard">
+        <ActionGroup id="strategic-resources-that-matter-antiquity-locked-upgrade" scope="game" criteria="antiquity-locked-upgrade">
             <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-exploration-standard-modifiers.xml</Item>
-                    <Item>data/sr-exploration-standard-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
-        </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-exploration-harsh" scope="game" criteria="exploration-harsh">
-            <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-exploration-harsh-modifiers.xml</Item>
-                    <Item>data/sr-exploration-harsh-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
-        </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-exploration-curve" scope="game" criteria="exploration-curve">
-            <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-exploration-curve-modifiers.xml</Item>
-                    <Item>data/sr-exploration-curve-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
-        </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-modern" scope="game" criteria="modern">
-            <Properties><LoadOrder>201</LoadOrder></Properties>
-            <Actions><UpdateDatabase><Item>data/sr-modern-supply.sql</Item></UpdateDatabase></Actions>
-        </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-modern-light" scope="game" criteria="modern-light">
-            <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-modern-light-modifiers.xml</Item>
-                    <Item>data/sr-modern-light-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
-        </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-modern-standard" scope="game" criteria="modern-standard">
-            <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-modern-standard-modifiers.xml</Item>
-                    <Item>data/sr-modern-standard-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
-        </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-modern-harsh" scope="game" criteria="modern-harsh">
-            <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-modern-harsh-modifiers.xml</Item>
-                    <Item>data/sr-modern-harsh-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
-        </ActionGroup>
-        <ActionGroup id="strategic-resources-that-matter-modern-curve" scope="game" criteria="modern-curve">
-            <Properties><LoadOrder>202</LoadOrder></Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/sr-modern-curve-modifiers.xml</Item>
-                    <Item>data/sr-modern-curve-game.xml</Item>
-                </UpdateDatabase>
-            </Actions>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-harsh-modifiers.xml</Item><Item>data/sr-antiquity-harsh-game.xml</Item><Item>data/sr-antiquity-gate-upgrade.xml</Item><Item>data/sr-antiquity-gate-lines.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-antiquity-gate-training" scope="game" criteria="antiquity-gate-training">
             <Properties><LoadOrder>202</LoadOrder></Properties>
@@ -411,6 +379,34 @@
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-antiquity-gate-upgrade.xml</Item><Item>data/sr-antiquity-gate-lines.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-exploration" scope="game" criteria="exploration">
+            <Properties><LoadOrder>201</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-supply.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-exploration-light" scope="game" criteria="exploration-light">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-light-modifiers.xml</Item><Item>data/sr-exploration-light-game.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-exploration-standard" scope="game" criteria="exploration-standard">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-standard-modifiers.xml</Item><Item>data/sr-exploration-standard-game.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-exploration-harsh" scope="game" criteria="exploration-harsh">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-harsh-modifiers.xml</Item><Item>data/sr-exploration-harsh-game.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-exploration-curve" scope="game" criteria="exploration-curve">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-curve-modifiers.xml</Item><Item>data/sr-exploration-curve-game.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-exploration-locked" scope="game" criteria="exploration-locked">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-harsh-modifiers.xml</Item><Item>data/sr-exploration-harsh-game.xml</Item><Item>data/sr-exploration-gate-training.xml</Item><Item>data/sr-exploration-gate-lines.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-exploration-locked-upgrade" scope="game" criteria="exploration-locked-upgrade">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-exploration-harsh-modifiers.xml</Item><Item>data/sr-exploration-harsh-game.xml</Item><Item>data/sr-exploration-gate-upgrade.xml</Item><Item>data/sr-exploration-gate-lines.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-exploration-gate-training" scope="game" criteria="exploration-gate-training">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-exploration-gate-training.xml</Item><Item>data/sr-exploration-gate-lines.sql</Item></UpdateDatabase></Actions>
@@ -419,6 +415,34 @@
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-exploration-gate-upgrade.xml</Item><Item>data/sr-exploration-gate-lines.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern" scope="game" criteria="modern">
+            <Properties><LoadOrder>201</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-supply.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern-light" scope="game" criteria="modern-light">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-light-modifiers.xml</Item><Item>data/sr-modern-light-game.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern-standard" scope="game" criteria="modern-standard">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-standard-modifiers.xml</Item><Item>data/sr-modern-standard-game.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern-harsh" scope="game" criteria="modern-harsh">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-harsh-modifiers.xml</Item><Item>data/sr-modern-harsh-game.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern-curve" scope="game" criteria="modern-curve">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-curve-modifiers.xml</Item><Item>data/sr-modern-curve-game.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern-locked" scope="game" criteria="modern-locked">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-harsh-modifiers.xml</Item><Item>data/sr-modern-harsh-game.xml</Item><Item>data/sr-modern-gate-training.xml</Item><Item>data/sr-modern-gate-lines.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern-locked-upgrade" scope="game" criteria="modern-locked-upgrade">
+            <Properties><LoadOrder>202</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-harsh-modifiers.xml</Item><Item>data/sr-modern-harsh-game.xml</Item><Item>data/sr-modern-gate-upgrade.xml</Item><Item>data/sr-modern-gate-lines.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-modern-gate-training" scope="game" criteria="modern-gate-training">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-modern-gate-training.xml</Item><Item>data/sr-modern-gate-lines.sql</Item></UpdateDatabase></Actions>
@@ -426,6 +450,10 @@
         <ActionGroup id="strategic-resources-that-matter-modern-gate-upgrade" scope="game" criteria="modern-gate-upgrade">
             <Properties><LoadOrder>202</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-modern-gate-upgrade.xml</Item><Item>data/sr-modern-gate-lines.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-modern-chains" scope="game" criteria="modern-chains">
+            <Properties><LoadOrder>203</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-modern-chains.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <!-- After the gate files (202): the SQL reads the column and the upgrading minimum they write. -->
         <ActionGroup id="strategic-resources-that-matter-kill-tiers-off" scope="game" criteria="kill-tiers-off">

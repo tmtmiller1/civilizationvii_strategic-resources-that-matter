@@ -32,6 +32,11 @@ declare global {
     [key: string]: any;
   };
 
+  const Armies: {
+    get(id: EngineHandle): EngineHandle;
+    [key: string]: any;
+  };
+
   const Game: {
     turn: number;
     [key: string]: any;

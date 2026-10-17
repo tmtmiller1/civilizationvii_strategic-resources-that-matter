@@ -6,7 +6,7 @@
             <Text>Strategic Resources That Matter</Text>
         </Row>
         <Row Tag="LOC_SR_MOD_DESCRIPTION">
-            <Text>Strategic resources matter again. A unit that needs Horses, Iron, Niter, Oil, Coal or Rubber fights weaker and trains slower while its owner has none of that resource, and each one you do hold still adds the game's own bonus. Lose the last one and the penalty comes back a turn later. Past six, the count keeps adding strength. Three game setup options set the penalty, switch the late bonus and, off by default, lock units behind their resource. Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.</Text>
+            <Text>Strategic resources matter again. A unit that needs Horses, Iron, Niter, Hardwood, Oil, Coal or Rubber fights weaker and trains slower while its owner has none of that resource, and each one you do hold still adds the game's own bonus. Lose the last one and the penalty comes back a turn later. Past six, the count keeps adding strength. Game setup options set the penalty, up to locking a unit behind its resource, switch the late bonus and can give every Modern unit a second resource. Single-player. In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.</Text>
         </Row>
         <Row Tag="LOC_SR_UNSUPPLIED_LINE">
             <Text>Unsupplied: no {1_Resource} ({2_Combat} Combat Strength, slower to train)</Text>
@@ -42,7 +42,7 @@
             <Text>Unsupplied Units</Text>
         </Row>
         <Row Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION">
-            <Text>How much weaker and slower to train a unit is while its owner has none of the strategic resource it needs.</Text>
+            <Text>How much weaker and slower to train a unit is while its owner has none of the strategic resource it needs. The two locked values add a lock on top of the Harsh penalty: the unit can't be trained or bought at all without its resource. Units already in the field are never locked; independent powers and city-states are never affected.</Text>
         </Row>
         <Row Tag="LOC_SR_SETUP_UNSUPPLIED_OFF">
             <Text>Off</Text>
@@ -68,6 +68,18 @@
         <Row Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION">
             <Text>-5 Combat Strength, and 50% less Production toward the unit (twice as long to train).</Text>
         </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED">
+            <Text>Locked: training</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_DESCRIPTION">
+            <Text>The Harsh penalty in the field, and a unit that needs a strategic resource can't be trained or bought while its owner has none of it. Upgrading into it stays free.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE">
+            <Text>Locked: training and upgrade</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE_DESCRIPTION">
+            <Text>The Harsh penalty in the field, and a unit that needs a strategic resource can't be trained, bought or upgraded into while its owner has none of it.</Text>
+        </Row>
         <Row Tag="LOC_SR_SETUP_LATE_CURVE_NAME">
             <Text>Strategic Resources Past Six</Text>
         </Row>
@@ -86,12 +98,30 @@
         <Row Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION">
             <Text>+1 Combat Strength at 8, 10, 12, 14, 16, 18 and 20 of a resource.</Text>
         </Row>
+        <Row Tag="LOC_SR_SETUP_CHAINS_NAME">
+            <Text>Modern Supply Chains</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_CHAINS_DESCRIPTION">
+            <Text>In the Modern age, every unit that needs a strategic resource needs a second one as well: Coal for the steel in guns, armour and battleships, Niter for the guns of light warships, Oil for aircraft. Each missing resource costs the full penalty, and under the locked values the unit needs both to be trained. Off by default: it's a hard game.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_CHAINS_OFF">
+            <Text>Off</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_CHAINS_OFF_DESCRIPTION">
+            <Text>Each Modern unit needs one resource, as in the other ages.</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_CHAINS_ON">
+            <Text>On</Text>
+        </Row>
+        <Row Tag="LOC_SR_SETUP_CHAINS_ON_DESCRIPTION">
+            <Text>Artillery needs Niter and Coal; armour and battleships Oil and Coal; light warships Coal and Niter; aircraft Rubber and Oil.</Text>
+        </Row>
         <!-- Civilopedia -->
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE">
             <Text>Strategic Resources</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1">
-            <Text>A military unit that needs {LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME} or {LOC_RESOURCE_RUBBER_NAME} fights weaker and trains slower while its owner has none of that resource. Nothing is forbidden unless the {LOC_SR_SETUP_GATE_NAME} option is on: see the last chapter.</Text>
+            <Text>A military unit that needs {LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_HARDWOOD_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME} or {LOC_RESOURCE_RUBBER_NAME} fights weaker and trains slower while its owner has none of that resource. Nothing is forbidden unless {LOC_SR_SETUP_UNSUPPLIED_NAME} is set to one of its locked values: see the last chapter.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE">
             <Text>Without the resource</Text>
@@ -100,7 +130,7 @@
             <Text>A unit whose owner has none of its resource loses Combat Strength on each strength it has (melee, and ranged and bombard where it has them), and its city puts less Production toward training it. The {LOC_SR_SETUP_UNSUPPLIED_NAME} option in game setup sets how much:</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2">
-            <Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] -2 Combat Strength, 20% less Production.[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B] (the default): -3 Combat Strength, 33% less Production, so the unit takes half as long again to train.[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] -5 Combat Strength, 50% less Production, twice as long to train.[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] no penalty.</Text>
+            <Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] -2 Combat Strength, 20% less Production.[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B] (the default): -3 Combat Strength, 33% less Production, so the unit takes half as long again to train.[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] -5 Combat Strength, 50% less Production, twice as long to train.[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] no penalty.[N][B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED}[/B] and [B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}:[/B] the Harsh penalty, and the unit locked while you have none of its resource (see the last chapter).</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_3">
             <Text>The combat preview shows the penalty on a line of its own, such as "-3 Unsupplied: no {LOC_RESOURCE_NITER_NAME}", and the unit panel says so under the unit's stats.</Text>
@@ -139,13 +169,19 @@
             <Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Chariot, Horseman and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Spearman, Phalanx, Legion, Immortal and the others)</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3">
-            <Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Courser, Knight, Lancer and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Man-At-Arms, Pikeman and their unique versions)[N]{LOC_RESOURCE_NITER_NAME}: siege from the third tier (Bombard, Hwacha) and heavy warships from the second tier (Carrack, Galleon and their unique versions)</Text>
+            <Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Courser, Knight, Lancer and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Man-At-Arms, Pikeman and their unique versions)[N]{LOC_RESOURCE_NITER_NAME}: siege from the third tier (Bombard, Hwacha)[N]{LOC_RESOURCE_HARDWOOD_NAME}: heavy warships from the second tier (Carrack, Galleon and their unique versions)</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4">
             <Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}: artillery (Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun)[N]{LOC_RESOURCE_OIL_NAME}: armour (Landship, Tank and their unique versions) and battleships (Dreadnought, Battleship and their unique versions)[N]{LOC_RESOURCE_COAL_NAME}: light warships (Ironclad, Cruiser, Destroyer, Barbary Corsair)[N]{LOC_RESOURCE_RUBBER_NAME}: aircraft</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5">
             <Text>Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the Catapult and the Trebuchet, the Cog and the Ship of the Line, the Cuirassier, the Submarine, and Modern infantry, so every player can always defend.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_TITLE">
+            <Text>Modern supply chains</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_PARA_1">
+            <Text>With {LOC_SR_SETUP_CHAINS_NAME} on (off by default), every Modern unit that needs a resource needs a second one too: artillery {LOC_RESOURCE_NITER_NAME} and {LOC_RESOURCE_COAL_NAME}, armour and battleships {LOC_RESOURCE_OIL_NAME} and {LOC_RESOURCE_COAL_NAME}, light warships {LOC_RESOURCE_COAL_NAME} and {LOC_RESOURCE_NITER_NAME}, aircraft {LOC_RESOURCE_RUBBER_NAME} and {LOC_RESOURCE_OIL_NAME}. Each missing resource costs the full penalty, so a unit short of both fights at twice it, and under the locked values the unit can't be trained without both. Iron isn't found on Modern maps, so Coal stands for steel.</Text>
         </Row>
         <Row Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED">
             <Text>Unsupplied</Text>
@@ -204,11 +240,20 @@
         <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT">
             <Text>Needs {LOC_RESOURCE_RUBBER_NAME}: with none, -2 Combat Strength and slower to train.</Text>
         </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT">
+            <Text>Needs {LOC_RESOURCE_HARDWOOD_NAME}: with none, -2 Combat Strength and slower to train.</Text>
+        </Row>
         <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD">
             <Text>Needs {LOC_RESOURCE_RUBBER_NAME}: with none, -3 Combat Strength and slower to train.</Text>
         </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_STANDARD">
+            <Text>Needs {LOC_RESOURCE_HARDWOOD_NAME}: with none, -3 Combat Strength and slower to train.</Text>
+        </Row>
         <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH">
             <Text>Needs {LOC_RESOURCE_RUBBER_NAME}: with none, -5 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_HARSH">
+            <Text>Needs {LOC_RESOURCE_HARDWOOD_NAME}: with none, -5 Combat Strength and slower to train.</Text>
         </Row>
         <!-- /Civilopedia -->
         <!-- Lost-supply notification and first-time callout -->
@@ -238,40 +283,19 @@
         </Row>
         <!-- The hard gate -->
         <Row Tag="LOC_SR_SETUP_GATE_NAME">
-            <Text>Gated Units</Text>
-        </Row>
-        <Row Tag="LOC_SR_SETUP_GATE_DESCRIPTION">
-            <Text>Whether a unit that needs a strategic resource can be trained or bought at all while its owner has none. Units already in the field are never gated; the Unsupplied Units penalty applies to them as set above. Independent powers and city-states are never gated.</Text>
-        </Row>
-        <Row Tag="LOC_SR_SETUP_GATE_OFF">
-            <Text>Off</Text>
-        </Row>
-        <Row Tag="LOC_SR_SETUP_GATE_OFF_DESCRIPTION">
-            <Text>Every unit can be trained, bought and upgraded as in the base game.</Text>
-        </Row>
-        <Row Tag="LOC_SR_SETUP_GATE_TRAINING">
-            <Text>Training</Text>
-        </Row>
-        <Row Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION">
-            <Text>A unit that needs a strategic resource cannot be trained or bought while its owner has none of it. Upgrading into it stays free.</Text>
-        </Row>
-        <Row Tag="LOC_SR_SETUP_GATE_UPGRADE">
-            <Text>Training and upgrade</Text>
-        </Row>
-        <Row Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION">
-            <Text>A unit that needs a strategic resource cannot be trained, bought or upgraded into while its owner has none of it.</Text>
+            <Text>Locked Units</Text>
         </Row>
         <Row Tag="LOC_SR_SETUP_KILL_TIERS_NAME">
             <Text>Free Tier-Up by Kills</Text>
         </Row>
         <Row Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION">
-            <Text>The Sengoku's Samurai move up a tier by themselves after three kills. With this on, that happens whether or not you hold Iron. Turning it off only matters with Gated Units on "Training and upgrade": kills stop moving them up, and they upgrade like any other unit, which needs Iron. Off also overrides any other mod's change to those kill counts.</Text>
+            <Text>The Sengoku's Samurai move up a tier by themselves after three kills. With this on, that happens whether or not you hold Iron. Turning it off only matters with Unsupplied Units on "Locked: training and upgrade": kills stop moving them up, and they upgrade like any other unit, which needs Iron. Off also overrides any other mod's change to those kill counts.</Text>
         </Row>
         <Row Tag="LOC_SR_SETUP_KILL_TIERS_OFF">
             <Text>Off</Text>
         </Row>
         <Row Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION">
-            <Text>With Gated Units on "Training and upgrade", kills don't move a Samurai up. It upgrades like any other unit, and only while you hold Iron.</Text>
+            <Text>With Unsupplied Units on "Locked: training and upgrade", kills don't move a Samurai up. It upgrades like any other unit, and only while you hold Iron.</Text>
         </Row>
         <Row Tag="LOC_SR_SETUP_KILL_TIERS_ON">
             <Text>On</Text>
@@ -291,17 +315,20 @@
         <Row Tag="LOC_SR_UNSUPPLIED_LINE_GATED">
             <Text>Unsupplied: no {1_Resource} ({2_Combat} Combat Strength, slower to train). New ones cannot be trained.</Text>
         </Row>
+        <Row Tag="LOC_SR_ARMY_UPGRADE_LOCKED">
+            <Text>{1_Unit}: cannot be upgraded without {2_Resource}.</Text>
+        </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE">
             <Text>Gated units</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1">
-            <Text>With the {LOC_SR_SETUP_GATE_NAME} option on, a unit that needs a strategic resource cannot be trained or bought while you have none of it: it stays in the production list, greyed out, until you get some, and it is locked again the moment your last one goes. Under {LOC_SR_SETUP_GATE_UPGRADE} no unit can be upgraded into it either; under {LOC_SR_SETUP_GATE_TRAINING} upgrades stay free.</Text>
+            <Text>With {LOC_SR_SETUP_UNSUPPLIED_NAME} on one of its locked values, a unit that needs a strategic resource cannot be trained or bought while you have none of it: it stays in the production list, greyed out, until you get some, and it is locked again the moment your last one goes. Under {LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE} no unit can be upgraded into it either, and a commander's Upgrade All leaves it as it is; under {LOC_SR_SETUP_UNSUPPLIED_LOCKED} upgrades stay free.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2">
-            <Text>Units already in the field are never gated: they keep fighting, at the {LOC_SR_SETUP_UNSUPPLIED_NAME} penalty if that option is on, and they heal as usual. A civilization's unique unit is gated like the unit it replaces. The units free of any requirement stay free, so every player can always defend. Independent powers and city-states are never gated.</Text>
+            <Text>Units already in the field are never locked: they keep fighting, at the {LOC_SR_SETUP_UNSUPPLIED_HARSH} penalty, and they heal as usual. A civilization's unique unit is locked like the unit it replaces. The units free of any requirement stay free, so every player can always defend. Independent powers and city-states are never locked.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3">
-            <Text>The Sengoku's Samurai move up to their second and third tier by themselves, after three kills at each tier. With {LOC_SR_SETUP_KILL_TIERS_NAME} on (the default), that step doesn't need {LOC_RESOURCE_IRON_NAME}, even under {LOC_SR_SETUP_GATE_UPGRADE}. With it off and {LOC_SR_SETUP_GATE_UPGRADE} set, kills don't move them up: they upgrade like any other unit, which needs {LOC_RESOURCE_IRON_NAME}.</Text>
+            <Text>The Sengoku's Samurai move up to their second and third tier by themselves, after three kills at each tier. With {LOC_SR_SETUP_KILL_TIERS_NAME} on (the default), that step doesn't need {LOC_RESOURCE_IRON_NAME}, even under {LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}. With it off and {LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE} set, kills don't move them up: they upgrade like any other unit, which needs {LOC_RESOURCE_IRON_NAME}.</Text>
         </Row>
         <Row Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING">
             <Text>Cannot be trained or bought without {LOC_RESOURCE_HORSES_NAME}.</Text>
@@ -336,8 +363,14 @@
         <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING">
             <Text>Cannot be trained or bought without {LOC_RESOURCE_RUBBER_NAME}.</Text>
         </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_TRAINING">
+            <Text>Cannot be trained or bought without {LOC_RESOURCE_HARDWOOD_NAME}.</Text>
+        </Row>
         <Row Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE">
             <Text>Cannot be trained, bought or upgraded into without {LOC_RESOURCE_RUBBER_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE">
+            <Text>Cannot be trained, bought or upgraded into without {LOC_RESOURCE_HARDWOOD_NAME}.</Text>
         </Row>
         <Row Tag="LOC_SR_RESOURCE_NEEDED">
             <Text>Needed to train: {1_Units}.</Text>
