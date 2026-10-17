@@ -15,7 +15,7 @@ const target = path.join(os.homedir(),
   "Library/Application Support/Civilization VII/Mods/strategic-resources-that-matter");
 export const SHIP = [
   /^strategic-resources-that-matter\.modinfo$/, /^README\.md$/, /^LICENSE$/, /^CHANGELOG\.md$/,
-  /^ui\/[a-z0-9-]+\.js$/, /^data\/[a-z0-9-]+\.(xml|sql)$/, /^text\/[a-z_]+\/StrategicResourcesThatMatterText\.xml$/
+  /^ui\/[a-z0-9-]+\.js$/, /^data\/[a-z0-9-]+\.(xml|sql)$/, /^text\/[a-z_]+\/StrategicResourcesThatMatterText\.xml$/, /^history-corrections\/[a-z-]+-text\.xml$/
 ];
 
 /** @param {string} dir @param {string} [base] @returns {string[]} */

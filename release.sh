@@ -141,6 +141,7 @@ ALLOW='^strategic-resources-that-matter/(strategic-resources-that-matter\.modinf
 ALLOW="$ALLOW"'|^strategic-resources-that-matter/ui/[a-z0-9-]+\.js$'
 ALLOW="$ALLOW"'|^strategic-resources-that-matter/data/sr-[a-z0-9-]+\.(xml|sql)$'
 ALLOW="$ALLOW"'|^strategic-resources-that-matter/text/[a-z_]+/StrategicResourcesThatMatterText\.xml$'
+ALLOW="$ALLOW"'|^strategic-resources-that-matter/history-corrections/[a-z-]+-text\.xml$'
 UNEXPECTED="$(unzip -Z1 "$ZIP_PATH" | grep -vE '/$' | grep -vE "$ALLOW" || true)"
 if [ -n "$UNEXPECTED" ]; then
     echo "error: zip contains entries not on the allow-list:"
