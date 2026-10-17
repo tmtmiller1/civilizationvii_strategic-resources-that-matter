@@ -11,6 +11,7 @@ const ENGINE_GLOBALS = {
   GameInfo: "readonly",
   Players: "readonly",
   Units: "readonly",
+  Armies: "readonly",
   Configuration: "readonly",
   Locale: "readonly",
   engine: "readonly",

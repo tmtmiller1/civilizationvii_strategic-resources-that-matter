@@ -2,7 +2,7 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_SR_MOD_NAME" Language="ja_JP"><Text>重要な戦略資源</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ja_JP"><Text>戦略資源が再び重要になります。馬、鉄、硝石、石油、石炭、ゴムを必要とするユニットは、所有者がその資源を1つも持っていない間、戦闘力が下がり、訓練に時間がかかります。資源1つごとのゲーム本来のボーナスはそのままです。最後の1つを失うと、ペナルティは1ターン後に戻ります。6つを超えても、数がさらに戦闘力を加えます。ゲーム設定の3つのオプションでペナルティの強さと後半のボーナスを選べるほか、初期設定ではオフの、資源のないユニットをロックする設定もあります。シングルプレイ専用。マルチプレイでは、資源を失っても、そのプレイヤーが資源を得るまでペナルティは戻りません。</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ja_JP"><Text>戦略資源が再び重要になります。馬、鉄、硝石、ハードウッド、石油、石炭、ゴムを必要とするユニットは、所有者がその資源を1つも持っていない間、戦闘力が下がり、訓練に時間がかかります。資源1つごとのゲーム本来のボーナスはそのままです。最後の1つを失うと、ペナルティは1ターン後に戻ります。6つを超えても、数がさらに戦闘力を加えます。ゲーム設定のオプションでペナルティの強さ（資源のないユニットをロックする段階まで）と後半のボーナスを選べ、近代のすべてのユニットに2つ目の資源を求めることもできます。シングルプレイ専用。マルチプレイでは、資源を失っても、そのプレイヤーが資源を得るまでペナルティは戻りません。</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ja_JP"><Text>補給なし: {1_Resource}がない(戦闘力{2_Combat}、訓練が遅くなる)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="ja_JP"><Text>{1_Resource}が必要。ないと戦闘力{2_Combat}、訓練が遅くなる。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="ja_JP"><Text>{1_Resource}が必要(保有数{2_Copies})。</Text></Replace>
@@ -14,7 +14,7 @@
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="ja_JP"><Text>{2_Combat} 補給なし: {3_Resource}がない</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="ja_JP"><Text>+{2_Combat} {4_Resource}: {3_Copies}個以上</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="ja_JP"><Text>補給のないユニット</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="ja_JP"><Text>所有者が必要な戦略資源を1つも持っていない間、ユニットがどれだけ弱くなり、訓練が遅くなるか。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="ja_JP"><Text>所有者が必要な戦略資源を1つも持っていない間、ユニットがどれだけ弱くなり、訓練が遅くなるか。2つのロックの値は「過酷」のペナルティにロックを加える。資源がなければユニットを訓練も購入もできない。すでに戦場にいるユニットはロックされず、独立勢力と都市国家は影響を受けない。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="ja_JP"><Text>オフ</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="ja_JP"><Text>ペナルティなし。資源1つごとのゲーム本来のボーナスはそのままです。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="ja_JP"><Text>軽度</Text></Replace>
@@ -23,18 +23,28 @@
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="ja_JP"><Text>戦闘力-3、そのユニットへの生産力が33%減少(訓練に1.5倍の時間)。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="ja_JP"><Text>過酷</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="ja_JP"><Text>戦闘力-5、そのユニットへの生産力が50%減少(訓練に2倍の時間)。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED" Language="ja_JP"><Text>ロック: 訓練</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_DESCRIPTION" Language="ja_JP"><Text>戦場では「過酷」のペナルティ。さらに、戦略資源を必要とするユニットは、所有者がその資源を1つも持っていない間は訓練も購入もできない。そのユニットへのアップグレードは自由のまま。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE" Language="ja_JP"><Text>ロック: 訓練とアップグレード</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE_DESCRIPTION" Language="ja_JP"><Text>戦場では「過酷」のペナルティ。さらに、戦略資源を必要とするユニットは、所有者がその資源を1つも持っていない間は訓練も購入も、アップグレードで得ることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="ja_JP"><Text>6つを超える戦略資源</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="ja_JP"><Text>戦略資源1つごとに戦闘力+1というゲーム本来のボーナスは6つで止まります。このオプションがオンの場合、8、10、12、14、16、18、20個でユニットの戦闘力がさらに+1されます。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="ja_JP"><Text>オフ</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="ja_JP"><Text>基本ゲームと同じく、ボーナスは6つで止まります。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="ja_JP"><Text>オン</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="ja_JP"><Text>8、10、12、14、16、18、20個で戦闘力+1。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_NAME" Language="ja_JP"><Text>近代のサプライチェーン</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_DESCRIPTION" Language="ja_JP"><Text>近代では、戦略資源を必要とするすべてのユニットが2つ目の資源も必要とする。砲、装甲車両、戦艦の鋼鉄には石炭、軽戦闘艦の砲には硝石、航空機には石油。足りない資源ごとにペナルティがまるごとかかり、ロックの値ではユニットの訓練に両方が必要になる。初期設定ではオフ。厳しいゲームになる。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_OFF" Language="ja_JP"><Text>オフ</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_OFF_DESCRIPTION" Language="ja_JP"><Text>近代の各ユニットはほかの時代と同じく資源を1つ必要とする。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_ON" Language="ja_JP"><Text>オン</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_ON_DESCRIPTION" Language="ja_JP"><Text>砲兵は硝石と石炭、機甲部隊と戦艦は石油と石炭、軽戦闘艦は石炭と硝石、航空機はゴムと石油を必要とする。</Text></Replace>
         <!-- Civilopedia -->
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="ja_JP"><Text>重要な戦略資源</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}、{LOC_RESOURCE_RUBBER_NAME}を使う軍事ユニットは、所有者がその資源を1個も持っていない間、戦闘で弱くなり、訓練も遅くなる。「{LOC_SR_SETUP_GATE_NAME}」オプションがオフなら禁止されるものはない。最後の章を参照。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_HARDWOOD_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}、{LOC_RESOURCE_RUBBER_NAME}を使う軍事ユニットは、所有者がその資源を1個も持っていない間、戦闘で弱くなり、訓練も遅くなる。「{LOC_SR_SETUP_UNSUPPLIED_NAME}」がロックの値でなければ禁止されるものはない。最後の章を参照。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="ja_JP"><Text>資源がない場合</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="ja_JP"><Text>資源が足りないユニットは、持っているすべての戦闘力(近接、および遠隔と砲撃を持つ場合はそれも)が下がり、その都市が訓練に回す生産力も減る。どれだけ下がるかはゲーム設定の「{LOC_SR_SETUP_UNSUPPLIED_NAME}」オプションで決まる:</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="ja_JP"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] 戦闘力-2、生産力20%減。[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B](初期設定): 戦闘力-3、生産力33%減で、訓練に1.5倍の時間がかかる。[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] 戦闘力-5、生産力50%減で、訓練に2倍の時間がかかる。[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] ペナルティなし。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="ja_JP"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] 戦闘力-2、生産力20%減。[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B](初期設定): 戦闘力-3、生産力33%減で、訓練に1.5倍の時間がかかる。[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] 戦闘力-5、生産力50%減で、訓練に2倍の時間がかかる。[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] ペナルティなし。[N][B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED}[/B]と[B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}:[/B] 「過酷」のペナルティに加え、資源を1つも持っていない間はユニットがロックされる（最後の章を参照）。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_3" Language="ja_JP"><Text>戦闘プレビューではペナルティが「-3 補給なし: {LOC_RESOURCE_NITER_NAME}がない」のように独立した行で表示され、ユニットパネルにもステータスの下に表示される。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_TITLE" Language="ja_JP"><Text>資源1個として数えるもの</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_PARA_1" Language="ja_JP"><Text>自分が持つマップ上の戦略資源が1個と数えられる。その資源の施設がある自分のタイル(都市がそのタイルへ拡大するときに建てるもの)にあるか、他の文明の居住地から交易路で輸入したもので、交易路が届いたターンから数えられる。</Text></Replace>
@@ -47,9 +57,11 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="ja_JP"><Text>どのユニットが何を必要とするか</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="ja_JP"><Text>文明の固有ユニットは、置き換える元のユニットと同じものを必要とする。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="ja_JP"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 騎兵(チャリオット、騎乗兵とその固有版)[N]{LOC_RESOURCE_IRON_NAME}: 第2段階以降の歩兵(槍兵、ファランクス、レギオン、不死隊ほか)</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="ja_JP"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 騎兵(コーサー、騎士、槍騎兵とその固有版)[N]{LOC_RESOURCE_IRON_NAME}: 第2段階以降の歩兵(メンアットアームズ、長槍兵とその固有版)[N]{LOC_RESOURCE_NITER_NAME}: 第3段階以降の攻城兵器(射石砲、火車)と第2段階以降の重戦闘艦(キャラック船、ガレオン船とその固有版)</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="ja_JP"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 騎兵(コーサー、騎士、槍騎兵とその固有版)[N]{LOC_RESOURCE_IRON_NAME}: 第2段階以降の歩兵(メンアットアームズ、長槍兵とその固有版)[N]{LOC_RESOURCE_NITER_NAME}: 第3段階以降の攻城兵器(射石砲、火車)[N]{LOC_RESOURCE_HARDWOOD_NAME}: 第2段階以降の重戦闘艦(キャラック船、ガレオン船とその固有版)</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="ja_JP"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}: 砲兵(野戦砲、野砲、対戦車砲、迫撃砲、榴弾砲、突撃砲)[N]{LOC_RESOURCE_OIL_NAME}: 機甲部隊(陸上艦、戦車とその固有版)と戦艦(弩級戦艦、戦艦とその固有版)[N]{LOC_RESOURCE_COAL_NAME}: 軽戦闘艦(装甲艦、巡洋艦、駆逐艦、バリバリア・コルセア)[N]{LOC_RESOURCE_RUBBER_NAME}: 航空機</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="ja_JP"><Text>どの条件もないもの: 戦士の系統と斥候、遠隔歩兵(弓兵、弩兵、アルケブス銃兵)、カタパルトとトレビュシェット、コグ船と戦列艦、胸甲騎兵、潜水艦、近代の歩兵。これで、どのプレイヤーも常に防衛できる。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_TITLE" Language="ja_JP"><Text>近代のサプライチェーン</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_PARA_1" Language="ja_JP"><Text>「{LOC_SR_SETUP_CHAINS_NAME}」がオン（初期設定ではオフ）のとき、資源を必要とする近代のすべてのユニットが2つ目の資源も必要とする。砲兵は{LOC_RESOURCE_NITER_NAME}と{LOC_RESOURCE_COAL_NAME}、機甲部隊と戦艦は{LOC_RESOURCE_OIL_NAME}と{LOC_RESOURCE_COAL_NAME}、軽戦闘艦は{LOC_RESOURCE_COAL_NAME}と{LOC_RESOURCE_NITER_NAME}、航空機は{LOC_RESOURCE_RUBBER_NAME}と{LOC_RESOURCE_OIL_NAME}。足りない資源ごとにペナルティがまるごとかかるので、両方ないユニットは2倍のペナルティで戦い、ロックの値では両方がなければ訓練できない。近代のマップには鉄がないため、石炭が鋼鉄の代わりになる。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED" Language="ja_JP"><Text>補給なし</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_STRATEGIC" Language="ja_JP"><Text>戦略資源</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_CHAPTER" Language="ja_JP"><Text>戦略資源</Text></Replace>
@@ -69,8 +81,11 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_STANDARD" Language="ja_JP"><Text>{LOC_RESOURCE_COAL_NAME}が必要: 1個もないと戦闘力-3、訓練が遅くなる。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_HARSH" Language="ja_JP"><Text>{LOC_RESOURCE_COAL_NAME}が必要: 1個もないと戦闘力-5、訓練が遅くなる。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が必要: 1個もないと戦闘力-2、訓練が遅くなる。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}が必要: 1個もないと戦闘力-2、訓練が遅くなる。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が必要: 1個もないと戦闘力-3、訓練が遅くなる。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_STANDARD" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}が必要: 1個もないと戦闘力-3、訓練が遅くなる。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が必要: 1個もないと戦闘力-5、訓練が遅くなる。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_HARSH" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}が必要: 1個もないと戦闘力-5、訓練が遅くなる。</Text></Replace>
         <!-- /Civilopedia -->
         <!-- Lost-supply notification and first-time callout -->
         <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="ja_JP"><Text>補給喪失</Text></Replace>
@@ -83,27 +98,21 @@
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ja_JP"><Text>この{1_Unit}は{2_Resource}を必要としますが、1つも保有していないため、入手するまで戦闘力{3_Combat}、訓練も遅くなります。戦略資源を必要とするユニットはすべて同じで、詳しいルールはシヴィロペディアの「{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}」にあります。</Text></Replace>
         <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="ja_JP"><Text>ユニットのロック</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="ja_JP"><Text>戦略資源を必要とするユニットを、所有者がその資源を1つも持っていない間、そもそも訓練・購入できるかどうか。すでに戦場にいるユニットがロックされることはなく、上で設定した「補給のないユニット」のペナルティが適用される。独立勢力と都市国家がロックされることはない。</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="ja_JP"><Text>オフ</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_OFF_DESCRIPTION" Language="ja_JP"><Text>すべてのユニットを基本ゲームと同じく訓練・購入・アップグレードできる。</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING" Language="ja_JP"><Text>訓練</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION" Language="ja_JP"><Text>戦略資源を必要とするユニットは、その資源が1つもないと訓練も購入もできない。アップグレードでそのユニットにすることは自由のまま。</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE" Language="ja_JP"><Text>訓練とアップグレード</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION" Language="ja_JP"><Text>戦略資源を必要とするユニットは、その資源が1つもないと訓練も購入も、アップグレードでそのユニットにすることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_NAME" Language="ja_JP"><Text>撃破による無条件の昇格</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION" Language="ja_JP"><Text>戦国の侍は3体のユニットを倒すと自動で1段階上がる。オンにすると、鉄があってもなくても昇格する。オフが効くのは「ユニットのロック」が「訓練とアップグレード」のときだけで、撃破では昇格せず、ほかのユニットと同じくアップグレードで上がり、それには鉄が必要になる。オフにすると、ほかのMODがこの撃破数を変えていても上書きする。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION" Language="ja_JP"><Text>戦国の侍は3体のユニットを倒すと自動で1段階上がる。オンにすると、鉄があってもなくても昇格する。オフが効くのは「補給のないユニット」が「ロック: 訓練とアップグレード」のときだけで、撃破では昇格せず、ほかのユニットと同じくアップグレードで上がり、それには鉄が必要になる。オフにすると、ほかのMODがこの撃破数を変えていても上書きする。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF" Language="ja_JP"><Text>オフ</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION" Language="ja_JP"><Text>「ユニットのロック」が「訓練とアップグレード」のとき、侍は撃破では昇格しない。ほかのユニットと同じくアップグレードで上がり、鉄があるときだけできる。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION" Language="ja_JP"><Text>「補給のないユニット」が「ロック: 訓練とアップグレード」のとき、侍は撃破では昇格しない。ほかのユニットと同じくアップグレードで上がり、鉄があるときだけできる。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON" Language="ja_JP"><Text>オン</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION" Language="ja_JP"><Text>侍は各段階で3体倒すと昇格する。鉄の有無は問わない（基本ゲームと同じ）。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED" Language="ja_JP"><Text>{1_Resource}が必要: ないと訓練できない。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_BUY" Language="ja_JP"><Text>{1_Resource}が必要: ないと購入できない。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_SHORT" Language="ja_JP"><Text>ロック中: {1_Resource}がない</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE_GATED" Language="ja_JP"><Text>補給なし: {1_Resource}がない(戦闘力{2_Combat}、訓練が遅くなる)。新たに訓練することはできない。</Text></Replace>
+        <Replace Tag="LOC_SR_ARMY_UPGRADE_LOCKED" Language="ja_JP"><Text>{1_Unit}: {2_Resource}がなければアップグレードできません。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="ja_JP"><Text>ロックされるユニット</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="ja_JP"><Text>「{LOC_SR_SETUP_GATE_NAME}」オプションがオンのとき、戦略資源を必要とするユニットは、その資源を1つも持っていない間は訓練も購入もできない。生産リストには灰色のまま残り、資源が1つ届くまで待つことになり、最後の1つを失った瞬間に再びロックされる。「{LOC_SR_SETUP_GATE_UPGRADE}」では、どのユニットもそのユニットにアップグレードできない。「{LOC_SR_SETUP_GATE_TRAINING}」では、アップグレードは自由のまま。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="ja_JP"><Text>すでに戦場にいるユニットがロックされることはない。「{LOC_SR_SETUP_UNSUPPLIED_NAME}」オプションがオンならそのペナルティを受けつつ戦い続け、回復も通常どおりだ。文明の固有ユニットは、それが置き換えるユニットと同じようにロックされる。何も必要としないユニットは自由のままなので、どのプレイヤーも常に防衛できる。独立勢力と都市国家がロックされることはない。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ja_JP"><Text>戦国の侍は、各段階で3体のユニットを倒すと自動で第2・第3段階に上がる。「{LOC_SR_SETUP_KILL_TIERS_NAME}」がオン（初期設定）なら、「{LOC_SR_SETUP_GATE_UPGRADE}」でもこの昇格に{LOC_RESOURCE_IRON_NAME}は要らない。オフで「{LOC_SR_SETUP_GATE_UPGRADE}」のときは撃破では昇格せず、ほかのユニットと同じくアップグレードで上がり、それには{LOC_RESOURCE_IRON_NAME}が必要になる。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="ja_JP"><Text>「{LOC_SR_SETUP_UNSUPPLIED_NAME}」がロックの値のとき、戦略資源を必要とするユニットは、その資源を1つも持っていない間は訓練も購入もできない。生産リストには灰色のまま残り、資源が1つ届くまで待つことになり、最後の1つを失った瞬間に再びロックされる。「{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}」では、どのユニットもそのユニットにアップグレードできず、司令官の「全ユニットをアップグレード」でもそのままになる。「{LOC_SR_SETUP_UNSUPPLIED_LOCKED}」では、アップグレードは自由のまま。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="ja_JP"><Text>すでに戦場にいるユニットがロックされることはない。「{LOC_SR_SETUP_UNSUPPLIED_HARSH}」のペナルティを受けつつ戦い続け、回復も通常どおりだ。文明の固有ユニットは、それが置き換えるユニットと同じようにロックされる。何も必要としないユニットは自由のままなので、どのプレイヤーも常に防衛できる。独立勢力と都市国家がロックされることはない。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ja_JP"><Text>戦国の侍は、各段階で3体のユニットを倒すと自動で第2・第3段階に上がる。「{LOC_SR_SETUP_KILL_TIERS_NAME}」がオン（初期設定）なら、「{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}」でもこの昇格に{LOC_RESOURCE_IRON_NAME}は要らない。オフで「{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}」のときは撃破では昇格せず、ほかのユニットと同じくアップグレードで上がり、それには{LOC_RESOURCE_IRON_NAME}が必要になる。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_HORSES_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_IRON_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
@@ -115,7 +124,9 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_COAL_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_COAL_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="ja_JP"><Text>次の訓練に必要: {1_Units}。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="ja_JP"><Text>次の訓練に必要: {1_Units}、ほか{2_More}種。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOCKED_TAIL" Language="ja_JP"><Text>それまで新たに訓練することはできません。</Text></Replace>

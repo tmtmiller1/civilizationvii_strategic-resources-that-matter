@@ -54,7 +54,8 @@ export function element(classes = []) {
       node.children.push(child);
       return child;
     },
-    querySelector: (selector) => find(node, selector.replace(/^\./, ""))
+    querySelector: (selector) => find(node, selector.replace(/^\./, "")),
+    querySelectorAll: (selector) => findAll(node, selector.replace(/^\./, ""))
   };
   return node;
 }
@@ -66,4 +67,13 @@ function find(node, className) {
     if (deeper) return deeper;
   }
   return null;
+}
+
+// Every descendant with the class, in document order.
+function findAll(node, className, out = []) {
+  for (const child of node.children) {
+    if (child.classList.contains(className)) out.push(child);
+    findAll(child, className, out);
+  }
+  return out;
 }

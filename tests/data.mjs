@@ -8,8 +8,8 @@ import {
   PREVIEW_TEXT, remapId, remapLabelTag, resourceNameTag
 } from "../scripts/build-data.mjs";
 import {
-  AGES, AGE_FILE, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildGateMap,
-  gatedResources, lineCopies, lineLocks, upgradeOnlyGatedUnits
+  AGES, AGE_FILE, CHAINS, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildChainMap,
+  buildGateMap, chainLocks, gatedResources, lineCopies, lineLocks, upgradeOnlyGatedUnits
 } from "../scripts/gate-map.mjs";
 
 // Data gate: the invariants that crash the game or mislead it, checked on the files that ship.
@@ -33,6 +33,11 @@ import {
 //     upgrade row deleted (an upgrade into a gated unit works once the player holds the resource). The copies
 //     (lineCopies) come last, each from a temp table that is dropped, each adding exactly one upgrade row, with an
 //     icon in sr-line-icons.xml and a remap with a labelled checkbox in sr-line-visuals.xml.
+//   - The chains file (sr-<age>-chains.sql, Modern Supply Chains) tags every gated unit of the age with its second
+//     resource (gate-map.mjs CHAINS, pinned below), each resource one the age's penalty files already carry, and
+//     locks every gated unit behind both resources with the same grant-only shape as the lines, every grant OR
+//     IGNORE and guarded by the unit's column, so the file loads under its one setup value and does nothing until
+//     a locked level has set the column (DESIGN.md 7h).
 //   - Every unit and resource the data names exists in the game's tables, as dumped from lab games
 //     (devtools/gate-map/<age>.json) and, for the age last played, in the live compiled database
 //     (Debug/gameplay-copy.sqlite). The live check is skipped with a message when that file is absent.
@@ -251,9 +256,9 @@ const EXPECTED = {
     RESOURCE_IRON: ["UNIT_GOLD_BANGLES_2", "UNIT_GOLD_BANGLES_3", "UNIT_KISPOKO_NENA_TO_2", "UNIT_KISPOKO_NENA_TO_3",
       "UNIT_LEIOMANO_2", "UNIT_LEIOMANO_3", "UNIT_MAN_AT_ARMS", "UNIT_PIKEMAN", "UNIT_SAMURAI_2", "UNIT_SAMURAI_3",
       "UNIT_TERCIO_2", "UNIT_TERCIO_3", "UNIT_XUNLEICHONG_2", "UNIT_XUNLEICHONG_3"],
-    RESOURCE_NITER: ["UNIT_BOMBARD", "UNIT_CARRACK", "UNIT_CETBANG_2", "UNIT_CETBANG_3", "UNIT_CORSAIR_2",
-      "UNIT_CORSAIR_3", "UNIT_GALLEON", "UNIT_HWACHA_3", "UNIT_KALAM_2", "UNIT_KALAM_3", "UNIT_VIKINGR_2",
-      "UNIT_VIKINGR_3"]
+    RESOURCE_NITER: ["UNIT_BOMBARD", "UNIT_HWACHA_3"],
+    RESOURCE_HARDWOOD: ["UNIT_CARRACK", "UNIT_CETBANG_2", "UNIT_CETBANG_3", "UNIT_CORSAIR_2", "UNIT_CORSAIR_3",
+      "UNIT_GALLEON", "UNIT_KALAM_2", "UNIT_KALAM_3", "UNIT_VIKINGR_2", "UNIT_VIKINGR_3"]
   },
   AGE_MODERN: {
     RESOURCE_NITER: ["UNIT_ASSAULT_GUN", "UNIT_AT_GUN", "UNIT_CHANG_BEUN", "UNIT_CHANG_BEUN_2", "UNIT_CHANG_BEUN_3",
@@ -427,17 +432,112 @@ for (const f of fs.readdirSync(DATA)) {
   }
 }
 
-// Every data file is loaded by exactly one action group, and nothing else is; the line files by both gate values',
-// the remaps by the shell and the game, as the game's own.
+// Every data file is loaded by the groups that need it, and nothing else is: the harsh penalty by its own level
+// and the two locked levels, each gate file by its locked level and the matching value of a save from before 1.2,
+// the line files by all four of those, the remaps by the shell and the game, as the game's own, the rest once.
 const modinfo = fs.readFileSync("strategic-resources-that-matter.modinfo", "utf8").replace(/<!--[\s\S]*?-->/g, "");
 const listed = [...modinfo.matchAll(/<Item>(data\/[^<]+)<\/Item>/g)].map((m) => m[1]);
+const timesListed = (/** @type {string} */ item) =>
+  item.endsWith("-gate-lines.sql") ? 4
+    : /-(harsh-modifiers|harsh-game|gate-training|gate-upgrade)\.xml$/.test(item) ? (item.includes("harsh") ? 3 : 2)
+      : item.endsWith("sr-line-visuals.xml") ? 2 : 1;
 for (const item of new Set(listed)) {
-  const twice = item.endsWith("-gate-lines.sql") || item.endsWith("sr-line-visuals.xml");
-  assert.equal(listed.filter((x) => x === item).length, twice ? 2 : 1,
+  assert.equal(listed.filter((x) => x === item).length, timesListed(item),
     `${item}: listed the wrong number of times in the modinfo`);
 }
 assert.deepEqual([...new Set(listed)].sort(), fs.readdirSync(DATA).map((f) => `data/${f}`).sort(),
   "modinfo and data/ differ");
+// The locked levels load the harsh penalty with the gate; a save from before 1.2 keeps the Gated Units value.
+for (const age of AGES) {
+  const a = AGE_FILE[age];
+  for (const [id, files] of [[`${a}-locked`, [`sr-${a}-harsh-modifiers.xml`, `sr-${a}-harsh-game.xml`,
+    `sr-${a}-gate-training.xml`, `sr-${a}-gate-lines.sql`]],
+  [`${a}-locked-upgrade`, [`sr-${a}-harsh-modifiers.xml`, `sr-${a}-harsh-game.xml`, `sr-${a}-gate-upgrade.xml`,
+    `sr-${a}-gate-lines.sql`]],
+  [`${a}-gate-training`, [`sr-${a}-gate-training.xml`, `sr-${a}-gate-lines.sql`]],
+  [`${a}-gate-upgrade`, [`sr-${a}-gate-upgrade.xml`, `sr-${a}-gate-lines.sql`]]]) {
+    const body = (modinfo.match(new RegExp(`<ActionGroup id="strategic-resources-that-matter-${id}"[\\s\\S]*?</ActionGroup>`))
+      || [""])[0];
+    assert.ok(body, `modinfo: no group ${id}`);
+    assert.deepEqual([...body.matchAll(/<Item>data\/([^<]+)<\/Item>/g)].map((m) => m[1]), files, `${id}: files`);
+  }
+  const value = (/** @type {string} */ id) => (modinfo.match(new RegExp(`<Criteria id="${id}">[\\s\\S]*?<Value>([A-Z_]+)</Value>`))
+    || [])[1];
+  assert.equal(value(`${a}-locked`), "SR_UNSUPPLIED_LOCKED");
+  assert.equal(value(`${a}-locked-upgrade`), "SR_UNSUPPLIED_LOCKED_UPGRADE");
+  assert.equal(value(`${a}-gate-training`), "SR_GATE_TRAINING");
+  assert.equal(value(`${a}-gate-upgrade`), "SR_GATE_UPGRADE");
+}
+assert.match(modinfo, /<Criteria id="modern-chains">[\s\S]*?<Value>SR_CHAINS_ON<\/Value>/, "the chains criteria");
+assert.match(modinfo, /criteria="modern-chains">\s*<Properties><LoadOrder>203<\/LoadOrder>/,
+  "the chains file loads after the gate files and the lines");
+
+// 5b. Modern Supply Chains: the second resource per unit, pinned, and the file's shape.
+const EXPECTED_CHAINS = {
+  RESOURCE_COAL: ["UNIT_ASSAULT_GUN", "UNIT_AT_GUN", "UNIT_BATTLESHIP", "UNIT_CHANG_BEUN", "UNIT_CHANG_BEUN_2",
+    "UNIT_CHANG_BEUN_3", "UNIT_COSSACK_2", "UNIT_COSSACK_3", "UNIT_DREADNOUGHT", "UNIT_FIELD_CANNON", "UNIT_FIELD_GUN",
+    "UNIT_GHILMAN_2", "UNIT_GHILMAN_3", "UNIT_HEAVY_ARTILLERY", "UNIT_HUSSAR_2", "UNIT_HUSSAR_3", "UNIT_KATYUSHA",
+    "UNIT_KATYUSHA_2", "UNIT_LANDSHIP", "UNIT_MIKASA", "UNIT_MIKASA_2", "UNIT_MORTAR", "UNIT_REVENGE", "UNIT_REVENGE_2",
+    "UNIT_TANK", "UNIT_TURTLE_SHIP_2", "UNIT_TURTLE_SHIP_3"],
+  RESOURCE_NITER: ["UNIT_BARBARY_CORSAIR", "UNIT_BARBARY_CORSAIR_2", "UNIT_BARBARY_CORSAIR_3", "UNIT_CRUISER",
+    "UNIT_DESTROYER", "UNIT_IRONCLAD"],
+  RESOURCE_OIL: ["UNIT_BIPLANE", "UNIT_BOMBER", "UNIT_DIVEBOMBER", "UNIT_FIGHTER", "UNIT_HEAVY_BOMBER", "UNIT_STUKA",
+    "UNIT_STUKA_2", "UNIT_TRENCH_FIGHTER", "UNIT_ZERO", "UNIT_ZERO_2"]
+};
+assert.deepEqual(Object.keys(CHAINS), ["AGE_MODERN"], "chain rules are the Modern age's");
+{
+  const chains = buildChainMap(dumps.AGE_MODERN);
+  /** @type {Record<string, string[]>} */
+  const byResource = {};
+  for (const [unit, resource] of chains) (byResource[resource] ??= []).push(unit);
+  assert.deepEqual(byResource, EXPECTED_CHAINS, "the chain map differs from DESIGN.md 7h");
+  const gates = buildGateMap(dumps.AGE_MODERN);
+  assert.deepEqual([...chains.keys()], [...gates.keys()], "every gated Modern unit has a second resource");
+  for (const [unit, resource] of chains) {
+    assert.notEqual(resource, gates.get(unit), `${unit}: the chain names its own resource`);
+    assert.ok(gatedResources("AGE_MODERN").includes(resource), `${unit}: ${resource} has no Modern penalty modifiers`);
+  }
+  assert.deepEqual(buildChainMap(dumps.AGE_ANTIQUITY).size, 0);
+  const locks = chainLocks(dumps.AGE_MODERN);
+  assert.deepEqual(locks.map((l) => l.unit), [...chains.keys()], "the chain locks cover every chained unit");
+  for (const l of locks) assert.deepEqual(l.resources, [gates.get(l.unit), chains.get(l.unit)], `${l.unit}: resources`);
+  assert.ok(locks.every((l) => l.kind !== "granted"), "no Modern chained unit is one the game grants");
+  const f = "sr-modern-chains.sql";
+  const sql = read(f);
+  for (const resource of Object.keys(EXPECTED_CHAINS)) {
+    const name = resource.replace("RESOURCE_", "");
+    assert.ok(sql.includes(`SELECT Type, 'SR_SUPPLY_${name}' FROM Types WHERE Type IN (`), `${f}: ${name} tags`);
+    assert.ok(sql.includes(`a.ModifierId = 'SR_COMBAT_PENALTY_${name}' AND a.Name = 'Amount'`), `${f}: ${name} page line`);
+    assert.ok(sql.includes(`THEN 'LOC_SR_PEDIA_UNIT_${name}_GATE_UPGRADE' ELSE 'LOC_SR_PEDIA_UNIT_${name}_GATE_TRAINING'`),
+      `${f}: ${name} gate line`);
+  }
+  for (const lock of locks) {
+    assert.ok(sql.includes(`-- ${lock.unit}: ${lock.kind}, needs ${lock.resources.join(", ")}`), `${f}: ${lock.unit}`);
+  }
+  const statements = sql.split(";\n").map((x) => x.replace(/^(--[^\n]*\n|\s)+/, "")).filter(Boolean);
+  for (const st of statements) {
+    // The copies' rows come from temp tables filled only while no stand-in exists, so a second load adds nothing.
+    if (/^INSERT /.test(st) && !/ FROM sr_(copy|rows|mods|args|rewards)\b/.test(st)) {
+      assert.match(st, /^INSERT OR IGNORE /, `${f}: a plain insert: ${st.slice(0, 100)}`);
+    }
+    if (/^INSERT OR IGNORE INTO (Modifiers|GameModifiers|RequirementSets) /.test(st) && !/^INSERT OR IGNORE INTO Modifiers SELECT \* FROM sr_mods/.test(st)) {
+      assert.ok(/ FROM Units WHERE UnitType = '[A-Z0-9_]+' AND StrategicResource IS NOT NULL/.test(st) ||
+        /^INSERT OR IGNORE INTO RequirementSets \(RequirementSetId, RequirementSetType\)\n {4}VALUES \('SR_LINE_/.test(st),
+      `${f}: a grant not behind the column: ${st.slice(0, 120)}`);
+    }
+    if (/^UPDATE Units SET TraitType/.test(st)) assert.match(st, /AND StrategicResource IS NOT NULL$/, `${f}: traits`);
+    if (/^UPDATE CivilopediaPageQueries/.test(st)) assert.match(st, /StrategicResource IS NOT NULL\)$/, `${f}: pedia query`);
+  }
+  assert.ok(!/DELETE FROM UnitUpgrades|UPDATE UnitUpgrades/.test(sql), `${f} removes or changes an upgrade row`);
+  assert.ok(!/SET\s+StrategicResource|StrategicResource\s*=/.test(sql), `${f} sets the column`);
+  assert.ok(!/COLLECTION_ALL_PLAYERS|COLLECTION_INDEPENDENT/.test(sql), `${f}: a grant beyond the major players`);
+  assert.ok(!sql.includes("SR_LINE_NEVER"), `${f}: the civic block belongs to the plain line file`);
+  const copyBlocks = [...sql.matchAll(/^-- (UNIT_[A-Z_]+): this civilization's (UNIT_[A-Z_]+), standing in for it and upgrading straight into (UNIT_[A-Z_]+)\./gm)]
+    .map((m) => [m[1], m[2], m[3]]);
+  assert.deepEqual(copyBlocks, lineCopies(dumps.AGE_MODERN).map((c) => [c.unit, c.base, c.upgradeTo]), `${f}: the copies`);
+  assert.equal((sql.match(/^CREATE TEMP TABLE /gm) ?? []).length, (sql.match(/^DROP TABLE /gm) ?? []).length,
+    `${f}: every temp table dropped`);
+}
 
 // 6. The live compiled database, for the age it holds.
 const live = path.join(os.homedir(), "Library/Application Support/Civilization VII/Debug/gameplay-copy.sqlite");

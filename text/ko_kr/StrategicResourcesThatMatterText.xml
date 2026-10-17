@@ -2,7 +2,7 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_SR_MOD_NAME" Language="ko_KR"><Text>중요한 전략 자원</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 다시 중요해집니다. 말, 철, 질산칼륨, 석유, 석탄, 고무가 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 전투력이 낮아지고 훈련이 느려지며, 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다. 마지막 하나를 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 여섯 개를 넘어서도 수가 계속 전투력을 더합니다. 게임 설정의 세 옵션으로 페널티와 후반 보너스를 정하고, 기본값은 꺼짐인 세 번째 옵션으로 자원이 없는 유닛을 잠급니다. 싱글 플레이 전용. 멀티플레이에서는 자원을 잃어도 그 플레이어가 자원을 얻기 전까지 페널티가 돌아오지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 다시 중요해집니다. 말, 철, 질산칼륨, 견목, 석유, 석탄, 고무가 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 전투력이 낮아지고 훈련이 느려지며, 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다. 마지막 하나를 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 여섯 개를 넘어서도 수가 계속 전투력을 더합니다. 게임 설정 옵션으로 페널티를 정하고(자원이 없는 유닛을 잠그는 단계까지), 후반 보너스를 켜고 끄며, 근대의 모든 유닛에 두 번째 자원을 요구할 수도 있습니다. 싱글 플레이 전용. 멀티플레이에서는 자원을 잃어도 그 플레이어가 자원을 얻기 전까지 페널티가 돌아오지 않습니다.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ko_KR"><Text>보급 없음: {1_Resource} 없음 (전투력 {2_Combat}, 훈련이 느려짐)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="ko_KR"><Text>{1_Resource} 필요. 없으면 전투력 {2_Combat}, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="ko_KR"><Text>{1_Resource} 필요 (보유 {2_Copies}개).</Text></Replace>
@@ -14,7 +14,7 @@
         <Replace Tag="LOC_SR_PREVIEW_UNSUPPLIED" Language="ko_KR"><Text>{2_Combat} 보급 없음: {3_Resource} 없음</Text></Replace>
         <Replace Tag="LOC_SR_PREVIEW_CURVE" Language="ko_KR"><Text>+{2_Combat} {4_Resource}: {3_Copies}개 이상</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_NAME" Language="ko_KR"><Text>보급 없는 유닛</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="ko_KR"><Text>소유자가 필요한 전략 자원을 하나도 갖고 있지 않은 동안 유닛이 얼마나 약해지고 훈련이 느려지는지 정합니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_DESCRIPTION" Language="ko_KR"><Text>소유자가 필요한 전략 자원을 하나도 갖고 있지 않은 동안 유닛이 얼마나 약해지고 훈련이 느려지는지 정합니다. 두 잠금 값은 가혹함 페널티에 잠금을 더합니다. 자원이 없으면 유닛을 아예 훈련하거나 구매할 수 없습니다. 이미 전장에 있는 유닛은 잠기지 않으며, 독립 세력과 도시 국가는 영향을 받지 않습니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF" Language="ko_KR"><Text>끔</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_OFF_DESCRIPTION" Language="ko_KR"><Text>페널티가 없습니다. 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LIGHT" Language="ko_KR"><Text>가벼움</Text></Replace>
@@ -23,18 +23,28 @@
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_STANDARD_DESCRIPTION" Language="ko_KR"><Text>전투력 -3, 그 유닛에 들어가는 생산력 33% 감소 (훈련에 1.5배의 시간).</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH" Language="ko_KR"><Text>가혹함</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_HARSH_DESCRIPTION" Language="ko_KR"><Text>전투력 -5, 그 유닛에 들어가는 생산력 50% 감소 (훈련에 2배의 시간).</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED" Language="ko_KR"><Text>잠금: 훈련</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_DESCRIPTION" Language="ko_KR"><Text>전장에서는 가혹함 페널티를 받고, 전략 자원이 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 훈련도 구매도 할 수 없습니다. 그 유닛으로의 업그레이드는 자유롭습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE" Language="ko_KR"><Text>잠금: 훈련과 업그레이드</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE_DESCRIPTION" Language="ko_KR"><Text>전장에서는 가혹함 페널티를 받고, 전략 자원이 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 훈련, 구매, 업그레이드로 얻기 모두 할 수 없습니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_NAME" Language="ko_KR"><Text>여섯 개를 넘는 전략 자원</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_DESCRIPTION" Language="ko_KR"><Text>전략 자원 하나마다 전투력 +1을 주는 게임 본래의 보너스는 여섯 개에서 멈춥니다. 이 옵션을 켜면 8, 10, 12, 14, 16, 18, 20개에서 유닛이 +1씩 더 얻습니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF" Language="ko_KR"><Text>끔</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_OFF_DESCRIPTION" Language="ko_KR"><Text>기본 게임처럼 보너스가 여섯 개에서 멈춥니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON" Language="ko_KR"><Text>켬</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_LATE_CURVE_ON_DESCRIPTION" Language="ko_KR"><Text>8, 10, 12, 14, 16, 18, 20개에서 전투력 +1.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_NAME" Language="ko_KR"><Text>근대 공급망</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_DESCRIPTION" Language="ko_KR"><Text>근대에는 전략 자원이 필요한 모든 유닛에 두 번째 자원도 필요합니다. 대포, 기갑, 전함의 강철에는 석탄, 경형 전함의 함포에는 질산칼륨, 항공기에는 석유. 부족한 자원마다 페널티가 온전히 적용되며, 잠금 값에서는 훈련에 둘 다 필요합니다. 기본값은 꺼짐. 어려운 게임이 됩니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_OFF" Language="ko_KR"><Text>끔</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_OFF_DESCRIPTION" Language="ko_KR"><Text>근대의 각 유닛은 다른 시대처럼 자원 하나가 필요합니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_ON" Language="ko_KR"><Text>켬</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_ON_DESCRIPTION" Language="ko_KR"><Text>포병은 질산칼륨과 석탄, 기갑과 전함은 석유와 석탄, 경형 전함은 석탄과 질산칼륨, 항공기는 고무와 석유가 필요합니다.</Text></Replace>
         <!-- Civilopedia -->
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="ko_KR"><Text>중요해진 전략 자원</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME}, {LOC_RESOURCE_RUBBER_NAME}을(를) 쓰는 군사 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 더 약하게 싸우고 더 느리게 훈련됩니다. {LOC_SR_SETUP_GATE_NAME} 옵션이 꺼져 있는 한 금지되는 것은 없습니다. 마지막 장을 참조하세요.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_HARDWOOD_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME}, {LOC_RESOURCE_RUBBER_NAME}을(를) 쓰는 군사 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 더 약하게 싸우고 더 느리게 훈련됩니다. {LOC_SR_SETUP_UNSUPPLIED_NAME}이(가) 잠금 값이 아닌 한 금지되는 것은 없습니다. 마지막 장을 참조하세요.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="ko_KR"><Text>자원이 없을 때</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="ko_KR"><Text>자원이 없는 유닛은 가진 모든 전투력(근접, 그리고 있다면 원거리와 폭격)이 낮아지고, 도시가 그 유닛 훈련에 쓰는 생산력도 줄어듭니다. 얼마나 낮아지는지는 게임 설정의 {LOC_SR_SETUP_UNSUPPLIED_NAME} 옵션이 정합니다.</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="ko_KR"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] 전투력 -2, 생산력 20% 감소.[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B] (기본값): 전투력 -3, 생산력 33% 감소, 그래서 훈련에 1.5배의 시간이 걸립니다.[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] 전투력 -5, 생산력 50% 감소, 훈련 시간 2배.[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] 페널티 없음.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="ko_KR"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] 전투력 -2, 생산력 20% 감소.[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B] (기본값): 전투력 -3, 생산력 33% 감소, 그래서 훈련에 1.5배의 시간이 걸립니다.[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] 전투력 -5, 생산력 50% 감소, 훈련 시간 2배.[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] 페널티 없음.[N][B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED}[/B] 및 [B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}:[/B] 가혹함 페널티에 더해, 자원이 하나도 없는 동안 유닛이 잠깁니다(마지막 장 참조).</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_3" Language="ko_KR"><Text>전투 미리보기는 페널티를 "-3 보급 없음: {LOC_RESOURCE_NITER_NAME} 없음"처럼 별도의 줄로 보여 주며, 유닛 패널도 능력치 아래에 이를 표시합니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_TITLE" Language="ko_KR"><Text>자원 하나로 세는 것</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_COPY_PARA_1" Language="ko_KR"><Text>보유한 지도 위의 전략 자원이 하나로 셉니다. 그 자원의 시설이 있는 자기 타일(도시가 그 타일로 확장할 때 짓는 시설)에 있거나, 다른 문명의 정착지에서 교역로로 수입한 것으로, 교역로가 도착한 턴부터 셉니다.</Text></Replace>
@@ -47,9 +57,11 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="ko_KR"><Text>어떤 유닛이 무엇을 필요로 하는가</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="ko_KR"><Text>문명의 고유 유닛은 대체하는 유닛과 같은 것을 필요로 합니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="ko_KR"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 기병(전차, 기마병 및 그 고유 유닛)[N]{LOC_RESOURCE_IRON_NAME}: 2단계 이상의 보병(창병, 팔랑크스, 군단병, 불멸자 등)</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="ko_KR"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 기병(추격마, 기사, 창기병 및 그 고유 유닛)[N]{LOC_RESOURCE_IRON_NAME}: 2단계 이상의 보병(맨엣암즈, 파이크병 및 그 고유 유닛)[N]{LOC_RESOURCE_NITER_NAME}: 3단계 이상의 공성 유닛(사석포, 화차)과 2단계 이상의 중형 전함(카라크선, 갈레온 및 그 고유 유닛)</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="ko_KR"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 기병(추격마, 기사, 창기병 및 그 고유 유닛)[N]{LOC_RESOURCE_IRON_NAME}: 2단계 이상의 보병(맨엣암즈, 파이크병 및 그 고유 유닛)[N]{LOC_RESOURCE_NITER_NAME}: 3단계 이상의 공성 유닛(사석포, 화차)[N]{LOC_RESOURCE_HARDWOOD_NAME}: 2단계 이상의 중형 전함(카라크선, 갈레온 및 그 고유 유닛)</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="ko_KR"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}: 포병(전장포, 야포, 대전차포, 박격포, 곡사포, 돌격포)[N]{LOC_RESOURCE_OIL_NAME}: 기갑(육상전함, 탱크 및 그 고유 유닛)과 전함(드레드노트 전함, 전함 및 그 고유 유닛)[N]{LOC_RESOURCE_COAL_NAME}: 경형 전함(철갑함, 순양함, 구축함, 바르바리 해적)[N]{LOC_RESOURCE_RUBBER_NAME}: 항공기</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="ko_KR"><Text>어떤 조건도 없는 유닛: 전사 계열과 정찰병, 원거리 보병(궁수, 석궁병, 아쿼버스병), 투석기와 트레뷰셋, 코그선과 전열함, 흉갑기병, 잠수함, 그리고 근대 보병. 그래서 모든 플레이어가 언제나 방어할 수 있습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_TITLE" Language="ko_KR"><Text>근대 공급망</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_PARA_1" Language="ko_KR"><Text>{LOC_SR_SETUP_CHAINS_NAME}이(가) 켜져 있으면(기본값은 꺼짐) 자원이 필요한 근대의 모든 유닛에 두 번째 자원도 필요합니다. 포병은 {LOC_RESOURCE_NITER_NAME}와(과) {LOC_RESOURCE_COAL_NAME}, 기갑과 전함은 {LOC_RESOURCE_OIL_NAME}와(과) {LOC_RESOURCE_COAL_NAME}, 경형 전함은 {LOC_RESOURCE_COAL_NAME}와(과) {LOC_RESOURCE_NITER_NAME}, 항공기는 {LOC_RESOURCE_RUBBER_NAME}와(과) {LOC_RESOURCE_OIL_NAME}. 부족한 자원마다 페널티가 온전히 적용되어 둘 다 없는 유닛은 두 배의 페널티로 싸우고, 잠금 값에서는 둘 다 없으면 훈련할 수 없습니다. 근대 지도에는 철이 없으므로 석탄이 강철을 대신합니다.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED" Language="ko_KR"><Text>보급 없음</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_STRATEGIC" Language="ko_KR"><Text>전략 자원</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_CHAPTER" Language="ko_KR"><Text>전략 자원</Text></Replace>
@@ -69,8 +81,11 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_STANDARD" Language="ko_KR"><Text>{LOC_RESOURCE_COAL_NAME} 필요: 하나도 없으면 전투력 -3, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_HARSH" Language="ko_KR"><Text>{LOC_RESOURCE_COAL_NAME} 필요: 하나도 없으면 전투력 -5, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME} 필요: 하나도 없으면 전투력 -2, 훈련이 느려짐.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME} 필요: 하나도 없으면 전투력 -2, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME} 필요: 하나도 없으면 전투력 -3, 훈련이 느려짐.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_STANDARD" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME} 필요: 하나도 없으면 전투력 -3, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME} 필요: 하나도 없으면 전투력 -5, 훈련이 느려짐.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_HARSH" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME} 필요: 하나도 없으면 전투력 -5, 훈련이 느려짐.</Text></Replace>
         <!-- /Civilopedia -->
         <!-- Lost-supply notification and first-time callout -->
         <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="ko_KR"><Text>보급 상실</Text></Replace>
@@ -83,27 +98,21 @@
         <Replace Tag="LOC_SR_CALLOUT_BODY" Language="ko_KR"><Text>이 {1_Unit}에는 {2_Resource}이(가) 필요하지만 하나도 없으므로, 얻을 때까지 전투력 {3_Combat}, 훈련이 느려집니다. 전략 자원이 필요한 모든 유닛이 이와 같으며, 전체 규칙은 문명 백과사전의 "{LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE}" 페이지에 있습니다.</Text></Replace>
         <!-- The hard gate -->
         <Replace Tag="LOC_SR_SETUP_GATE_NAME" Language="ko_KR"><Text>유닛 잠금</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 필요한 유닛을 소유자가 그 자원을 하나도 갖고 있지 않은 동안 아예 훈련하거나 구매할 수 없게 할지 여부입니다. 이미 전장에 있는 유닛은 절대 잠기지 않으며, 위에서 설정한 보급 없는 유닛 페널티가 적용됩니다. 독립 세력과 도시 국가는 절대 잠기지 않습니다.</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_OFF" Language="ko_KR"><Text>끔</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_OFF_DESCRIPTION" Language="ko_KR"><Text>모든 유닛을 기본 게임처럼 훈련, 구매, 업그레이드할 수 있습니다.</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING" Language="ko_KR"><Text>훈련</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_TRAINING_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 필요한 유닛은 그 자원이 하나도 없으면 훈련도 구매도 할 수 없습니다. 그 유닛으로의 업그레이드는 자유롭습니다.</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE" Language="ko_KR"><Text>훈련과 업그레이드</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_GATE_UPGRADE_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 필요한 유닛은 그 자원이 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없습니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_NAME" Language="ko_KR"><Text>처치로 자유 승급</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION" Language="ko_KR"><Text>센고쿠의 사무라이는 유닛 3개를 처치하면 저절로 한 단계 올라갑니다. 켜면 철이 있든 없든 승급합니다. 끄는 것은 유닛 잠금이 "훈련과 업그레이드"일 때만 의미가 있습니다. 처치로는 더 이상 승급하지 않고, 다른 유닛처럼 업그레이드로 올라가며 철이 필요합니다. 끄면 다른 모드가 바꾼 처치 수도 덮어씁니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_DESCRIPTION" Language="ko_KR"><Text>센고쿠의 사무라이는 유닛 3개를 처치하면 저절로 한 단계 올라갑니다. 켜면 철이 있든 없든 승급합니다. 끄는 것은 보급 없는 유닛이 "잠금: 훈련과 업그레이드"일 때만 의미가 있습니다. 처치로는 더 이상 승급하지 않고, 다른 유닛처럼 업그레이드로 올라가며 철이 필요합니다. 끄면 다른 모드가 바꾼 처치 수도 덮어씁니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF" Language="ko_KR"><Text>끔</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION" Language="ko_KR"><Text>유닛 잠금이 "훈련과 업그레이드"이면 사무라이는 처치로 승급하지 않습니다. 다른 유닛처럼 업그레이드하며, 철이 있을 때만 가능합니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION" Language="ko_KR"><Text>보급 없는 유닛이 "잠금: 훈련과 업그레이드"이면 사무라이는 처치로 승급하지 않습니다. 다른 유닛처럼 업그레이드하며, 철이 있을 때만 가능합니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON" Language="ko_KR"><Text>켬</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION" Language="ko_KR"><Text>사무라이는 단계마다 3개를 처치하면 철이 있든 없든 승급합니다. 기본 게임과 같습니다.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED" Language="ko_KR"><Text>{1_Resource} 필요: 없으면 훈련할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_BUY" Language="ko_KR"><Text>{1_Resource} 필요: 없으면 구매할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_LOCKED_SHORT" Language="ko_KR"><Text>잠김: {1_Resource} 없음</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE_GATED" Language="ko_KR"><Text>보급 없음: {1_Resource} 없음 (전투력 {2_Combat}, 훈련이 느려짐). 새로 훈련할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_ARMY_UPGRADE_LOCKED" Language="ko_KR"><Text>{1_Unit}: {2_Resource} 없이는 업그레이드할 수 없습니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_TITLE" Language="ko_KR"><Text>잠기는 유닛</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="ko_KR"><Text>{LOC_SR_SETUP_GATE_NAME} 옵션이 켜져 있으면 전략 자원이 필요한 유닛은 그 자원이 하나도 없는 동안 훈련도 구매도 할 수 없습니다. 생산 목록에 회색으로 남아 있다가 자원이 하나 들어오면 풀리고, 마지막 하나를 잃는 순간 다시 잠깁니다. {LOC_SR_SETUP_GATE_UPGRADE}에서는 어떤 유닛도 그 유닛으로 업그레이드할 수 없고, {LOC_SR_SETUP_GATE_TRAINING}에서는 업그레이드가 자유롭습니다.</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="ko_KR"><Text>이미 전장에 있는 유닛은 절대 잠기지 않습니다. {LOC_SR_SETUP_UNSUPPLIED_NAME} 옵션이 켜져 있으면 그 페널티를 받으며 계속 싸우고, 회복도 평소처럼 합니다. 문명의 고유 유닛은 그것이 대체하는 유닛과 같이 잠깁니다. 아무것도 필요로 하지 않는 유닛은 그대로 자유로우므로 모든 플레이어가 언제나 방어할 수 있습니다. 독립 세력과 도시 국가는 절대 잠기지 않습니다.</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ko_KR"><Text>센고쿠의 사무라이는 단계마다 유닛 3개를 처치하면 저절로 2단계, 3단계로 올라갑니다. {LOC_SR_SETUP_KILL_TIERS_NAME}이(가) 켜져 있으면(기본값) {LOC_SR_SETUP_GATE_UPGRADE}에서도 이 승급에 {LOC_RESOURCE_IRON_NAME}이(가) 필요하지 않습니다. 꺼져 있고 {LOC_SR_SETUP_GATE_UPGRADE}이면 처치로는 승급하지 않고, 다른 유닛처럼 업그레이드하며 {LOC_RESOURCE_IRON_NAME}이(가) 필요합니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_1" Language="ko_KR"><Text>{LOC_SR_SETUP_UNSUPPLIED_NAME}이(가) 잠금 값 중 하나이면 전략 자원이 필요한 유닛은 그 자원이 하나도 없는 동안 훈련도 구매도 할 수 없습니다. 생산 목록에 회색으로 남아 있다가 자원이 하나 들어오면 풀리고, 마지막 하나를 잃는 순간 다시 잠깁니다. {LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}에서는 어떤 유닛도 그 유닛으로 업그레이드할 수 없고 지휘관의 "모든 유닛 업그레이드"도 그 유닛을 그대로 두며, {LOC_SR_SETUP_UNSUPPLIED_LOCKED}에서는 업그레이드가 자유롭습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_2" Language="ko_KR"><Text>이미 전장에 있는 유닛은 절대 잠기지 않습니다. {LOC_SR_SETUP_UNSUPPLIED_HARSH} 페널티를 받으며 계속 싸우고, 회복도 평소처럼 합니다. 문명의 고유 유닛은 그것이 대체하는 유닛과 같이 잠깁니다. 아무것도 필요로 하지 않는 유닛은 그대로 자유로우므로 모든 플레이어가 언제나 방어할 수 있습니다. 독립 세력과 도시 국가는 절대 잠기지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOCK_PARA_3" Language="ko_KR"><Text>센고쿠의 사무라이는 단계마다 유닛 3개를 처치하면 저절로 2단계, 3단계로 올라갑니다. {LOC_SR_SETUP_KILL_TIERS_NAME}이(가) 켜져 있으면(기본값) {LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}에서도 이 승급에 {LOC_RESOURCE_IRON_NAME}이(가) 필요하지 않습니다. 꺼져 있고 {LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}이면 처치로는 승급하지 않고, 다른 유닛처럼 업그레이드하며 {LOC_RESOURCE_IRON_NAME}이(가) 필요합니다.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_IRON_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
@@ -115,7 +124,9 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_COAL_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_COAL_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="ko_KR"><Text>훈련에 필요: {1_Units}.</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="ko_KR"><Text>훈련에 필요: {1_Units} 외 {2_More}종.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOCKED_TAIL" Language="ko_KR"><Text>그때까지 새로 훈련할 수 없습니다.</Text></Replace>

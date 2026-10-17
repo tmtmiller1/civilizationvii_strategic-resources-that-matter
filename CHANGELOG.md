@@ -6,6 +6,33 @@ release is generated from the matching section below by `scripts/steam-changelog
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-16
+
+Hardwood for the Exploration warships, the lock folded into Unsupplied Units, a new Modern Supply Chains option, and
+the commander's Upgrade All reading the lock. Built from Workshop suggestions.
+
+### Added
+- A new game setup option, Modern Supply Chains, Off by default. On, every Modern unit that needs a resource needs a
+  second one: artillery Niter and Coal, armour and battleships Oil and Coal, light warships Coal and Niter, aircraft
+  Rubber and Oil. Each missing resource costs the full penalty, the unit panel shows one cell per missing resource,
+  and under a locked value the unit needs both to be trained. Iron isn't placed on Modern maps, so Coal stands for
+  steel.
+- The Civilopedia page gains a "Modern supply chains" chapter, and a unit's page a second line for its second
+  resource.
+
+### Changed
+- The Exploration heavy warships (Carrack, Galleon and their unique versions) need Hardwood instead of Niter. Niter
+  stays with the Bombard and the Hwacha, and the Ironclad line with Coal.
+- The lock is no longer its own option. Unsupplied Units has two more values after Harsh, "Locked: training" and
+  "Locked: training and upgrade": the Harsh penalty in the field, and a unit that needs a resource can't be trained
+  or bought without it (nor upgraded into, under the second). A save started with the old Gated Units option keeps
+  the lock it was started with.
+
+### Fixed
+- Under "Locked: training and upgrade", a commander's Upgrade All showed as possible and named a price for units the
+  lock stops; pressing it did nothing. The button now greys with the reason ("Warrior: cannot be upgraded without
+  Iron.") when no unit in the army can be upgraded, and names the units that stay as they are when some can.
+
 ## [1.1.1] - 2026-10-16
 
 Two fixes for the Sengoku's Samurai under Gated Units, both watched in test games on every setting.

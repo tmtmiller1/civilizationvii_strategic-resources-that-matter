@@ -21,7 +21,7 @@ let warned = false;
 /** @returns {Map<string, string>} */
 export function resourceTooltipIndex() {
   if (!tooltipIndex) {
-    const drawnOn = new Set(readIndexes().supply.values());
+    const drawnOn = new Set([...readIndexes().supply.values()].flat());
     tooltipIndex = new Map();
     for (const row of /** @type {*} */ (GameInfo.Resources)) {
       if (drawnOn.has(row.ResourceType) && row.Tooltip) tooltipIndex.set(row.Tooltip, row.ResourceType);
@@ -48,7 +48,7 @@ function playerTraits(player) {
  * Display names of the gated units a player can train: no other civilization's unique unit, and not a unit the
  * player's own unique unit replaces.
  * @param {*} player
- * @param {Map<string, string>} supply
+ * @param {Map<string, string[]>} supply
  * @returns {Map<string, string>}
  */
 export function unitNamesFor(player, supply) {

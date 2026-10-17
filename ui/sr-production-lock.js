@@ -149,7 +149,7 @@ export function lineUnitsFor(setRows, traits) {
 const traitsOf = (rows, column, type) => [...(rows ?? [])].filter((r) => r[column] === type).map((r) => r.TraitType);
 
 /** @returns {Set<string>} the local player's civilization and leader traits */
-function playerTraits() {
+export function playerTraits() {
   const player = Players.get(GameContext.localPlayerID);
   const civ = GameInfo.Civilizations?.lookup(player?.civilizationType ?? -1)?.CivilizationType;
   const leader = GameInfo.Leaders?.lookup(player?.leaderType ?? -1)?.LeaderType;

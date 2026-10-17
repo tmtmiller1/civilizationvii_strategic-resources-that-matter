@@ -58,13 +58,13 @@ INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
 -- Not for a civilization whose unique replaces it: the grant would lift the replacement.
 INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
     SELECT 'SR_LINE_NOT_' || u.TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT', 1 FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
-    WHERE r.ReplacesUnitType = 'UNIT_DREADNOUGHT' AND u.TraitType IS NOT NULL;
+    WHERE r.ReplacesUnitType = 'UNIT_DREADNOUGHT' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
 INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
     SELECT 'SR_LINE_NOT_' || u.TraitType, 'TraitType', u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
-    WHERE r.ReplacesUnitType = 'UNIT_DREADNOUGHT' AND u.TraitType IS NOT NULL;
+    WHERE r.ReplacesUnitType = 'UNIT_DREADNOUGHT' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
 INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_DREADNOUGHT', 'SR_LINE_NOT_' || u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
-    WHERE r.ReplacesUnitType = 'UNIT_DREADNOUGHT' AND u.TraitType IS NOT NULL AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_DREADNOUGHT');
+    WHERE r.ReplacesUnitType = 'UNIT_DREADNOUGHT' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED' AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_DREADNOUGHT');
 
 -- UNIT_GHILMAN_2: unique, needs RESOURCE_OIL; keeps UNIT_GHILMAN trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
@@ -130,13 +130,13 @@ INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
 -- Not for a civilization whose unique replaces it: the grant would lift the replacement.
 INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
     SELECT 'SR_LINE_NOT_' || u.TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT', 1 FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
-    WHERE r.ReplacesUnitType = 'UNIT_LANDSHIP' AND u.TraitType IS NOT NULL;
+    WHERE r.ReplacesUnitType = 'UNIT_LANDSHIP' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
 INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
     SELECT 'SR_LINE_NOT_' || u.TraitType, 'TraitType', u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
-    WHERE r.ReplacesUnitType = 'UNIT_LANDSHIP' AND u.TraitType IS NOT NULL;
+    WHERE r.ReplacesUnitType = 'UNIT_LANDSHIP' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
 INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_LANDSHIP', 'SR_LINE_NOT_' || u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
-    WHERE r.ReplacesUnitType = 'UNIT_LANDSHIP' AND u.TraitType IS NOT NULL AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_LANDSHIP');
+    WHERE r.ReplacesUnitType = 'UNIT_LANDSHIP' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED' AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_LANDSHIP');
 
 -- UNIT_MIKASA: unique, needs RESOURCE_OIL.
 INSERT INTO Modifiers (ModifierId, ModifierType)

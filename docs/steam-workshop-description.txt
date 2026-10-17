@@ -1,24 +1,26 @@
 [h1]Strategic Resources That Matter[/h1]
 [b]Version 1.0.1. Compatible with Civilization VII 1.5.0. Single-player only[/b]
 
-Horses, Iron, Niter, Oil, Coal and Rubber count for the units that need them. In the base game a missing one costs you nothing; with the mod, a unit whose owner has none of its resource fights weaker and trains slower, losing your last one brings the penalty back a turn later, and the count keeps adding strength past six. Nothing is forbidden unless you ask for it: turn on Gated Units at setup and a unit cannot be trained or bought at all while you have none of its resource.
+Horses, Iron, Niter, Hardwood, Oil, Coal and Rubber count for the units that need them. In the base game a missing one costs you nothing; with the mod, a unit whose owner has none of its resource fights weaker and trains slower, losing your last one brings the penalty back a turn later, and the count keeps adding strength past six. Nothing is forbidden unless you ask for it: set Unsupplied Units to one of its two locked values and a unit cannot be trained or bought at all while you have none of its resource.
 
-Three options in Advanced Options, under Game Settings, each with an Off value, combine freely, so you choose the rules per game: the standard penalty with no gate (the default), a harsh penalty with the gate on, the gate alone, or any other mix. The AI plays under the same rules; independent powers and city-states are never affected.
+Four options in Advanced Options, under Game Settings, so you choose the rules per game: the penalty from Off up to a lock, the bonus past six, a second resource for every Modern unit (off by default, because it's hard), and the Samurai's free tier-up. The AI plays under the same rules; independent powers and city-states are never affected.
 
 [h2]What changes[/h2]
 [list]
 [*][b]Unsupplied units.[/b] A unit whose owner has none of its strategic resource loses Combat Strength on each strength it has (melee, and ranged and bombard where it has them), and its city puts less Production toward it. Default: -3 and a third less Production. One of the resource lifts the penalty; the game's own +1 for each applies as before, up to six.
 [*][b]Losing a resource hurts.[/b] The game notices a resource arriving but not one going away. The mod has it check every player again each turn, so a resource lost to a raid, a lost settlement or an ended trade route brings the penalty back a turn later, for you and for the AI alike.
 [*][b]Past six.[/b] Where the game's own bonus stops, the count keeps adding: +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 of a resource.
-[*][b]Gated Units (off by default).[/b] A unit that needs a strategic resource cannot be trained or bought while you have none of it. It stays in the production list, greyed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under Training and upgrade, no unit can be upgraded into it either; under Training, upgrades stay free. Units already in the field are never gated. The Warrior line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog and Modern infantry need nothing, so everyone can always defend. A unit that needs nothing stays in your list until you hold the resource for the next one in its line, so Gunpowder never leaves you without a siege unit, and the upgrade still works once you have it. The AI is locked by the same rule and never sticks on a locked unit.
+[*][b]Locked units (the two hardest values).[/b] Set Unsupplied Units to "Locked: training" or "Locked: training and upgrade" and a unit that needs a strategic resource cannot be trained or bought while you have none of it, on top of the Harsh penalty in the field. It stays in the production list, greyed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under the second value, no unit can be upgraded into it either, and a commander's Upgrade All greys out with the reason. The Warrior line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog and Modern infantry need nothing, so everyone can always defend. A unit that needs nothing stays in your list until you hold the resource for the next one in its line, so Gunpowder never leaves you without a siege unit, and the upgrade still works once you have it. The AI is locked by the same rule and never sticks on a locked unit.
+[*][b]Modern Supply Chains (off by default).[/b] Every Modern unit that needs a resource needs a second one: artillery Niter and Coal, armour and battleships Oil and Coal, light warships Coal and Niter, aircraft Rubber and Oil (Iron isn't on Modern maps, so Coal stands for steel). Each missing resource costs the full penalty, and under a locked value the unit needs both to be trained. It's a hard game.
 [/list]
 
 [h2]Game setup options[/h2]
 Play Now uses the defaults. The options are fixed for the whole game once it starts.
 [list]
-[*][b]Unsupplied Units:[/b] Off, Light (-2, 20% less Production), Standard (-3, 33% less), Harsh (-5, 50% less). Default Standard.
+[*][b]Unsupplied Units:[/b] Off, Light (-2, 20% less Production), Standard (-3, 33% less), Harsh (-5, 50% less), Locked: training, Locked: training and upgrade. Default Standard.
 [*][b]Strategic Resources Past Six:[/b] Off or On. Default On.
-[*][b]Gated Units:[/b] Off, Training, or Training and upgrade. Default Off.
+[*][b]Modern Supply Chains:[/b] Off or On. Default Off.
+[*][b]Free Tier-Up by Kills:[/b] Off or On. Default On.
 [/list]
 
 [h2]Which units need what[/h2]
@@ -28,7 +30,8 @@ Play Now uses the defaults. The options are fixed for the whole game once it sta
 [tr][td]Antiquity[/td][td]Infantry from the second tier (Spearman, Phalanx, Legion, Immortal...)[/td][td]Iron[/td][/tr]
 [tr][td]Exploration[/td][td]Cavalry (Courser, Knight, Lancer)[/td][td]Horses[/td][/tr]
 [tr][td]Exploration[/td][td]Infantry from the second tier (Man-At-Arms, Pikeman)[/td][td]Iron[/td][/tr]
-[tr][td]Exploration[/td][td]Siege from the third tier (Bombard), and heavy warships from the second tier (Carrack, Galleon)[/td][td]Niter[/td][/tr]
+[tr][td]Exploration[/td][td]Siege from the third tier (Bombard)[/td][td]Niter[/td][/tr]
+[tr][td]Exploration[/td][td]Heavy warships from the second tier (Carrack, Galleon)[/td][td]Hardwood[/td][/tr]
 [tr][td]Modern[/td][td]Artillery (Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun)[/td][td]Niter[/td][/tr]
 [tr][td]Modern[/td][td]Armour and battleships[/td][td]Oil[/td][/tr]
 [tr][td]Modern[/td][td]Light warships (Ironclad, Cruiser, Destroyer)[/td][td]Coal[/td][/tr]
@@ -51,13 +54,13 @@ A civilization's unique unit needs what the unit it replaces needs. A resource t
 [list]
 [*][b]Single-player.[/b] In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.
 [*][b]New games.[/b] A game started with the mod needs it to load; added to a game under way, it takes effect from the next new game.
-[*][b]Under Gated Units,[/b] a unit already in the production queue when the resource is lost keeps its progress and is completed.
+[*][b]Under a locked value,[/b] a unit already in the production queue when the resource is lost keeps its progress and is completed.
 [*][b]Another mod that sets the game's resource minimums itself[/b] keeps the engine's rule by its own numbers; this mod's lock texts then step back to their plain form.
 [/list]
 
 [h2]Compatibility[/h2]
 [list]
-[*]Adds unit tags, modifiers and three setup options; replaces no base-game file. The panel cell, the pill and the resource line use the slots the game keeps for mods. Tested with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3757582073]Readable Tooltips[/url], QD Improved Plot Tooltip, Building Location Advisor, City Hall, Better Commerce Screen UI, Mod Commons and Mav's UI Overhaul.
+[*]Adds unit tags, modifiers and four setup options; replaces no base-game file. The panel cell, the pill and the resource line use the slots the game keeps for mods. Tested with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3757582073]Readable Tooltips[/url], QD Improved Plot Tooltip, Building Location Advisor, City Hall, Better Commerce Screen UI, Mod Commons and Mav's UI Overhaul.
 [*]Carries the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3815023570]Tower Settings Keeper[/url], so every mod's settings survive a restart.
 [/list]
 

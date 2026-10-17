@@ -37,14 +37,14 @@ try {
 
   // describeUnit
   assert.deepEqual(describeUnit(units.spear),
-    { text: "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3", resourceType: "RESOURCE_IRON", combat: -3 });
-  assert.equal(describeUnit(units.warrior), null);
-  assert.equal(describeUnit(units.minor), null, "independents and city-states pay no penalty");
-  assert.equal(describeUnit(units.unknown), null);
+    [{ text: "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3", resourceType: "RESOURCE_IRON", combat: -3 }]);
+  assert.deepEqual(describeUnit(units.warrior), []);
+  assert.deepEqual(describeUnit(units.minor), [], "independents and city-states pay no penalty");
+  assert.deepEqual(describeUnit(units.unknown), []);
   holdings = [{ uniqueResource: { resource: iron.$hash }, isOffMap: false }];
-  assert.equal(describeUnit(units.spear), null, "one copy supplies the unit");
+  assert.deepEqual(describeUnit(units.spear), [], "one copy supplies the unit");
   holdings = [{ uniqueResource: { resource: iron.$hash }, isOffMap: true }, { uniqueResource: null }];
-  assert.match(describeUnit(units.spear)?.text ?? "", /UNSUPPLIED/, "an off-map copy supplies nothing");
+  assert.match(describeUnit(units.spear)[0]?.text ?? "", /UNSUPPLIED/, "an off-map copy supplies nothing");
   holdings = [];
 
   // The decorator around a panel whose prototype owns setupUnitInfo.
@@ -139,14 +139,50 @@ try {
     { Name: "STRATEGIC_RESOURCE_MINIMUM_FOR_PURCHASE_ANYWHERE", Value: "1" }];
   resetIndexes();
   units.spear.type = globalThis.GameInfo.Units.lookup("UNIT_SPEARMAN").$hash;
-  assert.equal(describeUnit(units.spear)?.text, "LOC_SR_UNSUPPLIED_LINE_GATED|LOC_RESOURCE_IRON_NAME|-3");
+  assert.equal(describeUnit(units.spear)[0]?.text, "LOC_SR_UNSUPPLIED_LINE_GATED|LOC_RESOURCE_IRON_NAME|-3");
   holdings = [{ uniqueResource: { resource: iron.$hash }, isOffMap: false }];
-  assert.equal(describeUnit(units.spear), null, "supplied: nothing to say, gate or not");
+  assert.deepEqual(describeUnit(units.spear), [], "supplied: nothing to say, gate or not");
   holdings = [];
   globalThis.GameInfo.GlobalParameters = [];
   resetIndexes();
-  assert.equal(describeUnit(units.spear)?.text, "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3",
+  assert.equal(describeUnit(units.spear)[0]?.text, "LOC_SR_UNSUPPLIED_LINE|LOC_RESOURCE_IRON_NAME|-3",
     "gate off: the 1.0 line");
+
+  // A unit short of two resources (Modern Supply Chains) gets two cells, in the tags' order; one copy of either
+  // takes its cell away, and the cells are reused.
+  globalThis.GameInfo.Units = table([{ UnitType: "UNIT_SPEARMAN" }, { UnitType: "UNIT_WARRIOR" }, { UnitType: "UNIT_TANK" }],
+    "UnitType");
+  globalThis.GameInfo.Resources = table([{ ResourceType: "RESOURCE_IRON", Name: "LOC_RESOURCE_IRON_NAME" },
+    { ResourceType: "RESOURCE_OIL", Name: "LOC_RESOURCE_OIL_NAME" }, { ResourceType: "RESOURCE_COAL", Name: "LOC_RESOURCE_COAL_NAME" }],
+  "ResourceType");
+  globalThis.GameInfo.TypeTags = [{ Type: "UNIT_SPEARMAN", Tag: "SR_SUPPLY_IRON" }, { Type: "UNIT_TANK", Tag: "SR_SUPPLY_OIL" },
+    { Type: "UNIT_TANK", Tag: "SR_SUPPLY_COAL" }];
+  globalThis.GameInfo.ModifierArguments = [{ ModifierId: "SR_COMBAT_PENALTY_IRON", Name: "Amount", Value: "-3" },
+    { ModifierId: "SR_COMBAT_PENALTY_OIL", Name: "Amount", Value: "-3" },
+    { ModifierId: "SR_COMBAT_PENALTY_COAL", Name: "Amount", Value: "-3" }];
+  resetIndexes();
+  units.tank = { owner: 0, type: globalThis.GameInfo.Units.lookup("UNIT_TANK").$hash };
+  assert.deepEqual(describeUnit(units.tank).map((s) => s.resourceType), ["RESOURCE_OIL", "RESOURCE_COAL"]);
+  const twoRoot = element();
+  const twoStats = element(["unit-actions__stats_container"]);
+  twoRoot.appendChild(twoStats);
+  const twoPanel = Object.assign(new Panel(), { Root: twoRoot, unitId: "tank" });
+  factory(twoPanel);
+  twoPanel.setupUnitInfo();
+  const cells = twoStats.children.filter((c) => c.classList.contains("sr-unsupplied-line"));
+  assert.equal(cells.length, 2, "two cells, one per resource");
+  assert.deepEqual(cells.map((c) => c.children[0].style.backgroundImage),
+    ["url(blp:icon_resource_oil)", "url(blp:icon_resource_coal)"]);
+  assert.equal(twoStats.children.length, 4, "a divider before each cell");
+  holdings = [{ uniqueResource: { resource: globalThis.GameInfo.Resources.lookup("RESOURCE_OIL").$hash }, isOffMap: false }];
+  twoPanel.setupUnitInfo();
+  const after = twoStats.children.filter((c) => c.classList.contains("sr-unsupplied-line"));
+  assert.equal(after.length, 2, "the cells are reused, not remade");
+  const shown = after.filter((c) => !c.classList.contains("hidden"));
+  assert.equal(shown.length, 1, "one copy of Oil: one cell left");
+  assert.equal(shown[0].children[0].style.backgroundImage, "url(blp:icon_resource_coal)", "and it shows Coal");
+  assert.equal(twoStats.children[twoStats.children.length - 1], shown[0], "the shown cell sits at the end of the row");
+  holdings = [];
 
 } finally {
   log.restore();

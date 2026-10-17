@@ -7,7 +7,7 @@ import {
 
 /**
  * @typedef {object} Indexes
- * @property {Map<string, string>} supply
+ * @property {Map<string, string[]>} supply
  * @property {Map<string, import("./sr-supply.js").Penalty>} penalties
  * @property {import("./sr-supply.js").Gate} gate
  */

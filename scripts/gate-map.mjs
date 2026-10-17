@@ -4,7 +4,10 @@
 //
 // A unique unit follows the unit it replaces (UnitReplaces): it is judged by that unit's tags, domain and tier, so a
 // civilization's own Spearman needs Iron exactly when the Spearman does. A unit that replaces nothing is judged by
-// its own. Each unit draws on at most one resource; the first rule that matches wins.
+// its own. Each unit draws on at most one resource; the first rule that matches wins. Hardwood is an Empire resource
+// like the six the base game ties to units, placed in every age, with no unit of its own in the base game: the mod
+// gives it the Exploration heavy warships (the hull), and leaves Niter to the guns (the Bombard) and the Ironclad
+// line to Coal.
 
 export const AGES = ["AGE_ANTIQUITY", "AGE_EXPLORATION", "AGE_MODERN"];
 
@@ -43,8 +46,8 @@ export const GATES = {
       test: (u) => has(u, "SIEGE") && u.Domain === "DOMAIN_LAND" && u.Tier >= 3
     },
     {
-      resource: "RESOURCE_NITER",
-      rule: "heavy warships from tier 2 (the Cog is free)",
+      resource: "RESOURCE_HARDWOOD",
+      rule: "heavy warships from tier 2 (the Cog is free): hulls, not powder",
       test: (u) => has(u, "NAVAL") && has(u, "HEAVY") && u.Tier >= 2
     }
   ],
@@ -64,6 +67,55 @@ export const GATES = {
     { resource: "RESOURCE_RUBBER", rule: "aircraft", test: (u) => has(u, "AIRCRAFT") }
   ]
 };
+
+/**
+ * Modern Supply Chains (a setup option, off by default): the second resource each Modern unit draws on, by the same
+ * tests as GATES. Iron isn't placed on Modern maps (Resource_ValidAges), so Coal stands for steel: guns, armour and
+ * hulls need it beside their powder or fuel; the light warships need powder beside their coal; aircraft need fuel
+ * beside their rubber. The option adds a tag per unit for the second resource, so the penalties stack, and the
+ * grant-only lines lock the unit behind both resources under the locked levels (DESIGN.md 7h).
+ * @type {Record<string, { resource: string, rule: string, test: (u: UnitFacts) => boolean }[]>}
+ */
+export const CHAINS = {
+  AGE_MODERN: [
+    {
+      resource: "RESOURCE_COAL",
+      rule: "artillery: steel for the guns",
+      test: (u) => u.Domain === "DOMAIN_LAND" && (has(u, "SIEGE") || has(u, "RANGED"))
+    },
+    { resource: "RESOURCE_COAL", rule: "armour: steel", test: (u) => has(u, "CAVALRY") && u.Tier >= 2 },
+    {
+      resource: "RESOURCE_COAL",
+      rule: "battleships: steel hulls",
+      test: (u) => has(u, "NAVAL") && has(u, "HEAVY") && u.Tier >= 2
+    },
+    { resource: "RESOURCE_NITER", rule: "light warships: powder for the guns", test: (u) => has(u, "NAVAL") && has(u, "LIGHT") },
+    { resource: "RESOURCE_OIL", rule: "aircraft: fuel", test: (u) => has(u, "AIRCRAFT") }
+  ]
+};
+
+/**
+ * Unit type to the second resource it draws on with Modern Supply Chains on: every gated unit of an age that has
+ * chain rules gets one, never the same as its first.
+ * @param {AgeDump} dump
+ * @returns {Map<string, string>}
+ */
+export function buildChainMap(dump) {
+  const rules = CHAINS[dump.age];
+  /** @type {Map<string, string>} */
+  const map = new Map();
+  if (!rules) return map;
+  const facts = unitFacts(dump);
+  const replaced = new Map(dump.replaces.map((r) => [r.CivUniqueUnitType, r.ReplacesUnitType]));
+  for (const [unit, first] of buildGateMap(dump)) {
+    const judged = facts.get(replaced.get(unit) ?? "") ?? facts.get(unit);
+    const chain = judged ? rules.find((g) => g.test(judged)) : undefined;
+    if (!chain) throw new Error(`${unit}: a gated unit of ${dump.age} with no chain rule`);
+    if (chain.resource === first) throw new Error(`${unit}: its chain names its own resource ${first}`);
+    map.set(unit, chain.resource);
+  }
+  return map;
+}
 
 /**
  * The resources whose vanilla per-copy combat bonus the late curve extends, with the unit tags vanilla gives that
@@ -190,7 +242,8 @@ export const LOCKED_TRAIT = "TRAIT_SR_LOCKED";
 /**
  * @typedef {object} LineLock
  * @property {string} unit the gated unit a free unit upgrades into, or a unique that replaces one
- * @property {string} resource what it needs
+ * @property {string} resource what it needs (the first of `resources`)
+ * @property {string[]} resources every resource the grant waits for: one, or two under Modern Supply Chains
  * @property {"base" | "unique" | "granted"} kind base: no trait in the game, gets the city-state trait; unique: a
  *   civilization's own unit, gets a trait nobody holds; granted: already reached only through the game's grants (the
  *   Corsair tiers), which get the resource added
@@ -217,16 +270,39 @@ export function lineLocks(dump) {
     if (targets.has(r.ReplacesUnitType) && gates.has(r.CivUniqueUnitType) &&
       units.get(r.CivUniqueUnitType)?.CanTrain === 1) targets.add(r.CivUniqueUnitType);
   }
-  return [...targets].sort().map((unit) => {
-    const trait = units.get(unit)?.TraitType ?? null;
-    return {
-      unit,
-      resource: /** @type {string} */ (gates.get(unit)),
-      kind: trait === null ? "base" : trait === MINOR_CIV_TRAIT ? "granted" : "unique",
-      trait,
-      predecessors: dump.upgrades.filter((r) => r.UpgradeUnit === unit).map((r) => r.Unit).sort()
-    };
-  });
+  return [...targets].sort().map((unit) => lockOf(dump, unit, [/** @type {string} */ (gates.get(unit))]));
+}
+
+/**
+ * One lock entry: the unit's kind by its trait, what it waits for, and the units that upgrade into it.
+ * @param {AgeDump & { units: { UnitType: string, TraitType?: string | null }[] }} dump
+ * @param {string} unit @param {string[]} resources
+ * @returns {LineLock}
+ */
+function lockOf(dump, unit, resources) {
+  const trait = dump.units.find((u) => u.UnitType === unit)?.TraitType ?? null;
+  return {
+    unit,
+    resource: resources[0],
+    resources,
+    kind: trait === null ? "base" : trait === MINOR_CIV_TRAIT ? "granted" : "unique",
+    trait,
+    predecessors: dump.upgrades.filter((r) => r.UpgradeUnit === unit).map((r) => r.Unit).sort()
+  };
+}
+
+/**
+ * Under Modern Supply Chains every gated unit of the age is grant-only behind both its resources: the engine's
+ * column takes one resource, so the second is held by the same grant-only shape as the lines (DESIGN.md 7h). The
+ * units the plain lines already lock are among them, with the second resource added to their grant.
+ * @param {AgeDump & { units: { UnitType: string, CanTrain: number, TraitType?: string | null }[] }} dump
+ * @returns {LineLock[]}
+ */
+export function chainLocks(dump) {
+  const gates = buildGateMap(dump);
+  const chains = buildChainMap(dump);
+  return [...chains.keys()].sort()
+    .map((unit) => lockOf(dump, unit, [/** @type {string} */ (gates.get(unit)), /** @type {string} */ (chains.get(unit))]));
 }
 
 /**
@@ -281,19 +357,23 @@ export const STRENGTHS = [
 
 /**
  * Per resource of one age, the units each strength row may change: the gated units (penalty) and the units vanilla's
- * per-copy bonus covers (curve), each kept only where the unit's base value for that strength is above 0.
+ * per-copy bonus covers (curve), each kept only where the unit's base value for that strength is above 0. With a
+ * `gates` map given (the chain map), the penalty side is read for that map instead.
  * @param {AgeDump & { units: { UnitType: string, Combat?: number, RangedCombat?: number, Bombard?: number }[] }} dump
+ * @param {Map<string, string>} [gates]
  * @returns {{ penalty: Map<string, Record<string, string[]>>, curve: Map<string, Record<string, string[]>> }}
  */
-export function strengthUnits(dump) {
+export function strengthUnits(dump, gates = buildGateMap(dump)) {
   const stats = new Map(dump.units.map((u) => [u.UnitType, u]));
   const facts = unitFacts(dump);
   const keep = (/** @type {string[]} */ units, /** @type {string} */ stat) =>
     units.filter((unit) => Number(/** @type {*} */ (stats.get(unit))?.[stat] ?? 0) > 0).sort();
   const split = (/** @type {string[]} */ units) =>
     Object.fromEntries(STRENGTHS.map(({ type, stat }) => [type, keep(units, stat)]));
-  const gates = buildGateMap(dump);
-  const penalty = new Map(gatedResources(dump.age).map((resource) =>
+  const used = new Set(gates.values());
+  const resources = [...gatedResources(dump.age).filter((r) => used.has(r)),
+    ...[...used].filter((r) => !gatedResources(dump.age).includes(r)).sort()];
+  const penalty = new Map(resources.map((resource) =>
     [resource, split([...gates].filter(([, r]) => r === resource).map(([unit]) => unit))]));
   const curve = new Map(VANILLA_PER_COPY[dump.age].map(({ resource, tags }) =>
     [resource, split([...facts.values()].filter((u) => tags.some((t) => u.tags.has(t))).map((u) => u.UnitType))]));

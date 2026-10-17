@@ -25,27 +25,36 @@
         <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_NITER"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_NITER"/>
         <Row ModifierId="SR_ATTACH_PREVIEW_PENALTY_NITER"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_HARDWOOD"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_HARDWOOD"/>
+        <Row ModifierId="SR_ATTACH_RANGED_PENALTY_HARDWOOD"/>
+        <Row ModifierId="SR_ATTACH_RANGED_SUPPLIED_HARDWOOD"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_PENALTY_HARDWOOD"/>
+        <Row ModifierId="SR_ATTACH_BOMBARD_SUPPLIED_HARDWOOD"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_HARDWOOD"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_HARDWOOD"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_PENALTY_HARDWOOD"/>
     </GameModifiers>
     <CivilopediaPageChapterParagraphs>
         <Row SectionID="UNITS" PageID="UNIT_BOMBARD" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_BOYAR" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_BOYAR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_BOYAR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_CARRACK" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_CETBANG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_CETBANG_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CARRACK" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CETBANG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CETBANG_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CHEVALER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CHEVALER_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CHEVALER_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_CORSAIR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_CORSAIR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CORSAIR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CORSAIR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_COURSER" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_GALLEON" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_GALLEON" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GOLD_BANGLES_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GOLD_BANGLES_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_HWACHA_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_KALAM_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_KALAM_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_KALAM_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_KALAM_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_KISPOKO_NENA_TO_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_KISPOKO_NENA_TO_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_KNIGHT" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
@@ -64,8 +73,8 @@
         <Row SectionID="UNITS" PageID="UNIT_TOBANG" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TOBANG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TOBANG_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_VIKINGR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_VIKINGR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_NITER_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_VIKINGR_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_VIKINGR_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_XUNLEICHONG_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_LIGHT" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_XUNLEICHONG_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_LIGHT" SortIndex="10"/>
     </CivilopediaPageChapterParagraphs>

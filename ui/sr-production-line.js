@@ -1,5 +1,7 @@
 // Adds one pill to a gated unit's item in the production list: "Needs Niter" with none held, "Niter: 2" with some,
-// and under the hard gate "Locked: no Niter" on the greyed item sr-production-lock.js keeps listed. The pill goes in
+// and under the hard gate "Locked: no Niter" on the greyed item sr-production-lock.js keeps listed. A unit that
+// draws on two resources (Modern Supply Chains) gets one part per resource in the pill, "Needs Oil, Needs Coal", and
+// one sentence per resource in the tooltip. The pill goes in
 // ProductionModInfo, the empty slot the game renders under each item's name and error line for mods, so the game's
 // own text stays where it is; it is the mod's status pill (sr-pill.js), red while the unit is short. The
 // whole sentence ("Needs Niter. Without it: -3 Combat Strength, slower to train.", "Needs Niter: cannot be trained
@@ -17,7 +19,9 @@ const LINE_CLASS = "sr-production-line";
 /**
  * The line for the local player's production item, or null when there is nothing to say. `short` is the form for a
  * one-row item (City Hall's compact list), where the sentence would squeeze the unit's name.
- * `buyText` is the locked form for the purchase list, where the item says what cannot be bought.
+ * `buyText` is the form for the purchase list, where a locked item says what cannot be bought.
+ * A unit that draws on two resources gets one part per resource: the sentences on separate lines, the short forms
+ * in one list.
  * @param {string | undefined} unitType
  * @returns {{ text: string, buyText: string | null, short: string, unsupplied: boolean } | null}
  */
@@ -27,16 +31,28 @@ export function describeProductionItem(unitType) {
   if (!player?.isMajor) return null;
   const { supply, penalties, gate } = readIndexes();
   if (!supply.has(unitType) && !gate.columns.has(unitType)) return null;
-  const line = describeProductionCost(unitType, { supply, penalties, copiesOf: copiesCounter(player), gate });
-  if (!line) return null;
-  const [resourceType, value] = line.args;
-  const name = resourceNameKey(String(resourceType));
-  const locked = line.key === "LOC_SR_PRODUCTION_LOCKED";
+  const lines = describeProductionCost(unitType, { supply, penalties, copiesOf: copiesCounter(player), gate });
+  if (lines.length === 0) return null;
+  const parts = lines.map((line) => {
+    const [resourceType, value] = line.args;
+    const name = resourceNameKey(String(resourceType));
+    const locked = line.key === "LOC_SR_PRODUCTION_LOCKED";
+    return {
+      text: Locale.compose(line.key, name, value),
+      buyText: locked ? Locale.compose("LOC_SR_PRODUCTION_LOCKED_BUY", name) : Locale.compose(line.key, name, value),
+      short: Locale.compose(`${line.key}_SHORT`, name, value),
+      unsupplied: line.key === "LOC_SR_PRODUCTION_NEEDS_NONE" || locked,
+      locked
+    };
+  });
+  // A key of the form "{1_First}, {2_Second}" carries the spacing: the game trims a separator key's own spaces.
+  const list = (/** @type {string[]} */ items) =>
+    items.reduce((first, second) => Locale.compose("LOC_SR_LIST_PAIR", first, second));
   return {
-    text: Locale.compose(line.key, name, value),
-    buyText: locked ? Locale.compose("LOC_SR_PRODUCTION_LOCKED_BUY", name) : null,
-    short: Locale.compose(`${line.key}_SHORT`, name, value),
-    unsupplied: line.key === "LOC_SR_PRODUCTION_NEEDS_NONE" || locked
+    text: parts.map((p) => p.text).join("[N]"),
+    buyText: parts.some((p) => p.locked) ? parts.map((p) => p.buyText).join("[N]") : null,
+    short: list(parts.map((p) => p.short)),
+    unsupplied: parts.some((p) => p.unsupplied)
   };
 }
 
