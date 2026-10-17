@@ -44,5 +44,19 @@
         <Row ModifierId="SR_ATTACH_PREVIEW_CURVE_IRON_18"/>
         <Row ModifierId="SR_ATTACH_CURVE_IRON_20"/>
         <Row ModifierId="SR_ATTACH_PREVIEW_CURVE_IRON_20"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IVORY_8"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_CURVE_IVORY_8"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IVORY_10"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_CURVE_IVORY_10"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IVORY_12"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_CURVE_IVORY_12"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IVORY_14"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_CURVE_IVORY_14"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IVORY_16"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_CURVE_IVORY_16"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IVORY_18"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_CURVE_IVORY_18"/>
+        <Row ModifierId="SR_ATTACH_CURVE_IVORY_20"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_CURVE_IVORY_20"/>
     </GameModifiers>
 </Database>

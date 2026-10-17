@@ -142,4 +142,74 @@
         <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
         <String context="Preview">LOC_SR_PREVIEW_UNSUPPLIED</String>
     </Modifier>
+    <Modifier id="SR_ATTACH_COMBAT_PENALTY_IVORY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_PENALTY_IVORY</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_PENALTY_IVORY" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_IVORY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">-2</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_COMBAT_SUPPLIED_IVORY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_COMBAT_SUPPLIED_IVORY</Argument>
+    </Modifier>
+    <Modifier id="SR_COMBAT_SUPPLIED_IVORY" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_IVORY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_PENALTY_IVORY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_PENALTY_IVORY</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_PENALTY_IVORY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">SR_SUPPLY_IVORY</Argument>
+        <Argument name="Percent">-20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PRODUCTION_SUPPLIED_IVORY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PRODUCTION_SUPPLIED_IVORY</Argument>
+    </Modifier>
+    <Modifier id="SR_PRODUCTION_SUPPLIED_IVORY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitClass">SR_SUPPLY_IVORY</Argument>
+        <Argument name="Percent">20</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_PENALTY_IVORY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_PENALTY_IVORY</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_PENALTY_IVORY" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_SUPPLY_IVORY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">-2</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IVORY_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_UNSUPPLIED</String>
+    </Modifier>
 </GameEffects>

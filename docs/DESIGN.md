@@ -95,24 +95,29 @@ unit it replaces, a unit that replaces nothing by its own tags and tier. `tests/
 
 | Age | Rule | Resource | Units (2026-10-11, 1.5.0 with the DLC on the development machine) |
 | --- | --- | --- | --- |
-| Antiquity | cavalry | Horses | Chariot, Horseman; Dantinas Tatha 1-2, Magarru 1-2, Numidian Cavalry 1-2, Purabhettarah 1-2 |
+| Antiquity | cavalry | Horses | Chariot, Horseman; Magarru 1-2, Numidian Cavalry 1-2 |
+| Antiquity | the war elephants, by unit type before the rules (1.3) | Ivory | Dantinas Tatha 1-2, Purabhettarah 1-2 |
 | Antiquity | infantry from tier 2 (the Warrior line and the Scout are free) | Iron | Spearman, Phalanx; Gaisatai 2-3, Hoplite 2-3, Immortal 1-2, Legion 1-2, Medjay 2-3 |
 | Exploration | cavalry | Horses | Courser, Knight, Lancer; Boyar 1-3, Chevaler 1-3, Mamluk 1-3, Tobang 1-3 |
 | Exploration | infantry from tier 2 | Iron | Man-at-Arms, Pikeman; Gold Bangles, Kispoko Nena To, Leiomano, Samurai, Tercio, Xunleichong (each 2-3) |
 | Exploration | land siege from tier 3 (the Catapult and Trebuchet are free) | Niter | Bombard; Hwacha 3 |
 | Exploration | heavy warships from tier 2 (the Cog is free): the hull, not the powder (1.2) | Hardwood | Carrack, Galleon; Cetbang, Corsair, Kalam, Vikingr (each 2-3) |
-| Modern | artillery: land siege and land ranged | Niter | Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun; Chang Beun 1-3, Katyusha 1-2 |
+| Modern | field artillery: land ranged up to tier 2, the powder guns | Niter | Field Cannon, Field Gun; Chang Beun 1-2 |
+| Modern | the heavier artillery: land siege, and land ranged from tier 3 (motorised; 1.2.0, the owner) | Oil | Mortar, Howitzer, AT Gun, Assault Gun; Chang Beun 3, Katyusha 1-2 |
 | Modern | armour: cavalry from tier 2 (the Cuirassier is free) | Oil | Landship, Tank; Cossack 2-3, Ghilman 2-3, Hussar 2-3 |
 | Modern | battleships: heavy warships from tier 2 (the Ship of the Line is free) | Oil | Dreadnought, Battleship; Mikasa 1-2, Revenge 1-2, Turtle Ship 2-3 |
 | Modern | light warships | Coal | Ironclad, Cruiser, Destroyer; Barbary Corsair 1-3 |
+| Modern | cavalry at tier 1 (1.3, the owner) | Horses | Cuirassier; Cossack 1, Ghilman 1, Hussar 1 |
+| Modern | heavy warships at tier 1, a wooden hull (1.3, the owner) | Hardwood | Ship of the Line; Turtle Ship 1 |
+| Modern | submarines: naval, neither heavy nor light (1.3, the owner) | Oil | Submarine |
 | Modern | aircraft | Rubber | Biplane, Fighter, Trench Fighter, Dive Bomber, Bomber, Heavy Bomber; Stuka 1-2, Zero 1-2 |
 | Modern | infantry | none | count bonus only; gating the basic line unit would lock players out of defence |
 
-Totals: Antiquity 22 units, Exploration 41, Modern 43. Not gated, by the rules: ranged infantry (Archer, Crossbowman,
-Arquebusier and their uniques; the Keshig and Hwarang follow the archer they replace), the Catapult and Trebuchet with
-the Hwacha 1-2 that replace them (siege without gunpowder), the Submarine (neither light nor heavy), and the Modern
-infantry line including the Sepoy (it replaces Line Infantry, so its siege tag does not make it artillery). There are no
-carriers in 1.5.0.
+Totals: Antiquity 22 units, Exploration 41, Modern 50 (1.3). Not gated, by the rules: ranged infantry (Archer,
+Crossbowman, Arquebusier and their uniques; the Keshig and Hwarang follow the archer they replace), the Catapult and
+Trebuchet with the Hwacha 1-2 that replace them (siege without gunpowder), and the Modern infantry line including the
+Sepoy (it replaces Line Infantry, so its siege tag does not make it artillery). There are no carriers in 1.5.0. Under
+Modern Supply Chains the Cuirassier takes Niter second, the Ship of the Line Niter and the Submarine Rubber.
 
 ## 5. How it would be built
 
@@ -724,3 +729,16 @@ Unsupplied Units (7h). A save from before 1.2 keeps its Gated Units value throug
 - Hardwood for the Exploration heavy warships, the Ironclad line kept on Coal; Modern Supply Chains as an option,
   off by default, because it is hard; the lock inside Unsupplied Units (the owner, 2026-10-16, from Workshop
   suggestions).
+- The heavier Modern artillery (Mortar, Howitzer, AT Gun, Assault Gun) on Oil, the Field Cannon and Field Gun kept on
+  Niter (the owner, 2026-10-17): the motorised pieces burn fuel, the powder guns keep the powder. Watched
+  (`m2-artillery-oil`). Nickel would read as modern too but is a City-class resource, never probed.
+- The Cuirassier on Horses, the Ship of the Line on Hardwood (Niter second under Supply Chains for both) and the
+  Submarine on Oil with Rubber second (the owner, 2026-10-17). A unit on one resource that upgrades into a unit on
+  another is kept trainable by the same grant-only shape as a free one (the Ship of the Line into the Dreadnought,
+  the Field Gun into the AT Gun).
+- The war elephants on Ivory, with +1 per Ivory capped at six like the Horses bonus and the game's Horses bonus
+  stopped at them (the owner, 2026-10-17, from the Workshop comment in `docs/elephants-on-ivory.md`): the "Ivory
+  only" option there, plus the per-copy bonus the second decision recommended against. The balance finding stands:
+  Ivory is about seven times as common as Horses. Watched (`a2-elephants`): the engine caps the Ivory bonus at six
+  ("+6 Ivory Resource" at 8 held, with the curve's "+1 Ivory: 8 or more" beside it) and the Horses line is gone from
+  the elephant's preview.

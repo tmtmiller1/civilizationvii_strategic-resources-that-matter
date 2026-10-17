@@ -4,12 +4,13 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
-  buildFiles, CURVE_THRESHOLDS, GATES_OPTION, gateLineFor, gateParameters, ICON_PATHS, LEVELS, PEDIA, pediaGateTag,
-  PREVIEW_TEXT, remapId, remapLabelTag, resourceNameTag
+  buildFiles, CURVE_THRESHOLDS, ELEPHANT_MODIFIER, GATES_OPTION, gateLineFor, gateParameters, ICON_PATHS, LEVELS,
+  PEDIA, pediaGateTag, PREVIEW_TEXT, remapId, remapLabelTag, resourceNameTag
 } from "../scripts/build-data.mjs";
 import {
-  AGES, AGE_FILE, CHAINS, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildChainMap,
-  buildGateMap, chainLocks, gatedResources, lineCopies, lineLocks, upgradeOnlyGatedUnits
+  AGES, AGE_FILE, CHAINS, ELEPHANT_TAG, ELEPHANTS, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT,
+  MINOR_CIV_TRAIT, buildChainMap, buildGateMap, chainLocks, gatedResources, lineCopies, lineLocks,
+  upgradeOnlyGatedUnits
 } from "../scripts/gate-map.mjs";
 
 // Data gate: the invariants that crash the game or mislead it, checked on the files that ship.
@@ -132,6 +133,10 @@ function ownerShapes(m) {
 /** @param {ModifierInfo} m */
 const subjectTags = (m) => [...(m.body.match(/<SubjectRequirements[^>]*>([\s\S]*?)<\/SubjectRequirements>/) || ["", ""])[1]
   .matchAll(/<Argument name="Tag">([^<]+)<\/Argument>/g)].map((t) => t[1]);
+/** The tags a subject set turns away (inverse tag requirements). @param {ModifierInfo} m */
+const excludedTags = (m) => [...(m.body.match(/<SubjectRequirements[^>]*>([\s\S]*?)<\/SubjectRequirements>/) || ["", ""])[1]
+  .matchAll(/<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">\s*<Argument name="Tag">([^<]+)<\/Argument>/g)]
+  .map((t) => t[1]);
 
 /**
  * A preview line: a strength modifier of 0 on the combat collection, with one Preview string.
@@ -216,7 +221,7 @@ for (const { age, kind } of groups) {
       .map((m) => Number((m.body.match(/<Argument name="Amount">(\d+)<\/Argument>\s*<\/Requirement>/) || [])[1]));
     assert.ok(thresholds.length > 0 && thresholds.every((t) => CURVE_THRESHOLDS.includes(t)), `${base} thresholds`);
     // One preview line per curve step, shown from its threshold up to the next, so a unit shows one curve line.
-    for (const { resource, tags } of VANILLA_PER_COPY[age]) {
+    for (const { resource, tags, exclude = [] } of VANILLA_PER_COPY[age]) {
       const name = resource.replace("RESOURCE_", "");
       CURVE_THRESHOLDS.forEach((threshold, step) => {
         const line = byId.get(`SR_PREVIEW_CURVE_${name}_${threshold}`);
@@ -227,7 +232,11 @@ for (const { age, kind } of groups) {
           { type: "REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE", inverse: false, resource, amount: threshold },
           ...(next ? [{ type: "REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE", inverse: true, resource, amount: next }] : [])
         ], `${base}: ${line.id} owner requirements`);
-        assert.deepEqual(subjectTags(line), tags, `${base}: ${line.id} subject`);
+        assert.deepEqual(subjectTags(line), [...tags, ...exclude], `${base}: ${line.id} subject`);
+        assert.deepEqual(excludedTags(line), exclude, `${base}: ${line.id} exclusions`);
+        // The strength step itself turns the same units away (the war elephants out of the Horses steps).
+        assert.deepEqual(excludedTags(/** @type {*} */ (byId.get(`SR_CURVE_${name}_${threshold}`))), exclude,
+          `${base}: SR_CURVE_${name}_${threshold} exclusions`);
         assert.equal(Number(line.args.Combat), step + 1, `${base}: ${line.id} names the wrong step`);
         assert.equal(Number(line.args.Copies), threshold, `${base}: ${line.id} copies`);
         assert.equal(line.args.Resource, resourceNameTag(resource), `${base}: ${line.id} resource name`);
@@ -242,9 +251,9 @@ for (const { age, kind } of groups) {
 // 5. The gate lists, as DESIGN.md section 4 writes them.
 const EXPECTED = {
   AGE_ANTIQUITY: {
-    RESOURCE_HORSES: ["UNIT_CHARIOT", "UNIT_DANTINAS_TATHA", "UNIT_DANTINAS_TATHA_2", "UNIT_HORSEMAN", "UNIT_MAGARRU",
-      "UNIT_MAGARRU_2", "UNIT_NUMIDIAN_CAVALRY", "UNIT_NUMIDIAN_CAVALRY_2", "UNIT_PURABHETTARAH",
-      "UNIT_PURABHETTARAH_2"],
+    RESOURCE_HORSES: ["UNIT_CHARIOT", "UNIT_HORSEMAN", "UNIT_MAGARRU", "UNIT_MAGARRU_2", "UNIT_NUMIDIAN_CAVALRY",
+      "UNIT_NUMIDIAN_CAVALRY_2"],
+    RESOURCE_IVORY: ["UNIT_DANTINAS_TATHA", "UNIT_DANTINAS_TATHA_2", "UNIT_PURABHETTARAH", "UNIT_PURABHETTARAH_2"],
     RESOURCE_IRON: ["UNIT_GAISATAI_2", "UNIT_GAISATAI_3", "UNIT_HOPLITE_2", "UNIT_HOPLITE_3", "UNIT_IMMORTAL",
       "UNIT_IMMORTAL_2", "UNIT_LEGION", "UNIT_LEGION_2", "UNIT_MEDJAY_2", "UNIT_MEDJAY_3", "UNIT_PHALANX",
       "UNIT_SPEARMAN"]
@@ -261,12 +270,13 @@ const EXPECTED = {
       "UNIT_GALLEON", "UNIT_KALAM_2", "UNIT_KALAM_3", "UNIT_VIKINGR_2", "UNIT_VIKINGR_3"]
   },
   AGE_MODERN: {
-    RESOURCE_NITER: ["UNIT_ASSAULT_GUN", "UNIT_AT_GUN", "UNIT_CHANG_BEUN", "UNIT_CHANG_BEUN_2", "UNIT_CHANG_BEUN_3",
-      "UNIT_FIELD_CANNON", "UNIT_FIELD_GUN", "UNIT_HEAVY_ARTILLERY", "UNIT_KATYUSHA", "UNIT_KATYUSHA_2",
-      "UNIT_MORTAR"],
-    RESOURCE_OIL: ["UNIT_BATTLESHIP", "UNIT_COSSACK_2", "UNIT_COSSACK_3", "UNIT_DREADNOUGHT", "UNIT_GHILMAN_2",
-      "UNIT_GHILMAN_3", "UNIT_HUSSAR_2", "UNIT_HUSSAR_3", "UNIT_LANDSHIP", "UNIT_MIKASA", "UNIT_MIKASA_2",
-      "UNIT_REVENGE", "UNIT_REVENGE_2", "UNIT_TANK", "UNIT_TURTLE_SHIP_2", "UNIT_TURTLE_SHIP_3"],
+    RESOURCE_NITER: ["UNIT_CHANG_BEUN", "UNIT_CHANG_BEUN_2", "UNIT_FIELD_CANNON", "UNIT_FIELD_GUN"],
+    RESOURCE_HORSES: ["UNIT_COSSACK", "UNIT_CUIRASSIER", "UNIT_GHILMAN", "UNIT_HUSSAR"],
+    RESOURCE_OIL: ["UNIT_ASSAULT_GUN", "UNIT_AT_GUN", "UNIT_BATTLESHIP", "UNIT_CHANG_BEUN_3", "UNIT_COSSACK_2",
+      "UNIT_COSSACK_3", "UNIT_DREADNOUGHT", "UNIT_GHILMAN_2", "UNIT_GHILMAN_3", "UNIT_HEAVY_ARTILLERY", "UNIT_HUSSAR_2",
+      "UNIT_HUSSAR_3", "UNIT_KATYUSHA", "UNIT_KATYUSHA_2", "UNIT_LANDSHIP", "UNIT_MIKASA", "UNIT_MIKASA_2", "UNIT_MORTAR",
+      "UNIT_REVENGE", "UNIT_REVENGE_2", "UNIT_SUBMARINE", "UNIT_TANK", "UNIT_TURTLE_SHIP_2", "UNIT_TURTLE_SHIP_3"],
+    RESOURCE_HARDWOOD: ["UNIT_FRIGATE", "UNIT_TURTLE_SHIP"],
     RESOURCE_COAL: ["UNIT_BARBARY_CORSAIR", "UNIT_BARBARY_CORSAIR_2", "UNIT_BARBARY_CORSAIR_3", "UNIT_CRUISER",
       "UNIT_DESTROYER", "UNIT_IRONCLAD"],
     RESOURCE_RUBBER: ["UNIT_BIPLANE", "UNIT_BOMBER", "UNIT_DIVEBOMBER", "UNIT_FIGHTER", "UNIT_HEAVY_BOMBER",
@@ -287,6 +297,28 @@ for (const age of AGES) {
   const known = new Set(dumps[age].units.map((/** @type {{ UnitType: string }} */ u) => u.UnitType));
   assert.ok(tagged.length, `${age}: no SR_SUPPLY_ rows read from the supply file`);
   for (const [unit] of tagged) assert.ok(known.has(unit), `${age}: ${unit} is not a unit of this age`);
+}
+
+// 4b. The war elephants (1.3): their own +1 per Ivory, the game's effect on their tag, registered; the supply file
+// gives them the tag and takes them out of the game's +1 per Horses through that modifier's own all-of set.
+{
+  const modifiers = parseModifiers(read("sr-antiquity-elephants-modifiers.xml"));
+  assert.equal(modifiers.length, 1);
+  const [m] = modifiers;
+  assert.equal(m.id, ELEPHANT_MODIFIER);
+  assert.equal(m.effect, "EFFECT_UNIT_ADJUST_COMBAT_STRENGTH_PER_RESOURCE", "the game's own per-copy effect, capped at six");
+  assert.equal(m.collection, "COLLECTION_ALL_UNITS", "as the game's Horses bonus");
+  assert.deepEqual([m.args.Amount, m.args.ResourceType], ["1", "RESOURCE_IVORY"]);
+  assert.deepEqual(subjectTags(m), [ELEPHANT_TAG]);
+  assert.deepEqual(gameModifierRows(read("sr-antiquity-elephants-game.xml")), [ELEPHANT_MODIFIER]);
+  const supply = read("sr-antiquity-supply.sql");
+  assert.deepEqual(supplyRows("AGE_ANTIQUITY").filter(([, t]) => t === ELEPHANT_TAG).map(([u]) => u), ELEPHANTS);
+  assert.ok(supply.includes("SELECT SubjectRequirementSetId, 'SR_NOT_ELEPHANT' FROM Modifiers WHERE ModifierId = " +
+    "'MOD_HORSES_CAVALRY_COMBAT_STRENGTH'"), "the Horses bonus stops at the elephants");
+  assert.ok(supply.includes("RequirementSetType = 'REQUIREMENTSET_TEST_ALL'"), "only into an all-of set");
+  assert.ok(read("sr-tags.xml").includes(`<Row Tag="${ELEPHANT_TAG}" Category="UNIT_CLASS"/>`), "the tag is defined");
+  for (const u of ELEPHANTS) assert.equal(buildGateMap(dumps.AGE_ANTIQUITY).get(u), "RESOURCE_IVORY", `${u} on Ivory`);
+  assert.ok(!read("sr-exploration-supply.sql").includes(ELEPHANT_TAG), "Antiquity only");
 }
 
 // The only gated units nobody trains that an upgrade leads to are the Samurai tiers 2 and 3 (DESIGN.md 7e, 7f).
@@ -357,7 +389,9 @@ assert.deepEqual(Object.fromEntries(AGES.map((age) => [age, copyList(age)])), {
   }
   assert.equal((visuals.match(/<Row>/g) ?? []).length, all.length, "one remap per copy");
 }
-// The line locks, pinned: every gated unit a free unit upgrades into, and every gated unique that replaces one.
+// The line locks, pinned: every gated unit a free unit, or a unit on another resource, upgrades into, and every
+// gated unique that replaces one (the AT Gun from the Field Gun on Niter, the Dreadnought from the Ship of the Line
+// on Hardwood, 1.3).
 // Not the Samurai tiers (tier 2 and 3 are reached only by upgrade).
 const lockList = (/** @type {string} */ age) => lineLocks(dumps[age]).map((l) => `${l.unit}:${l.kind}`);
 assert.deepEqual(Object.fromEntries(AGES.map((age) => [age, lockList(age)])), {
@@ -367,8 +401,9 @@ assert.deepEqual(Object.fromEntries(AGES.map((age) => [age, lockList(age)])), {
     "UNIT_GOLD_BANGLES_2:unique", "UNIT_HWACHA_3:unique", "UNIT_KALAM_2:unique", "UNIT_KISPOKO_NENA_TO_2:unique",
     "UNIT_LEIOMANO_2:unique", "UNIT_MAN_AT_ARMS:base", "UNIT_TERCIO_2:unique", "UNIT_VIKINGR_2:unique",
     "UNIT_XUNLEICHONG_2:unique"],
-  AGE_MODERN: ["UNIT_COSSACK_2:unique", "UNIT_DREADNOUGHT:base", "UNIT_GHILMAN_2:unique", "UNIT_HUSSAR_2:unique",
-    "UNIT_LANDSHIP:base", "UNIT_MIKASA:unique", "UNIT_REVENGE:unique", "UNIT_TURTLE_SHIP_2:unique"]
+  AGE_MODERN: ["UNIT_AT_GUN:base", "UNIT_CHANG_BEUN_3:unique", "UNIT_COSSACK_2:unique", "UNIT_DREADNOUGHT:base",
+    "UNIT_GHILMAN_2:unique", "UNIT_HUSSAR_2:unique", "UNIT_LANDSHIP:base", "UNIT_MIKASA:unique", "UNIT_REVENGE:unique",
+    "UNIT_TURTLE_SHIP_2:unique"]
 }, "the line locks");
 for (const age of AGES) {
   const f = `sr-${AGE_FILE[age]}-gate-lines.sql`;
@@ -479,10 +514,12 @@ const EXPECTED_CHAINS = {
     "UNIT_GHILMAN_2", "UNIT_GHILMAN_3", "UNIT_HEAVY_ARTILLERY", "UNIT_HUSSAR_2", "UNIT_HUSSAR_3", "UNIT_KATYUSHA",
     "UNIT_KATYUSHA_2", "UNIT_LANDSHIP", "UNIT_MIKASA", "UNIT_MIKASA_2", "UNIT_MORTAR", "UNIT_REVENGE", "UNIT_REVENGE_2",
     "UNIT_TANK", "UNIT_TURTLE_SHIP_2", "UNIT_TURTLE_SHIP_3"],
-  RESOURCE_NITER: ["UNIT_BARBARY_CORSAIR", "UNIT_BARBARY_CORSAIR_2", "UNIT_BARBARY_CORSAIR_3", "UNIT_CRUISER",
-    "UNIT_DESTROYER", "UNIT_IRONCLAD"],
+  RESOURCE_NITER: ["UNIT_BARBARY_CORSAIR", "UNIT_BARBARY_CORSAIR_2", "UNIT_BARBARY_CORSAIR_3", "UNIT_COSSACK",
+    "UNIT_CRUISER", "UNIT_CUIRASSIER", "UNIT_DESTROYER", "UNIT_FRIGATE", "UNIT_GHILMAN", "UNIT_HUSSAR", "UNIT_IRONCLAD",
+    "UNIT_TURTLE_SHIP"],
   RESOURCE_OIL: ["UNIT_BIPLANE", "UNIT_BOMBER", "UNIT_DIVEBOMBER", "UNIT_FIGHTER", "UNIT_HEAVY_BOMBER", "UNIT_STUKA",
-    "UNIT_STUKA_2", "UNIT_TRENCH_FIGHTER", "UNIT_ZERO", "UNIT_ZERO_2"]
+    "UNIT_STUKA_2", "UNIT_TRENCH_FIGHTER", "UNIT_ZERO", "UNIT_ZERO_2"],
+  RESOURCE_RUBBER: ["UNIT_SUBMARINE"]
 };
 assert.deepEqual(Object.keys(CHAINS), ["AGE_MODERN"], "chain rules are the Modern age's");
 {
@@ -499,8 +536,14 @@ assert.deepEqual(Object.keys(CHAINS), ["AGE_MODERN"], "chain rules are the Moder
   }
   assert.deepEqual(buildChainMap(dumps.AGE_ANTIQUITY).size, 0);
   const locks = chainLocks(dumps.AGE_MODERN);
-  assert.deepEqual(locks.map((l) => l.unit), [...chains.keys()], "the chain locks cover every chained unit");
-  for (const l of locks) assert.deepEqual(l.resources, [gates.get(l.unit), chains.get(l.unit)], `${l.unit}: resources`);
+  const copies = lineCopies(dumps.AGE_MODERN);
+  assert.deepEqual(locks.map((l) => l.unit), [...chains.keys(), ...copies.map((c) => c.unit)],
+    "the chain locks cover every chained unit, then the copies of a chained free unit");
+  for (const l of locks) {
+    const base = copies.find((c) => c.unit === l.unit)?.base ?? l.unit;
+    assert.deepEqual(l.resources, [gates.get(base), chains.get(base)], `${l.unit}: resources`);
+  }
+  for (const c of copies) assert.equal(locks.find((l) => l.unit === c.unit)?.kind, "unique", `${c.unit}: its own trait`);
   assert.ok(locks.every((l) => l.kind !== "granted"), "no Modern chained unit is one the game grants");
   const f = "sr-modern-chains.sql";
   const sql = read(f);
@@ -534,9 +577,9 @@ assert.deepEqual(Object.keys(CHAINS), ["AGE_MODERN"], "chain rules are the Moder
   assert.ok(!sql.includes("SR_LINE_NEVER"), `${f}: the civic block belongs to the plain line file`);
   const copyBlocks = [...sql.matchAll(/^-- (UNIT_[A-Z_]+): this civilization's (UNIT_[A-Z_]+), standing in for it and upgrading straight into (UNIT_[A-Z_]+)\./gm)]
     .map((m) => [m[1], m[2], m[3]]);
-  assert.deepEqual(copyBlocks, lineCopies(dumps.AGE_MODERN).map((c) => [c.unit, c.base, c.upgradeTo]), `${f}: the copies`);
-  assert.equal((sql.match(/^CREATE TEMP TABLE /gm) ?? []).length, (sql.match(/^DROP TABLE /gm) ?? []).length,
-    `${f}: every temp table dropped`);
+  // The plain line file makes the copies; a second copy block here would fail the Types key once the copy is locked.
+  assert.deepEqual(copyBlocks, [], `${f}: no copy blocks`);
+  assert.ok(!/CREATE TEMP TABLE/.test(sql), `${f}: no temp tables`);
 }
 
 // 6. The live compiled database, for the age it holds.

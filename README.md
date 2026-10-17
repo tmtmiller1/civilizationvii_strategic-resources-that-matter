@@ -1,6 +1,6 @@
 # Strategic Resources That Matter
 
-A Civilization VII mod. Horses, Iron, Niter, Hardwood, Oil, Coal and Rubber matter again. A unit that draws on one
+A Civilization VII mod. Horses, Ivory, Iron, Niter, Hardwood, Oil, Coal and Rubber matter again. A unit that draws on one
 of them fights weaker and trains slower while its owner has none of it, and each one you do hold still adds the
 game's own bonus, so the count keeps mattering. Lose your last one, to a raid on the mine or a lost settlement, and the penalty
 is back a turn later. Past six, where the game's own bonus stops, the count keeps adding strength.
@@ -57,24 +57,33 @@ A civilization's unique unit needs what the unit it replaces needs.
 | Age | Units | Resource |
 | --- | --- | --- |
 | Antiquity | Cavalry: Chariot, Horseman and their unique versions | Horses |
+| Antiquity | War elephants: the Khmer's Yuthahathi and the Maurya's Purabhettarah | Ivory |
 | Antiquity | Infantry from the second tier: Spearman, Phalanx, Legion, Immortal and the others | Iron |
 | Exploration | Cavalry: Courser, Knight, Lancer and their unique versions | Horses |
 | Exploration | Infantry from the second tier: Man-At-Arms, Pikeman and their unique versions | Iron |
 | Exploration | Siege from the third tier: Bombard and its unique version | Niter |
 | Exploration | Heavy warships from the second tier: Carrack, Galleon and their unique versions | Hardwood |
-| Modern | Artillery: Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun | Niter |
+| Modern | Field artillery: Field Cannon, Field Gun and their unique versions | Niter |
+| Modern | The heavier artillery: Mortar, Howitzer, AT Gun, Assault Gun and their unique versions | Oil |
 | Modern | Armour: Landship, Tank and their unique versions | Oil |
 | Modern | Battleships: Dreadnought, Battleship and their unique versions | Oil |
 | Modern | Light warships: Ironclad, Cruiser, Destroyer, Barbary Corsair | Coal |
+| Modern | The Cuirassier and the unique units that replace it (Cossack, Ghilman, Hussar at their first tier) | Horses |
+| Modern | The Ship of the Line and the Turtle Ship | Hardwood |
+| Modern | The Submarine | Oil |
 | Modern | Aircraft | Rubber |
 
 A resource that reaches you over a trade route counts the same as one you mine yourself, from the turn the route lands.
+
+The war elephants count Ivory the way cavalry counts Horses: +1 Combat Strength per Ivory you hold, up to six, and
+the steps past six with Strategic Resources Past Six on. The game's own +1 per Horses stops at them, so an elephant
+scales with Ivory alone. Ivory is far commoner than Horses on the map, so the Khmer and Maurya are the best-supplied
+cavalry in Antiquity; the balance numbers are in [docs/elephants-on-ivory.md](docs/elephants-on-ivory.md).
 With Modern Supply Chains on (a setup option, off by default), every Modern unit needs a second resource as well:
 see below.
 
 Free of any requirement: the Warrior line and the Scout, ranged infantry (Archer, Crossbowman, Arquebusier), the
-Catapult and the Trebuchet, the Cog and the Ship of the Line, the Cuirassier, the Submarine, and Modern infantry, so
-every player can always defend.
+Catapult and the Trebuchet, the Cog, and Modern infantry, so every player can always defend.
 
 ## Losing a resource
 
@@ -151,10 +160,14 @@ too, so the supply lines of the industrial age matter as much as the first resou
 
 | Units | Resources |
 | --- | --- |
-| Artillery: Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun and their unique versions | Niter and Coal |
+| Field artillery: Field Cannon, Field Gun and their unique versions | Niter and Coal |
+| The heavier artillery: Mortar, Howitzer, AT Gun, Assault Gun and their unique versions | Oil and Coal |
 | Armour: Landship, Tank and their unique versions | Oil and Coal |
 | Battleships: Dreadnought, Battleship and their unique versions | Oil and Coal |
 | Light warships: Ironclad, Cruiser, Destroyer, Barbary Corsair | Coal and Niter |
+| The Cuirassier and its unique versions | Horses and Niter |
+| The Ship of the Line and the Turtle Ship | Hardwood and Niter |
+| The Submarine | Oil and Rubber |
 | Aircraft | Rubber and Oil |
 
 Iron isn't placed on Modern maps, so Coal stands for steel. Each missing resource costs the full Unsupplied Units

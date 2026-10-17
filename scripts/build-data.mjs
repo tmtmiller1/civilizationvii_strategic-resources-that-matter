@@ -47,6 +47,11 @@
 //     locked levels), the grant-only lock of every gated unit behind both its resources (gate-map.mjs chainLocks),
 //     added on top of the plain line file (every insert OR IGNORE, every grant guarded by the column), since the
 //     engine's column takes one resource. One file, one criteria value, so no group has to match two setup values.
+//   - sr-antiquity-elephants-modifiers.xml and -game.xml (1.3): the war elephants' +1 Combat Strength per Ivory, the
+//     game's own per-resource effect on the SR_ELEPHANT tag, so the engine caps it at six as it does Horses. The
+//     Antiquity supply file gives them the tag and takes them out of the game's +1 per Horses (an inverse tag
+//     requirement added to that modifier's own set), and the curve files carry the Ivory steps for them and leave
+//     them out of the Horses steps.
 //   - sr-notification.xml and sr-notification-icons.xml: the notification ui/sr-supply-lost.js raises when the local
 //     player loses the last copy of a resource its units need. It ends with the turn, never blocks it, and carries
 //     the game's own "trade resources lost" icon and sound. The script passes the composed text as Message and
@@ -61,8 +66,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  AGES, AGE_FILE, CHAINS, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT, MINOR_CIV_TRAIT, buildChainMap,
-  buildGateMap, chainLocks, gatedResources, lineCopies, lineLocks, strengthUnits
+  AGES, AGE_FILE, CHAINS, ELEPHANT_TAG, ELEPHANTS, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT,
+  MINOR_CIV_TRAIT, buildChainMap, buildGateMap, chainLocks, gatedResources, lineCopies, lineLocks, strengthUnits
 } from "./gate-map.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -138,12 +143,21 @@ function attach(id, child) {
   ];
 }
 
-/** @param {string[]} tags any of these */
-function tagRequirements(tags) {
+/**
+ * @param {string[]} tags any of these
+ * @param {string[]} [exclude] and none of these (only with one tag: the set is then all-of)
+ */
+function tagRequirements(tags, exclude = []) {
+  if (exclude.length && tags.length > 1) throw new Error("a tag exclusion needs a single tag to match");
   return [
     tags.length > 1 ? '        <SubjectRequirements type="REQUIREMENTSET_TEST_ANY">' : "        <SubjectRequirements>",
     ...tags.flatMap((tag) => [
       '            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">',
+      `                <Argument name="Tag">${tag}</Argument>`,
+      "            </Requirement>"
+    ]),
+    ...exclude.flatMap((tag) => [
+      '            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">',
       `                <Argument name="Tag">${tag}</Argument>`,
       "            </Requirement>"
     ]),
@@ -152,14 +166,14 @@ function tagRequirements(tags) {
 }
 
 /**
- * One strength type's change on the units carrying any of `tags`.
- * @param {{ id: string, tags: string[], type: string, amount: number, owner?: string[] }} spec
+ * One strength type's change on the units carrying any of `tags` and none of `exclude`.
+ * @param {{ id: string, tags: string[], exclude?: string[], type: string, amount: number, owner?: string[] }} spec
  */
-function combatChild({ id, tags, type, amount, owner }) {
+function combatChild({ id, tags, exclude, type, amount, owner }) {
   return [
     `    <Modifier id="${id}" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">`,
     ...(owner ? ["        <OwnerRequirements>", ...owner, "        </OwnerRequirements>"] : []),
-    ...tagRequirements(tags),
+    ...tagRequirements(tags, exclude),
     `        <Argument name="Amount">${amount}</Argument>`,
     `        <Argument name="Type">${type}</Argument>`,
     "    </Modifier>"
@@ -185,13 +199,14 @@ export const PREVIEW_TEXT = { penalty: "LOC_SR_PREVIEW_UNSUPPLIED", curve: "LOC_
 /**
  * A combat preview line: a strength modifier of 0 whose Preview string names the change made elsewhere. The
  * arguments after Amount are there for the text only.
- * @param {{ id: string, tags: string[], owner: string[], text: string, args: Record<string, string | number> }} spec
+ * @param {{ id: string, tags: string[], exclude?: string[], owner: string[], text: string,
+ *   args: Record<string, string | number> }} spec
  */
-function previewChild({ id, tags, owner, text, args }) {
+function previewChild({ id, tags, exclude, owner, text, args }) {
   return [
     `    <Modifier id="${id}" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">`,
     "        <OwnerRequirements>", ...owner, "        </OwnerRequirements>",
-    ...tagRequirements(tags),
+    ...tagRequirements(tags, exclude),
     '        <Argument name="Amount">0</Argument>',
     ...Object.entries(args).map(([name, value]) => `        <Argument name="${name}">${value}</Argument>`),
     `        <String context="Preview">${text}</String>`,
@@ -670,7 +685,9 @@ function chainsFile(age, dump) {
       "FROM Units u JOIN GlobalParameters g ON g.Name = 'STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPGRADING'\n    " +
       `WHERE u.StrategicResource IS NOT NULL AND u.UnitType IN (\n${units});`);
   }
-  const locks = linesFile(age, chainLocks(dump), lineCopies(dump), { additive: true, guardColumn: true });
+  // No copies here: the plain line file made them, and once this file locks a copy under the locked trait the
+  // copy guard (no stand-in with the civilization's trait) would make a second one and fail the Types key.
+  const locks = linesFile(age, chainLocks(dump), [], { additive: true, guardColumn: true });
   return [locks.split("\n").slice(0, 3).join("\n"), ...out, "", "-- The locks, under the locked levels only.",
     ...locks.split("\n").slice(3)].join("\n");
 }
@@ -777,10 +794,10 @@ export function penaltyFor(resource, level, units) {
 /**
  * The curve modifiers for one resource of one age: per threshold, +1 on each strength type some covered unit has,
  * and one preview line per step, shown from that threshold up to the next (so a unit shows one curve line).
- * @param {{ resource: string, tags: string[] }} perCopy
+ * @param {{ resource: string, tags: string[], exclude?: string[] }} perCopy
  * @param {Record<string, string[]>} units covered units per strength type
  */
-export function curveFor({ resource, tags }, units) {
+export function curveFor({ resource, tags, exclude }, units) {
   const name = shortName(resource);
   const body = [];
   const ids = [];
@@ -790,15 +807,16 @@ export function curveFor({ resource, tags }, units) {
       const part = type === "MELEE" ? "" : `${type}_`;
       const id = `SR_CURVE_${part}${name}_${threshold}`;
       const match = type === "MELEE" ? tags : [curveTag(type, resource)];
+      const skip = type === "MELEE" ? exclude : undefined;
       body.push(...attach(`SR_ATTACH_CURVE_${part}${name}_${threshold}`, id),
-        ...combatChild({ id, tags: match, type, amount: 1, owner: hasResource(resource, threshold) }));
+        ...combatChild({ id, tags: match, exclude: skip, type, amount: 1, owner: hasResource(resource, threshold) }));
       ids.push(`SR_ATTACH_CURVE_${part}${name}_${threshold}`);
     }
     const step = CURVE_THRESHOLDS.indexOf(threshold);
     const next = CURVE_THRESHOLDS[step + 1];
     const id = `SR_PREVIEW_CURVE_${name}_${threshold}`;
     body.push(...attach(`SR_ATTACH_PREVIEW_CURVE_${name}_${threshold}`, id), ...previewChild({
-      id, tags, owner: [...hasResource(resource, threshold), ...(next ? hasResource(resource, next, true) : [])],
+      id, tags, exclude, owner: [...hasResource(resource, threshold), ...(next ? hasResource(resource, next, true) : [])],
       text: PREVIEW_TEXT.curve, args: { Combat: step + 1, Copies: threshold, Resource: resourceNameTag(resource) }
     }));
     ids.push(`SR_ATTACH_PREVIEW_CURVE_${name}_${threshold}`);
@@ -821,7 +839,39 @@ function supplyFile(age, rows) {
     ...[...byTag].flatMap(([tag, units]) => ["",
       `INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, '${tag}' FROM Types WHERE Type IN (`,
       units.map((u) => `    '${u}'`).join(",\n") + ");"]),
+    ...(age === "AGE_ANTIQUITY" ? elephantRows() : []),
     ""].join("\n");
+}
+
+/** The war elephants' tag, and the game's +1 per Horses on cavalry stopped at them (its own set is all-of). */
+function elephantRows() {
+  return ["",
+    "-- The war elephants draw on Ivory (sr-antiquity-elephants-modifiers.xml gives them +1 per Ivory), so the game's",
+    "-- +1 per Horses on cavalry stops at them: an inverse tag requirement joins that modifier's own all-of set.",
+    `INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, '${ELEPHANT_TAG}' FROM Types WHERE Type IN (`,
+    ELEPHANTS.map((u) => `    '${u}'`).join(",\n") + ");",
+    "INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)\n    " +
+      "VALUES ('SR_NOT_ELEPHANT', 'REQUIREMENT_UNIT_TAG_MATCHES', 1);",
+    "INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)\n    " +
+      `VALUES ('SR_NOT_ELEPHANT', 'Tag', '${ELEPHANT_TAG}');`,
+    "INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)\n    " +
+      "SELECT SubjectRequirementSetId, 'SR_NOT_ELEPHANT' FROM Modifiers WHERE ModifierId = " +
+      "'MOD_HORSES_CAVALRY_COMBAT_STRENGTH'\n    AND SubjectRequirementSetId IN (SELECT RequirementSetId FROM " +
+      "RequirementSets WHERE RequirementSetType = 'REQUIREMENTSET_TEST_ALL');"];
+}
+
+/** The war elephants' +1 Combat Strength per Ivory: the game's own per-resource effect, which the engine caps at six. */
+export const ELEPHANT_MODIFIER = "SR_IVORY_ELEPHANT_COMBAT_STRENGTH";
+
+function elephantsFile() {
+  return gameEffects("AGE_ANTIQUITY, the war elephants: +1 Combat Strength per Ivory held, the game's own effect, " +
+    "capped at six by the engine as the Horses bonus is.", [
+    `    <Modifier id="${ELEPHANT_MODIFIER}" collection="COLLECTION_ALL_UNITS" ` +
+      'effect="EFFECT_UNIT_ADJUST_COMBAT_STRENGTH_PER_RESOURCE">',
+    ...tagRequirements([ELEPHANT_TAG]),
+    '        <Argument name="Amount">1</Argument>',
+    '        <Argument name="ResourceType">RESOURCE_IVORY</Argument>',
+    "    </Modifier>"]);
 }
 
 /** @returns {Map<string, string>} file name in data/ -> contents */
@@ -829,8 +879,8 @@ export function buildFiles() {
   /** @type {Map<string, string>} */
   const files = new Map();
   const allResources = [...new Set(AGES.flatMap(gatedResources))];
-  const allTags = allResources.flatMap((r) => [supplyTag(r), penaltyTag("RANGED", r), penaltyTag("BOMBARD", r),
-    curveTag("RANGED", r), curveTag("BOMBARD", r)]);
+  const allTags = [...allResources.flatMap((r) => [supplyTag(r), penaltyTag("RANGED", r), penaltyTag("BOMBARD", r),
+    curveTag("RANGED", r), curveTag("BOMBARD", r)]), ELEPHANT_TAG];
   files.set("sr-civilopedia.xml", pediaFile());
   files.set("sr-notification.xml", notificationFile());
   files.set("sr-notification-icons.xml", notificationIconsFile());
@@ -856,6 +906,10 @@ export function buildFiles() {
       for (const type of ["RANGED", "BOMBARD"]) rows.push(...units[type].map((u) => [u, curveTag(type, resource)]));
     }
     files.set(`sr-${file}-supply.sql`, supplyFile(age, rows));
+    if (age === "AGE_ANTIQUITY") {
+      files.set(`sr-${file}-elephants-modifiers.xml`, elephantsFile());
+      files.set(`sr-${file}-elephants-game.xml`, gameModifiers([ELEPHANT_MODIFIER]));
+    }
     for (const [levelName, level] of Object.entries(LEVELS)) {
       const parts = gatedResources(age).map((r) => penaltyFor(r, level, strengths.penalty.get(r) ?? {}));
       files.set(`sr-${file}-${levelName}-modifiers.xml`, gameEffects(

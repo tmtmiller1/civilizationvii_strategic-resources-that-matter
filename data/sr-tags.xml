@@ -13,6 +13,11 @@
         <Row Tag="SR_BOMBARD_IRON" Category="UNIT_CLASS"/>
         <Row Tag="SR_CURVE_RANGED_IRON" Category="UNIT_CLASS"/>
         <Row Tag="SR_CURVE_BOMBARD_IRON" Category="UNIT_CLASS"/>
+        <Row Tag="SR_SUPPLY_IVORY" Category="UNIT_CLASS"/>
+        <Row Tag="SR_RANGED_IVORY" Category="UNIT_CLASS"/>
+        <Row Tag="SR_BOMBARD_IVORY" Category="UNIT_CLASS"/>
+        <Row Tag="SR_CURVE_RANGED_IVORY" Category="UNIT_CLASS"/>
+        <Row Tag="SR_CURVE_BOMBARD_IVORY" Category="UNIT_CLASS"/>
         <Row Tag="SR_SUPPLY_NITER" Category="UNIT_CLASS"/>
         <Row Tag="SR_RANGED_NITER" Category="UNIT_CLASS"/>
         <Row Tag="SR_BOMBARD_NITER" Category="UNIT_CLASS"/>
@@ -38,6 +43,7 @@
         <Row Tag="SR_BOMBARD_RUBBER" Category="UNIT_CLASS"/>
         <Row Tag="SR_CURVE_RANGED_RUBBER" Category="UNIT_CLASS"/>
         <Row Tag="SR_CURVE_BOMBARD_RUBBER" Category="UNIT_CLASS"/>
+        <Row Tag="SR_ELEPHANT" Category="UNIT_CLASS"/>
         <Row Tag="SR_LINE_PLAIN" Category="UNIT_CLASS"/>
     </Tags>
 </Database>

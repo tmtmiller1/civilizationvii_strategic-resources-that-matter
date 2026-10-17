@@ -12,11 +12,16 @@
         <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_IRON"/>
         <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_IRON"/>
         <Row ModifierId="SR_ATTACH_PREVIEW_PENALTY_IRON"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_PENALTY_IVORY"/>
+        <Row ModifierId="SR_ATTACH_COMBAT_SUPPLIED_IVORY"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_PENALTY_IVORY"/>
+        <Row ModifierId="SR_ATTACH_PRODUCTION_SUPPLIED_IVORY"/>
+        <Row ModifierId="SR_ATTACH_PREVIEW_PENALTY_IVORY"/>
     </GameModifiers>
     <CivilopediaPageChapterParagraphs>
         <Row SectionID="UNITS" PageID="UNIT_CHARIOT" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IVORY_STANDARD" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IVORY_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GAISATAI_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GAISATAI_3" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_HOPLITE_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_STANDARD" SortIndex="10"/>
@@ -33,8 +38,8 @@
         <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_PHALANX" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_STANDARD" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_STANDARD" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IVORY_STANDARD" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH_2" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IVORY_STANDARD" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_SPEARMAN" ChapterID="SR_SUPPLY" Paragraph="LOC_SR_PEDIA_UNIT_IRON_STANDARD" SortIndex="10"/>
     </CivilopediaPageChapterParagraphs>
 </Database>
