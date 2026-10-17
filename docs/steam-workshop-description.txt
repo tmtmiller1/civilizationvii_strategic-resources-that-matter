@@ -1,21 +1,21 @@
 [h1]Strategic Resources That Matter[/h1]
 [b]Version 1.2.0. Compatible with Civilization VII 1.5.0. Single-player only.[/b]
 
-Horses, Ivory, Iron, Niter, Hardwood, Oil, Coal and Rubber count for the units that need them. In the base game, going without one doesn't hurt you; with the mod, a unit whose owner doesn't have its required resource fights weaker and trains slower, or can't be trained at all, depending on your settings. Losing your last of a given resource brings the penalty back on the next turn, and the counts continue to add strength as they do in the base game.
+Horses, Ivory, Iron, Niter, Hardwood, Oil, Coal and Rubber count for the units that need them. In the base game, going without one doesn't hurt you; with the mod, a unit whose owner doesn't have its resource fights weaker and trains slower, or can't be trained at all, depending on your settings. Losing your last one brings the penalty back next turn.
 
 Four options in Advanced Options, under Game Settings: how hard the penalty bites, up to a lock; whether the bonus keeps growing past six; whether every Modern unit needs a second resource; and whether the Sengoku's Samurai still move up by kills without Iron. Computer players play under the same rules; independents and city-states are never affected.
 
 [h2]What changes[/h2]
 [list]
-[*][b]Unsupplied units.[/b] A unit whose owner doesn't have any of its strategic resource loses Combat Strength on each strength it has, and its city puts less Production toward it. Default: -3 and a third less Production. One of the resource lifts the penalty; the game's own +1 for each applies as before, up to six.
-[*][b]Losing a resource hurts.[/b] The game notices a resource arriving but not one going away; the mod checks every player again each turn, so a resource lost to a raid, a lost settlement or an ended trade route brings the penalty back a turn later.
+[*][b]Unsupplied units.[/b] A unit whose owner doesn't have its resource loses Combat Strength and its city puts less Production toward it. Default: -3 and a third less Production. One of the resource lifts the penalty; the game's own +1 for each applies as before.
+[*][b]Losing a resource hurts.[/b] The game notices a resource arriving but not one going away; the mod checks every player again each turn, so a resource lost to a raid, a lost settlement or an ended trade route brings the penalty back.
 [*][b]Past six.[/b] Where the game's own bonus stops, the count keeps adding: +1 more at 8, 10, 12, 14, 16, 18 and 20 of a resource.
-[*][b]Locked units (the two hardest values of Unsupplied Units).[/b] Set it to "Locked: training" or "Locked: training and upgrade" and a unit that needs a strategic resource can't be trained or bought while you don't have any of it, on top of the Harsh penalty for units already in the field. It stays in the production list, grayed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under the second value, units can't be upgraded into it either, and a commander's Upgrade All grays out with the reason. Units that need nothing (the Warrior line, Scout, ranged infantry, Catapult, Trebuchet, Cog, Modern infantry) stay free and stay listed until you hold the next unit's resource, so everyone can always defend. Computer players are locked by the same rule.
-[*][b]Modern Supply Chains (off by default).[/b] Every Modern unit that needs a resource needs a second one: field artillery Niter and Coal, heavier artillery, armor and battleships Oil and Coal, light warships Coal and Niter, the Cuirassier line Horses and Niter, the Ship of the Line Hardwood and Niter, the Submarine Oil and Rubber, aircraft Rubber and Oil. Each missing resource costs the full penalty, and under a locked value the unit needs both to be trained. It's a hard game.
+[*][b]Locked units (the two hardest values of Unsupplied Units).[/b] Set it to "Locked: training" or "Locked: training and upgrade" and a unit that needs a strategic resource can't be trained or bought while you don't have any of it, on top of the Harsh penalty for units already in the field. It stays in the production list, grayed out, with a "Locked: no Iron" pill. Under the second value, units can't be upgraded into it either, and a commander's Upgrade All grays out with the reason. Units that need nothing (Warrior line, Scout, ranged infantry, Catapult, Trebuchet, Cog, Modern infantry) stay free and stay listed until you hold the next unit's resource. Computer players are locked by the same rule.
+[*][b]Modern Supply Chains (off by default).[/b] Every Modern unit that needs a resource needs a second one: field artillery Niter and Coal, heavier artillery, armor and battleships Oil and Coal, light warships Coal and Niter, the Cuirassier line Horses and Niter, the Ship of the Line Hardwood and Niter, the Submarine Oil and Rubber, aircraft Rubber and Oil. Each missing resource costs the full penalty; under a locked value the unit needs both. It's a hard game.
 [/list]
 
 [h2]Game setup options[/h2]
-Play Now uses the defaults. The options are fixed for the whole game once it starts. A save started with the old Gated Units option keeps its lock.
+Play Now uses the defaults; the options are fixed once the game starts. A save from the old Gated Units option keeps its lock.
 [list]
 [*][b]Unsupplied Units:[/b] Off, Light (-2, 20% less Production), Standard (-3, 33% less), Harsh (-5, 50% less), Locked: training, Locked: training and upgrade. Default Standard.
 [*][b]Strategic Resources Past Six:[/b] Off or On. Default On.
@@ -26,56 +26,67 @@ Play Now uses the defaults. The options are fixed for the whole game once it sta
 [h2]Which units need what[/h2]
 [table]
 [tr][th]Age[/th][th]Units[/th][th]Resource (Opt. 2nd res.)[/th][/tr]
-[tr][td]Antiquity[/td][td]Chariot (T2), Horseman (T3), Magarru (T2, T3), Numidian Cavalry (T2, T3)[/td][td]Horses[/td][/tr]
-[tr][td]Antiquity[/td][td]Yuthahathi (T2, T3), Purabhettarah (T2, T3)[/td][td]Ivory[/td][/tr]
-[tr][td]Antiquity[/td][td]Spearman (T2), Phalanx (T3), Gaisatai (T2, T3), Hoplite (T2, T3), Immortal (T2, T3), Legion (T2, T3), Medjay (T2, T3)[/td][td]Iron[/td][/tr]
-[tr][td]Exploration[/td][td]Courser (T1), Knight (T2), Lancer (T3), Bolyar (T1, T2, T3), Chevaler (T1, T2, T3), Mamluk (T1, T2, T3), Tobang (T1, T2, T3)[/td][td]Horses[/td][/tr]
-[tr][td]Exploration[/td][td]Man-At-Arms (T2), Pikeman (T3), Gold Bangles Infantry (T2, T3), Kispoko Nena'to (T2, T3), Leiomano (T2, T3), Samurai (T2, T3), Tercio (T2, T3), Xunleichong (T2, T3)[/td][td]Iron[/td][/tr]
-[tr][td]Exploration[/td][td]Bombard (T3), Hwacha (T3)[/td][td]Niter[/td][/tr]
-[tr][td]Exploration[/td][td]Carrack (T2), Galleon (T3), Cetbang (T2, T3), Corsair (T2, T3), Kalam (T2, T3), Víkingr (T2, T3)[/td][td]Hardwood[/td][/tr]
-[tr][td]Modern[/td][td]Field Cannon (T1), Field Gun (T2), Chang Beun (T1, T2)[/td][td]Niter (Coal)[/td][/tr]
-[tr][td]Modern[/td][td]Mortar (T1), Howitzer (T2), AT Gun (T3), Assault Gun (T3), Katyusha Rocket Launcher (T2, T3), Chang Beun (T3)[/td][td]Oil (Coal)[/td][/tr]
-[tr][td]Modern[/td][td]Landship (T2), Tank (T3), Cossack (T2, T3), Gholām (T2, T3), Hussar (T2, T3)[/td][td]Oil (Coal)[/td][/tr]
-[tr][td]Modern[/td][td]Dreadnought (T2), Battleship (T3), Mikasa (T2, T3), Revenge (T2, T3), Turtle Ship (T2, T3)[/td][td]Oil (Coal)[/td][/tr]
-[tr][td]Modern[/td][td]Ironclad (T1), Cruiser (T2), Destroyer (T3), Barbary Corsair (T1, T2, T3)[/td][td]Coal (Niter)[/td][/tr]
-[tr][td]Modern[/td][td]Cuirassier (T1), Cossack (T1), Gholām (T1), Hussar (T1)[/td][td]Horses (Niter)[/td][/tr]
-[tr][td]Modern[/td][td]Ship of the Line (T1), Turtle Ship (T1)[/td][td]Hardwood (Niter)[/td][/tr]
-[tr][td]Modern[/td][td]Submarine (T3)[/td][td]Oil (Rubber)[/td][/tr]
-[tr][td]Modern[/td][td]Biplane (T2), Trench Fighter (T2), Bomber (T2), Fighter (T3), Dive Bomber (T3), Heavy Bomber (T3), Stuka (T2, T3), Zero (T2, T3)[/td][td]Rubber (Oil)[/td][/tr]
+[tr][td]Antiquity[/td][td]T2: Chariot, Magarru, Numidian Cavalry
+T3: Horseman, Magarru, Numidian Cavalry[/td][td]Horses[/td][/tr]
+[tr][td]Antiquity[/td][td]T2: Yuthahathi, Purabhettarah
+T3: Yuthahathi, Purabhettarah[/td][td]Ivory[/td][/tr]
+[tr][td]Antiquity[/td][td]T1: Warrior, Gaisatai, Hoplite, Medjay (none)
+T2: Spearman, Gaisatai, Hoplite, Immortal, Legion, Medjay
+T3: Phalanx, Gaisatai, Hoplite, Immortal, Legion, Medjay[/td][td]Iron[/td][/tr]
+[tr][td]Exploration[/td][td]T1: Courser, Bolyar, Chevaler, Mamluk, Tobang
+T2: Knight, Bolyar, Chevaler, Mamluk, Tobang
+T3: Lancer, Bolyar, Chevaler, Mamluk, Tobang[/td][td]Horses[/td][/tr]
+[tr][td]Exploration[/td][td]T1: Swordsman, Gold Bangles Infantry, Kispoko Nena'to, Leiomano, Samurai, Tercio, Xunleichong (none)
+T2: Man-At-Arms, Gold Bangles Infantry, Kispoko Nena'to, Leiomano, Samurai, Tercio, Xunleichong
+T3: Pikeman, Gold Bangles Infantry, Kispoko Nena'to, Leiomano, Samurai, Tercio, Xunleichong[/td][td]Iron[/td][/tr]
+[tr][td]Exploration[/td][td]T1: Catapult, Hwacha (none)
+T2: Trebuchet, Hwacha (none)
+T3: Bombard, Hwacha[/td][td]Niter[/td][/tr]
+[tr][td]Exploration[/td][td]T1: Cog, Cetbang, Corsair, Kalam, Víkingr (none)
+T2: Carrack, Cetbang, Corsair, Kalam, Víkingr
+T3: Galleon, Cetbang, Corsair, Kalam, Víkingr[/td][td]Hardwood[/td][/tr]
+[tr][td]Modern[/td][td]T1: Field Cannon, Chang Beun
+T2: Field Gun, Chang Beun[/td][td]Niter (Coal)[/td][/tr]
+[tr][td]Modern[/td][td]T1: Mortar
+T2: Howitzer, Katyusha Rocket Launcher
+T3: AT Gun, Assault Gun, Chang Beun, Katyusha Rocket Launcher[/td][td]Oil (Coal)[/td][/tr]
+[tr][td]Modern[/td][td]T2: Landship, Cossack, Gholām, Hussar
+T3: Tank, Cossack, Gholām, Hussar[/td][td]Oil (Coal)[/td][/tr]
+[tr][td]Modern[/td][td]T2: Dreadnought, Mikasa, Revenge, Turtle Ship
+T3: Battleship, Mikasa, Revenge, Turtle Ship[/td][td]Oil (Coal)[/td][/tr]
+[tr][td]Modern[/td][td]T1: Ironclad, Barbary Corsair
+T2: Cruiser, Barbary Corsair
+T3: Destroyer, Barbary Corsair[/td][td]Coal (Niter)[/td][/tr]
+[tr][td]Modern[/td][td]T1: Cuirassier, Cossack, Gholām, Hussar[/td][td]Horses (Niter)[/td][/tr]
+[tr][td]Modern[/td][td]T1: Ship of the Line, Turtle Ship[/td][td]Hardwood (Niter)[/td][/tr]
+[tr][td]Modern[/td][td]T3: Submarine[/td][td]Oil (Rubber)[/td][/tr]
+[tr][td]Modern[/td][td]T2: Biplane, Trench Fighter, Bomber, Stuka, Zero
+T3: Fighter, Dive Bomber, Heavy Bomber, Stuka, Zero[/td][td]Rubber (Oil)[/td][/tr]
 [/table]
-The second resource only applies with Modern Supply Chains on. A unique unit only needs the resource at the tiers listed; at the others it's free like the unit it replaces. The war elephants count Ivory as cavalry counts Horses: +1 per copy up to six. A resource that reaches you over a trade route counts the same as one you mine yourself.
+The second resource only applies with Modern Supply Chains on. A unique unit needs the resource at the tiers listed and is free at the others. The war elephants count Ivory as cavalry counts Horses: +1 per copy up to six. A resource that reaches you over a trade route counts the same as one you mine yourself.
 
 [h2]What the game tells you[/h2]
 [list]
-[*][b]Unit panel.[/b] A unit short of its resource gains one more cell in its stats, the resource's icon over the penalty in red, with the whole sentence as its tooltip; two cells for two resources.
+[*][b]Unit panel.[/b] A unit short of its resource gains one more cell in its stats, the resource's icon over the penalty in red; two cells for two resources.
 [*][b]Production list.[/b] A pill like the game's own "Ageless": "Unsupplied: no Niter" on a red tint while you don't have any, "Niter: 2" once you have some, "Locked: no Iron" under a locked value.
-[*][b]Combat preview.[/b] The penalty as a line of its own, for both sides.
-[*][b]Notification.[/b] When you lose the last of a resource your units need; it doesn't hold up your turn.
-[*][b]First time.[/b] An advisor callout the first time you select a unit short of its resource, and one for the lock; each shows once, with advisor warnings on.
-[*][b]Civilopedia.[/b] A page under Game Concepts, Combat, and a line on each unit's page.
+[*][b]Notification.[/b] When you lose the last of a resource your units need.
+[*][b]First time.[/b] An advisor callout the first time you select a unit short of its resource, and one for the lock.
 [/list]
 
 [h2]Known limits[/h2]
 [list]
-[*][b]Single-player.[/b] In multiplayer, losing a resource doesn't bring the penalty back until that player gains a resource.
-[*][b]New games.[/b] A game started with the mod needs it to load; added to a game under way, it starts with your next new game.
+[*][b]Single-player.[/b] In multiplayer, a lost resource's penalty only returns when that player gains a resource.
+[*][b]New games.[/b] A game started with the mod needs it to load; added mid-game, it starts with your next new game.
 [/list]
 
 [h2]Compatibility[/h2]
 [list]
-[*]Leaves the base-game files alone and uses the slots the game keeps for mods. Tested with Readable Tooltips, QD Improved Plot Tooltip, City Hall, Mod Commons and Mav's UI Overhaul.
-[*]Carries the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3815023570]Tower Settings Keeper[/url], so every mod's settings survive a restart.
+[*]Leaves the base-game files alone. Tested with Readable Tooltips, QD Improved Plot Tooltip, City Hall, Mod Commons and Mav's UI Overhaul.
+[*]Carries the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3815023570]Tower Settings Keeper[/url].
 [/list]
 
 [h2]Source and documentation[/h2]
-Text in all twelve of the game's languages. Open source on GitHub: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]source and full documentation[/url], and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.2.0]1.2.0 release notes[/url] with the zip for a manual install.
+Twelve languages. [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]Source and documentation[/url] and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.2.0]1.2.0 release notes[/url], with the zip for a manual install.
 
 [h2]Credits[/h2]
-[list]
-[*][b]Tower[/b], for design and Civilization VII implementation.
-[/list]
-
-[h2]Special Thanks[/h2]
-[list]
-[*][b]Potato McWhisky[/b], for teaching me to love again, Civilization-wise (Civ VI), after growing up as a Civilization II, IV, and V player.
-[/list]
+[b]Tower[/b], design and implementation. Special thanks to [b]Potato McWhisky[/b], for teaching me to love again, Civilization-wise (Civ VI), after growing up as a Civilization II, IV, and V player.
