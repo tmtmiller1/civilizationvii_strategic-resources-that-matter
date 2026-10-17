@@ -386,6 +386,70 @@ function lineVisualsFile(copies) {
 }
 
 /**
+ * A civic that grants a gated unit with no condition (the Sengoku's Kinsei, UNIT_SAMURAI_2) makes the unit count as
+ * buildable whatever the column says, and the engine then retires the unit before it as obsolete: with Kinsei and no
+ * Iron the Sengoku could train neither Samurai (sr-111-off, sr-111-on). So the grant gets a requirement set that needs
+ * a copy of the resource, like the Corsair grants in linesFile. One more thing the same civic does: it puts a
+ * permanent build lock on the unit the gated unit replaces (MOD_CIV_SENGOKU_NO_MAN on the Man-at-Arms). While the
+ * grant is active that lock lands on the Man-at-Arms, which the Sengoku can't build anyway; while it's inactive (no
+ * Iron at the moment of Kinsei) the lock lands on Samurai 2 itself and stays (sr-112). So that lock is switched off by
+ * a requirement nobody meets. Every row is picked from the tables at load time, so a missing DLC skips it and another
+ * mod's grant of a gated unit is covered.
+ * @returns {string[]}
+ */
+function civicGrants() {
+  const grants = "FROM ProgressionTreeNodeUnlocks n\n    " +
+    "JOIN Modifiers m ON m.ModifierId = n.TargetType AND n.TargetKind = 'KIND_MODIFIER'\n    " +
+    "JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType\n    " +
+    "JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType'\n    " +
+    "JOIN Units u ON u.UnitType = a.Value\n    " +
+    `WHERE d.EffectType = '${GRANT_EFFECT}' AND m.ModifierId NOT LIKE 'SR_LINE_%' ` +
+    "AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL";
+  const locks = "FROM ProgressionTreeNodeUnlocks n\n    " +
+    "JOIN Modifiers m ON m.ModifierId = n.TargetType AND n.TargetKind = 'KIND_MODIFIER'\n    " +
+    "JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType\n    " +
+    "JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType'\n    " +
+    "JOIN Units u ON u.UnitType = a.Value\n    " +
+    "JOIN UnitReplaces r ON r.CivUniqueUnitType = u.UnitType\n    " +
+    "JOIN ProgressionTreeNodeUnlocks n2 ON n2.ProgressionTreeNodeType = n.ProgressionTreeNodeType " +
+    "AND n2.TargetKind = 'KIND_MODIFIER'\n    " +
+    "JOIN Modifiers m2 ON m2.ModifierId = n2.TargetType\n    " +
+    "JOIN DynamicModifiers d2 ON d2.ModifierType = m2.ModifierType\n    " +
+    "JOIN ModifierArguments a2 ON a2.ModifierId = m2.ModifierId AND a2.Name = 'UnitType' " +
+    "AND a2.Value = r.ReplacesUnitType\n    " +
+    `WHERE d.EffectType = '${GRANT_EFFECT}' AND m.ModifierId NOT LIKE 'SR_LINE_%' ` +
+    "AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL\n    " +
+    "AND d2.EffectType = 'EFFECT_PLAYER_DISABLE_BUILD_UNIT' AND m2.SubjectRequirementSetId IS NULL";
+  const short = "substr(u.StrategicResource, 10)";
+  return ["-- A civic's grant of a gated unit with no condition (Kinsei, Samurai 2): the grant needs the resource, and",
+    "-- the build lock the civic puts on the unit it replaces is switched off (see scripts/build-data.mjs).",
+    "INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)\n    " +
+      "VALUES ('SR_LINE_NEVER', 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT');",
+    "INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)\n    " +
+      `VALUES ('SR_LINE_NEVER', 'TraitType', '${LOCKED_TRAIT}');`,
+    "INSERT OR IGNORE INTO RequirementSets (RequirementSetId, RequirementSetType)\n    " +
+      "VALUES ('SR_LINE_NEVER_SET', 'REQUIREMENTSET_TEST_ALL');",
+    "INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)\n    " +
+      "VALUES ('SR_LINE_NEVER_SET', 'SR_LINE_NEVER');",
+    "UPDATE Modifiers SET SubjectRequirementSetId = 'SR_LINE_NEVER_SET'\n    " +
+      `WHERE ModifierId IN (SELECT m2.ModifierId ${locks});`,
+    "INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)\n    " +
+      `SELECT DISTINCT 'SR_LINE_HAS_' || ${short}, 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 0 ${grants};`,
+    "INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)\n    " +
+      `SELECT DISTINCT 'SR_LINE_HAS_' || ${short}, 'ResourceType', u.StrategicResource ${grants};`,
+    "INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)\n    " +
+      `SELECT DISTINCT 'SR_LINE_HAS_' || ${short}, 'Amount', '1' ${grants};`,
+    "INSERT OR IGNORE INTO RequirementSets (RequirementSetId, RequirementSetType)\n    " +
+      `SELECT DISTINCT 'SR_LINE_NEEDS_' || ${short}, 'REQUIREMENTSET_TEST_ALL' ${grants};`,
+    "INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)\n    " +
+      `SELECT DISTINCT 'SR_LINE_NEEDS_' || ${short}, 'SR_LINE_HAS_' || ${short} ${grants};`,
+    "UPDATE Modifiers SET SubjectRequirementSetId = (SELECT 'SR_LINE_NEEDS_' || substr(u.StrategicResource, 10)\n    " +
+      "FROM ModifierArguments a JOIN Units u ON u.UnitType = a.Value\n    " +
+      "WHERE a.ModifierId = Modifiers.ModifierId AND a.Name = 'UnitType')\n    " +
+      `WHERE ModifierId IN (SELECT m.ModifierId ${grants});`];
+}
+
+/**
  * The SQL that makes one age's line targets grant-only (gate-map.mjs lineLocks). Each statement selects through
  * Units, so a unit the game lacks (a DLC not owned, a unit an update removed) skips its rows. The grants go on the
  * major players only, with every requirement on the child (a requirement on an attach parent crashes the game:
@@ -486,6 +550,7 @@ function linesFile(age, locks, copies) {
       }
     }
   }
+  out.push("", ...civicGrants());
   const base = locks.filter((l) => l.kind === "base").map((l) => q(l.unit)).join(", ");
   const unique = locks.filter((l) => l.kind === "unique").map((l) => q(l.unit)).join(", ");
   out.push("", "-- The traits last, once every requirement has read the game's own.");

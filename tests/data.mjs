@@ -377,7 +377,9 @@ for (const age of AGES) {
   for (const st of statements) {
     if (st === "INSERT INTO Modifiers SELECT * FROM sr_mods") continue; // the reward twins, from a guarded temp table
     if (/^INSERT (OR IGNORE )?INTO (Modifiers|GameModifiers|RequirementSets) /.test(st)) {
-      assert.ok(/ FROM Units WHERE UnitType = '/.test(st), `${f}: unguarded statement: ${st.slice(0, 120)}`);
+      assert.ok(/ FROM Units WHERE UnitType = '|\n {4}JOIN Units u ON u\.UnitType = a\.Value\n/.test(st) ||
+        /^INSERT OR IGNORE INTO RequirementSets \(RequirementSetId, RequirementSetType\)\n {4}VALUES \('SR_LINE_/.test(st),
+        `${f}: unguarded statement: ${st.slice(0, 120)}`);
     }
   }
   assert.ok(!/DELETE FROM UnitUpgrades|UPDATE UnitUpgrades/.test(sql), `${f} removes or changes an upgrade row`);
@@ -398,7 +400,7 @@ for (const age of AGES) {
     if (copies.length) assert.ok(sql.indexOf("UPDATE Units SET TraitType") < sql.indexOf(`-- ${c.unit}:`),
       `${f}: ${c.unit} made after the traits change`);
   }
-  assert.ok(!/StrategicResource/.test(sql), `${f} sets the column`);
+  assert.ok(!/SET\s+StrategicResource|StrategicResource\s*=/.test(sql), `${f} sets the column`);
   assert.ok(!/COLLECTION_ALL_PLAYERS|COLLECTION_INDEPENDENT/.test(sql), `${f}: a grant beyond the major players`);
   const updates = [...sql.matchAll(/^UPDATE Units SET TraitType = '([A-Z_]+)' WHERE UnitType IN \(([^)]*)\)/gm)]
     .map((m) => [m[1], m[2].split(", ").map((u) => u.replace(/'/g, ""))]);
@@ -465,59 +467,156 @@ if (!fs.existsSync(live)) {
   }
 }
 
+// A civic's grant of a gated unit with no condition (Kinsei, Samurai 2) gets one, the resource, and the build lock
+// the same civic puts on the unit the gated unit replaces (the Man-at-Arms) is switched off. Untouched: a grant with
+// its own set (the Corsair's), a grant of an ungated unit, a lock from another civic, a lock on an unrelated unit, and
+// the mod's own grants. The block runs twice without failing. (scripts/build-data.mjs civicGrants; sr-113-on, sr-113-off)
+{
+  const sql = read("sr-exploration-gate-lines.sql");
+  const block = sql.slice(sql.indexOf("-- A civic's grant of a gated unit with no condition"),
+    sql.indexOf("-- The traits last"));
+  assert.ok(block.length > 100, "the civic-grants block is in the lines file");
+  const out = execFileSync("sqlite3", [":memory:"], {
+    encoding: "utf8",
+    input: `PRAGMA foreign_keys = ON;
+      CREATE TABLE Units (UnitType TEXT PRIMARY KEY, StrategicResource TEXT);
+      CREATE TABLE UnitReplaces (CivUniqueUnitType TEXT PRIMARY KEY, ReplacesUnitType TEXT NOT NULL);
+      CREATE TABLE ProgressionTreeNodeUnlocks (ProgressionTreeNodeType TEXT NOT NULL, TargetType TEXT NOT NULL,
+        TargetKind TEXT NOT NULL, PRIMARY KEY (ProgressionTreeNodeType, TargetType));
+      CREATE TABLE DynamicModifiers (ModifierType TEXT PRIMARY KEY, CollectionType TEXT, EffectType TEXT);
+      CREATE TABLE RequirementSets (RequirementSetId TEXT PRIMARY KEY, RequirementSetType TEXT NOT NULL);
+      CREATE TABLE Requirements (RequirementId TEXT PRIMARY KEY, RequirementType TEXT NOT NULL, Inverse BOOLEAN);
+      CREATE TABLE RequirementArguments (RequirementId TEXT NOT NULL REFERENCES Requirements(RequirementId),
+        Name TEXT NOT NULL, Value TEXT, PRIMARY KEY (RequirementId, Name));
+      CREATE TABLE RequirementSetRequirements (
+        RequirementSetId TEXT NOT NULL REFERENCES RequirementSets(RequirementSetId),
+        RequirementId TEXT NOT NULL REFERENCES Requirements(RequirementId),
+        PRIMARY KEY (RequirementSetId, RequirementId));
+      CREATE TABLE Modifiers (ModifierId TEXT PRIMARY KEY, ModifierType TEXT NOT NULL,
+        SubjectRequirementSetId TEXT REFERENCES RequirementSets(RequirementSetId));
+      CREATE TABLE ModifierArguments (ModifierId TEXT NOT NULL, Name TEXT NOT NULL, Value TEXT,
+        PRIMARY KEY (ModifierId, Name));
+      INSERT INTO Units VALUES ('UNIT_SAMURAI_2', 'RESOURCE_IRON'), ('UNIT_MAN_AT_ARMS', 'RESOURCE_IRON'),
+        ('UNIT_CORSAIR_2', 'RESOURCE_NITER'), ('UNIT_FREE', NULL), ('UNIT_OTHER', NULL);
+      INSERT INTO UnitReplaces VALUES ('UNIT_SAMURAI_2', 'UNIT_MAN_AT_ARMS');
+      INSERT INTO DynamicModifiers VALUES ('GRANT', 'COLLECTION_OWNER', 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD'),
+        ('LOCK', 'COLLECTION_OWNER', 'EFFECT_PLAYER_DISABLE_BUILD_UNIT');
+      INSERT INTO RequirementSets VALUES ('CORSAIR_SET', 'REQUIREMENTSET_TEST_ALL');
+      INSERT INTO Modifiers VALUES ('KINSEI', 'GRANT', NULL), ('NO_MAN', 'LOCK', NULL), ('NO_OTHER', 'LOCK', NULL),
+        ('ELSEWHERE_NO_MAN', 'LOCK', NULL), ('CORSAIR', 'GRANT', 'CORSAIR_SET'), ('FREE', 'GRANT', NULL),
+        ('SR_LINE_GRANT_X', 'GRANT', NULL), ('UNATTACHED', 'GRANT', NULL);
+      INSERT INTO ModifierArguments VALUES ('KINSEI', 'UnitType', 'UNIT_SAMURAI_2'),
+        ('NO_MAN', 'UnitType', 'UNIT_MAN_AT_ARMS'), ('NO_OTHER', 'UnitType', 'UNIT_OTHER'),
+        ('ELSEWHERE_NO_MAN', 'UnitType', 'UNIT_MAN_AT_ARMS'), ('CORSAIR', 'UnitType', 'UNIT_CORSAIR_2'),
+        ('FREE', 'UnitType', 'UNIT_FREE'), ('SR_LINE_GRANT_X', 'UnitType', 'UNIT_SAMURAI_2'),
+        ('UNATTACHED', 'UnitType', 'UNIT_SAMURAI_2');
+      INSERT INTO ProgressionTreeNodeUnlocks VALUES ('NODE_KINSEI', 'KINSEI', 'KIND_MODIFIER'),
+        ('NODE_KINSEI', 'NO_MAN', 'KIND_MODIFIER'), ('NODE_KINSEI', 'NO_OTHER', 'KIND_MODIFIER'),
+        ('NODE_ELSEWHERE', 'ELSEWHERE_NO_MAN', 'KIND_MODIFIER'), ('NODE_CORSAIR', 'CORSAIR', 'KIND_MODIFIER'),
+        ('NODE_FREE', 'FREE', 'KIND_MODIFIER'), ('NODE_X', 'SR_LINE_GRANT_X', 'KIND_MODIFIER');
+      ${block}
+      ${block}
+      SELECT 'M|' || ModifierId || ':' || ifnull(SubjectRequirementSetId, '-') FROM Modifiers ORDER BY ModifierId;
+      SELECT 'R|' || RequirementSetId || ':' || RequirementId FROM RequirementSetRequirements ORDER BY 1;
+      SELECT 'A|' || RequirementId || ':' || Name || '=' || Value FROM RequirementArguments ORDER BY 1;
+      SELECT 'F|' || "table" FROM pragma_foreign_key_check;`
+  }).trim().split("\n");
+  assert.deepEqual(out, ["M|CORSAIR:CORSAIR_SET", "M|ELSEWHERE_NO_MAN:-", "M|FREE:-", "M|KINSEI:SR_LINE_NEEDS_IRON",
+    "M|NO_MAN:SR_LINE_NEVER_SET", "M|NO_OTHER:-", "M|SR_LINE_GRANT_X:-", "M|UNATTACHED:-",
+    "R|SR_LINE_NEEDS_IRON:SR_LINE_HAS_IRON", "R|SR_LINE_NEVER_SET:SR_LINE_NEVER",
+    "A|SR_LINE_HAS_IRON:Amount=1", "A|SR_LINE_HAS_IRON:ResourceType=RESOURCE_IRON",
+    "A|SR_LINE_NEVER:TraitType=TRAIT_SR_LOCKED"], "a civic's unconditional grant of a gated unit");
+}
+
 // "Free Tier-Up by Kills" set to Off: sr-kill-tiers-off.sql, run against a small database shaped like the game's, in
 // each setup it can meet. It must take out only the kill rows of tiers that need a resource, only while upgrades are
-// gated, swap only those pages' gate line, and do nothing (and not fail) when the Sengoku DLC isn't there.
+// gated, swap only those pages' gate line, open the ordinary upgrade (each tier unlocked with the unit it replaces, for
+// its own civilization, and the ALT_UPGRADE tag off the line), and do nothing (and not fail) without the Sengoku DLC.
 {
   const killSql = read("sr-kill-tiers-off.sql");
-  const schema = `CREATE TABLE Units (UnitType TEXT PRIMARY KEY, StrategicResource TEXT);
+  const schema = `CREATE TABLE Traits (TraitType TEXT PRIMARY KEY);
+    CREATE TABLE Units (UnitType TEXT PRIMARY KEY, StrategicResource TEXT, TraitType TEXT);
     CREATE TABLE UnitUpgradeKills (UnitType TEXT PRIMARY KEY REFERENCES Units(UnitType), KillCount INTEGER NOT NULL);
     CREATE TABLE GlobalParameters (Name TEXT PRIMARY KEY, Value TEXT NOT NULL);
     CREATE TABLE CivilopediaPageChapterParagraphs (ChapterID TEXT, PageID TEXT, SectionID TEXT, Paragraph TEXT,
       SortIndex INTEGER, PRIMARY KEY (ChapterID, PageID, SectionID));
-    INSERT INTO Units VALUES ('UNIT_MAN_AT_ARMS', 'RESOURCE_IRON'), ('UNIT_OTHER_2', NULL);
+    CREATE TABLE UnitReplaces (CivUniqueUnitType TEXT PRIMARY KEY, ReplacesUnitType TEXT NOT NULL);
+    CREATE TABLE UnitUpgrades (Unit TEXT PRIMARY KEY, UpgradeUnit TEXT NOT NULL);
+    CREATE TABLE TypeTags (Type TEXT NOT NULL, Tag TEXT NOT NULL, PRIMARY KEY (Type, Tag));
+    CREATE TABLE ProgressionTreeNodes (ProgressionTreeNodeType TEXT PRIMARY KEY);
+    CREATE TABLE ProgressionTreeNodeUnlocks (ProgressionTreeNodeType TEXT NOT NULL
+        REFERENCES ProgressionTreeNodes(ProgressionTreeNodeType), TargetType TEXT NOT NULL,
+      AIIgnoreUnlockValue BOOLEAN NOT NULL DEFAULT 0, RequiredTraitType TEXT REFERENCES Traits(TraitType),
+      TargetKind TEXT NOT NULL, UnlockDepth INTEGER NOT NULL DEFAULT 1,
+      PRIMARY KEY (ProgressionTreeNodeType, TargetType));
+    INSERT INTO ProgressionTreeNodes VALUES ('NODE_TECH_EX_HERALDRY'), ('NODE_TECH_EX_METAL_CASTING');
+    INSERT INTO Units VALUES ('UNIT_MAN_AT_ARMS', 'RESOURCE_IRON', NULL), ('UNIT_PIKEMAN', 'RESOURCE_IRON', NULL),
+      ('UNIT_OTHER_2', NULL, NULL);
+    INSERT INTO ProgressionTreeNodeUnlocks (ProgressionTreeNodeType, TargetType, TargetKind) VALUES
+      ('NODE_TECH_EX_HERALDRY', 'UNIT_MAN_AT_ARMS', 'KIND_UNIT'),
+      ('NODE_TECH_EX_METAL_CASTING', 'UNIT_PIKEMAN', 'KIND_UNIT');
+    INSERT INTO TypeTags VALUES ('UNIT_OTHER_2', 'UNIT_CLASS_ALT_UPGRADE');
     INSERT INTO UnitUpgradeKills VALUES ('UNIT_OTHER_2', 5);
     INSERT INTO CivilopediaPageChapterParagraphs VALUES
       ('SR_LOCK', 'UNIT_MAN_AT_ARMS', 'UNITS', 'LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING', 10);`;
-  const sengoku = `INSERT INTO Units VALUES ('UNIT_SAMURAI', NULL), ('UNIT_SAMURAI_2', 'RESOURCE_IRON'),
-      ('UNIT_SAMURAI_3', 'RESOURCE_IRON');
+  const sengoku = `INSERT INTO Traits VALUES ('TRAIT_SENGOKU');
+    INSERT INTO Units VALUES ('UNIT_SAMURAI', NULL, 'TRAIT_SENGOKU'),
+      ('UNIT_SAMURAI_2', 'RESOURCE_IRON', 'TRAIT_SENGOKU'), ('UNIT_SAMURAI_3', 'RESOURCE_IRON', 'TRAIT_SENGOKU');
+    INSERT INTO UnitReplaces VALUES ('UNIT_SAMURAI_2', 'UNIT_MAN_AT_ARMS'), ('UNIT_SAMURAI_3', 'UNIT_PIKEMAN');
+    INSERT INTO UnitUpgrades VALUES ('UNIT_SAMURAI', 'UNIT_SAMURAI_2'), ('UNIT_SAMURAI_2', 'UNIT_SAMURAI_3');
+    INSERT INTO TypeTags VALUES ('UNIT_SAMURAI', 'UNIT_CLASS_ALT_UPGRADE'),
+      ('UNIT_SAMURAI_2', 'UNIT_CLASS_ALT_UPGRADE'), ('UNIT_SAMURAI_3', 'UNIT_CLASS_ALT_UPGRADE');
     INSERT INTO UnitUpgradeKills VALUES ('UNIT_SAMURAI_2', 3), ('UNIT_SAMURAI_3', 3);
     INSERT INTO CivilopediaPageChapterParagraphs VALUES
       ('SR_LOCK', 'UNIT_SAMURAI_2', 'UNITS', 'LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING', 10),
       ('SR_LOCK', 'UNIT_SAMURAI_3', 'UNITS', 'LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING', 10);`;
   const upgrading = (/** @type {number} */ n) =>
     `INSERT INTO GlobalParameters VALUES ('STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPGRADING', '${n}');`;
-  /** @param {string} setup @returns {{ kills: string[], pages: string[], fk: string[] }} */
+  /** @typedef {{ kills: string[], pages: string[], unlocks: string[], tags: string[], fk: string[] }} KillRun */
+  /** @param {string} setup @returns {KillRun} */
   const run = (setup) => {
     const out = execFileSync("sqlite3", [":memory:"], {
       encoding: "utf8",
       input: `PRAGMA foreign_keys = ON; ${schema} ${setup}\n${killSql}\n` +
         "SELECT 'K|' || UnitType || ':' || KillCount FROM UnitUpgradeKills ORDER BY UnitType;\n" +
         "SELECT 'P|' || PageID || ':' || Paragraph FROM CivilopediaPageChapterParagraphs ORDER BY PageID;\n" +
+        "SELECT 'U|' || ProgressionTreeNodeType || ':' || TargetType || ':' || ifnull(RequiredTraitType, '-') " +
+        "FROM ProgressionTreeNodeUnlocks WHERE TargetType LIKE 'UNIT_SAMURAI%' ORDER BY TargetType;\n" +
+        "SELECT 'T|' || Type FROM TypeTags WHERE Tag = 'UNIT_CLASS_ALT_UPGRADE' ORDER BY Type;\n" +
         "SELECT 'F|' || \"table\" FROM pragma_foreign_key_check;\n"
     }).trim().split("\n").filter(Boolean);
     const pick = (/** @type {string} */ k) => out.filter((l) => l.startsWith(`${k}|`)).map((l) => l.slice(2));
-    return { kills: pick("K"), pages: pick("P"), fk: pick("F") };
+    return { kills: pick("K"), pages: pick("P"), unlocks: pick("U"), tags: pick("T"), fk: pick("F") };
   };
   const untouchedPages = ["UNIT_MAN_AT_ARMS:LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING"];
-  // Training and upgrade, Sengoku present: the Samurai's kill rows go, their pages say "upgraded into".
+  const allTags = ["UNIT_OTHER_2", "UNIT_SAMURAI", "UNIT_SAMURAI_2", "UNIT_SAMURAI_3"];
+  // Training and upgrade, Sengoku present: the Samurai's kill rows go, their pages say "upgraded into", the tiers
+  // unlock with Heraldry and Metal Casting for the Sengoku only, and the line loses the tag that blocks the upgrade.
   assert.deepEqual(run(sengoku + upgrading(1)), {
     kills: ["UNIT_OTHER_2:5"],
     pages: [...untouchedPages, "UNIT_SAMURAI_2:LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE",
       "UNIT_SAMURAI_3:LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE"],
+    unlocks: ["NODE_TECH_EX_HERALDRY:UNIT_SAMURAI_2:TRAIT_SENGOKU",
+      "NODE_TECH_EX_METAL_CASTING:UNIT_SAMURAI_3:TRAIT_SENGOKU"],
+    tags: ["UNIT_OTHER_2"],
     fk: []
   }, "kill tiers off, Training and upgrade");
+  // Run twice (a second copy of the file, or another mod adding the same unlock): no failure, the same rows.
+  assert.deepEqual(run(sengoku + upgrading(1) + killSql), run(sengoku + upgrading(1)), "kill tiers off, run twice");
   // Training only (upgrades free) or no gate at all: nothing changes, the Samurai still tier up by kills.
   const unchanged = {
     kills: ["UNIT_OTHER_2:5", "UNIT_SAMURAI_2:3", "UNIT_SAMURAI_3:3"],
     pages: [...untouchedPages, "UNIT_SAMURAI_2:LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING",
       "UNIT_SAMURAI_3:LOC_SR_PEDIA_UNIT_IRON_GATE_TRAINING"],
+    unlocks: [],
+    tags: allTags,
     fk: []
   };
   assert.deepEqual(run(sengoku + upgrading(0)), unchanged, "kill tiers off, Training");
   assert.deepEqual(run(sengoku), unchanged, "kill tiers off, Gated Units off");
   // No Sengoku DLC: the file runs without error and touches nothing.
-  assert.deepEqual(run(upgrading(1)), { kills: ["UNIT_OTHER_2:5"], pages: untouchedPages, fk: [] },
+  assert.deepEqual(run(upgrading(1)),
+    { kills: ["UNIT_OTHER_2:5"], pages: untouchedPages, unlocks: [], tags: ["UNIT_OTHER_2"], fk: [] },
     "kill tiers off without the Sengoku DLC");
 }
 // The option's default is On, and only its Off value loads the file, after the gate files.

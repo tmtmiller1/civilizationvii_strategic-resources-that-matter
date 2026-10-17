@@ -3,6 +3,14 @@ Generated from CHANGELOG.md by scripts/steam-changelog.mjs; release.sh uploads t
 To fix an old Workshop entry, paste the text under its ==== line into that entry's Edit box on the change-notes page.
 A block edited by hand is kept as-is. Delete a block to regenerate it from CHANGELOG.md.
 
+==== 1.1.1 | 2026-10-16 | src 59805c2eb31a | gen 3dd5b775690c ====
+[b]Version 1.1.1 · 16 October 2026[/b]
+Two fixes for the Sengoku's Samurai under Gated Units, both watched in test games on every setting.
+
+[b]Fixed[/b]
+• With Free Tier-Up by Kills set to Off, the Sengoku's Samurai could never upgrade, even with Iron, Heraldry and gold. They now upgrade like any other unit: tier 2 once you have Heraldry, tier 3 once you have Metal Casting, for gold, and only while you hold Iron.
+• With Gated Units on, a Sengoku player with no Iron lost the Samurai altogether once Kinsei was researched: the civic made tier 2 count as available, so tier 1 went obsolete, and tier 2 needs Iron. Now tier 1 stays trainable until you hold Iron, and tier 2 takes over from then, as in the base game.
+
 ==== 1.1.0 | 2026-10-16 | src 1953b871f8b9 | gen e681fda4ecf8 ====
 [b]Version 1.1.0 · 16 October 2026[/b]
 The Sengoku's Samurai move up a tier after three kills, and the game doesn't ask for Iron then, even with Gated Units on “Training and upgrade”. A new setup option lets you keep that, as in the base game, or make the Samurai upgrade like any other unit, with Iron.

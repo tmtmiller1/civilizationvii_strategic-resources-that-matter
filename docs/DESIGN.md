@@ -547,6 +547,34 @@ only refusal). If it isn't offered, a Sengoku player with Off reaches tier 2 onl
 tier 3 never. Also unwatched: whether the tier-1 Samurai goes obsolete once tier 2 counts as unlocked, now that an
 ordinary upgrade leads to it (the stranding case of "Grant-only lines" below).
 
+**Off in 1.1.0 left the Samurai with no way up** (the owner's report, 2026-10-16). The question above came back no: the
+upgrade was never offered. Lab runs `sr-110-off-1` to `-3` (verification-runs.md) found two blocks. The engine refuses
+the upgrade of a unit tagged `UNIT_CLASS_ALT_UPGRADE`, which the DLC puts on all three tiers and which nothing in data
+or script reads; and the tiers had no tech unlock. Off now also gives each tier the unlock of the unit it replaces,
+with the tier's own trait as `RequiredTraitType` (Samurai 2 at Heraldry, Samurai 3 at Metal Casting, the shape the
+Tercio and Leiomano tiers have) and takes the tag off the line. Watched: refused without Iron with the game's reason,
+upgraded with one for 160 Gold, tier 3 offered for 200 after Metal Casting, Samurai 1 still trainable with Heraldry.
+The committed file watched on both settings in `sr-111-off` and `sr-111-on`, three kills included. Found on both
+settings, so not this change's doing: once Kinsei makes Samurai 2 trainable, Samurai 1 reads Obsolete, so a Sengoku
+with no Iron under Training and upgrade has no Samurai to train. Not watched: the AI's use of the upgrade.
+
+**The Kinsei stranding, fixed (`civicGrants` in `scripts/build-data.mjs`, in every `sr-<age>-gate-lines.sql`).** Kinsei
+grants Samurai 2 with no condition (`KINSEI_MOD_MOD_SAMURAI_2`) and permanently locks the Man-at-Arms for the Sengoku
+(`MOD_CIV_SENGOKU_NO_MAN`, hidden). The grant is what makes Samurai 1 obsolete, so it gets a requirement set needing a
+copy of Iron, the condition the Corsair grants get above. That alone (`sr-112`, three shapes) left Samurai 2
+untrainable with Iron: the lock lands on whatever the Sengoku would build for the Man-at-Arms at the moment Kinsei is
+researched, which is the Man-at-Arms itself while the grant is active (`sr-113-base`: the Man-at-Arms disabled,
+Samurai 2 not) and Samurai 2 while the grant is inactive, and a permanent lock stays. The Sengoku can't build the
+Man-at-Arms before or after Kinsei anyway (`UnitReplaces`, `sr-113-base`), so under the gate that lock is switched off
+by a requirement nobody meets (`SR_LINE_NEVER_SET`, the trait nobody holds). Both rows are picked from the tables: a
+civic-unlocked grant with no requirement set of a unit that carries the column, and a lock unlocked by the same civic
+on the unit that gated unit replaces; without the DLC nothing matches. The unattached `RAKUICH_RAKUZA_MOD_SAMURAI_2`
+grant has no civic and is left alone. Watched under all three gate values (`sr-113-on`, `sr-113-off`,
+`sr-113-training`): after Kinsei with no Iron Samurai 1 trains and buys; with Iron Samurai 1 is obsolete and Samurai 2
+trains, buys and is upgraded into for 160 Gold; the Iron gone, Samurai 1 is back a turn later; the Man-at-Arms refused
+throughout. The tier-up by kills is untouched by it: with Kinsei researched and no Iron, On took a Samurai to tier 2 at its
+third kill and Off left it at tier 1 after the same five rounds (`sr-114-on`, `sr-114-off`). With Iron held the same: On tier 2 at the third kill with no gold upgrade ever offered, Off tier 1 after five rounds with the 160 Gold upgrade open the whole time (`sr-115-on`, `sr-115-off`).
+
 ### Grant-only lines: a free unit stays until its owner could train the next one (after 1.0.2)
 
 The engine marks a unit obsolete once the unit it upgrades into is unlocked by tech, whether or not the column lets

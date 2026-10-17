@@ -158,6 +158,74 @@ INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementI
     SELECT 'SR_LINE_REQS_UNIT_SPEARMAN', 'SR_LINE_NOT_' || u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
     WHERE r.ReplacesUnitType = 'UNIT_SPEARMAN' AND u.TraitType IS NOT NULL AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_SPEARMAN');
 
+-- A civic's grant of a gated unit with no condition (Kinsei, Samurai 2): the grant needs the resource, and
+-- the build lock the civic puts on the unit it replaces is switched off (see scripts/build-data.mjs).
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)
+    VALUES ('SR_LINE_NEVER', 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT');
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    VALUES ('SR_LINE_NEVER', 'TraitType', 'TRAIT_SR_LOCKED');
+INSERT OR IGNORE INTO RequirementSets (RequirementSetId, RequirementSetType)
+    VALUES ('SR_LINE_NEVER_SET', 'REQUIREMENTSET_TEST_ALL');
+INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    VALUES ('SR_LINE_NEVER_SET', 'SR_LINE_NEVER');
+UPDATE Modifiers SET SubjectRequirementSetId = 'SR_LINE_NEVER_SET'
+    WHERE ModifierId IN (SELECT m2.ModifierId FROM ProgressionTreeNodeUnlocks n
+    JOIN Modifiers m ON m.ModifierId = n.TargetType AND n.TargetKind = 'KIND_MODIFIER'
+    JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType'
+    JOIN Units u ON u.UnitType = a.Value
+    JOIN UnitReplaces r ON r.CivUniqueUnitType = u.UnitType
+    JOIN ProgressionTreeNodeUnlocks n2 ON n2.ProgressionTreeNodeType = n.ProgressionTreeNodeType AND n2.TargetKind = 'KIND_MODIFIER'
+    JOIN Modifiers m2 ON m2.ModifierId = n2.TargetType
+    JOIN DynamicModifiers d2 ON d2.ModifierType = m2.ModifierType
+    JOIN ModifierArguments a2 ON a2.ModifierId = m2.ModifierId AND a2.Name = 'UnitType' AND a2.Value = r.ReplacesUnitType
+    WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL
+    AND d2.EffectType = 'EFFECT_PLAYER_DISABLE_BUILD_UNIT' AND m2.SubjectRequirementSetId IS NULL);
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    SELECT DISTINCT 'SR_LINE_HAS_' || substr(u.StrategicResource, 10), 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 0 FROM ProgressionTreeNodeUnlocks n
+    JOIN Modifiers m ON m.ModifierId = n.TargetType AND n.TargetKind = 'KIND_MODIFIER'
+    JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType'
+    JOIN Units u ON u.UnitType = a.Value
+    WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL;
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT DISTINCT 'SR_LINE_HAS_' || substr(u.StrategicResource, 10), 'ResourceType', u.StrategicResource FROM ProgressionTreeNodeUnlocks n
+    JOIN Modifiers m ON m.ModifierId = n.TargetType AND n.TargetKind = 'KIND_MODIFIER'
+    JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType'
+    JOIN Units u ON u.UnitType = a.Value
+    WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL;
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT DISTINCT 'SR_LINE_HAS_' || substr(u.StrategicResource, 10), 'Amount', '1' FROM ProgressionTreeNodeUnlocks n
+    JOIN Modifiers m ON m.ModifierId = n.TargetType AND n.TargetKind = 'KIND_MODIFIER'
+    JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType'
+    JOIN Units u ON u.UnitType = a.Value
+    WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL;
+INSERT OR IGNORE INTO RequirementSets (RequirementSetId, RequirementSetType)
+    SELECT DISTINCT 'SR_LINE_NEEDS_' || substr(u.StrategicResource, 10), 'REQUIREMENTSET_TEST_ALL' FROM ProgressionTreeNodeUnlocks n
+    JOIN Modifiers m ON m.ModifierId = n.TargetType AND n.TargetKind = 'KIND_MODIFIER'
+    JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType'
+    JOIN Units u ON u.UnitType = a.Value
+    WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL;
+INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT DISTINCT 'SR_LINE_NEEDS_' || substr(u.StrategicResource, 10), 'SR_LINE_HAS_' || substr(u.StrategicResource, 10) FROM ProgressionTreeNodeUnlocks n
+    JOIN Modifiers m ON m.ModifierId = n.TargetType AND n.TargetKind = 'KIND_MODIFIER'
+    JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType'
+    JOIN Units u ON u.UnitType = a.Value
+    WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL;
+UPDATE Modifiers SET SubjectRequirementSetId = (SELECT 'SR_LINE_NEEDS_' || substr(u.StrategicResource, 10)
+    FROM ModifierArguments a JOIN Units u ON u.UnitType = a.Value
+    WHERE a.ModifierId = Modifiers.ModifierId AND a.Name = 'UnitType')
+    WHERE ModifierId IN (SELECT m.ModifierId FROM ProgressionTreeNodeUnlocks n
+    JOIN Modifiers m ON m.ModifierId = n.TargetType AND n.TargetKind = 'KIND_MODIFIER'
+    JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType'
+    JOIN Units u ON u.UnitType = a.Value
+    WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL);
+
 -- The traits last, once every requirement has read the game's own.
 UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_SPEARMAN') AND TraitType IS NULL;
 UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_GAISATAI_2', 'UNIT_HOPLITE_2', 'UNIT_IMMORTAL', 'UNIT_LEGION', 'UNIT_MEDJAY_2') AND TraitType IS NOT NULL;
