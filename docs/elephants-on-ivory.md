@@ -300,4 +300,6 @@ and how many civilizations have none of each.
 Whatever the choice, the Horses side question stands on its own: most civilizations on a Small map start with no
 Horses within 8 tiles.
 
-Decision (the owner):
+Decision (the owner, 2026-10-17): Ivory only, with +1 Combat Strength per Ivory on the elephants, capped at six
+by the engine as the Horses bonus is, the game's +1 per Horses stopped at them, and the late curve on Ivory. Built in
+1.2.0 (DESIGN.md section 4 and 10; `gate-map.mjs` UNIT_OVERRIDES and ELEPHANTS; `sr-antiquity-elephants-*.xml`).

@@ -6,23 +6,36 @@ release is generated from the matching section below by `scripts/steam-changelog
 
 ## [Unreleased]
 
-## [1.2.0] - 2026-10-16
+## [1.2.0] - 2026-10-17
 
-Hardwood for the Exploration warships, the lock folded into Unsupplied Units, a new Modern Supply Chains option, and
-the commander's Upgrade All reading the lock. Built from Workshop suggestions.
+Hardwood for the Exploration warships, Ivory for the war elephants, Oil for the heavier Modern artillery, three more
+Modern units on a resource, the lock folded into Unsupplied Units, a new Modern Supply Chains option, and the
+commander's Upgrade All reading the lock. Built from Workshop suggestions.
 
 ### Added
 - A new game setup option, Modern Supply Chains, Off by default. On, every Modern unit that needs a resource needs a
-  second one: artillery Niter and Coal, armour and battleships Oil and Coal, light warships Coal and Niter, aircraft
-  Rubber and Oil. Each missing resource costs the full penalty, the unit panel shows one cell per missing resource,
-  and under a locked value the unit needs both to be trained. Iron isn't placed on Modern maps, so Coal stands for
-  steel.
+  second one: field artillery Niter and Coal, heavier artillery, armour and battleships Oil and Coal, light warships
+  Coal and Niter, the Cuirassier line Horses and Niter, the Ship of the Line Hardwood and Niter, the Submarine Oil and
+  Rubber, aircraft Rubber and Oil. Each missing resource costs the full penalty, the unit panel shows one cell per
+  missing resource, and under a locked value the unit needs both to be trained. Iron isn't placed on Modern maps, so
+  Coal stands for steel.
 - The Civilopedia page gains a "Modern supply chains" chapter, and a unit's page a second line for its second
   resource.
 
 ### Changed
 - The Exploration heavy warships (Carrack, Galleon and their unique versions) need Hardwood instead of Niter. Niter
   stays with the Bombard and the Hwacha, and the Ironclad line with Coal.
+- In the Modern age the Mortar, Howitzer, AT Gun and Assault Gun (and the unique units that replace them) need Oil
+  instead of Niter: they are the motorised and self-propelled pieces. The Field Cannon and Field Gun, the powder guns,
+  keep Niter.
+- Three Modern units that needed nothing now do: the Cuirassier (and the first tier of the Cossack, Ghilman and
+  Hussar) needs Horses, the Ship of the Line (and the Turtle Ship) needs Hardwood, and the Submarine needs Oil. A unit
+  on one resource that upgrades into a unit on another (the Ship of the Line into the Dreadnought, the Field Gun into
+  the AT Gun) stays trainable until you hold the next unit's resource, as a free unit does.
+- The Khmer's Yuthahathi and the Maurya's Purabhettarah need Ivory instead of Horses, and count it the way cavalry
+  counts Horses: +1 Combat Strength per Ivory you hold, up to six, and the steps past six with Strategic Resources
+  Past Six on. The game's own +1 per Horses no longer reaches them. Ivory is common on the map, so these two
+  civilizations will usually have their elephants supplied.
 - The lock is no longer its own option. Unsupplied Units has two more values after Harsh, "Locked: training" and
   "Locked: training and upgrade": the Harsh penalty in the field, and a unit that needs a resource can't be trained
   or bought without it (nor upgraded into, under the second). A save started with the old Gated Units option keeps

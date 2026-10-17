@@ -4,8 +4,8 @@
 <Database>
     <Units>
         <Update><Where UnitType="UNIT_CHARIOT"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
-        <Update><Where UnitType="UNIT_DANTINAS_TATHA"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
-        <Update><Where UnitType="UNIT_DANTINAS_TATHA_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_DANTINAS_TATHA"/><Set StrategicResource="RESOURCE_IVORY"/></Update>
+        <Update><Where UnitType="UNIT_DANTINAS_TATHA_2"/><Set StrategicResource="RESOURCE_IVORY"/></Update>
         <Update><Where UnitType="UNIT_GAISATAI_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
         <Update><Where UnitType="UNIT_GAISATAI_3"/><Set StrategicResource="RESOURCE_IRON"/></Update>
         <Update><Where UnitType="UNIT_HOPLITE_2"/><Set StrategicResource="RESOURCE_IRON"/></Update>
@@ -22,8 +22,8 @@
         <Update><Where UnitType="UNIT_NUMIDIAN_CAVALRY"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_NUMIDIAN_CAVALRY_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_PHALANX"/><Set StrategicResource="RESOURCE_IRON"/></Update>
-        <Update><Where UnitType="UNIT_PURABHETTARAH"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
-        <Update><Where UnitType="UNIT_PURABHETTARAH_2"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
+        <Update><Where UnitType="UNIT_PURABHETTARAH"/><Set StrategicResource="RESOURCE_IVORY"/></Update>
+        <Update><Where UnitType="UNIT_PURABHETTARAH_2"/><Set StrategicResource="RESOURCE_IVORY"/></Update>
         <Update><Where UnitType="UNIT_SPEARMAN"/><Set StrategicResource="RESOURCE_IRON"/></Update>
     </Units>
     <GlobalParameters>
@@ -36,8 +36,8 @@
     </GlobalParameters>
     <CivilopediaPageChapterParagraphs>
         <Row SectionID="UNITS" PageID="UNIT_CHARIOT" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IVORY_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_DANTINAS_TATHA_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IVORY_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GAISATAI_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GAISATAI_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_HOPLITE_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
@@ -54,8 +54,8 @@
         <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_NUMIDIAN_CAVALRY_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_PHALANX" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IVORY_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_PURABHETTARAH_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IVORY_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_SPEARMAN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_IRON_GATE_UPGRADE" SortIndex="10"/>
     </CivilopediaPageChapterParagraphs>
 </Database>

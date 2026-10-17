@@ -345,7 +345,7 @@
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-antiquity" scope="game" criteria="antiquity">
             <Properties><LoadOrder>201</LoadOrder></Properties>
-            <Actions><UpdateDatabase><Item>data/sr-antiquity-supply.sql</Item></UpdateDatabase></Actions>
+            <Actions><UpdateDatabase><Item>data/sr-antiquity-supply.sql</Item><Item>data/sr-antiquity-elephants-modifiers.xml</Item><Item>data/sr-antiquity-elephants-game.xml</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <ActionGroup id="strategic-resources-that-matter-antiquity-light" scope="game" criteria="antiquity-light">
             <Properties><LoadOrder>202</LoadOrder></Properties>

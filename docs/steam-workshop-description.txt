@@ -1,21 +1,21 @@
 [h1]Strategic Resources That Matter[/h1]
-[b]Version 1.0.1. Compatible with Civilization VII 1.5.0. Single-player only[/b]
+[b]Version 1.2.0. Compatible with Civilization VII 1.5.0. Single-player only.[/b]
 
-Horses, Iron, Niter, Hardwood, Oil, Coal and Rubber count for the units that need them. In the base game a missing one costs you nothing; with the mod, a unit whose owner has none of its resource fights weaker and trains slower, losing your last one brings the penalty back a turn later, and the count keeps adding strength past six. Nothing is forbidden unless you ask for it: set Unsupplied Units to one of its two locked values and a unit cannot be trained or bought at all while you have none of its resource.
+Horses, Ivory, Iron, Niter, Hardwood, Oil, Coal and Rubber count for the units that need them. In the base game, going without one doesn't hurt you; with the mod, a unit whose owner doesn't have its required resource fights weaker and trains slower, or can't be trained at all, depending on your settings. Losing your last of a given resource brings the penalty back on the next turn, and the counts continue to add strength as they do in the base game.
 
-Four options in Advanced Options, under Game Settings, so you choose the rules per game: the penalty from Off up to a lock, the bonus past six, a second resource for every Modern unit (off by default, because it's hard), and the Samurai's free tier-up. The AI plays under the same rules; independent powers and city-states are never affected.
+Four options in Advanced Options, under Game Settings: how hard the penalty bites, up to a lock; whether the bonus keeps growing past six; whether every Modern unit needs a second resource; and whether the Sengoku's Samurai still move up by kills without Iron. Computer players play under the same rules; independents and city-states are never affected.
 
 [h2]What changes[/h2]
 [list]
-[*][b]Unsupplied units.[/b] A unit whose owner has none of its strategic resource loses Combat Strength on each strength it has (melee, and ranged and bombard where it has them), and its city puts less Production toward it. Default: -3 and a third less Production. One of the resource lifts the penalty; the game's own +1 for each applies as before, up to six.
-[*][b]Losing a resource hurts.[/b] The game notices a resource arriving but not one going away. The mod has it check every player again each turn, so a resource lost to a raid, a lost settlement or an ended trade route brings the penalty back a turn later, for you and for the AI alike.
-[*][b]Past six.[/b] Where the game's own bonus stops, the count keeps adding: +1 more Combat Strength at 8, 10, 12, 14, 16, 18 and 20 of a resource.
-[*][b]Locked units (the two hardest values).[/b] Set Unsupplied Units to "Locked: training" or "Locked: training and upgrade" and a unit that needs a strategic resource cannot be trained or bought while you have none of it, on top of the Harsh penalty in the field. It stays in the production list, greyed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under the second value, no unit can be upgraded into it either, and a commander's Upgrade All greys out with the reason. The Warrior line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog and Modern infantry need nothing, so everyone can always defend. A unit that needs nothing stays in your list until you hold the resource for the next one in its line, so Gunpowder never leaves you without a siege unit, and the upgrade still works once you have it. The AI is locked by the same rule and never sticks on a locked unit.
-[*][b]Modern Supply Chains (off by default).[/b] Every Modern unit that needs a resource needs a second one: artillery Niter and Coal, armour and battleships Oil and Coal, light warships Coal and Niter, aircraft Rubber and Oil (Iron isn't on Modern maps, so Coal stands for steel). Each missing resource costs the full penalty, and under a locked value the unit needs both to be trained. It's a hard game.
+[*][b]Unsupplied units.[/b] A unit whose owner doesn't have any of its strategic resource loses Combat Strength on each strength it has, and its city puts less Production toward it. Default: -3 and a third less Production. One of the resource lifts the penalty; the game's own +1 for each applies as before, up to six.
+[*][b]Losing a resource hurts.[/b] The game notices a resource arriving but not one going away; the mod checks every player again each turn, so a resource lost to a raid, a lost settlement or an ended trade route brings the penalty back a turn later.
+[*][b]Past six.[/b] Where the game's own bonus stops, the count keeps adding: +1 more at 8, 10, 12, 14, 16, 18 and 20 of a resource.
+[*][b]Locked units (the two hardest values of Unsupplied Units).[/b] Set it to "Locked: training" or "Locked: training and upgrade" and a unit that needs a strategic resource can't be trained or bought while you don't have any of it, on top of the Harsh penalty for units already in the field. It stays in the production list, grayed out, with a "Locked: no Iron" pill, and is locked again the moment your last one goes. Under the second value, units can't be upgraded into it either, and a commander's Upgrade All grays out with the reason. Units that need nothing (the Warrior line, Scout, ranged infantry, Catapult, Trebuchet, Cog, Modern infantry) stay free and stay listed until you hold the next unit's resource, so everyone can always defend. Computer players are locked by the same rule.
+[*][b]Modern Supply Chains (off by default).[/b] Every Modern unit that needs a resource needs a second one: field artillery Niter and Coal, heavier artillery, armor and battleships Oil and Coal, light warships Coal and Niter, the Cuirassier line Horses and Niter, the Ship of the Line Hardwood and Niter, the Submarine Oil and Rubber, aircraft Rubber and Oil. Each missing resource costs the full penalty, and under a locked value the unit needs both to be trained. It's a hard game.
 [/list]
 
 [h2]Game setup options[/h2]
-Play Now uses the defaults. The options are fixed for the whole game once it starts.
+Play Now uses the defaults. The options are fixed for the whole game once it starts. A save started with the old Gated Units option keeps its lock.
 [list]
 [*][b]Unsupplied Units:[/b] Off, Light (-2, 20% less Production), Standard (-3, 33% less), Harsh (-5, 50% less), Locked: training, Locked: training and upgrade. Default Standard.
 [*][b]Strategic Resources Past Six:[/b] Off or On. Default On.
@@ -25,56 +25,50 @@ Play Now uses the defaults. The options are fixed for the whole game once it sta
 
 [h2]Which units need what[/h2]
 [table]
-[tr][th]Age[/th][th]Units[/th][th]Resource[/th][/tr]
-[tr][td]Antiquity[/td][td]Cavalry (Chariot, Horseman)[/td][td]Horses[/td][/tr]
-[tr][td]Antiquity[/td][td]Infantry from the second tier (Spearman, Phalanx, Legion, Immortal...)[/td][td]Iron[/td][/tr]
-[tr][td]Exploration[/td][td]Cavalry (Courser, Knight, Lancer)[/td][td]Horses[/td][/tr]
-[tr][td]Exploration[/td][td]Infantry from the second tier (Man-At-Arms, Pikeman)[/td][td]Iron[/td][/tr]
-[tr][td]Exploration[/td][td]Siege from the third tier (Bombard)[/td][td]Niter[/td][/tr]
-[tr][td]Exploration[/td][td]Heavy warships from the second tier (Carrack, Galleon)[/td][td]Hardwood[/td][/tr]
-[tr][td]Modern[/td][td]Artillery (Field Cannon, Field Gun, AT Gun, Mortar, Howitzer, Assault Gun)[/td][td]Niter[/td][/tr]
-[tr][td]Modern[/td][td]Armour and battleships[/td][td]Oil[/td][/tr]
-[tr][td]Modern[/td][td]Light warships (Ironclad, Cruiser, Destroyer)[/td][td]Coal[/td][/tr]
-[tr][td]Modern[/td][td]Aircraft[/td][td]Rubber[/td][/tr]
+[tr][th]Age[/th][th]Units[/th][th]Resource (Opt. 2nd res.)[/th][/tr]
+[tr][td]Antiquity[/td][td]Chariot (T2), Horseman (T3), Magarru (T2, T3), Numidian Cavalry (T2, T3)[/td][td]Horses[/td][/tr]
+[tr][td]Antiquity[/td][td]Yuthahathi (T2, T3), Purabhettarah (T2, T3)[/td][td]Ivory[/td][/tr]
+[tr][td]Antiquity[/td][td]Spearman (T2), Phalanx (T3), Gaisatai (T2, T3), Hoplite (T2, T3), Immortal (T2, T3), Legion (T2, T3), Medjay (T2, T3)[/td][td]Iron[/td][/tr]
+[tr][td]Exploration[/td][td]Courser (T1), Knight (T2), Lancer (T3), Bolyar (T1, T2, T3), Chevaler (T1, T2, T3), Mamluk (T1, T2, T3), Tobang (T1, T2, T3)[/td][td]Horses[/td][/tr]
+[tr][td]Exploration[/td][td]Man-At-Arms (T2), Pikeman (T3), Gold Bangles Infantry (T2, T3), Kispoko Nena'to (T2, T3), Leiomano (T2, T3), Samurai (T2, T3), Tercio (T2, T3), Xunleichong (T2, T3)[/td][td]Iron[/td][/tr]
+[tr][td]Exploration[/td][td]Bombard (T3), Hwacha (T3)[/td][td]Niter[/td][/tr]
+[tr][td]Exploration[/td][td]Carrack (T2), Galleon (T3), Cetbang (T2, T3), Corsair (T2, T3), Kalam (T2, T3), Víkingr (T2, T3)[/td][td]Hardwood[/td][/tr]
+[tr][td]Modern[/td][td]Field Cannon (T1), Field Gun (T2), Chang Beun (T1, T2)[/td][td]Niter (Coal)[/td][/tr]
+[tr][td]Modern[/td][td]Mortar (T1), Howitzer (T2), AT Gun (T3), Assault Gun (T3), Katyusha Rocket Launcher (T2, T3), Chang Beun (T3)[/td][td]Oil (Coal)[/td][/tr]
+[tr][td]Modern[/td][td]Landship (T2), Tank (T3), Cossack (T2, T3), Gholām (T2, T3), Hussar (T2, T3)[/td][td]Oil (Coal)[/td][/tr]
+[tr][td]Modern[/td][td]Dreadnought (T2), Battleship (T3), Mikasa (T2, T3), Revenge (T2, T3), Turtle Ship (T2, T3)[/td][td]Oil (Coal)[/td][/tr]
+[tr][td]Modern[/td][td]Ironclad (T1), Cruiser (T2), Destroyer (T3), Barbary Corsair (T1, T2, T3)[/td][td]Coal (Niter)[/td][/tr]
+[tr][td]Modern[/td][td]Cuirassier (T1), Cossack (T1), Gholām (T1), Hussar (T1)[/td][td]Horses (Niter)[/td][/tr]
+[tr][td]Modern[/td][td]Ship of the Line (T1), Turtle Ship (T1)[/td][td]Hardwood (Niter)[/td][/tr]
+[tr][td]Modern[/td][td]Submarine (T3)[/td][td]Oil (Rubber)[/td][/tr]
+[tr][td]Modern[/td][td]Biplane (T2), Trench Fighter (T2), Bomber (T2), Fighter (T3), Dive Bomber (T3), Heavy Bomber (T3), Stuka (T2, T3), Zero (T2, T3)[/td][td]Rubber (Oil)[/td][/tr]
 [/table]
-A civilization's unique unit needs what the unit it replaces needs. A resource that reaches you over a trade route counts the same as one you mine yourself.
+The second resource only applies with Modern Supply Chains on. A unique unit only needs the resource at the tiers listed; at the others it's free like the unit it replaces. The war elephants count Ivory as cavalry counts Horses: +1 per copy up to six. A resource that reaches you over a trade route counts the same as one you mine yourself.
 
 [h2]What the game tells you[/h2]
 [list]
-[*][b]Unit panel.[/b] A unit short of its resource gains one more cell in its stats, the resource's icon over the penalty in red, with "Unsupplied: no Horses (-3 Combat Strength, slower to train)" as its tooltip.
-[*][b]Production list.[/b] A pill like the game's own "Ageless" on each unit that needs a resource: "Unsupplied: no Niter" on a red tint while you have none, "Niter: 2" once you have some, "Locked: no Iron" under Gated Units.
-[*][b]Combat preview.[/b] The penalty as a line of its own, for both sides ("-3 Unsupplied: no Niter"), and the strength past six beside the game's own ("+1 Niter: 8 or more").
-[*][b]Resources.[/b] Each strategic resource's description names the units it supplies for you in this age.
-[*][b]Notification.[/b] When you lose the last of a resource your units need: "Supply lost: no Niter. Your Field Cannon and 3 other units fight at -3 and train slower until you get Niter back." Once per loss; it never holds the turn up.
-[*][b]First time.[/b] An advisor callout the first time you select a unit short of its resource, and a second one under Gated Units for the lock. Each shows once, and only with tutorials or advisor warnings on.
-[*][b]Civilopedia.[/b] A page under Game Concepts, Combat, and a line on each such unit's page.
+[*][b]Unit panel.[/b] A unit short of its resource gains one more cell in its stats, the resource's icon over the penalty in red, with the whole sentence as its tooltip; two cells for two resources.
+[*][b]Production list.[/b] A pill like the game's own "Ageless": "Unsupplied: no Niter" on a red tint while you don't have any, "Niter: 2" once you have some, "Locked: no Iron" under a locked value.
+[*][b]Combat preview.[/b] The penalty as a line of its own, for both sides.
+[*][b]Notification.[/b] When you lose the last of a resource your units need; it doesn't hold up your turn.
+[*][b]First time.[/b] An advisor callout the first time you select a unit short of its resource, and one for the lock; each shows once, with advisor warnings on.
+[*][b]Civilopedia.[/b] A page under Game Concepts, Combat, and a line on each unit's page.
 [/list]
 
 [h2]Known limits[/h2]
 [list]
-[*][b]Single-player.[/b] In multiplayer, losing a resource does not bring the penalty back until that player gains a resource.
-[*][b]New games.[/b] A game started with the mod needs it to load; added to a game under way, it takes effect from the next new game.
-[*][b]Under a locked value,[/b] a unit already in the production queue when the resource is lost keeps its progress and is completed.
-[*][b]Another mod that sets the game's resource minimums itself[/b] keeps the engine's rule by its own numbers; this mod's lock texts then step back to their plain form.
+[*][b]Single-player.[/b] In multiplayer, losing a resource doesn't bring the penalty back until that player gains a resource.
+[*][b]New games.[/b] A game started with the mod needs it to load; added to a game under way, it starts with your next new game.
 [/list]
 
 [h2]Compatibility[/h2]
 [list]
-[*]Adds unit tags, modifiers and four setup options; replaces no base-game file. The panel cell, the pill and the resource line use the slots the game keeps for mods. Tested with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3757582073]Readable Tooltips[/url], QD Improved Plot Tooltip, Building Location Advisor, City Hall, Better Commerce Screen UI, Mod Commons and Mav's UI Overhaul.
+[*]Leaves the base-game files alone and uses the slots the game keeps for mods. Tested with Readable Tooltips, QD Improved Plot Tooltip, City Hall, Mod Commons and Mav's UI Overhaul.
 [*]Carries the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3815023570]Tower Settings Keeper[/url], so every mod's settings survive a restart.
 [/list]
 
-[h2]Languages[/h2]
-English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and Simplified and Traditional Chinese, using the game's own words for its terms. Corrections to the translations are welcome in the comments.
-
 [h2]Source and documentation[/h2]
-[list]
-[*]Open source on GitHub: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]source and full documentation[/url], and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases]release notes[/url].
-[*]This version: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.0.1]Strategic Resources That Matter 1.0.1[/url], with the zip for a manual install.
-[/list]
-
-[h2]For modders[/h2]
-This mod is developed with [url=https://github.com/tmtmiller1/civilizationvii_tower-bench]Tower Bench[/url], a free, open-source test bench for Civilization VII mods: inspect and change a running game from your browser or the command line, diff the world between two turns, prove your deployed code is what the game runs, and find which mod causes a crash.
+Text in all twelve of the game's languages. Open source on GitHub: [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]source and full documentation[/url], and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.2.0]1.2.0 release notes[/url] with the zip for a manual install.
 
 [h2]Credits[/h2]
 [list]
@@ -83,5 +77,5 @@ This mod is developed with [url=https://github.com/tmtmiller1/civilizationvii_to
 
 [h2]Special Thanks[/h2]
 [list]
-[*][b]Potato McWhisky[/b], for teaching me to love again, Civilization-wise (Civ VI), after growing up as a Civilization II, IV, and V player. Making this mod is an act of faith that the community will eventually help make Civilization VII as good as the previous entries.
+[*][b]Potato McWhisky[/b], for teaching me to love again, Civilization-wise (Civ VI), after growing up as a Civilization II, IV, and V player.
 [/list]

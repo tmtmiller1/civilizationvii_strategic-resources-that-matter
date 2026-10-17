@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->
+<!-- AGE_ANTIQUITY, the war elephants: +1 Combat Strength per Ivory held, the game's own effect, capped at six by the engine as the Horses bonus is. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="SR_IVORY_ELEPHANT_COMBAT_STRENGTH" collection="COLLECTION_ALL_UNITS" effect="EFFECT_UNIT_ADJUST_COMBAT_STRENGTH_PER_RESOURCE">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+    </Modifier>
+</GameEffects>

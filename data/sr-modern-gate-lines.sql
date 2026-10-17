@@ -17,6 +17,55 @@ INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
 INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
     VALUES ('SR_LINE_NO_OIL', 'ResourceType', 'RESOURCE_OIL'), ('SR_LINE_NO_OIL', 'Amount', '1');
 
+-- UNIT_AT_GUN: base, needs RESOURCE_OIL; keeps UNIT_FIELD_GUN trainable without it.
+INSERT INTO Modifiers (ModifierId, ModifierType)
+    SELECT 'SR_LINE_ATTACH_UNIT_AT_GUN', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_AT_GUN' AND TraitType IS NULL;
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_ATTACH_UNIT_AT_GUN', 'ModifierId', 'SR_LINE_GRANT_UNIT_AT_GUN' FROM Units WHERE UnitType = 'UNIT_AT_GUN' AND TraitType IS NULL;
+INSERT INTO RequirementSets (RequirementSetId, RequirementSetType)
+    SELECT 'SR_LINE_REQS_UNIT_AT_GUN', 'REQUIREMENTSET_TEST_ALL' FROM Units WHERE UnitType = 'UNIT_AT_GUN' AND TraitType IS NULL;
+INSERT INTO Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+    SELECT 'SR_LINE_GRANT_UNIT_AT_GUN', 'SR_LINE_GRANT_TYPE', 'SR_LINE_REQS_UNIT_AT_GUN' FROM Units WHERE UnitType = 'UNIT_AT_GUN' AND TraitType IS NULL;
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_GRANT_UNIT_AT_GUN', 'UnitType', 'UNIT_AT_GUN' FROM Units WHERE UnitType = 'UNIT_AT_GUN' AND TraitType IS NULL;
+INSERT INTO GameModifiers (ModifierId)
+    SELECT 'SR_LINE_ATTACH_UNIT_AT_GUN' FROM Units WHERE UnitType = 'UNIT_AT_GUN' AND TraitType IS NULL;
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_AT_GUN', 'SR_LINE_HAS_OIL' FROM Units WHERE UnitType = 'UNIT_AT_GUN' AND TraitType IS NULL;
+-- Not for a civilization whose unique replaces it: the grant would lift the replacement.
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    SELECT 'SR_LINE_NOT_' || u.TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT', 1 FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
+    WHERE r.ReplacesUnitType = 'UNIT_AT_GUN' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT 'SR_LINE_NOT_' || u.TraitType, 'TraitType', u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
+    WHERE r.ReplacesUnitType = 'UNIT_AT_GUN' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_AT_GUN', 'SR_LINE_NOT_' || u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
+    WHERE r.ReplacesUnitType = 'UNIT_AT_GUN' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED' AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_AT_GUN');
+
+-- UNIT_CHANG_BEUN_3: unique, needs RESOURCE_OIL; keeps UNIT_CHANG_BEUN_2 trainable without it.
+INSERT INTO Modifiers (ModifierId, ModifierType)
+    SELECT 'SR_LINE_ATTACH_UNIT_CHANG_BEUN_3', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_ATTACH_UNIT_CHANG_BEUN_3', 'ModifierId', 'SR_LINE_GRANT_UNIT_CHANG_BEUN_3' FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSets (RequirementSetId, RequirementSetType)
+    SELECT 'SR_LINE_REQS_UNIT_CHANG_BEUN_3', 'REQUIREMENTSET_TEST_ALL' FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+    SELECT 'SR_LINE_GRANT_UNIT_CHANG_BEUN_3', 'SR_LINE_GRANT_TYPE', 'SR_LINE_REQS_UNIT_CHANG_BEUN_3' FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_GRANT_UNIT_CHANG_BEUN_3', 'UnitType', 'UNIT_CHANG_BEUN_3' FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO GameModifiers (ModifierId)
+    SELECT 'SR_LINE_ATTACH_UNIT_CHANG_BEUN_3' FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_CHANG_BEUN_3', 'SR_LINE_HAS_OIL' FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+-- Only for the civilization it belongs to, by the trait the game gives it.
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)
+    SELECT 'SR_LINE_IS_' || TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT' FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT 'SR_LINE_IS_' || TraitType, 'TraitType', TraitType FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_CHANG_BEUN_3', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_CHANG_BEUN_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+
 -- UNIT_COSSACK_2: unique, needs RESOURCE_OIL; keeps UNIT_COSSACK trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
     SELECT 'SR_LINE_ATTACH_UNIT_COSSACK_2', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_COSSACK_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
@@ -276,17 +325,17 @@ UPDATE Modifiers SET SubjectRequirementSetId = (SELECT 'SR_LINE_NEEDS_' || subst
     WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL);
 
 -- The traits last, once every requirement has read the game's own.
-UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_DREADNOUGHT', 'UNIT_LANDSHIP') AND TraitType IS NULL;
-UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_COSSACK_2', 'UNIT_GHILMAN_2', 'UNIT_HUSSAR_2', 'UNIT_MIKASA', 'UNIT_REVENGE', 'UNIT_TURTLE_SHIP_2') AND TraitType IS NOT NULL;
+UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_AT_GUN', 'UNIT_DREADNOUGHT', 'UNIT_LANDSHIP') AND TraitType IS NULL;
+UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_CHANG_BEUN_3', 'UNIT_COSSACK_2', 'UNIT_GHILMAN_2', 'UNIT_HUSSAR_2', 'UNIT_MIKASA', 'UNIT_REVENGE', 'UNIT_TURTLE_SHIP_2') AND TraitType IS NOT NULL;
 -- The Civilopedia keeps the city-state-trait units with the ordinary ones, not under unique units.
 UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NULL',
-    'AND (TraitType IS NULL OR UnitType IN ("UNIT_DREADNOUGHT", "UNIT_LANDSHIP"))')
+    'AND (TraitType IS NULL OR UnitType IN ("UNIT_AT_GUN", "UNIT_DREADNOUGHT", "UNIT_LANDSHIP"))')
     WHERE SectionID = 'UNITS' AND SQL LIKE '%AND TraitType IS NULL%';
 UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NOT NULL',
-    'AND TraitType IS NOT NULL AND UnitType NOT IN ("UNIT_DREADNOUGHT", "UNIT_LANDSHIP")')
+    'AND TraitType IS NOT NULL AND UnitType NOT IN ("UNIT_AT_GUN", "UNIT_DREADNOUGHT", "UNIT_LANDSHIP")')
     WHERE SectionID = 'UNITS' AND SQL LIKE '%AND TraitType IS NOT NULL%';
 -- Their portraits keep the plain frame (ui/sr-line-look.js).
-INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, 'SR_LINE_PLAIN' FROM Types WHERE Type IN ('UNIT_DREADNOUGHT', 'UNIT_LANDSHIP');
+INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, 'SR_LINE_PLAIN' FROM Types WHERE Type IN ('UNIT_AT_GUN', 'UNIT_DREADNOUGHT', 'UNIT_LANDSHIP');
 
 -- UNIT_FRIGATE_SR_GREAT_BRITAIN: this civilization's UNIT_FRIGATE, standing in for it and upgrading straight into UNIT_REVENGE.
 CREATE TEMP TABLE sr_copy AS SELECT * FROM Units WHERE UnitType = 'UNIT_FRIGATE'

@@ -2,7 +2,7 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_SR_MOD_NAME" Language="zh_Hant_HK"><Text>至關重要的戰略資源</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hant_HK"><Text>戰略資源再次變得重要。需要馬、鐵、硝石、硬木、石油、煤或橡膠的單位，在其擁有者一份該資源都沒有時，戰鬥力降低、訓練變慢；每份資源仍提供遊戲原有的加成。失去最後一份後，懲罰會在一回合後恢復。超過六份後，數量仍會繼續增加戰鬥力。遊戲設定選項決定懲罰程度（直至將單位鎖定在其資源之後）、開關後期加成，並可讓近代的每個單位需要第二種資源。僅限單人遊戲。在多人遊戲中，失去資源後，要等該玩家獲得某種資源時懲罰才會恢復。</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="zh_Hant_HK"><Text>戰略資源再次變得重要。需要馬、象牙、鐵、硝石、硬木、石油、煤或橡膠的單位，在其擁有者一份該資源都沒有時，戰鬥力降低、訓練變慢；每份資源仍提供遊戲原有的加成。失去最後一份後，懲罰會在一回合後恢復。超過六份後，數量仍會繼續增加戰鬥力。遊戲設定選項決定懲罰程度（直至將單位鎖定在其資源之後）、開關後期加成，並可讓近代的每個單位需要第二種資源。僅限單人遊戲。在多人遊戲中，失去資源後，要等該玩家獲得某種資源時懲罰才會恢復。</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="zh_Hant_HK"><Text>無補給：沒有{1_Resource}（戰鬥力{2_Combat}，訓練變慢）</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="zh_Hant_HK"><Text>需要{1_Resource}。沒有時：戰鬥力{2_Combat}，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="zh_Hant_HK"><Text>需要{1_Resource}（擁有{2_Copies}個）。</Text></Replace>
@@ -38,10 +38,10 @@
         <Replace Tag="LOC_SR_SETUP_CHAINS_OFF" Language="zh_Hant_HK"><Text>關閉</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_CHAINS_OFF_DESCRIPTION" Language="zh_Hant_HK"><Text>近代的每個單位需要一種資源，與其他時代相同。</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_CHAINS_ON" Language="zh_Hant_HK"><Text>開啟</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_CHAINS_ON_DESCRIPTION" Language="zh_Hant_HK"><Text>砲兵需要硝石和煤；裝甲部隊和戰列艦需要石油和煤；輕型戰艦需要煤和硝石；飛機需要橡膠和石油。</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_ON_DESCRIPTION" Language="zh_Hant_HK"><Text>野戰砲兵需要硝石和煤；較重的砲兵、裝甲部隊和戰列艦需要石油和煤；輕型戰艦需要煤和硝石；飛機需要橡膠和石油。胸甲騎兵需要馬和硝石；風帆戰列艦需要硬木和硝石；潛水艇需要石油和橡膠。</Text></Replace>
         <!-- Civilopedia -->
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="zh_Hant_HK"><Text>重要的戰略資源</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_HARDWOOD_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}或{LOC_RESOURCE_RUBBER_NAME}的軍事單位，在其擁有者沒有該資源時，戰鬥更弱，訓練更慢。除非{LOC_SR_SETUP_UNSUPPLIED_NAME}設為鎖定值之一，否則沒有任何東西被禁止：見最後一章。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_HORSES_NAME}、{LOC_RESOURCE_IVORY_NAME}、{LOC_RESOURCE_IRON_NAME}、{LOC_RESOURCE_NITER_NAME}、{LOC_RESOURCE_HARDWOOD_NAME}、{LOC_RESOURCE_OIL_NAME}、{LOC_RESOURCE_COAL_NAME}或{LOC_RESOURCE_RUBBER_NAME}的軍事單位，在其擁有者沒有該資源時，戰鬥更弱，訓練更慢。除非{LOC_SR_SETUP_UNSUPPLIED_NAME}設為鎖定值之一，否則沒有任何東西被禁止：見最後一章。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="zh_Hant_HK"><Text>沒有資源時</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="zh_Hant_HK"><Text>缺少資源的單位，其擁有的每項戰鬥力（近戰，以及遠程和轟炸，如果有的話）都會降低，所在城市投入訓練它的生產力也會減少。降低多少由遊戲設定中的{LOC_SR_SETUP_UNSUPPLIED_NAME}選項決定：</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="zh_Hant_HK"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}：[/B]戰鬥力-2，生產力減少20%。[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B]（預設）：戰鬥力-3，生產力減少33%，訓練時間變為1.5倍。[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}：[/B]戰鬥力-5，生產力減少50%，訓練時間加倍。[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}：[/B]無懲罰。[N][B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED}[/B]和[B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}：[/B]嚴酷懲罰，並且在你一份該資源都沒有時單位被鎖定（見最後一章）。</Text></Replace>
@@ -53,15 +53,15 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_1" Language="zh_Hant_HK"><Text>新的一份資源一到就會解除懲罰。因掠奪、格子易主或任何其他原因失去一份資源，懲罰會在一回合後恢復，對你和AI玩家都一樣。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="zh_Hant_HK"><Text>與貿易夥伴開戰會終止路線：路線帶來的資源立即消失，保護也隨之消失。只要玩家至少擁有一份資源，需要它的單位就能照常作戰和訓練。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE" Language="zh_Hant_HK"><Text>超過六份</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="zh_Hant_HK"><Text>遊戲每份資源給予戰鬥力+1，最多六份。開啟{LOC_SR_SETUP_LATE_CURVE_NAME}選項（預設）時，更多資源會繼續增加：在8、10、12、14、16、18和20份時戰鬥力+1，作用於遊戲每份資源加成所涵蓋的單位。戰鬥預覽會在遊戲自身那一行旁邊以一行顯示，例如「+1 {LOC_RESOURCE_NITER_NAME}：8份或以上」。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="zh_Hant_HK"><Text>遊戲每份資源給予戰鬥力+1，最多六份。開啟{LOC_SR_SETUP_LATE_CURVE_NAME}選項（預設）時，更多資源會繼續增加：在8、10、12、14、16、18和20份時戰鬥力+1，作用於遊戲每份資源加成所涵蓋的單位。戰鬥預覽會在遊戲自身那一行旁邊以一行顯示，例如「+1 {LOC_RESOURCE_NITER_NAME}：8份或以上」。 高棉和孔雀王朝的戰象以同樣方式計算象牙：模組給予每份象牙+1（最多六份），開啟此選項後還有六份以上的階梯。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="zh_Hant_HK"><Text>哪些單位需要甚麼</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="zh_Hant_HK"><Text>文明的特色單位需要其所取代的單位所需的資源。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：騎兵（馬戰車、騎手及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二級起的步兵（槍兵、方陣、羅馬軍團、長生軍等）</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：騎兵（馬戰車、騎手及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二級起的步兵（槍兵、方陣、羅馬軍團、長生軍等）[N]{LOC_RESOURCE_IVORY_NAME}：戰象（戰象、破城戰象）</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：騎兵（追獵者、騎士、槍騎兵及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二級起的步兵（披甲戰士、長矛兵及其特色版本）[N]{LOC_RESOURCE_NITER_NAME}：第三級起的攻城單位（射石砲、火車）[N]{LOC_RESOURCE_HARDWOOD_NAME}：第二級起的重型戰艦（克拉克帆船、蓋倫帆船及其特色版本）</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}：炮兵（野戰加農砲、野戰砲、反坦克砲、迫擊砲、榴彈砲、突擊砲）[N]{LOC_RESOURCE_OIL_NAME}：裝甲部隊（陸地戰艦、戰車及其特色版本）和戰列艦（無畏戰艦、戰艦及其特色版本）[N]{LOC_RESOURCE_COAL_NAME}：輕型戰艦（裝甲艦、巡洋艦、驅逐艦、巴巴里海盜）[N]{LOC_RESOURCE_RUBBER_NAME}：飛機</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="zh_Hant_HK"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}：野戰砲兵（野戰加農砲、野戰砲）[N]{LOC_RESOURCE_OIL_NAME}：較重的砲兵（反坦克砲、迫擊砲、榴彈砲、突擊砲）、裝甲部隊（陸地戰艦、戰車及其特色版本）和戰列艦（無畏戰艦、戰艦及其特色版本）[N]{LOC_RESOURCE_COAL_NAME}：輕型戰艦（裝甲艦、巡洋艦、驅逐艦、巴巴里海盜）[N]{LOC_RESOURCE_RUBBER_NAME}：飛機[N]{LOC_RESOURCE_HORSES_NAME}：胸甲騎兵[N]{LOC_RESOURCE_HARDWOOD_NAME}：風帆戰列艦[N]{LOC_RESOURCE_OIL_NAME}：潛水艇</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="zh_Hant_HK"><Text>不受任何要求限制：戰士系列和偵察兵、遠程步兵（弓箭手、弩手、鉤銃手）、投石機和拋石機、柯克船和風帆戰列艦、胸甲騎兵、潛水艇以及近代步兵，因此每位玩家都始終能夠防禦。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_TITLE" Language="zh_Hant_HK"><Text>近代供應鏈</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_PARA_1" Language="zh_Hant_HK"><Text>{LOC_SR_SETUP_CHAINS_NAME}開啟時（預設關閉），每個需要資源的近代單位還需要第二種資源：砲兵需要{LOC_RESOURCE_NITER_NAME}和{LOC_RESOURCE_COAL_NAME}，裝甲部隊和戰列艦需要{LOC_RESOURCE_OIL_NAME}和{LOC_RESOURCE_COAL_NAME}，輕型戰艦需要{LOC_RESOURCE_COAL_NAME}和{LOC_RESOURCE_NITER_NAME}，飛機需要{LOC_RESOURCE_RUBBER_NAME}和{LOC_RESOURCE_OIL_NAME}。每缺一種資源都承受完整的懲罰，因此兩種都缺的單位承受雙倍懲罰，在鎖定值下兩種都沒有就無法訓練。近代地圖上沒有鐵，因此以煤代表鋼材。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_PARA_1" Language="zh_Hant_HK"><Text>{LOC_SR_SETUP_CHAINS_NAME}開啟時（預設關閉），每個需要資源的近代單位還需要第二種資源：野戰砲兵需要{LOC_RESOURCE_NITER_NAME}和{LOC_RESOURCE_COAL_NAME}，較重的砲兵需要{LOC_RESOURCE_OIL_NAME}和{LOC_RESOURCE_COAL_NAME}，裝甲部隊和戰列艦需要{LOC_RESOURCE_OIL_NAME}和{LOC_RESOURCE_COAL_NAME}，輕型戰艦需要{LOC_RESOURCE_COAL_NAME}和{LOC_RESOURCE_NITER_NAME}，胸甲騎兵需要{LOC_RESOURCE_HORSES_NAME}和{LOC_RESOURCE_NITER_NAME}，風帆戰列艦需要{LOC_RESOURCE_HARDWOOD_NAME}和{LOC_RESOURCE_NITER_NAME}，潛水艇需要{LOC_RESOURCE_OIL_NAME}和{LOC_RESOURCE_RUBBER_NAME}，飛機需要{LOC_RESOURCE_RUBBER_NAME}和{LOC_RESOURCE_OIL_NAME}。每缺一種資源都承受完整的懲罰，因此兩種都缺的單位承受雙倍懲罰，在鎖定值下兩種都沒有就無法訓練。近代地圖上沒有鐵，因此以煤代表鋼材。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED" Language="zh_Hant_HK"><Text>無補給</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_STRATEGIC" Language="zh_Hant_HK"><Text>戰略資源</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_CHAPTER" Language="zh_Hant_HK"><Text>戰略資源</Text></Replace>
@@ -82,10 +82,13 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_HARSH" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_COAL_NAME}：沒有時戰鬥力-5，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_RUBBER_NAME}：沒有時戰鬥力-2，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_HARDWOOD_NAME}：沒有時戰鬥力-2，訓練變慢。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_LIGHT" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_IVORY_NAME}：沒有時戰鬥力-2，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_RUBBER_NAME}：沒有時戰鬥力-3，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_STANDARD" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_HARDWOOD_NAME}：沒有時戰鬥力-3，訓練變慢。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_STANDARD" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_IVORY_NAME}：沒有時戰鬥力-3，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_RUBBER_NAME}：沒有時戰鬥力-5，訓練變慢。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_HARSH" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_HARDWOOD_NAME}：沒有時戰鬥力-5，訓練變慢。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_HARSH" Language="zh_Hant_HK"><Text>需要{LOC_RESOURCE_IVORY_NAME}：沒有時戰鬥力-5，訓練變慢。</Text></Replace>
         <!-- /Civilopedia -->
         <!-- Lost-supply notification and first-time callout -->
         <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="zh_Hant_HK"><Text>補給喪失</Text></Replace>
@@ -125,8 +128,10 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_COAL_NAME}時無法訓練、購買，也無法透過升級獲得。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_RUBBER_NAME}時無法訓練或購買。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_TRAINING" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_HARDWOOD_NAME}時無法訓練或購買。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_GATE_TRAINING" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_IVORY_NAME}時無法訓練或購買。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_RUBBER_NAME}時無法訓練、購買，也無法透過升級獲得。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_HARDWOOD_NAME}時無法訓練、購買，也無法透過升級獲得。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_GATE_UPGRADE" Language="zh_Hant_HK"><Text>沒有一份{LOC_RESOURCE_IVORY_NAME}時無法訓練、購買，也無法透過升級獲得。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="zh_Hant_HK"><Text>訓練所需：{1_Units}。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="zh_Hant_HK"><Text>訓練所需：{1_Units}等，另有{2_More}種。</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOCKED_TAIL" Language="zh_Hant_HK"><Text>在此之前無法訓練新的。</Text></Replace>

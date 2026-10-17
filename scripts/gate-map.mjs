@@ -25,6 +25,21 @@ export const AGE_FILE = { AGE_ANTIQUITY: "antiquity", AGE_EXPLORATION: "explorat
 const has = (/** @type {UnitFacts} */ u, /** @type {string} */ tag) => u.tags.has(`UNIT_CLASS_${tag}`);
 
 /**
+ * The war elephants (1.3): the Khmer's Yuthahathi and the Maurya's Purabhettarah draw on Ivory, not on the Horses of
+ * the Chariot and Horseman they replace. They are judged by this list before the rules, since a rule only sees the
+ * unit a unique replaces. Ivory is an Empire resource in Antiquity like Horses (a Bonus one after, so the Exploration
+ * and Modern elephants keep what the unit they replace needs). Each carries the ELEPHANT_TAG, which the data uses to
+ * give them +1 Combat Strength per Ivory, capped by the engine at six like Horses, in place of the game's +1 per
+ * Horses, and the late curve on Ivory in place of the Horses one (docs/elephants-on-ivory.md).
+ */
+export const ELEPHANT_TAG = "SR_ELEPHANT";
+export const ELEPHANTS = ["UNIT_DANTINAS_TATHA", "UNIT_DANTINAS_TATHA_2", "UNIT_PURABHETTARAH", "UNIT_PURABHETTARAH_2"];
+/** @type {Record<string, Record<string, string>>} per age, unit type to the resource it draws on, before the rules */
+export const UNIT_OVERRIDES = {
+  AGE_ANTIQUITY: Object.fromEntries(ELEPHANTS.map((u) => [u, "RESOURCE_IVORY"]))
+};
+
+/**
  * Per age, in order: the resource and the test a unit (or the unit it replaces) must pass to draw on it.
  * @type {Record<string, { resource: string, rule: string, test: (u: UnitFacts) => boolean }[]>}
  */
@@ -54,16 +69,32 @@ export const GATES = {
   AGE_MODERN: [
     {
       resource: "RESOURCE_NITER",
-      rule: "artillery (land siege and land ranged)",
+      rule: "field artillery: land ranged up to tier 2 (the powder guns)",
+      test: (u) => u.Domain === "DOMAIN_LAND" && has(u, "RANGED") && u.Tier <= 2
+    },
+    {
+      resource: "RESOURCE_OIL",
+      rule: "the heavier artillery: land siege, and land ranged from tier 3 (motorised; 1.2.0)",
       test: (u) => u.Domain === "DOMAIN_LAND" && (has(u, "SIEGE") || has(u, "RANGED"))
     },
+    { resource: "RESOURCE_HORSES", rule: "the Cuirassier: cavalry at tier 1 (1.3)", test: (u) => has(u, "CAVALRY") && u.Tier <= 1 },
     { resource: "RESOURCE_OIL", rule: "armour (cavalry from tier 2)", test: (u) => has(u, "CAVALRY") && u.Tier >= 2 },
+    {
+      resource: "RESOURCE_HARDWOOD",
+      rule: "the Ship of the Line: heavy warships at tier 1, a wooden hull (1.3)",
+      test: (u) => has(u, "NAVAL") && has(u, "HEAVY") && u.Tier <= 1
+    },
     {
       resource: "RESOURCE_OIL",
       rule: "battleships (heavy warships from tier 2)",
       test: (u) => has(u, "NAVAL") && has(u, "HEAVY") && u.Tier >= 2
     },
     { resource: "RESOURCE_COAL", rule: "light warships", test: (u) => has(u, "NAVAL") && has(u, "LIGHT") },
+    {
+      resource: "RESOURCE_OIL",
+      rule: "submarines: naval, neither heavy nor light (1.3)",
+      test: (u) => has(u, "NAVAL") && !has(u, "HEAVY") && !has(u, "LIGHT")
+    },
     { resource: "RESOURCE_RUBBER", rule: "aircraft", test: (u) => has(u, "AIRCRAFT") }
   ]
 };
@@ -83,13 +114,24 @@ export const CHAINS = {
       rule: "artillery: steel for the guns",
       test: (u) => u.Domain === "DOMAIN_LAND" && (has(u, "SIEGE") || has(u, "RANGED"))
     },
+    { resource: "RESOURCE_NITER", rule: "the Cuirassier: powder for the carbines", test: (u) => has(u, "CAVALRY") && u.Tier <= 1 },
     { resource: "RESOURCE_COAL", rule: "armour: steel", test: (u) => has(u, "CAVALRY") && u.Tier >= 2 },
+    {
+      resource: "RESOURCE_NITER",
+      rule: "the Ship of the Line: powder for the broadside",
+      test: (u) => has(u, "NAVAL") && has(u, "HEAVY") && u.Tier <= 1
+    },
     {
       resource: "RESOURCE_COAL",
       rule: "battleships: steel hulls",
       test: (u) => has(u, "NAVAL") && has(u, "HEAVY") && u.Tier >= 2
     },
     { resource: "RESOURCE_NITER", rule: "light warships: powder for the guns", test: (u) => has(u, "NAVAL") && has(u, "LIGHT") },
+    {
+      resource: "RESOURCE_RUBBER",
+      rule: "submarines: rubber for the seals",
+      test: (u) => has(u, "NAVAL") && !has(u, "HEAVY") && !has(u, "LIGHT")
+    },
     { resource: "RESOURCE_OIL", rule: "aircraft: fuel", test: (u) => has(u, "AIRCRAFT") }
   ]
 };
@@ -118,14 +160,16 @@ export function buildChainMap(dump) {
 }
 
 /**
- * The resources whose vanilla per-copy combat bonus the late curve extends, with the unit tags vanilla gives that
- * bonus to (data/resources-gameeffects.xml in each age module, EFFECT_UNIT_ADJUST_COMBAT_STRENGTH_PER_RESOURCE).
- * @type {Record<string, { resource: string, tags: string[] }[]>}
+ * The resources whose per-copy combat bonus the late curve extends, with the unit tags that bonus goes to: vanilla's
+ * (data/resources-gameeffects.xml in each age module, EFFECT_UNIT_ADJUST_COMBAT_STRENGTH_PER_RESOURCE) and, in
+ * Antiquity, the mod's own +1 per Ivory on the war elephants, which are taken out of the Horses one (`exclude`).
+ * @type {Record<string, { resource: string, tags: string[], exclude?: string[] }[]>}
  */
 export const VANILLA_PER_COPY = {
   AGE_ANTIQUITY: [
-    { resource: "RESOURCE_HORSES", tags: ["UNIT_CLASS_CAVALRY"] },
-    { resource: "RESOURCE_IRON", tags: ["UNIT_CLASS_INFANTRY"] }
+    { resource: "RESOURCE_HORSES", tags: ["UNIT_CLASS_CAVALRY"], exclude: [ELEPHANT_TAG] },
+    { resource: "RESOURCE_IRON", tags: ["UNIT_CLASS_INFANTRY"] },
+    { resource: "RESOURCE_IVORY", tags: [ELEPHANT_TAG] }
   ],
   AGE_EXPLORATION: [
     { resource: "RESOURCE_HORSES", tags: ["UNIT_CLASS_CAVALRY"] },
@@ -146,7 +190,7 @@ export const VANILLA_PER_COPY = {
  * @returns {string[]}
  */
 export function gatedResources(age) {
-  return [...new Set(GATES[age].map((g) => g.resource))];
+  return [...new Set([...GATES[age].map((g) => g.resource), ...Object.values(UNIT_OVERRIDES[age] ?? {})])];
 }
 
 /**
@@ -171,6 +215,7 @@ export function unitFacts(dump) {
     facts.set(u.UnitType, { UnitType: u.UnitType, Domain: u.Domain, Tier: u.Tier ?? 0, tags: new Set() });
   }
   for (const row of dump.tags) facts.get(row.Type)?.tags.add(row.Tag);
+  if (dump.age === "AGE_ANTIQUITY") for (const unit of ELEPHANTS) facts.get(unit)?.tags.add(ELEPHANT_TAG);
   return facts;
 }
 
@@ -184,11 +229,13 @@ export function buildGateMap(dump) {
   const replaced = new Map(dump.replaces.map((r) => [r.CivUniqueUnitType, r.ReplacesUnitType]));
   /** @type {Map<string, string>} */
   const map = new Map();
+  const overrides = UNIT_OVERRIDES[dump.age] ?? {};
   for (const unit of facts.values()) {
     const judged = facts.get(replaced.get(unit.UnitType) ?? "") ?? unit;
     if (!judged.tags.has("UNIT_CLASS_COMBAT")) continue;
     const gate = GATES[dump.age].find((g) => g.test(judged));
-    if (gate) map.set(unit.UnitType, gate.resource);
+    const resource = overrides[unit.UnitType] ?? gate?.resource;
+    if (resource) map.set(unit.UnitType, resource);
   }
   return new Map([...map].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
 }
@@ -217,11 +264,12 @@ export function upgradeOnlyGatedUnits(dump) {
 }
 
 /**
- * Upgrades from a free unit into a gated one that both can be trained. The engine retires a unit as obsolete once
- * the unit it upgrades into is unlocked by tech, whether or not the column lets the player train that unit, so under
- * the gate a player without the resource would lose the free unit too (the Trebuchet once Gunpowder unlocks the
- * Bombard: verification-runs.md, p16-siege-order). An upgrade into a unit nobody trains (the Samurai tiers) is left
- * alone: it's the only way to get that unit, and the gate doesn't change it.
+ * Upgrades into a gated unit from a unit that both can be trained and doesn't need that resource: a free one, or
+ * one on another resource (the Ship of the Line on Hardwood into the Dreadnought on Oil, 1.3). The engine retires a
+ * unit as obsolete once the unit it upgrades into is unlocked by tech, whether or not the column lets the player
+ * train that unit, so under the gate a player without the resource would lose the earlier unit too (the Trebuchet
+ * once Gunpowder unlocks the Bombard: verification-runs.md, p16-siege-order). An upgrade into a unit nobody trains
+ * (the Samurai tiers) is left alone: it's the only way to get that unit, and the gate doesn't change it.
  * @param {AgeDump} dump
  * @returns {{ Unit: string, UpgradeUnit: string }[]}
  */
@@ -229,8 +277,8 @@ export function strandingUpgrades(dump) {
   const gates = buildGateMap(dump);
   const trainable = new Set(dump.units.filter((u) => u.CanTrain === 1).map((u) => u.UnitType));
   return dump.upgrades
-    .filter((r) => trainable.has(r.Unit) && trainable.has(r.UpgradeUnit) && !gates.has(r.Unit) &&
-      gates.has(r.UpgradeUnit))
+    .filter((r) => trainable.has(r.Unit) && trainable.has(r.UpgradeUnit) && gates.has(r.UpgradeUnit) &&
+      gates.get(r.Unit) !== gates.get(r.UpgradeUnit))
     .sort((a, b) => (a.Unit < b.Unit ? -1 : a.Unit > b.Unit ? 1 : 0));
 }
 
@@ -301,8 +349,18 @@ function lockOf(dump, unit, resources) {
 export function chainLocks(dump) {
   const gates = buildGateMap(dump);
   const chains = buildChainMap(dump);
-  return [...chains.keys()].sort()
+  const locks = [...chains.keys()].sort()
     .map((unit) => lockOf(dump, unit, [/** @type {string} */ (gates.get(unit)), /** @type {string} */ (chains.get(unit))]));
+  // A civilization's copy of a gated free unit (Meiji's Ship of the Line) carries the base unit's column and tags, so
+  // the engine locks it on the first resource; the second needs the same grant as the base unit, under the copy's
+  // own trait.
+  for (const copy of lineCopies(dump)) {
+    if (!chains.has(copy.base)) continue;
+    locks.push({ unit: copy.unit, resource: /** @type {string} */ (gates.get(copy.base)),
+      resources: [/** @type {string} */ (gates.get(copy.base)), /** @type {string} */ (chains.get(copy.base))],
+      kind: "unique", trait: copy.trait, predecessors: [] });
+  }
+  return locks;
 }
 
 /**
@@ -375,7 +433,8 @@ export function strengthUnits(dump, gates = buildGateMap(dump)) {
     ...[...used].filter((r) => !gatedResources(dump.age).includes(r)).sort()];
   const penalty = new Map(resources.map((resource) =>
     [resource, split([...gates].filter(([, r]) => r === resource).map(([unit]) => unit))]));
-  const curve = new Map(VANILLA_PER_COPY[dump.age].map(({ resource, tags }) =>
-    [resource, split([...facts.values()].filter((u) => tags.some((t) => u.tags.has(t))).map((u) => u.UnitType))]));
+  const curve = new Map(VANILLA_PER_COPY[dump.age].map(({ resource, tags, exclude = [] }) =>
+    [resource, split([...facts.values()].filter((u) => tags.some((t) => u.tags.has(t)) &&
+      !exclude.some((t) => u.tags.has(t))).map((u) => u.UnitType))]));
   return { penalty, curve };
 }

@@ -3,8 +3,8 @@
 <!-- AGE_MODERN, Gated Units upgrade: a gated unit cannot be trained or bought without a copy of its resource, nor upgraded to; the engine reads the owner's live count. -->
 <Database>
     <Units>
-        <Update><Where UnitType="UNIT_ASSAULT_GUN"/><Set StrategicResource="RESOURCE_NITER"/></Update>
-        <Update><Where UnitType="UNIT_AT_GUN"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_ASSAULT_GUN"/><Set StrategicResource="RESOURCE_OIL"/></Update>
+        <Update><Where UnitType="UNIT_AT_GUN"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_BARBARY_CORSAIR"/><Set StrategicResource="RESOURCE_COAL"/></Update>
         <Update><Where UnitType="UNIT_BARBARY_CORSAIR_2"/><Set StrategicResource="RESOURCE_COAL"/></Update>
         <Update><Where UnitType="UNIT_BARBARY_CORSAIR_3"/><Set StrategicResource="RESOURCE_COAL"/></Update>
@@ -13,35 +13,42 @@
         <Update><Where UnitType="UNIT_BOMBER"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
         <Update><Where UnitType="UNIT_CHANG_BEUN"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_CHANG_BEUN_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
-        <Update><Where UnitType="UNIT_CHANG_BEUN_3"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_CHANG_BEUN_3"/><Set StrategicResource="RESOURCE_OIL"/></Update>
+        <Update><Where UnitType="UNIT_COSSACK"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_COSSACK_2"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_COSSACK_3"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_CRUISER"/><Set StrategicResource="RESOURCE_COAL"/></Update>
+        <Update><Where UnitType="UNIT_CUIRASSIER"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_DESTROYER"/><Set StrategicResource="RESOURCE_COAL"/></Update>
         <Update><Where UnitType="UNIT_DIVEBOMBER"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
         <Update><Where UnitType="UNIT_DREADNOUGHT"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_FIELD_CANNON"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_FIELD_GUN"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_FIGHTER"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
+        <Update><Where UnitType="UNIT_FRIGATE"/><Set StrategicResource="RESOURCE_HARDWOOD"/></Update>
+        <Update><Where UnitType="UNIT_GHILMAN"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_GHILMAN_2"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_GHILMAN_3"/><Set StrategicResource="RESOURCE_OIL"/></Update>
-        <Update><Where UnitType="UNIT_HEAVY_ARTILLERY"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_HEAVY_ARTILLERY"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_HEAVY_BOMBER"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
+        <Update><Where UnitType="UNIT_HUSSAR"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_HUSSAR_2"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_HUSSAR_3"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_IRONCLAD"/><Set StrategicResource="RESOURCE_COAL"/></Update>
-        <Update><Where UnitType="UNIT_KATYUSHA"/><Set StrategicResource="RESOURCE_NITER"/></Update>
-        <Update><Where UnitType="UNIT_KATYUSHA_2"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_KATYUSHA"/><Set StrategicResource="RESOURCE_OIL"/></Update>
+        <Update><Where UnitType="UNIT_KATYUSHA_2"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_LANDSHIP"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_MIKASA"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_MIKASA_2"/><Set StrategicResource="RESOURCE_OIL"/></Update>
-        <Update><Where UnitType="UNIT_MORTAR"/><Set StrategicResource="RESOURCE_NITER"/></Update>
+        <Update><Where UnitType="UNIT_MORTAR"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_REVENGE"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_REVENGE_2"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_STUKA"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
         <Update><Where UnitType="UNIT_STUKA_2"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
+        <Update><Where UnitType="UNIT_SUBMARINE"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_TANK"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_TRENCH_FIGHTER"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
+        <Update><Where UnitType="UNIT_TURTLE_SHIP"/><Set StrategicResource="RESOURCE_HARDWOOD"/></Update>
         <Update><Where UnitType="UNIT_TURTLE_SHIP_2"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_TURTLE_SHIP_3"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_ZERO"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
@@ -56,8 +63,8 @@
         <Replace Name="STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_HEALING" Value="0"/>
     </GlobalParameters>
     <CivilopediaPageChapterParagraphs>
-        <Row SectionID="UNITS" PageID="UNIT_ASSAULT_GUN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_AT_GUN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_ASSAULT_GUN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_AT_GUN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_BARBARY_CORSAIR" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_BARBARY_CORSAIR_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_BARBARY_CORSAIR_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" SortIndex="10"/>
@@ -66,35 +73,42 @@
         <Row SectionID="UNITS" PageID="UNIT_BOMBER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CHANG_BEUN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CHANG_BEUN_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_CHANG_BEUN_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CHANG_BEUN_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_COSSACK" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_COSSACK_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_COSSACK_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_CRUISER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_CUIRASSIER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_DESTROYER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_DIVEBOMBER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_DREADNOUGHT" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_FIELD_CANNON" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_FIELD_GUN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_FIGHTER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_FRIGATE" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_GHILMAN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GHILMAN_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GHILMAN_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_HEAVY_ARTILLERY" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_HEAVY_ARTILLERY" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_HEAVY_BOMBER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_HUSSAR" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_HUSSAR_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_HUSSAR_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_IRONCLAD" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_KATYUSHA" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_KATYUSHA_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_KATYUSHA" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_KATYUSHA_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_LANDSHIP" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_MIKASA" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_MIKASA_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_MORTAR" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_MORTAR" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_REVENGE" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_REVENGE_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_STUKA" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_STUKA_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_SUBMARINE" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TANK" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TRENCH_FIGHTER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_TURTLE_SHIP" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TURTLE_SHIP_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TURTLE_SHIP_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_UPGRADE" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_ZERO" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" SortIndex="10"/>

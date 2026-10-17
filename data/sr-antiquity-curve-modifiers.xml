@@ -16,6 +16,9 @@
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
             </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
         <Argument name="Type">MELEE</Argument>
@@ -74,6 +77,9 @@
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
             </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">0</Argument>
         <Argument name="Combat">1</Argument>
@@ -94,6 +100,9 @@
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
@@ -153,6 +162,9 @@
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
             </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">0</Argument>
         <Argument name="Combat">2</Argument>
@@ -173,6 +185,9 @@
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
@@ -232,6 +247,9 @@
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
             </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">0</Argument>
         <Argument name="Combat">3</Argument>
@@ -252,6 +270,9 @@
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
@@ -311,6 +332,9 @@
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
             </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">0</Argument>
         <Argument name="Combat">4</Argument>
@@ -331,6 +355,9 @@
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
@@ -390,6 +417,9 @@
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
             </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">0</Argument>
         <Argument name="Combat">5</Argument>
@@ -410,6 +440,9 @@
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
@@ -469,6 +502,9 @@
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
             </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">0</Argument>
         <Argument name="Combat">6</Argument>
@@ -489,6 +525,9 @@
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">1</Argument>
@@ -543,6 +582,9 @@
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
                 <Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES" inverse="true">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
             </Requirement>
         </SubjectRequirements>
         <Argument name="Amount">0</Argument>
@@ -846,6 +888,303 @@
         <Argument name="Combat">7</Argument>
         <Argument name="Copies">20</Argument>
         <Argument name="Resource">LOC_RESOURCE_IRON_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IVORY_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IVORY_8</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IVORY_8" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IVORY_8" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IVORY_8</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IVORY_8" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">1</Argument>
+        <Argument name="Copies">8</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IVORY_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IVORY_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IVORY_10</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IVORY_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IVORY_10" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IVORY_10</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IVORY_10" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">2</Argument>
+        <Argument name="Copies">10</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IVORY_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IVORY_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IVORY_12</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IVORY_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IVORY_12" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IVORY_12</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IVORY_12" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">3</Argument>
+        <Argument name="Copies">12</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IVORY_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IVORY_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IVORY_14</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IVORY_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IVORY_14" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IVORY_14</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IVORY_14" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">14</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">4</Argument>
+        <Argument name="Copies">14</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IVORY_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IVORY_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IVORY_16</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IVORY_16" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IVORY_16" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IVORY_16</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IVORY_16" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">16</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">5</Argument>
+        <Argument name="Copies">16</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IVORY_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IVORY_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IVORY_18</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IVORY_18" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IVORY_18" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IVORY_18</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IVORY_18" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">18</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">6</Argument>
+        <Argument name="Copies">18</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IVORY_NAME</Argument>
+        <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
+    </Modifier>
+    <Modifier id="SR_ATTACH_CURVE_IVORY_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_CURVE_IVORY_20</Argument>
+    </Modifier>
+    <Modifier id="SR_CURVE_IVORY_20" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Type">MELEE</Argument>
+    </Modifier>
+    <Modifier id="SR_ATTACH_PREVIEW_CURVE_IVORY_20" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">SR_PREVIEW_CURVE_IVORY_20</Argument>
+    </Modifier>
+    <Modifier id="SR_PREVIEW_CURVE_IVORY_20" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_IVORY</Argument>
+                <Argument name="Amount">20</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">SR_ELEPHANT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">0</Argument>
+        <Argument name="Combat">7</Argument>
+        <Argument name="Copies">20</Argument>
+        <Argument name="Resource">LOC_RESOURCE_IVORY_NAME</Argument>
         <String context="Preview">LOC_SR_PREVIEW_CURVE</String>
     </Modifier>
 </GameEffects>

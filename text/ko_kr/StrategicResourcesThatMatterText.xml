@@ -2,7 +2,7 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_SR_MOD_NAME" Language="ko_KR"><Text>중요한 전략 자원</Text></Replace>
-        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 다시 중요해집니다. 말, 철, 질산칼륨, 견목, 석유, 석탄, 고무가 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 전투력이 낮아지고 훈련이 느려지며, 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다. 마지막 하나를 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 여섯 개를 넘어서도 수가 계속 전투력을 더합니다. 게임 설정 옵션으로 페널티를 정하고(자원이 없는 유닛을 잠그는 단계까지), 후반 보너스를 켜고 끄며, 근대의 모든 유닛에 두 번째 자원을 요구할 수도 있습니다. 싱글 플레이 전용. 멀티플레이에서는 자원을 잃어도 그 플레이어가 자원을 얻기 전까지 페널티가 돌아오지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_SR_MOD_DESCRIPTION" Language="ko_KR"><Text>전략 자원이 다시 중요해집니다. 말, 상아, 철, 질산칼륨, 견목, 석유, 석탄, 고무가 필요한 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 전투력이 낮아지고 훈련이 느려지며, 자원 하나마다 주어지는 게임 본래의 보너스는 그대로입니다. 마지막 하나를 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 여섯 개를 넘어서도 수가 계속 전투력을 더합니다. 게임 설정 옵션으로 페널티를 정하고(자원이 없는 유닛을 잠그는 단계까지), 후반 보너스를 켜고 끄며, 근대의 모든 유닛에 두 번째 자원을 요구할 수도 있습니다. 싱글 플레이 전용. 멀티플레이에서는 자원을 잃어도 그 플레이어가 자원을 얻기 전까지 페널티가 돌아오지 않습니다.</Text></Replace>
         <Replace Tag="LOC_SR_UNSUPPLIED_LINE" Language="ko_KR"><Text>보급 없음: {1_Resource} 없음 (전투력 {2_Combat}, 훈련이 느려짐)</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_NONE" Language="ko_KR"><Text>{1_Resource} 필요. 없으면 전투력 {2_Combat}, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PRODUCTION_NEEDS_HELD" Language="ko_KR"><Text>{1_Resource} 필요 (보유 {2_Copies}개).</Text></Replace>
@@ -38,10 +38,10 @@
         <Replace Tag="LOC_SR_SETUP_CHAINS_OFF" Language="ko_KR"><Text>끔</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_CHAINS_OFF_DESCRIPTION" Language="ko_KR"><Text>근대의 각 유닛은 다른 시대처럼 자원 하나가 필요합니다.</Text></Replace>
         <Replace Tag="LOC_SR_SETUP_CHAINS_ON" Language="ko_KR"><Text>켬</Text></Replace>
-        <Replace Tag="LOC_SR_SETUP_CHAINS_ON_DESCRIPTION" Language="ko_KR"><Text>포병은 질산칼륨과 석탄, 기갑과 전함은 석유와 석탄, 경형 전함은 석탄과 질산칼륨, 항공기는 고무와 석유가 필요합니다.</Text></Replace>
+        <Replace Tag="LOC_SR_SETUP_CHAINS_ON_DESCRIPTION" Language="ko_KR"><Text>야전 포병은 질산칼륨과 석탄, 더 무거운 포병과 기갑과 전함은 석유와 석탄, 경형 전함은 석탄과 질산칼륨, 항공기는 고무와 석유가 필요합니다. 흉갑기병은 말와 질산칼륨, 전열함은 견목와 질산칼륨, 잠수함은 석유와 고무가 필요합니다.</Text></Replace>
         <!-- Civilopedia -->
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_TITLE" Language="ko_KR"><Text>중요해진 전략 자원</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_HARDWOOD_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME}, {LOC_RESOURCE_RUBBER_NAME}을(를) 쓰는 군사 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 더 약하게 싸우고 더 느리게 훈련됩니다. {LOC_SR_SETUP_UNSUPPLIED_NAME}이(가) 잠금 값이 아닌 한 금지되는 것은 없습니다. 마지막 장을 참조하세요.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CONTENT_PARA_1" Language="ko_KR"><Text>{LOC_RESOURCE_HORSES_NAME}, {LOC_RESOURCE_IVORY_NAME}, {LOC_RESOURCE_IRON_NAME}, {LOC_RESOURCE_NITER_NAME}, {LOC_RESOURCE_HARDWOOD_NAME}, {LOC_RESOURCE_OIL_NAME}, {LOC_RESOURCE_COAL_NAME}, {LOC_RESOURCE_RUBBER_NAME}을(를) 쓰는 군사 유닛은 소유자가 그 자원을 하나도 갖고 있지 않은 동안 더 약하게 싸우고 더 느리게 훈련됩니다. {LOC_SR_SETUP_UNSUPPLIED_NAME}이(가) 잠금 값이 아닌 한 금지되는 것은 없습니다. 마지막 장을 참조하세요.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_TITLE" Language="ko_KR"><Text>자원이 없을 때</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_1" Language="ko_KR"><Text>자원이 없는 유닛은 가진 모든 전투력(근접, 그리고 있다면 원거리와 폭격)이 낮아지고, 도시가 그 유닛 훈련에 쓰는 생산력도 줄어듭니다. 얼마나 낮아지는지는 게임 설정의 {LOC_SR_SETUP_UNSUPPLIED_NAME} 옵션이 정합니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_UNSUPPLIED_PARA_2" Language="ko_KR"><Text>[B]{LOC_SR_SETUP_UNSUPPLIED_LIGHT}:[/B] 전투력 -2, 생산력 20% 감소.[N][B]{LOC_SR_SETUP_UNSUPPLIED_STANDARD}[/B] (기본값): 전투력 -3, 생산력 33% 감소, 그래서 훈련에 1.5배의 시간이 걸립니다.[N][B]{LOC_SR_SETUP_UNSUPPLIED_HARSH}:[/B] 전투력 -5, 생산력 50% 감소, 훈련 시간 2배.[N][B]{LOC_SR_SETUP_UNSUPPLIED_OFF}:[/B] 페널티 없음.[N][B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED}[/B] 및 [B]{LOC_SR_SETUP_UNSUPPLIED_LOCKED_UPGRADE}:[/B] 가혹함 페널티에 더해, 자원이 하나도 없는 동안 유닛이 잠깁니다(마지막 장 참조).</Text></Replace>
@@ -53,15 +53,15 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_1" Language="ko_KR"><Text>새 자원은 도착하는 즉시 페널티를 없앱니다. 약탈, 타일 소유권 변경 등 어떤 이유로든 자원을 잃으면 한 턴 뒤에 페널티가 돌아옵니다. 플레이어와 AI 플레이어 모두 똑같습니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_LOSS_PARA_2" Language="ko_KR"><Text>교역 상대와 전쟁을 하면 교역로가 끝나고, 그 교역로로 들어온 자원은 즉시 사라지며 그 보호도 함께 사라집니다. 하나라도 보유하고 있는 동안에는 그 자원이 필요한 유닛이 평소대로 싸우고 평소 속도로 훈련됩니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_TITLE" Language="ko_KR"><Text>6개를 넘었을 때</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="ko_KR"><Text>게임은 자원 하나당 전투력 +1을 주지만 6개까지입니다. {LOC_SR_SETUP_LATE_CURVE_NAME} 옵션을 켜면(기본값) 그 이상도 계속 더해집니다. 8, 10, 12, 14, 16, 18, 20개에서 전투력 +1이 게임의 개당 보너스가 적용되는 유닛에 붙습니다. 전투 미리보기는 게임 자체의 줄 옆에 "+1 {LOC_RESOURCE_NITER_NAME}: 8개 이상"처럼 한 줄로 보여 줍니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_PAST_SIX_PARA_1" Language="ko_KR"><Text>게임은 자원 하나당 전투력 +1을 주지만 6개까지입니다. {LOC_SR_SETUP_LATE_CURVE_NAME} 옵션을 켜면(기본값) 그 이상도 계속 더해집니다. 8, 10, 12, 14, 16, 18, 20개에서 전투력 +1이 게임의 개당 보너스가 적용되는 유닛에 붙습니다. 전투 미리보기는 게임 자체의 줄 옆에 "+1 {LOC_RESOURCE_NITER_NAME}: 8개 이상"처럼 한 줄로 보여 줍니다. 크메르와 마우리아의 전투 코끼리는 상아를 같은 방식으로 셉니다. 모드가 상아 하나마다 +1(여섯까지), 이 옵션으로 여섯을 넘는 단계까지.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="ko_KR"><Text>어떤 유닛이 무엇을 필요로 하는가</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="ko_KR"><Text>문명의 고유 유닛은 대체하는 유닛과 같은 것을 필요로 합니다.</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="ko_KR"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 기병(전차, 기마병 및 그 고유 유닛)[N]{LOC_RESOURCE_IRON_NAME}: 2단계 이상의 보병(창병, 팔랑크스, 군단병, 불멸자 등)</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="ko_KR"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 기병(전차, 기마병 및 그 고유 유닛)[N]{LOC_RESOURCE_IRON_NAME}: 2단계 이상의 보병(창병, 팔랑크스, 군단병, 불멸자 등)[N]{LOC_RESOURCE_IVORY_NAME}: 전투 코끼리(유타하티, 푸랍헤타라)</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="ko_KR"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 기병(추격마, 기사, 창기병 및 그 고유 유닛)[N]{LOC_RESOURCE_IRON_NAME}: 2단계 이상의 보병(맨엣암즈, 파이크병 및 그 고유 유닛)[N]{LOC_RESOURCE_NITER_NAME}: 3단계 이상의 공성 유닛(사석포, 화차)[N]{LOC_RESOURCE_HARDWOOD_NAME}: 2단계 이상의 중형 전함(카라크선, 갈레온 및 그 고유 유닛)</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="ko_KR"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}: 포병(전장포, 야포, 대전차포, 박격포, 곡사포, 돌격포)[N]{LOC_RESOURCE_OIL_NAME}: 기갑(육상전함, 탱크 및 그 고유 유닛)과 전함(드레드노트 전함, 전함 및 그 고유 유닛)[N]{LOC_RESOURCE_COAL_NAME}: 경형 전함(철갑함, 순양함, 구축함, 바르바리 해적)[N]{LOC_RESOURCE_RUBBER_NAME}: 항공기</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="ko_KR"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}: 야전 포병(전장포, 야포)[N]{LOC_RESOURCE_OIL_NAME}: 더 무거운 포병(대전차포, 박격포, 곡사포, 돌격포), 기갑(육상전함, 탱크 및 그 고유 유닛)과 전함(드레드노트 전함, 전함 및 그 고유 유닛)[N]{LOC_RESOURCE_COAL_NAME}: 경형 전함(철갑함, 순양함, 구축함, 바르바리 해적)[N]{LOC_RESOURCE_RUBBER_NAME}: 항공기[N]{LOC_RESOURCE_HORSES_NAME}: 흉갑기병[N]{LOC_RESOURCE_HARDWOOD_NAME}: 전열함[N]{LOC_RESOURCE_OIL_NAME}: 잠수함</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="ko_KR"><Text>어떤 조건도 없는 유닛: 전사 계열과 정찰병, 원거리 보병(궁수, 석궁병, 아쿼버스병), 투석기와 트레뷰셋, 코그선과 전열함, 흉갑기병, 잠수함, 그리고 근대 보병. 그래서 모든 플레이어가 언제나 방어할 수 있습니다.</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_TITLE" Language="ko_KR"><Text>근대 공급망</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_PARA_1" Language="ko_KR"><Text>{LOC_SR_SETUP_CHAINS_NAME}이(가) 켜져 있으면(기본값은 꺼짐) 자원이 필요한 근대의 모든 유닛에 두 번째 자원도 필요합니다. 포병은 {LOC_RESOURCE_NITER_NAME}와(과) {LOC_RESOURCE_COAL_NAME}, 기갑과 전함은 {LOC_RESOURCE_OIL_NAME}와(과) {LOC_RESOURCE_COAL_NAME}, 경형 전함은 {LOC_RESOURCE_COAL_NAME}와(과) {LOC_RESOURCE_NITER_NAME}, 항공기는 {LOC_RESOURCE_RUBBER_NAME}와(과) {LOC_RESOURCE_OIL_NAME}. 부족한 자원마다 페널티가 온전히 적용되어 둘 다 없는 유닛은 두 배의 페널티로 싸우고, 잠금 값에서는 둘 다 없으면 훈련할 수 없습니다. 근대 지도에는 철이 없으므로 석탄이 강철을 대신합니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_PARA_1" Language="ko_KR"><Text>{LOC_SR_SETUP_CHAINS_NAME}이(가) 켜져 있으면(기본값은 꺼짐) 자원이 필요한 근대의 모든 유닛에 두 번째 자원도 필요합니다. 야전 포병은 {LOC_RESOURCE_NITER_NAME}와(과) {LOC_RESOURCE_COAL_NAME}, 더 무거운 포병은 {LOC_RESOURCE_OIL_NAME}와(과) {LOC_RESOURCE_COAL_NAME}, 기갑과 전함은 {LOC_RESOURCE_OIL_NAME}와(과) {LOC_RESOURCE_COAL_NAME}, 경형 전함은 {LOC_RESOURCE_COAL_NAME}와(과) {LOC_RESOURCE_NITER_NAME}, 흉갑기병은 {LOC_RESOURCE_HORSES_NAME}와(과) {LOC_RESOURCE_NITER_NAME}, 전열함은 {LOC_RESOURCE_HARDWOOD_NAME}와(과) {LOC_RESOURCE_NITER_NAME}, 잠수함은 {LOC_RESOURCE_OIL_NAME}와(과) {LOC_RESOURCE_RUBBER_NAME}, 항공기는 {LOC_RESOURCE_RUBBER_NAME}와(과) {LOC_RESOURCE_OIL_NAME}. 부족한 자원마다 페널티가 온전히 적용되어 둘 다 없는 유닛은 두 배의 페널티로 싸우고, 잠금 값에서는 둘 다 없으면 훈련할 수 없습니다. 근대 지도에는 철이 없으므로 석탄이 강철을 대신합니다.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_UNSUPPLIED" Language="ko_KR"><Text>보급 없음</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_TERM_STRATEGIC" Language="ko_KR"><Text>전략 자원</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_CHAPTER" Language="ko_KR"><Text>전략 자원</Text></Replace>
@@ -82,10 +82,13 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_HARSH" Language="ko_KR"><Text>{LOC_RESOURCE_COAL_NAME} 필요: 하나도 없으면 전투력 -5, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_LIGHT" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME} 필요: 하나도 없으면 전투력 -2, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_LIGHT" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME} 필요: 하나도 없으면 전투력 -2, 훈련이 느려짐.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_LIGHT" Language="ko_KR"><Text>{LOC_RESOURCE_IVORY_NAME} 필요: 하나도 없으면 전투력 -2, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_STANDARD" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME} 필요: 하나도 없으면 전투력 -3, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_STANDARD" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME} 필요: 하나도 없으면 전투력 -3, 훈련이 느려짐.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_STANDARD" Language="ko_KR"><Text>{LOC_RESOURCE_IVORY_NAME} 필요: 하나도 없으면 전투력 -3, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_HARSH" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME} 필요: 하나도 없으면 전투력 -5, 훈련이 느려짐.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_HARSH" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME} 필요: 하나도 없으면 전투력 -5, 훈련이 느려짐.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_HARSH" Language="ko_KR"><Text>{LOC_RESOURCE_IVORY_NAME} 필요: 하나도 없으면 전투력 -5, 훈련이 느려짐.</Text></Replace>
         <!-- /Civilopedia -->
         <!-- Lost-supply notification and first-time callout -->
         <Replace Tag="LOC_SR_NOTIFY_LOST_TITLE" Language="ko_KR"><Text>보급 상실</Text></Replace>
@@ -125,8 +128,10 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_COAL_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_COAL_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_GATE_TRAINING" Language="ko_KR"><Text>{LOC_RESOURCE_IVORY_NAME}이(가) 하나도 없으면 훈련도 구매도 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_RUBBER_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_HARDWOOD_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_GATE_UPGRADE" Language="ko_KR"><Text>{LOC_RESOURCE_IVORY_NAME}이(가) 하나도 없으면 훈련, 구매, 업그레이드로 얻기 모두 할 수 없음.</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="ko_KR"><Text>훈련에 필요: {1_Units}.</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="ko_KR"><Text>훈련에 필요: {1_Units} 외 {2_More}종.</Text></Replace>
         <Replace Tag="LOC_SR_NOTIFY_LOCKED_TAIL" Language="ko_KR"><Text>그때까지 새로 훈련할 수 없습니다.</Text></Replace>
