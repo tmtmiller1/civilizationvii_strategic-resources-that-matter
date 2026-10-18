@@ -117,4 +117,5 @@ and writes the Steam Workshop manifest without a description field.
 
 ## License
 
-MIT. See [LICENSE](LICENSE). By contributing you agree your changes are licensed under the same terms.
+Changes go under the same terms as the mod: the Tower Mod License 1.0 in [LICENSE](LICENSE), with `ui/settings-keeper.js` under
+MIT. By sending a change, you agree I can release it under those terms.
