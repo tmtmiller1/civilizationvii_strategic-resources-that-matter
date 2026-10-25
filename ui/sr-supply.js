@@ -3,12 +3,15 @@
 //
 // The data files mark every gated unit with a tag per resource it draws on, SR_SUPPLY_<NAME>, and the resource is
 // RESOURCE_<NAME>. A unit carries one tag, or two with the Modern Supply Chains option on; the penalties stack.
+// Where another resource stands in for one (Pitch for Hardwood in Exploration), the unit also carries
+// SR_EITHER_<NAME>_OR_<OTHER>, and a copy of either supplies it: the copies below are counted for the pair.
 // The penalty sizes are read back from the loaded modifiers rather than kept here as well, so the panel always
 // shows what the game is actually applying under the setup option chosen.
 
 export const SUPPLY_TAG_PREFIX = "SR_SUPPLY_";
 export const COMBAT_PENALTY_PREFIX = "SR_COMBAT_PENALTY_";
 export const PRODUCTION_PENALTY_PREFIX = "SR_PRODUCTION_PENALTY_";
+export const EITHER_TAG_PREFIX = "SR_EITHER_";
 
 /**
  * @typedef {object} Penalty
@@ -61,6 +64,44 @@ export function buildSupplyIndex(typeTags) {
 }
 
 /**
+ * Resource type to the resources that stand in for it, from the either tags on the units: SR_EITHER_HARDWOOD_OR_PITCH
+ * gives Hardwood the stand-in Pitch.
+ * @param {Iterable<{ Type?: string, Tag?: string }>} typeTags
+ * @returns {Map<string, string[]>}
+ */
+export function buildAlternativeIndex(typeTags) {
+  /** @type {Map<string, string[]>} */
+  const index = new Map();
+  for (const row of typeTags) {
+    const tag = row?.Tag ?? "";
+    if (!tag.startsWith(EITHER_TAG_PREFIX)) continue;
+    const [first, ...others] = tag.slice(EITHER_TAG_PREFIX.length).split("_OR_").map((name) => `RESOURCE_${name}`);
+    if (!others.length || others.some((name) => name === "RESOURCE_")) continue;
+    index.set(first, [...new Set([...(index.get(first) ?? []), ...others])]);
+  }
+  return index;
+}
+
+/**
+ * The name key of a resource with its stand-ins, LOC_SR_EITHER_HARDWOOD_OR_PITCH_NAME ("Hardwood or Pitch").
+ * @param {string} resourceType @param {string[]} others
+ */
+export const eitherNameKey = (resourceType, others) =>
+  `LOC_${EITHER_TAG_PREFIX}${[resourceType, ...others].map((r) => r.replace(/^RESOURCE_/, "")).join("_OR_")}_NAME`;
+
+/**
+ * Unit type to the resources it draws on, each followed by its stand-ins: what supplies the unit, for the resource
+ * line on each of them.
+ * @param {Map<string, string[]>} supply @param {Map<string, string[]>} alternatives
+ * @returns {Map<string, string[]>}
+ */
+export function withAlternatives(supply, alternatives) {
+  if (alternatives.size === 0) return supply;
+  return new Map([...supply].map(([unitType, resources]) =>
+    [unitType, [...new Set(resources.flatMap((r) => [r, ...(alternatives.get(r) ?? [])]))]]));
+}
+
+/**
  * Resource type to the penalty the loaded modifiers apply without it. A resource with no penalty modifier is left
  * out, which is how the Off setting shows up.
  * @param {Iterable<{ ModifierId?: string, Name?: string, Value?: string | number }>} modifierArguments
@@ -103,6 +144,19 @@ export function countCopies(holdings, resourceType) {
     if (holding && !holding.isOffMap && holding.resourceType === resourceType) copies += 1;
   }
   return copies;
+}
+
+/**
+ * The copies that supply a resource: its own and those of its stand-ins.
+ * @param {Iterable<{ resourceType: string | null, isOffMap?: boolean }>} holdings
+ * @param {string} resourceType
+ * @param {Map<string, string[]>} alternatives
+ * @returns {number}
+ */
+export function countSupply(holdings, resourceType, alternatives) {
+  const list = [...holdings];
+  return [resourceType, ...(alternatives.get(resourceType) ?? [])]
+    .reduce((total, r) => total + countCopies(list, r), 0);
 }
 
 /**
@@ -276,7 +330,8 @@ export const GATE_UPGRADING_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPG
  * @property {boolean} upgrade upgrading into a gated unit needs a copy too
  * @property {Map<string, string>} columns unit type to the resource its StrategicResource column names
  * @property {Map<string, string[]>} needs unit type to every resource the gate locks it behind: the column's, then
- *   any other the unit draws on (Modern Supply Chains), which the grant-only lines lock it behind
+ *   any other the unit draws on (Modern Supply Chains), which the grant-only lines lock it behind; and for a unit with
+ *   stand-ins, which carries no column, what it draws on (a copy of a stand-in counts for it)
  */
 
 /**
@@ -286,18 +341,42 @@ export const GATE_UPGRADING_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPG
  * @param {Iterable<{ UnitType?: string, StrategicResource?: string | null }>} units GameInfo.Units rows
  * @param {Iterable<{ Name?: string, Value?: string | number }>} globalParameters GameInfo.GlobalParameters rows
  * @param {Map<string, string[]>} supply unit type to the resources it draws on
+ * @param {Map<string, string[]>} [alternatives] resource type to its stand-ins
  * @returns {Gate}
  */
-export function buildGateIndex(units, globalParameters, supply) {
+export function buildGateIndex(units, globalParameters, supply, alternatives = new Map()) {
   const rows = [...units];
   const params = readParameters(globalParameters);
   const own = params.get(GATE_PRODUCTION_PARAMETER) === 1 && params.get(GATE_PURCHASE_PARAMETER) === 1;
   if (!own) return { on: false, upgrade: false, columns: new Map(), needs: new Map() };
   const columns = readColumns(rows);
-  const on = coversSupply(columns, new Set(rows.map((row) => row?.UnitType)), supply);
+  const known = new Set(rows.map((row) => row?.UnitType));
+  const on = coversSupply(columns, known, supply, alternatives);
   if (!on) columns.clear();
   const upgrade = on && (params.get(GATE_UPGRADING_PARAMETER) ?? 0) >= 1;
-  return { on, upgrade, columns, needs: needsOf(columns, supply) };
+  const needs = needsOf(columns, supply);
+  if (on) addStandInNeeds(needs, { supply, columns, known, alternatives });
+  return { on, upgrade, columns, needs };
+}
+
+/**
+ * A unit whose every resource has stand-ins carries no column: the line file's grant locks it.
+ * @param {string[]} resources @param {Map<string, string[]>} alternatives
+ */
+const hasStandIns = (resources, alternatives) => resources.length > 0 && resources.every((r) => alternatives.has(r));
+
+/**
+ * Adds the units with stand-ins to the gate's needs, behind what they draw on.
+ * @param {Map<string, string[]>} needs
+ * @param {{ supply: Map<string, string[]>, columns: Map<string, string>, known: Set<string | undefined>,
+ *   alternatives: Map<string, string[]> }} tables
+ */
+function addStandInNeeds(needs, { supply, columns, known, alternatives }) {
+  for (const [unitType, resources] of supply) {
+    if (known.has(unitType) && !columns.has(unitType) && hasStandIns(resources, alternatives)) {
+      needs.set(unitType, resources);
+    }
+  }
 }
 
 /** @param {{ UnitType?: string, StrategicResource?: string | null }[]} rows @returns {Map<string, string>} */
@@ -336,16 +415,18 @@ function readParameters(globalParameters) {
 
 /**
  * Whether every unit of the gate map the game knows carries one of its resources in the column, which is what the
- * option's groups write; another mod's column covers only some of them. False when the game knows none of them.
+ * option's groups write; another mod's column covers only some of them. A unit with stand-ins is left out: it
+ * carries no column, and the line file's grant locks it. False when the game knows no column unit.
  * @param {Map<string, string>} columns
  * @param {Set<string | undefined>} known the unit types in the table
  * @param {Map<string, string[]>} supply
+ * @param {Map<string, string[]>} alternatives
  * @returns {boolean}
  */
-function coversSupply(columns, known, supply) {
+function coversSupply(columns, known, supply, alternatives) {
   let seen = 0;
   for (const [unitType, resources] of supply) {
-    if (!known.has(unitType)) continue;
+    if (!known.has(unitType) || (!columns.has(unitType) && hasStandIns(resources, alternatives))) continue;
     const column = columns.get(unitType);
     if (!column || !resources.includes(column)) return false;
     seen += 1;

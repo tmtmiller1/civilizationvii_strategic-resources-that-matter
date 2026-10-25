@@ -42,7 +42,7 @@ export function describeUnit(unit) {
   if (!unitType) return [];
   const { supply, penalties, gate } = readIndexes();
   const statuses = computeSupplyStatuses({ unitType, supply, penalties, copiesOf: copiesCounter(owner) });
-  const key = gate.on && gate.columns.has(unitType) ? "LOC_SR_UNSUPPLIED_LINE_GATED" : "LOC_SR_UNSUPPLIED_LINE";
+  const key = gate.on && gate.needs.has(unitType) ? "LOC_SR_UNSUPPLIED_LINE_GATED" : "LOC_SR_UNSUPPLIED_LINE";
   return statuses.map((status) => ({
     text: Locale.compose(key, resourceNameKey(status.resourceType), status.combat),
     resourceType: status.resourceType,

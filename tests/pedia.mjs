@@ -3,16 +3,17 @@ import fs from "node:fs";
 import {
   GATES_OPTION, gateLineFor, LEVELS, PEDIA, pediaGateTag, pediaUnitTag, resourceNameTag
 } from "../scripts/build-data.mjs";
-import { AGES, AGE_FILE, buildGateMap, gatedResources } from "../scripts/gate-map.mjs";
+import { AGES, AGE_FILE, buildGateMap, gatedResources, suppliers } from "../scripts/gate-map.mjs";
 
 // Civilopedia gate. The game finds a chapter's text by key convention and draws nothing, with no error, for a
 // chapter without text, a gap in its paragraphs (PARA_1 and PARA_3 drops PARA_3) or a mistyped key
 // (base-standard ui/civilopedia/model-civilopedia.js, getChapterBody and findChapterTextKey). So this walks the page
 // the same way: the title, each chapter's title (CONTENT has none, as in the game's own pages) and its paragraphs
 // from PARA_1 with no gap, the search terms and the unit chapter's header. Every gated unit has exactly one line on
-// its page per setup level, naming its own resource. A name the text nests ({LOC_RESOURCE_IRON_NAME}) is the same in
-// every language and is either the mod's own tag or one of the game's that every game loads (resource, age); a unit
-// name is written out, because the game loads unit names only with that unit's age.
+// its page per setup level, naming its own resource (and, in an age where others stand in for it, each of those).
+// A name the text nests ({LOC_RESOURCE_IRON_NAME}) is the same in every language and is either the mod's own tag or
+// one of the game's that every game loads (resource, age); a unit name is written out, because the game loads unit
+// names only with that unit's age.
 // It does not show that the game draws the page; opening the Civilopedia in a game does that
 // (docs/verification-runs.md, phase 12).
 
@@ -67,10 +68,11 @@ for (const age of AGES) {
     assert.deepEqual(rows.map((r) => r[1]), [...gates.keys()], `${age} ${levelName}: one line per gated unit`);
     for (const [, unit, chapter, tag] of rows) {
       assert.equal(chapter, unitChapter, `${unit}: chapter`);
-      assert.equal(tag, pediaUnitTag(gates.get(unit) ?? "", levelName), `${age} ${levelName} ${unit}: line`);
+      assert.equal(tag, pediaUnitTag(gates.get(unit) ?? "", levelName, age), `${age} ${levelName} ${unit}: line`);
       assert.ok(english.has(tag), `${tag} has no text`);
-      assert.ok(english.get(tag)?.includes(`{${resourceNameTag(gates.get(unit) ?? "")}}`),
-        `${tag} names another resource`);
+      for (const resource of suppliers(age, gates.get(unit) ?? "")) {
+        assert.ok(english.get(tag)?.includes(`{${resourceNameTag(resource)}}`), `${tag} leaves out ${resource}`);
+      }
       assert.ok(english.get(tag)?.includes(String(LEVELS[/** @type {keyof typeof LEVELS} */ (levelName)].combat)),
         `${tag} names another penalty`);
       unitRows += 1;
@@ -88,18 +90,20 @@ for (const age of AGES) {
     assert.deepEqual(rows.map((r) => r[1]), [...gates.keys()], `${age} gate ${gateName}: one line per gated unit`);
     for (const [, unit, chapter, tag] of rows) {
       assert.equal(chapter, unitGateChapter, `${unit}: chapter`);
-      assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateLineFor(unit, gateName)),
+      assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateLineFor(unit, gateName), age),
         `${age} gate ${gateName} ${unit}: line`);
       assert.ok(english.has(tag), `${tag} has no text`);
-      const resourceName = `{${resourceNameTag(gates.get(unit) ?? "")}}`;
-      assert.ok(english.get(tag)?.includes(resourceName), `${tag} names another resource`);
+      for (const resource of suppliers(age, gates.get(unit) ?? "")) {
+        assert.ok(english.get(tag)?.includes(`{${resourceNameTag(resource)}}`), `${tag} leaves out ${resource}`);
+      }
       gateRows += 1;
     }
   }
 }
 
 // Nested names: the same in every language, and loaded in every game.
-const NESTABLE = new Set([...AGES.flatMap(gatedResources).map(resourceNameTag),
+const NESTABLE = new Set([...AGES.flatMap((age) => gatedResources(age).flatMap((r) => suppliers(age, r)))
+  .map(resourceNameTag),
   "LOC_AGE_ANTIQUITY_NAME", "LOC_AGE_EXPLORATION_NAME", "LOC_AGE_MODERN_NAME"]);
 const nested = (/** @type {string} */ s) => [...s.matchAll(/\{(LOC_[A-Z0-9_]+)\}/g)].map((m) => m[1]).sort();
 for (const [tag, text] of english) {

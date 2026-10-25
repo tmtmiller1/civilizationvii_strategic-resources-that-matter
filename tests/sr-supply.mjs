@@ -1,16 +1,20 @@
 import assert from "node:assert/strict";
 import {
+  buildAlternativeIndex,
   buildGateIndex,
   buildPenaltyIndex,
   buildSupplyIndex,
   computeSupplyStatus,
   computeSupplyStatuses,
   countCopies,
+  countSupply,
   describeProductionCost,
   describeSupplyLoss,
   resourceForSupplyTag,
   SUPPLIED_UNITS_SHOWN,
   unitsSuppliedBy,
+  eitherNameKey,
+  withAlternatives,
   GATE_PRODUCTION_PARAMETER, GATE_PURCHASE_PARAMETER,
   GATE_UPGRADING_PARAMETER,
   lockedBy,
@@ -245,6 +249,52 @@ assert.deepEqual(describeProductionCost("UNIT_TANK", { supply, penalties: twoPen
   const otherColumn = buildGateIndex([{ UnitType: "UNIT_TANK", StrategicResource: "RESOURCE_NITER" }, ...units],
     [production, purchase], supply);
   assert.equal(otherColumn.on, false);
+}
+
+// Stand-ins (Pitch for Hardwood in Exploration): read from the either tags, counted for the pair, named as the pair,
+// and a unit of the pair carries no column yet stays under the gate.
+{
+  const tags = [{ Type: "UNIT_CARRACK", Tag: "SR_SUPPLY_HARDWOOD" },
+    { Type: "UNIT_CARRACK", Tag: "SR_EITHER_HARDWOOD_OR_PITCH" }, { Type: "UNIT_GALLEON", Tag: "SR_SUPPLY_HARDWOOD" },
+    { Type: "UNIT_GALLEON", Tag: "SR_EITHER_HARDWOOD_OR_PITCH" },
+    { Type: "UNIT_BOMBARD", Tag: "SR_SUPPLY_NITER" }, { Type: "UNIT_X", Tag: "SR_EITHER_" },
+    { Type: "UNIT_Y", Tag: "SR_EITHER_OIL" }];
+  const alternatives = buildAlternativeIndex(tags);
+  assert.deepEqual([...alternatives], [["RESOURCE_HARDWOOD", ["RESOURCE_PITCH"]]], "one pair, malformed tags skipped");
+  assert.equal(eitherNameKey("RESOURCE_HARDWOOD", ["RESOURCE_PITCH"]), "LOC_SR_EITHER_HARDWOOD_OR_PITCH_NAME");
+  const holdings = [{ resourceType: "RESOURCE_PITCH" }, { resourceType: "RESOURCE_PITCH" },
+    { resourceType: "RESOURCE_HARDWOOD", isOffMap: true }, { resourceType: "RESOURCE_NITER" }];
+  assert.equal(countSupply(holdings, "RESOURCE_HARDWOOD", alternatives), 2,
+    "Pitch counts for Hardwood, off-map doesn't");
+  assert.equal(countSupply(holdings, "RESOURCE_PITCH", alternatives), 2, "Pitch on its own");
+  assert.equal(countSupply(holdings, "RESOURCE_NITER", alternatives), 1);
+  const supply = buildSupplyIndex(tags);
+  assert.deepEqual(withAlternatives(supply, alternatives).get("UNIT_CARRACK"), ["RESOURCE_HARDWOOD", "RESOURCE_PITCH"]);
+  assert.equal(withAlternatives(supply, new Map()), supply, "no stand-ins: the same index");
+  assert.equal(unitsSuppliedBy("RESOURCE_PITCH", withAlternatives(supply, alternatives),
+    new Map([["UNIT_CARRACK", "Carrack"], ["UNIT_GALLEON", "Galleon"]]))?.names.join(), "Carrack,Galleon",
+    "Pitch's line lists the Hardwood ships");
+
+  const params = [{ Name: GATE_PRODUCTION_PARAMETER, Value: "1" }, { Name: GATE_PURCHASE_PARAMETER, Value: "1" }];
+  const units = [{ UnitType: "UNIT_CARRACK", StrategicResource: null },
+    { UnitType: "UNIT_GALLEON", StrategicResource: null }, { UnitType: "UNIT_BOMBARD", StrategicResource: "RESOURCE_NITER" }];
+  const gate = buildGateIndex(units, params, supply, alternatives);
+  assert.equal(gate.on, true, "the ships carry no column and the gate is still the mod's");
+  assert.deepEqual([...gate.columns.keys()], ["UNIT_BOMBARD"]);
+  assert.deepEqual(gate.needs.get("UNIT_CARRACK"), ["RESOURCE_HARDWOOD"], "the ships are under the gate");
+  const copies = (/** @type {typeof holdings} */ h) => (/** @type {string} */ r) => countSupply(h, r, alternatives);
+  assert.equal(lockedBy("UNIT_CARRACK", gate, copies([])), "RESOURCE_HARDWOOD", "neither: locked");
+  assert.equal(lockedBy("UNIT_CARRACK", gate, copies([{ resourceType: "RESOURCE_PITCH" }])), null, "Pitch unlocks");
+  assert.equal(lockedBy("UNIT_CARRACK", gate, copies([{ resourceType: "RESOURCE_HARDWOOD" }])), null, "Hardwood too");
+  assert.equal(buildGateIndex(units, params, supply).on, false, "without the stand-ins read, a missing column is " +
+    "another mod's rule");
+  assert.equal(buildGateIndex(units.slice(0, 2), params, supply, alternatives).on, false,
+    "no column unit at all: nothing shows the option is the mod's");
+  const off = buildGateIndex(units, [], supply, alternatives);
+  assert.deepEqual([off.on, off.needs.size], [false, 0], "gate off: no needs for the ships either");
+  assert.deepEqual(computeSupplyStatuses({ unitType: "UNIT_CARRACK", supply,
+    penalties: new Map([["RESOURCE_HARDWOOD", { combat: -3, productionPercent: -33 }]]),
+    copiesOf: copies([{ resourceType: "RESOURCE_PITCH" }]) }), [], "Pitch held: supplied");
 }
 
 console.log("sr-supply tests passed");

@@ -62,7 +62,7 @@ A civilization's unique unit needs what the unit it replaces needs.
 | Exploration | Cavalry: Courser, Knight, Lancer and their unique versions | Horses |
 | Exploration | Infantry from the second tier: Man-At-Arms, Pikeman and their unique versions | Iron |
 | Exploration | Siege from the third tier: Bombard and its unique version | Niter |
-| Exploration | Heavy warships from the second tier: Carrack, Galleon and their unique versions | Hardwood |
+| Exploration | Heavy warships from the second tier: Carrack, Galleon and their unique versions | Hardwood or Pitch |
 | Modern | Field artillery: Field Cannon, Field Gun and their unique versions | Niter |
 | Modern | The heavier artillery: Mortar, Howitzer, AT Gun, Assault Gun and their unique versions | Oil |
 | Modern | Armour: Landship, Tank and their unique versions | Oil |
@@ -74,6 +74,10 @@ A civilization's unique unit needs what the unit it replaces needs.
 | Modern | Aircraft | Rubber |
 
 A resource that reaches you over a trade route counts the same as one you mine yourself, from the turn the route lands.
+
+In Exploration, Pitch works for the warships as well as Hardwood: one copy of either keeps them at full strength and,
+under a locked value, lets you train them. Hardwood only grows on tundra and in the tropics, while Pitch turns up in
+ordinary forest, so a temperate start still gets its Carracks. Modern keeps the Ship of the Line on Hardwood.
 
 The war elephants count Ivory the way cavalry counts Horses: +1 Combat Strength per Ivory you hold, up to six, and
 the steps past six with Strategic Resources Past Six on. The game's own +1 per Horses stops at them, so an elephant

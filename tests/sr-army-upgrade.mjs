@@ -19,19 +19,24 @@ try {
   const columns = new Map([["UNIT_SPEARMAN", "RESOURCE_IRON"], ["UNIT_HORSEMAN", "RESOURCE_HORSES"],
     ["UNIT_CHARIOT", "RESOURCE_HORSES"]]);
   const needs = new Map([...columns].map(([unit, resource]) => [unit, [resource]]));
-  const lineUnits = new Set(["UNIT_SPEARMAN"]);
   let copies = { RESOURCE_IRON: 0, RESOURCE_HORSES: 0 };
   const copiesOf = (/** @type {string} */ r) => copies[r] ?? 0;
   let known = new Set(["UNIT_SPEARMAN", "UNIT_HORSEMAN"]);
   const unlocked = (/** @type {string} */ u) => known.has(u);
   const deps = (/** @type {boolean} */ upgrade) =>
-    ({ upgrades, gate: { on: true, upgrade, columns, needs }, lineUnits, copiesOf, unlocked });
+    ({ upgrades, gate: { on: true, upgrade, columns, needs }, copiesOf, unlocked });
 
-  // lockedUpgrade: under Training and upgrade every gated next unit; under Training only the grant-only ones.
+  // lockedUpgrade: only under Training and upgrade, and only by the next unit's column, as the engine checks it.
   assert.deepEqual(lockedUpgrade("UNIT_WARRIOR", deps(true)), { target: "UNIT_SPEARMAN", resource: "RESOURCE_IRON" });
   assert.deepEqual(lockedUpgrade("UNIT_CHARIOT", deps(true)), { target: "UNIT_HORSEMAN", resource: "RESOURCE_HORSES" });
-  assert.deepEqual(lockedUpgrade("UNIT_WARRIOR", deps(false)), { target: "UNIT_SPEARMAN", resource: "RESOURCE_IRON" });
-  assert.equal(lockedUpgrade("UNIT_CHARIOT", deps(false)), null, "the Horseman isn't grant-only: upgrades stay free");
+  assert.equal(lockedUpgrade("UNIT_WARRIOR", deps(false)), null, "under Training upgrades stay free, lines included");
+  assert.equal(lockedUpgrade("UNIT_CHARIOT", deps(false)), null, "under Training upgrades stay free");
+  // A next unit with no column (a warship that Pitch stands in for, or a second resource under Supply Chains): the
+  // engine upgrades into it, so the army isn't refused for it.
+  const noColumn = { upgrades: [{ Unit: "UNIT_COG", UpgradeUnit: "UNIT_CARRACK" }],
+    gate: { on: true, upgrade: true, columns, needs: new Map([["UNIT_CARRACK", ["RESOURCE_HARDWOOD"]]]) },
+    copiesOf, unlocked: () => true };
+  assert.equal(lockedUpgrade("UNIT_COG", noColumn), null, "no column: the upgrade goes through");
   assert.equal(lockedUpgrade("UNIT_SCOUT", deps(true)), null, "no next unit");
   known = new Set(["UNIT_HORSEMAN"]);
   assert.equal(lockedUpgrade("UNIT_WARRIOR", deps(true)), null, "the Spearman's tech unknown: not the resource's fault");

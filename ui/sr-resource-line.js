@@ -10,7 +10,7 @@
 import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
 import { readIndexes } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
 import { keepWrapped } from "/tower-strategic-resources-that-matter/ui/sr-registry.js";
-import { unitsSuppliedBy } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
+import { unitsSuppliedBy, withAlternatives } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 /** @type {Map<string, string> | null} a resource's Tooltip text key to the resource, for resources units draw on */
 let tooltipIndex = null;
@@ -21,7 +21,8 @@ let warned = false;
 /** @returns {Map<string, string>} */
 export function resourceTooltipIndex() {
   if (!tooltipIndex) {
-    const drawnOn = new Set([...readIndexes().supply.values()].flat());
+    const { supply, alternatives } = readIndexes();
+    const drawnOn = new Set([...withAlternatives(supply, alternatives).values()].flat());
     tooltipIndex = new Map();
     for (const row of /** @type {*} */ (GameInfo.Resources)) {
       if (drawnOn.has(row.ResourceType) && row.Tooltip) tooltipIndex.set(row.Tooltip, row.ResourceType);
@@ -45,6 +46,17 @@ function playerTraits(player) {
 }
 
 /**
+ * The base units the lock makes grant-only: they carry the city-state trait but are everyone's (the line files tag
+ * them SR_LINE_PLAIN).
+ * @returns {Set<string>}
+ */
+function plainUnits() {
+  const plain = new Set();
+  for (const row of /** @type {*} */ (GameInfo.TypeTags ?? [])) if (row.Tag === "SR_LINE_PLAIN") plain.add(row.Type);
+  return plain;
+}
+
+/**
  * Display names of the gated units a player can train: no other civilization's unique unit, and not a unit the
  * player's own unique unit replaces.
  * @param {*} player
@@ -53,11 +65,12 @@ function playerTraits(player) {
  */
 export function unitNamesFor(player, supply) {
   const traits = playerTraits(player);
+  const plain = plainUnits();
   /** @type {Map<string, *>} */
   const own = new Map();
   for (const unitType of supply.keys()) {
     const row = GameInfo.Units.lookup(unitType);
-    if (!row || (row.TraitType && !traits.has(row.TraitType))) continue;
+    if (!row || (row.TraitType && !traits.has(row.TraitType) && !plain.has(unitType))) continue;
     own.set(unitType, row);
   }
   // A unique unit replaces the common one for its civilization even when it is reached by upgrade alone.
@@ -80,12 +93,14 @@ export function describeResourceSupply(resourceType) {
   let line = null;
   const player = Players.get(playerId);
   if (player?.isMajor) {
-    const { supply, gate } = readIndexes();
-    const units = unitsSuppliedBy(resourceType, supply, unitNamesFor(player, supply));
+    const { supply, alternatives, gate } = readIndexes();
+    const units = unitsSuppliedBy(resourceType, withAlternatives(supply, alternatives), unitNamesFor(player, supply));
     if (units) {
       // A key of the form "{1_First}, {2_Second}" carries the spacing: the game trims a separator key's own spaces.
       const list = units.names.reduce((first, second) => Locale.compose("LOC_SR_LIST_PAIR", first, second));
-      const stem = gate.on ? "LOC_SR_RESOURCE_NEEDED" : "LOC_SR_RESOURCE_SUPPLIES";
+      // A resource another can stand in for (Hardwood and Pitch) supplies the units without being needed for them.
+      const either = alternatives.has(resourceType) || [...alternatives.values()].some((o) => o.includes(resourceType));
+      const stem = gate.on && !either ? "LOC_SR_RESOURCE_NEEDED" : "LOC_SR_RESOURCE_SUPPLIES";
       line = units.more > 0 ? Locale.compose(`${stem}_MORE`, list, units.more) : Locale.compose(stem, list);
     }
   }

@@ -1,7 +1,7 @@
 [h1]Strategic Resources That Matter[/h1]
-[b]Version 1.2.0. Compatible with Civilization VII 1.5.0. Single-player only.[/b]
+[b]Version 1.3.0. Compatible with Civilization VII 1.5.0. Single-player only.[/b]
 
-Horses, Ivory, Iron, Niter, Hardwood, Oil, Coal and Rubber count for the units that need them. In the base game, going without one doesn't hurt you; with the mod, a unit whose owner doesn't have its resource fights weaker and trains slower, or can't be trained at all, depending on your settings. Losing your last one brings the penalty back next turn.
+Horses, Ivory, Iron, Niter, Hardwood, Pitch, Oil, Coal and Rubber count for the units that need them. In the base game, going without one doesn't hurt you; with the mod, a unit whose owner doesn't have its resource fights weaker and trains slower, or can't be trained at all, depending on your settings. Losing your last one brings the penalty back next turn.
 
 Four options in Advanced Options, under Game Settings: how hard the penalty bites, up to a lock; whether the bonus keeps growing past six; whether every Modern unit needs a second resource; and whether the Sengoku's Samurai still move up by kills without Iron. Computer players play under the same rules; independents and city-states are never affected.
 
@@ -10,8 +10,9 @@ Four options in Advanced Options, under Game Settings: how hard the penalty bite
 [*][b]Unsupplied units.[/b] A unit whose owner doesn't have its resource loses Combat Strength and its city puts less Production toward it. Default: -3 and a third less Production. One of the resource lifts the penalty; the game's own +1 for each applies as before.
 [*][b]Losing a resource hurts.[/b] The game notices a resource arriving but not one going away; the mod checks every player again each turn, so a resource lost to a raid, a lost settlement or an ended trade route brings the penalty back.
 [*][b]Past six.[/b] Where the game's own bonus stops, the count keeps adding: +1 more at 8, 10, 12, 14, 16, 18 and 20 of a resource.
-[*][b]Locked units (the two hardest values of Unsupplied Units).[/b] Set it to "Locked: training" or "Locked: training and upgrade" and a unit that needs a strategic resource can't be trained or bought while you don't have any of it, on top of the Harsh penalty for units already in the field. It stays in the production list, grayed out, with a "Locked: no Iron" pill. Under the second value, units can't be upgraded into it either, and a commander's Upgrade All grays out with the reason. Units that need nothing (Warrior line, Scout, ranged infantry, Catapult, Trebuchet, Cog, Modern infantry) stay free and stay listed until you hold the next unit's resource. Computer players are locked by the same rule.
-[*][b]Modern Supply Chains (off by default).[/b] Every Modern unit that needs a resource needs a second one: field artillery Niter and Coal, heavier artillery, armor and battleships Oil and Coal, light warships Coal and Niter, the Cuirassier line Horses and Niter, the Ship of the Line Hardwood and Niter, the Submarine Oil and Rubber, aircraft Rubber and Oil. Each missing resource costs the full penalty; under a locked value the unit needs both. It's a hard game.
+[*][b]Hardwood or Pitch.[/b] The Exploration warships take either. Hardwood only grows on tundra and in the tropics, Pitch in ordinary forest, so a temperate start still gets its fleet.
+[*][b]Locked units (the two hardest values of Unsupplied Units).[/b] A unit that needs a strategic resource can't be trained or bought while you don't have any, on top of the Harsh penalty in the field. It stays in the production list, grayed out, with a "Locked: no Iron" pill. Under the second value, units can't be upgraded into it either (the Exploration warships still can), and a commander's Upgrade All grays out with the reason. Units without a resource (Warrior line, Scout, ranged infantry, Catapult, Trebuchet, Cog, Modern infantry) stay free. Computer players are locked by the same rule.
+[*][b]Modern Supply Chains (off by default).[/b] Every Modern unit that needs a resource needs a second one, in brackets in the table below. Each missing resource costs the full penalty; under a locked value the unit needs both. It's a hard game.
 [/list]
 
 [h2]Game setup options[/h2]
@@ -44,7 +45,7 @@ T2: Trebuchet, Hwacha (none)
 T3: Bombard, Hwacha[/td][td]Niter[/td][/tr]
 [tr][td]Exploration[/td][td]T1: Cog, Cetbang, Corsair, Kalam, Víkingr (none)
 T2: Carrack, Cetbang, Corsair, Kalam, Víkingr
-T3: Galleon, Cetbang, Corsair, Kalam, Víkingr[/td][td]Hardwood[/td][/tr]
+T3: Galleon, Cetbang, Corsair, Kalam, Víkingr[/td][td]Hardwood or Pitch[/td][/tr]
 [tr][td]Modern[/td][td]T1: Field Cannon, Chang Beun
 T2: Field Gun, Chang Beun[/td][td]Niter (Coal)[/td][/tr]
 [tr][td]Modern[/td][td]T1: Mortar
@@ -63,7 +64,7 @@ T3: Destroyer, Barbary Corsair[/td][td]Coal (Niter)[/td][/tr]
 [tr][td]Modern[/td][td]T2: Biplane, Trench Fighter, Bomber, Stuka, Zero
 T3: Fighter, Dive Bomber, Heavy Bomber, Stuka, Zero[/td][td]Rubber (Oil)[/td][/tr]
 [/table]
-The second resource only applies with Modern Supply Chains on. A unique unit needs the resource at the tiers listed and is free at the others. The war elephants count Ivory as cavalry counts Horses: +1 per copy up to six. A resource that reaches you over a trade route counts the same as one you mine yourself.
+A unique unit needs the resource at the tiers listed and is free at the others. The war elephants count Ivory as cavalry counts Horses: +1 per copy up to six. A resource that reaches you over a trade route counts the same as one you mine yourself.
 
 [h2]What the game tells you[/h2]
 [list]
@@ -86,7 +87,7 @@ The second resource only applies with Modern Supply Chains on. A unique unit nee
 [/list]
 
 [h2]Source and documentation[/h2]
-Twelve languages. [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]Source and documentation[/url] and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.2.0]1.2.0 release notes[/url], with the zip for a manual install.
+Twelve languages. [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]Source and documentation[/url] and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.3.0]1.3.0 release notes[/url], with the zip for a manual install.
 
 [h2]Credits[/h2]
 [b]Tower[/b], design and implementation. Special thanks to [b]Potato McWhisky[/b], for teaching me to love again, Civilization-wise (Civ VI), after growing up as a Civilization II, IV, and V player.

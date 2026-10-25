@@ -101,7 +101,7 @@ unit it replaces, a unit that replaces nothing by its own tags and tier. `tests/
 | Exploration | cavalry | Horses | Courser, Knight, Lancer; Boyar 1-3, Chevaler 1-3, Mamluk 1-3, Tobang 1-3 |
 | Exploration | infantry from tier 2 | Iron | Man-at-Arms, Pikeman; Gold Bangles, Kispoko Nena To, Leiomano, Samurai, Tercio, Xunleichong (each 2-3) |
 | Exploration | land siege from tier 3 (the Catapult and Trebuchet are free) | Niter | Bombard; Hwacha 3 |
-| Exploration | heavy warships from tier 2 (the Cog is free): the hull, not the powder (1.2) | Hardwood | Carrack, Galleon; Cetbang, Corsair, Kalam, Vikingr (each 2-3) |
+| Exploration | heavy warships from tier 2 (the Cog is free): the hull, not the powder (1.2); Pitch stands in (7i) | Hardwood or Pitch | Carrack, Galleon; Cetbang, Corsair, Kalam, Vikingr (each 2-3) |
 | Modern | field artillery: land ranged up to tier 2, the powder guns | Niter | Field Cannon, Field Gun; Chang Beun 1-2 |
 | Modern | the heavier artillery: land siege, and land ranged from tier 3 (motorised; 1.2.0, the owner) | Oil | Mortar, Howitzer, AT Gun, Assault Gun; Chang Beun 3, Katyusha 1-2 |
 | Modern | armour: cavalry from tier 2 (the Cuirassier is free) | Oil | Landship, Tank; Cossack 2-3, Ghilman 2-3, Hussar 2-3 |
@@ -692,6 +692,51 @@ Three Workshop suggestions, taken up by the owner the same day, and one report:
   line per locked unit ("Warrior: cannot be upgraded without Iron."), when some can the lines go in as warnings.
   Watched in the same game after a UI reload: the exclusion pass untouched, the enabled pass refused with the line,
   the button drawn inactive with the red line, and with Iron the wrapped command passed and upgraded the unit.
+
+## 7i. Pitch stands in for Hardwood in Exploration (built and watched 2026-10-25)
+
+The owner, playing a game with plenty of Pitch and no Hardwood in Exploration, asked for the warships to take
+either. The two are both woodland resources the map script places that age: Hardwood only on tundra and in the
+tropics, Pitch on plains forest, taiga and savanna woodland (`docs/future-resources.md`, "Hardwood and Pitch on the
+map"), so a temperate start could go a whole age without a Carrack. Modern is left as it is, the Ship of the Line on
+Hardwood and, under Supply Chains, on Hardwood and Niter; the owner is going through the Modern units one by one
+for an either rule with Supply Chains off.
+
+- **The rule.** `ALTERNATIVES` in `gate-map.mjs` lists, per age, the resources that stand in for a gated one: Pitch
+  for Hardwood in Exploration. The gate map itself is unchanged, so the units keep the `SR_SUPPLY_HARDWOOD` tag and
+  the Hardwood penalty modifiers.
+- **The penalty.** The cancel (`SR_*_SUPPLIED_HARDWOOD`) waits for an any-of owner set, Hardwood or Pitch (the game's
+  own `REQUIREMENTSET_TEST_ANY` on an owner block, as the Ottoman DLC writes one). The preview line shows only with
+  neither held, and names the pair through `LOC_SR_EITHER_HARDWOOD_OR_PITCH_NAME`.
+- **The lock.** The engine's column takes one resource, and a Hardwood column would refuse a player who holds only
+  Pitch. So the ten Hardwood ships carry no column. Each one is grant-only instead, the same shape as the lines (7f):
+  the five the lines already locked (Carrack, Cetbang 2, Kalam 2, Vikingr 2, Corsair 2) and the five that had only
+  the column (Galleon, Cetbang 3, Kalam 3, Vikingr 3, Corsair 3). The grant waits for `SR_LINE_HAS_HARDWOOD_OR_PITCH`,
+  a `REQUIREMENT_REQUIREMENTSET_IS_MET` on the any-of set `SR_LINE_ANY_HARDWOOD_OR_PITCH` (the game's own nesting,
+  used 1,420 times in its data). The game's Corsair grants get the same requirement, and the free Corsair stays
+  granted only with neither. A predecessor on the same resource isn't kept granted (it would reach a player who has
+  neither). Every unique upgrades by its own row (Cetbang 2 into Cetbang 3), so no copy is needed.
+- **Upgrades (watched 2026-10-25, `x1-pitch-usual`, `x2-pitch-vanilla`).** The engine upgrades into a grant-only
+  unit the player can't train: with neither resource a Carrack became a Galleon, and a Cog a Galleon, under both
+  locked values. Under "Locked: training" that's what the setup text says. Under "Locked: training and upgrade" it's
+  a hole: the column with the upgrading minimum is the only thing the engine checks for an upgrade (a Man-at-Arms on
+  its Iron column was refused in the same game), and the ten ships no longer carry it. The game has no effect that
+  gates an upgrade by condition. Left as it is (the owner, 2026-10-25): under that value the warships can be
+  upgraded into without either resource, for the computer players too, and the release notes say so. The commander's
+  Upgrade All wrapper now follows the engine (only a column under "Training and upgrade" stops an upgrade), so it no
+  longer refuses an upgrade the game would make.
+- **The UI.** The units carry `SR_EITHER_HARDWOOD_OR_PITCH`. `buildAlternativeIndex` reads the pairs from it, the
+  copy counter adds Pitch to Hardwood, and `resourceNameKey` names the pair, so the panel, the production list, the
+  lost-supply notification, the callouts and the army upgrade line all read "Hardwood or Pitch". The gate index takes
+  a unit with stand-ins as gated with no column, and the resource line on Pitch's tooltip lists the ships.
+- **Checked offline.** `npm test` (the data, Civilopedia and UI tests pin the shapes above), and the "Locked:
+  training" file set loaded on a vanilla Exploration compiled database copy
+  (`firaxis-bug-reports/repro/runs/g1-A-vanilla`): no foreign-key rows in the tables the mod writes, the ten ships
+  without a column and behind the any-of set, the Bombard still on its Niter column. Pitch counts in
+  `player.Resources.getResources()` (watched with Whales, another Bonus resource, in the owner's game).
+- **Watched in game** (`verification-runs.md` Phase 18): the game's has-resource requirement counts Pitch, the nested
+  any-of set works on a grant, and the penalty's any-of cancel lifts with either resource, with the usual set and
+  with every other mod off. A lost copy brings the lock back one roll later (the lines' timing), the penalty too.
 
 ## 8. Setup options
 

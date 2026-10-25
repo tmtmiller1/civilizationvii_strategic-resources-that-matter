@@ -348,9 +348,13 @@
         <Argument name="ModifierId">SR_COMBAT_SUPPLIED_HARDWOOD</Argument>
     </Modifier>
     <Modifier id="SR_COMBAT_SUPPLIED_HARDWOOD" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
-        <OwnerRequirements>
+        <OwnerRequirements type="REQUIREMENTSET_TEST_ANY">
             <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
                 <Argument name="ResourceType">RESOURCE_HARDWOOD</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_PITCH</Argument>
                 <Argument name="Amount">1</Argument>
             </Requirement>
         </OwnerRequirements>
@@ -378,9 +382,13 @@
         <Argument name="ModifierId">SR_RANGED_SUPPLIED_HARDWOOD</Argument>
     </Modifier>
     <Modifier id="SR_RANGED_SUPPLIED_HARDWOOD" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
-        <OwnerRequirements>
+        <OwnerRequirements type="REQUIREMENTSET_TEST_ANY">
             <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
                 <Argument name="ResourceType">RESOURCE_HARDWOOD</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_PITCH</Argument>
                 <Argument name="Amount">1</Argument>
             </Requirement>
         </OwnerRequirements>
@@ -408,9 +416,13 @@
         <Argument name="ModifierId">SR_BOMBARD_SUPPLIED_HARDWOOD</Argument>
     </Modifier>
     <Modifier id="SR_BOMBARD_SUPPLIED_HARDWOOD" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">
-        <OwnerRequirements>
+        <OwnerRequirements type="REQUIREMENTSET_TEST_ANY">
             <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
                 <Argument name="ResourceType">RESOURCE_HARDWOOD</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_PITCH</Argument>
                 <Argument name="Amount">1</Argument>
             </Requirement>
         </OwnerRequirements>
@@ -433,9 +445,13 @@
         <Argument name="ModifierId">SR_PRODUCTION_SUPPLIED_HARDWOOD</Argument>
     </Modifier>
     <Modifier id="SR_PRODUCTION_SUPPLIED_HARDWOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
-        <OwnerRequirements>
+        <OwnerRequirements type="REQUIREMENTSET_TEST_ANY">
             <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
                 <Argument name="ResourceType">RESOURCE_HARDWOOD</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE">
+                <Argument name="ResourceType">RESOURCE_PITCH</Argument>
                 <Argument name="Amount">1</Argument>
             </Requirement>
         </OwnerRequirements>
@@ -451,6 +467,10 @@
                 <Argument name="ResourceType">RESOURCE_HARDWOOD</Argument>
                 <Argument name="Amount">1</Argument>
             </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE" inverse="true">
+                <Argument name="ResourceType">RESOURCE_PITCH</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
         </OwnerRequirements>
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
@@ -459,7 +479,7 @@
         </SubjectRequirements>
         <Argument name="Amount">0</Argument>
         <Argument name="Combat">-3</Argument>
-        <Argument name="Resource">LOC_RESOURCE_HARDWOOD_NAME</Argument>
+        <Argument name="Resource">LOC_SR_EITHER_HARDWOOD_OR_PITCH_NAME</Argument>
         <String context="Preview">LOC_SR_PREVIEW_UNSUPPLIED</String>
     </Modifier>
 </GameEffects>

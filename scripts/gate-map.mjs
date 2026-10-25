@@ -100,6 +100,26 @@ export const GATES = {
 };
 
 /**
+ * Per age, the resources that stand in for a gated one: a unit that draws on the key is supplied by a copy of the
+ * key or of any resource listed (1.4). Pitch for Hardwood in Exploration: both are woodland resources the game places
+ * that age, Hardwood only on tundra and in the tropics, Pitch on temperate forest, so a temperate start isn't left
+ * without warships. Pitch is a Bonus resource; the game counts one on the player's land in getResources() (watched
+ * with Whales). The engine's column takes one resource, so a unit with stand-ins carries no column: every one of
+ * them is grant-only behind any of its resources (eitherLocks), and its penalty is cancelled by a copy of any.
+ * @type {Record<string, Record<string, string[]>>}
+ */
+export const ALTERNATIVES = {
+  AGE_EXPLORATION: { RESOURCE_HARDWOOD: ["RESOURCE_PITCH"] }
+};
+
+/**
+ * The resource and its stand-ins in one age, the resource first.
+ * @param {string} age @param {string} resource
+ * @returns {string[]}
+ */
+export const suppliers = (age, resource) => [resource, ...(ALTERNATIVES[age]?.[resource] ?? [])];
+
+/**
  * Modern Supply Chains (a setup option, off by default): the second resource each Modern unit draws on, by the same
  * tests as GATES. Iron isn't placed on Modern maps (Resource_ValidAges), so Coal stands for steel: guns, armour and
  * hulls need it beside their powder or fuel; the light warships need powder beside their coal; aircraft need fuel
@@ -318,7 +338,25 @@ export function lineLocks(dump) {
     if (targets.has(r.ReplacesUnitType) && gates.has(r.CivUniqueUnitType) &&
       units.get(r.CivUniqueUnitType)?.CanTrain === 1) targets.add(r.CivUniqueUnitType);
   }
-  return [...targets].sort().map((unit) => lockOf(dump, unit, [/** @type {string} */ (gates.get(unit))]));
+  // A unit with stand-ins carries no column, so the grant is its only lock (ALTERNATIVES).
+  for (const [unit, resource] of gates) {
+    if (ALTERNATIVES[dump.age]?.[resource] && units.get(unit)?.CanTrain === 1) targets.add(unit);
+  }
+  return [...targets].sort().map((unit) => {
+    const lock = lockOf(dump, unit, [/** @type {string} */ (gates.get(unit))]);
+    // A predecessor on the same resource is locked the same way: keeping it granted without the resource would
+    // hand it to a player who has none.
+    return { ...lock, predecessors: lock.predecessors.filter((pre) => gates.get(pre) !== lock.resource) };
+  });
+}
+
+/**
+ * The units that carry the engine's column: every gated unit but those with stand-ins (ALTERNATIVES).
+ * @param {AgeDump} dump
+ * @returns {Map<string, string>}
+ */
+export function columnMap(dump) {
+  return new Map([...buildGateMap(dump)].filter(([, resource]) => !ALTERNATIVES[dump.age]?.[resource]));
 }
 
 /**

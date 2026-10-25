@@ -1,5 +1,5 @@
 // Makes the commander's "Upgrade All Units" answer for the units in the army under the hard gate. The engine's own
-// check for UNITCOMMAND_UPGRADE_ARMY ignores Units.StrategicResource and the grant-only lines: with Gated Units on,
+// check for UNITCOMMAND_UPGRADE_ARMY ignores Units.StrategicResource: under "Locked: training and upgrade",
 // it says "Upgrade 1 units: 120 Gold" for an army whose only Warrior cannot become a Spearman for want of Iron, and
 // the button is lit. Pressing it does nothing, since the engine refuses each unit's upgrade when it runs the command
 // (watched: verification-runs.md, a1-army-upgrade). This wraps Game.UnitCommands.canStart for that command on the
@@ -9,9 +9,8 @@
 // can't, the answer stays a success and gains the same lines as warnings, so the player knows which units stay.
 
 import { log } from "/tower-strategic-resources-that-matter/ui/sr-log.js";
-import { hasUnlocked, lineUnitsFor, playerTraits } from "/tower-strategic-resources-that-matter/ui/sr-production-lock.js";
+import { hasUnlocked } from "/tower-strategic-resources-that-matter/ui/sr-production-lock.js";
 import { copiesCounter, readIndexes, resourceNameKey } from "/tower-strategic-resources-that-matter/ui/sr-player-supply.js";
-import { lockedBy } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 export const ARMY_COMMAND = "UNITCOMMAND_UPGRADE_ARMY";
 export const UNIT_COMMAND = "UNITCOMMAND_UPGRADE";
@@ -19,23 +18,22 @@ export const LOCKED_LINE = "LOC_SR_ARMY_UPGRADE_LOCKED";
 
 /**
  * The resource a unit's next unit is locked behind for its owner, or null. Only a next unit whose tech or civic the
- * owner knows counts: without it the unit couldn't upgrade anyway, and the line would blame the resource. Under
- * "Training and upgrade" every gated next unit counts; under "Training" only a grant-only one (the engine won't
- * upgrade into a unit the player can't build), which is what the line files make of the gated units a free unit
- * upgrades into.
+ * owner knows counts: without it the unit couldn't upgrade anyway, and the line would blame the resource. The engine
+ * checks one thing for an upgrade: the next unit's column against the upgrading minimum, so only under "Training and
+ * upgrade" and only for a unit with a column. It upgrades into a grant-only unit the player can't train (a Cog into
+ * a Galleon with neither Hardwood nor Pitch: verification-runs.md, x1-pitch-usual and x2-pitch-vanilla), so the
+ * lines, the units with stand-ins and the second resource under Modern Supply Chains never lock an upgrade.
  * @param {string} unitType
  * @param {{ upgrades: Iterable<{ Unit?: string, UpgradeUnit?: string }>, gate: import("./sr-supply.js").Gate,
- *   lineUnits: Set<string>, copiesOf: (resourceType: string) => number,
- *   unlocked: (unitType: string) => boolean }} deps
+ *   copiesOf: (resourceType: string) => number, unlocked: (unitType: string) => boolean }} deps
  * @returns {{ target: string, resource: string } | null}
  */
-export function lockedUpgrade(unitType, { upgrades, gate, lineUnits, copiesOf, unlocked }) {
-  if (!gate.on) return null;
+export function lockedUpgrade(unitType, { upgrades, gate, copiesOf, unlocked }) {
+  if (!gate.on || !gate.upgrade) return null;
   for (const row of upgrades) {
     if (row?.Unit !== unitType || !row.UpgradeUnit || !unlocked(row.UpgradeUnit)) continue;
-    if (!gate.upgrade && !lineUnits.has(row.UpgradeUnit)) continue;
-    const resource = lockedBy(row.UpgradeUnit, gate, copiesOf);
-    if (resource) return { target: row.UpgradeUnit, resource };
+    const resource = gate.columns.get(row.UpgradeUnit);
+    if (resource && copiesOf(resource) === 0) return { target: row.UpgradeUnit, resource };
   }
   return null;
 }
@@ -76,9 +74,6 @@ export function describeArmyUpgrade(result, packed, line) {
   return { ...rest, Success: false, FailureReasons: lines };
 }
 
-/** @type {Set<string> | null} */
-let lineUnitsCache = null;
-
 /**
  * The packed units of a commander with their own upgrade answers, read through the engine.
  * @param {*} commander
@@ -92,8 +87,6 @@ function readPacked(commander, canStart, args, exclusion) {
   const player = Players.get(commander.owner);
   const { gate } = readIndexes();
   const copiesOf = copiesCounter(player);
-  lineUnitsCache ??= new Set(lineUnitsFor(/** @type {*} */ (GameInfo.RequirementSetRequirements) ?? [],
-    playerTraits()));
   const playerId = commander.owner;
   const facts = {
     unlocks: /** @type {*} */ (GameInfo.ProgressionTreeNodeUnlocks) ?? [],
@@ -103,7 +96,7 @@ function readPacked(commander, canStart, args, exclusion) {
     }
   };
   const deps = {
-    upgrades: /** @type {*} */ (GameInfo.UnitUpgrades) ?? [], gate, lineUnits: lineUnitsCache, copiesOf,
+    upgrades: /** @type {*} */ (GameInfo.UnitUpgrades) ?? [], gate, copiesOf,
     unlocked: (/** @type {string} */ unitType) => hasUnlocked(unitType, /** @type {*} */ (facts))
   };
   /** @type {PackedUnit[]} */

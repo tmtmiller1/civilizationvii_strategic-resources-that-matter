@@ -44,6 +44,7 @@
         <Row Tag="SR_CURVE_RANGED_RUBBER" Category="UNIT_CLASS"/>
         <Row Tag="SR_CURVE_BOMBARD_RUBBER" Category="UNIT_CLASS"/>
         <Row Tag="SR_ELEPHANT" Category="UNIT_CLASS"/>
+        <Row Tag="SR_EITHER_HARDWOOD_OR_PITCH" Category="UNIT_CLASS"/>
         <Row Tag="SR_LINE_PLAIN" Category="UNIT_CLASS"/>
     </Tags>
 </Database>

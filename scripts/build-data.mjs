@@ -66,8 +66,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  AGES, AGE_FILE, CHAINS, ELEPHANT_TAG, ELEPHANTS, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT,
-  MINOR_CIV_TRAIT, buildChainMap, buildGateMap, chainLocks, gatedResources, lineCopies, lineLocks, strengthUnits
+  AGES, AGE_FILE, ALTERNATIVES, CHAINS, ELEPHANT_TAG, ELEPHANTS, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS,
+  LOCKED_TRAIT, MINOR_CIV_TRAIT, buildChainMap, buildGateMap, chainLocks, columnMap, gatedResources, lineCopies,
+  lineLocks, strengthUnits, suppliers
 } from "./gate-map.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -125,6 +126,20 @@ export function readDump(age) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
+/**
+ * The name of a resource with its stand-ins in one age (gate-map.mjs ALTERNATIVES): HARDWOOD_OR_PITCH, or HARDWOOD.
+ * @param {string} age @param {string} resource
+ */
+export const supplyName = (age, resource) => suppliers(age, resource).map(shortName).join("_OR_");
+/**
+ * The tag on a unit that a stand-in can supply, SR_EITHER_HARDWOOD_OR_PITCH: the UI reads the stand-ins from it.
+ * @param {string} age @param {string} resource
+ */
+export const eitherTag = (age, resource) => `SR_EITHER_${supplyName(age, resource)}`;
+/** Every either tag of every age. */
+export const eitherTags = () =>
+  AGES.flatMap((age) => Object.keys(ALTERNATIVES[age] ?? {}).map((r) => eitherTag(age, r)));
+
 /** @param {string} resource @param {number} amount @param {boolean} [inverse] */
 function hasResource(resource, amount, inverse = false) {
   return [
@@ -141,6 +156,17 @@ function attach(id, child) {
     `        <Argument name="ModifierId">${child}</Argument>`,
     "    </Modifier>"
   ];
+}
+
+/**
+ * An owner requirement block. Requirement lines are all-of; `{ any }` holds the lines of a resource and its stand-ins,
+ * any of which will do.
+ * @param {string[] | { any: string[] } | undefined} owner
+ */
+function ownerRequirements(owner) {
+  if (!owner) return [];
+  if (Array.isArray(owner)) return ["        <OwnerRequirements>", ...owner, "        </OwnerRequirements>"];
+  return ['        <OwnerRequirements type="REQUIREMENTSET_TEST_ANY">', ...owner.any, "        </OwnerRequirements>"];
 }
 
 /**
@@ -167,12 +193,13 @@ function tagRequirements(tags, exclude = []) {
 
 /**
  * One strength type's change on the units carrying any of `tags` and none of `exclude`.
- * @param {{ id: string, tags: string[], exclude?: string[], type: string, amount: number, owner?: string[] }} spec
+ * @param {{ id: string, tags: string[], exclude?: string[], type: string, amount: number,
+ *   owner?: string[] | { any: string[] } }} spec
  */
 function combatChild({ id, tags, exclude, type, amount, owner }) {
   return [
     `    <Modifier id="${id}" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_BASE_COMBAT_STRENGTH">`,
-    ...(owner ? ["        <OwnerRequirements>", ...owner, "        </OwnerRequirements>"] : []),
+    ...ownerRequirements(owner),
     ...tagRequirements(tags, exclude),
     `        <Argument name="Amount">${amount}</Argument>`,
     `        <Argument name="Type">${type}</Argument>`,
@@ -183,7 +210,7 @@ function combatChild({ id, tags, exclude, type, amount, owner }) {
 function productionChild({ id, tag, percent, owner }) {
   return [
     `    <Modifier id="${id}" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">`,
-    ...(owner ? ["        <OwnerRequirements>", ...owner, "        </OwnerRequirements>"] : []),
+    ...ownerRequirements(owner),
     `        <Argument name="UnitClass">${tag}</Argument>`,
     `        <Argument name="Percent">${percent}</Argument>`,
     "    </Modifier>"
@@ -192,6 +219,13 @@ function productionChild({ id, tag, percent, owner }) {
 
 /** The game's own name tag of a resource: RESOURCE_IRON -> LOC_RESOURCE_IRON_NAME. @param {string} resource */
 export const resourceNameTag = (resource) => `LOC_${resource}_NAME`;
+/**
+ * The name tag for what supplies a unit in one age: the resource's own, or the mod's "Hardwood or Pitch" for a
+ * resource with stand-ins (LOC_SR_EITHER_HARDWOOD_OR_PITCH_NAME), which the UI reads by the either tag's name.
+ * @param {string} age @param {string} resource
+ */
+export const supplyNameTag = (age, resource) =>
+  ALTERNATIVES[age]?.[resource] ? `LOC_${eitherTag(age, resource)}_NAME` : resourceNameTag(resource);
 
 /** Preview text of the unsupplied line ("-3 Unsupplied: no Niter") and of a curve step ("+1 Niter: 8 or more"). */
 export const PREVIEW_TEXT = { penalty: "LOC_SR_PREVIEW_UNSUPPLIED", curve: "LOC_SR_PREVIEW_CURVE" };
@@ -237,17 +271,22 @@ export const PEDIA = {
   // The second resource's lines (Modern Supply Chains): the paragraph table keeps one row per page and chapter.
   unitChainChapter: "SR_SUPPLY_2", unitChainGateChapter: "SR_LOCK_2"
 };
-/** The line on a gated unit's page. @param {string} resource @param {string} levelName */
-export const pediaUnitTag = (resource, levelName) =>
-  `LOC_SR_PEDIA_UNIT_${shortName(resource)}_${levelName.toUpperCase()}`;
+/**
+ * The line on a gated unit's page; with an age, a resource with stand-ins gets the pair's line
+ * (LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_HARSH).
+ * @param {string} resource @param {string} levelName @param {string} [age]
+ */
+export const pediaUnitTag = (resource, levelName, age) =>
+  `LOC_SR_PEDIA_UNIT_${age ? supplyName(age, resource) : shortName(resource)}_${levelName.toUpperCase()}`;
 
 /**
- * The gate line on a gated unit's page, per resource and gate value.
+ * The gate line on a gated unit's page, per resource and gate value, and as pediaUnitTag for an age.
  * @param {string} resource
  * @param {string} gateName
+ * @param {string} [age]
  */
-export const pediaGateTag = (resource, gateName) =>
-  `LOC_SR_PEDIA_UNIT_${shortName(resource)}_GATE_${gateName.toUpperCase()}`;
+export const pediaGateTag = (resource, gateName, age) =>
+  `LOC_SR_PEDIA_UNIT_${age ? supplyName(age, resource) : shortName(resource)}_GATE_${gateName.toUpperCase()}`;
 
 /**
  * Which gate value's line a unit's page carries. A unit the game tiers up by kills gets the training line under both
@@ -257,17 +296,18 @@ export const pediaGateTag = (resource, gateName) =>
 export const gateLineFor = (unit, gateName) => (KILL_TIER_UNITS.has(unit) ? "training" : gateName);
 
 /**
- * The hard gate for one age and setup value: the column on every gated unit, the parameters, and the page line.
- * @param {string} age @param {Map<string, string>} gates @param {string} gateName
+ * The hard gate for one age and setup value: the column on every gated unit but those with stand-ins (their lock is
+ * the line file's grant), the parameters, and the page line.
+ * @param {string} age @param {Map<string, string>} gates @param {Map<string, string>} columns @param {string} gateName
  */
-function gateFile(age, gates, gateName) {
+function gateFile(age, gates, columns, gateName) {
   const { upgrading } = GATES_OPTION[/** @type {keyof typeof GATES_OPTION} */ (gateName)];
   return [HEADER, GENERATED,
     `<!-- ${age}, Gated Units ${gateName}: a gated unit cannot be trained or bought without a copy of its resource` +
       `${upgrading ? ", nor upgraded to" : ""}; the engine reads the owner's live count. -->`,
     "<Database>",
     "    <Units>",
-    ...[...gates].map(([unit, resource]) =>
+    ...[...columns].map(([unit, resource]) =>
       `        <Update><Where UnitType="${unit}"/><Set StrategicResource="${resource}"/></Update>`),
     "    </Units>",
     "    <GlobalParameters>",
@@ -275,7 +315,7 @@ function gateFile(age, gates, gateName) {
     "    </GlobalParameters>",
     "    <CivilopediaPageChapterParagraphs>",
     ...[...gates].map(([unit, resource]) => `        <Row SectionID="UNITS" PageID="${unit}" ` +
-      `ChapterID="${PEDIA.unitGateChapter}" Paragraph="${pediaGateTag(resource, gateLineFor(unit, gateName))}" ` +
+      `ChapterID="${PEDIA.unitGateChapter}" Paragraph="${pediaGateTag(resource, gateLineFor(unit, gateName), age)}" ` +
       `SortIndex="10"/>`),
     "    </CivilopediaPageChapterParagraphs>",
     "</Database>", ""].join("\n");
@@ -288,6 +328,14 @@ export const lineIds = (unit) => ({
 /** The shared requirement ids: one copy of a resource held, or none. @param {string} resource */
 export const lineHas = (resource) => `SR_LINE_HAS_${shortName(resource)}`;
 export const lineHasNone = (resource) => `SR_LINE_NO_${shortName(resource)}`;
+/**
+ * A copy of a resource or any of its stand-ins held: a requirement that its any-of set is met (the game's own
+ * shape, REQUIREMENT_REQUIREMENTSET_IS_MET, as in its Corsair grants' neighbours).
+ * @param {string} age @param {string} resource
+ */
+export const lineHasAny = (age, resource) => ({
+  id: `SR_LINE_HAS_${supplyName(age, resource)}`, set: `SR_LINE_ANY_${supplyName(age, resource)}`
+});
 const GRANT_EFFECT = "EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD";
 
 /**
@@ -512,7 +560,8 @@ function linesFile(age, locks, copies, { additive = false, guardColumn = false }
     insert("DynamicModifiers", "ModifierType, CollectionType, EffectType",
       "VALUES ('SR_LINE_ATTACH_TYPE', 'COLLECTION_MAJOR_PLAYERS', 'EFFECT_ATTACH_MODIFIERS'), " +
       `('SR_LINE_GRANT_TYPE', 'COLLECTION_OWNER', ${q(GRANT_EFFECT)})`, true)];
-  for (const resource of [...new Set(locks.flatMap((l) => l.resources))].sort()) {
+  const lockResources = [...new Set(locks.flatMap((l) => l.resources))].sort();
+  for (const resource of [...new Set(lockResources.flatMap((r) => suppliers(age, r)))].sort()) {
     const pairs = /** @type {[string, number][]} */ ([[lineHas(resource), 0], [lineHasNone(resource), 1]]);
     for (const [id, inverse] of pairs) {
       out.push(insert("Requirements", "RequirementId, RequirementType, Inverse",
@@ -521,6 +570,22 @@ function linesFile(age, locks, copies, { additive = false, guardColumn = false }
         `VALUES (${q(id)}, 'ResourceType', ${q(resource)}), (${q(id)}, 'Amount', '1')`, true));
     }
   }
+  for (const resource of lockResources.filter((r) => ALTERNATIVES[age]?.[r])) {
+    const any = lineHasAny(age, resource);
+    out.push(`-- ${suppliers(age, resource).join(" or ")}: a copy of any of them.`,
+      insert("RequirementSets", "RequirementSetId, RequirementSetType",
+        `VALUES (${q(any.set)}, 'REQUIREMENTSET_TEST_ANY')`, true),
+      insert("RequirementSetRequirements", "RequirementSetId, RequirementId",
+        `VALUES ${suppliers(age, resource).map((r) => `(${q(any.set)}, ${q(lineHas(r))})`).join(", ")}`, true),
+      insert("Requirements", "RequirementId, RequirementType, Inverse",
+        `VALUES (${q(any.id)}, 'REQUIREMENT_REQUIREMENTSET_IS_MET', 0)`, true),
+      insert("RequirementArguments", "RequirementId, Name, Value",
+        `VALUES (${q(any.id)}, 'RequirementSetId', ${q(any.set)})`, true));
+  }
+  /** The requirement a lock's grant waits for, per resource: a copy of it, or of it or a stand-in. */
+  const has = (/** @type {string} */ r) => (ALTERNATIVES[age]?.[r] ? lineHasAny(age, r).id : lineHas(r));
+  /** The requirements a kept predecessor's grant waits for: none of the resource and none of its stand-ins. */
+  const none = (/** @type {string} */ r) => suppliers(age, r).map(lineHasNone);
   /**
    * One grant of a unit to the major players behind its own requirement set. A suffix names a second grant of the
    * same unit (a predecessor kept per resource it may lack).
@@ -553,11 +618,12 @@ function linesFile(age, locks, copies, { additive = false, guardColumn = false }
   const needs = (/** @type {import("./gate-map.mjs").LineLock} */ lock, /** @type {string} */ guard) => {
     const id = lineIds(lock.unit);
     const where = additive ? `FROM Units WHERE UnitType = ${q(lock.unit)}${column} AND ${setExists(id.reqs)}` : guard;
-    return lock.resources.map((r) => inSet(id.reqs, `SELECT ${q(id.reqs)}, ${q(lineHas(r))} ${where}`, additive));
+    return lock.resources.map((r) => inSet(id.reqs, `SELECT ${q(id.reqs)}, ${q(has(r))} ${where}`, additive));
   };
   for (const lock of locks) {
     const id = lineIds(lock.unit);
-    out.push("", `-- ${lock.unit}: ${lock.kind}, needs ${lock.resources.join(", ")}` +
+    const needed = lock.resources.map((r) => suppliers(age, r).join(" or ")).join(", ");
+    out.push("", `-- ${lock.unit}: ${lock.kind}, needs ${needed}` +
       (lock.predecessors.length ? `; keeps ${lock.predecessors.join(", ")} trainable without it.` : "."));
     if (lock.kind === "base") {
       const guard = `${ifUnit(lock.unit)} AND TraitType IS NULL`;
@@ -596,7 +662,7 @@ function linesFile(age, locks, copies, { additive = false, guardColumn = false }
         inSet(id.reqs, `SELECT ${q(id.reqs)}, 'SR_LINE_IS_' || TraitType ${guard}`, additive));
     } else {
       out.push("-- The game grants it already: its grants also need the resource.",
-        ...lock.resources.map((r) => inSet("", `SELECT m.SubjectRequirementSetId, ${q(lineHas(r))} ` +
+        ...lock.resources.map((r) => inSet("", `SELECT m.SubjectRequirementSetId, ${q(has(r))} ` +
           `${gameGrants(lock.unit)}\n    ` +
           "AND m.SubjectRequirementSetId IN (SELECT RequirementSetId FROM RequirementSets " +
           "WHERE RequirementSetType = 'REQUIREMENTSET_TEST_ALL')", true)));
@@ -609,7 +675,8 @@ function linesFile(age, locks, copies, { additive = false, guardColumn = false }
           const suffix = lock.resources.length > 1 ? `_${shortName(r)}` : "";
           const preId = lineIds(pre).reqs + suffix;
           out.push(`-- And ${pre} stays granted without ${r}, on the game's own terms for ${pre} other than its techs.`,
-            ...grant(pre, guard, suffix), inSet(preId, `SELECT ${q(preId)}, ${q(lineHasNone(r))} ${guard}`, additive),
+            ...grant(pre, guard, suffix),
+            ...none(r).map((id) => inSet(preId, `SELECT ${q(preId)}, ${q(id)} ${guard}`, additive)),
             inSet(preId, `SELECT DISTINCT ${q(preId)}, rr.RequirementId ${theirs}\n    ` +
               "AND rq.RequirementType <> 'REQUIREMENT_PLAYER_HAS_COMPLETED_PROGRESSION_TREE_NODE' " +
               `AND ${setExists(preId)}`,
@@ -748,23 +815,29 @@ function pediaFile() {
     "</Database>", ""].join("\n");
 }
 
-/** One paragraph row per gated unit of an age, for one setup level. @param {Map<string, string>} gates */
-const pediaUnitRows = (gates, /** @type {string} */ levelName) => [
+/**
+ * One paragraph row per gated unit of an age, for one setup level.
+ * @param {string} age @param {Map<string, string>} gates @param {string} levelName
+ */
+const pediaUnitRows = (age, gates, levelName) => [
   "    <CivilopediaPageChapterParagraphs>",
   ...[...gates].map(([unit, resource]) => `        <Row SectionID="UNITS" PageID="${unit}" ` +
-    `ChapterID="${PEDIA.unitChapter}" Paragraph="${pediaUnitTag(resource, levelName)}" SortIndex="10"/>`),
+    `ChapterID="${PEDIA.unitChapter}" Paragraph="${pediaUnitTag(resource, levelName, age)}" SortIndex="10"/>`),
   "    </CivilopediaPageChapterParagraphs>"];
 
 /**
  * The penalty modifiers for one resource at one level, and the attach ids to register. A strength row is written
- * only when some gated unit has that strength.
+ * only when some gated unit has that strength. In an age where the resource has stand-ins, a copy of any of them
+ * cancels the penalty, and the preview names them all.
  * @param {string} resource
  * @param {{ combat: number, productionPercent: number }} level
  * @param {Record<string, string[]>} units gated units per strength type
+ * @param {string} [age]
  */
-export function penaltyFor(resource, level, units) {
+export function penaltyFor(resource, level, units, age = "") {
   const name = shortName(resource);
-  const owner = hasResource(resource, 1);
+  const all = suppliers(age, resource);
+  const owner = all.length > 1 ? { any: all.flatMap((r) => hasResource(r, 1)) } : hasResource(resource, 1);
   const body = [];
   const ids = [];
   const add = (/** @type {string} */ kind, /** @type {string[]} */ child) => {
@@ -785,8 +858,8 @@ export function penaltyFor(resource, level, units) {
   add("PRODUCTION_SUPPLIED",
     productionChild({ id: `SR_PRODUCTION_SUPPLIED_${name}`, tag, percent: -level.productionPercent, owner }));
   add("PREVIEW_PENALTY", previewChild({
-    id: `SR_PREVIEW_PENALTY_${name}`, tags: [tag], owner: hasResource(resource, 1, true), text: PREVIEW_TEXT.penalty,
-    args: { Combat: level.combat, Resource: resourceNameTag(resource) }
+    id: `SR_PREVIEW_PENALTY_${name}`, tags: [tag], owner: all.flatMap((r) => hasResource(r, 1, true)),
+    text: PREVIEW_TEXT.penalty, args: { Combat: level.combat, Resource: supplyNameTag(age, resource) }
   }));
   return { body, ids };
 }
@@ -880,7 +953,7 @@ export function buildFiles() {
   const files = new Map();
   const allResources = [...new Set(AGES.flatMap(gatedResources))];
   const allTags = [...allResources.flatMap((r) => [supplyTag(r), penaltyTag("RANGED", r), penaltyTag("BOMBARD", r),
-    curveTag("RANGED", r), curveTag("BOMBARD", r)]), ELEPHANT_TAG];
+    curveTag("RANGED", r), curveTag("BOMBARD", r)]), ELEPHANT_TAG, ...eitherTags()];
   files.set("sr-civilopedia.xml", pediaFile());
   files.set("sr-notification.xml", notificationFile());
   files.set("sr-notification-icons.xml", notificationIconsFile());
@@ -902,6 +975,8 @@ export function buildFiles() {
     for (const [resource, units] of strengths.penalty) {
       for (const type of ["RANGED", "BOMBARD"]) rows.push(...units[type].map((u) => [u, penaltyTag(type, resource)]));
     }
+    rows.push(...[...gates].filter(([, resource]) => ALTERNATIVES[age]?.[resource])
+      .map(([unit, resource]) => [unit, eitherTag(age, resource)]));
     for (const [resource, units] of strengths.curve) {
       for (const type of ["RANGED", "BOMBARD"]) rows.push(...units[type].map((u) => [u, curveTag(type, resource)]));
     }
@@ -911,19 +986,19 @@ export function buildFiles() {
       files.set(`sr-${file}-elephants-game.xml`, gameModifiers([ELEPHANT_MODIFIER]));
     }
     for (const [levelName, level] of Object.entries(LEVELS)) {
-      const parts = gatedResources(age).map((r) => penaltyFor(r, level, strengths.penalty.get(r) ?? {}));
+      const parts = gatedResources(age).map((r) => penaltyFor(r, level, strengths.penalty.get(r) ?? {}, age));
       files.set(`sr-${file}-${levelName}-modifiers.xml`, gameEffects(
         `${age}, unsupplied penalty ${levelName}: ${level.combat} combat strength and ${level.productionPercent}% ` +
           "production without the resource, cancelled while the owner holds a copy; each strength only on units " +
           "that have it.",
         parts.flatMap((p) => p.body)));
       files.set(`sr-${file}-${levelName}-game.xml`,
-        gameModifiers(parts.flatMap((p) => p.ids), pediaUnitRows(gates, levelName)));
+        gameModifiers(parts.flatMap((p) => p.ids), pediaUnitRows(age, gates, levelName)));
     }
     files.set(`sr-${file}-gate-lines.sql`, linesFile(age, lineLocks(dump), lineCopies(dump)));
     if (CHAINS[age]) files.set(`sr-${file}-chains.sql`, chainsFile(age, dump));
     for (const gateName of Object.keys(GATES_OPTION)) {
-      files.set(`sr-${file}-gate-${gateName}.xml`, gateFile(age, gates, gateName));
+      files.set(`sr-${file}-gate-${gateName}.xml`, gateFile(age, gates, columnMap(dump), gateName));
     }
     const curves = VANILLA_PER_COPY[age].map((c) => curveFor(c, strengths.curve.get(c.resource) ?? {}));
     files.set(`sr-${file}-curve-modifiers.xml`, gameEffects(

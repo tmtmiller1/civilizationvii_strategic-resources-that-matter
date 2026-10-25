@@ -185,7 +185,7 @@ function wrapQuery(original, applies) {
       if (!applies(cityId, queryType)) return entries;
       const player = Players.get(GameContext.localPlayerID);
       const { gate } = readIndexes();
-      if (!player?.isMajor || gate.columns.size === 0) return entries;
+      if (!player?.isMajor || gate.needs.size === 0) return entries;
       const copiesOf = copiesCounter(player);
       const unitTypeOf = (/** @type {number} */ index) => GameInfo.Units.lookup(index)?.UnitType;
       const locked = (/** @type {string} */ unitType) => lockedBy(unitType, gate, copiesOf);

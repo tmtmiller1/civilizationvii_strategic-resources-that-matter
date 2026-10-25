@@ -4,6 +4,24 @@ All notable changes to the Strategic Resources That Matter mod for Civilization 
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 
+## [1.3.0] - 2026-10-25
+
+Pitch works for the Exploration warships as well as Hardwood, and two fixes to what the game tells you.
+
+### Changed
+- In Exploration, Pitch works for the heavy warships as well as Hardwood. One copy of either keeps the Carrack, the
+  Galleon and their unique versions at full strength, and under a locked value lets you train them. Hardwood only
+  grows on tundra and in the tropics, so a temperate start used to go the whole age without one. Modern keeps the
+  Ship of the Line on Hardwood.
+- On "Locked: training and upgrade", the Exploration warships can still be upgraded into without Hardwood or Pitch.
+  Training and buying them stays locked. The game's upgrade lock only takes one resource, so it can't hold a pair.
+
+### Fixed
+- A resource's tooltip line left out the units the lock holds back, so Niter's line skipped the Bombard and
+  Hardwood's the Carrack. They're listed again.
+- Under "Locked: training", a commander's Upgrade All could grey out for a unit the game would upgrade anyway, like a
+  Cog into a Carrack without Hardwood. Upgrade All now only stops where the game does.
+
 ## [1.2.1] - 2026-10-17
 
 - License: from this version the mod is under the Tower Mod License 1.0, in LICENSE. You can still play it, read the

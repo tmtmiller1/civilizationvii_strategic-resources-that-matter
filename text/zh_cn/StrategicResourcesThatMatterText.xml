@@ -57,7 +57,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="zh_Hans_CN"><Text>哪些单位需要什么</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="zh_Hans_CN"><Text>文明的特色单位需要其所取代的单位所需的资源。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（战车、骑手及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（长枪兵、方阵、军团、长生军等）[N]{LOC_RESOURCE_IVORY_NAME}：战象（战象、破城者）</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（追猎者、骑士、枪骑兵及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（披甲战士、长柄枪兵及其特色版本）[N]{LOC_RESOURCE_NITER_NAME}：第三级起的攻城单位（射石炮、火车）[N]{LOC_RESOURCE_HARDWOOD_NAME}：第二级起的重型战舰（克拉克帆船、盖伦帆船及其特色版本）</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}：骑兵（追猎者、骑士、枪骑兵及其特色版本）[N]{LOC_RESOURCE_IRON_NAME}：第二级起的步兵（披甲战士、长柄枪兵及其特色版本）[N]{LOC_RESOURCE_NITER_NAME}：第三级起的攻城单位（射石炮、火车）[N]{LOC_RESOURCE_HARDWOOD_NAME}或{LOC_RESOURCE_PITCH_NAME}：第二级起的重型战舰（克拉克帆船、盖伦帆船及其特色版本）</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="zh_Hans_CN"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}：野战炮兵（野战加农炮、野战炮）[N]{LOC_RESOURCE_OIL_NAME}：较重的炮兵（反坦克炮、臼炮、榴弹炮、突击炮）、装甲部队（陆地战舰、坦克及其特色版本）和战列舰（无畏战舰、战列舰及其特色版本）[N]{LOC_RESOURCE_COAL_NAME}：轻型战舰（铁甲舰、巡洋舰、驱逐舰、巴巴里海盗）[N]{LOC_RESOURCE_RUBBER_NAME}：飞机[N]{LOC_RESOURCE_HORSES_NAME}：胸甲骑兵[N]{LOC_RESOURCE_HARDWOOD_NAME}：风帆战列舰[N]{LOC_RESOURCE_OIL_NAME}：潜艇</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="zh_Hans_CN"><Text>不受任何要求限制：战士系列和探路者、远程步兵（弓箭手、弩手、钩铳手）、石弩和抛石机、柯克船和风帆战列舰、胸甲骑兵、潜艇以及近代步兵，因此每位玩家都始终能够防御。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_TITLE" Language="zh_Hans_CN"><Text>近代供应链</Text></Replace>
@@ -131,6 +131,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_GATE_TRAINING" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_IVORY_NAME}时无法训练或购买。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_RUBBER_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_HARDWOOD_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
+        <Replace Tag="LOC_SR_EITHER_HARDWOOD_OR_PITCH_NAME" Language="zh_Hans_CN"><Text>{LOC_RESOURCE_HARDWOOD_NAME}或{LOC_RESOURCE_PITCH_NAME}</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_LIGHT" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HARDWOOD_NAME}或{LOC_RESOURCE_PITCH_NAME}：两者都没有时战斗力-2，训练变慢。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_STANDARD" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HARDWOOD_NAME}或{LOC_RESOURCE_PITCH_NAME}：两者都没有时战斗力-3，训练变慢。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_HARSH" Language="zh_Hans_CN"><Text>需要{LOC_RESOURCE_HARDWOOD_NAME}或{LOC_RESOURCE_PITCH_NAME}：两者都没有时战斗力-5，训练变慢。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_GATE_TRAINING" Language="zh_Hans_CN"><Text>{LOC_RESOURCE_HARDWOOD_NAME}和{LOC_RESOURCE_PITCH_NAME}都没有时无法训练或购买。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_GATE_UPGRADE" Language="zh_Hans_CN"><Text>{LOC_RESOURCE_HARDWOOD_NAME}和{LOC_RESOURCE_PITCH_NAME}都没有时无法训练、购买，也无法通过升级获得。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_GATE_UPGRADE" Language="zh_Hans_CN"><Text>没有一份{LOC_RESOURCE_IVORY_NAME}时无法训练、购买，也无法通过升级获得。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="zh_Hans_CN"><Text>训练所需：{1_Units}。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="zh_Hans_CN"><Text>训练所需：{1_Units}等，另有{2_More}种。</Text></Replace>

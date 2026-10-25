@@ -87,6 +87,14 @@ try {
   assert.equal(mexico.get("UNIT_TANK"), "Tank");
   assert.equal(mexico.has("UNIT_PANZER"), false);
   assert.equal(mexico.has("UNIT_MORTAR"), true, "another civilization's unique unit replaces nothing here");
+  // A base unit the lock makes grant-only carries the city-state trait and the plain tag: it's everyone's.
+  const cannon = globalThis.GameInfo.Units.lookup("UNIT_FIELD_CANNON");
+  cannon.TraitType = "TRAIT_LEADER_MINOR_CIV";
+  assert.equal(unitNamesFor(players[0], supply).has("UNIT_FIELD_CANNON"), false, "a trait alone: someone else's");
+  globalThis.GameInfo.TypeTags.push({ Type: "UNIT_FIELD_CANNON", Tag: "SR_LINE_PLAIN" });
+  assert.equal(unitNamesFor(players[0], supply).get("UNIT_FIELD_CANNON"), "Field Cannon", "the plain tag: everyone's");
+  globalThis.GameInfo.TypeTags.pop();
+  delete cannon.TraitType;
 
   // The line, sorted by name, three names and the count of the rest.
   assert.equal(describeResourceSupply("RESOURCE_NITER"),

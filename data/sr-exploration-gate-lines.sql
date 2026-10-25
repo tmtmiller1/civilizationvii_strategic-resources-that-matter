@@ -32,6 +32,23 @@ INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
     VALUES ('SR_LINE_NO_NITER', 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 1);
 INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
     VALUES ('SR_LINE_NO_NITER', 'ResourceType', 'RESOURCE_NITER'), ('SR_LINE_NO_NITER', 'Amount', '1');
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    VALUES ('SR_LINE_HAS_PITCH', 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 0);
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    VALUES ('SR_LINE_HAS_PITCH', 'ResourceType', 'RESOURCE_PITCH'), ('SR_LINE_HAS_PITCH', 'Amount', '1');
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    VALUES ('SR_LINE_NO_PITCH', 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 1);
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    VALUES ('SR_LINE_NO_PITCH', 'ResourceType', 'RESOURCE_PITCH'), ('SR_LINE_NO_PITCH', 'Amount', '1');
+-- RESOURCE_HARDWOOD or RESOURCE_PITCH: a copy of any of them.
+INSERT OR IGNORE INTO RequirementSets (RequirementSetId, RequirementSetType)
+    VALUES ('SR_LINE_ANY_HARDWOOD_OR_PITCH', 'REQUIREMENTSET_TEST_ANY');
+INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    VALUES ('SR_LINE_ANY_HARDWOOD_OR_PITCH', 'SR_LINE_HAS_HARDWOOD'), ('SR_LINE_ANY_HARDWOOD_OR_PITCH', 'SR_LINE_HAS_PITCH');
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    VALUES ('SR_LINE_HAS_HARDWOOD_OR_PITCH', 'REQUIREMENT_REQUIREMENTSET_IS_MET', 0);
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    VALUES ('SR_LINE_HAS_HARDWOOD_OR_PITCH', 'RequirementSetId', 'SR_LINE_ANY_HARDWOOD_OR_PITCH');
 
 -- UNIT_BOMBARD: base, needs RESOURCE_NITER; keeps UNIT_TREBUCHET trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
@@ -59,7 +76,7 @@ INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementI
     SELECT 'SR_LINE_REQS_UNIT_BOMBARD', 'SR_LINE_NOT_' || u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
     WHERE r.ReplacesUnitType = 'UNIT_BOMBARD' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED' AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_BOMBARD');
 
--- UNIT_CARRACK: base, needs RESOURCE_HARDWOOD; keeps UNIT_COG trainable without it.
+-- UNIT_CARRACK: base, needs RESOURCE_HARDWOOD or RESOURCE_PITCH; keeps UNIT_COG trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
     SELECT 'SR_LINE_ATTACH_UNIT_CARRACK', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_CARRACK' AND TraitType IS NULL;
 INSERT INTO ModifierArguments (ModifierId, Name, Value)
@@ -73,7 +90,7 @@ INSERT INTO ModifierArguments (ModifierId, Name, Value)
 INSERT INTO GameModifiers (ModifierId)
     SELECT 'SR_LINE_ATTACH_UNIT_CARRACK' FROM Units WHERE UnitType = 'UNIT_CARRACK' AND TraitType IS NULL;
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
-    SELECT 'SR_LINE_REQS_UNIT_CARRACK', 'SR_LINE_HAS_HARDWOOD' FROM Units WHERE UnitType = 'UNIT_CARRACK' AND TraitType IS NULL;
+    SELECT 'SR_LINE_REQS_UNIT_CARRACK', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_CARRACK' AND TraitType IS NULL;
 -- Not for a civilization whose unique replaces it: the grant would lift the replacement.
 INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
     SELECT 'SR_LINE_NOT_' || u.TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT', 1 FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
@@ -85,7 +102,7 @@ INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementI
     SELECT 'SR_LINE_REQS_UNIT_CARRACK', 'SR_LINE_NOT_' || u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
     WHERE r.ReplacesUnitType = 'UNIT_CARRACK' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED' AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_CARRACK');
 
--- UNIT_CETBANG_2: unique, needs RESOURCE_HARDWOOD; keeps UNIT_CETBANG trainable without it.
+-- UNIT_CETBANG_2: unique, needs RESOURCE_HARDWOOD or RESOURCE_PITCH; keeps UNIT_CETBANG trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
     SELECT 'SR_LINE_ATTACH_UNIT_CETBANG_2', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_CETBANG_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 INSERT INTO ModifierArguments (ModifierId, Name, Value)
@@ -99,7 +116,7 @@ INSERT INTO ModifierArguments (ModifierId, Name, Value)
 INSERT INTO GameModifiers (ModifierId)
     SELECT 'SR_LINE_ATTACH_UNIT_CETBANG_2' FROM Units WHERE UnitType = 'UNIT_CETBANG_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
-    SELECT 'SR_LINE_REQS_UNIT_CETBANG_2', 'SR_LINE_HAS_HARDWOOD' FROM Units WHERE UnitType = 'UNIT_CETBANG_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+    SELECT 'SR_LINE_REQS_UNIT_CETBANG_2', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_CETBANG_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 -- Only for the civilization it belongs to, by the trait the game gives it.
 INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)
     SELECT 'SR_LINE_IS_' || TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT' FROM Units WHERE UnitType = 'UNIT_CETBANG_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
@@ -108,10 +125,33 @@ INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_CETBANG_2', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_CETBANG_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 
--- UNIT_CORSAIR_2: granted, needs RESOURCE_HARDWOOD; keeps UNIT_CORSAIR trainable without it.
+-- UNIT_CETBANG_3: unique, needs RESOURCE_HARDWOOD or RESOURCE_PITCH.
+INSERT INTO Modifiers (ModifierId, ModifierType)
+    SELECT 'SR_LINE_ATTACH_UNIT_CETBANG_3', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_ATTACH_UNIT_CETBANG_3', 'ModifierId', 'SR_LINE_GRANT_UNIT_CETBANG_3' FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSets (RequirementSetId, RequirementSetType)
+    SELECT 'SR_LINE_REQS_UNIT_CETBANG_3', 'REQUIREMENTSET_TEST_ALL' FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+    SELECT 'SR_LINE_GRANT_UNIT_CETBANG_3', 'SR_LINE_GRANT_TYPE', 'SR_LINE_REQS_UNIT_CETBANG_3' FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_GRANT_UNIT_CETBANG_3', 'UnitType', 'UNIT_CETBANG_3' FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO GameModifiers (ModifierId)
+    SELECT 'SR_LINE_ATTACH_UNIT_CETBANG_3' FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_CETBANG_3', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+-- Only for the civilization it belongs to, by the trait the game gives it.
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)
+    SELECT 'SR_LINE_IS_' || TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT' FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT 'SR_LINE_IS_' || TraitType, 'TraitType', TraitType FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_CETBANG_3', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_CETBANG_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+
+-- UNIT_CORSAIR_2: granted, needs RESOURCE_HARDWOOD or RESOURCE_PITCH; keeps UNIT_CORSAIR trainable without it.
 -- The game grants it already: its grants also need the resource.
 INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
-    SELECT m.SubjectRequirementSetId, 'SR_LINE_HAS_HARDWOOD' FROM Modifiers m JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    SELECT m.SubjectRequirementSetId, 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Modifiers m JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
     JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType' AND a.Value = 'UNIT_CORSAIR_2'
     WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NOT NULL
     AND m.SubjectRequirementSetId IN (SELECT RequirementSetId FROM RequirementSets WHERE RequirementSetType = 'REQUIREMENTSET_TEST_ALL');
@@ -144,12 +184,50 @@ INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_CORSAIR', 'SR_LINE_NO_HARDWOOD' FROM Units WHERE UnitType = 'UNIT_CORSAIR' AND EXISTS (SELECT 1 FROM Modifiers m JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
     JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType' AND a.Value = 'UNIT_CORSAIR'
     WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NOT NULL);
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_CORSAIR', 'SR_LINE_NO_PITCH' FROM Units WHERE UnitType = 'UNIT_CORSAIR' AND EXISTS (SELECT 1 FROM Modifiers m JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType' AND a.Value = 'UNIT_CORSAIR'
+    WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NOT NULL);
 INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT DISTINCT 'SR_LINE_REQS_UNIT_CORSAIR', rr.RequirementId FROM Modifiers m JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
     JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType' AND a.Value = 'UNIT_CORSAIR'
     JOIN RequirementSetRequirements rr ON rr.RequirementSetId = m.SubjectRequirementSetId JOIN Requirements rq ON rq.RequirementId = rr.RequirementId
     WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NOT NULL
     AND rq.RequirementType <> 'REQUIREMENT_PLAYER_HAS_COMPLETED_PROGRESSION_TREE_NODE' AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_CORSAIR');
+
+-- UNIT_CORSAIR_3: granted, needs RESOURCE_HARDWOOD or RESOURCE_PITCH.
+-- The game grants it already: its grants also need the resource.
+INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT m.SubjectRequirementSetId, 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Modifiers m JOIN DynamicModifiers d ON d.ModifierType = m.ModifierType
+    JOIN ModifierArguments a ON a.ModifierId = m.ModifierId AND a.Name = 'UnitType' AND a.Value = 'UNIT_CORSAIR_3'
+    WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NOT NULL
+    AND m.SubjectRequirementSetId IN (SELECT RequirementSetId FROM RequirementSets WHERE RequirementSetType = 'REQUIREMENTSET_TEST_ALL');
+
+-- UNIT_GALLEON: base, needs RESOURCE_HARDWOOD or RESOURCE_PITCH.
+INSERT INTO Modifiers (ModifierId, ModifierType)
+    SELECT 'SR_LINE_ATTACH_UNIT_GALLEON', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_GALLEON' AND TraitType IS NULL;
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_ATTACH_UNIT_GALLEON', 'ModifierId', 'SR_LINE_GRANT_UNIT_GALLEON' FROM Units WHERE UnitType = 'UNIT_GALLEON' AND TraitType IS NULL;
+INSERT INTO RequirementSets (RequirementSetId, RequirementSetType)
+    SELECT 'SR_LINE_REQS_UNIT_GALLEON', 'REQUIREMENTSET_TEST_ALL' FROM Units WHERE UnitType = 'UNIT_GALLEON' AND TraitType IS NULL;
+INSERT INTO Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+    SELECT 'SR_LINE_GRANT_UNIT_GALLEON', 'SR_LINE_GRANT_TYPE', 'SR_LINE_REQS_UNIT_GALLEON' FROM Units WHERE UnitType = 'UNIT_GALLEON' AND TraitType IS NULL;
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_GRANT_UNIT_GALLEON', 'UnitType', 'UNIT_GALLEON' FROM Units WHERE UnitType = 'UNIT_GALLEON' AND TraitType IS NULL;
+INSERT INTO GameModifiers (ModifierId)
+    SELECT 'SR_LINE_ATTACH_UNIT_GALLEON' FROM Units WHERE UnitType = 'UNIT_GALLEON' AND TraitType IS NULL;
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_GALLEON', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_GALLEON' AND TraitType IS NULL;
+-- Not for a civilization whose unique replaces it: the grant would lift the replacement.
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    SELECT 'SR_LINE_NOT_' || u.TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT', 1 FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
+    WHERE r.ReplacesUnitType = 'UNIT_GALLEON' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT 'SR_LINE_NOT_' || u.TraitType, 'TraitType', u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
+    WHERE r.ReplacesUnitType = 'UNIT_GALLEON' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_GALLEON', 'SR_LINE_NOT_' || u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
+    WHERE r.ReplacesUnitType = 'UNIT_GALLEON' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED' AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_GALLEON');
 
 -- UNIT_GOLD_BANGLES_2: unique, needs RESOURCE_IRON; keeps UNIT_GOLD_BANGLES trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
@@ -197,7 +275,7 @@ INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_HWACHA_3', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_HWACHA_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 
--- UNIT_KALAM_2: unique, needs RESOURCE_HARDWOOD; keeps UNIT_KALAM trainable without it.
+-- UNIT_KALAM_2: unique, needs RESOURCE_HARDWOOD or RESOURCE_PITCH; keeps UNIT_KALAM trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
     SELECT 'SR_LINE_ATTACH_UNIT_KALAM_2', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_KALAM_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 INSERT INTO ModifierArguments (ModifierId, Name, Value)
@@ -211,7 +289,7 @@ INSERT INTO ModifierArguments (ModifierId, Name, Value)
 INSERT INTO GameModifiers (ModifierId)
     SELECT 'SR_LINE_ATTACH_UNIT_KALAM_2' FROM Units WHERE UnitType = 'UNIT_KALAM_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
-    SELECT 'SR_LINE_REQS_UNIT_KALAM_2', 'SR_LINE_HAS_HARDWOOD' FROM Units WHERE UnitType = 'UNIT_KALAM_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+    SELECT 'SR_LINE_REQS_UNIT_KALAM_2', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_KALAM_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 -- Only for the civilization it belongs to, by the trait the game gives it.
 INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)
     SELECT 'SR_LINE_IS_' || TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT' FROM Units WHERE UnitType = 'UNIT_KALAM_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
@@ -219,6 +297,29 @@ INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
     SELECT 'SR_LINE_IS_' || TraitType, 'TraitType', TraitType FROM Units WHERE UnitType = 'UNIT_KALAM_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_KALAM_2', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_KALAM_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+
+-- UNIT_KALAM_3: unique, needs RESOURCE_HARDWOOD or RESOURCE_PITCH.
+INSERT INTO Modifiers (ModifierId, ModifierType)
+    SELECT 'SR_LINE_ATTACH_UNIT_KALAM_3', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_ATTACH_UNIT_KALAM_3', 'ModifierId', 'SR_LINE_GRANT_UNIT_KALAM_3' FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSets (RequirementSetId, RequirementSetType)
+    SELECT 'SR_LINE_REQS_UNIT_KALAM_3', 'REQUIREMENTSET_TEST_ALL' FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+    SELECT 'SR_LINE_GRANT_UNIT_KALAM_3', 'SR_LINE_GRANT_TYPE', 'SR_LINE_REQS_UNIT_KALAM_3' FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_GRANT_UNIT_KALAM_3', 'UnitType', 'UNIT_KALAM_3' FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO GameModifiers (ModifierId)
+    SELECT 'SR_LINE_ATTACH_UNIT_KALAM_3' FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_KALAM_3', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+-- Only for the civilization it belongs to, by the trait the game gives it.
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)
+    SELECT 'SR_LINE_IS_' || TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT' FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT 'SR_LINE_IS_' || TraitType, 'TraitType', TraitType FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_KALAM_3', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_KALAM_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 
 -- UNIT_KISPOKO_NENA_TO_2: unique, needs RESOURCE_IRON; keeps UNIT_KISPOKO_NENA_TO trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
@@ -315,7 +416,7 @@ INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_TERCIO_2', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_TERCIO_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 
--- UNIT_VIKINGR_2: unique, needs RESOURCE_HARDWOOD; keeps UNIT_VIKINGR trainable without it.
+-- UNIT_VIKINGR_2: unique, needs RESOURCE_HARDWOOD or RESOURCE_PITCH; keeps UNIT_VIKINGR trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
     SELECT 'SR_LINE_ATTACH_UNIT_VIKINGR_2', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_VIKINGR_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 INSERT INTO ModifierArguments (ModifierId, Name, Value)
@@ -329,7 +430,7 @@ INSERT INTO ModifierArguments (ModifierId, Name, Value)
 INSERT INTO GameModifiers (ModifierId)
     SELECT 'SR_LINE_ATTACH_UNIT_VIKINGR_2' FROM Units WHERE UnitType = 'UNIT_VIKINGR_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
-    SELECT 'SR_LINE_REQS_UNIT_VIKINGR_2', 'SR_LINE_HAS_HARDWOOD' FROM Units WHERE UnitType = 'UNIT_VIKINGR_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+    SELECT 'SR_LINE_REQS_UNIT_VIKINGR_2', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_VIKINGR_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 -- Only for the civilization it belongs to, by the trait the game gives it.
 INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)
     SELECT 'SR_LINE_IS_' || TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT' FROM Units WHERE UnitType = 'UNIT_VIKINGR_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
@@ -337,6 +438,29 @@ INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
     SELECT 'SR_LINE_IS_' || TraitType, 'TraitType', TraitType FROM Units WHERE UnitType = 'UNIT_VIKINGR_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_VIKINGR_2', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_VIKINGR_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+
+-- UNIT_VIKINGR_3: unique, needs RESOURCE_HARDWOOD or RESOURCE_PITCH.
+INSERT INTO Modifiers (ModifierId, ModifierType)
+    SELECT 'SR_LINE_ATTACH_UNIT_VIKINGR_3', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_ATTACH_UNIT_VIKINGR_3', 'ModifierId', 'SR_LINE_GRANT_UNIT_VIKINGR_3' FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSets (RequirementSetId, RequirementSetType)
+    SELECT 'SR_LINE_REQS_UNIT_VIKINGR_3', 'REQUIREMENTSET_TEST_ALL' FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+    SELECT 'SR_LINE_GRANT_UNIT_VIKINGR_3', 'SR_LINE_GRANT_TYPE', 'SR_LINE_REQS_UNIT_VIKINGR_3' FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_GRANT_UNIT_VIKINGR_3', 'UnitType', 'UNIT_VIKINGR_3' FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO GameModifiers (ModifierId)
+    SELECT 'SR_LINE_ATTACH_UNIT_VIKINGR_3' FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_VIKINGR_3', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+-- Only for the civilization it belongs to, by the trait the game gives it.
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)
+    SELECT 'SR_LINE_IS_' || TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT' FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT 'SR_LINE_IS_' || TraitType, 'TraitType', TraitType FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_VIKINGR_3', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_VIKINGR_3' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 
 -- UNIT_XUNLEICHONG_2: unique, needs RESOURCE_IRON; keeps UNIT_XUNLEICHONG trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
@@ -430,14 +554,14 @@ UPDATE Modifiers SET SubjectRequirementSetId = (SELECT 'SR_LINE_NEEDS_' || subst
     WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL);
 
 -- The traits last, once every requirement has read the game's own.
-UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_BOMBARD', 'UNIT_CARRACK', 'UNIT_MAN_AT_ARMS') AND TraitType IS NULL;
-UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_CETBANG_2', 'UNIT_GOLD_BANGLES_2', 'UNIT_HWACHA_3', 'UNIT_KALAM_2', 'UNIT_KISPOKO_NENA_TO_2', 'UNIT_LEIOMANO_2', 'UNIT_TERCIO_2', 'UNIT_VIKINGR_2', 'UNIT_XUNLEICHONG_2') AND TraitType IS NOT NULL;
+UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_BOMBARD', 'UNIT_CARRACK', 'UNIT_GALLEON', 'UNIT_MAN_AT_ARMS') AND TraitType IS NULL;
+UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_CETBANG_2', 'UNIT_CETBANG_3', 'UNIT_GOLD_BANGLES_2', 'UNIT_HWACHA_3', 'UNIT_KALAM_2', 'UNIT_KALAM_3', 'UNIT_KISPOKO_NENA_TO_2', 'UNIT_LEIOMANO_2', 'UNIT_TERCIO_2', 'UNIT_VIKINGR_2', 'UNIT_VIKINGR_3', 'UNIT_XUNLEICHONG_2') AND TraitType IS NOT NULL;
 -- The Civilopedia keeps the city-state-trait units with the ordinary ones, not under unique units.
 UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NULL',
-    'AND (TraitType IS NULL OR UnitType IN ("UNIT_BOMBARD", "UNIT_CARRACK", "UNIT_MAN_AT_ARMS"))')
+    'AND (TraitType IS NULL OR UnitType IN ("UNIT_BOMBARD", "UNIT_CARRACK", "UNIT_GALLEON", "UNIT_MAN_AT_ARMS"))')
     WHERE SectionID = 'UNITS' AND SQL LIKE '%AND TraitType IS NULL%';
 UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NOT NULL',
-    'AND TraitType IS NOT NULL AND UnitType NOT IN ("UNIT_BOMBARD", "UNIT_CARRACK", "UNIT_MAN_AT_ARMS")')
+    'AND TraitType IS NOT NULL AND UnitType NOT IN ("UNIT_BOMBARD", "UNIT_CARRACK", "UNIT_GALLEON", "UNIT_MAN_AT_ARMS")')
     WHERE SectionID = 'UNITS' AND SQL LIKE '%AND TraitType IS NOT NULL%';
 -- Their portraits keep the plain frame (ui/sr-line-look.js).
-INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, 'SR_LINE_PLAIN' FROM Types WHERE Type IN ('UNIT_BOMBARD', 'UNIT_CARRACK', 'UNIT_MAN_AT_ARMS');
+INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, 'SR_LINE_PLAIN' FROM Types WHERE Type IN ('UNIT_BOMBARD', 'UNIT_CARRACK', 'UNIT_GALLEON', 'UNIT_MAN_AT_ARMS');

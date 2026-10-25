@@ -31,7 +31,7 @@ function localPlayer() {
 function look(player) {
   const { penalties, gate } = readIndexes();
   const gated = new Set([...penalties].filter(([, p]) => p.combat !== 0 || p.productionPercent !== 0).map(([r]) => r));
-  if (gate.on) for (const resource of gate.columns.values()) gated.add(resource);
+  if (gate.on) for (const resources of gate.needs.values()) for (const resource of resources) gated.add(resource);
   return countGatedCopies(gated, copiesCounter(player));
 }
 

@@ -34,7 +34,7 @@
         <Authors>Tower</Authors>
         <Package>StrategicResourcesThatMatter</Package>
         <PackageSortIndex>100</PackageSortIndex>
-        <Version>1.2.1</Version>
+        <Version>1.3.0</Version>
         <AffectsSavedGames>1</AffectsSavedGames>
     </Properties>
     <Dependencies>

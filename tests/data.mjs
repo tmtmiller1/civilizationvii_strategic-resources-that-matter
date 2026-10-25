@@ -4,13 +4,13 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
-  buildFiles, CURVE_THRESHOLDS, ELEPHANT_MODIFIER, GATES_OPTION, gateLineFor, gateParameters, ICON_PATHS, LEVELS,
-  PEDIA, pediaGateTag, PREVIEW_TEXT, remapId, remapLabelTag, resourceNameTag
+  buildFiles, CURVE_THRESHOLDS, eitherTag, ELEPHANT_MODIFIER, GATES_OPTION, gateLineFor, gateParameters, ICON_PATHS,
+  LEVELS, lineHasAny, PEDIA, pediaGateTag, PREVIEW_TEXT, remapId, remapLabelTag, resourceNameTag, supplyNameTag
 } from "../scripts/build-data.mjs";
 import {
-  AGES, AGE_FILE, CHAINS, ELEPHANT_TAG, ELEPHANTS, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS, LOCKED_TRAIT,
-  MINOR_CIV_TRAIT, buildChainMap, buildGateMap, chainLocks, gatedResources, lineCopies, lineLocks,
-  upgradeOnlyGatedUnits
+  AGES, AGE_FILE, ALTERNATIVES, CHAINS, ELEPHANT_TAG, ELEPHANTS, STRENGTHS, VANILLA_PER_COPY, KILL_TIER_UNITS,
+  LOCKED_TRAIT, MINOR_CIV_TRAIT, buildChainMap, buildGateMap, chainLocks, columnMap, gatedResources, lineCopies,
+  lineLocks, suppliers, upgradeOnlyGatedUnits
 } from "../scripts/gate-map.mjs";
 
 // Data gate: the invariants that crash the game or mislead it, checked on the files that ship.
@@ -24,10 +24,14 @@ import {
 //     preview line never changes combat (Amount 0). No other modifier carries a string, and the mod adds no string
 //     to a modifier it does not define.
 //   - The gate lists per age are the ones written into DESIGN.md section 4.
+//   - A resource with stand-ins (gate-map.mjs ALTERNATIVES, pinned below: Pitch for Hardwood in Exploration) has its
+//     penalty cancelled by a copy of any of them, its preview line shown only with none of them, and its units
+//     tagged SR_EITHER_<NAME>_OR_<OTHER> for the UI. Its units carry no column; the line file locks each one behind
+//     an any-of set of the resources.
 //   - The hard gate's files (sr-<age>-gate-<value>.xml) set Units.StrategicResource on exactly the gated units of
-//     the age, write exactly the six STRATEGIC_RESOURCE_MINIMUM parameters (upgrading 0 under Training, 1 under
-//     Training and upgrade, healing 0), carry one page line per gated unit, and touch no other table; no other
-//     file sets the column (DESIGN.md 7f). Nothing of the gate reaches independents: the engine's own exemption
+//     the age that have no stand-ins, write exactly the six STRATEGIC_RESOURCE_MINIMUM parameters (upgrading 0
+//     under Training, 1 under Training and upgrade, healing 0), carry one page line per gated unit, and touch no
+//     other table; no other file sets the column (DESIGN.md 7f). Nothing of the gate reaches independents: the engine's own exemption
 //     covers them, and the files carry no grant and no trait.
 //   - The line files (sr-<age>-gate-lines.sql) make exactly lineLocks' units grant-only, each statement guarded by
 //     its unit so a missing DLC skips it, every grant on the major players, the traits changed last, and no unit
@@ -203,15 +207,25 @@ for (const { age, kind } of groups) {
       assert.equal(byId.get(`SR_COMBAT_PENALTY_${name}`)?.ownerRequirements.length, 0);
       const cancel = byId.get(`SR_COMBAT_SUPPLIED_${name}`)?.body ?? "";
       assert.match(cancel, new RegExp(`<Argument name="ResourceType">${resource}<`));
+      // A copy of the resource or of any stand-in cancels it: an any-of owner set naming each.
+      for (const prefix of ["SR_COMBAT", "SR_RANGED", "SR_BOMBARD", "SR_PRODUCTION"]) {
+        const body = byId.get(`${prefix}_SUPPLIED_${name}`)?.body;
+        if (!body) continue;
+        const named = [...body.matchAll(/<Argument name="ResourceType">([A-Z_]+)</g)].map((r) => r[1]);
+        assert.deepEqual(named, suppliers(age, resource), `${base} ${prefix}_SUPPLIED_${name}: resources`);
+        assert.equal(/<OwnerRequirements type="REQUIREMENTSET_TEST_ANY">/.test(body), named.length > 1,
+          `${base} ${prefix}_SUPPLIED_${name}: any-of only with stand-ins`);
+      }
       // One preview line, shown exactly while the penalty stands: no copy held, on the units the penalty reaches.
       const line = byId.get(`SR_PREVIEW_PENALTY_${name}`);
       assert.ok(line, `${base}: no preview line for ${name}`);
       checkPreviewLine(base, line, PREVIEW_TEXT.penalty);
-      assert.deepEqual(ownerShapes(line), [{ type: "REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE", inverse: true, resource,
-        amount: 1 }], `${base}: ${line.id} owner requirement`);
+      assert.deepEqual(ownerShapes(line), suppliers(age, resource).map((r) => ({
+        type: "REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE", inverse: true, resource: r, amount: 1
+      })), `${base}: ${line.id} owner requirement`);
       assert.deepEqual(subjectTags(line), [`SR_SUPPLY_${name}`], `${base}: ${line.id} subject`);
       assert.equal(Number(line.args.Combat), level.combat, `${base}: ${line.id} names the wrong penalty`);
-      assert.equal(line.args.Resource, resourceNameTag(resource), `${base}: ${line.id} resource name`);
+      assert.equal(line.args.Resource, supplyNameTag(age, resource), `${base}: ${line.id} resource name`);
       previewLines += 1;
     }
     assert.equal(modifiers.filter((m) => m.id.startsWith("SR_PREVIEW_")).length, gatedResources(age).length,
@@ -297,7 +311,16 @@ for (const age of AGES) {
   const known = new Set(dumps[age].units.map((/** @type {{ UnitType: string }} */ u) => u.UnitType));
   assert.ok(tagged.length, `${age}: no SR_SUPPLY_ rows read from the supply file`);
   for (const [unit] of tagged) assert.ok(known.has(unit), `${age}: ${unit} is not a unit of this age`);
+  // The either tags: on exactly the units of a resource with stand-ins, and defined.
+  const either = supplyRows(age).filter(([, tag]) => tag.startsWith("SR_EITHER_"));
+  assert.deepEqual(either, [...buildGateMap(dumps[age])].filter(([, r]) => ALTERNATIVES[age]?.[r])
+    .map(([unit, r]) => [unit, eitherTag(age, r)]), `${age}: the either tags`);
+  for (const [, tag] of either) {
+    assert.ok(read("sr-tags.xml").includes(`<Row Tag="${tag}" Category="UNIT_CLASS"/>`), `${tag} is defined`);
+  }
 }
+// The stand-ins, pinned: Pitch for Hardwood in Exploration only (Modern keeps its rules, Supply Chains included).
+assert.deepEqual(ALTERNATIVES, { AGE_EXPLORATION: { RESOURCE_HARDWOOD: ["RESOURCE_PITCH"] } }, "the stand-ins");
 
 // 4b. The war elephants (1.3): their own +1 per Ivory, the game's effect on their tag, registered; the supply file
 // gives them the tag and takes them out of the game's +1 per Horses through that modifier's own all-of set.
@@ -346,7 +369,8 @@ for (const f of fs.readdirSync(DATA)) {
   const gates = buildGateMap(dumps[age]);
   const updates = [...xml.matchAll(/<Update><Where UnitType="([A-Z0-9_]+)"\/><Set StrategicResource="([A-Z_]+)"\/><\/Update>/g)]
     .map((m) => [m[1], m[2]]);
-  assert.deepEqual(updates, [...gates], `${f}: the column rows differ from the gate map`);
+  assert.deepEqual(updates, [...columnMap(dumps[age])], `${f}: the column rows differ from the gate map`);
+  assert.ok(updates.every(([, r]) => !ALTERNATIVES[age]?.[r]), `${f}: a column on a unit with stand-ins`);
   const params = [...xml.matchAll(/<Replace Name="([A-Z_]+)" Value="(\d+)"\/>/g)].map((m) => [m[1], Number(m[2])]);
   assert.deepEqual(params, gateParameters(GATES_OPTION[gateName].upgrading), `${f}: parameters`);
   assert.equal(params.find(([n]) => n.endsWith("UNIT_HEALING"))?.[1], 0, `${f}: healing must stay free`);
@@ -356,7 +380,7 @@ for (const f of fs.readdirSync(DATA)) {
   assert.deepEqual(lines.map((m) => m[1]), [...gates.keys()], `${f}: one page line per gated unit`);
   for (const [, unit, chapter, tag] of lines) {
     assert.equal(chapter, PEDIA.unitGateChapter, `${f} ${unit}: chapter`);
-    assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateLineFor(unit, gateName)), `${f} ${unit}: line`);
+    assert.equal(tag, pediaGateTag(gates.get(unit) ?? "", gateLineFor(unit, gateName), age), `${f} ${unit}: line`);
   }
   // The Samurai tiers come by kills, which the game grants without asking for Iron (watch run 2, block 1, X1), so
   // their pages say "trained or bought" under both values, never "upgraded into".
@@ -391,16 +415,17 @@ assert.deepEqual(Object.fromEntries(AGES.map((age) => [age, copyList(age)])), {
 }
 // The line locks, pinned: every gated unit a free unit, or a unit on another resource, upgrades into, and every
 // gated unique that replaces one (the AT Gun from the Field Gun on Niter, the Dreadnought from the Ship of the Line
-// on Hardwood, 1.3).
+// on Hardwood, 1.3), and every unit with stand-ins, which carries no column (the Hardwood ships of Exploration).
 // Not the Samurai tiers (tier 2 and 3 are reached only by upgrade).
 const lockList = (/** @type {string} */ age) => lineLocks(dumps[age]).map((l) => `${l.unit}:${l.kind}`);
 assert.deepEqual(Object.fromEntries(AGES.map((age) => [age, lockList(age)])), {
   AGE_ANTIQUITY: ["UNIT_GAISATAI_2:unique", "UNIT_HOPLITE_2:unique", "UNIT_IMMORTAL:unique", "UNIT_LEGION:unique",
     "UNIT_MEDJAY_2:unique", "UNIT_SPEARMAN:base"],
-  AGE_EXPLORATION: ["UNIT_BOMBARD:base", "UNIT_CARRACK:base", "UNIT_CETBANG_2:unique", "UNIT_CORSAIR_2:granted",
-    "UNIT_GOLD_BANGLES_2:unique", "UNIT_HWACHA_3:unique", "UNIT_KALAM_2:unique", "UNIT_KISPOKO_NENA_TO_2:unique",
+  AGE_EXPLORATION: ["UNIT_BOMBARD:base", "UNIT_CARRACK:base", "UNIT_CETBANG_2:unique", "UNIT_CETBANG_3:unique",
+    "UNIT_CORSAIR_2:granted", "UNIT_CORSAIR_3:granted", "UNIT_GALLEON:base", "UNIT_GOLD_BANGLES_2:unique",
+    "UNIT_HWACHA_3:unique", "UNIT_KALAM_2:unique", "UNIT_KALAM_3:unique", "UNIT_KISPOKO_NENA_TO_2:unique",
     "UNIT_LEIOMANO_2:unique", "UNIT_MAN_AT_ARMS:base", "UNIT_TERCIO_2:unique", "UNIT_VIKINGR_2:unique",
-    "UNIT_XUNLEICHONG_2:unique"],
+    "UNIT_VIKINGR_3:unique", "UNIT_XUNLEICHONG_2:unique"],
   AGE_MODERN: ["UNIT_AT_GUN:base", "UNIT_CHANG_BEUN_3:unique", "UNIT_COSSACK_2:unique", "UNIT_DREADNOUGHT:base",
     "UNIT_GHILMAN_2:unique", "UNIT_HUSSAR_2:unique", "UNIT_LANDSHIP:base", "UNIT_MIKASA:unique", "UNIT_REVENGE:unique",
     "UNIT_TURTLE_SHIP_2:unique"]
@@ -411,7 +436,25 @@ for (const age of AGES) {
   const locks = lineLocks(dumps[age]);
   for (const lock of locks) {
     assert.equal(lock.resource, buildGateMap(dumps[age]).get(lock.unit), `${f} ${lock.unit}: resource`);
-    assert.ok(sql.includes(`-- ${lock.unit}: ${lock.kind}, needs ${lock.resource}`), `${f}: ${lock.unit} missing`);
+    const needs = suppliers(age, lock.resource).join(" or ");
+    assert.ok(sql.includes(`-- ${lock.unit}: ${lock.kind}, needs ${needs}`), `${f}: ${lock.unit} missing`);
+    if (!ALTERNATIVES[age]?.[lock.resource]) continue;
+    // Behind the any-of set: the grant's own set, or the game's grants for a unit it grants already.
+    const any = lineHasAny(age, lock.resource);
+    const block = sql.slice(sql.indexOf(`-- ${lock.unit}:`), sql.indexOf("\n\n", sql.indexOf(`-- ${lock.unit}:`)));
+    assert.ok(block.includes(`'${any.id}'`), `${f} ${lock.unit}: behind ${any.id}`);
+    assert.ok(!block.includes(`'SR_LINE_HAS_${lock.resource.replace("RESOURCE_", "")}'`),
+      `${f} ${lock.unit}: behind the resource alone`);
+    assert.ok(lock.predecessors.every((p) => buildGateMap(dumps[age]).get(p) !== lock.resource),
+      `${f} ${lock.unit}: a predecessor on the same resource would be granted without it`);
+  }
+  for (const resource of Object.keys(ALTERNATIVES[age] ?? {})) {
+    const any = lineHasAny(age, resource);
+    assert.ok(sql.includes(`VALUES ('${any.set}', 'REQUIREMENTSET_TEST_ANY')`), `${f}: ${any.set}`);
+    assert.ok(sql.includes(`VALUES ${suppliers(age, resource).map((r) =>
+      `('${any.set}', 'SR_LINE_HAS_${r.replace("RESOURCE_", "")}')`).join(", ")}`), `${f}: ${any.set} members`);
+    assert.ok(sql.includes(`VALUES ('${any.id}', 'REQUIREMENT_REQUIREMENTSET_IS_MET', 0)`), `${f}: ${any.id}`);
+    assert.ok(sql.includes(`VALUES ('${any.id}', 'RequirementSetId', '${any.set}')`), `${f}: ${any.id} argument`);
   }
   const statements = sql.split(";\n").map((x) => x.replace(/^(--[^\n]*\n|\s)+/, "")).filter(Boolean);
   for (const st of statements) {
@@ -452,7 +495,7 @@ for (const age of AGES) {
   assert.ok(sql.lastIndexOf("'SR_LINE_GRANT_TYPE'") < traitsAt && sql.lastIndexOf("SR_LINE_IS_") < traitsAt,
     `${f}: the traits change after every grant and requirement is in`);
 }
-assert.equal(gateUnits, 2 * Object.values(EXPECTED).flatMap((r) => Object.values(r)).flat().length, "gate rows");
+assert.equal(gateUnits, 2 * AGES.map((age) => columnMap(dumps[age]).size).reduce((a, b) => a + b, 0), "gate rows");
 // Strings only inside the mod's own modifiers (checked above); no file adds one to a modifier of the game's.
 assert.ok(!fs.readdirSync(DATA).some((f) => /ModifierStrings/.test(read(f))), "data writes ModifierStrings rows");
 // A tag row for a unit the player's game lacks (a DLC they don't own, a unit an update removed) fails the TypeTags

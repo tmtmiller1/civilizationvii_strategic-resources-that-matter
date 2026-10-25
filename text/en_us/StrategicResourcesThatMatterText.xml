@@ -169,7 +169,7 @@
             <Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Chariot, Horseman and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Spearman, Phalanx, Legion, Immortal and the others)[N]{LOC_RESOURCE_IVORY_NAME}: war elephants (Yuthahathi, Purabhettarah)</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3">
-            <Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Courser, Knight, Lancer and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Man-At-Arms, Pikeman and their unique versions)[N]{LOC_RESOURCE_NITER_NAME}: siege from the third tier (Bombard, Hwacha)[N]{LOC_RESOURCE_HARDWOOD_NAME}: heavy warships from the second tier (Carrack, Galleon and their unique versions)</Text>
+            <Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: cavalry (Courser, Knight, Lancer and their unique versions)[N]{LOC_RESOURCE_IRON_NAME}: infantry from the second tier (Man-At-Arms, Pikeman and their unique versions)[N]{LOC_RESOURCE_NITER_NAME}: siege from the third tier (Bombard, Hwacha)[N]{LOC_RESOURCE_HARDWOOD_NAME} or {LOC_RESOURCE_PITCH_NAME}: heavy warships from the second tier (Carrack, Galleon and their unique versions)</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4">
             <Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}: field artillery (Field Cannon, Field Gun)[N]{LOC_RESOURCE_OIL_NAME}: the heavier artillery (AT Gun, Mortar, Howitzer, Assault Gun), armour (Landship, Tank and their unique versions) and battleships (Dreadnought, Battleship and their unique versions)[N]{LOC_RESOURCE_COAL_NAME}: light warships (Ironclad, Cruiser, Destroyer, Barbary Corsair)[N]{LOC_RESOURCE_RUBBER_NAME}: aircraft[N]{LOC_RESOURCE_HORSES_NAME}: Cuirassier[N]{LOC_RESOURCE_HARDWOOD_NAME}: Ship of the Line[N]{LOC_RESOURCE_OIL_NAME}: Submarine</Text>
@@ -383,6 +383,24 @@
         </Row>
         <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE">
             <Text>Cannot be trained, bought or upgraded into without {LOC_RESOURCE_HARDWOOD_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_EITHER_HARDWOOD_OR_PITCH_NAME">
+            <Text>{LOC_RESOURCE_HARDWOOD_NAME} or {LOC_RESOURCE_PITCH_NAME}</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_LIGHT">
+            <Text>Needs {LOC_RESOURCE_HARDWOOD_NAME} or {LOC_RESOURCE_PITCH_NAME}: with neither, -2 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_STANDARD">
+            <Text>Needs {LOC_RESOURCE_HARDWOOD_NAME} or {LOC_RESOURCE_PITCH_NAME}: with neither, -3 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_HARSH">
+            <Text>Needs {LOC_RESOURCE_HARDWOOD_NAME} or {LOC_RESOURCE_PITCH_NAME}: with neither, -5 Combat Strength and slower to train.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_GATE_TRAINING">
+            <Text>Cannot be trained or bought without {LOC_RESOURCE_HARDWOOD_NAME} or {LOC_RESOURCE_PITCH_NAME}.</Text>
+        </Row>
+        <Row Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_GATE_UPGRADE">
+            <Text>Cannot be trained, bought or upgraded into without {LOC_RESOURCE_HARDWOOD_NAME} or {LOC_RESOURCE_PITCH_NAME}.</Text>
         </Row>
         <Row Tag="LOC_SR_PEDIA_UNIT_IVORY_GATE_UPGRADE">
             <Text>Cannot be trained, bought or upgraded into without {LOC_RESOURCE_IVORY_NAME}.</Text>

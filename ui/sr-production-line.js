@@ -30,7 +30,7 @@ export function describeProductionItem(unitType) {
   const player = Players.get(GameContext.localPlayerID);
   if (!player?.isMajor) return null;
   const { supply, penalties, gate } = readIndexes();
-  if (!supply.has(unitType) && !gate.columns.has(unitType)) return null;
+  if (!supply.has(unitType) && !gate.needs.has(unitType)) return null;
   const lines = describeProductionCost(unitType, { supply, penalties, copiesOf: copiesCounter(player), gate });
   if (lines.length === 0) return null;
   const parts = lines.map((line) => {

@@ -57,7 +57,7 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_TITLE" Language="ja_JP"><Text>どのユニットが何を必要とするか</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_1" Language="ja_JP"><Text>文明の固有ユニットは、置き換える元のユニットと同じものを必要とする。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_2" Language="ja_JP"><Text>[B]{LOC_AGE_ANTIQUITY_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 騎兵(チャリオット、騎乗兵とその固有版)[N]{LOC_RESOURCE_IRON_NAME}: 第2段階以降の歩兵(槍兵、ファランクス、レギオン、不死隊ほか)[N]{LOC_RESOURCE_IVORY_NAME}: 戦象(ユッタハッティ、プラベターラ)</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="ja_JP"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 騎兵(コーサー、騎士、槍騎兵とその固有版)[N]{LOC_RESOURCE_IRON_NAME}: 第2段階以降の歩兵(メンアットアームズ、長槍兵とその固有版)[N]{LOC_RESOURCE_NITER_NAME}: 第3段階以降の攻城兵器(射石砲、火車)[N]{LOC_RESOURCE_HARDWOOD_NAME}: 第2段階以降の重戦闘艦(キャラック船、ガレオン船とその固有版)</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_3" Language="ja_JP"><Text>[B]{LOC_AGE_EXPLORATION_NAME}[/B][N]{LOC_RESOURCE_HORSES_NAME}: 騎兵(コーサー、騎士、槍騎兵とその固有版)[N]{LOC_RESOURCE_IRON_NAME}: 第2段階以降の歩兵(メンアットアームズ、長槍兵とその固有版)[N]{LOC_RESOURCE_NITER_NAME}: 第3段階以降の攻城兵器(射石砲、火車)[N]{LOC_RESOURCE_HARDWOOD_NAME}または{LOC_RESOURCE_PITCH_NAME}: 第2段階以降の重戦闘艦(キャラック船、ガレオン船とその固有版)</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_4" Language="ja_JP"><Text>[B]{LOC_AGE_MODERN_NAME}[/B][N]{LOC_RESOURCE_NITER_NAME}: 野戦砲兵(野戦砲、野砲)[N]{LOC_RESOURCE_OIL_NAME}: より重い砲兵(対戦車砲、迫撃砲、榴弾砲、突撃砲)、機甲部隊(陸上艦、戦車とその固有版)と戦艦(弩級戦艦、戦艦とその固有版)[N]{LOC_RESOURCE_COAL_NAME}: 軽戦闘艦(装甲艦、巡洋艦、駆逐艦、バリバリア・コルセア)[N]{LOC_RESOURCE_RUBBER_NAME}: 航空機[N]{LOC_RESOURCE_HORSES_NAME}: 胸甲騎兵[N]{LOC_RESOURCE_HARDWOOD_NAME}: 戦列艦[N]{LOC_RESOURCE_OIL_NAME}: 潜水艦</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_GATES_PARA_5" Language="ja_JP"><Text>どの条件もないもの: 戦士の系統と斥候、遠隔歩兵(弓兵、弩兵、アルケブス銃兵)、カタパルトとトレビュシェット、コグ船と戦列艦、胸甲騎兵、潜水艦、近代の歩兵。これで、どのプレイヤーも常に防衛できる。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_SR_STRATEGIC_RESOURCES_CHAPTER_CHAINS_TITLE" Language="ja_JP"><Text>近代のサプライチェーン</Text></Replace>
@@ -131,6 +131,12 @@
         <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_IVORY_NAME}が1つもないと訓練も購入もできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_RUBBER_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_RUBBER_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
+        <Replace Tag="LOC_SR_EITHER_HARDWOOD_OR_PITCH_NAME" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}または{LOC_RESOURCE_PITCH_NAME}</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_LIGHT" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}または{LOC_RESOURCE_PITCH_NAME}が必要: どちらも1個もないと戦闘力-2、訓練が遅くなる。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_STANDARD" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}または{LOC_RESOURCE_PITCH_NAME}が必要: どちらも1個もないと戦闘力-3、訓練が遅くなる。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_HARSH" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}または{LOC_RESOURCE_PITCH_NAME}が必要: どちらも1個もないと戦闘力-5、訓練が遅くなる。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_GATE_TRAINING" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}も{LOC_RESOURCE_PITCH_NAME}も1つもないと訓練も購入もできない。</Text></Replace>
+        <Replace Tag="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_HARDWOOD_NAME}も{LOC_RESOURCE_PITCH_NAME}も1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_PEDIA_UNIT_IVORY_GATE_UPGRADE" Language="ja_JP"><Text>{LOC_RESOURCE_IVORY_NAME}が1つもないと訓練も購入も、アップグレードでこのユニットにすることもできない。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED" Language="ja_JP"><Text>次の訓練に必要: {1_Units}。</Text></Replace>
         <Replace Tag="LOC_SR_RESOURCE_NEEDED_MORE" Language="ja_JP"><Text>次の訓練に必要: {1_Units}、ほか{2_More}種。</Text></Replace>
