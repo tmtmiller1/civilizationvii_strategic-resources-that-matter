@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dev only, never shipped. Does EFFECT_PLAYER_DISABLE_BUILD_UNIT reach independents and city-states, and does it lift
+     when its requirement stops holding? The Warrior stands in for a gated unit: blocked for every non-major player
+     that has no Settler. Remove from Mods/ after the run. -->
+<Mod id="tower-sr-probe11" version="1" xmlns="ModInfo">
+	<Properties>
+		<Name>SR probe 11: minor gate (dev)</Name>
+		<Description>Dev only.</Description>
+		<Authors>Tower</Authors>
+		<Package>StrategicResourcesThatMatter</Package>
+		<ShowInBrowser>1</ShowInBrowser>
+		<AffectsSavedGames>1</AffectsSavedGames>
+	</Properties>
+	<ActionCriteria>
+		<Criteria id="antiquity"><AgeInUse>AGE_ANTIQUITY</AgeInUse></Criteria>
+	</ActionCriteria>
+	<ActionGroups>
+		<ActionGroup id="sr-probe11-data" scope="game" criteria="antiquity">
+			<Actions><UpdateDatabase><Item>data/probe11.sql</Item></UpdateDatabase></Actions>
+			<Properties><LoadOrder>10003</LoadOrder></Properties>
+		</ActionGroup>
+	</ActionGroups>
+</Mod>
