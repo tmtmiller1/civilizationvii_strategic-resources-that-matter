@@ -109,7 +109,11 @@ export const GATES = {
  * @type {Record<string, Record<string, string[]>>}
  */
 export const ALTERNATIVES = {
-  AGE_EXPLORATION: { RESOURCE_HARDWOOD: ["RESOURCE_PITCH"] }
+  AGE_EXPLORATION: { RESOURCE_HARDWOOD: ["RESOURCE_PITCH"] },
+  // The owner, 2026-10-29: the Modern Hardwood ships (the Ship of the Line, the Turtle Ship) take Pitch too. An age
+  // change never adds Hardwood (valid from Antiquity), so a game started in Antiquity has it only if its first map
+  // drew it, while Pitch is new in Exploration and is placed at that change (DESIGN.md 7k).
+  AGE_MODERN: { RESOURCE_HARDWOOD: ["RESOURCE_PITCH"] }
 };
 
 /**

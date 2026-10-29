@@ -320,7 +320,13 @@ for (const age of AGES) {
   }
 }
 // The stand-ins, pinned: Pitch for Hardwood in Exploration only (Modern keeps its rules, Supply Chains included).
-assert.deepEqual(ALTERNATIVES, { AGE_EXPLORATION: { RESOURCE_HARDWOOD: ["RESOURCE_PITCH"] } }, "the stand-ins");
+assert.deepEqual(ALTERNATIVES, { AGE_EXPLORATION: { RESOURCE_HARDWOOD: ["RESOURCE_PITCH"] }, AGE_MODERN: { RESOURCE_HARDWOOD: ["RESOURCE_PITCH"] } }, "the stand-ins");
+// A tag listed twice fails sr-tags.xml at load (UNIQUE constraint on Tags.Tag), which rolls the mod back: two ages
+// with the same stand-in share one SR_EITHER_ tag.
+{
+  const tagRows = [...read("sr-tags.xml").matchAll(/<Row Tag="([A-Z0-9_]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(tagRows.filter((t, i) => tagRows.indexOf(t) !== i), [], "sr-tags.xml lists a tag twice");
+}
 
 // 4b. The war elephants (1.3): their own +1 per Ivory, the game's effect on their tag, registered; the supply file
 // gives them the tag and takes them out of the game's +1 per Horses through that modifier's own all-of set.
@@ -359,7 +365,10 @@ for (const f of fs.readdirSync(DATA)) {
   const xml = read(f);
   const match = f.match(GATE_FILE);
   if (!match) {
-    assert.ok(!/StrategicResource\s*=|StrategicResource="/.test(xml), `${f} sets Units.StrategicResource outside a gate file`);
+    // sr-carry-over.sql only clears it, on the units the age change carries armies into (checked below).
+    const cleared = f === "sr-carry-over.sql" ? xml.replace(/SET StrategicResource = NULL/g, "") : xml;
+    assert.ok(!/StrategicResource\s*=|StrategicResource="/.test(cleared),
+      `${f} sets Units.StrategicResource outside a gate file`);
     assert.ok(!/<GlobalParameters>|(INSERT|REPLACE|UPDATE)\s+(OR\s+[A-Z]+\s+)?(INTO\s+)?GlobalParameters/i.test(xml),
       `${f} writes global parameters outside a gate file`);
     continue;
@@ -427,8 +436,8 @@ assert.deepEqual(Object.fromEntries(AGES.map((age) => [age, lockList(age)])), {
     "UNIT_LEIOMANO_2:unique", "UNIT_MAN_AT_ARMS:base", "UNIT_TERCIO_2:unique", "UNIT_VIKINGR_2:unique",
     "UNIT_VIKINGR_3:unique", "UNIT_XUNLEICHONG_2:unique"],
   AGE_MODERN: ["UNIT_AT_GUN:base", "UNIT_CHANG_BEUN_3:unique", "UNIT_COSSACK_2:unique", "UNIT_DREADNOUGHT:base",
-    "UNIT_GHILMAN_2:unique", "UNIT_HUSSAR_2:unique", "UNIT_LANDSHIP:base", "UNIT_MIKASA:unique", "UNIT_REVENGE:unique",
-    "UNIT_TURTLE_SHIP_2:unique"]
+    "UNIT_FRIGATE:base", "UNIT_GHILMAN_2:unique", "UNIT_HUSSAR_2:unique", "UNIT_LANDSHIP:base", "UNIT_MIKASA:unique",
+    "UNIT_REVENGE:unique", "UNIT_TURTLE_SHIP:unique", "UNIT_TURTLE_SHIP_2:unique"]
 }, "the line locks");
 for (const age of AGES) {
   const f = `sr-${AGE_FILE[age]}-gate-lines.sql`;
@@ -491,6 +500,11 @@ for (const age of AGES) {
     [MINOR_CIV_TRAIT, locks.filter((l) => l.kind === "base").map((l) => l.unit)],
     [LOCKED_TRAIT, locks.filter((l) => l.kind === "unique").map((l) => l.unit)]
   ].filter(([, units]) => units.length), `${f}: the trait changes`);
+  // The units an age change carries armies into keep their own trait (data/sr-carry-over.sql, verification Phase 25).
+  for (const m of sql.matchAll(/^UPDATE Units SET TraitType[^;]*;/gm)) {
+    assert.match(m[0], /AND UnitType NOT IN \(SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'\n/,
+      `${f}: a trait change that reaches a carried unit`);
+  }
   const traitsAt = sql.indexOf("UPDATE Units SET TraitType");
   assert.ok(sql.lastIndexOf("'SR_LINE_GRANT_TYPE'") < traitsAt && sql.lastIndexOf("SR_LINE_IS_") < traitsAt,
     `${f}: the traits change after every grant and requirement is in`);
@@ -504,7 +518,7 @@ for (const f of fs.readdirSync(DATA)) {
   assert.ok(!/<TypeTags>/.test(read(f)), `${f}: TypeTags rows in XML can't skip a missing unit; use the guarded SQL`);
   for (const m of read(f).matchAll(/INSERT[^;]*INTO TypeTags[^;]*;/g)) {
     // The copies' tags come through a temp table filled only when the copied unit exists, after the copy's Types row.
-    if (m[0] === "INSERT INTO TypeTags SELECT * FROM sr_rows;" ||
+    if (m[0] === "INSERT OR IGNORE INTO TypeTags SELECT * FROM sr_rows;" ||
       m[0] === "INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT UnitType, 'SR_LINE_PLAIN' FROM sr_copy;") continue;
     assert.match(m[0], /SELECT Type, '[A-Z_]+' FROM Types WHERE Type IN \(/, `${f}: an unguarded TypeTags insert`);
   }
@@ -590,6 +604,12 @@ assert.deepEqual(Object.keys(CHAINS), ["AGE_MODERN"], "chain rules are the Moder
   assert.ok(locks.every((l) => l.kind !== "granted"), "no Modern chained unit is one the game grants");
   const f = "sr-modern-chains.sql";
   const sql = read(f);
+  // A unit with stand-ins (the Ship of the Line, the Turtle Ship) carries no column: its second resource must still
+  // join its lock, behind the table-wide guard (a unit-column guard would never let it in).
+  for (const unit of ["UNIT_FRIGATE", "UNIT_TURTLE_SHIP"]) {
+    assert.ok(sql.includes(`SELECT 'SR_LINE_REQS_${unit}', 'SR_LINE_HAS_NITER' FROM Units WHERE UnitType = '${unit}' ` +
+      "AND EXISTS (SELECT 1 FROM Units g WHERE g.StrategicResource IS NOT NULL)"), `${f}: ${unit} waits for Niter too`);
+  }
   for (const resource of Object.keys(EXPECTED_CHAINS)) {
     const name = resource.replace("RESOURCE_", "");
     assert.ok(sql.includes(`SELECT Type, 'SR_SUPPLY_${name}' FROM Types WHERE Type IN (`), `${f}: ${name} tags`);
@@ -597,8 +617,11 @@ assert.deepEqual(Object.keys(CHAINS), ["AGE_MODERN"], "chain rules are the Moder
     assert.ok(sql.includes(`THEN 'LOC_SR_PEDIA_UNIT_${name}_GATE_UPGRADE' ELSE 'LOC_SR_PEDIA_UNIT_${name}_GATE_TRAINING'`),
       `${f}: ${name} gate line`);
   }
+  // A resource with stand-ins reads "A or B" (the Ship of the Line: Hardwood or Pitch, then Niter).
+  const named = (/** @type {string} */ r) => [r, ...(ALTERNATIVES.AGE_MODERN?.[r] ?? [])].join(" or ");
   for (const lock of locks) {
-    assert.ok(sql.includes(`-- ${lock.unit}: ${lock.kind}, needs ${lock.resources.join(", ")}`), `${f}: ${lock.unit}`);
+    assert.ok(sql.includes(`-- ${lock.unit}: ${lock.kind}, needs ${lock.resources.map(named).join(", ")}`),
+      `${f}: ${lock.unit}`);
   }
   const statements = sql.split(";\n").map((x) => x.replace(/^(--[^\n]*\n|\s)+/, "")).filter(Boolean);
   for (const st of statements) {
@@ -607,11 +630,16 @@ assert.deepEqual(Object.keys(CHAINS), ["AGE_MODERN"], "chain rules are the Moder
       assert.match(st, /^INSERT OR IGNORE /, `${f}: a plain insert: ${st.slice(0, 100)}`);
     }
     if (/^INSERT OR IGNORE INTO (Modifiers|GameModifiers|RequirementSets) /.test(st) && !/^INSERT OR IGNORE INTO Modifiers SELECT \* FROM sr_mods/.test(st)) {
+      // A unit with stand-ins never carries the column: its rows wait for any unit to carry one (the locked level).
       assert.ok(/ FROM Units WHERE UnitType = '[A-Z0-9_]+' AND StrategicResource IS NOT NULL/.test(st) ||
+        / FROM Units WHERE UnitType = '[A-Z0-9_]+' AND EXISTS \(SELECT 1 FROM Units g WHERE g\.StrategicResource IS NOT NULL\)/.test(st) ||
         /^INSERT OR IGNORE INTO RequirementSets \(RequirementSetId, RequirementSetType\)\n {4}VALUES \('SR_LINE_/.test(st),
       `${f}: a grant not behind the column: ${st.slice(0, 120)}`);
     }
-    if (/^UPDATE Units SET TraitType/.test(st)) assert.match(st, /AND StrategicResource IS NOT NULL$/, `${f}: traits`);
+    if (/^UPDATE Units SET TraitType/.test(st)) {
+      assert.match(st, /AND StrategicResource IS NOT NULL\n {4}AND UnitType NOT IN \(SELECT UnitType FROM Unit_ShadowReplacements/,
+        `${f}: traits`);
+    }
     if (/^UPDATE CivilopediaPageQueries/.test(st)) assert.match(st, /StrategicResource IS NOT NULL\)$/, `${f}: pedia query`);
   }
   assert.ok(!/DELETE FROM UnitUpgrades|UPDATE UnitUpgrades/.test(sql), `${f} removes or changes an upgrade row`);
@@ -817,6 +845,146 @@ if (!fs.existsSync(live)) {
   assert.match(killGroup, /criteria="kill-tiers-off"/, "kill tiers group criteria");
   assert.match(killGroup, /<LoadOrder>203<\/LoadOrder>/, "kill tiers group loads after the gate files (202)");
   assert.match(killGroup, /<Item>data\/sr-kill-tiers-off\.sql<\/Item>/, "kill tiers group file");
+}
+
+// The units an age change carries armies into stay free (the owner, 2026-10-29; verification Phase 25). The file loads
+// always, after the gate files and Modern Supply Chains, and reads the carry-over table: the Ship of the Line, the
+// Turtle Ship that replaces it and the Cuirassier lose this mod's column and lock lines and keep their supply tags;
+// the Dreadnought, which isn't carried into, keeps its lock; another mod's column on a carried unit stays.
+{
+  const group = (modinfo.match(/<ActionGroup id="strategic-resources-that-matter-carry-over"[\s\S]*?<\/ActionGroup>/) ?? [""])[0];
+  assert.match(group, /scope="game" criteria="always"[\s\S]*<LoadOrder>204<\/LoadOrder>[\s\S]*<Item>data\/sr-carry-over\.sql<\/Item>/,
+    "carry-over group: always, after the gate files (202) and chains (203)");
+  const out = execFileSync("sqlite3", [":memory:"], {
+    encoding: "utf8",
+    input: `CREATE TABLE Types (Type TEXT PRIMARY KEY, Kind TEXT);
+      CREATE TABLE Tags (Tag TEXT PRIMARY KEY, Category TEXT);
+      CREATE TABLE TypeTags (Type TEXT, Tag TEXT, PRIMARY KEY (Type, Tag));
+      CREATE TABLE Units (UnitType TEXT PRIMARY KEY, TraitType TEXT, StrategicResource TEXT);
+      CREATE TABLE Unit_ShadowReplacements (Tag TEXT, UnitType TEXT, CoreClass TEXT, Domain TEXT);
+      CREATE TABLE UnitReplaces (CivUniqueUnitType TEXT, ReplacesUnitType TEXT);
+      CREATE TABLE CivilopediaPageChapterParagraphs (SectionID TEXT, PageID TEXT, ChapterID TEXT, Paragraph TEXT);
+      INSERT INTO Types VALUES ('UNIT_FRIGATE', 'KIND_UNIT'), ('UNIT_TURTLE_SHIP', 'KIND_UNIT'), ('UNIT_CUIRASSIER', 'KIND_UNIT'),
+        ('UNIT_DREADNOUGHT', 'KIND_UNIT'), ('UNIT_MORTAR', 'KIND_UNIT'), ('UNIT_SCOUT', 'KIND_UNIT');
+      INSERT INTO Units VALUES ('UNIT_FRIGATE', NULL, NULL), ('UNIT_TURTLE_SHIP', 'TRAIT_JOSEON', NULL),
+        ('UNIT_CUIRASSIER', NULL, 'RESOURCE_HORSES'), ('UNIT_DREADNOUGHT', 'TRAIT_LEADER_MINOR_CIV', 'RESOURCE_OIL'),
+        ('UNIT_MORTAR', NULL, 'RESOURCE_COAL'), ('UNIT_SCOUT', NULL, NULL);
+      INSERT INTO Unit_ShadowReplacements VALUES ('UNIT_CLASS_NAVAL', 'UNIT_FRIGATE', 'CORE_CLASS_MILITARY', 'DOMAIN_SEA'),
+        ('UNIT_CLASS_CAVALRY', 'UNIT_CUIRASSIER', 'CORE_CLASS_MILITARY', 'DOMAIN_LAND'),
+        ('UNIT_CLASS_SIEGE', 'UNIT_MORTAR', 'CORE_CLASS_MILITARY', 'DOMAIN_LAND'),
+        ('UNIT_CLASS_RECON', 'UNIT_SCOUT', 'CORE_CLASS_RECON', 'DOMAIN_LAND'), ('UNIT_CLASS_X', 'UNIT_GONE', 'CORE_CLASS_MILITARY', 'DOMAIN_LAND');
+      INSERT INTO UnitReplaces VALUES ('UNIT_TURTLE_SHIP', 'UNIT_FRIGATE');
+      INSERT INTO TypeTags VALUES ('UNIT_FRIGATE', 'SR_SUPPLY_HARDWOOD'), ('UNIT_CUIRASSIER', 'SR_SUPPLY_HORSES'),
+        ('UNIT_DREADNOUGHT', 'SR_SUPPLY_OIL'), ('UNIT_MORTAR', 'SR_SUPPLY_OIL');
+      INSERT INTO CivilopediaPageChapterParagraphs VALUES ('UNITS', 'UNIT_FRIGATE', 'SR_LOCK', 'x'), ('UNITS', 'UNIT_FRIGATE', 'OTHER', 'y'),
+        ('UNITS', 'UNIT_DREADNOUGHT', 'SR_LOCK', 'z');
+      ${read("sr-carry-over.sql")}
+      SELECT 'tag:' || group_concat(Type) FROM (SELECT Type FROM TypeTags WHERE Tag = 'SR_CARRIED_FREE' ORDER BY Type);
+      SELECT 'unit:' || UnitType || ':' || ifnull(TraitType, '-') || ':' || ifnull(StrategicResource, '-') FROM Units ORDER BY UnitType;
+      SELECT 'page:' || PageID || ':' || ChapterID FROM CivilopediaPageChapterParagraphs ORDER BY PageID, ChapterID;
+      SELECT 'supply:' || count(*) FROM TypeTags WHERE Tag LIKE 'SR_SUPPLY_%';`
+  }).trim().split("\n");
+  assert.deepEqual(out, [
+    "tag:UNIT_CUIRASSIER,UNIT_FRIGATE,UNIT_MORTAR,UNIT_TURTLE_SHIP",
+    "unit:UNIT_CUIRASSIER:-:-", "unit:UNIT_DREADNOUGHT:TRAIT_LEADER_MINOR_CIV:RESOURCE_OIL", "unit:UNIT_FRIGATE:-:-",
+    "unit:UNIT_MORTAR:-:RESOURCE_COAL", "unit:UNIT_SCOUT:-:-", "unit:UNIT_TURTLE_SHIP:TRAIT_JOSEON:-",
+    "page:UNIT_DREADNOUGHT:SR_LOCK", "page:UNIT_FRIGATE:OTHER", "supply:4"
+  ], "carried units free, the rest as they were; a Coal column on an Oil unit is another mod's and stays");
+}
+
+// Strategic Resources on the Map: the default leaves the map alone, More and Plenty each load their own file, and each
+// file multiplies the map weights another mod may already have changed, raises the per-landmass minimum, and leaves
+// every other resource and a missing resource alone.
+{
+  const setup = read("sr-setup.sql");
+  assert.match(setup, /'StrategicResourcesThatMatterAbundance', 'LOC_SR_SETUP_ABUNDANCE_NAME', [\s\S]*?'SR_ABUNDANCE_STANDARD', 'Game', 'StrategicResourcesThatMatterAbundance'/,
+    "Strategic Resources on the Map defaults to the game's own map");
+  for (const [value, file] of [["SR_ABUNDANCE_MORE", "more"], ["SR_ABUNDANCE_PLENTY", "plenty"]]) {
+    const criteria = (modinfo.match(new RegExp(`<Criteria id="abundance-${file}">[\\s\\S]*?</Criteria>`)) ?? [""])[0];
+    assert.match(criteria, new RegExp(`<ConfigurationId>StrategicResourcesThatMatterAbundance</ConfigurationId>\\s*<Value>${value}</Value>`),
+      `${file} loads only for its value`);
+    const group = (modinfo.match(new RegExp(`<ActionGroup id="strategic-resources-that-matter-abundance-${file}"[\\s\\S]*?</ActionGroup>`)) ?? [""])[0];
+    assert.match(group, new RegExp(`criteria="abundance-${file}"[\\s\\S]*<Item>data/sr-abundance-${file}\\.sql</Item>`), `${file} group`);
+  }
+  /** @param {string} file @param {string} tags the age's supply tags, as TypeTags rows */
+  const map = (file, tags) => execFileSync("sqlite3", [":memory:"], {
+    encoding: "utf8",
+    input: `CREATE TABLE Resources (ResourceType TEXT PRIMARY KEY, Weight REAL, MinimumPerLandmass INTEGER, Staple BOOLEAN);
+      CREATE TABLE Resource_ValidBiomes (ResourceType TEXT, BiomeType TEXT, Weight REAL);
+      CREATE TABLE TypeTags (Type TEXT, Tag TEXT);
+      CREATE TABLE Resource_Distribution (AgeType TEXT, MaxResourceTypes INTEGER);
+      INSERT INTO Resource_Distribution VALUES ('AGE_X', 25);
+      INSERT INTO Resources VALUES ('RESOURCE_IRON', 1.0, 1, 1), ('RESOURCE_HORSES', 0.5, 4, 1), ('RESOURCE_SILK', 1.0, 1, 0),
+        ('RESOURCE_HARDWOOD', 1.0, 1, 0), ('RESOURCE_PITCH', 1.0, 1, 0);
+      INSERT INTO Resource_ValidBiomes VALUES ('RESOURCE_IRON', 'BIOME_PLAINS', 1.0), ('RESOURCE_HORSES', 'BIOME_PLAINS', NULL),
+        ('RESOURCE_SILK', 'BIOME_TROPICAL', 1.0), ('RESOURCE_HARDWOOD', 'BIOME_TUNDRA', 1.0);
+      ALTER TABLE Resource_ValidBiomes ADD COLUMN TerrainType TEXT DEFAULT 'TERRAIN_FLAT';
+      INSERT INTO Resource_ValidBiomes VALUES ('RESOURCE_HARDWOOD', 'BIOME_TROPICAL', 1.0, 'TERRAIN_HILL');
+      ${tags}
+      ${read(file)}
+      SELECT ResourceType || ':' || Weight || ':' || MinimumPerLandmass || ':' || Staple FROM Resources ORDER BY ResourceType;
+      SELECT ResourceType || '@' || BiomeType || ':' || Weight FROM Resource_ValidBiomes ORDER BY ResourceType, BiomeType;
+      SELECT 'types:' || MaxResourceTypes FROM Resource_Distribution;`
+  }).trim().split("\n");
+  // An Antiquity-like age: units draw on Horses and Iron. Horses keeps another mod's 0.5 weight in proportion and its
+  // minimum of 4 as a floor, and an empty class weight counts as 1. Hardwood and Pitch, which no unit of the age draws
+  // on, stay as the game has them, and so does Silk.
+  const antiquity = `INSERT INTO TypeTags VALUES ('UNIT_HORSEMAN', 'SR_SUPPLY_HORSES'), ('UNIT_SPEARMAN', 'SR_SUPPLY_IRON'),
+    ('UNIT_LEGION', 'SR_SUPPLY_IRON'), ('UNIT_LEGION', 'SR_RANGED_IRON');`;
+  // Nothing here draws on Hardwood: it becomes a staple at half weight and off the hills (they're Iron's), with one
+  // more map slot for it; Iron and Horses are staples already and take none.
+  assert.deepEqual(map("sr-abundance-more.sql", antiquity), ["RESOURCE_HARDWOOD:0.5:1:1", "RESOURCE_HORSES:1.0:4:1",
+    "RESOURCE_IRON:2.0:2:1", "RESOURCE_PITCH:1.0:1:0", "RESOURCE_SILK:1.0:1:0", "RESOURCE_HARDWOOD@BIOME_TUNDRA:0.5",
+    "RESOURCE_HORSES@BIOME_PLAINS:2.0", "RESOURCE_IRON@BIOME_PLAINS:2.0", "RESOURCE_SILK@BIOME_TROPICAL:1.0",
+    "types:26"], "More");
+  assert.deepEqual(map("sr-abundance-plenty.sql", antiquity), ["RESOURCE_HARDWOOD:0.5:1:1", "RESOURCE_HORSES:1.5:4:1",
+    "RESOURCE_IRON:3.0:3:1", "RESOURCE_PITCH:1.0:1:0", "RESOURCE_SILK:1.0:1:0", "RESOURCE_HARDWOOD@BIOME_TUNDRA:0.5",
+    "RESOURCE_HORSES@BIOME_PLAINS:3.0", "RESOURCE_IRON@BIOME_PLAINS:3.0", "RESOURCE_SILK@BIOME_TROPICAL:1.0",
+    "types:26"], "Plenty");
+  // An Exploration-like age: the warships draw on Hardwood, with Pitch standing in, so both change, with a slot each.
+  const exploration = `INSERT INTO TypeTags VALUES ('UNIT_CARRACK', 'SR_SUPPLY_HARDWOOD'),
+    ('UNIT_CARRACK', 'SR_EITHER_HARDWOOD_OR_PITCH');`;
+  assert.deepEqual(map("sr-abundance-more.sql", exploration).slice(0, 5), ["RESOURCE_HARDWOOD:2.0:2:1",
+    "RESOURCE_HORSES:0.5:4:1", "RESOURCE_IRON:1.0:1:1", "RESOURCE_PITCH:2.0:2:1", "RESOURCE_SILK:1.0:1:0"], "More, Pitch");
+  const explorationMap = map("sr-abundance-more.sql", exploration);
+  assert.equal(explorationMap.at(-1), "types:27", "two new staples, two more slots");
+  assert.ok(explorationMap.includes("RESOURCE_HARDWOOD@BIOME_TROPICAL:2.0") &&
+    explorationMap.includes("RESOURCE_HARDWOOD@BIOME_TUNDRA:2.0"), "drawn on: Hardwood keeps its hills, at twice");
+  // No unit tagged (the tags never loaded): only Hardwood's staple, with its slot.
+  const untagged = map("sr-abundance-more.sql", "");
+  assert.deepEqual(untagged.slice(0, 5), ["RESOURCE_HARDWOOD:0.5:1:1", "RESOURCE_HORSES:0.5:4:1",
+    "RESOURCE_IRON:1.0:1:1", "RESOURCE_PITCH:1.0:1:0", "RESOURCE_SILK:1.0:1:0"], "More, no tags");
+  assert.equal(untagged.at(-1), "types:26");
+  for (const file of ["more", "plenty"]) {
+    const group = (modinfo.match(new RegExp(`<ActionGroup id="strategic-resources-that-matter-abundance-${file}"[\\s\\S]*?</ActionGroup>`)) ?? [""])[0];
+    assert.match(group, /<LoadOrder>210<\/LoadOrder>/, `${file} loads after the supply tags (201) and chains (203)`);
+  }
+}
+
+// The AI's settle rows (sr-ai.sql): one per resource present in the game, on the list every major civ inherits, and a
+// second run (two copies of the mod) adds nothing.
+{
+  const ai = (/** @type {string} */ extra) => execFileSync("sqlite3", [":memory:"], {
+    encoding: "utf8",
+    input: `PRAGMA foreign_keys = ON;
+      CREATE TABLE AiListTypes (ListType TEXT PRIMARY KEY);
+      CREATE TABLE AiLists (LeaderType TEXT, ListType TEXT NOT NULL REFERENCES AiListTypes(ListType), System TEXT NOT NULL,
+        PRIMARY KEY (LeaderType, ListType));
+      CREATE TABLE AiFavoredItems (Favored BOOLEAN NOT NULL DEFAULT 1, Item TEXT NOT NULL, ListType TEXT REFERENCES AiListTypes(ListType),
+        StringVal TEXT, Value INTEGER NOT NULL DEFAULT 0, TooltipString TEXT, PRIMARY KEY (Favored, Item, ListType, StringVal, Value));
+      CREATE TABLE Resources (ResourceType TEXT PRIMARY KEY);
+      INSERT INTO AiListTypes VALUES ('Default Settlement Plot Evaluations');
+      INSERT INTO Resources VALUES ('RESOURCE_IRON'), ('RESOURCE_NITER'), ('RESOURCE_SILK');
+      ${read("sr-ai.sql")} ${extra}
+      SELECT 'S|' || StringVal || ':' || Value FROM AiFavoredItems WHERE Item = 'Specific Resource' ORDER BY StringVal;
+      SELECT 'L|' || LeaderType || ':' || System FROM AiLists;
+      SELECT 'B|' || Item || ':' || Value FROM AiFavoredItems WHERE ListType = 'Strategic Resources Pseudoyield Biases' ORDER BY Item;
+      SELECT 'F|' || "table" FROM pragma_foreign_key_check;`
+  }).trim().split("\n");
+  const once = ai("");
+  assert.deepEqual(once, ["S|RESOURCE_IRON:20", "S|RESOURCE_NITER:20", "L|TRAIT_LEADER_MAJOR_CIV:PseudoYieldBiases",
+    "B|PSEUDOYIELD_ADJACENT_UNCLAIMED_RESOURCE:200", "B|PSEUDOYIELD_RESOURCE_IMPORT:100"], "AI rows");
+  assert.deepEqual(ai(read("sr-ai.sql")), once, "AI rows, run twice");
 }
 
 // The paragraph table keeps one row per section, page and chapter; a second insert rolls back the whole file and the

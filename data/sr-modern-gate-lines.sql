@@ -9,6 +9,14 @@ INSERT OR IGNORE INTO Traits (TraitType, InternalOnly)
 INSERT OR IGNORE INTO DynamicModifiers (ModifierType, CollectionType, EffectType)
     VALUES ('SR_LINE_ATTACH_TYPE', 'COLLECTION_MAJOR_PLAYERS', 'EFFECT_ATTACH_MODIFIERS'), ('SR_LINE_GRANT_TYPE', 'COLLECTION_OWNER', 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD');
 INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    VALUES ('SR_LINE_HAS_HARDWOOD', 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 0);
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    VALUES ('SR_LINE_HAS_HARDWOOD', 'ResourceType', 'RESOURCE_HARDWOOD'), ('SR_LINE_HAS_HARDWOOD', 'Amount', '1');
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    VALUES ('SR_LINE_NO_HARDWOOD', 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 1);
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    VALUES ('SR_LINE_NO_HARDWOOD', 'ResourceType', 'RESOURCE_HARDWOOD'), ('SR_LINE_NO_HARDWOOD', 'Amount', '1');
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
     VALUES ('SR_LINE_HAS_OIL', 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 0);
 INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
     VALUES ('SR_LINE_HAS_OIL', 'ResourceType', 'RESOURCE_OIL'), ('SR_LINE_HAS_OIL', 'Amount', '1');
@@ -16,6 +24,23 @@ INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
     VALUES ('SR_LINE_NO_OIL', 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 1);
 INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
     VALUES ('SR_LINE_NO_OIL', 'ResourceType', 'RESOURCE_OIL'), ('SR_LINE_NO_OIL', 'Amount', '1');
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    VALUES ('SR_LINE_HAS_PITCH', 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 0);
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    VALUES ('SR_LINE_HAS_PITCH', 'ResourceType', 'RESOURCE_PITCH'), ('SR_LINE_HAS_PITCH', 'Amount', '1');
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    VALUES ('SR_LINE_NO_PITCH', 'REQUIREMENT_PLAYER_HAS_X_RESOURCE_TYPE', 1);
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    VALUES ('SR_LINE_NO_PITCH', 'ResourceType', 'RESOURCE_PITCH'), ('SR_LINE_NO_PITCH', 'Amount', '1');
+-- RESOURCE_HARDWOOD or RESOURCE_PITCH: a copy of any of them.
+INSERT OR IGNORE INTO RequirementSets (RequirementSetId, RequirementSetType)
+    VALUES ('SR_LINE_ANY_HARDWOOD_OR_PITCH', 'REQUIREMENTSET_TEST_ANY');
+INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    VALUES ('SR_LINE_ANY_HARDWOOD_OR_PITCH', 'SR_LINE_HAS_HARDWOOD'), ('SR_LINE_ANY_HARDWOOD_OR_PITCH', 'SR_LINE_HAS_PITCH');
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    VALUES ('SR_LINE_HAS_HARDWOOD_OR_PITCH', 'REQUIREMENT_REQUIREMENTSET_IS_MET', 0);
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    VALUES ('SR_LINE_HAS_HARDWOOD_OR_PITCH', 'RequirementSetId', 'SR_LINE_ANY_HARDWOOD_OR_PITCH');
 
 -- UNIT_AT_GUN: base, needs RESOURCE_OIL; keeps UNIT_FIELD_GUN trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
@@ -114,6 +139,32 @@ INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
 INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_DREADNOUGHT', 'SR_LINE_NOT_' || u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
     WHERE r.ReplacesUnitType = 'UNIT_DREADNOUGHT' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED' AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_DREADNOUGHT');
+
+-- UNIT_FRIGATE: base, needs RESOURCE_HARDWOOD or RESOURCE_PITCH.
+INSERT INTO Modifiers (ModifierId, ModifierType)
+    SELECT 'SR_LINE_ATTACH_UNIT_FRIGATE', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_FRIGATE' AND TraitType IS NULL;
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_ATTACH_UNIT_FRIGATE', 'ModifierId', 'SR_LINE_GRANT_UNIT_FRIGATE' FROM Units WHERE UnitType = 'UNIT_FRIGATE' AND TraitType IS NULL;
+INSERT INTO RequirementSets (RequirementSetId, RequirementSetType)
+    SELECT 'SR_LINE_REQS_UNIT_FRIGATE', 'REQUIREMENTSET_TEST_ALL' FROM Units WHERE UnitType = 'UNIT_FRIGATE' AND TraitType IS NULL;
+INSERT INTO Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+    SELECT 'SR_LINE_GRANT_UNIT_FRIGATE', 'SR_LINE_GRANT_TYPE', 'SR_LINE_REQS_UNIT_FRIGATE' FROM Units WHERE UnitType = 'UNIT_FRIGATE' AND TraitType IS NULL;
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_GRANT_UNIT_FRIGATE', 'UnitType', 'UNIT_FRIGATE' FROM Units WHERE UnitType = 'UNIT_FRIGATE' AND TraitType IS NULL;
+INSERT INTO GameModifiers (ModifierId)
+    SELECT 'SR_LINE_ATTACH_UNIT_FRIGATE' FROM Units WHERE UnitType = 'UNIT_FRIGATE' AND TraitType IS NULL;
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_FRIGATE', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_FRIGATE' AND TraitType IS NULL;
+-- Not for a civilization whose unique replaces it: the grant would lift the replacement.
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType, Inverse)
+    SELECT 'SR_LINE_NOT_' || u.TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT', 1 FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
+    WHERE r.ReplacesUnitType = 'UNIT_FRIGATE' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT 'SR_LINE_NOT_' || u.TraitType, 'TraitType', u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
+    WHERE r.ReplacesUnitType = 'UNIT_FRIGATE' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_FRIGATE', 'SR_LINE_NOT_' || u.TraitType FROM UnitReplaces r JOIN Units u ON u.UnitType = r.CivUniqueUnitType
+    WHERE r.ReplacesUnitType = 'UNIT_FRIGATE' AND u.TraitType IS NOT NULL AND u.TraitType <> 'TRAIT_SR_LOCKED' AND EXISTS (SELECT 1 FROM RequirementSets WHERE RequirementSetId = 'SR_LINE_REQS_UNIT_FRIGATE');
 
 -- UNIT_GHILMAN_2: unique, needs RESOURCE_OIL; keeps UNIT_GHILMAN trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
@@ -233,6 +284,29 @@ INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
 INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
     SELECT 'SR_LINE_REQS_UNIT_REVENGE', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_REVENGE' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
 
+-- UNIT_TURTLE_SHIP: unique, needs RESOURCE_HARDWOOD or RESOURCE_PITCH.
+INSERT INTO Modifiers (ModifierId, ModifierType)
+    SELECT 'SR_LINE_ATTACH_UNIT_TURTLE_SHIP', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_ATTACH_UNIT_TURTLE_SHIP', 'ModifierId', 'SR_LINE_GRANT_UNIT_TURTLE_SHIP' FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSets (RequirementSetId, RequirementSetType)
+    SELECT 'SR_LINE_REQS_UNIT_TURTLE_SHIP', 'REQUIREMENTSET_TEST_ALL' FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+    SELECT 'SR_LINE_GRANT_UNIT_TURTLE_SHIP', 'SR_LINE_GRANT_TYPE', 'SR_LINE_REQS_UNIT_TURTLE_SHIP' FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO ModifierArguments (ModifierId, Name, Value)
+    SELECT 'SR_LINE_GRANT_UNIT_TURTLE_SHIP', 'UnitType', 'UNIT_TURTLE_SHIP' FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO GameModifiers (ModifierId)
+    SELECT 'SR_LINE_ATTACH_UNIT_TURTLE_SHIP' FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_TURTLE_SHIP', 'SR_LINE_HAS_HARDWOOD_OR_PITCH' FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+-- Only for the civilization it belongs to, by the trait the game gives it.
+INSERT OR IGNORE INTO Requirements (RequirementId, RequirementType)
+    SELECT 'SR_LINE_IS_' || TraitType, 'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT' FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT OR IGNORE INTO RequirementArguments (RequirementId, Name, Value)
+    SELECT 'SR_LINE_IS_' || TraitType, 'TraitType', TraitType FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+INSERT INTO RequirementSetRequirements (RequirementSetId, RequirementId)
+    SELECT 'SR_LINE_REQS_UNIT_TURTLE_SHIP', 'SR_LINE_IS_' || TraitType FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
+
 -- UNIT_TURTLE_SHIP_2: unique, needs RESOURCE_OIL; keeps UNIT_TURTLE_SHIP trainable without it.
 INSERT INTO Modifiers (ModifierId, ModifierType)
     SELECT 'SR_LINE_ATTACH_UNIT_TURTLE_SHIP_2', 'SR_LINE_ATTACH_TYPE' FROM Units WHERE UnitType = 'UNIT_TURTLE_SHIP_2' AND TraitType IS NOT NULL AND TraitType <> 'TRAIT_SR_LOCKED';
@@ -324,18 +398,25 @@ UPDATE Modifiers SET SubjectRequirementSetId = (SELECT 'SR_LINE_NEEDS_' || subst
     JOIN Units u ON u.UnitType = a.Value
     WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL);
 
--- The traits last, once every requirement has read the game's own.
-UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_AT_GUN', 'UNIT_DREADNOUGHT', 'UNIT_LANDSHIP') AND TraitType IS NULL;
-UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_CHANG_BEUN_3', 'UNIT_COSSACK_2', 'UNIT_GHILMAN_2', 'UNIT_HUSSAR_2', 'UNIT_MIKASA', 'UNIT_REVENGE', 'UNIT_TURTLE_SHIP_2') AND TraitType IS NOT NULL;
+-- The traits last, once every requirement has read the game's own. A unit the age change carries armies
+-- into keeps its own: their grants then hand it to players who can build it anyway.
+UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_AT_GUN', 'UNIT_DREADNOUGHT', 'UNIT_FRIGATE', 'UNIT_LANDSHIP') AND TraitType IS NULL
+    AND UnitType NOT IN (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'
+    UNION SELECT CivUniqueUnitType FROM UnitReplaces WHERE ReplacesUnitType IN
+        (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'));
+UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_CHANG_BEUN_3', 'UNIT_COSSACK_2', 'UNIT_GHILMAN_2', 'UNIT_HUSSAR_2', 'UNIT_MIKASA', 'UNIT_REVENGE', 'UNIT_TURTLE_SHIP', 'UNIT_TURTLE_SHIP_2') AND TraitType IS NOT NULL
+    AND UnitType NOT IN (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'
+    UNION SELECT CivUniqueUnitType FROM UnitReplaces WHERE ReplacesUnitType IN
+        (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'));
 -- The Civilopedia keeps the city-state-trait units with the ordinary ones, not under unique units.
 UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NULL',
-    'AND (TraitType IS NULL OR UnitType IN ("UNIT_AT_GUN", "UNIT_DREADNOUGHT", "UNIT_LANDSHIP"))')
+    'AND (TraitType IS NULL OR UnitType IN ("UNIT_AT_GUN", "UNIT_DREADNOUGHT", "UNIT_FRIGATE", "UNIT_LANDSHIP"))')
     WHERE SectionID = 'UNITS' AND SQL LIKE '%AND TraitType IS NULL%';
 UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NOT NULL',
-    'AND TraitType IS NOT NULL AND UnitType NOT IN ("UNIT_AT_GUN", "UNIT_DREADNOUGHT", "UNIT_LANDSHIP")')
+    'AND TraitType IS NOT NULL AND UnitType NOT IN ("UNIT_AT_GUN", "UNIT_DREADNOUGHT", "UNIT_FRIGATE", "UNIT_LANDSHIP")')
     WHERE SectionID = 'UNITS' AND SQL LIKE '%AND TraitType IS NOT NULL%';
 -- Their portraits keep the plain frame (ui/sr-line-look.js).
-INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, 'SR_LINE_PLAIN' FROM Types WHERE Type IN ('UNIT_AT_GUN', 'UNIT_DREADNOUGHT', 'UNIT_LANDSHIP');
+INSERT OR IGNORE INTO TypeTags (Type, Tag) SELECT Type, 'SR_LINE_PLAIN' FROM Types WHERE Type IN ('UNIT_AT_GUN', 'UNIT_DREADNOUGHT', 'UNIT_FRIGATE', 'UNIT_LANDSHIP');
 
 -- UNIT_FRIGATE_SR_GREAT_BRITAIN: this civilization's UNIT_FRIGATE, standing in for it and upgrading straight into UNIT_REVENGE.
 CREATE TEMP TABLE sr_copy AS SELECT * FROM Units WHERE UnitType = 'UNIT_FRIGATE'
@@ -364,7 +445,7 @@ INSERT INTO Unit_Advisories SELECT * FROM sr_rows;
 DROP TABLE sr_rows;
 CREATE TEMP TABLE sr_rows AS SELECT * FROM TypeTags WHERE Type = 'UNIT_FRIGATE' AND EXISTS (SELECT 1 FROM sr_copy);
 UPDATE sr_rows SET Type = 'UNIT_FRIGATE_SR_GREAT_BRITAIN';
-INSERT INTO TypeTags SELECT * FROM sr_rows;
+INSERT OR IGNORE INTO TypeTags SELECT * FROM sr_rows;
 DROP TABLE sr_rows;
 DROP TABLE sr_copy;
 
@@ -414,7 +495,7 @@ INSERT INTO Unit_Advisories SELECT * FROM sr_rows;
 DROP TABLE sr_rows;
 CREATE TEMP TABLE sr_rows AS SELECT * FROM TypeTags WHERE Type = 'UNIT_FRIGATE' AND EXISTS (SELECT 1 FROM sr_copy);
 UPDATE sr_rows SET Type = 'UNIT_FRIGATE_SR_MEIJI';
-INSERT INTO TypeTags SELECT * FROM sr_rows;
+INSERT OR IGNORE INTO TypeTags SELECT * FROM sr_rows;
 DROP TABLE sr_rows;
 DROP TABLE sr_copy;
 

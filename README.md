@@ -69,15 +69,17 @@ A civilization's unique unit needs what the unit it replaces needs.
 | Modern | Battleships: Dreadnought, Battleship and their unique versions | Oil |
 | Modern | Light warships: Ironclad, Cruiser, Destroyer, Barbary Corsair | Coal |
 | Modern | The Cuirassier and the unique units that replace it (Cossack, Ghilman, Hussar at their first tier) | Horses |
-| Modern | The Ship of the Line and the Turtle Ship | Hardwood |
+| Modern | The Ship of the Line and the Turtle Ship | Hardwood or Pitch |
 | Modern | The Submarine | Oil |
 | Modern | Aircraft | Rubber |
 
 A resource that reaches you over a trade route counts the same as one you mine yourself, from the turn the route lands.
 
-In Exploration, Pitch works for the warships as well as Hardwood: one copy of either keeps them at full strength and,
-under a locked value, lets you train them. Hardwood only grows on tundra and in the tropics, while Pitch turns up in
-ordinary forest, so a temperate start still gets its Carracks. Modern keeps the Ship of the Line on Hardwood.
+Pitch works for the wooden warships as well as Hardwood, in Exploration and in Modern: one copy of either keeps them
+at full strength and, under a locked value, lets you train them. Hardwood only grows on tundra and in the tropics,
+while Pitch turns up in ordinary forest, so a temperate start still gets its Carracks and its Ships of the Line. The
+game also never adds Hardwood at an age change, so a game that starts in Antiquity has it later only if the first map
+drew some, while Pitch is placed when Exploration begins.
 
 The war elephants count Ivory the way cavalry counts Horses: +1 Combat Strength per Ivory you hold, up to six, and
 the steps past six with Strategic Resources Past Six on. The game's own +1 per Horses stops at them, so an elephant
@@ -101,7 +103,7 @@ notification above when your last one goes.
 
 ## Game setup options
 
-Four options in game setup, beside the game's own options such as age length:
+Five options in game setup, beside the game's own options such as age length:
 
 | Option | Values | Default |
 | --- | --- | --- |
@@ -109,6 +111,7 @@ Four options in game setup, beside the game's own options such as age length:
 | Strategic Resources Past Six | Off; On (+1 at 8, 10, 12, 14, 16, 18 and 20 of a resource) | On |
 | Modern Supply Chains | Off; On (every Modern unit needs a second resource) | Off |
 | Free Tier-Up by Kills | Off; On (the Sengoku's Samurai move up a tier after three kills, Iron or not) | On |
+| Strategic Resources on the Map | Base game; More (the ones this age's units need always on the map, half again to twice as many, at least two on each landmass players start on); Plenty (two to three times as many, at least three) | Base game |
 
 Play Now uses the defaults. The options are fixed for the whole game once it starts. Before 1.2 the lock was its own
 option, Gated Units; a save made with it keeps the gate it was started with.
@@ -128,7 +131,10 @@ long as every unit in the army is locked; with a mix, the button stays lit and t
 as they are. Under "Locked: training", upgrades stay free, as in the base game. Units already in the field are never
 locked: they keep fighting, at the Harsh penalty, and heal as usual. The units free of any requirement (the Warrior
 line, the Scout, ranged infantry, the Catapult and Trebuchet, the Cog, Modern infantry) stay free, so every player
-can always defend.
+can always defend. So do the units an age change turns your army into: the Courser in Exploration, and the Field
+Cannon, Cuirassier, Mortar and Ship of the Line in Modern, with any civilization's own version of them (the Turtle
+Ship, the Janissary). You can always train them, and without the resource they fight at the Harsh penalty like any
+other unit that needs one.
 They also stay in the production list when the next unit in their line is gated. In the base game a unit goes out of
 date as soon as the tech for its upgrade is in, so without Niter you'd lose the Trebuchet at Gunpowder and have no
 siege unit at all. With Gated Units on, the Trebuchet stays trainable after Gunpowder until you have Niter, and the
@@ -137,7 +143,13 @@ Once you have the resource, the line works as in the base game: the old unit goe
 Rome, Persia, Meiji Japan and Great Britain get their own Warrior or Frigate for this, the same unit under the same
 name and with the same look, which upgrades straight into the Legion, the Immortal, the Mikasa or the Revenge, and
 takes the same story rewards a Warrior or Frigate would.
-Independent powers and city-states are never locked. A civilization's unique unit is locked like the unit it replaces.
+Independent powers and city-states follow their own rule. A city-state can field a locked unit once its suzerain has
+fielded one; an independent power, or a city-state with no suzerain, once you have. Until then, each one that turns up
+is swapped at the start of your turn for the strongest unit of the same kind that needs no resource, at no higher
+tier (a Landship becomes a Rifleman; a ship with no free counterpart is removed). A civilization's unique unit is
+locked like the unit it replaces, and counts for it: a suzerain's Hoplite unlocks the Spearman. A unit a minor was
+allowed to keep stays with it: if an independent power holds a Spearman because you'd fielded one, and it then becomes
+a city-state under a suzerain who hasn't, it keeps that Spearman, and only the ones it raises after that wait.
 
 The Sengoku's Samurai reach their second and third tier by themselves, after three kills at each tier, and the game
 doesn't ask for Iron for that step, even under "Locked: training and upgrade". That's what you get with Free Tier-Up
@@ -170,7 +182,7 @@ too, so the supply lines of the industrial age matter as much as the first resou
 | Battleships: Dreadnought, Battleship and their unique versions | Oil and Coal |
 | Light warships: Ironclad, Cruiser, Destroyer, Barbary Corsair | Coal and Niter |
 | The Cuirassier and its unique versions | Horses and Niter |
-| The Ship of the Line and the Turtle Ship | Hardwood and Niter |
+| The Ship of the Line and the Turtle Ship | Hardwood or Pitch, and Niter |
 | The Submarine | Oil and Rubber |
 | Aircraft | Rubber and Oil |
 
@@ -184,21 +196,28 @@ resource too.
 ## AI players
 
 The AI plays under the same rules. The penalty is ordinary unit and city data, so it reaches the AI the same way it
-reaches you, and the turn-start check covers every major player. Independent powers and city-states are not
-penalised. In testing, an AI with no Iron kept building Warriors where, with Iron, it built Legions.
+reaches you, and the turn-start check covers every major player. Independent powers and city-states aren't penalised.
+
+The AI also goes after these resources. The mod gives the game's own AI a reason to: a city site with Iron, Horses,
+Niter or another of the mod's resources rates higher, and so do growing onto a resource tile and importing one. In
+90-turn test games on three maps, the computer players held 2 to 6 more kinds of these resources than without it,
+fielded armies 23 to 36% stronger, and grew about as fast. A civilization whose own unique unit needs a resource it
+doesn't have still builds that unit and takes the penalty, the way the base game's AI favours its unique units.
 
 Under a locked value the AI is locked by the same data: an AI with no Iron can't train a Spearman, and its production
-queue never sticks on a locked unit (it builds something else). Independent powers and city-states ignore the gate by
-the game's own rule, so their spawns and armies are unchanged.
+queue never sticks on a locked unit (it builds something else). Independent powers and city-states are held back as
+described under "Locked units": the game exempts them from the lock, so the mod swaps their units instead.
 
 ## Compatibility
 
 - Works with any mix of DLC. The unit tags only go on units that are in your game, so a unique unit from a DLC you
   don't own is skipped, and so is one a game update removes.
-- Adds unit tags, modifiers and four game setup options. Below the locked values, every base-game row and file stays
-  as the game has it; under a locked value, the mod sets the game's own `StrategicResource` column on the gated units
-  and the game's six resource-minimum parameters, and makes the units a free unit upgrades into (every Modern unit
-  with Modern Supply Chains on) grant-only behind their resource.
+- Adds unit tags, modifiers, AI weights and five game setup options. Below the locked values, every base-game row and
+  file stays as the game has it, apart from the map weights of the nine resources when Strategic Resources on the Map
+  is at More or Plenty (multiplied, so another mod's change to them carries through). Under a locked value, the mod
+  sets the game's own `StrategicResource` column on the gated units and the game's six resource-minimum parameters,
+  and makes the units a free unit upgrades into (every Modern unit with Modern Supply Chains on) grant-only behind
+  their resource.
 - Another mod that sets that column or those parameters (a locally installed gameplay overhaul does, with minimums
   of 2 to 6) keeps the engine's rule by its own numbers, and this mod's lock texts step back to their plain form
   rather than promise an unlock at one that does not hold. Turn one of the two off to get a single rule.

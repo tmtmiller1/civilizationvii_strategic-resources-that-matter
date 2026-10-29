@@ -226,9 +226,16 @@ UPDATE Modifiers SET SubjectRequirementSetId = (SELECT 'SR_LINE_NEEDS_' || subst
     JOIN Units u ON u.UnitType = a.Value
     WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL);
 
--- The traits last, once every requirement has read the game's own.
-UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_SPEARMAN') AND TraitType IS NULL;
-UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_GAISATAI_2', 'UNIT_HOPLITE_2', 'UNIT_IMMORTAL', 'UNIT_LEGION', 'UNIT_MEDJAY_2') AND TraitType IS NOT NULL;
+-- The traits last, once every requirement has read the game's own. A unit the age change carries armies
+-- into keeps its own: their grants then hand it to players who can build it anyway.
+UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_SPEARMAN') AND TraitType IS NULL
+    AND UnitType NOT IN (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'
+    UNION SELECT CivUniqueUnitType FROM UnitReplaces WHERE ReplacesUnitType IN
+        (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'));
+UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_GAISATAI_2', 'UNIT_HOPLITE_2', 'UNIT_IMMORTAL', 'UNIT_LEGION', 'UNIT_MEDJAY_2') AND TraitType IS NOT NULL
+    AND UnitType NOT IN (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'
+    UNION SELECT CivUniqueUnitType FROM UnitReplaces WHERE ReplacesUnitType IN
+        (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'));
 -- The Civilopedia keeps the city-state-trait units with the ordinary ones, not under unique units.
 UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NULL',
     'AND (TraitType IS NULL OR UnitType IN ("UNIT_SPEARMAN"))')
@@ -266,7 +273,7 @@ INSERT INTO Unit_Advisories SELECT * FROM sr_rows;
 DROP TABLE sr_rows;
 CREATE TEMP TABLE sr_rows AS SELECT * FROM TypeTags WHERE Type = 'UNIT_WARRIOR' AND EXISTS (SELECT 1 FROM sr_copy);
 UPDATE sr_rows SET Type = 'UNIT_WARRIOR_SR_PERSIA';
-INSERT INTO TypeTags SELECT * FROM sr_rows;
+INSERT OR IGNORE INTO TypeTags SELECT * FROM sr_rows;
 DROP TABLE sr_rows;
 DROP TABLE sr_copy;
 
@@ -316,7 +323,7 @@ INSERT INTO Unit_Advisories SELECT * FROM sr_rows;
 DROP TABLE sr_rows;
 CREATE TEMP TABLE sr_rows AS SELECT * FROM TypeTags WHERE Type = 'UNIT_WARRIOR' AND EXISTS (SELECT 1 FROM sr_copy);
 UPDATE sr_rows SET Type = 'UNIT_WARRIOR_SR_ROME';
-INSERT INTO TypeTags SELECT * FROM sr_rows;
+INSERT OR IGNORE INTO TypeTags SELECT * FROM sr_rows;
 DROP TABLE sr_rows;
 DROP TABLE sr_copy;
 

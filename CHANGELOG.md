@@ -4,6 +4,45 @@ All notable changes to the Strategic Resources That Matter mod for Civilization 
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 
+## [1.4.0] - 2026-10-29
+
+Computer players that go after the resources, a setup option for how many the map places, independent powers and
+city-states held back on the locked settings, and Pitch for the Modern warships.
+
+### Added
+- On the locked settings, in single-player games, independent powers and city-states are held back too. A city-state
+  can field a locked unit once its suzerain has fielded one, and an independent power, or a city-state with no
+  suzerain, once you have. Until then, each one that turns up is swapped at the start of your turn for the strongest
+  unit of the same kind that doesn't need a resource, never a stronger tier: a Landship becomes a Rifleman, a Field
+  Cannon a Line Infantry. A unit a minor was allowed to keep stays with it, even when a new suzerain hasn't fielded
+  one. The penalty settings leave them as before.
+- The computer players now go after the resources their units need. They rate a city site with Iron, Horses, Niter
+  or another of the mod's resources higher, and value growing onto a resource tile and importing one. In 90-turn test
+  games on three maps they held 2 to 6 more kinds of these resources and fielded armies 23 to 36% stronger than
+  before, and grew about as fast. These weights are for the full civilizations only; independent powers and
+  city-states keep the game's own. Takes effect in new games.
+- A new game setup option, Strategic Resources on the Map, sets how often the map places the resources units need.
+  "Base game" is the default and leaves the map alone. The game leaves some resource types off each map, so a game
+  can go without Coal or Hardwood at all, and when an age begins it only adds types new to that age. "More" keeps the
+  ones each age's units need on the map, places about half again to twice as many, and puts at least two on each
+  landmass the players start on; "Plenty" two to three times as many and at least three. Hardwood stays on the map
+  from the start, at a lighter weight in Antiquity where nothing uses it yet. The map makes room for these, so it keeps
+  as many other resource types as before. On a test map, Iron went from 6 to 11 and 16, and a Modern map with no Coal
+  got 24.
+
+### Changed
+- In Modern, Pitch works for the Ship of the Line and the Turtle Ship as well as Hardwood, as it already did for the
+  Exploration warships: either one lifts their penalty, and with Modern Supply Chains on they need Hardwood or Pitch,
+  and Niter. The game never adds Hardwood when an age begins, so a game that started in Antiquity had it later only if
+  the first map drew some.
+- On the locked settings, the units an age change turns your army into are never locked: the Courser in Exploration,
+  and the Field Cannon, Cuirassier, Mortar and Ship of the Line in Modern, with each civilization's own version of
+  them. You can always train them, and without the resource they fight at the Harsh penalty.
+
+### Fixed
+- The Civilopedia's list of units free of any requirement named the Ship of the Line, the Cuirassier and the
+  Submarine, which have needed Hardwood (now or Pitch), Horses and Oil since 1.2. They're off the list.
+
 ## [1.3.0] - 2026-10-25
 
 Pitch works for the Exploration warships as well as Hardwood, and two fixes to what the game tells you.

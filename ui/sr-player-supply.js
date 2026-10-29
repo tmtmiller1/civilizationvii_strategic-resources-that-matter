@@ -2,7 +2,8 @@
 // a player's copies. The pure work is in sr-supply.js; this file only fetches its inputs from the engine.
 
 import {
-  buildAlternativeIndex, buildGateIndex, buildPenaltyIndex, buildSupplyIndex, countSupply, eitherNameKey
+  buildAlternativeIndex, buildCarriedIndex, buildGateIndex, buildPenaltyIndex, buildSupplyIndex, countSupply,
+  eitherNameKey
 } from "/tower-strategic-resources-that-matter/ui/sr-supply.js";
 
 /**
@@ -29,7 +30,8 @@ export function readIndexes() {
       alternatives,
       penalties: buildPenaltyIndex(/** @type {*} */ (GameInfo.ModifierArguments) ?? []),
       gate: buildGateIndex(/** @type {*} */ (GameInfo.Units) ?? [],
-        /** @type {*} */ (GameInfo.GlobalParameters) ?? [], supply, alternatives)
+        /** @type {*} */ (GameInfo.GlobalParameters) ?? [], supply, alternatives,
+        buildCarriedIndex(/** @type {*} */ (GameInfo.TypeTags) ?? []))
     };
   }
   return indexes;

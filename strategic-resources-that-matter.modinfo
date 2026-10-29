@@ -23,7 +23,10 @@
   a save from before 1.2 carries. With Modern Supply Chains on, sr-modern-chains.sql gives every Modern unit a second
   resource (its tags, its page lines, and under the locked levels its grant-only lock behind both). With Free
   Tier-Up by Kills off, sr-kill-tiers-off.sql takes out the kill-count tier-up of any unit whose tier needs a
-  resource while upgrades are gated, so the ordinary upgrade (and its resource check) is the only way up.
+  resource while upgrades are gated, so the ordinary upgrade (and its resource check) is the only way up. With
+  Strategic Resources on the Map at More or Plenty, sr-abundance-<value>.sql multiplies the map weights and raises the
+  per-landmass minimum of the resources units draw on. sr-ai.sql, always loaded, gives the game's AI weights for
+  settling near those resources and growing onto them.
   AffectsSavedGames is 1: the setup options and modifiers are fixed when a game is created, so a save made with the
   mod needs it to load the same game.
 -->
@@ -34,7 +37,7 @@
         <Authors>Tower</Authors>
         <Package>StrategicResourcesThatMatter</Package>
         <PackageSortIndex>100</PackageSortIndex>
-        <Version>1.3.0</Version>
+        <Version>1.4.0</Version>
         <AffectsSavedGames>1</AffectsSavedGames>
     </Properties>
     <Dependencies>
@@ -245,6 +248,20 @@
                 <Value>SR_CHAINS_ON</Value>
             </ConfigurationValueMatches>
         </Criteria>
+        <Criteria id="abundance-more">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterAbundance</ConfigurationId>
+                <Value>SR_ABUNDANCE_MORE</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="abundance-plenty">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>StrategicResourcesThatMatterAbundance</ConfigurationId>
+                <Value>SR_ABUNDANCE_PLENTY</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="kill-tiers-off">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -313,6 +330,7 @@
                     <Item>data/sr-tags.xml</Item>
                     <Item>data/sr-civilopedia.xml</Item>
                     <Item>data/sr-notification.xml</Item>
+                    <Item>data/sr-ai.sql</Item>
                 </UpdateDatabase>
                 <UpdateIcons>
                     <Item>data/sr-notification-icons.xml</Item>
@@ -337,6 +355,7 @@
                     <!-- Tower Settings Keeper: listed first, imports nothing, so it runs before anything reads storage. -->
                     <Item>ui/settings-keeper.js</Item>
                     <Item>ui/sr-recheck.js</Item>
+                    <Item>ui/sr-minor-gate.js</Item>
                     <Item>ui/sr-unit-panel.js</Item>
                     <Item>ui/sr-production-line.js</Item>
                     <Item>ui/sr-production-lock.js</Item>
@@ -350,6 +369,8 @@
                     <Item>ui/sr-callout.js</Item>
                     <Item>ui/sr-line-look.js</Item>
                     <Item>ui/sr-log.js</Item>
+                    <Item>ui/sr-minor-gate-core.js</Item>
+                    <Item>ui/sr-minor-gate.js</Item>
                     <Item>ui/sr-pill.js</Item>
                     <Item>ui/sr-player-supply.js</Item>
                     <Item>ui/sr-production-line.js</Item>
@@ -480,6 +501,22 @@
         <ActionGroup id="strategic-resources-that-matter-kill-tiers-off" scope="game" criteria="kill-tiers-off">
             <Properties><LoadOrder>203</LoadOrder></Properties>
             <Actions><UpdateDatabase><Item>data/sr-kill-tiers-off.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <!-- After the gate files (202) and Modern Supply Chains (203): the units an age change carries armies into lose
+             the column those files set. -->
+        <ActionGroup id="strategic-resources-that-matter-carry-over" scope="game" criteria="always">
+            <Properties><LoadOrder>204</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-carry-over.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <!-- Strategic Resources on the Map: the map script reads these rows when it places resources. After the supply tags
+             (201) and Modern Supply Chains (203), whose tags say which resources this age's units draw on. -->
+        <ActionGroup id="strategic-resources-that-matter-abundance-more" scope="game" criteria="abundance-more">
+            <Properties><LoadOrder>210</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-abundance-more.sql</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="strategic-resources-that-matter-abundance-plenty" scope="game" criteria="abundance-plenty">
+            <Properties><LoadOrder>210</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/sr-abundance-plenty.sql</Item></UpdateDatabase></Actions>
         </ActionGroup>
         <!-- Civilopedia History Corrections, loaded at 1000 to come after Civilopedia Expanded's groups (10, 100
              and 210). Text only. -->

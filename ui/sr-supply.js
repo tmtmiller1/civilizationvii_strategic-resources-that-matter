@@ -82,6 +82,21 @@ export function buildAlternativeIndex(typeTags) {
   return index;
 }
 
+/** The tag data/sr-carry-over.sql puts on the units an age change carries armies into, which are never locked. */
+export const CARRIED_TAG = "SR_CARRIED_FREE";
+
+/**
+ * The units an age change carries a player's army into (and the uniques that replace them): free to train under
+ * every value, though they keep the Unsupplied penalty (data/sr-carry-over.sql).
+ * @param {Iterable<{ Type?: string, Tag?: string }>} typeTags
+ * @returns {Set<string>}
+ */
+export function buildCarriedIndex(typeTags) {
+  const out = new Set();
+  for (const row of typeTags) if (row?.Tag === CARRIED_TAG && row.Type) out.add(row.Type);
+  return out;
+}
+
 /**
  * The name key of a resource with its stand-ins, LOC_SR_EITHER_HARDWOOD_OR_PITCH_NAME ("Hardwood or Pitch").
  * @param {string} resourceType @param {string[]} others
@@ -342,15 +357,18 @@ export const GATE_UPGRADING_PARAMETER = "STRATEGIC_RESOURCE_MINIMUM_FOR_UNIT_UPG
  * @param {Iterable<{ Name?: string, Value?: string | number }>} globalParameters GameInfo.GlobalParameters rows
  * @param {Map<string, string[]>} supply unit type to the resources it draws on
  * @param {Map<string, string[]>} [alternatives] resource type to its stand-ins
+ * @param {Set<string>} [carried] units the age change carries armies into: never locked, so left out of the check
  * @returns {Gate}
  */
-export function buildGateIndex(units, globalParameters, supply, alternatives = new Map()) {
+export function buildGateIndex(units, globalParameters, supply, alternatives = new Map(), carried = new Set()) {
   const rows = [...units];
   const params = readParameters(globalParameters);
   const own = params.get(GATE_PRODUCTION_PARAMETER) === 1 && params.get(GATE_PURCHASE_PARAMETER) === 1;
   if (!own) return { on: false, upgrade: false, columns: new Map(), needs: new Map() };
   const columns = readColumns(rows);
-  const known = new Set(rows.map((row) => row?.UnitType));
+  // A carried unit counts as one the game lacks: no column, no lock, and no say in whether the gate is on.
+  const known = new Set(rows.map((row) => row?.UnitType).filter((unitType) => !unitType || !carried.has(unitType)));
+  for (const unitType of carried) columns.delete(unitType);
   const on = coversSupply(columns, known, supply, alternatives);
   if (!on) columns.clear();
   const upgrade = on && (params.get(GATE_UPGRADING_PARAMETER) ?? 0) >= 1;

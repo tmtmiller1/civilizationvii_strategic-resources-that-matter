@@ -107,6 +107,12 @@ export const CURVE_THRESHOLDS = [8, 10, 12, 14, 16, 18, 20];
 const HEADER = '<?xml version="1.0" encoding="utf-8"?>';
 const GENERATED = "<!-- Written by scripts/build-data.mjs; edit the script, not this file. -->";
 const GENERATED_SQL = "Written by scripts/build-data.mjs; edit the script, not this file.";
+// The units an age change carries a player's army into, and any civilization's unique that replaces one: never made
+// grant-only, since the age change builds them through the player's build list and a grant-only one crashes it
+// (data/sr-carry-over.sql, which also clears their column; verification-runs.md Phase 25).
+const CARRIED_SQL = "(SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'\n" +
+  "    UNION SELECT CivUniqueUnitType FROM UnitReplaces WHERE ReplacesUnitType IN\n" +
+  "        (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'))";
 
 /** @param {string} resource RESOURCE_IRON -> IRON */
 export const shortName = (resource) => resource.replace(/^RESOURCE_/, "");
@@ -138,7 +144,7 @@ export const supplyName = (age, resource) => suppliers(age, resource).map(shortN
 export const eitherTag = (age, resource) => `SR_EITHER_${supplyName(age, resource)}`;
 /** Every either tag of every age. */
 export const eitherTags = () =>
-  AGES.flatMap((age) => Object.keys(ALTERNATIVES[age] ?? {}).map((r) => eitherTag(age, r)));
+  [...new Set(AGES.flatMap((age) => Object.keys(ALTERNATIVES[age] ?? {}).map((r) => eitherTag(age, r))))];
 
 /** @param {string} resource @param {number} amount @param {boolean} [inverse] */
 function hasResource(resource, amount, inverse = false) {
@@ -424,7 +430,10 @@ function copyUnit(copy) {
   for (const [table, column] of COPIED_TABLES) {
     out.push(`CREATE TEMP TABLE sr_rows AS SELECT * FROM ${table} WHERE ${column} = ${q(copy.base)} ` +
       "AND EXISTS (SELECT 1 FROM sr_copy);",
-    `UPDATE sr_rows SET ${column} = ${q(copy.unit)};`, `INSERT INTO ${table} SELECT * FROM sr_rows;`,
+    // The copy already has the plain tag (above); the base can carry it too (the Ship of the Line, once Pitch stands
+    // in for its Hardwood), and a second (copy, tag) row fails the whole group at load.
+    `UPDATE sr_rows SET ${column} = ${q(copy.unit)};`,
+    `INSERT ${table === "TypeTags" ? "OR IGNORE " : ""}INTO ${table} SELECT * FROM sr_rows;`,
     "DROP TABLE sr_rows;");
   }
   out.push("DROP TABLE sr_copy;");
@@ -545,7 +554,12 @@ function linesFile(age, locks, copies, { additive = false, guardColumn = false }
   const insert = (/** @type {string} */ table, /** @type {string} */ columns, /** @type {string} */ rest,
     ignore = false) => `INSERT ${ignore || additive ? "OR IGNORE " : ""}INTO ${table} (${columns})\n    ${rest};`;
   const column = guardColumn ? " AND StrategicResource IS NOT NULL" : "";
-  const ifUnit = (/** @type {string} */ unit) => `FROM Units WHERE UnitType = ${q(unit)}${column}`;
+  // A unit with stand-ins never carries the column (columnMap), so for it the locked level shows as any unit
+  // carrying one; its own column guard would skip every row (the Ship of the Line under Supply Chains).
+  const standIns = new Set(locks.filter((l) => ALTERNATIVES[age]?.[l.resource]).map((l) => l.unit));
+  const gateLoaded = " AND EXISTS (SELECT 1 FROM Units g WHERE g.StrategicResource IS NOT NULL)";
+  const unitGuard = (/** @type {string} */ unit) => (guardColumn && standIns.has(unit) ? gateLoaded : column);
+  const ifUnit = (/** @type {string} */ unit) => `FROM Units WHERE UnitType = ${q(unit)}${unitGuard(unit)}`;
   const HAS_TRAIT = "'REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT'";
   const out = [`-- ${GENERATED_SQL}`,
     additive
@@ -617,7 +631,7 @@ function linesFile(age, locks, copies, { additive = false, guardColumn = false }
   /** Every resource of a lock joins its set: when the set exists (additive), or with the unit's own guard. */
   const needs = (/** @type {import("./gate-map.mjs").LineLock} */ lock, /** @type {string} */ guard) => {
     const id = lineIds(lock.unit);
-    const where = additive ? `FROM Units WHERE UnitType = ${q(lock.unit)}${column} AND ${setExists(id.reqs)}` : guard;
+    const where = additive ? `${ifUnit(lock.unit)} AND ${setExists(id.reqs)}` : guard;
     return lock.resources.map((r) => inSet(id.reqs, `SELECT ${q(id.reqs)}, ${q(has(r))} ${where}`, additive));
   };
   for (const lock of locks) {
@@ -690,14 +704,15 @@ function linesFile(age, locks, copies, { additive = false, guardColumn = false }
   const unique = locks.filter((l) => l.kind === "unique").map((l) => q(l.unit)).join(", ");
   const gateOn = guardColumn ? " AND StrategicResource IS NOT NULL" : "";
   const anyGate = guardColumn ? "\n    AND EXISTS (SELECT 1 FROM Units WHERE StrategicResource IS NOT NULL)" : "";
-  out.push("", "-- The traits last, once every requirement has read the game's own.");
+  out.push("", "-- The traits last, once every requirement has read the game's own. A unit the age change carries armies",
+    "-- into keeps its own: their grants then hand it to players who can build it anyway.");
   if (base) {
     out.push(`UPDATE Units SET TraitType = ${q(MINOR_CIV_TRAIT)} WHERE UnitType IN (${base}) AND TraitType IS NULL` +
-      `${gateOn};`);
+      `${gateOn}\n    AND UnitType NOT IN ${CARRIED_SQL};`);
   }
   if (unique) {
     out.push(`UPDATE Units SET TraitType = ${q(LOCKED_TRAIT)} WHERE UnitType IN (${unique}) ` +
-      `AND TraitType IS NOT NULL${gateOn};`);
+      `AND TraitType IS NOT NULL${gateOn}\n    AND UnitType NOT IN ${CARRIED_SQL};`);
   }
   if (base) {
     const list = base.replaceAll("'", '"');

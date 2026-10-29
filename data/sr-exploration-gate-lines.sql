@@ -553,9 +553,16 @@ UPDATE Modifiers SET SubjectRequirementSetId = (SELECT 'SR_LINE_NEEDS_' || subst
     JOIN Units u ON u.UnitType = a.Value
     WHERE d.EffectType = 'EFFECT_ADJUST_PLAYER_VALID_UNIT_BUILD' AND m.ModifierId NOT LIKE 'SR_LINE_%' AND m.SubjectRequirementSetId IS NULL AND u.StrategicResource IS NOT NULL);
 
--- The traits last, once every requirement has read the game's own.
-UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_BOMBARD', 'UNIT_CARRACK', 'UNIT_GALLEON', 'UNIT_MAN_AT_ARMS') AND TraitType IS NULL;
-UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_CETBANG_2', 'UNIT_CETBANG_3', 'UNIT_GOLD_BANGLES_2', 'UNIT_HWACHA_3', 'UNIT_KALAM_2', 'UNIT_KALAM_3', 'UNIT_KISPOKO_NENA_TO_2', 'UNIT_LEIOMANO_2', 'UNIT_TERCIO_2', 'UNIT_VIKINGR_2', 'UNIT_VIKINGR_3', 'UNIT_XUNLEICHONG_2') AND TraitType IS NOT NULL;
+-- The traits last, once every requirement has read the game's own. A unit the age change carries armies
+-- into keeps its own: their grants then hand it to players who can build it anyway.
+UPDATE Units SET TraitType = 'TRAIT_LEADER_MINOR_CIV' WHERE UnitType IN ('UNIT_BOMBARD', 'UNIT_CARRACK', 'UNIT_GALLEON', 'UNIT_MAN_AT_ARMS') AND TraitType IS NULL
+    AND UnitType NOT IN (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'
+    UNION SELECT CivUniqueUnitType FROM UnitReplaces WHERE ReplacesUnitType IN
+        (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'));
+UPDATE Units SET TraitType = 'TRAIT_SR_LOCKED' WHERE UnitType IN ('UNIT_CETBANG_2', 'UNIT_CETBANG_3', 'UNIT_GOLD_BANGLES_2', 'UNIT_HWACHA_3', 'UNIT_KALAM_2', 'UNIT_KALAM_3', 'UNIT_KISPOKO_NENA_TO_2', 'UNIT_LEIOMANO_2', 'UNIT_TERCIO_2', 'UNIT_VIKINGR_2', 'UNIT_VIKINGR_3', 'UNIT_XUNLEICHONG_2') AND TraitType IS NOT NULL
+    AND UnitType NOT IN (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'
+    UNION SELECT CivUniqueUnitType FROM UnitReplaces WHERE ReplacesUnitType IN
+        (SELECT UnitType FROM Unit_ShadowReplacements WHERE CoreClass = 'CORE_CLASS_MILITARY'));
 -- The Civilopedia keeps the city-state-trait units with the ordinary ones, not under unique units.
 UPDATE CivilopediaPageQueries SET SQL = replace(SQL, 'AND TraitType IS NULL',
     'AND (TraitType IS NULL OR UnitType IN ("UNIT_BOMBARD", "UNIT_CARRACK", "UNIT_GALLEON", "UNIT_MAN_AT_ARMS"))')

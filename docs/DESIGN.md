@@ -738,6 +738,172 @@ for an either rule with Supply Chains off.
   any-of set works on a grant, and the penalty's any-of cancel lifts with either resource, with the usual set and
   with every other mod off. A lost copy brings the lock back one roll later (the lines' timing), the penalty too.
 
+- **Modern too (built 2026-10-29).** The owner extended the rule to the Modern Hardwood ships, the Ship of the Line
+  (`UNIT_FRIGATE`) and the Turtle Ship: `ALTERNATIVES.AGE_MODERN`. An age change never adds Hardwood (7k), so a game
+  started in Antiquity had it in Modern only if the first map drew some; Pitch is placed when Exploration begins. Both
+  ships became grant-only behind Hardwood or Pitch, like the Exploration ships. Unlike those, they have no upgrade
+  hole: nothing in Modern upgrades into either (each starts its line in `UnitUpgrades`). The way in without the
+  resource is the age change, which makes every carried warship a Ship of the Line (`Unit_ShadowReplacements`, naval
+  to `UNIT_FRIGATE`, through `player.Units.getBuildUnit`). Under a locked value that crossing crashes the game: a grant-only
+  Frigate can't be built that way (verification Phase 25, `crash120-noalt` crossed clean with the Hardwood column back).
+  Settled by 7m: the units the age change carries armies into are never locked.
+
+## 7m. The units an age change carries armies into stay free (built 2026-10-29)
+
+The owner's rule, after the Modern crossing crash (7i, verification Phase 25): if the game carries units over into a
+type, that type is never locked. The age change builds each carried unit as the type `Unit_ShadowReplacements` names
+for its class, through the player's own build list, so a civilization's unique that replaces it counts too.
+
+- **Which units.** Exploration: the Courser (Horses); the Swordsman, Heavy Archer, Catapult and Cog were free already.
+  Modern: the Field Cannon (Niter), Cuirassier (Horses), Mortar (Oil) and Ship of the Line (Hardwood or Pitch); the
+  Line Infantry was free. With them every unique replacing one: in the 2026-10-02 Modern database the Turtle Ship,
+  Meiji's and Great Britain's Ship of the Line copies, the Janissary, Sepoy, Gurkha, Abambowa, Chang Beun, Garde
+  Imperiale, Ghilman, Gusa and Soldaderas; in Exploration the Mamluk, Chevalier, Keshig, Boyar and the others.
+- **How.** The line files skip the trait change for the set (`CARRIED_SQL` in `scripts/build-data.mjs`, read through
+  `Unit_ShadowReplacements` and `UnitReplaces` at load), so the grants on those units hand them to players who can
+  build them anyway. `data/sr-carry-over.sql` (always, load order 204, after the gate files and Supply Chains) tags the
+  set `SR_CARRIED_FREE`, clears the column on a tagged unit when it names one of the unit's own supply resources
+  (another mod's column stays), and drops their "Locked" Civilopedia lines. The UI's gate index leaves tagged units
+  out of the lock and out of the check that the gate is the mod's (`buildCarriedIndex`, `buildGateIndex`), so a free
+  Courser doesn't read as another mod's rule. The penalty is unchanged: they keep their supply tags and modifiers.
+- **Checked offline** (2026-10-29): `npm test`; the Modern locked set, with and without Supply Chains, and the
+  Exploration locked set loaded on compiled databases without the mod (`bridges/devtools/harness/w-mod-` and
+  `w-exp-gameplay-copy.sqlite`): the set as above, no column, own traits, no lock lines, supply tags kept; the
+  Dreadnought, AT Gun, Landship, Tank, Ironclad, Mikasa, Knight, Lancer, Carrack, Galleon, Man-at-Arms and Bombard
+  still locked; no new foreign-key rows.
+- **Watched** (verification Phase 25, `crash120-fixed`, `carry-modern`): the turn-120 crash save reaches Modern with
+  every player's ships and cavalry carried over as Ships of the Line (their own copies for Meiji and Great Britain)
+  and Cuirassiers, with none of the resources; a Modern start with no strategic resource on the map trains the Ship of
+  the Line, Cuirassier, Field Cannon and Mortar and refuses the Ironclad, Dreadnought and Landship.
+- **Also watched** (`carry-exp-courser`, `-courser2`): in Exploration with no Horses the Courser trains, the Knight and
+  Lancer don't, and a Courser fights at 35 of 40 (the Harsh -5) while Swordsmen read their full 35.
+- **Text owed** (after the mechanics are watched, all 12 languages): the Civilopedia's locked-units chapter
+  (`..._CHAPTER_LOCK_PARA_2`) still says independent powers and city-states are never locked (out of date since 7l)
+  and doesn't mention the carried units. Under Supply Chains each needs Hardwood or Pitch, and Niter: the chains file guards
+  each unit's rows with its column, which a unit with stand-ins never carries, so for those units the guard became any
+  unit carrying a column (the locked level loaded). Without that, the Niter half of the lock was never added. The
+  first build also listed `SR_EITHER_HARDWOOD_OR_PITCH` twice in `sr-tags.xml` (one per age), which fails the file at
+  load; `eitherTags()` now lists each tag once, and a data test checks for doubles.
+
+## 7j. The AI goes after the resources (built and watched 2026-10-28)
+
+A player asked how the AI copes with the mod. Up to 1.3.0 the mod carried no AI data, so the AI settled and grew as
+in the base game, where a strategic resource counts for 3 on a city site (coast counts for 15) and a resource tile
+beside a settlement for 2. It paid the penalty without looking for the cure.
+
+- **The rows** (`data/sr-ai.sql`, always loaded, major civs only through `TRAIT_LEADER_MAJOR_CIV`, which every major
+  leader inherits from `LEADER_DEFAULT`). The settle list `Default Settlement Plot Evaluations` gets the game's own
+  `Specific Resource` condition at 20 for each of the nine resources a unit draws on, selected through `Resources`.
+  A bias list adds 200 to `PSEUDOYIELD_ADJACENT_UNCLAIMED_RESOURCE` and 100 to `PSEUDOYIELD_RESOURCE_IMPORT` (a bias
+  of V multiplies the AI's score by 1 + V/100). Independents and city-states keep their own lists.
+- **The engine reads the settle rows** (lab, Antiquity seed 4242). `Players.get(0).AI.getBestSettleLocationsForSettler`
+  returns each site with its factors, the row's `TooltipString` as the title and the condition's good or poor text as
+  the description. With Iron written one tile from a suggested site, the next turn's suggestions gained
+  `STRATEGIC_RESOURCES/GOOD_RESOURCES`, a factor no base-game row produces. The scores are worked out once a turn:
+  the same query in the same turn showed no change.
+- **What it does to the AI** (`verification-runs.md` Phase 19: 90 Antiquity turns, every other community mod off,
+  seeds 4242, 2025 and 777, each played with the rows and without, and 4242 and 2025 with the mod off). Without the
+  rows the mod-on and mod-off games are identical until the first AI trains a unit that draws on a resource (turn 61
+  to 71), so the mod alone doesn't slow the AI's growth. With the rows, at turn 91 the five AIs held 2 to 6 more
+  resource types (10 against 8, 8 against 5, 12 against 6), and their armies summed 23 to 36% more melee strength.
+  Growth moved within the spread two games of one seed show once they part: population +9%, +8%, -1%; science +15%,
+  +7%, -5%; production -7%, -3%, -2%. Under "Locked: training" (seed 4242) the rows did better on every count:
+  population 134 against 105, production 201 against 137, army 865 against 720, and no queue stuck.
+- **Exploration and Modern** (seed 4242, 60 turns from the age's own start, the advanced start marked done). In
+  Exploration the rows took the AIs from 9 resource types to 12 (Niter in 4 AIs against 3, Iron 2 against 1) and the
+  units short of their resource from 23 of 30 to 15 of 22, with cities 23 against 21 and population 325 against 308;
+  science 460 against 435, culture 598 against 628. The mod-off game read science 493 and culture 661, a gap inside
+  what one seed's two games show once they part. In Modern every AI starts holding Niter and Oil, so the rows change
+  less: types 21 and 21, short 28 of 61 against 37 of 65, population 644 against 665, culture 1762 against 1603. No
+  AI held a Bombard, Trebuchet, Carrack or Galleon at turn 61 in either mod version (the mod-off game had one
+  Galleon), so the siege choice at Gunpowder and Carracks on Pitch are still owed.
+- **What the rows can't reach.** Every civilization's unique unit carries a +50 unit bias in the base game, whatever
+  the empire holds, and no AI list reads a holding. So a civilization without Iron still builds its Immortals or
+  Spearmen at the penalty (Persia 16 Immortals, seed 4242). Under a locked value the engine refuses them, and with the
+  rows Persia found Iron and fielded one. The other limit is the map: seed 4242 places 6 Iron for six players, and
+  the rows took the AIs from 1 of those to 4 by turn 91. "Strategic Resources on the Map" (7k) is the lever for that.
+
+## 7k. Strategic Resources on the Map (built 2026-10-28, reworked 2026-10-29)
+
+The owner asked, after 7j, whether the mod could also set how often these resources appear, and then that the system
+be understood before the mod changed it.
+
+**How the game places resources** (read from the scripts, watched in Phase 20 to 24):
+
+- *A new map.* `ResourceBuilder.getGeneratedMapResources` picks up to `Resource_Distribution.MaxResourceTypes` types
+  (25, 25, 27 by age, against 35 to 41 valid), staples always among them; Horses and Iron are the only staples of the
+  nine. `base-standard/maps/resource-placement-common.js` then places each type at 0.15 x its class row's
+  `Resource_ValidBiomes.Weight` / the number of types sharing that tile class (capped at 0.5), and forces
+  `MinimumPerLandmass` copies onto each player landmass. A type's share of a class falls with every other type that
+  can grow there, whatever their weights.
+- *An age change* (`base-standard/scripts/age-transition-post-load.js`): the pool is the types new to the incoming
+  age. It removes the types the age doesn't allow, then whole types that share classes with the pool (staples,
+  landmass-unique and age-required types never), fills the emptied tiles with the pool by `Resources.Weight`, and tops
+  up any type below its minimum. Island tiles can turn into distant-land types. A type valid in the earlier age is
+  never added later: on seed 4242 the Antiquity map drew no Hardwood, and Exploration had none whatever the option.
+  Two other Workshop mods describe the same behaviour (Save The Dates: 65-85% of settled resource tiles keep one;
+  Persistent Resources).
+
+**What More and Plenty do** (`sr-abundance-more.sql`, `-plenty.sql`, LoadOrder 210, after the supply tags (201) and
+Modern Supply Chains (203)):
+
+- The resources the loaded age's units draw on (their `SR_SUPPLY_` tags, with Pitch where it stands in): class and
+  resource weights x2 or x3, `MinimumPerLandmass` at least 2 or 3, and `Staple`, so the map can't leave them out and an
+  age change can't remove them. Multiplied, so another mod's weights keep their proportions.
+- Hardwood a staple in every age, so it's on the first map and stays. Where no unit of the age draws on it
+  (Antiquity) it's there only for later: half its weight and off the hills, the classes it shares with Iron.
+- `MaxResourceTypes` one higher per new staple, so a new staple comes on top of the map's other types rather than in
+  place of one.
+- In Modern, Pitch also stands in for Hardwood on the Ship of the Line and the Turtle Ship (7i), so no age's warships
+  depend on the first map (the owner, 2026-10-29).
+
+**History of the build:** the first build changed all nine resources in every age; Antiquity paid with Rice and 3 of
+its 12 Iron for a Hardwood nothing used. Limited to the age's own resources, a Modern map still lost Llamas, Tobacco and
+Pitch to Coal and Hardwood, and a game started in Antiquity never got Hardwood. The slots kept every other type (other
+resources' totals 204, 181 and 171 against 198, 180 and 170) but Hardwood and the extra types on the hills took Iron
+from 12 to 9 on More; the lighter, flat-only Antiquity Hardwood is the answer to that (Phase 24).
+
+## 7l. Minors held back until their suzerain fields the unit (built and watched 2026-10-28)
+
+The owner's rule: under the locked values, a city-state may field a unit that needs a strategic resource once its
+suzerain has fielded one; an independent, or a city-state with no suzerain, once the human player has. Penalty values
+leave minors as they were.
+
+- **No data shape does it.** The game exempts minors from the column (`IgnoresUnitStrategicResourceRequirements`). Their
+  spawns ignore `EFFECT_PLAYER_DISABLE_BUILD_UNIT`: with it on every player the human city couldn't train the Warrior
+  and the independents still went 18 to 36 Warriors by turn 15 (`probe11b`, verification Phase 21). A trait on the unit
+  takes it out of their spawns for good, and no grant reaches them (7f). No requirement reads "the suzerain has built".
+- **So a script** (`ui/sr-minor-gate.js`, logic in `ui/sr-minor-gate-core.js`, game scope, off in multiplayer and
+  outside the locked values). At the start of the local player's turn, and once on load, it notes each major's unit
+  types (kept in the player's `Tutorial` property bag, which the save keeps and the age change clears, and topped up
+  from the units each major has now, since a reload can come back empty), then swaps every minor unit in the gate's
+  `needs` whose unlock owner hasn't fielded one: `DESTROY_ELEMENT {Kind:"UNIT", Owner, LocalID}`, then after 1.2 s
+  `CREATE_ELEMENT` of the replacement on the same plot. A unique unit counts for the unit it replaces (`UnitReplaces`).
+- **A kept unit stays kept** (the owner, 2026-10-29). A village holding a Spearman because the human fielded one, that
+  then becomes a city-state under a suzerain who hasn't, keeps its Spearman; only units that appear later wait for the
+  new suzerain. Each scan stores the held-back minor units it let stay (`owner:localId:type`, the local player's
+  `Tutorial` bag, key `SrMinorGateKept`) and skips them on later scans; units that died drop out of the list, and a
+  reused id on another type isn't the kept unit (`keptAfterScan`, `tests/sr-minor-gate.mjs`). Not watched yet.
+- **The replacement** (the owner chose "best same-role unit"): role is the first of `UNIT_CLASS_SIEGE`, `_CAVALRY`,
+  `_RANGED`, `_MELEE` with the domain; the strongest free unit of that role (no trait, trainable, not in the gate) at no
+  higher tier than the unit it replaces, else the role's lowest tier, else the domain's melee units the same way, else
+  nothing. The tier cap came from the first lab read: without it a Field Cannon (tier 1) mapped to the Infantry
+  Company (tier 3, strength 60). Modern, read from the game: Field Cannon, Cuirassier, Mortar to Line Infantry; Field
+  Gun, Landship, Heavy Artillery to Rifleman; Ironclad, Frigate, Cruiser, Dreadnought and the aircraft to nothing.
+- **Watched** (verification Phase 21, Modern seed 4242, runs `mg2` and `mg3`, every community mod off, "Locked:
+  training"): an independent's Landship became a Rifleman at the next turn start while the human had none, and the
+  next one stayed once the human had one; a city-state's Tank (suzerain player 1) became an Infantry Company while
+  player 1 had none, even with the human holding a Tank, and the next one stayed once player 1 had one.
+- **Also watched** (verification Phase 21): Antiquity (an independent's Spearman to a Warrior), Exploration (Man-at-Arms
+  to Swordsman), the usual set of community mods (Mortar to Line Infantry), the fielded list across a save and reload
+  (the human's own Spearman removed first, so only the saved list could unlock it), and 40 Modern turns of the minors'
+  own spawns (Field Guns to Riflemen 4 times, Frigates removed 25 times, Field Cannons kept because the human had one).
+  With nothing unlocked, minors lose every Modern Frigate they build: no ship that needs nothing is left to put in its
+  place.
+- **Own spawns, 2026-10-29** (verification Phase 25): in Exploration a city-state's own Man-at-Arms became a
+  Swordsman twice while its suzerain had none (`carry-exp`). In 60 Antiquity turns (`mg-ant`) the minors raised only
+  Warriors, Slingers, Galleys and Quadriremes, none of them held back, so the gate never acted.
+
 ## 8. Setup options
 
 | Option | Values | Default |
@@ -746,6 +912,7 @@ for an either rule with Supply Chains off.
 | Strategic Resources Past Six | Off, On | On |
 | Modern Supply Chains | Off, On (every Modern unit needs a second resource; 7h) | Off |
 | Free Tier-Up by Kills | On (the Samurai tier up after three kills without Iron), Off (under "Locked: training and upgrade", the Samurai upgrade only as other units do, with Iron) | On |
+| Strategic Resources on the Map | Base game, More (the age's resources: weights × 2, at least 2 per player landmass, staples; Hardwood a staple), Plenty (× 3, at least 3; 7k) | Base game |
 
 The hard gate was built after the rest of 1.0 (7e) and shipped with it as Gated Units (7f); 1.2 folded it into
 Unsupplied Units (7h). A save from before 1.2 keeps its Gated Units value through the modinfo's old criteria.
@@ -766,7 +933,9 @@ Unsupplied Units (7h). A save from before 1.2 keeps its Gated Units value throug
   before the release (the owner, 2026-10-12): the gate ships in 1.0.0 as the Gated Units option, Off by default,
   with the Samurai tiers gated under Training and upgrade only (7f).
 - Independents and city-states are never affected by the mod, not by the penalty and not by the gate (the owner,
-  2026-10-12). A gate shape that reached them was ruled out even as a probe (7f).
+  2026-10-12). A gate shape that reached them was ruled out even as a probe (7f). Changed 2026-10-28 (the owner): under
+  the locked values they're held back from locked units until their suzerain, or with none the human player, has
+  fielded one (7l). The penalty still spares them, and their spawns of units that need no resource stay as they are.
 - Units only; no building gates.
 - Modern infantry not gated (count bonus only).
 - Single-player only. In multiplayer, losing a resource does not bring the penalty back until that player gains a

@@ -20,7 +20,10 @@ VALUES
      'GameOptions', 0, 2102),
     ('StrategicResourcesThatMatterKillTiers', 'LOC_SR_SETUP_KILL_TIERS_NAME', 'LOC_SR_SETUP_KILL_TIERS_DESCRIPTION',
      'StrategicResourcesThatMatterKillTierValues', 'SR_KILL_TIERS_ON', 'Game', 'StrategicResourcesThatMatterKillTiers',
-     'GameOptions', 0, 2103);
+     'GameOptions', 0, 2103),
+    ('StrategicResourcesThatMatterAbundance', 'LOC_SR_SETUP_ABUNDANCE_NAME', 'LOC_SR_SETUP_ABUNDANCE_DESCRIPTION',
+     'StrategicResourcesThatMatterAbundanceValues', 'SR_ABUNDANCE_STANDARD', 'Game', 'StrategicResourcesThatMatterAbundance',
+     'GameOptions', 0, 2104);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 VALUES
@@ -47,4 +50,10 @@ VALUES
     ('StrategicResourcesThatMatterKillTierValues', 'SR_KILL_TIERS_OFF', 'LOC_SR_SETUP_KILL_TIERS_OFF',
      'LOC_SR_SETUP_KILL_TIERS_OFF_DESCRIPTION', 10),
     ('StrategicResourcesThatMatterKillTierValues', 'SR_KILL_TIERS_ON', 'LOC_SR_SETUP_KILL_TIERS_ON',
-     'LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION', 20);
+     'LOC_SR_SETUP_KILL_TIERS_ON_DESCRIPTION', 20),
+    ('StrategicResourcesThatMatterAbundanceValues', 'SR_ABUNDANCE_STANDARD', 'LOC_SR_SETUP_ABUNDANCE_STANDARD',
+     'LOC_SR_SETUP_ABUNDANCE_STANDARD_DESCRIPTION', 10),
+    ('StrategicResourcesThatMatterAbundanceValues', 'SR_ABUNDANCE_MORE', 'LOC_SR_SETUP_ABUNDANCE_MORE',
+     'LOC_SR_SETUP_ABUNDANCE_MORE_DESCRIPTION', 20),
+    ('StrategicResourcesThatMatterAbundanceValues', 'SR_ABUNDANCE_PLENTY', 'LOC_SR_SETUP_ABUNDANCE_PLENTY',
+     'LOC_SR_SETUP_ABUNDANCE_PLENTY_DESCRIPTION', 30);

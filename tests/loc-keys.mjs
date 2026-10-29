@@ -10,11 +10,11 @@ import { listFiles, rel, ROOT, stripComments } from "./_fs-helpers.mjs";
 // carries every en_us tag into the other languages.
 
 /**
- * Base-game tags the mod uses without defining: the module name, the gated resources' names (preview lines), and
- * the tutorial callout's two buttons, the game's own.
+ * Base-game tags the mod uses without defining: the module name, the gated resources' names (preview lines), the
+ * tutorial callout's two buttons, and the settle suggestion's "strategic resources" line (data/sr-ai.sql), the game's own.
  */
 const BASE_GAME_KEYS = new Set(["LOC_MODULE_BASE_STANDARD_NAME", "LOC_TUTORIAL_CALLOUT_CLOSE",
-  "LOC_TUTORIAL_CIVILOPEDIA_TELL_ME_MORE",
+  "LOC_TUTORIAL_CIVILOPEDIA_TELL_ME_MORE", "LOC_SETTLEMENT_RECOMMENDATION_STRATEGIC_RESOURCES",
   ...AGES.flatMap(gatedResources).map(resourceNameTag)]);
 
 const defined = new Set(

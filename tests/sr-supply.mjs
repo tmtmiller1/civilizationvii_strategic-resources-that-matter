@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import {
   buildAlternativeIndex,
+  buildCarriedIndex,
+  CARRIED_TAG,
   buildGateIndex,
   buildPenaltyIndex,
   buildSupplyIndex,
@@ -295,6 +297,23 @@ assert.deepEqual(describeProductionCost("UNIT_TANK", { supply, penalties: twoPen
   assert.deepEqual(computeSupplyStatuses({ unitType: "UNIT_CARRACK", supply,
     penalties: new Map([["RESOURCE_HARDWOOD", { combat: -3, productionPercent: -33 }]]),
     copiesOf: copies([{ resourceType: "RESOURCE_PITCH" }]) }), [], "Pitch held: supplied");
+
+  // Units the age change carries armies into are never locked (data/sr-carry-over.sql): no column, no stand-in lock,
+  // and their missing column doesn't make the gate look like another mod's. They keep the penalty.
+  const carried = buildCarriedIndex([{ Type: "UNIT_CARRACK", Tag: CARRIED_TAG }, { Type: "UNIT_X", Tag: "OTHER" }, {}]);
+  assert.deepEqual([...carried], ["UNIT_CARRACK"]);
+  const withCarried = buildGateIndex(units, params, supply, alternatives, carried);
+  assert.equal(withCarried.on, true, "the carried ship takes no part in the check");
+  assert.equal(withCarried.needs.has("UNIT_CARRACK"), false, "the carried ship isn't locked");
+  assert.deepEqual(withCarried.needs.get("UNIT_GALLEON"), ["RESOURCE_HARDWOOD"], "the next ship still is");
+  const courser = [{ UnitType: "UNIT_COURSER", StrategicResource: null }, ...units];
+  const courserSupply = new Map([...supply, ["UNIT_COURSER", ["RESOURCE_HORSES"]]]);
+  assert.equal(buildGateIndex(courser, params, courserSupply, alternatives).on, false,
+    "a column unit without its column: another mod's rule, unless carried");
+  assert.equal(buildGateIndex(courser, params, courserSupply, alternatives, new Set(["UNIT_COURSER"])).on, true);
+  assert.equal(computeSupplyStatuses({ unitType: "UNIT_CARRACK", supply,
+    penalties: new Map([["RESOURCE_HARDWOOD", { combat: -3, productionPercent: -33 }]]),
+    copiesOf: copies([]) }).length, 1, "a carried unit still takes the penalty without a copy");
 }
 
 console.log("sr-supply tests passed");

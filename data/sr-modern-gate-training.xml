@@ -25,7 +25,6 @@
         <Update><Where UnitType="UNIT_FIELD_CANNON"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_FIELD_GUN"/><Set StrategicResource="RESOURCE_NITER"/></Update>
         <Update><Where UnitType="UNIT_FIGHTER"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
-        <Update><Where UnitType="UNIT_FRIGATE"/><Set StrategicResource="RESOURCE_HARDWOOD"/></Update>
         <Update><Where UnitType="UNIT_GHILMAN"/><Set StrategicResource="RESOURCE_HORSES"/></Update>
         <Update><Where UnitType="UNIT_GHILMAN_2"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_GHILMAN_3"/><Set StrategicResource="RESOURCE_OIL"/></Update>
@@ -48,7 +47,6 @@
         <Update><Where UnitType="UNIT_SUBMARINE"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_TANK"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_TRENCH_FIGHTER"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
-        <Update><Where UnitType="UNIT_TURTLE_SHIP"/><Set StrategicResource="RESOURCE_HARDWOOD"/></Update>
         <Update><Where UnitType="UNIT_TURTLE_SHIP_2"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_TURTLE_SHIP_3"/><Set StrategicResource="RESOURCE_OIL"/></Update>
         <Update><Where UnitType="UNIT_ZERO"/><Set StrategicResource="RESOURCE_RUBBER"/></Update>
@@ -85,7 +83,7 @@
         <Row SectionID="UNITS" PageID="UNIT_FIELD_CANNON" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_FIELD_GUN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_NITER_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_FIGHTER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_FRIGATE" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_TRAINING" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_FRIGATE" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GHILMAN" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HORSES_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GHILMAN_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_GHILMAN_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING" SortIndex="10"/>
@@ -108,7 +106,7 @@
         <Row SectionID="UNITS" PageID="UNIT_SUBMARINE" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TANK" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TRENCH_FIGHTER" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" SortIndex="10"/>
-        <Row SectionID="UNITS" PageID="UNIT_TURTLE_SHIP" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_GATE_TRAINING" SortIndex="10"/>
+        <Row SectionID="UNITS" PageID="UNIT_TURTLE_SHIP" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_HARDWOOD_OR_PITCH_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TURTLE_SHIP_2" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_TURTLE_SHIP_3" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_OIL_GATE_TRAINING" SortIndex="10"/>
         <Row SectionID="UNITS" PageID="UNIT_ZERO" ChapterID="SR_LOCK" Paragraph="LOC_SR_PEDIA_UNIT_RUBBER_GATE_TRAINING" SortIndex="10"/>
