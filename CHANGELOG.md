@@ -4,6 +4,15 @@ All notable changes to the Strategic Resources That Matter mod for Civilization 
 [Keep a Changelog](https://keepachangelog.com/) and Semantic Versioning. The Steam Workshop change note for each
 release is generated from the matching section below by `scripts/steam-changelog.mjs`.
 
+## [1.4.1] - 2026-11-10
+
+Works with the Civilization VII 1.5.1 update.
+
+### Fixed
+- The resource line is back on unit rows in the production and purchase lists. After the 1.5.1 update a locked unit
+  was still greyed out, but the row no longer said why, and a supplied unit's row didn't show what it draws on. The
+  rows read "Locked: no Iron", "Locked: no Niter" and "Hardwood or Pitch: 1" again.
+
 ## [1.4.0] - 2026-10-29
 
 Computer players that go after the resources, a setup option for how many the map places, independent powers and

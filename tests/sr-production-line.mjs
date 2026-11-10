@@ -26,8 +26,8 @@ const players = { 0: { isMajor: true, Resources: { getResources: () => holdings 
 globalThis.Players = { get: (id) => players[id] ?? null };
 
 try {
-  const { describeProductionItem, productionLineElement, withProductionLine, wrapProductionModInfo,
-    wrapProductionTooltip } = await import("/tower-strategic-resources-that-matter/ui/sr-production-line.js");
+  const { describeProductionItem, productionLineElement, rowWatcher, syncRowPill, withProductionLine,
+    wrapProductionModInfo, wrapProductionTooltip } = await import("/tower-strategic-resources-that-matter/ui/sr-production-line.js");
   const { resetIndexes } = await import("/tower-strategic-resources-that-matter/ui/sr-player-supply.js");
 
   // describeProductionItem
@@ -135,6 +135,86 @@ try {
   assert.equal(lines.length, 1, "one line however deep the nesting");
   assert.ok(flat(drawn).includes("game:UNIT_FIELD_CANNON"), "what is inside is still drawn");
   assert.equal(drawn[0][1], "game:UNIT_FIELD_CANNON", "the inner copy hands its props straight through");
+
+  // syncRowPill and rowWatcher: from game 1.5.1 a unit's row has no mod slot, so the pill goes under its name.
+  const fakeRow = (tagName = "PRODUCTION-CHOOSER-ITEM") => {
+    /** @type {*[]} */
+    const children = [];
+    const column = { appendChild: (/** @type {*} */ el) => {
+      el.remove = () => children.splice(children.indexOf(el), 1);
+      children.push(el);
+    } };
+    const has = (/** @type {*} */ el, /** @type {string} */ name) =>
+      el.classList.contains(name) || el.children.some((/** @type {*} */ c) => has(c, name));
+    return {
+      tagName, children, column,
+      querySelectorAll: (/** @type {string} */ selector) => children.filter((el) => has(el, selector.slice(1))),
+      querySelector: () => ({ firstElementChild: column })
+    };
+  };
+  holdings = [];
+  const row = fakeRow();
+  syncRowPill(row, "UNIT_FIELD_CANNON");
+  assert.equal(row.children.length, 1, "one pill in the unit's row");
+  assert.ok(row.children[0].classList.contains("flex-row"), "in a row of its own, so it keeps its width");
+  assert.match(row.children[0].children[0].textContent, /NEEDS_NONE_SHORT/);
+  holdings = [{ uniqueResource: { resource: niter.$hash }, isOffMap: false }];
+  syncRowPill(row, "UNIT_FIELD_CANNON");
+  assert.equal(row.children.length, 1, "redrawn, not doubled");
+  assert.match(row.children[0].children[0].textContent, /NEEDS_HELD_SHORT/);
+  syncRowPill(row, "UNIT_INFANTRY");
+  assert.equal(row.children.length, 0, "a reused row for an ungated unit loses the pill");
+  syncRowPill(row, "UNIT_FIELD_CANNON");
+  syncRowPill(row, undefined);
+  assert.equal(row.children.length, 0, "and so does one that isn't a unit any more");
+  const slotRow = fakeRow();
+  const slotPill = productionLineElement("UNIT_FIELD_CANNON");
+  slotRow.column.appendChild(slotPill);
+  syncRowPill(slotRow, "UNIT_FIELD_CANNON");
+  assert.deepEqual(slotRow.children, [slotPill], "a row whose mod slot drew the pill keeps just that one");
+  const otherHost = fakeRow("FXS-TOOLTIP");
+  syncRowPill(otherHost, "UNIT_FIELD_CANNON");
+  assert.equal(otherHost.children.length, 0, "only the production row");
+  syncRowPill(null, "UNIT_FIELD_CANNON");
+  const broken = { tagName: "PRODUCTION-CHOOSER-ITEM", querySelectorAll: () => { throw new Error("x"); } };
+  syncRowPill(broken, "UNIT_X");
+
+  /** @type {(() => void)[]} */
+  const effects = [];
+  /** @type {(() => void)[]} */
+  const deferred = [];
+  let rowReads = 0;
+  const watched = fakeRow();
+  let hostNow = /** @type {*} */ (watched);
+  const watch = rowWatcher({
+    hostOf: () => hostNow, effect: (fn) => { effects.push(fn); fn(); },
+    holdingsChanged: () => { rowReads += 1; }, later: (fn) => deferred.push(fn)
+  });
+  const rowProps = { category: "units", type: "UNIT_FIELD_CANNON" };
+  const watchedTip = wrapProductionTooltip(() => "tip", undefined, watch);
+  holdings = [];
+  assert.equal(watchedTip(rowProps), "tip");
+  assert.equal(watched.children.length, 0, "placed after the row has rendered");
+  deferred.splice(0).forEach((fn) => fn());
+  assert.match(watched.children[0].children[0].textContent, /NEEDS_NONE_SHORT/);
+  rowProps.type = "UNIT_INFANTRY";
+  effects[0]();
+  deferred.splice(0).forEach((fn) => fn());
+  assert.equal(watched.children.length, 0, "follows the row's unit");
+  assert.equal(rowReads, 2, "and the holdings signal");
+  rowProps.category = "buildings";
+  rowProps.type = "UNIT_FIELD_CANNON";
+  effects[0]();
+  deferred.splice(0).forEach((fn) => fn());
+  assert.equal(watched.children.length, 0, "nothing in a building's row");
+  hostNow = undefined;
+  assert.equal(wrapProductionTooltip(() => "tip", undefined, watch)({ category: "units", type: "UNIT_FIELD_CANNON" }),
+    "tip", "a tooltip outside a row is left alone");
+  hostNow = fakeRow("OTHER-ITEM");
+  watch({ category: "units", type: "UNIT_FIELD_CANNON" });
+  assert.equal(effects.length, 1, "no effect for another element");
+  assert.equal(wrapProductionTooltip(() => "tip", undefined, () => { throw new Error("x"); })({}), "tip",
+    "a failing watcher never breaks the tooltip");
 
   // Under the hard gate a locked unit reads the locked form (bought, on a purchase item), red; a copy unlocks it.
   holdings = [];

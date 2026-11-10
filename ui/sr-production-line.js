@@ -3,7 +3,9 @@
 // draws on two resources (Modern Supply Chains) gets one part per resource in the pill, "Needs Oil, Needs Coal", and
 // one sentence per resource in the tooltip. The pill goes in
 // ProductionModInfo, the empty slot the game renders under each item's name and error line for mods, so the game's
-// own text stays where it is; it is the mod's status pill (sr-pill.js), red while the unit is short. The
+// own text stays where it is; it is the mod's status pill (sr-pill.js), red while the unit is short. From game
+// 1.5.1 that slot is rendered only in rows that list base yields (buildings), so in a unit's row the pill is put
+// under the name by the tooltip wrapper instead, which the game still creates once per row (syncRowPill). The
 // whole sentence ("Needs Niter. Without it: -3 Combat Strength, slower to train.", "Needs Niter: cannot be trained
 // without it.", "... bought ..." on the purchase list) goes into the item's hover tooltip, under the unit's
 // description. Mods that draw their own production items and render that slot show the pill too.
@@ -77,10 +79,17 @@ export function productionLineElement(unitType) {
  * for, the description handed on gains the line, composed, on a new line. Anything else passes through untouched.
  * @param {Function} previous the factory registered before
  * @param {(...sources: object[]) => object} [mergeProps] Solid's, so the props handed down stay reactive
+ * @param {(props: *) => void} [watchRow] called once per tooltip made, to keep the row's own pill (rowWatcher)
  * @returns {Function}
  */
-export function wrapProductionTooltip(previous, mergeProps = (...sources) => Object.assign({}, ...sources)) {
+export function wrapProductionTooltip(previous, mergeProps = (...sources) => Object.assign({}, ...sources),
+  watchRow = undefined) {
   return function StrategicResourcesThatMatterProductionTooltip(/** @type {*} */ props) {
+    try {
+      watchRow?.(props);
+    } catch (e) {
+      log.warn("could not watch the production row:", e);
+    }
     try {
       if (props?.category !== "units" || !describeProductionItem(props.type)) return previous(props);
       return previous(mergeProps(props, {
@@ -134,6 +143,59 @@ export function wrapProductionModInfo(previous, holdingsChanged = () => 0,
   };
 }
 
+const ROW_CLASS = "sr-production-line-row";
+const ROW_TAG = "PRODUCTION-CHOOSER-ITEM";
+
+/**
+ * Keeps one pill under the name in a unit's production row, for game versions whose row leaves the mod slot out
+ * for units. The pill sits in a row of its own, as the slot's did, so it keeps its width. A pill the slot drew (an
+ * older game, or another mod's row that renders the slot) wins, so a row never shows two. Never throws.
+ * @param {*} host the production-chooser-item element
+ * @param {string | undefined} unitType the row's unit, or undefined for a row that isn't a unit
+ */
+export function syncRowPill(host, unitType) {
+  try {
+    if (!isRow(host)) return;
+    for (const ours of [...host.querySelectorAll(`.${ROW_CLASS}`)]) ours.remove();
+    if (unitType && host.querySelectorAll(`.${LINE_CLASS}`).length === 0) addRowPill(host, unitType);
+  } catch (e) {
+    log.warn("could not draw the production row's line:", e);
+  }
+}
+
+/** @param {*} host @returns {boolean} */
+const isRow = (host) => !!host && String(host.tagName).toUpperCase() === ROW_TAG;
+
+/** @param {*} host @param {string} unitType */
+function addRowPill(host, unitType) {
+  const column = host.querySelector(".items-stretch")?.firstElementChild;
+  const pill = column ? productionLineElement(unitType) : null;
+  if (!pill) return;
+  const slot = document.createElement("div");
+  slot.classList.add("flex", "flex-row", ROW_CLASS);
+  slot.appendChild(pill);
+  column.appendChild(slot);
+}
+
+/**
+ * The `watchRow` for wrapProductionTooltip: finds the row element the tooltip is made in and keeps its pill in step
+ * with the row's unit (rows are reused) and the player's holdings. The pill is placed after the row has rendered.
+ * @param {{ hostOf: () => *, effect: (fn: () => void) => void, holdingsChanged: () => unknown,
+ *   later: (fn: () => void) => void }} hooks
+ * @returns {(props: *) => void}
+ */
+export function rowWatcher({ hostOf, effect, holdingsChanged, later }) {
+  return (props) => {
+    const host = hostOf();
+    if (!isRow(host)) return;
+    effect(() => {
+      holdingsChanged();
+      const unitType = props?.category === "units" ? props.type : undefined;
+      later(() => syncRowPill(host, unitType));
+    });
+  };
+}
+
 async function start() {
   try {
     const { ComponentRegistry } = /** @type {*} */ (await import("/core/ui-next/services/component-registry.js"));
@@ -142,8 +204,16 @@ async function start() {
     engine.on("PlayerResourceChanged", () => setHoldingsChanged((/** @type {number} */ n) => n + 1));
     await keepWrapped(ComponentRegistry, solid, "ProductionModInfo", (previous) =>
       wrapProductionModInfo(previous, holdingsChanged, solid.mergeProps));
+    const adapter = /** @type {*} */ (await import("/core/ui-next/components/fxs-solid-component.js")
+      .catch(() => null))?.SolidAdapterContext;
+    const watchRow = adapter ? rowWatcher({
+      hostOf: () => solid.useContext(adapter)?.rootElement,
+      effect: solid.createEffect,
+      holdingsChanged,
+      later: (fn) => (globalThis.requestAnimationFrame ?? setTimeout)(fn)
+    }) : undefined;
     await keepWrapped(ComponentRegistry, solid, "ProductionTooltip", (previous) =>
-      wrapProductionTooltip(previous, solid.mergeProps));
+      wrapProductionTooltip(previous, solid.mergeProps, watchRow));
   } catch (e) {
     log.warn("could not add the production line:", e);
   }
