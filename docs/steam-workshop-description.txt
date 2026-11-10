@@ -1,5 +1,5 @@
 [h1]Strategic Resources That Matter[/h1]
-[b]Version 1.3.0. Compatible with Civilization VII 1.5.0. Single-player only.[/b]
+[b]Version 1.4.1. Compatible with Civilization VII 1.5.0 and 1.5.1. Single-player only.[/b]
 
 Horses, Ivory, Iron, Niter, Hardwood, Pitch, Oil, Coal and Rubber count for the units that need them. In the base game, going without one doesn't hurt you; with the mod, a unit whose owner doesn't have its resource fights weaker and trains slower, or can't be trained at all, depending on your settings. Losing your last one brings the penalty back next turn.
 
@@ -87,7 +87,7 @@ A unique unit needs the resource at the tiers listed and is free at the others. 
 [/list]
 
 [h2]Source and documentation[/h2]
-Twelve languages. [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]Source and documentation[/url] and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.3.0]1.3.0 release notes[/url], with the zip for a manual install.
+Twelve languages. [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter]Source and documentation[/url] and the [url=https://github.com/tmtmiller1/civilizationvii_strategic-resources-that-matter/releases/tag/v1.4.1]1.4.1 release notes[/url], with the zip for a manual install.
 
 [h2]Credits[/h2]
 [b]Tower[/b], design and implementation. Special thanks to [b]Potato McWhisky[/b], for teaching me to love again, Civilization-wise (Civ VI), after growing up as a Civilization II, IV, and V player.

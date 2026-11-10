@@ -3,6 +3,13 @@ Generated from CHANGELOG.md by scripts/steam-changelog.mjs; release.sh uploads t
 To fix an old Workshop entry, paste the text under its ==== line into that entry's Edit box on the change-notes page.
 A block edited by hand is kept as-is. Delete a block to regenerate it from CHANGELOG.md.
 
+==== 1.4.1 | 2026-11-10 | src 4e9e334b8e10 | gen 59a5516c4d46 ====
+[b]Version 1.4.1 · 10 November 2026[/b]
+Works with the Civilization VII 1.5.1 update.
+
+[b]Fixed[/b]
+• The resource line is back on unit rows in the production and purchase lists. After the 1.5.1 update a locked unit was still greyed out, but the row no longer said why, and a supplied unit's row didn't show what it draws on. The rows read “Locked: no Iron”, “Locked: no Niter” and “Hardwood or Pitch: 1” again.
+
 ==== 1.4.0 | 2026-10-29 | src 0751cbbeb20d | gen 2619ca726f0c ====
 [b]Version 1.4.0 · 29 October 2026[/b]
 Computer players that go after the resources, a setup option for how many the map places, independent powers and city-states held back on the locked settings, and Pitch for the Modern warships.
